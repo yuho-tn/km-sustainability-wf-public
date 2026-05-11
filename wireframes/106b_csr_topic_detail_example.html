@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSRトピックス詳細 ｜ 参考例（リコチャレ2026） — KM サステナビリティ WF v1.0</title>
+<style>
+/* ============================================================
+   KM SUSTAINABILITY WF — SHARED CSS v4.0
+============================================================ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --c-white:    #FFFFFF;
+  --c-bg:       #F7F7F7;
+  --c-bg-sub:   #F2F2F2;
+  --c-border:   #E0E0E0;
+  --c-border-s: #E8E8E8;
+  --c-ph:       #EBEBEB;
+  --c-ph-line:  #D8D8D8;
+  --c-text-h:   #111111;
+  --c-text:     #333333;
+  --c-text-s:   #666666;
+  --c-text-xs:  #999999;
+  --c-black:    #111111;
+  --c-ann-bg:   #FFFBF0;
+  --c-ann-bdr:  #C8A000;
+  --content-w:  1080px;
+  --page-w:     1280px;
+  --pad-section: 52px;
+  --pad-section-sm: 32px;
+  --pad-h: 100px;
+}
+
+body {
+  font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--c-text);
+  background: var(--c-bg);
+}
+
+/* META BAR */
+.wf-meta-bar { background: #111; color: #ccc; font-size: 11px; padding: 8px 20px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 2000; letter-spacing: 0.03em; }
+.wf-meta-bar strong { color: #fff; font-size: 12px; }
+.wf-meta-bar .meta-badge { background: #333; color: #aaa; font-size: 10px; padding: 2px 8px; border-radius: 2px; margin-left: 8px; }
+.wf-meta-bar .meta-badge.example { background: #C8A000; color: #fff; font-weight: 700; }
+
+/* CANVAS */
+.wf-canvas { max-width: var(--page-w); margin: 0 auto; display: grid; grid-template-columns: 1fr 280px; align-items: start; }
+.wf-page { background: var(--c-white); box-shadow: 0 2px 20px rgba(0,0,0,0.10); min-height: 100vh; }
+
+/* PAGE INDICATOR */
+.wf-page-indicator { background: #2A2A2A; color: #aaa; padding: 6px 32px; font-size: 10px; display: flex; align-items: center; justify-content: space-between; }
+.wf-page-indicator .pi-layer { background: #444; color: #888; font-size: 9px; padding: 1px 8px; border-radius: 2px; }
+
+/* HEADER */
+.wf-header { background: var(--c-white); border-bottom: 1px solid var(--c-border); }
+.wf-header-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 32px; border-bottom: 1px solid var(--c-border-s); }
+.wf-logo { display: flex; align-items: center; gap: 10px; }
+.wf-logo-mark { width: 32px; height: 21px; background: #555; border-radius: 50% 50% 0 50%; }
+.wf-logo-text { font-size: 13px; font-weight: 700; color: var(--c-text-h); letter-spacing: 0.06em; text-transform: uppercase; }
+.wf-header-utils { display: flex; align-items: center; gap: 16px; font-size: 11px; color: var(--c-text-s); }
+.wf-gnav { display: flex; align-items: stretch; padding: 0 32px; }
+.wf-gnav-item { padding: 11px 16px; font-size: 12px; color: var(--c-text-s); border-bottom: 2px solid transparent; white-space: nowrap; }
+.wf-gnav-item.is-active { color: var(--c-text-h); font-weight: 700; border-bottom-color: var(--c-text-h); }
+.wf-lnav { background: #3A3A3A; display: flex; align-items: center; gap: 0; padding: 0 32px; }
+.wf-lnav-label { font-size: 12px; font-weight: 700; color: #fff; padding: 10px 16px 10px 0; margin-right: 8px; border-right: 1px solid #555; white-space: nowrap; }
+.wf-lnav-item { font-size: 11px; color: #BBB; padding: 10px 14px; white-space: nowrap; }
+.wf-lnav-item.is-active { color: #fff; border-bottom: 2px solid #fff; }
+.wf-header-note { background: #F0F0F0; text-align: center; font-size: 10px; color: #888; padding: 4px 24px; border-top: 1px solid #E0E0E0; }
+
+/* BREADCRUMB */
+.wf-breadcrumb { background: var(--c-white); border-bottom: 1px solid var(--c-border-s); padding: 10px var(--pad-h); font-size: 12px; color: var(--c-text-s); display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+.wf-breadcrumb span.sep { color: var(--c-border); }
+.wf-breadcrumb span.current { color: var(--c-text); }
+
+/* TOPIC HEADER */
+.wf-topic-header { padding: 28px var(--pad-h) 24px; background: var(--c-white); border-bottom: 1px solid var(--c-border); }
+.wf-topic-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+.wf-topic-date { font-size: 12px; color: var(--c-text-xs); letter-spacing: 0.05em; }
+.wf-topic-tag { font-size: 10px; color: var(--c-text-s); border: 1px solid var(--c-border); padding: 2px 9px; letter-spacing: 0.04em; background: var(--c-white); }
+.wf-topic-tag.filled { background: #333; color: #fff; border-color: #333; }
+.wf-topic-title { font-size: 26px; font-weight: 700; color: var(--c-text-h); line-height: 1.4; letter-spacing: -0.01em; }
+
+/* SECTION */
+.wf-section { padding: var(--pad-section) var(--pad-h); border-bottom: 1px solid var(--c-border-s); position: relative; }
+.wf-section.bg-sub { background: var(--c-bg-sub); }
+.wf-section.bg-white { background: var(--c-white); }
+.wf-section-marker { position: absolute; top: 12px; left: 8px; width: 22px; height: 22px; background: #222; color: #fff; border-radius: 50%; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+
+/* TYPOGRAPHY */
+.wf-section-title { font-size: 20px; font-weight: 700; color: var(--c-text-h); line-height: 1.3; margin-bottom: 20px; letter-spacing: -0.01em; }
+.wf-sub-title     { font-size: 15px; font-weight: 700; color: var(--c-text-h); line-height: 1.4; margin-bottom: 12px; padding-left: 14px; border-left: 4px solid var(--c-black); }
+.wf-section-desc  { font-size: 13px; color: var(--c-text); line-height: 1.9; margin-bottom: 20px; }
+.wf-h4-inline     { font-size: 13px; font-weight: 700; color: var(--c-text-h); margin: 18px 0 8px; padding-left: 10px; border-left: 3px solid var(--c-black); line-height: 1.5; }
+
+/* IMAGE */
+.wf-img { background: var(--c-ph); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.wf-img::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, transparent 0px, transparent 10px, rgba(0,0,0,0.04) 10px, rgba(0,0,0,0.04) 11px); }
+.wf-img-label { position: relative; z-index: 1; font-size: 11px; color: var(--c-text-xs); text-align: center; line-height: 1.5; padding: 8px 12px; background: rgba(255,255,255,0.75); }
+.wf-img.h-160 { height: 160px; } .wf-img.h-200 { height: 200px; } .wf-img.h-240 { height: 240px; } .wf-img.h-280 { height: 280px; }
+.wf-img-caption { font-size: 11px; color: var(--c-text-xs); margin-top: 6px; line-height: 1.5; }
+
+/* PHOTO GRID（2カラム） */
+.wf-photo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+
+/* TEXT + IMAGE 2COL */
+.wf-content-2col { display: grid; grid-template-columns: 1.3fr 1fr; gap: 24px; align-items: start; }
+.wf-content-2col.img-left { grid-template-columns: 1fr 1.3fr; }
+.wf-content-2col.img-left .wf-content-2col-img { order: -1; }
+
+/* SIMPLE TABLE */
+.wf-simple-table { width: 100%; border-collapse: collapse; font-size: 13px; background: var(--c-white); border-top: 1px solid var(--c-border); }
+.wf-simple-table th, .wf-simple-table td { border-bottom: 1px solid var(--c-border); padding: 14px 16px; text-align: left; vertical-align: top; line-height: 1.7; }
+.wf-simple-table th { background: #FAFAFA; font-weight: 700; color: var(--c-text-h); width: 200px; font-size: 12px; }
+.wf-simple-table td { color: var(--c-text); }
+
+/* BUTTON / LINK */
+.wf-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; font-size: 12px; font-weight: 600; font-family: inherit; padding: 11px 28px; cursor: default; letter-spacing: 0.03em; white-space: nowrap; border: 1.5px solid var(--c-black); }
+.wf-btn.primary { background: var(--c-black); color: var(--c-white); }
+.wf-btn.outline { background: var(--c-white); color: var(--c-black); }
+.wf-btn.lg { font-size: 13px; padding: 14px 36px; }
+.wf-btn-group { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.wf-link { font-size: 12px; color: var(--c-text-s); display: inline-flex; align-items: center; gap: 4px; cursor: default; text-decoration: none; }
+.wf-link::before { content: '→ '; font-size: 11px; }
+
+/* RELATED LINK BOX */
+.wf-related-box { background: var(--c-bg-sub); border: 1px solid var(--c-border); padding: 22px 26px; }
+.wf-related-box + .wf-related-box { margin-top: 16px; }
+.wf-related-box-title { font-size: 12px; font-weight: 700; color: var(--c-text-h); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--c-border); letter-spacing: 0.03em; display: flex; align-items: center; gap: 8px; }
+.wf-related-box-title::before { content: ''; display: inline-block; width: 3px; height: 12px; background: var(--c-black); }
+.wf-related-list { display: flex; flex-direction: column; gap: 6px; }
+
+/* NOTICE LIST + BOX */
+.wf-notice-box { background: var(--c-white); border: 1px solid var(--c-border); padding: 20px 24px; }
+.wf-notice-list { display: flex; flex-direction: column; gap: 10px; padding-left: 4px; }
+.wf-notice-item { position: relative; padding-left: 18px; font-size: 13px; color: var(--c-text); line-height: 1.7; }
+.wf-notice-item::before { content: '・'; position: absolute; left: 0; top: 0; color: var(--c-text-h); font-weight: 700; }
+
+/* BULLET LISTS（黒丸 / 番号付き） */
+.wf-bullet-list { display: flex; flex-direction: column; gap: 8px; padding-left: 4px; }
+.wf-bullet-item { position: relative; padding-left: 18px; font-size: 13px; color: var(--c-text); line-height: 1.8; }
+.wf-bullet-item::before { content: ''; position: absolute; left: 4px; top: 11px; width: 6px; height: 6px; background: var(--c-text-h); border-radius: 50%; }
+.wf-num-list { counter-reset: num; display: flex; flex-direction: column; gap: 8px; padding-left: 4px; }
+.wf-num-list .wf-num-item { counter-increment: num; position: relative; padding-left: 28px; font-size: 13px; color: var(--c-text); line-height: 1.8; }
+.wf-num-list .wf-num-item::before { content: counter(num) "."; position: absolute; left: 4px; top: 0; font-weight: 700; color: var(--c-text-h); }
+
+/* CONTACT BOX */
+.wf-contact-box { background: var(--c-white); border: 1px solid var(--c-border); padding: 20px 24px; margin-top: 20px; }
+.wf-contact-box-row { display: grid; grid-template-columns: 120px 1fr; gap: 12px; padding: 8px 0; font-size: 12px; }
+.wf-contact-box-row + .wf-contact-box-row { border-top: 1px dashed var(--c-border); }
+.wf-contact-box-row .label { font-weight: 700; color: var(--c-text-h); font-size: 11px; }
+
+/* PAGE NAV */
+.wf-page-nav { display: flex; align-items: center; justify-content: center; padding: 28px 0 8px; gap: 16px; }
+.wf-page-nav-back { font-size: 12px; font-weight: 700; color: var(--c-text-h); border: 1px solid var(--c-text-h); padding: 10px 28px; cursor: default; background: var(--c-white); letter-spacing: 0.03em; }
+
+/* ANCHOR NAV LAYOUT */
+.wf-layout-with-anchornav { display: grid; grid-template-columns: 1fr 100px; align-items: start; }
+.wf-anchornav-main { min-width: 0; }
+.wf-anchor-nav { position: sticky; top: 40px; padding: 28px 0 20px 16px; border-left: 1px solid var(--c-border-s); margin-top: 32px; }
+.wf-anchor-nav-title { font-size: 12px; font-weight: 700; color: var(--c-text-h); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--c-border); letter-spacing: 0.05em; }
+.wf-anchor-nav-item { display: block; font-size: 11px; color: var(--c-text-s); padding: 5px 0; cursor: default; line-height: 1.4; text-decoration: none; }
+.wf-anchor-nav-item.is-current { color: var(--c-text-h); font-weight: 700; border-left: 2px solid var(--c-black); padding-left: 6px; margin-left: -8px; }
+
+/* FOOTER */
+.wf-footer { background: #F5F5F5; border-top: 1px solid var(--c-border); padding: 32px var(--pad-h) 20px; }
+.wf-footer-note { text-align: center; font-size: 10px; color: #999; background: #EBEBEB; border: 1px solid var(--c-border); padding: 6px; margin-bottom: 20px; }
+.wf-footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 24px; }
+.wf-footer-col-title { font-size: 11px; font-weight: 700; color: var(--c-text); border-bottom: 1px solid var(--c-border); padding-bottom: 8px; margin-bottom: 8px; }
+.wf-footer-link { display: block; font-size: 11px; color: var(--c-text-s); padding: 3px 0; }
+.wf-footer-bottom { border-top: 1px solid var(--c-border); padding-top: 14px; display: flex; justify-content: space-between; font-size: 11px; color: var(--c-text-xs); }
+
+/* ANNOTATION */
+.wf-annotation { background: var(--c-ann-bg); border-left: 3px solid var(--c-ann-bdr); padding: 16px; position: sticky; top: 0; max-height: 100vh; overflow-y: auto; }
+.wf-annotation h3 { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: #888; border-bottom: 1px solid var(--c-ann-bdr); padding-bottom: 8px; margin-bottom: 14px; }
+.ann-item { margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid #EEE; }
+.ann-item:last-child { border-bottom: none; }
+.ann-num { display: inline-flex; align-items: center; justify-content: center; min-width: 22px; height: 22px; padding: 0 6px; background: #222; color: #fff; font-size: 9px; font-weight: 700; border-radius: 11px; margin-bottom: 5px; font-family: 'SF Mono', 'Menlo', monospace; }
+.ann-head { font-size: 11px; font-weight: 700; color: #222; display: block; margin-bottom: 6px; line-height: 1.4; }
+.ann-row { font-size: 10px; color: #555; line-height: 1.5; padding-left: 4px; border-left: 2px solid #E0D090; }
+.ann-row + .ann-row { margin-top: 4px; }
+.ann-row .ann-row-label { font-weight: 700; color: #888; display: block; font-size: 9px; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* FIRSTVIEW LINE */
+.wf-firstview-line { position: relative; height: 0; border: none; margin: 0; padding: 0; z-index: 1500; }
+.wf-firstview-line::before { content: ''; position: absolute; left: -100px; right: -160px; top: 0; border-top: 2px dashed #E74C3C; z-index: 1500; }
+.wf-firstview-line::after { content: 'FIRST VIEW LINE — 1280×800'; position: absolute; right: 0; top: -18px; font-size: 10px; font-weight: 700; color: #E74C3C; background: rgba(255,255,255,0.92); padding: 2px 10px; letter-spacing: 0.03em; white-space: nowrap; z-index: 1501; }
+</style>
+</head>
+<body>
+
+<div class="wf-meta-bar">
+  <div>
+    <strong>KONICA MINOLTA サステナビリティ</strong>
+    <span class="meta-badge">CSRトピックス詳細</span>
+    <span class="meta-badge example">参考例 ｜ リコチャレ2026</span>
+    <span class="meta-badge">WF v1.0</span>
+    <span class="meta-badge">#106b</span>
+  </div>
+  <div style="font-size:10px; color:#666;">2026.04</div>
+</div>
+
+<div class="wf-canvas">
+  <div class="wf-page">
+
+    <div class="wf-page-indicator">
+      <span>CSRトピックス詳細（参考例）/ URL: /about/csr/news/2026/0708_01_01.html</span>
+      <span class="pi-layer">第4階層 — 詳細記事ページ ｜ 13モジュール網羅例</span>
+    </div>
+
+    <!-- HEADER -->
+    <header class="wf-header">
+      <div class="wf-header-inner">
+        <div class="wf-logo"><div class="wf-logo-mark"></div><div class="wf-logo-text">KONICA MINOLTA</div></div>
+        <div class="wf-header-utils"><span>サポート・ダウンロード</span><span>お問い合わせ</span><span>Countries/Regions</span><span>ja | en | zh</span></div>
+      </div>
+      <nav class="wf-gnav">
+        <span class="wf-gnav-item">企業情報</span><span class="wf-gnav-item">Newsroom</span><span class="wf-gnav-item">株主・投資家情報</span>
+        <span class="wf-gnav-item is-active">サステナビリティ</span><span class="wf-gnav-item">テクノロジー</span><span class="wf-gnav-item">採用情報</span>
+      </nav>
+      <nav class="wf-lnav">
+        <span class="wf-lnav-label">サステナビリティ</span>
+        <span class="wf-lnav-item">サステナビリティ戦略</span><span class="wf-lnav-item">サステナビリティマネジメント</span>
+        <span class="wf-lnav-item">環境</span><span class="wf-lnav-item">社会</span><span class="wf-lnav-item">ガバナンス</span>
+        <span class="wf-lnav-item is-active">CSRトピックス</span>
+      </nav>
+      <div class="wf-header-note">ヘッダーは既確定。変更なし。</div>
+    </header>
+
+    <!-- パンくず -->
+    <nav class="wf-breadcrumb">
+      ホーム <span class="sep">›</span> サステナビリティ <span class="sep">›</span> CSRトピックス <span class="sep">›</span> 2026年 <span class="sep">›</span>
+      <span class="current">夏のリコチャレ「コニカミノルタ最新研究棟見学＆体験学習会」開催のお知らせ</span>
+    </nav>
+
+    <!-- トピックヘッダー -->
+    <div class="wf-topic-header">
+      <div class="wf-topic-meta">
+        <span class="wf-topic-date">2026年7月8日</span>
+        <span class="wf-topic-tag filled">CSRトピックス</span>
+        <span class="wf-topic-tag">DE&I</span>
+        <span class="wf-topic-tag">次世代育成</span>
+      </div>
+      <h1 class="wf-topic-title">夏のリコチャレ「コニカミノルタ最新研究棟見学＆体験学習会」開催のお知らせ</h1>
+    </div>
+
+    <div class="wf-layout-with-anchornav">
+      <div class="wf-anchornav-main">
+
+        <!-- ============================================================
+             1. リード文 + キービジュアル【M05 全幅画像】
+        ============================================================ -->
+        <section class="wf-section bg-white" id="intro" style="padding-top:36px;">
+          <span class="wf-section-marker">1</span>
+
+          <p class="wf-section-desc">
+            コニカミノルタは、内閣府・文部科学省・経団連が推進する「夏の理工チャレンジ（リコチャレ）」に賛同し、女子中高生を対象とした体験型プログラムを2026年8月19日（水）に開催します。本プログラムは、理工系の知識が実際の製品開発にどう活かされているかを、最新研究施設の見学と体験学習を通じて知っていただくことを目的としています。<br>
+            女性社員との交流の時間も設けますので、進学・進路選択の参考にぜひご参加ください。
+          </p>
+
+          <!-- M05 画像（全幅） -->
+          <div class="wf-img" style="height:280px;">
+            <span class="wf-img-label">キービジュアル画像（全幅 1080×480）<br>例：研究棟外観／前回開催時の集合写真</span>
+          </div>
+          <p class="wf-img-caption">2025年度 リコチャレ開催時の集合写真（コニカミノルタ八王子サイト）</p>
+
+          <div class="wf-firstview-line" style="margin-top:32px;"></div>
+        </section>
+
+        <!-- ============================================================
+             2. 募集概要【M01 H2】【M10 表】
+        ============================================================ -->
+        <section class="wf-section bg-sub" id="overview">
+          <span class="wf-section-marker">2</span>
+
+          <!-- M01 H2 -->
+          <h2 class="wf-section-title">募集概要</h2>
+          <p class="wf-section-desc">
+            本プログラムの実施概要は以下のとおりです。お申込みの前にご確認ください。
+          </p>
+
+          <!-- M10 イベント概要表 -->
+          <table class="wf-simple-table">
+            <tbody>
+              <tr><th>イベント名称</th><td>コニカミノルタ最新研究棟見学＆体験学習会（夏のリコチャレ2026）</td></tr>
+              <tr><th>開催日時</th><td>2026年8月19日（水）13:30 〜 16:30（受付開始 13:00）</td></tr>
+              <tr>
+                <th>集合場所</th>
+                <td>
+                  コニカミノルタ八王子サイト（東京都八王子市石川町2970）<br>
+                  <span style="font-size:11px; color:var(--c-text-xs);">※最寄り駅：JR八高線「北八王子駅」より徒歩12分／JR中央線「豊田駅」よりバス15分</span>
+                </td>
+              </tr>
+              <tr><th>対象者</th><td>中学生・高校生（女性限定）／保護者の同伴可</td></tr>
+              <tr><th>参加費</th><td>無料（ただし、現地までの交通費は参加者負担）</td></tr>
+              <tr><th>募集人員</th><td>30名（先着順）</td></tr>
+              <tr><th>申込締切</th><td>2026年8月7日（金）17:00</td></tr>
+              <tr><th>主催</th><td>コニカミノルタ株式会社</td></tr>
+              <tr><th>後援</th><td>内閣府男女共同参画局・文部科学省・一般社団法人 日本経済団体連合会</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- ============================================================
+             3. 開催プログラム【M01 H2】【M02 H3】【M03 H4】
+                                【M04 箇条書き】【M07/M08 テキスト＋画像】
+                                【M06 画像2カラム】
+        ============================================================ -->
+        <section class="wf-section bg-white" id="program">
+          <span class="wf-section-marker">3</span>
+
+          <!-- M01 H2 -->
+          <h2 class="wf-section-title">開催プログラム（予定）</h2>
+          <p class="wf-section-desc">
+            当日は、以下の3つのプログラムを順次実施します。専門スタッフが丁寧にご案内しますので、はじめての方も安心してご参加いただけます。
+          </p>
+
+          <!-- M02 H3 ｜ プログラム1 -->
+          <h3 class="wf-sub-title" style="margin-top:8px;">プログラム1 ｜ 最新研究棟の見学</h3>
+
+          <!-- M07 左テキスト＋右画像 -->
+          <div class="wf-content-2col" style="margin-bottom:24px;">
+            <div>
+              <p style="font-size:13px; color:var(--c-text); line-height:1.9; margin-bottom:14px;">
+                2024年に竣工したコニカミノルタの基幹研究施設「八王子サイト 研究開発棟」を見学します。普段は社外の方が立ち入ることのできないエリアを含め、当社の研究開発の全体像を、研究員自らがご案内します。
+              </p>
+              <p style="font-size:13px; color:var(--c-text); line-height:1.9; margin-bottom:0;">
+                施設のシンボルである大空間の吹き抜けエントランスや、複数の研究領域がオープンに交差するコラボレーションフロアなど、最新の研究環境を体感していただけます。
+              </p>
+            </div>
+            <div class="wf-content-2col-img">
+              <div class="wf-img h-200">
+                <span class="wf-img-label">画像（右配置）<br>研究棟エントランス</span>
+              </div>
+              <p class="wf-img-caption">開放的な吹き抜けの研究棟エントランス</p>
+            </div>
+          </div>
+
+          <!-- M03 H4 -->
+          <h4 class="wf-h4-inline">主な見学エリア</h4>
+          <!-- M04 箇条書き（黒丸） -->
+          <ul class="wf-bullet-list" style="margin-bottom:32px;">
+            <li class="wf-bullet-item">研究棟エントランス（吹き抜けの大空間／コラボレーションスペース）</li>
+            <li class="wf-bullet-item">最新の複合機・デジタル印刷システムの展示エリア</li>
+            <li class="wf-bullet-item">機能性材料・有機ELパネルの研究フロア（一部見学）</li>
+            <li class="wf-bullet-item">画像IoT・AIソリューションのデモブース</li>
+          </ul>
+
+
+          <!-- M02 H3 ｜ プログラム2 -->
+          <h3 class="wf-sub-title">プログラム2 ｜ 体験学習「手動コピーに挑戦！」</h3>
+
+          <!-- M08 右テキスト＋左画像 -->
+          <div class="wf-content-2col img-left" style="margin-bottom:24px;">
+            <div>
+              <p style="font-size:13px; color:var(--c-text); line-height:1.9; margin-bottom:14px;">
+                当社の事業の原点である「複写機」のしくみを、手作業で体験していただきます。静電気の性質を利用してトナーを紙に転写する原理を、ステップごとに自分の手で確かめながら、コピー機が動作する仕組みを理解できるワークショップです。
+              </p>
+              <p style="font-size:13px; color:var(--c-text); line-height:1.9; margin-bottom:0;">
+                理科の教科書で学んだ「静電気」が、実社会の製品にどう応用されているのか、目で見て手で触れて体感できるプログラムです。
+              </p>
+            </div>
+            <div class="wf-content-2col-img">
+              <div class="wf-img h-200">
+                <span class="wf-img-label">主画像（左配置）<br>体験学習：手動コピー実演中</span>
+              </div>
+              <p class="wf-img-caption">静電気の性質を利用した手動コピーに挑戦！</p>
+            </div>
+          </div>
+
+          <!-- M06 画像2カラム -->
+          <div class="wf-photo-grid" style="margin-bottom:8px;">
+            <div>
+              <div class="wf-img h-200">
+                <span class="wf-img-label">体験学習画像 ①<br>トナーの転写工程を確認</span>
+              </div>
+              <p class="wf-img-caption">トナーの転写工程を、ガイド役の社員と一緒に確認します</p>
+            </div>
+            <div>
+              <div class="wf-img h-200">
+                <span class="wf-img-label">体験学習画像 ②<br>完成したコピー紙を確認</span>
+              </div>
+              <p class="wf-img-caption">うまくコピーできるかな？完成した1枚を持ち帰れます</p>
+            </div>
+          </div>
+
+
+          <!-- M02 H3 ｜ プログラム3 -->
+          <h3 class="wf-sub-title" style="margin-top:32px;">プログラム3 ｜ 女性社員との座談会</h3>
+          <p class="wf-section-desc" style="margin-bottom:8px;">
+            研究開発・商品企画・マーケティングなど、異なる職種で活躍する女性社員4名とのフリートーク。事前にいただく質問にお答えするほか、当日その場での質問も歓迎します。
+          </p>
+
+          <!-- M03 H4 -->
+          <h4 class="wf-h4-inline">対話テーマ（例）</h4>
+          <!-- M04 箇条書き（黒丸） -->
+          <ul class="wf-bullet-list">
+            <li class="wf-bullet-item">理系を選んだ理由・進学／進路選択時のエピソード</li>
+            <li class="wf-bullet-item">大学・大学院での研究内容と、現在の仕事との接点</li>
+            <li class="wf-bullet-item">ライフイベント（結婚・出産・育児）と仕事の両立</li>
+            <li class="wf-bullet-item">入社1年目から現在までのキャリアの広がり方</li>
+            <li class="wf-bullet-item">「これから理系に進む人」へのメッセージ</li>
+          </ul>
+        </section>
+
+        <!-- ============================================================
+             4. お申込みの流れ【M01 H2】【M04 番号付き】
+        ============================================================ -->
+        <section class="wf-section bg-sub" id="apply-flow">
+          <span class="wf-section-marker">4</span>
+
+          <!-- M01 H2 -->
+          <h2 class="wf-section-title">お申込みの流れ</h2>
+
+          <!-- M04 番号付き箇条書き -->
+          <ol class="wf-num-list" style="background:var(--c-white); border:1px solid var(--c-border); padding:20px 28px;">
+            <li class="wf-num-item">本ページ最下部の「申込フォームへ進む」ボタンから、Webフォームに必要事項をご入力ください。</li>
+            <li class="wf-num-item">送信後、ご登録のメールアドレスに自動返信メールが届きます（10分以内）。</li>
+            <li class="wf-num-item">事務局にて応募内容を確認後、参加可否を <strong>2026年8月10日（月）までに</strong> メールでご連絡します。</li>
+            <li class="wf-num-item">参加確定の方には、当日のスケジュール・持ち物・アクセス詳細をあわせてお送りします。</li>
+            <li class="wf-num-item">当日は受付（13:00開始）に、参加票（メール添付）をご提示のうえお越しください。</li>
+          </ol>
+        </section>
+
+        <!-- ============================================================
+             5. 注意事項【M01 H2】【M09 注意事項】
+        ============================================================ -->
+        <section class="wf-section bg-white" id="notice">
+          <span class="wf-section-marker">5</span>
+
+          <!-- M01 H2 -->
+          <h2 class="wf-section-title">ご参加にあたっての注意事項</h2>
+
+          <!-- M09 注意事項 -->
+          <div class="wf-notice-box">
+            <ul class="wf-notice-list">
+              <li class="wf-notice-item">当日の集合場所までの交通費は、参加者ご自身でご負担ください。</li>
+              <li class="wf-notice-item">未成年の参加者は、必ず保護者の同意を得たうえでお申し込みください。お申し込みフォームに保護者の連絡先をご記入いただきます。</li>
+              <li class="wf-notice-item">当日撮影した写真・動画は、当社のCSRレポート・サステナビリティWebサイト・SNSなど広報物に使用させていただく場合があります（個人が特定できる形での掲載前には、別途ご本人・保護者に確認します）。</li>
+              <li class="wf-notice-item">天候・社会情勢・施設運営上の理由により、開催を中止または内容を変更する場合があります。中止の場合は、前日までにメールでご連絡します。</li>
+              <li class="wf-notice-item">昼食は各自でご用意ください（会場周辺に飲食店およびコンビニエンスストアがあります）。</li>
+              <li class="wf-notice-item">アレルギー・配慮が必要な体調等がある方は、お申し込みフォーム自由記入欄にご記入ください。</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             6. お申込み・お問い合わせ【M01 H2】【M02 H3】
+                                       【M12 黒CTA】【M13 白CTA】
+        ============================================================ -->
+        <section class="wf-section bg-sub" id="apply">
+          <span class="wf-section-marker">6</span>
+
+          <!-- M01 H2 -->
+          <h2 class="wf-section-title">お申込み・お問い合わせ</h2>
+
+          <!-- M02 H3 -->
+          <h3 class="wf-sub-title">お申込み</h3>
+          <p class="wf-section-desc">
+            下記の「申込フォームへ進む」ボタンより、申込フォームへお進みください。<br>
+            また、保護者の方向けに参加要項をPDFでもご用意しています。
+          </p>
+
+          <!-- M12 黒CTA + M13 白CTA を並置（推奨パターン） -->
+          <div class="wf-btn-group" style="margin-bottom:36px;">
+            <span class="wf-btn primary lg">申込フォームへ進む</span>
+            <span class="wf-btn outline">参加要項をPDFでダウンロード（保護者向け）</span>
+          </div>
+
+          <!-- M02 H3 -->
+          <h3 class="wf-sub-title">お問い合わせ先</h3>
+          <p class="wf-section-desc" style="margin-bottom:0;">
+            ご不明な点がありましたら、以下の窓口までお問い合わせください。お電話・メールいずれでも受け付けています。
+          </p>
+
+          <div class="wf-contact-box">
+            <div class="wf-contact-box-row">
+              <div class="label">担当部署</div>
+              <div>コニカミノルタ株式会社 サステナビリティ推進部 ダイバーシティ推進グループ</div>
+            </div>
+            <div class="wf-contact-box-row">
+              <div class="label">担当者</div>
+              <div>山田・鈴木</div>
+            </div>
+            <div class="wf-contact-box-row">
+              <div class="label">電話番号</div>
+              <div>03-XXXX-XXXX（受付：平日 9:30 〜 17:30 ／ 土日祝・夏季休暇期間を除く）</div>
+            </div>
+            <div class="wf-contact-box-row">
+              <div class="label">メール</div>
+              <div>rikochalle_2026@konicaminolta.com</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             7. 関連リンク【M01 H2】【M11 関連リンク ×2】
+        ============================================================ -->
+        <section class="wf-section bg-white" id="related">
+          <span class="wf-section-marker">7</span>
+
+          <!-- M01 H2 -->
+          <h2 class="wf-section-title">関連リンク</h2>
+          <p class="wf-section-desc">
+            本トピックに関連する当社の取り組み・外部サイトへのリンクをまとめています。
+          </p>
+
+          <!-- M11 関連リンク（内部） -->
+          <div class="wf-related-box">
+            <div class="wf-related-box-title">サステナビリティサイト内 関連ページ</div>
+            <div class="wf-related-list">
+              <span class="wf-link">DE&I（多様性・公平性・包摂性）の取り組み</span>
+              <span class="wf-link">女性のキャリア形成支援</span>
+              <span class="wf-link">学術・研究・教育の支援</span>
+              <span class="wf-link">社会貢献活動 トップページ</span>
+              <span class="wf-link">CSRトピックス 2026年 一覧</span>
+            </div>
+          </div>
+
+          <!-- M11 関連リンク（外部・PDF） -->
+          <div class="wf-related-box">
+            <div class="wf-related-box-title">外部サイト・関連PDF</div>
+            <div class="wf-related-list">
+              <span class="wf-link">夏のリコチャレ 公式サイト（内閣府 男女共同参画局）</span>
+              <span class="wf-link">2025年度 リコチャレ 開催レポート（PDF・1.2MB）</span>
+              <span class="wf-link">参加要項 2026（PDF・480KB）</span>
+              <span class="wf-link">コニカミノルタ サステナビリティレポート2025（PDF・8.4MB）</span>
+            </div>
+          </div>
+
+          <!-- 一覧へ戻る -->
+          <div class="wf-page-nav">
+            <span class="wf-page-nav-back">CSRトピックス 2026年 一覧へ戻る</span>
+          </div>
+        </section>
+
+        <!-- フッター -->
+        <footer class="wf-footer">
+          <div class="wf-footer-note">フッターは既確定。変更なし。</div>
+          <div class="wf-footer-grid">
+            <div><div class="wf-footer-col-title">企業情報</div><span class="wf-footer-link">企業情報トップ</span><span class="wf-footer-link">Newsroom</span></div>
+            <div><div class="wf-footer-col-title">環境</div><span class="wf-footer-link">気候変動</span><span class="wf-footer-link">資源循環</span></div>
+            <div><div class="wf-footer-col-title">社会</div><span class="wf-footer-link">人材戦略</span><span class="wf-footer-link">DE&amp;I</span></div>
+            <div><div class="wf-footer-col-title">ガバナンス</div><span class="wf-footer-link">コンプライアンス</span><span class="wf-footer-link">情報セキュリティ</span></div>
+          </div>
+          <div class="wf-footer-bottom"><div>サイトのご利用について ｜ 個人情報保護方針 ｜ サイトマップ</div><div>&copy;2011-2026 Konica Minolta, Inc.</div></div>
+        </footer>
+
+      </div><!-- /wf-anchornav-main -->
+
+      <!-- 右アンカーナビ -->
+      <nav class="wf-anchor-nav">
+        <div class="wf-anchor-nav-title">目次</div>
+        <a class="wf-anchor-nav-item is-current" href="#intro">概要</a>
+        <a class="wf-anchor-nav-item" href="#overview">募集概要</a>
+        <a class="wf-anchor-nav-item" href="#program">開催プログラム</a>
+        <a class="wf-anchor-nav-item" href="#apply-flow">お申込みの流れ</a>
+        <a class="wf-anchor-nav-item" href="#notice">注意事項</a>
+        <a class="wf-anchor-nav-item" href="#apply">お申込み</a>
+        <a class="wf-anchor-nav-item" href="#related">関連リンク</a>
+      </nav>
+
+    </div><!-- /wf-layout-with-anchornav -->
+
+  </div><!-- /wf-page -->
+
+  <!-- ============================================================
+       アノテーション（モジュール使用箇所マッピング）
+  ============================================================ -->
+  <aside class="wf-annotation">
+    <h3>モジュール使用マップ — 13モジュール網羅</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">SEC 1</span>
+      <span class="ann-head">リード文＋キービジュアル</span>
+      <div class="ann-row"><span class="ann-row-label">USED</span>M05 全幅画像</div>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">SEC 2</span>
+      <span class="ann-head">募集概要</span>
+      <div class="ann-row"><span class="ann-row-label">USED</span>M01 H2 ／ M10 イベント概要表（9行）</div>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">SEC 3</span>
+      <span class="ann-head">開催プログラム</span>
+      <div class="ann-row"><span class="ann-row-label">USED</span>M01 H2 ／ M02 H3 ×3 ／ M03 H4 ×2 ／ M04 黒丸 ×2 ／ M07 左テキスト＋右画像 ／ M08 右テキスト＋左画像 ／ M06 画像2カラム</div>
+      <div class="ann-row"><span class="ann-row-label">意図</span>3プログラムを「画像レイアウトの配分パターン」で対比的に表現（M07→M08→M06と画像比重を上げる）。</div>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">SEC 4</span>
+      <span class="ann-head">お申込みの流れ</span>
+      <div class="ann-row"><span class="ann-row-label">USED</span>M01 H2 ／ M04 番号付き箇条書き</div>
+      <div class="ann-row"><span class="ann-row-label">意図</span>順序がある手順は番号付きで提示することで、ユーザーが現在地を把握しやすい構造に。</div>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">SEC 5</span>
+      <span class="ann-head">注意事項</span>
+      <div class="ann-row"><span class="ann-row-label">USED</span>M01 H2 ／ M09 注意事項</div>
+      <div class="ann-row"><span class="ann-row-label">意図</span>申込CTAの「直前」に配置することで、参加可否の自己判断を促す。</div>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">SEC 6</span>
+      <span class="ann-head">お申込み・お問い合わせ</span>
+      <div class="ann-row"><span class="ann-row-label">USED</span>M01 H2 ／ M02 H3 ×2 ／ M12 黒CTA（lg）／ M13 白CTA</div>
+      <div class="ann-row"><span class="ann-row-label">意図</span>主CTA（黒）と副CTA（白PDF）を並置し、優先度の差を視覚化。</div>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">SEC 7</span>
+      <span class="ann-head">関連リンク</span>
+      <div class="ann-row"><span class="ann-row-label">USED</span>M01 H2 ／ M11 関連リンク ×2（内部・外部）</div>
+      <div class="ann-row"><span class="ann-row-label">意図</span>リンク先の性質で2ボックスに分割し、ユーザーが目的別に選択しやすい構造に。</div>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">FULL</span>
+      <span class="ann-head">13モジュール全使用 ✓</span>
+      <div class="ann-row"><span class="ann-row-label">CHECKLIST</span>M01 ✓ ／ M02 ✓ ／ M03 ✓ ／ M04（黒丸／番号）✓ ／ M05 ✓ ／ M06 ✓ ／ M07 ✓ ／ M08 ✓ ／ M09 ✓ ／ M10 ✓ ／ M11 ✓ ／ M12 ✓ ／ M13 ✓</div>
+    </div>
+  </aside>
+
+</div><!-- /wf-canvas -->
+
+</body>
+</html>

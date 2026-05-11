@@ -1,0 +1,1694 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TCFD開示 — KM サステナビリティ WF v3.4 (#031)</title>
+<style>
+/* ============================================================
+   KM SUSTAINABILITY WF — SHARED CSS v4.3 継承（#024 climate と同等）
+   v3.0 追加：見出し英字撤去 / parent-cat撤去 / アコーディオン
+============================================================ */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --c-white:    #FFFFFF;
+  --c-bg:       #F7F7F7;
+  --c-bg-sub:   #F2F2F2;
+  --c-border:   #E0E0E0;
+  --c-border-s: #E8E8E8;
+  --c-ph:       #EBEBEB;
+  --c-ph-line:  #D8D8D8;
+  --c-text-h:   #111111;
+  --c-text:     #333333;
+  --c-text-s:   #666666;
+  --c-text-xs:  #999999;
+  --c-black:    #111111;
+  --c-ann-bg:   #FFFBF0;
+  --c-ann-bdr:  #C8A000;
+  --content-w:  1080px;
+  --page-w:     1280px;
+  --pad-section: 64px;
+  --pad-section-sm: 40px;
+  --pad-h: 100px;
+}
+
+body {
+  font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  font-size: 13px; line-height: 1.8;
+  color: var(--c-text); background: var(--c-bg);
+}
+
+.wf-meta-bar {
+  background: #111; color: #ccc; font-size: 11px; padding: 8px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 2000; letter-spacing: 0.03em;
+}
+.wf-meta-bar strong { color: #fff; font-size: 12px; }
+.wf-meta-bar .meta-badge { background: #333; color: #aaa; font-size: 10px; padding: 2px 8px; border-radius: 2px; margin-left: 8px; }
+
+.wf-canvas { max-width: var(--page-w); margin: 0 auto; display: grid; grid-template-columns: 1fr 280px; align-items: start; }
+.wf-page { background: var(--c-white); box-shadow: 0 2px 20px rgba(0,0,0,0.10); min-height: 100vh; }
+
+.wf-header { background: var(--c-white); border-bottom: 1px solid var(--c-border); }
+.wf-header-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 32px; border-bottom: 1px solid var(--c-border-s); }
+.wf-logo { display: flex; align-items: center; gap: 10px; }
+.wf-logo-mark { width: 32px; height: 21px; background: #555; border-radius: 50% 50% 0 50%; }
+.wf-logo-text { font-size: 13px; font-weight: 700; color: var(--c-text-h); letter-spacing: 0.06em; text-transform: uppercase; }
+.wf-header-utils { display: flex; align-items: center; gap: 16px; font-size: 11px; color: var(--c-text-s); }
+.wf-gnav { display: flex; align-items: stretch; padding: 0 32px; }
+.wf-gnav-item { padding: 11px 16px; font-size: 12px; color: var(--c-text-s); border-bottom: 2px solid transparent; white-space: nowrap; }
+.wf-gnav-item.is-active { color: var(--c-text-h); font-weight: 700; border-bottom-color: var(--c-text-h); }
+.wf-lnav { background: #3A3A3A; display: flex; align-items: center; gap: 0; padding: 0 32px; }
+.wf-lnav-label { font-size: 12px; font-weight: 700; color: #fff; padding: 10px 16px 10px 0; margin-right: 8px; border-right: 1px solid #555; white-space: nowrap; }
+.wf-lnav-item { font-size: 11px; color: #BBB; padding: 10px 14px; white-space: nowrap; }
+.wf-lnav-item.is-active { color: #fff; border-bottom: 2px solid #fff; }
+.wf-header-note { background: #F0F0F0; text-align: center; font-size: 10px; color: #888; padding: 4px 24px; border-top: 1px solid #E0E0E0; }
+
+.wf-breadcrumb { background: var(--c-white); border-bottom: 1px solid var(--c-border-s); padding: 10px var(--pad-h); font-size: 12px; color: var(--c-text-s); display: flex; align-items: center; gap: 4px; }
+.wf-breadcrumb span.sep { color: var(--c-border); }
+.wf-breadcrumb span.current { color: var(--c-text); }
+
+.wf-page-indicator { background: #2A2A2A; color: #aaa; padding: 6px 32px; font-size: 10px; display: flex; align-items: center; justify-content: space-between; }
+.wf-page-indicator .pi-layer { background: #444; color: #888; font-size: 9px; padding: 1px 8px; border-radius: 2px; }
+
+.wf-section { padding: var(--pad-section) var(--pad-h); border-bottom: 1px solid var(--c-border-s); position: relative; }
+.wf-section.bg-sub { background: var(--c-bg-sub); }
+.wf-section.bg-white { background: var(--c-white); }
+.wf-section.pad-sm { padding-top: var(--pad-section-sm); padding-bottom: var(--pad-section-sm); }
+.wf-section-marker { position: absolute; top: 12px; left: 8px; width: 22px; height: 22px; background: #222; color: #fff; border-radius: 50%; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+
+/* H2 — グラデ下線（v3.0：英字span廃止） */
+.wf-section-title {
+  font-size: 24px; font-weight: 700; color: var(--c-text-h);
+  margin-bottom: 28px; padding-bottom: 14px;
+  border-bottom: 1px solid var(--c-border);
+  line-height: 1.3; letter-spacing: -0.01em;
+  position: relative;
+}
+.wf-section-title::after {
+  content: ''; position: absolute; left: 0; bottom: -1px;
+  width: 140px; height: 3px;
+  background: linear-gradient(90deg, #111 0%, #444 40%, #888 70%, transparent 100%);
+}
+.wf-section-desc { font-size: 13px; color: var(--c-text); line-height: 1.955; margin-bottom: 24px; }
+
+/* H3 — 左縦棒 */
+.wf-sub-title {
+  font-size: 16px; font-weight: 700; color: var(--c-text-h);
+  margin-bottom: 16px; line-height: 1.5;
+  padding-left: 14px; border-left: 4px solid var(--c-text-h);
+  letter-spacing: -0.01em;
+}
+
+/* H4 — ◾プレフィックス */
+.wf-card-title {
+  font-size: 14px; font-weight: 700; color: var(--c-text-h);
+  margin-bottom: 12px; line-height: 1.4;
+  display: flex; align-items: center; gap: 6px;
+  margin-top: 18px;
+}
+.wf-card-title.has-mark::before { content: '◾'; color: var(--c-text-h); font-size: 12px; flex-shrink: 0; }
+
+/* H5 — 小◾ */
+.wf-h5-title {
+  font-size: 12px; font-weight: 700; color: var(--c-text-h);
+  margin-bottom: 8px; line-height: 1.5;
+  display: flex; align-items: center; gap: 6px;
+  margin-top: 14px;
+}
+.wf-h5-title::before { content: '◾'; color: var(--c-text-h); font-size: 10px; flex-shrink: 0; }
+
+/* リンク */
+.wf-link { font-size: 12px; color: var(--c-text-s); display: inline-flex; align-items: center; gap: 4px; cursor: default; }
+.wf-link::before { content: '→ '; font-size: 11px; }
+
+/* L3ページタイトル（v3.0：parent-cat / title-en 撤去） */
+.wf-page-title-area {
+  background: var(--c-white);
+  padding: 32px var(--pad-h) 24px;
+  border-bottom: 1px solid var(--c-border-s);
+}
+.wf-page-title {
+  font-size: 28px; font-weight: 700; color: var(--c-text-h);
+  line-height: 1.3; letter-spacing: 0.01em;
+}
+.wf-page-parent-cat {
+  font-size: 12px;
+  color: var(--c-text-s);
+  margin-top: 6px;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+}
+.wf-page-parent-cat a {
+  color: var(--c-text-h);
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1px dashed var(--c-text-h);
+  cursor: default;
+  padding-bottom: 1px;
+}
+.wf-page-parent-cat a:hover {
+  border-bottom-style: solid;
+  background: var(--c-bg-sub);
+}
+
+
+/* 2カラム本文＋コンパクトアンカーナビ */
+.wf-layout-with-anchornav {
+  display: grid; grid-template-columns: 1fr 100px;
+  gap: 16px;
+  padding-right: var(--pad-h);
+}
+.wf-anchornav-main { min-width: 0; }
+.wf-anchornav-main .wf-section { padding-right: 32px; }
+.wf-anchor-nav {
+  position: sticky; top: 60px;
+  padding: 14px 0 14px 12px;
+  border-left: 2px solid var(--c-text-h);
+  background: transparent;
+  font-size: 11px;
+  align-self: start;
+  margin-top: 28px;
+}
+.wf-anchor-nav-title {
+  font-size: 9px; font-weight: 700;
+  color: var(--c-text-xs);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.wf-anchor-nav-item {
+  display: block;
+  font-size: 11px; color: var(--c-text-s);
+  padding: 5px 0; line-height: 1.4;
+  cursor: default;
+  border-left: 2px solid transparent;
+  margin-left: -14px;
+  padding-left: 12px;
+}
+.wf-anchor-nav-item:hover { color: var(--c-text-h); }
+.wf-anchor-nav-item.is-current {
+  color: var(--c-text-h); font-weight: 700;
+  border-left-color: var(--c-text-h);
+}
+
+/* ボタンリンク（白背景＋黒文字＋黒ボーダー） */
+.wf-btn {
+  display: inline-flex; align-items: center; justify-content: flex-start; gap: 8px;
+  font-size: 12px; font-weight: 600; font-family: inherit;
+  padding: 12px 20px; cursor: default;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  background: var(--c-white); color: var(--c-text-h);
+  border: 1px solid var(--c-border);
+  min-width: 280px;
+}
+.wf-btn::before { content: '›'; font-size: 14px; color: var(--c-text-h); font-weight: 700; margin-right: 4px; }
+.wf-btn:hover { background: var(--c-bg-sub); border-color: var(--c-text-h); }
+
+/* 大型図PH（全幅） */
+.large-figure-ph {
+  background: var(--c-ph);
+  border: 1px solid var(--c-ph-line);
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 6;
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 14px;
+}
+.large-figure-ph::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(45deg, transparent 0 12px, rgba(0,0,0,0.04) 12px 13px);
+}
+.large-figure-ph-label {
+  position: relative; z-index: 1;
+  font-size: 11px; color: var(--c-text-s);
+  text-align: center; line-height: 1.7;
+  background: rgba(255,255,255,0.92); padding: 8px 16px;
+  letter-spacing: 0.04em;
+  border: 1px dashed var(--c-ph-line);
+  max-width: 80%;
+}
+.large-figure-ph-label strong { display: block; font-size: 12px; color: var(--c-text-h); margin-bottom: 4px; }
+
+/* 画像拡大ボタン */
+.img-zoom-btn {
+  position: absolute;
+  bottom: 6px; right: 6px;
+  width: 26px; height: 26px;
+  background: var(--c-text-h); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 700; line-height: 1;
+  cursor: default; z-index: 5;
+  border: 1px solid #fff;
+}
+.img-zoom-btn::before { content: '+'; }
+.img-zoom-btn:hover { background: #2a2a2a; }
+
+/* 画像拡大モーダルプレビュー */
+.img-zoom-modal-preview {
+  background: #FFF8E5;
+  border: 2px dashed var(--c-ann-bdr);
+  padding: 20px 24px;
+  margin-top: 26px;
+}
+.img-zoom-modal-preview-label {
+  display: inline-block;
+  font-size: 10px; font-weight: 700;
+  background: var(--c-ann-bdr); color: #fff;
+  padding: 3px 10px;
+  letter-spacing: 0.08em; margin-bottom: 14px;
+}
+.img-zoom-modal-preview-desc {
+  font-size: 11px; color: var(--c-text-s);
+  margin-bottom: 18px; line-height: 1.7;
+}
+.img-zoom-modal {
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+  position: relative;
+  overflow: hidden;
+  max-width: 720px;
+}
+.img-zoom-modal-head {
+  background: var(--c-text-h); color: #fff;
+  padding: 12px 18px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 10px;
+}
+.img-zoom-modal-title { font-size: 13px; font-weight: 700; }
+.img-zoom-modal-close {
+  width: 22px; height: 22px;
+  background: #fff; color: var(--c-text-h);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700;
+  border-radius: 50%;
+  cursor: default;
+}
+.img-zoom-modal-body { padding: 18px; }
+.img-zoom-modal-figure {
+  background: var(--c-ph); border: 1px solid var(--c-ph-line);
+  aspect-ratio: 16 / 9;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.img-zoom-modal-figure::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent 0 12px, rgba(0,0,0,0.04) 12px 13px); }
+.img-zoom-modal-figure-label { position: relative; z-index: 1; font-size: 11px; color: var(--c-text-s); background: rgba(255,255,255,0.92); padding: 4px 10px; letter-spacing: 0.04em; border: 1px dashed var(--c-ph-line); }
+.img-zoom-modal-cap { font-size: 11px; color: var(--c-text-s); margin-top: 10px; line-height: 1.7; }
+
+/* トピックエリア（薄グレー） */
+.strategy-topic-box {
+  background: var(--c-bg-sub);
+  border: 1px solid var(--c-border);
+  padding: 16px 20px;
+  margin-top: 18px;
+}
+.strategy-topic-tag {
+  display: inline-block;
+  font-size: 10px; font-weight: 700;
+  background: var(--c-text-h); color: #fff;
+  padding: 3px 10px;
+  letter-spacing: 0.1em; margin-bottom: 10px;
+  font-family: 'Helvetica Neue', sans-serif;
+  text-transform: uppercase;
+}
+.strategy-topic-text {
+  font-size: 12px; color: var(--c-text); line-height: 1.95;
+}
+.strategy-topic-text strong { color: var(--c-text-h); }
+
+/* ガバナンス：取締役会承認テーブル */
+.gov-table {
+  width: 100%; border-collapse: collapse; background: var(--c-white);
+  font-size: 12px; line-height: 1.7;
+  border: 1px solid var(--c-border);
+  margin-top: 14px;
+}
+.gov-table th, .gov-table td {
+  border: 1px solid var(--c-border-s);
+  padding: 10px 14px; text-align: left;
+  vertical-align: top;
+}
+.gov-table thead th {
+  background: var(--c-text-h); color: #fff;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.gov-table tbody th {
+  background: var(--c-bg-sub); color: var(--c-text-h);
+  font-weight: 700; font-size: 12px;
+  white-space: nowrap; width: 90px;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+/* シナリオ分析：リスク機会テーブル */
+.scenario-table-wrap { overflow-x: auto; margin: 4px 0 8px; border: 1px solid var(--c-border); }
+.scenario-table { width: 100%; border-collapse: collapse; font-size: 11px; background: var(--c-white); }
+.scenario-table th, .scenario-table td {
+  border: 1px solid var(--c-border-s);
+  padding: 7px 10px; text-align: left;
+  line-height: 1.5; vertical-align: top;
+}
+.scenario-table thead th {
+  background: var(--c-text-h); color: #fff;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.04em; white-space: nowrap;
+}
+.scenario-table .impact-col, .scenario-table .timeline-col { white-space: nowrap; text-align: center; }
+.scenario-table .badge {
+  display: inline-block;
+  font-size: 9px; font-weight: 700;
+  padding: 1px 7px;
+  letter-spacing: 0.04em;
+  background: var(--c-bg-sub);
+  color: var(--c-text-h);
+  border: 1px solid var(--c-border);
+}
+.scenario-table .badge.b-large { background: var(--c-text-h); color: #fff; border-color: var(--c-text-h); }
+.scenario-table .badge.b-mid { background: #555; color: #fff; border-color: #555; }
+.scenario-table .badge.b-low { background: var(--c-white); color: var(--c-text-h); border-color: var(--c-text-h); }
+.scenario-table .cat-cell { font-weight: 700; color: var(--c-text-h); }
+
+/* リスク分類カード（移行/物理） */
+.risk-2col {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  margin: 16px 0 18px;
+}
+.risk-2col-card {
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  border-top: 4px solid var(--c-text-h);
+  padding: 18px 22px;
+}
+.risk-2col-card-tag {
+  display: inline-block;
+  font-size: 10px; font-weight: 700;
+  background: var(--c-text-h); color: #fff;
+  padding: 3px 10px;
+  letter-spacing: 0.06em; margin-bottom: 10px;
+}
+.risk-2col-card-head { font-size: 14px; font-weight: 700; color: var(--c-text-h); margin-bottom: 8px; }
+.risk-2col-card-text { font-size: 12px; color: var(--c-text); line-height: 1.85; }
+.risk-2col-card-text ul { margin-left: 18px; margin-top: 4px; }
+.risk-2col-card-text li { margin-bottom: 4px; }
+
+/* 指標と目標：主要KPI */
+.kpi-major-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
+  margin: 14px 0 24px;
+}
+.kpi-major-card {
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  border-left: 5px solid var(--c-text-h);
+  padding: 20px 24px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.kpi-major-num {
+  font-size: 28px; font-weight: 700; color: var(--c-text-h);
+  font-family: 'Helvetica Neue', sans-serif;
+  line-height: 1;
+}
+.kpi-major-title {
+  font-size: 14px; font-weight: 700; color: var(--c-text-h);
+  line-height: 1.5;
+}
+.kpi-major-desc {
+  font-size: 11px; color: var(--c-text-s); line-height: 1.85;
+}
+
+/* GHG排出量テーブル */
+.ghg-table-wrap { overflow-x: auto; margin: 10px 0; border: 1px solid var(--c-border); }
+.ghg-table { width: 100%; border-collapse: collapse; font-size: 11px; background: var(--c-white); min-width: 760px; }
+.ghg-table th, .ghg-table td {
+  border: 1px solid var(--c-border-s);
+  padding: 8px 10px; text-align: right;
+  line-height: 1.5; font-family: 'Helvetica Neue', sans-serif;
+}
+.ghg-table thead th {
+  background: var(--c-text-h); color: #fff;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.04em; white-space: nowrap;
+  text-align: center;
+}
+.ghg-table tbody th {
+  background: var(--c-bg-sub); color: var(--c-text-h);
+  font-weight: 700; font-size: 11px;
+  text-align: left; white-space: nowrap;
+  font-family: 'Hiragino Kaku Gothic Pro', sans-serif;
+}
+.ghg-table .target-cell {
+  background: #FAF7F0; font-weight: 700;
+  color: var(--c-text-h);
+}
+.ghg-table .scope-row th { background: #444; color: #fff; font-size: 10px; }
+
+/* 経済価値・環境価値テーブル */
+.opp-table-wrap { overflow-x: auto; margin: 10px 0; border: 1px solid var(--c-border); }
+.opp-table { width: 100%; border-collapse: collapse; font-size: 11px; background: var(--c-white); }
+.opp-table th, .opp-table td {
+  border: 1px solid var(--c-border-s);
+  padding: 8px 10px; line-height: 1.5;
+}
+.opp-table thead th {
+  background: var(--c-text-h); color: #fff;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.04em; white-space: nowrap;
+  text-align: center;
+}
+.opp-table .cat-th { background: var(--c-bg-sub); color: var(--c-text-h); font-weight: 700; text-align: left; vertical-align: middle; white-space: nowrap; }
+.opp-table .label-th { font-weight: 700; color: var(--c-text-h); text-align: left; }
+.opp-table .value-cell { text-align: right; font-family: 'Helvetica Neue', sans-serif; }
+.opp-table .target-cell { background: #FAF7F0; font-weight: 700; text-align: right; font-family: 'Helvetica Neue', sans-serif; }
+
+/* グラフPH */
+.graph-ph {
+  background: var(--c-ph); border: 1px solid var(--c-ph-line);
+  aspect-ratio: 16 / 6;
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.graph-ph::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, transparent 0 10px, rgba(0,0,0,0.04) 10px 11px); }
+.graph-ph-label { position: relative; z-index: 1; font-size: 11px; color: var(--c-text-s); background: rgba(255,255,255,0.85); padding: 4px 10px; letter-spacing: 0.04em; }
+.graph-cap { font-size: 11px; color: var(--c-text-s); margin-top: 6px; line-height: 1.7; }
+
+/* 用語注釈エリア（モーダル起動トリガー） */
+.term-note {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--c-border);
+  display: flex; align-items: center; flex-wrap: wrap;
+  gap: 10px;
+}
+.term-note-label {
+  font-size: 10px; font-weight: 700; color: var(--c-text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.term-note-label::before { content: '※ '; }
+
+.term-trigger {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 11px; font-weight: 600; color: var(--c-text-h);
+  background: var(--c-white);
+  border: 1px solid var(--c-text-h);
+  padding: 5px 12px 5px 6px;
+  cursor: default;
+  letter-spacing: 0.02em;
+  position: relative;
+}
+.term-trigger .term-trigger-mark {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 18px; height: 18px;
+  background: var(--c-text-h); color: #fff;
+  border-radius: 50%;
+  font-size: 11px; font-weight: 700;
+  font-family: 'Helvetica Neue', sans-serif;
+  flex-shrink: 0;
+}
+.term-trigger::after {
+  content: '↗';
+  font-size: 10px; color: var(--c-text-s);
+  margin-left: 2px;
+  font-weight: 700;
+}
+.term-trigger:hover { background: var(--c-bg-sub); }
+
+.modal-preview-zone {
+  background: #FFF8E5;
+  border: 2px dashed var(--c-ann-bdr);
+  padding: 20px 24px;
+  margin-top: 26px;
+}
+.modal-preview-zone-label {
+  display: inline-block;
+  font-size: 10px; font-weight: 700;
+  background: var(--c-ann-bdr); color: #fff;
+  padding: 3px 10px;
+  letter-spacing: 0.08em; margin-bottom: 14px;
+}
+.modal-preview-zone-desc {
+  font-size: 11px; color: var(--c-text-s);
+  margin-bottom: 18px; line-height: 1.7;
+}
+.term-modal {
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+  position: relative;
+  overflow: hidden;
+  max-width: 420px;
+}
+.term-modal-head {
+  background: var(--c-text-h); color: #fff;
+  padding: 14px 18px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 10px;
+}
+.term-modal-title { font-size: 14px; font-weight: 700; }
+.term-modal-close {
+  width: 22px; height: 22px;
+  background: #fff; color: var(--c-text-h);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700;
+  border-radius: 50%;
+  cursor: default;
+}
+.term-modal-body {
+  padding: 16px 20px 20px;
+  font-size: 11px; color: var(--c-text);
+  line-height: 1.85;
+}
+.term-modal-body p { margin-bottom: 8px; }
+.term-modal-body p:last-child { margin-bottom: 0; }
+
+/* インラインテキストリンク行（140 policy-link モジュール準拠）
+   本文段落の直下に「→ リンクテキスト」を独立行で配置。原文サイトの本文中リンクを再現 */
+.policy-link-row {
+  display: block;
+  margin: -8px 0 18px;
+}
+.policy-link {
+  display: inline;
+  font-size: 13px;
+  color: var(--c-text-h);
+  font-weight: 700;
+  cursor: default;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.policy-link::before {
+  content: '→ ';
+  display: inline-block;
+  margin-right: 2px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  text-decoration: none;
+}
+
+/* 関連リンク（v3.2：ラベル上独立行／リンク群下flex並び — ラベル幅でズレない） */
+.theme-related {
+  background: var(--c-bg-sub); border: 1px solid var(--c-border);
+  padding: 14px 18px; margin-top: 18px;
+  display: flex; flex-wrap: wrap;
+  column-gap: 18px; row-gap: 6px;
+  align-items: center;
+}
+.theme-related-label {
+  flex-basis: 100%;
+  font-size: 10px; font-weight: 700; color: var(--c-text-xs);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding-bottom: 8px; margin-bottom: 4px;
+  border-bottom: 1px dashed var(--c-border);
+}
+
+/* 関連コンテンツカード */
+.related-card-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+  margin-top: 14px;
+}
+.related-card {
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  padding: 18px 22px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.related-card-title {
+  font-size: 14px; font-weight: 700; color: var(--c-text-h);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 8px;
+  border-bottom: 1px solid var(--c-border-s);
+  padding-bottom: 8px;
+}
+.related-card-arrow {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px;
+  background: var(--c-text-h); color: #fff;
+  border-radius: 50%; font-size: 12px; font-weight: 700;
+  flex-shrink: 0;
+}
+.related-card-desc { font-size: 11px; color: var(--c-text); line-height: 1.85; }
+
+/* ============================================================
+   v7：アコーディオン（catalog .wf-acc-h3 準拠 / 黒反転撤廃）
+============================================================ */
+.wf-acc-h3 {
+  margin-top: 16px; margin-bottom: 16px;
+  border: 1px solid var(--c-border);
+  background: var(--c-white);
+}
+.wf-acc-h3:first-child, .wf-section-desc + .wf-acc-h3 { margin-top: 0; }
+.wf-acc-h3-summary {
+  list-style: none;
+  cursor: default;
+  padding: 12px 60px 12px 22px;
+  font-size: 14px; font-weight: 700;
+  color: var(--c-text-h);
+  background: var(--c-border);
+  display: flex; align-items: center; gap: 12px;
+  letter-spacing: -0.01em;
+  position: relative;
+  line-height: 1.5;
+}
+.wf-acc-h3-summary:hover { background: #D5D5D5; }
+.wf-acc-h3-summary::-webkit-details-marker { display: none; }
+.wf-acc-h3-summary::marker { content: ''; }
+.wf-acc-h3-summary::after {
+  content: '＋';
+  position: absolute;
+  right: 16px; top: 50%; transform: translateY(-50%);
+  width: 28px; height: 28px;
+  background: var(--c-text-h); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  font-size: 14px; font-weight: 700;
+  line-height: 1;
+}
+.wf-acc-h3[open] .wf-acc-h3-summary::after { content: '−'; }
+/* v3.3：FB反映でタグは非表示（HTMLは残置） */
+.wf-acc-tag { display: none; }
+/* TCFD固有：番号バッジ（黒丸＋白文字／開閉問わず色維持＝v7で白反転廃止） */
+.wf-acc-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 24px; height: 24px;
+  background: var(--c-text-h); color: #fff;
+  font-size: 12px; font-weight: 700;
+  font-family: 'Helvetica Neue', sans-serif;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.wf-acc-text { flex: 1; }
+.wf-acc-h3-body {
+  padding: 18px 22px; background: var(--c-white);
+  border-top: 1px solid var(--c-border-s);
+}
+.wf-acc-h3-body > *:last-child { margin-bottom: 0; }
+.wf-acc-h3-body p { font-size: 12px; color: var(--c-text); line-height: 1.95; margin-bottom: 12px; }
+.wf-acc-h3-body p:last-child { margin-bottom: 0; }
+.wf-acc-group { margin-bottom: 24px; }
+.wf-acc-group-label {
+  font-size: 11px; font-weight: 700; color: var(--c-text-h);
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+  padding-left: 10px; border-left: 3px solid var(--c-text-h);
+}
+
+/* フッター */
+.wf-footer { background: #F5F5F5; border-top: 1px solid var(--c-border); padding: 32px var(--pad-h) 20px; }
+.wf-footer-note { text-align: center; font-size: 10px; color: #999; background: #EBEBEB; border: 1px solid var(--c-border); padding: 6px; margin-bottom: 20px; }
+.wf-footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 24px; }
+.wf-footer-col-title { font-size: 11px; font-weight: 700; color: var(--c-text); border-bottom: 1px solid var(--c-border); padding-bottom: 8px; margin-bottom: 8px; }
+.wf-footer-link { display: block; font-size: 11px; color: var(--c-text-s); padding: 3px 0; }
+.wf-footer-bottom { border-top: 1px solid var(--c-border); padding-top: 14px; display: flex; justify-content: space-between; font-size: 11px; color: var(--c-text-xs); }
+
+/* アノテーション */
+.wf-annotation { background: var(--c-ann-bg); border-left: 3px solid var(--c-ann-bdr); padding: 16px; position: sticky; top: 0; max-height: 100vh; overflow-y: auto; }
+.wf-annotation h3 { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: #888; border-bottom: 1px solid var(--c-ann-bdr); padding-bottom: 8px; margin-bottom: 14px; }
+.ann-item { margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid #EEE; }
+.ann-item:last-child { border-bottom: none; }
+.ann-num { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; background: #222; color: #fff; font-size: 10px; font-weight: 700; border-radius: 50%; margin-bottom: 5px; }
+.ann-head { font-size: 11px; font-weight: 700; color: #222; display: block; margin-bottom: 6px; line-height: 1.4; }
+.ann-body { font-size: 10px; color: #555; line-height: 1.6; margin-top: 6px; }
+
+</style>
+</head>
+<body>
+
+<!-- WF管理バー -->
+<div class="wf-meta-bar">
+  <div>
+    <strong>KONICA MINOLTA サステナビリティ</strong>
+    <span class="meta-badge">TCFD開示</span>
+    <span class="meta-badge">WF v3.4</span>
+    <span class="meta-badge">#031</span>
+    <span class="meta-badge">L3</span>
+    <span class="meta-badge" style="background:#7a4a00; color:#fff;">タグ非表示 / 関連コンテンツ撤去（他ページUI統一）</span>
+  </div>
+  <div style="font-size:10px; color:#666;">2026.05 / FB反映：wf-acc-tag非表示、関連コンテンツ3カードグリッド撤去（他ページに対応モジュールなし）</div>
+</div>
+
+<div class="wf-canvas">
+  <div class="wf-page">
+
+    <div class="wf-page-indicator">
+      <span>TCFD開示 / URL: /about/csr/environment/strategy/tcfd/</span>
+      <span class="pi-layer">L3 第3階層 — 気候関連財務情報開示</span>
+    </div>
+
+    <!-- ヘッダー -->
+    <header class="wf-header">
+      <div class="wf-header-inner">
+        <div class="wf-logo"><div class="wf-logo-mark"></div><div class="wf-logo-text">KONICA MINOLTA</div></div>
+        <div class="wf-header-utils"><span>サポート・ダウンロード</span><span>お問い合わせ</span><span>Countries/Regions</span><span>ja | en | zh</span></div>
+      </div>
+      <nav class="wf-gnav">
+        <span class="wf-gnav-item">企業情報</span>
+        <span class="wf-gnav-item">Newsroom</span>
+        <span class="wf-gnav-item">株主・投資家情報</span>
+        <span class="wf-gnav-item is-active">サステナビリティ</span>
+        <span class="wf-gnav-item">テクノロジー</span>
+        <span class="wf-gnav-item">採用情報</span>
+      </nav>
+      <nav class="wf-lnav">
+        <span class="wf-lnav-label">サステナビリティ</span>
+        <span class="wf-lnav-item">TOP</span>
+        <span class="wf-lnav-item">サステナビリティ戦略</span>
+        <span class="wf-lnav-item">サステナビリティマネジメント</span>
+        <span class="wf-lnav-item is-active">環境</span>
+        <span class="wf-lnav-item">社会</span>
+        <span class="wf-lnav-item">ガバナンス</span>
+      </nav>
+      <div class="wf-header-note">⚠ ヘッダーは既確定。変更なし。</div>
+    </header>
+
+    <!-- パンくず -->
+    <nav class="wf-breadcrumb">
+      ホーム <span class="sep">›</span>
+      サステナビリティ <span class="sep">›</span>
+      環境 <span class="sep">›</span>
+      <span class="current">TCFD開示</span>
+    </nav>
+
+    <!-- ページタイトル（v3.0：parent-cat / title-en 撤去・タイトルのみ） -->
+    <div class="wf-page-title-area">
+      <h1 class="wf-page-title">TCFD開示</h1>
+      <div class="wf-page-parent-cat">
+        【<a href="004_environment_index.html">環境</a>】に関する取り組み
+      </div>
+    </div>
+
+    <!-- メインコンテンツ＋右コンパクトアンカーナビ -->
+    <div class="wf-layout-with-anchornav">
+      <div class="wf-anchornav-main">
+
+        <!-- ============================================================
+             A. ガバナンス
+        ============================================================ -->
+        <section class="wf-section bg-white" id="governance">
+          <span class="wf-section-marker">A</span>
+          <h2 class="wf-section-title">ガバナンス</h2>
+
+          <h3 class="wf-sub-title">気候関連のリスクおよび機会に係る組織のガバナンス</h3>
+
+          <p class="wf-section-desc">
+            （文章はダミーです）コニカミノルタは、気候変動への対応をサステナビリティマネジメントの管理対象の一つと位置付けており、主要な目標値の設定や変更などの意思決定は、取締役会の承認を得て行います。代表執行役社長が環境マネジメントの最高責任者として統括し、グループ環境責任者が取締役会承認の中期計画を運営し毎月報告しています。
+          </p>
+
+          <!-- 取締役会承認事項アコーディオン -->
+          <details class="wf-acc-h3" open>
+            <summary class="wf-acc-h3-summary">
+              <span class="wf-acc-tag">表</span>
+              <span class="wf-acc-text">取締役会での承認事項</span>
+            </summary>
+            <div class="wf-acc-h3-body">
+              <table class="gov-table">
+                <thead>
+                  <tr><th style="width:90px;">時期</th><th>取締役会での承認事項</th></tr>
+                </thead>
+                <tbody>
+                  <tr><th>2008年</th><td>長期環境目標（エコビジョン2050）「2050年までに自社製品のライフサイクル全体におけるCO<sub>2</sub>排出量を2005年度比で80％削減」</td></tr>
+                  <tr><th>2017年</th><td>カーボンマイナス目標「お取引先、お客様を中心とするステークホルダーとともに、自社の製品・事業に直接関わるCO<sub>2</sub>よりも多くの排出削減貢献を社会・顧客で創出する」</td></tr>
+                  <tr><th>2020年</th><td>５つのマテリアリティ（「気候変動への対応」を含む）</td></tr>
+                  <tr><th>2023年</th><td>カーボンマイナス達成時期を2025年へ前倒し、2050年に温室効果ガス排出を「ネットゼロ」</td></tr>
+                  <tr><th>2024年</th><td>「施策によるCO<sub>2</sub>排出削減量」を中期株式報酬の評価指標に選定〔報酬委員会〕</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </details>
+
+          <!-- 本文中インラインリンク（原文踏襲） -->
+          <p class="wf-section-desc" style="margin-top:24px;">
+            （文章はダミーです）気候変動を含む環境課題のガバナンスの詳細については、「環境マネジメント体制」を参照ください。
+          </p>
+          <div class="policy-link-row">
+            <a class="policy-link">環境マネジメント体制</a>
+          </div>
+
+          <p class="wf-section-desc">
+            （文章はダミーです）コーポレートガバナンス体制の詳細は、コーポレートサイトの「ガバナンス体制」を参照ください。
+          </p>
+          <div class="policy-link-row">
+            <a class="policy-link">コーポレートガバナンス体制 ＞ ガバナンス体制</a>
+          </div>
+
+          <p class="wf-section-desc">
+            （文章はダミーです）マテリアリティの評価・特定プロセスの詳細はこちらからご覧ください。
+          </p>
+          <div class="policy-link-row">
+            <a class="policy-link">マテリアリティの評価・特定プロセス</a>
+          </div>
+
+          <!-- 関連リンク -->
+          <div class="theme-related">
+            <span class="theme-related-label">関連リンク</span>
+            <span class="wf-link">環境マネジメント体制</span>
+            <span class="wf-link">コーポレートガバナンス体制 ＞ ガバナンス体制</span>
+            <span class="wf-link">マテリアリティの評価・特定プロセス</span>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             B. 戦略（シナリオ分析を統合）
+        ============================================================ -->
+        <section class="wf-section bg-sub" id="strategy">
+          <span class="wf-section-marker">B</span>
+          <h2 class="wf-section-title">戦略</h2>
+
+          <!-- B-1：事業・戦略・財務に対する影響 -->
+          <h3 class="wf-sub-title">気候関連のリスクおよび機会に係る組織の事業・戦略・財務に対する影響</h3>
+          <p class="wf-section-desc">
+            （文章はダミーです）コニカミノルタは気候変動リスクに対処するため、2050年にバリューチェーン全体で温室効果ガス（GHG）排出を実質ゼロにする「ネットゼロ」を長期目標として掲げ、気候変動への対応を５つのマテリアリティの１つに位置付けています。この長期目標に向け、気候関連のリスクを事業上のリスクと統合的に捉え、製品の企画・開発、生産・調達、販売に至るまでの中期事業計画と、環境目標および年度計画を連動させています。また、事業成長の機会として、「カーボンマイナス」（自社の排出量を上回る社会での削減貢献）を掲げ、2025年度の達成を目指しています。当社のコア技術を融合させAIを活用して強化し、ワークフローやサプライチェーン変革を提供することで、顧客や社会の脱炭素ニーズに対応し、社会に必要とされる事業の成長と新たな事業の創出を推進しています。このような環境課題対応を通じて、企業価値を高めることがコニカミノルタの成長戦略の中核です。
+          </p>
+
+          <!-- B-2：気候移行計画 -->
+          <h3 class="wf-sub-title" style="margin-top:36px;">気候移行計画</h3>
+          <p class="wf-section-desc">
+            （文章はダミーです）コニカミノルタでは、パリ協定および１．５℃目標に整合した「科学的根拠に基づく目標（SBT：Science Based Targets）」を設定し、短期・中期・長期にわたる時間軸で段階的な移行計画を策定しています。
+          </p>
+
+          <details class="wf-acc-h3" open>
+            <summary class="wf-acc-h3-summary">
+              <span class="wf-acc-tag">中長期</span>
+              <span class="wf-acc-text">中長期の取り組み — CO<sub>2</sub>フリー燃料／CCS／DX先行投資</span>
+            </summary>
+            <div class="wf-acc-h3-body">
+              <p>
+                （文章はダミーです）産業構造の転換を先取りする活動として、水素やアンモニア、メタネーションなどCO<sub>2</sub>フリー燃料の導入、CCS（CO<sub>2</sub>回収・貯留）技術の活用など、化石燃料依存からの脱却に向けた革新的手段を検討しています。当社が主催する企業間の共創の枠組み（環境デジタルプラットフォーム）では中長期を見据え、技術開発の進展に積極的な関与を期待する多種多様な企業が集まり、ワーキンググループにおいて技術動向・ロードマップ、課題やノウハウを共有し、具体的施策について議論しています。
+              </p>
+              <p>
+                （文章はダミーです）事業機会においては、持続的成長に向けた技術開発テーマに先行投資を行い、DX推進によるイノベーションを加速しています。例えば、コニカミノルタが保有するAI強化センシング技術の強みを活かし、微生物を用いて非化石資源由来の原料から合成するバイオものづくり技術の開発を進めています。また、ペロブスカイト型太陽電池、再生プラスチック技術などの成長の芽を全社強化テーマとして掲げ、成長基盤の確立を目指しています。
+              </p>
+            </div>
+          </details>
+
+          <details class="wf-acc-h3" open>
+            <summary class="wf-acc-h3-summary">
+              <span class="wf-acc-tag">短中期 / 事業</span>
+              <span class="wf-acc-text">短中期的な取り組み — 事業活動</span>
+            </summary>
+            <div class="wf-acc-h3-body">
+              <h5 class="wf-h5-title">グリーンプロダクツ活動</h5>
+              <p>
+                （文章はダミーです）環境負荷低減に貢献する製品を商品企画段階から検討し環境価値を創出する「グリーンプロダクツ活動」を推進実行しています。産業印刷事業領域などを拡大することで、お客様先でのCO<sub>2</sub>排出量を大幅に削減し、お客様の脱炭素化および循環型社会の形成の実現を後押しします。印刷産業やアパレル産業のサプライチェーンを変革するオンデマンド生産デジタルソリューション、製品カーボンフットプリントを低減した機能材料、使用済みプラスチックの分別性・リサイクル率向上に貢献する材料技術・センシング技術などにより、大量生産・大量廃棄の事業モデルを変革し、お客様企業の生産性向上に貢献します。
+              </p>
+              <h5 class="wf-h5-title">グリーンファクトリー活動</h5>
+              <p>
+                （文章はダミーです）メーカーとしての製造・モノづくりの環境負荷低減を行う「グリーンファクトリー活動」を推進実行しています。製造拠点への再生可能エネルギー導入や、製品を製造するプロセスおよび設備におけるエネルギー生産性向上に取り組んでいます。
+              </p>
+              <h5 class="wf-h5-title">グリーンマーケティング活動</h5>
+              <p>
+                （文章はダミーです）各国地域の販売拠点で再生可能エネルギー利用などを通じて環境負荷低減を行うとともに、お客様の環境経営の課題を解決しながら当社ソリューションの販売機会を創出する「グリーンマーケティング活動」を実施しています。
+              </p>
+              <p>
+                （文章はダミーです）これら事業を通じた活動は、中期環境計画のなかで「施策による自社製品ライフサイクルCO<sub>2</sub>排出削減量」「自社製品ライフサイクル以外でのCO<sub>2</sub>削減貢献量」「自社製品における地球資源使用削減量」「自社製品以外での地球資源使用量の削減貢献量」を重要管理指標に設定し、経営戦略の中核を担う活動として推進しています。
+              </p>
+              <p style="font-size:10px; color:var(--c-text-xs); margin-top:6px;">
+                ※地球資源：原油や鉱物資源などの新たな採掘をともなう資源で、一般に枯渇性資源と同義
+              </p>
+            </div>
+          </details>
+
+          <details class="wf-acc-h3" open>
+            <summary class="wf-acc-h3-summary">
+              <span class="wf-acc-tag">短中期 / 全社横断</span>
+              <span class="wf-acc-text">短中期的な取り組み — 全社横断活動</span>
+            </summary>
+            <div class="wf-acc-h3-body">
+              <h5 class="wf-h5-title">インターナル・カーボンプライシング</h5>
+              <p>
+                （文章はダミーです）インダストリー事業を中核に据えた経営戦略において、スコープ１，２排出量が増加する可能性があります。そのため、インターナル・カーボンプライシングを活用したCO<sub>2</sub>排出抑制の施策を実施しています。
+              </p>
+              <h5 class="wf-h5-title">カーボンニュートラルパートナー活動</h5>
+              <p>
+                （文章はダミーです）サプライヤーとともに脱炭素化を目指す「カーボンニュートラルパートナー活動」を推進実行しています。自社拠点で培った省エネ・再エネ導入のノウハウを、部材を供給するサプライヤーへ提供し、再エネ導入の目標設定や導入支援を通じて、サプライヤーも含むパートナー全体のカーボンニュートラル化を推進しています。
+              </p>
+              <h5 class="wf-h5-title">環境デジタルプラットフォーム</h5>
+              <p>
+                （文章はダミーです）気候変動への対応は、１社単独では限界があるという認識のもと、業界や規模を超えた企業同士が協働し、新たな環境価値を共創する「環境デジタルプラットフォーム」を創設し運営しています。ワークショップやナビゲーションMAP、技術・サービスのマッチングを通じて、実効性の高い取り組みを加速しています。
+              </p>
+            </div>
+          </details>
+
+          <!-- 用語ノート -->
+          <div class="term-note">
+<span class="term-trigger" data-modal="modal-sbt"><span class="term-trigger-mark">?</span>SBT</span>
+            <span class="term-trigger" data-modal="modal-icp"><span class="term-trigger-mark">?</span>ICP</span>
+            <span class="term-trigger" data-modal="modal-cnpartner"><span class="term-trigger-mark">?</span>CNパートナー活動</span>
+            <span class="term-trigger" data-modal="modal-edp"><span class="term-trigger-mark">?</span>環境デジタルプラットフォーム</span>
+          </div>
+
+          <!-- B-3：レジリエンスと経営戦略 -->
+          <h3 class="wf-sub-title" style="margin-top:36px;">レジリエンスと経営戦略</h3>
+          <p class="wf-section-desc">
+            （文章はダミーです）当社は、IPCC RCP2.6/8.5やIEA NZE2050等の科学的シナリオを用いて、１．５℃シナリオおよび２℃超の物理リスクシナリオを想定し、移行リスク（政策・法律、技術、市場、評判）および物理的リスク（慢性・急性）への財務影響を評価しています。この分析結果を踏まえ、環境推進会議にて方針策定と事業戦略への反映を行っています。
+          </p>
+
+          <!-- B-4：気候関連シナリオ分析（既存サイトの戦略H1配下のH2を統合） -->
+          <h3 class="wf-sub-title" style="margin-top:36px;">気候関連シナリオ分析の実施と結果</h3>
+          <p class="wf-section-desc">
+            （文章はダミーです）コニカミノルタでは、気温上昇が２℃以下（１．５℃相当）に抑えられ世界全体が低炭素社会へ移行した場合と、気温上昇が２℃を超え気候変動の物理的影響が顕在化した場合の２つのシナリオを想定し、2030年時点でグループの業績に影響を及ぼす事業リスクと、課題解決に先手を打って対応することで創出できる事業機会を、それぞれ特定しています。
+          </p>
+
+          <h4 class="wf-card-title has-mark">分析プロセス</h4>
+          <ol style="font-size:12px; color:var(--c-text); line-height:1.95; margin-left:22px; margin-bottom:20px;">
+            <li>気候変動シナリオ分析の対象事業分野の特定</li>
+            <li>重要な気候関連リスクおよび機会の特定</li>
+            <li>気候変動に関する既存の科学的シナリオの検討</li>
+            <li>シナリオに対するリスクおよび機会、想定される財務影響の明確化</li>
+            <li>今後の対応の方針・戦略の検討</li>
+          </ol>
+          <p class="wf-section-desc">
+            （文章はダミーです）シナリオ分析の結果特定された気候関連財務影響は、グループの事業部門およびコーポレート部門で構成される環境推進会議において報告・審議され、代表執行役社長が任命したグループ環境責任者より、今後の対応の方針・戦略・施策の徹底を指示・展開しています。
+          </p>
+
+          <h4 class="wf-card-title has-mark">コニカミノルタの気候関連リスクと機会（全体俯瞰）</h4>
+          <div class="large-figure-ph">
+            <span class="large-figure-ph-label">
+              <strong>図：コニカミノルタの気候関連リスクと機会 PH</strong>
+              移行／物理リスク × 機会の全体マッピング（事業セグメント別・時間軸別）
+            </span>
+            <span class="img-zoom-btn"></span>
+          </div>
+
+          <!-- 1.5℃シナリオ -->
+          <div class="wf-acc-group" style="margin-top:28px;">
+            <div class="wf-acc-group-label">気温上昇が２℃以下（１．５℃相当）に抑えられた場合</div>
+
+            <details class="wf-acc-h3" open>
+              <summary class="wf-acc-h3-summary">
+                <span class="wf-acc-tag">1.5℃ / リスク</span>
+                <span class="wf-acc-text">気候変動の「リスク」への対処（5項目）</span>
+              </summary>
+              <div class="wf-acc-h3-body">
+                <div class="scenario-table-wrap">
+                  <table class="scenario-table">
+                    <thead>
+                      <tr>
+                        <th style="min-width:240px;">気候変動への対処／コニカミノルタへの影響</th>
+                        <th>対象セグメント</th>
+                        <th>分類</th>
+                        <th class="impact-col">財務影響</th>
+                        <th class="timeline-col">時間軸</th>
+                        <th>対処</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><span class="cat-cell">調達・製造コストの上昇</span><br>① ステークホルダーからの再エネ調達およびGHG排出ネットゼロの要求</td>
+                        <td>デジタルワークプレイス／インダストリー</td>
+                        <td>市場・評判</td>
+                        <td class="impact-col"><span class="badge b-mid">中</span></td>
+                        <td class="timeline-col">短期</td>
+                        <td>生産・研究開発・販売拠点における再生可能エネルギー由来電力の導入</td>
+                      </tr>
+                      <tr>
+                        <td>② 化石資源・化石燃料の代替化</td>
+                        <td>インダストリー</td>
+                        <td>政策・法律</td>
+                        <td class="impact-col"><span class="badge b-mid">中</span></td>
+                        <td class="timeline-col">中〜長期</td>
+                        <td>CO<sub>2</sub>フリー燃料の導入検討、ICPの導入、調達戦略の最適化</td>
+                      </tr>
+                      <tr>
+                        <td>③ 新たな排出規制・税制への対応</td>
+                        <td>DW／PP／IND／画像</td>
+                        <td>政策・法律</td>
+                        <td class="impact-col"><span class="badge b-large">大</span></td>
+                        <td class="timeline-col">短〜中期</td>
+                        <td>省エネ生産技術開発</td>
+                      </tr>
+                      <tr>
+                        <td><span class="cat-cell">製品開発コストの上昇</span><br>① 新たな製品エネルギー効率規制と市場への対応</td>
+                        <td>デジタルワークプレイス／プロフェッショナルプリント</td>
+                        <td>政策・法律／市場</td>
+                        <td class="impact-col"><span class="badge b-mid">中</span></td>
+                        <td class="timeline-col">短期</td>
+                        <td>環境ラベル新基準相当の製品省エネ設計、公共調達・入札要件への対応</td>
+                      </tr>
+                      <tr>
+                        <td><span class="cat-cell">製品サービスの需要変化による売上減少</span><br>① オフィスにおける紙への出力機会の減少</td>
+                        <td>デジタルワークプレイス／プロフェッショナルプリント</td>
+                        <td>市場</td>
+                        <td class="impact-col"><span class="badge b-large">大</span></td>
+                        <td class="timeline-col">短〜中期</td>
+                        <td>プリントチャージに依存しない収益モデルへの転換</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </details>
+
+            <details class="wf-acc-h3" open>
+              <summary class="wf-acc-h3-summary">
+                <span class="wf-acc-tag">1.5℃ / 機会</span>
+                <span class="wf-acc-text">気候変動の「機会」（6項目）</span>
+              </summary>
+              <div class="wf-acc-h3-body">
+                <p style="margin-bottom:10px; font-size:11px; color:var(--c-text-s);">
+                  共通カテゴリ：製品サービスの需要変化による売上増加
+                </p>
+                <div class="scenario-table-wrap">
+                  <table class="scenario-table">
+                    <thead>
+                      <tr>
+                        <th>コニカミノルタへの影響</th>
+                        <th>対象セグメント</th>
+                        <th>分類</th>
+                        <th class="impact-col">財務効果</th>
+                        <th class="timeline-col">時間軸</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>① 印刷産業のサプライチェーンを変革するデジタルソリューション</td><td>プロフェッショナルプリント</td><td>製品／サービス</td><td class="impact-col"><span class="badge b-large">大</span></td><td class="timeline-col">短〜中期</td></tr>
+                      <tr><td>② 製品カーボンフットプリントを低減した機能材料</td><td>インダストリー</td><td>製品／サービス</td><td class="impact-col"><span class="badge b-mid">中</span></td><td class="timeline-col">短〜中期</td></tr>
+                      <tr><td>③ アパレル産業のサプライチェーンを変革するデジタルソリューション</td><td>プロフェッショナルプリント</td><td>製品／サービス</td><td class="impact-col"><span class="badge b-low">小</span></td><td class="timeline-col">短期</td></tr>
+                      <tr><td>④ 使用済みプラスチックの分別性・リサイクル率向上に貢献する材料・センシング技術</td><td>インダストリー</td><td>製品／サービス</td><td class="impact-col"><span class="badge b-low">小</span></td><td class="timeline-col">中期</td></tr>
+                      <tr><td>⑤ インクジェット技術による生産プロセスの変革</td><td>インダストリー</td><td>製品／サービス</td><td class="impact-col"><span class="badge b-low">小</span></td><td class="timeline-col">短〜中期</td></tr>
+                      <tr><td>⑥ メタンガス漏洩の早期発見と排出量削減に貢献するガス漏洩検査システム</td><td>画像ソリューション</td><td>製品／サービス</td><td class="impact-col"><span class="badge b-low">小</span></td><td class="timeline-col">中期</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </details>
+          </div>
+
+          <!-- 2℃超シナリオ -->
+          <div class="wf-acc-group">
+            <div class="wf-acc-group-label">気温上昇が２℃を超え、気候変動の物理的影響が顕在化した場合</div>
+
+            <details class="wf-acc-h3" open>
+              <summary class="wf-acc-h3-summary">
+                <span class="wf-acc-tag">2℃超 / リスク</span>
+                <span class="wf-acc-text">気候変動の「リスク」への対処（4項目）</span>
+              </summary>
+              <div class="wf-acc-h3-body">
+                <div class="scenario-table-wrap">
+                  <table class="scenario-table">
+                    <thead>
+                      <tr>
+                        <th style="min-width:240px;">気候変動への対処／コニカミノルタへの影響</th>
+                        <th>対象セグメント</th>
+                        <th>分類</th>
+                        <th class="impact-col">財務影響</th>
+                        <th class="timeline-col">時間軸</th>
+                        <th>対処</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><span class="cat-cell">生産能力減少による収益減</span><br>① 気候パターンの変化にともなう自然資源の供給量不足・供給停止</td>
+                        <td>インダストリー</td>
+                        <td>慢性物理</td>
+                        <td class="impact-col"><span class="badge b-large">大</span></td>
+                        <td class="timeline-col">長期</td>
+                        <td>特定の自然資源に依存しない製品設計と開発</td>
+                      </tr>
+                      <tr>
+                        <td>② 大規模気候災害の発生にともなうサプライチェーン分断</td>
+                        <td>デジタルワークプレイス／プロフェッショナルプリント</td>
+                        <td>急性物理</td>
+                        <td class="impact-col"><span class="badge b-large">大</span></td>
+                        <td class="timeline-col">中期</td>
+                        <td>事業継続管理（BCM）の構築、消耗材の域別分散生産および供給</td>
+                      </tr>
+                      <tr>
+                        <td>③ 水資源の枯渇・取水制限</td>
+                        <td>DW／PP／IND</td>
+                        <td>慢性物理</td>
+                        <td class="impact-col"><span class="badge b-low">小</span></td>
+                        <td class="timeline-col">長期</td>
+                        <td>生産・調達拠点の水リスク評価、水使用量の削減</td>
+                      </tr>
+                      <tr>
+                        <td><span class="cat-cell">製品サービスの需要変化による売上減少</span><br>① 異常気象および森林火災の発生にともなう森林資源へのアクセス制限</td>
+                        <td>デジタルワークプレイス／プロフェッショナルプリント</td>
+                        <td>慢性物理</td>
+                        <td class="impact-col"><span class="badge b-large">大</span></td>
+                        <td class="timeline-col">長期</td>
+                        <td>プリントチャージに依存しない収益モデルへの転換</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </details>
+
+            <details class="wf-acc-h3" open>
+              <summary class="wf-acc-h3-summary">
+                <span class="wf-acc-tag">2℃超 / 機会</span>
+                <span class="wf-acc-text">気候変動の「機会」（2項目）</span>
+              </summary>
+              <div class="wf-acc-h3-body">
+                <p style="margin-bottom:10px; font-size:11px; color:var(--c-text-s);">
+                  共通カテゴリ：製品サービスの需要変化による売上増加
+                </p>
+                <div class="scenario-table-wrap">
+                  <table class="scenario-table">
+                    <thead>
+                      <tr>
+                        <th>コニカミノルタへの影響</th>
+                        <th>対象セグメント</th>
+                        <th>分類</th>
+                        <th class="impact-col">財務効果</th>
+                        <th class="timeline-col">時間軸</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr><td>① 急性的な異常気象・自然災害への防災・減災に貢献する画像ソリューション</td><td>画像ソリューション</td><td>製品／サービス</td><td class="impact-col"><span class="badge b-low">小</span></td><td class="timeline-col">中期</td></tr>
+                      <tr><td>② 災害医療現場における画像診断を活用したヘルスケアソリューション</td><td>画像ソリューション</td><td>製品／サービス</td><td class="impact-col"><span class="badge b-low">小</span></td><td class="timeline-col">中期</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </details>
+          </div>
+
+          <!-- 前提条件アコーディオン -->
+          <details class="wf-acc-h3" open>
+            <summary class="wf-acc-h3-summary">
+              <span class="wf-acc-tag">前提</span>
+              <span class="wf-acc-text">シナリオ分析の前提条件（科学的シナリオ／分類／財務影響・効果・時間軸の定義）</span>
+            </summary>
+            <div class="wf-acc-h3-body">
+              <ul style="font-size:12px; color:var(--c-text); line-height:1.95; margin-left:22px;">
+                <li>使用した科学的シナリオ：IPCC RCP2.6／8.5、IEA NZE 2050、CPS</li>
+                <li>リスクと機会の分類：移行リスク（政策・法律、技術、市場、評判）／物理的リスク（急性物理、慢性物理）／機会（資源効率、エネルギー、製品/サービス、市場、レジリエンス）</li>
+                <li>「財務影響」の定義と評価基準：「大」追加コストまたは利益減少 10億円以上／「中」１〜10億円未満／「小」１億円未満</li>
+                <li>「財務効果」の定義と評価基準：「大」利益創出 100億円以上／「中」10〜100億円未満／「小」10億円未満</li>
+                <li>「時間軸」の定義と評価基準：「長期」10年以上／「中期」３〜10年未満／「短期」１〜３年未満</li>
+              </ul>
+            </div>
+          </details>
+
+          <!-- 本文中インラインリンク（原文踏襲） -->
+          <p class="wf-section-desc" style="margin-top:24px;">
+            （文章はダミーです）長期環境ビジョン「エコビジョン2050」はこちらからご覧ください。
+          </p>
+          <div class="policy-link-row">
+            <a class="policy-link">環境 ＞ 方針：エコビジョン2050</a>
+          </div>
+
+          <p class="wf-section-desc">
+            （文章はダミーです）気候変動の物理的影響への適応に関する取り組みについては、こちらをご覧ください。
+          </p>
+          <div class="policy-link-row">
+            <a class="policy-link">環境 ＞ 気候変動への対応：気候変動への適応</a>
+          </div>
+
+          <p class="wf-section-desc">
+            （文章はダミーです）当社が主催する企業間の共創の枠組み「環境デジタルプラットフォーム」では、技術動向・ロードマップ、課題やノウハウを共有し、具体的施策について議論しています。
+          </p>
+          <div class="policy-link-row">
+            <a class="policy-link">環境デジタルプラットフォーム</a>
+          </div>
+
+          <!-- 関連リンク -->
+          <div class="theme-related">
+            <span class="theme-related-label">関連リンク</span>
+            <span class="wf-link">環境 ＞ 方針：エコビジョン2050</span>
+            <span class="wf-link">環境 ＞ 気候変動への対応：気候変動への適応</span>
+            <span class="wf-link">環境デジタルプラットフォーム</span>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             C. リスク管理（既存risk.html原文どおり：本文のみ・カード化なし）
+        ============================================================ -->
+        <section class="wf-section bg-white" id="risk">
+          <span class="wf-section-marker">C</span>
+          <h2 class="wf-section-title">リスク管理</h2>
+
+          <h3 class="wf-sub-title">気候関連のリスクを識別・評価・管理するために用いるプロセス</h3>
+
+          <p class="wf-section-desc">
+            （文章はダミーです）コニカミノルタは、リスクマネジメントを「リスクのマイナス影響を抑えつつ、リターンの最大化を追求する活動」と位置づけ、中長期的な視点でリスクを評価しています。気候変動を含む環境リスクは、中長期的な観点から、「気温上昇が２℃以下（１．５℃相当）に抑えられ、低炭素社会へ移行した場合」と「気温上昇が２℃を超え、気候変動の物理的影響が顕在化した場合」の２つのシナリオで気候変動リスクの影響度と不確実性を評価し、管理しています。
+          </p>
+          <p class="wf-section-desc">
+            （文章はダミーです）環境リスクはグループ全体の経営リスクの一つとして位置づけ、リスクマネジメント委員会において管理されています。気候変動への対応に関する計画や施策について、四半期ごとに環境推進会議において審議されるほか、ローリング作業を毎年２回行い、リスクを再評価しています。
+          </p>
+          <p class="wf-section-desc">
+            （文章はダミーです）計画の進捗状況については、グループ環境責任者から代表執行役社長に毎月報告されています。重要な環境課題についても、経営審議会その他の会議体やリスクマネジメント委員会などに報告されています。取締役会では、気候変動への対応に関する経営計画の進捗について定期的に報告を受け、その執行状況を監督しています。
+          </p>
+          <p class="wf-section-desc">
+            （文章はダミーです）使用したリスクの分類枠組みは、移行リスクは政策・法律、技術、市場、評判、物理的リスクは急性物理、慢性物理としました。
+          </p>
+
+          <!-- 本文中インラインリンク（原文踏襲） -->
+          <p class="wf-section-desc">
+            （文章はダミーです）リスク管理体制・リスクマネジメントプロセスの詳細は「リスクマネジメント」および「有価証券報告書」を参照ください。
+          </p>
+          <div class="policy-link-row">
+            <a class="policy-link">リスクマネジメント</a>
+          </div>
+          <div class="policy-link-row">
+            <a class="policy-link">有価証券報告書</a>
+          </div>
+
+          <p class="wf-section-desc">
+            （文章はダミーです）リスク管理の対象となるマテリアリティの妥当性については「マテリアリティの評価・特定プロセス」を参照ください。
+          </p>
+          <div class="policy-link-row">
+            <a class="policy-link">マテリアリティの評価・特定プロセス</a>
+          </div>
+
+          <!-- 関連リンク -->
+          <div class="theme-related">
+            <span class="theme-related-label">関連リンク</span>
+            <span class="wf-link">リスクマネジメント</span>
+            <span class="wf-link">有価証券報告書</span>
+            <span class="wf-link">マテリアリティの評価・特定プロセス</span>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             D. 指標と目標
+        ============================================================ -->
+        <section class="wf-section bg-sub" id="metrics">
+          <span class="wf-section-marker">D</span>
+          <h2 class="wf-section-title">指標と目標</h2>
+
+          <h3 class="wf-sub-title">気候関連のリスクおよび機会を評価・管理するために使用する指標と目標</h3>
+          <p class="wf-section-desc">
+            （文章はダミーです）コニカミノルタは、お取引先・お客様を中心とするステークホルダーとの連携によって地球上のCO<sub>2</sub>削減に積極的に関わる「カーボンマイナス」の実現を目指しています。「カーボンマイナス」とは、自社責任範囲のCO<sub>2</sub>排出量（スコープ１，２，３）に比べて、責任範囲外でのCO<sub>2</sub>削減貢献量（スコープ４）を多くすること。パリ協定の実現に向け、自社責任範囲のCO<sub>2</sub>排出量について「ネットゼロ」目標を設定しています。
+          </p>
+
+          <!-- 「カーボンマイナス」「ネットゼロ」の目標：既存サイトは図画像 -->
+          <h4 class="wf-card-title has-mark">「カーボンマイナス」および「ネットゼロ」の目標</h4>
+          <div class="large-figure-ph">
+            <span class="large-figure-ph-label">
+              <strong>図：「カーボンマイナス」および「ネットゼロ」の目標 PH</strong>
+              （既存サイト img_tcfd-metrics-targets_001.jpg）
+            </span>
+            <span class="img-zoom-btn"></span>
+          </div>
+          <p class="wf-section-desc" style="margin-top:14px;">
+            （文章はダミーです）目標と実績の詳細は「サステナビリティ目標と実績」を参照ください。
+          </p>
+          <div class="policy-link-row">
+            <a class="policy-link">サステナビリティ目標と実績</a>
+          </div>
+
+          <p class="wf-section-desc">
+            （文章はダミーです）詳細データは、「ESGデータページ」の環境データ（Excel）を参照ください。
+          </p>
+          <div class="policy-link-row">
+            <a class="policy-link">ESGデータページ ＞ 環境データ（Excel）</a>
+          </div>
+
+          <!-- 7メトリクス（全アコーディオン化） -->
+          <div style="margin-top:20px;">
+
+            <details class="wf-acc-h3" open>
+              <summary class="wf-acc-h3-summary">
+                <span class="wf-acc-num">1</span>
+                <span class="wf-acc-text">温室効果ガス排出量（スコープ１，２，３排出量）</span>
+              </summary>
+              <div class="wf-acc-h3-body">
+                <p>
+                  （文章はダミーです）「製品ライフサイクルCO<sub>2</sub>排出量」を指標として採用しています。スコープ１、２のすべて（生産段階、販売・サービス段階のCO<sub>2</sub>排出量）と、主要なスコープ３（調達段階、物流段階、製品使用段階のCO<sub>2</sub>排出量）を含めています。
+                </p>
+                <ul style="font-size:12px; color:var(--c-text); line-height:1.95; margin:0 0 12px 22px;">
+                  <li>短期目標：2025年に61％削減（800千トン）</li>
+                  <li>中期目標：2030年までに2005年度比で70％削減（620千トン）</li>
+                  <li>長期目標：2050年にバリューチェーン全体で「ネットゼロ」</li>
+                </ul>
+                <p>
+                  （文章はダミーです）2024年度実績は約784千トン（スコープ１：148千トン、スコープ２：123千トン、主要なスコープ３：513千トン）で62％削減を達成しました。各非財務実績について第三者保証を受けており、2024年度のデータは第三者保証取得済みです。
+                </p>
+
+                <h5 class="wf-h5-title">製品ライフサイクルにおけるCO<sub>2</sub>排出量（単位：千トン-CO<sub>2</sub>）</h5>
+                <div class="ghg-table-wrap">
+                  <table class="ghg-table">
+                    <thead>
+                      <tr>
+                        <th rowspan="2" style="text-align:left;">区分</th>
+                        <th>2005年度<br>（基準）</th>
+                        <th>2018</th>
+                        <th>2021</th>
+                        <th>2022</th>
+                        <th>2023</th>
+                        <th>2024</th>
+                        <th class="target-cell">2025目標</th>
+                        <th class="target-cell">2030目標</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr><th>製品ライフサイクル合計</th><td>2,067</td><td>1,041</td><td>790</td><td>851</td><td>748</td><td>784</td><td class="target-cell">800</td><td class="target-cell">620</td></tr>
+                      <tr class="scope-row"><th colspan="9">内訳</th></tr>
+                      <tr><th>スコープ１（生産・販売・サービス）</th><td>254</td><td>170</td><td>159</td><td>151</td><td>148</td><td>148</td><td class="target-cell">—</td><td class="target-cell">170</td></tr>
+                      <tr><th>スコープ２（生産・販売・サービス）</th><td>220</td><td>197</td><td>164</td><td>151</td><td>139</td><td>123</td><td class="target-cell">—</td><td class="target-cell">—</td></tr>
+                      <tr><th>スコープ３（調達・物流・製品使用）</th><td>1,592</td><td>675</td><td>467</td><td>548</td><td>462</td><td>513</td><td class="target-cell">—</td><td class="target-cell">450</td></tr>
+                      <tr class="scope-row"><th colspan="9">スコープ３ 主要カテゴリー</th></tr>
+                      <tr><th>カテゴリ１（購入物品・サービス）</th><td>397</td><td>437</td><td>247</td><td>296</td><td>272</td><td>314</td><td class="target-cell">—</td><td class="target-cell">—</td></tr>
+                      <tr><th>カテゴリ４（輸送・流通／製品物流）</th><td>58</td><td>26</td><td>41</td><td>83</td><td>28</td><td>53</td><td class="target-cell">—</td><td class="target-cell">—</td></tr>
+                      <tr><th>カテゴリ11（販売した製品の使用）</th><td>1,137</td><td>211</td><td>179</td><td>169</td><td>162</td><td>147</td><td class="target-cell">—</td><td class="target-cell">—</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p style="font-size:10px; color:var(--c-text-xs); margin-top:6px;">注：数値は四捨五入のため合計が合わない場合があります。第三者保証取得済（2024年度）。</p>
+
+                <!-- 用語ノート -->
+                <div class="term-note">
+            <span class="term-trigger" data-modal="modal-scope"><span class="term-trigger-mark">?</span>スコープ１／２／３</span>
+                  <span class="term-trigger" data-modal="modal-scope4"><span class="term-trigger-mark">?</span>スコープ４（CO<sub>2</sub>削減貢献量）</span>
+                  <span class="term-trigger" data-modal="modal-netzero"><span class="term-trigger-mark">?</span>ネットゼロ</span>
+                  <span class="term-trigger" data-modal="modal-cm"><span class="term-trigger-mark">?</span>カーボンマイナス</span>
+                </div>
+              </div>
+            </details>
+
+            <details class="wf-acc-h3" open>
+              <summary class="wf-acc-h3-summary">
+                <span class="wf-acc-num">2</span>
+                <span class="wf-acc-text">移行リスク（再生可能エネルギー由来電力比率）</span>
+              </summary>
+              <div class="wf-acc-h3-body">
+                <p>
+                  （文章はダミーです）「再生可能エネルギー由来電力比率」を管理指標として採用しています。
+                </p>
+                <ul style="font-size:12px; color:var(--c-text); line-height:1.95; margin:0 0 12px 22px;">
+                  <li>長期目標：2050年までに100％再生可能エネルギー由来に</li>
+                  <li>中期目標：2030年までに50％以上</li>
+                </ul>
+                <p>
+                  （文章はダミーです）グループ全体の約８割の売上規模を占める情報機器事業では、ステークホルダーからの再生可能エネルギー調達導入要請を事業リスクと捉え、重点項目として対応しています。海外複合機生産の全拠点において再生可能エネルギー100％化を達成・維持しています。2024年度実績は、日本の生産および研究開発拠点における再生可能エネルギー由来電力使用の本格稼働により、比率は約20％まで上昇しました。
+                </p>
+                <h5 class="wf-h5-title">再生可能エネルギー由来電力比率（経年推移）</h5>
+                <div class="graph-ph">
+                  <span class="graph-ph-label">[ グラフ：再エネ由来電力比率の経年推移（FY18-24実績／FY30-50目標）PH ]</span>
+                  <span class="img-zoom-btn"></span>
+                </div>
+                <p class="graph-cap">図：2050年100％、2030年50％以上を目標、2024年度実績 約20％</p>
+              </div>
+            </details>
+
+            <details class="wf-acc-h3" open>
+              <summary class="wf-acc-h3-summary">
+                <span class="wf-acc-num">3</span>
+                <span class="wf-acc-text">物理リスク</span>
+              </summary>
+              <div class="wf-acc-h3-body">
+                <p>
+                  （文章はダミーです）情報機器事業は世界150カ国にお客様へ製品を供給。大規模自然災害によるサプライチェーン分断に備え、原材料供給ルートを粗原料まで遡及把握。安定供給リスク高い原材料は複数調達先確保や代替材料検討に取り組んでいます。
+                </p>
+                <p>
+                  （文章はダミーです）気候災害リスク対応として、消耗品部品生産および印刷用トナー生産・充填の自社拠点を日本、欧州、北米に展開し、消費地で供給できるレジリエンスの高いサプライチェーン体制を確保しています。
+                </p>
+              </div>
+            </details>
+
+            <details class="wf-acc-h3" open>
+              <summary class="wf-acc-h3-summary">
+                <span class="wf-acc-num">4</span>
+                <span class="wf-acc-text">気候関連の機会（経済価値・環境価値）</span>
+              </summary>
+              <div class="wf-acc-h3-body">
+                <p>
+                  （文章はダミーです）気候関連の機会の管理指標として、自社の製品やソリューションをステークホルダーへ提供することで創出される経済価値および環境価値の両方を採用し、目標を設定しています。経済価値は「グリーンプロダクツ売上高」「グリーンプロダクツ売上高比率」を、環境価値は「製品使用時CO<sub>2</sub>削減量」（スコープ３排出量削減）「自社製品ライフサイクル以外でのCO<sub>2</sub>削減貢献量」（スコープ４での削減貢献）を設定しています。
+                </p>
+                <div class="opp-table-wrap">
+                  <table class="opp-table">
+                    <thead>
+                      <tr>
+                        <th rowspan="2" style="text-align:left;">分類</th>
+                        <th rowspan="2" style="text-align:left;">管理指標</th>
+                        <th colspan="2">実績</th>
+                        <th colspan="2" class="target-cell">目標</th>
+                      </tr>
+                      <tr>
+                        <th>2023年度</th>
+                        <th>2024年度</th>
+                        <th class="target-cell">2025年度</th>
+                        <th class="target-cell">2026年度</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr><th rowspan="2" class="cat-th">経済価値</th><td class="label-th">グリーンプロダクツ売上高（億円）</td><td class="value-cell">7,728</td><td class="value-cell">7,770</td><td class="target-cell">—</td><td class="target-cell">7,350</td></tr>
+                      <tr><td class="label-th">グリーンプロダクツ売上高比率（％）</td><td class="value-cell">67</td><td class="value-cell">69</td><td class="target-cell">—</td><td class="target-cell">70</td></tr>
+                      <tr><th rowspan="2" class="cat-th">環境価値</th><td class="label-th">製品使用時CO<sub>2</sub>削減量（千トン）</td><td class="value-cell">73</td><td class="value-cell">133</td><td class="target-cell">190</td><td class="target-cell">—</td></tr>
+                      <tr><td class="label-th">自社製品ライフサイクル以外でのCO<sub>2</sub>削減貢献量（千トン）</td><td class="value-cell">631</td><td class="value-cell">682</td><td class="target-cell">800</td><td class="target-cell">—</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p>
+                  （文章はダミーです）2024年度はCO<sub>2</sub>削減貢献量を増加させるために、主にプロフェッショナルプリント事業で、アナログからデジタル印刷への作業工程変革による生産性向上を実現するデジタルプリンターの販売を拡大しました。
+                </p>
+
+                <!-- 用語ノート -->
+                <div class="term-note">
+            <span class="term-trigger" data-modal="modal-greenproducts"><span class="term-trigger-mark">?</span>グリーンプロダクツ</span>
+                </div>
+              </div>
+            </details>
+
+            <details class="wf-acc-h3" open>
+              <summary class="wf-acc-h3-summary">
+                <span class="wf-acc-num">5</span>
+                <span class="wf-acc-text">資本配備</span>
+              </summary>
+              <div class="wf-acc-h3-body">
+                <p>
+                  （文章はダミーです）コニカミノルタでは「気候変動への対応」を、長期の経営ビジョンにおいて取り組むべき５つのマテリアリティの一つとして特定。中長期において企業価値向上、低炭素社会実現への貢献に資する事業活動へ資本投入を行っています。<strong>2024年度の気候変動対応（CO<sub>2</sub>削減貢献）に資する事業の研究開発費用は307億円、グループ全体の研究開発費に占める割合は約51％</strong>でした。
+                </p>
+              </div>
+            </details>
+
+            <details class="wf-acc-h3" open>
+              <summary class="wf-acc-h3-summary">
+                <span class="wf-acc-num">6</span>
+                <span class="wf-acc-text">インターナル・カーボンプライシング（ICP）</span>
+              </summary>
+              <div class="wf-acc-h3-body">
+                <p>
+                  （文章はダミーです）低炭素投資における意思決定の促進および実効性のあるエネルギー効率施策を推進するため、社内炭素価格（ICP）を導入しています。
+                </p>
+                <p>
+                  （文章はダミーです）スコープ１（燃料使用による直接排出）とスコープ２（電力使用による間接排出）では、CO<sub>2</sub>削減のための費用、施策、時間軸がそれぞれ異なるため、スコープ１とスコープ２で異なる炭素価格を設定しています。
+                </p>
+                <p>
+                  （文章はダミーです）炭素価格は各国の法規制および市場動向を参照して設定しています。時勢を鑑みて改定する可能性があります。
+                </p>
+              </div>
+            </details>
+
+            <details class="wf-acc-h3" open>
+              <summary class="wf-acc-h3-summary">
+                <span class="wf-acc-num">7</span>
+                <span class="wf-acc-text">報酬</span>
+              </summary>
+              <div class="wf-acc-h3-body">
+                <p>
+                  （文章はダミーです）中期株式報酬（業績連動型）の非財務指標として「施策によるCO<sub>2</sub>排出削減量」を設定しています。執行役社長およびその他の執行役の役員報酬は、中期経営計画終了後、目標達成度に応じて0％〜200％の範囲で決定され、当社株式が交付されます。
+                </p>
+                <p style="font-size:10px; color:var(--c-text-xs);">
+                  ※ 当初設定した「CO<sub>2</sub>排出量削減率」の指標は、生産量・販売量の影響を考慮し、「施策によるCO<sub>2</sub>排出削減量」に改定（2024年4月23日開催の報酬委員会において決議）。
+                </p>
+              </div>
+            </details>
+
+          </div>
+
+          <!-- 本文中インラインリンク（原文踏襲） -->
+          <p class="wf-section-desc" style="margin-top:24px;">
+            （文章はダミーです）グリーンプロダクツの詳細はこちら：「グリーンプロダクツ認定制度」をご覧ください。
+          </p>
+          <div class="policy-link-row">
+            <a class="policy-link">グリーンプロダクツ認定制度</a>
+          </div>
+
+          <p class="wf-section-desc">
+            （文章はダミーです）報酬の詳細は、「ガバナンスの仕組み・運営 ＞ 役員報酬について」を参照ください。
+          </p>
+          <div class="policy-link-row">
+            <a class="policy-link">ガバナンスの仕組み・運営 ＞ 役員報酬について</a>
+          </div>
+
+          <!-- ESGデータDLボタン -->
+          <div style="margin-top:18px;">
+            <a class="wf-btn">ESGデータページ（環境データ Excel）</a>
+          </div>
+
+          <!-- 関連リンク -->
+          <div class="theme-related">
+            <span class="theme-related-label">関連リンク</span>
+            <span class="wf-link">サステナビリティ目標と実績</span>
+            <span class="wf-link">グリーンプロダクツ認定制度</span>
+            <span class="wf-link">グリーンファクトリー認定制度</span>
+            <span class="wf-link">グリーンマーケティング活動</span>
+            <span class="wf-link">ガバナンスの仕組み・運営 ＞ 役員報酬について</span>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             画像拡大モーダル PREVIEW（共通仕様の見本）
+        ============================================================ -->
+        <section class="wf-section bg-white pad-sm">
+          <div class="img-zoom-modal-preview">
+            <span class="img-zoom-modal-preview-label">IMAGE ZOOM MODAL PREVIEW</span>
+            <p class="img-zoom-modal-preview-desc">
+              ページ内の図表・グラフPHには右下に「<strong>+</strong>」拡大ボタン（<span class="img-zoom-btn" style="position:relative; bottom:auto; right:auto; display:inline-flex;"></span>）を配置。クリックすると以下のような拡大モーダルが画面中央にオーバーレイ表示されます。実装時は背景に半透明黒のオーバーレイ＋ESCキー／背景クリックで閉じる挙動を想定。
+            </p>
+            <div class="img-zoom-modal">
+              <div class="img-zoom-modal-head">
+                <span class="img-zoom-modal-title">図：コニカミノルタの気候関連リスクと機会</span>
+                <span class="img-zoom-modal-close">×</span>
+              </div>
+              <div class="img-zoom-modal-body">
+                <div class="img-zoom-modal-figure">
+                  <span class="img-zoom-modal-figure-label">[ 拡大画像PH ]</span>
+                </div>
+                <p class="img-zoom-modal-cap">移行／物理リスク × 機会の全体マッピング（事業セグメント別・時間軸別）</p>
+              </div>
+            </div>
+            <p style="font-size:10px; color:var(--c-text-xs); margin-top:10px; line-height:1.7;">
+              ※ 他の図表PH（再エネ比率グラフ等）も同一のモーダルフォーマットで表示されます。
+            </p>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             用語モーダル PREVIEW（共通仕様の見本）
+        ============================================================ -->
+        <section class="wf-section bg-white pad-sm" style="border-top:1px solid var(--c-border-s);">
+          <div class="modal-preview-zone">
+            <span class="modal-preview-zone-label">TERM MODAL PREVIEW</span>
+            <p class="modal-preview-zone-desc">
+              本文中のブロック下部に配置された用語注釈ボタン（<span class="term-trigger"><span class="term-trigger-mark">?</span>SBT</span> など）をクリックすると、以下のような用語解説モーダルが画面中央にオーバーレイ表示されます。実装時は背景に半透明黒のオーバーレイ＋ESCキー／背景クリックで閉じる挙動を想定。
+            </p>
+
+            <!-- Modal sample（1つのみ：SBT）— 他項目も同一フォーマット -->
+            <div class="term-modal" id="modal-sbt">
+              <div class="term-modal-head">
+                <span class="term-modal-title">SBT（Science Based Targets）</span>
+                <span class="term-modal-close">×</span>
+              </div>
+              <div class="term-modal-body">
+                <p>パリ協定が求める水準と整合した、企業が設定する科学的根拠に基づく温室効果ガス排出削減目標。</p>
+                <p>コニカミノルタはパリ協定および１．５℃目標に整合したSBTを設定し、短期・中期・長期にわたる時間軸で段階的な気候移行計画を策定しています。</p>
+              </div>
+            </div>
+
+            <p style="font-size:10px; color:var(--c-text-xs); margin-top:14px; line-height:1.7;">
+              ※ 他の用語ボタン（ICP／CNパートナー活動／環境デジタルプラットフォーム／スコープ１〜４／カーボンマイナス／ネットゼロ／グリーンプロダクツ など）も同一のモーダルフォーマットで表示されます。
+            </p>
+          </div>
+        </section>
+
+      </div><!-- /wf-anchornav-main -->
+
+      <!-- 右コンパクトアンカーナビ -->
+      <nav class="wf-anchor-nav">
+        <div class="wf-anchor-nav-title">目次</div>
+        <a class="wf-anchor-nav-item is-current" href="#governance">ガバナンス</a>
+        <a class="wf-anchor-nav-item" href="#strategy">戦略</a>
+        <a class="wf-anchor-nav-item" href="#risk">リスク管理</a>
+        <a class="wf-anchor-nav-item" href="#metrics">指標と目標</a>
+      </nav>
+
+    </div><!-- /wf-layout-with-anchornav -->
+
+    <!-- フッター -->
+    <footer class="wf-footer">
+      <div class="wf-footer-note">フッターは既確定。変更なし。</div>
+      <div class="wf-footer-grid">
+        <div>
+          <div class="wf-footer-col-title">企業情報</div>
+          <span class="wf-footer-link">企業情報トップ</span>
+          <span class="wf-footer-link">Newsroom</span>
+        </div>
+        <div>
+          <div class="wf-footer-col-title">環境</div>
+          <span class="wf-footer-link">気候変動</span>
+          <span class="wf-footer-link">資源循環</span>
+        </div>
+        <div>
+          <div class="wf-footer-col-title">社会</div>
+          <span class="wf-footer-link">人材戦略</span>
+          <span class="wf-footer-link">DE&amp;I</span>
+        </div>
+        <div>
+          <div class="wf-footer-col-title">ガバナンス</div>
+          <span class="wf-footer-link">コンプライアンス</span>
+          <span class="wf-footer-link">情報セキュリティ</span>
+        </div>
+      </div>
+      <div class="wf-footer-bottom">
+        <div>サイトのご利用について ｜ 個人情報保護方針 ｜ サイトマップ</div>
+        <div>&copy;2011-2026 Konica Minolta, Inc.</div>
+      </div>
+    </footer>
+
+  </div><!-- /wf-page -->
+
+  <!-- アノテーション -->
+  <aside class="wf-annotation">
+    <h3>設計ポイント — TCFD開示 v3.1（#031）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">★</span>
+      <span class="ann-head">v3.1 主要変更（FB反映：原文厳守）</span>
+      <p class="ann-body">
+        既存4ページの本文・テーブルを完全踏襲し、WF独自の補足・装飾的展開を撤去。<br>
+        ・戦略：CARBON MINUS topic-box撤去（原文に独立強調なし）／リード文末尾「成長戦略の中核です」を補完／移行計画の案内文撤去／短中期事業活動末尾の重要管理指標を本文として正規化／GP/GF/GMの「活動」名称表記を原文どおり復元<br>
+        ・リスク管理：移行/物理2カラムカード撤去（原文では「使用したリスクの分類枠組み」1行のみ）／運用プロセスのアコーディオン撤去（原文では本文に統合）／4段落構造を原文どおり保持<br>
+        ・指標と目標：主要KPIカード（2025/2050独自カード）→既存サイトの図画像PH（img_tcfd-metrics-targets_001.jpg相当）に置換／6番ICPの「環境価値の固有性を見極め」追加文撤去／7番報酬の「インセンティブを高めるとともに自社株保有の促進を図るため」追加文撤去／1番2番リード文を「短期/中期/長期目標」のリスト形式に整理<br>
+        ・シナリオ分析：各テーブル冒頭の独自補足リード文を撤去
+      </p>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">A</span>
+      <span class="ann-head">ガバナンス — governance.html原文どおり</span>
+      <p class="ann-body">
+        H3「気候関連のリスクおよび機会に係る組織のガバナンス」継承。リード文（社長統括＋月次報告体制）→取締役会承認テーブル（2008/2017/2020/2023/2024の5行）→関連リンク。
+      </p>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">B</span>
+      <span class="ann-head">戦略 — strategy.html原文どおり＋シナリオ分析統合</span>
+      <p class="ann-body">
+        既存strategy.htmlのH2構造（事業/戦略/財務影響→気候移行計画→レジリエンスと経営戦略→シナリオ分析）をH3展開。気候移行計画の3つのH4詳細とシナリオ分析の4テーブル＋前提条件をアコーディオン化。テーブル内項目（①〜⑥／カテゴリ＋具体例）は原文を保持。
+      </p>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">C</span>
+      <span class="ann-head">リスク管理 — risk.html原文をそのまま4段落で配置</span>
+      <p class="ann-body">
+        原文は本文のみで構成（カード・図表なし）。リスクマネジメント方針→2シナリオ評価→グループリスク位置づけ＋四半期審議＋年2回ローリング→月次社長報告＋取締役会監督→使用したリスク分類枠組み（1行）→関連リンク。情報量を原文どおり最低限に。
+      </p>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">D</span>
+      <span class="ann-head">指標と目標 — metrics-targets.html原文どおり7項目</span>
+      <p class="ann-body">
+        ・「カーボンマイナス／ネットゼロ」の目標は既存サイトの図画像PHを配置（独自KPIカード化しない）<br>
+        ・1〜7（GHG排出量／移行リスク／物理リスク／機会／資本配備／ICP／報酬）を全アコーディオン化、項目1のみ初期open<br>
+        ・GHGテーブル（FY05基準〜FY30目標、3スコープ＋カテゴリ1/4/11内訳）／経済価値・環境価値テーブルは原文の数値を保持<br>
+        ・末尾にESGデータDLボタン＋関連リンク。
+      </p>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">M</span>
+      <span class="ann-head">アコーディオン仕様（構造のみ追加・原文不変）</span>
+      <p class="ann-body">
+        details/summary native実装。サマリ：薄グレー背景＋黒タグ／番号丸＋「＋」マーカー、open時：黒背景＋白「−」マーカー反転。アコーディオンは情報量を増減させず、既存原文をスクロール量だけ縮める用途。
+      </p>
+    </div>
+  </aside>
+
+</div>
+
+</body>
+</html>
+}

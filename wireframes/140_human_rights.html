@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>人権 — KM サステナビリティ WF v1.4 (#140)</title>
+<style>
+/* ============================================================
+   KM SUSTAINABILITY WF — SHARED CSS（131 健康経営 v2.1 ベース継承）
+============================================================ */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --c-white:    #FFFFFF;
+  --c-bg:       #F7F7F7;
+  --c-bg-sub:   #F2F2F2;
+  --c-border:   #E0E0E0;
+  --c-border-s: #E8E8E8;
+  --c-ph:       #EBEBEB;
+  --c-ph-line:  #D8D8D8;
+  --c-text-h:   #111111;
+  --c-text:     #333333;
+  --c-text-s:   #666666;
+  --c-text-xs:  #999999;
+  --c-black:    #111111;
+  --c-ann-bg:   #FFFBF0;
+  --c-ann-bdr:  #C8A000;
+  --content-w:  1080px;
+  --page-w:     1280px;
+  --pad-section: 64px;
+  --pad-section-sm: 40px;
+  --pad-h: 100px;
+}
+
+body {
+  font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  font-size: 13px; line-height: 1.8;
+  color: var(--c-text); background: var(--c-bg);
+}
+
+.wf-meta-bar {
+  background: #111; color: #ccc; font-size: 11px; padding: 8px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 2000; letter-spacing: 0.03em;
+}
+.wf-meta-bar strong { color: #fff; font-size: 12px; }
+.wf-meta-bar .meta-badge { background: #333; color: #aaa; font-size: 10px; padding: 2px 8px; border-radius: 2px; margin-left: 8px; }
+
+.wf-canvas { max-width: var(--page-w); margin: 0 auto; display: grid; grid-template-columns: 1fr 280px; align-items: start; }
+.wf-page { background: var(--c-white); box-shadow: 0 2px 20px rgba(0,0,0,0.10); min-height: 100vh; }
+
+.wf-header { background: var(--c-white); border-bottom: 1px solid var(--c-border); }
+.wf-header-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 32px; border-bottom: 1px solid var(--c-border-s); }
+.wf-logo { display: flex; align-items: center; gap: 10px; }
+.wf-logo-mark { width: 32px; height: 21px; background: #555; border-radius: 50% 50% 0 50%; }
+.wf-logo-text { font-size: 13px; font-weight: 700; color: var(--c-text-h); letter-spacing: 0.06em; text-transform: uppercase; }
+.wf-header-utils { display: flex; align-items: center; gap: 16px; font-size: 11px; color: var(--c-text-s); }
+.wf-gnav { display: flex; align-items: stretch; padding: 0 32px; }
+.wf-gnav-item { padding: 11px 16px; font-size: 12px; color: var(--c-text-s); border-bottom: 2px solid transparent; white-space: nowrap; }
+.wf-gnav-item.is-active { color: var(--c-text-h); font-weight: 700; border-bottom-color: var(--c-text-h); }
+.wf-lnav { background: #3A3A3A; display: flex; align-items: center; gap: 0; padding: 0 32px; }
+.wf-lnav-label { font-size: 12px; font-weight: 700; color: #fff; padding: 10px 16px 10px 0; margin-right: 8px; border-right: 1px solid #555; white-space: nowrap; }
+.wf-lnav-item { font-size: 11px; color: #BBB; padding: 10px 14px; white-space: nowrap; }
+.wf-lnav-item.is-active { color: #fff; border-bottom: 2px solid #fff; }
+.wf-header-note { background: #F0F0F0; text-align: center; font-size: 10px; color: #888; padding: 4px 24px; border-top: 1px solid #E0E0E0; }
+
+.wf-breadcrumb { background: var(--c-white); border-bottom: 1px solid var(--c-border-s); padding: 10px var(--pad-h); font-size: 12px; color: var(--c-text-s); display: flex; align-items: center; gap: 4px; }
+.wf-breadcrumb span.sep { color: var(--c-border); }
+.wf-breadcrumb span.current { color: var(--c-text); }
+
+.wf-page-indicator { background: #2A2A2A; color: #aaa; padding: 6px 32px; font-size: 10px; display: flex; align-items: center; justify-content: space-between; }
+.wf-page-indicator .pi-layer { background: #444; color: #888; font-size: 9px; padding: 1px 8px; border-radius: 2px; }
+
+.wf-section { padding: var(--pad-section) var(--pad-h); border-bottom: 1px solid var(--c-border-s); position: relative; }
+.wf-section.bg-sub { background: var(--c-bg-sub); }
+.wf-section.bg-white { background: var(--c-white); }
+.wf-section.pad-sm { padding-top: var(--pad-section-sm); padding-bottom: var(--pad-section-sm); }
+.wf-section-marker { position: absolute; top: 12px; left: 8px; width: 22px; height: 22px; background: #222; color: #fff; border-radius: 50%; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+
+/* H2 */
+.wf-section-title {
+  font-size: 24px; font-weight: 700; color: var(--c-text-h);
+  margin-bottom: 28px; padding-bottom: 14px;
+  border-bottom: 1px solid var(--c-border);
+  line-height: 1.3; letter-spacing: -0.01em;
+  position: relative;
+}
+.wf-section-title::after {
+  content: ''; position: absolute; left: 0; bottom: -1px;
+  width: 140px; height: 3px;
+  background: linear-gradient(90deg, #111 0%, #444 40%, #888 70%, transparent 100%);
+}
+.wf-section-desc { font-size: 13px; color: var(--c-text); line-height: 1.955; margin-bottom: 24px; }
+
+/* H3 */
+.wf-sub-title {
+  font-size: 16px; font-weight: 700; color: var(--c-text-h);
+  margin-bottom: 16px; line-height: 1.5;
+  padding-left: 14px; border-left: 4px solid var(--c-text-h);
+  letter-spacing: -0.01em;
+  margin-top: 32px;
+}
+.wf-sub-title:first-child, .wf-section-desc + .wf-sub-title { margin-top: 0; }
+
+/* H4 */
+.wf-card-title {
+  font-size: 14px; font-weight: 700; color: var(--c-text-h);
+  margin-bottom: 12px; line-height: 1.4;
+  display: flex; align-items: center; gap: 6px;
+  margin-top: 24px;
+}
+.wf-card-title.has-mark::before { content: '◾'; color: var(--c-text-h); font-size: 12px; flex-shrink: 0; }
+
+/* H5 */
+.wf-h5-title {
+  font-size: 12px; font-weight: 700; color: var(--c-text-h);
+  margin-bottom: 8px; line-height: 1.5;
+  display: flex; align-items: center; gap: 6px;
+  margin-top: 16px;
+}
+.wf-h5-title::before { content: '◾'; color: var(--c-text-h); font-size: 10px; flex-shrink: 0; }
+
+/* L3ページタイトル */
+.wf-page-title-area {
+  background: var(--c-white);
+  padding: 32px var(--pad-h) 24px;
+  border-bottom: 1px solid var(--c-border-s);
+}
+.wf-page-title {
+  font-size: 28px; font-weight: 700; color: var(--c-text-h);
+  line-height: 1.3; letter-spacing: 0.01em;
+}
+.wf-page-parent-cat {
+  font-size: 12px;
+  color: var(--c-text-s);
+  margin-top: 6px;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+}
+.wf-page-parent-cat a {
+  color: var(--c-text-h);
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1px dashed var(--c-text-h);
+  cursor: default;
+  padding-bottom: 1px;
+}
+.wf-page-parent-cat a:hover {
+  border-bottom-style: solid;
+  background: var(--c-bg-sub);
+}
+
+
+/* 2カラム本文＋コンパクトアンカーナビ */
+.wf-layout-with-anchornav {
+  display: grid; grid-template-columns: 1fr 100px;
+  gap: 16px;
+  padding-right: var(--pad-h);
+}
+.wf-anchornav-main { min-width: 0; }
+.wf-anchornav-main .wf-section { padding-right: 32px; }
+.wf-anchor-nav {
+  position: sticky; top: 60px;
+  padding: 14px 0 14px 12px;
+  border-left: 2px solid var(--c-text-h);
+  background: transparent;
+  font-size: 11px;
+  align-self: start;
+  margin-top: 28px;
+}
+.wf-anchor-nav-title {
+  font-size: 9px; font-weight: 700;
+  color: var(--c-text-xs);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.wf-anchor-nav-item {
+  display: block;
+  font-size: 11px; color: var(--c-text-s);
+  padding: 5px 0; line-height: 1.4;
+  cursor: default;
+  border-left: 2px solid transparent;
+  margin-left: -14px;
+  padding-left: 12px;
+}
+.wf-anchor-nav-item:hover { color: var(--c-text-h); }
+.wf-anchor-nav-item.is-current {
+  color: var(--c-text-h); font-weight: 700;
+  border-left-color: var(--c-text-h);
+}
+
+/* ボタンリンク */
+.wf-btn {
+  display: inline-flex; align-items: center; justify-content: flex-start; gap: 8px;
+  font-size: 12px; font-weight: 600; font-family: inherit;
+  padding: 12px 20px; cursor: default;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  background: var(--c-white); color: var(--c-text-h);
+  border: 1px solid var(--c-border);
+  min-width: 280px;
+}
+.wf-btn::before { content: '›'; font-size: 14px; color: var(--c-text-h); font-weight: 700; margin-right: 4px; }
+.wf-btn:hover { background: var(--c-bg-sub); border-color: var(--c-text-h); }
+
+/* リンクボタン縦積みグループ */
+.wf-btn-stack {
+  display: flex; flex-direction: column; gap: 8px;
+  margin-top: 12px; margin-bottom: 8px;
+}
+.wf-btn-stack .wf-btn { min-width: 380px; }
+
+/* v1.2：本文段落直後に置く素朴なテキストリンク行（wf-link系統に揃え） */
+.policy-link-row {
+  display: block;
+  margin: -10px 0 22px;
+}
+.policy-link {
+  display: inline;
+  font-size: 13px;
+  color: var(--c-text-h);
+  font-weight: 700;
+  cursor: default;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.policy-link::before {
+  content: '→ ';
+  display: inline-block;
+  margin-right: 2px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  text-decoration: none;
+}
+.policy-link-note {
+  display: inline;
+  margin-left: 10px;
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--c-text-xs);
+  letter-spacing: 0.02em;
+}
+
+/* 国際規範リスト（v1.1：ラベルなし。リスト本体のみ） */
+.norm-list {
+  background: var(--c-bg-sub);
+  border: 1px solid var(--c-border);
+  padding: 16px 22px;
+  margin-top: 14px;
+}
+.norm-list ul {
+  list-style: none; padding: 0; margin: 0;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px;
+}
+.norm-list li {
+  font-size: 12px; color: var(--c-text);
+  padding-left: 14px; position: relative;
+  line-height: 1.7;
+}
+.norm-list li::before {
+  content: '◆'; position: absolute; left: 0; top: 2px;
+  font-size: 8px; color: var(--c-text-h);
+}
+
+/* 推進体制図 */
+.gov-structure-fig {
+  background: var(--c-ph); border: 1px solid var(--c-ph-line);
+  position: relative; overflow: hidden;
+  aspect-ratio: 16 / 6;
+  display: flex; align-items: center; justify-content: center;
+  margin: 14px 0 8px;
+}
+.gov-structure-fig::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(45deg, transparent 0 12px, rgba(0,0,0,0.04) 12px 13px);
+}
+.gov-structure-fig-label {
+  position: relative; z-index: 1;
+  font-size: 11px; color: var(--c-text-s);
+  text-align: center; line-height: 1.7;
+  background: rgba(255,255,255,0.92); padding: 8px 16px;
+  letter-spacing: 0.04em;
+  border: 1px dashed var(--c-ph-line);
+  max-width: 80%;
+}
+.gov-structure-fig-label strong { display: block; font-size: 12px; color: var(--c-text-h); margin-bottom: 4px; }
+.img-zoom-btn {
+  position: absolute;
+  bottom: 6px; right: 6px;
+  width: 26px; height: 26px;
+  background: var(--c-text-h); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 700; line-height: 1;
+  cursor: default; z-index: 5;
+  border: 1px solid #fff;
+}
+.img-zoom-btn::before { content: '+'; }
+
+/* v1.2：DD 4ステップ図（dd-process／dd-step）は廃止しCSSも削除 */
+
+/* インパクトアセスメント表 */
+.impact-table-wrap { overflow-x: auto; margin: 14px 0 8px; border: 1px solid var(--c-border); }
+.impact-table { width: 100%; border-collapse: collapse; font-size: 11px; background: var(--c-white); min-width: 920px; }
+.impact-table th, .impact-table td {
+  border: 1px solid var(--c-border-s);
+  padding: 8px 10px; text-align: center;
+  line-height: 1.6; vertical-align: middle;
+}
+.impact-table thead th {
+  background: var(--c-text-h); color: #fff;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.impact-table thead th.sub-th {
+  background: #555;
+  font-size: 10px;
+}
+.impact-table tbody th {
+  background: var(--c-bg-sub); color: var(--c-text-h);
+  font-weight: 700; font-size: 11px;
+  text-align: left;
+  white-space: normal;
+}
+.impact-table .check { font-size: 14px; color: var(--c-text-h); font-weight: 700; }
+.impact-table .ex {
+  text-align: left;
+  font-size: 11px; color: var(--c-text-s);
+  line-height: 1.6;
+}
+.impact-table-note { font-size: 10px; color: var(--c-text-xs); margin-top: 6px; line-height: 1.7; }
+
+/* 優先度サマリ表（ステークホルダー別） */
+.priority-table-wrap { overflow-x: auto; margin: 14px 0 8px; border: 1px solid var(--c-border); }
+.priority-table { width: 100%; border-collapse: collapse; font-size: 12px; background: var(--c-white); }
+.priority-table th, .priority-table td {
+  border: 1px solid var(--c-border-s);
+  padding: 12px 14px; line-height: 1.7;
+  vertical-align: top;
+}
+.priority-table thead th {
+  background: var(--c-text-h); color: #fff;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.04em; text-align: center;
+}
+.priority-table tbody th {
+  background: var(--c-bg-sub); color: var(--c-text-h);
+  font-weight: 700; font-size: 12px;
+  text-align: left;
+  white-space: nowrap;
+  width: 200px;
+}
+
+/* 措置／追跡評価表 */
+.measure-table-wrap { overflow-x: auto; margin: 14px 0 8px; border: 1px solid var(--c-border); }
+.measure-table { width: 100%; border-collapse: collapse; font-size: 11px; background: var(--c-white); min-width: 880px; }
+.measure-table th, .measure-table td {
+  border: 1px solid var(--c-border-s);
+  padding: 10px 12px; text-align: left;
+  line-height: 1.7; vertical-align: top;
+}
+.measure-table thead th {
+  background: var(--c-text-h); color: #fff;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.04em; text-align: center;
+}
+.measure-table tbody th {
+  background: var(--c-bg-sub); color: var(--c-text-h);
+  font-weight: 700; font-size: 11px;
+}
+.measure-table .col-stake { width: 130px; }
+.measure-table .col-risk { width: 200px; }
+.measure-table ul { margin: 0; padding-left: 16px; }
+.measure-table li { margin-bottom: 4px; }
+.measure-table .risk-detail-link {
+  display: inline-block;
+  font-size: 10px; color: var(--c-text-s);
+  margin-top: 4px;
+  border-top: 1px dashed var(--c-border);
+  padding-top: 4px;
+}
+.measure-table .risk-detail-link::before { content: '→ '; }
+
+/* RBA VAP監査表 */
+.audit-table-wrap { overflow-x: auto; margin: 14px 0; border: 1px solid var(--c-border); }
+.audit-table { width: 100%; border-collapse: collapse; font-size: 12px; background: var(--c-white); }
+.audit-table th, .audit-table td {
+  border: 1px solid var(--c-border-s);
+  padding: 10px 14px; line-height: 1.6;
+  vertical-align: middle;
+}
+.audit-table thead th {
+  background: var(--c-text-h); color: #fff;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.04em; text-align: center;
+}
+.audit-table tbody td {
+  font-size: 12px; color: var(--c-text);
+  text-align: center;
+}
+.audit-table tbody td:first-child {
+  text-align: left;
+  font-weight: 700;
+  color: var(--c-text-h);
+}
+.audit-table tbody td.rank {
+  background: #FAF7F0;
+  font-weight: 700;
+}
+
+/* ============================================================
+   アコーディオン共通モジュール（131 v2.1 ベース継承）
+============================================================ */
+
+/* H3アコーディオン */
+/* 035 TCFD アコーディオン共通モジュール（左縦棒なし／黒丸トグル） */
+.wf-acc-h3 {
+  margin-top: 16px; margin-bottom: 16px;
+  border: 1px solid var(--c-border);
+  background: var(--c-white);
+}
+.wf-acc-h3:first-child, .wf-section-desc + .wf-acc-h3 { margin-top: 0; }
+.wf-acc-h3-summary {
+  list-style: none;
+  cursor: default;
+  padding: 12px 60px 12px 22px;
+  font-size: 14px; font-weight: 700;
+  color: var(--c-text-h);
+  background: var(--c-border);
+  display: flex; align-items: center; gap: 12px;
+  letter-spacing: -0.01em;
+  position: relative;
+  line-height: 1.5;
+}
+.wf-acc-h3-summary:hover { background: #D5D5D5; }
+.wf-acc-h3-summary::-webkit-details-marker { display: none; }
+.wf-acc-h3-summary::marker { content: ''; }
+.wf-acc-h3-summary::after {
+  content: '＋';
+  position: absolute;
+  right: 16px; top: 50%; transform: translateY(-50%);
+  width: 28px; height: 28px;
+  background: var(--c-text-h); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  font-size: 14px; font-weight: 700;
+  line-height: 1;
+}
+.wf-acc-h3[open] .wf-acc-h3-summary::after { content: '−'; }
+.wf-acc-h3-body {
+  background: var(--c-white);
+  padding: 18px 22px 18px;
+}
+.wf-acc-h3-body > p {
+  font-size: 13px; color: var(--c-text); line-height: 1.95;
+  margin-bottom: 14px;
+}
+.wf-acc-h3-body > p:last-child { margin-bottom: 0; }
+
+/* H4アコーディオン（131 v2.1：境界明確＋丸枠アイコン） */
+.wf-acc-h4 {
+  margin-top: 14px;
+  margin-bottom: 4px;
+  border: 1px solid var(--c-border);
+  background: var(--c-white);
+}
+.wf-acc-h4:first-child { margin-top: 0; }
+.wf-acc-h4-summary {
+  list-style: none;
+  cursor: default;
+  font-size: 14px; font-weight: 700; color: var(--c-text-h);
+  padding: 12px 50px 12px 16px;
+  letter-spacing: -0.01em;
+  line-height: 1.5;
+  position: relative;
+  background: var(--c-bg-sub);
+  border-left: 3px solid var(--c-text-h);
+}
+.wf-acc-h4[open] .wf-acc-h4-summary {
+  border-bottom: 1px solid var(--c-border);
+}
+.wf-acc-h4-summary::-webkit-details-marker { display: none; }
+.wf-acc-h4-summary::marker { content: ''; }
+.wf-acc-h4-summary::after {
+  content: '＋';
+  position: absolute;
+  right: 14px; top: 50%; transform: translateY(-50%);
+  width: 22px; height: 22px;
+  border: 1px solid var(--c-text-h);
+  border-radius: 50%;
+  background: var(--c-white);
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  color: var(--c-text-h);
+  font-weight: 400;
+  line-height: 20px;
+  text-align: center;
+}
+.wf-acc-h4[open] .wf-acc-h4-summary::after {
+  content: '−';
+  font-size: 18px;
+  background: var(--c-text-h);
+  color: var(--c-white);
+}
+.wf-acc-h4-body {
+  padding: 16px 18px 18px;
+  background: var(--c-white);
+}
+.wf-acc-h4-body > p {
+  font-size: 12px; color: var(--c-text); line-height: 1.95;
+  margin-bottom: 12px;
+}
+.wf-acc-h4-body > p:last-child { margin-bottom: 0; }
+
+/* v1.2：詳細リンク（取り組みの詳細はこちら）— policy-linkと同系統の素朴なテキストリンクUIに */
+.detail-link {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--c-text-h);
+  font-weight: 600;
+  margin-top: 12px;
+  cursor: default;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.detail-link::before {
+  content: '→ 取り組みの詳細はこちら： ';
+  display: inline-block;
+  font-weight: 400;
+  color: var(--c-text-s);
+  font-size: 11px;
+  margin-right: 4px;
+  text-decoration: none;
+}
+
+/* JaCER対話救済プラットフォーム図 */
+.jacer-fig {
+  background: var(--c-ph); border: 1px solid var(--c-ph-line);
+  position: relative; overflow: hidden;
+  aspect-ratio: 16 / 7;
+  display: flex; align-items: center; justify-content: center;
+  margin: 14px 0 8px;
+}
+.jacer-fig::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(45deg, transparent 0 12px, rgba(0,0,0,0.04) 12px 13px);
+}
+.jacer-fig-label {
+  position: relative; z-index: 1;
+  font-size: 11px; color: var(--c-text-s);
+  text-align: center; line-height: 1.7;
+  background: rgba(255,255,255,0.92); padding: 8px 16px;
+  letter-spacing: 0.04em;
+  border: 1px dashed var(--c-ph-line);
+  max-width: 80%;
+}
+.jacer-fig-label strong { display: block; font-size: 12px; color: var(--c-text-h); margin-bottom: 4px; }
+
+/* 是正の写真PH */
+.remediation-photo {
+  background: var(--c-ph); border: 1px solid var(--c-ph-line);
+  position: relative; overflow: hidden;
+  aspect-ratio: 4 / 3;
+  display: flex; align-items: center; justify-content: center;
+  max-width: 360px;
+  margin-top: 10px;
+}
+.remediation-photo::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, rgba(0,0,0,0.04) 10px 11px);
+}
+.remediation-photo-label {
+  position: relative; z-index: 1;
+  font-size: 10px; color: var(--c-text-s);
+  text-align: center;
+  background: rgba(255,255,255,0.85); padding: 4px 10px;
+  letter-spacing: 0.04em;
+  border: 1px dashed var(--c-ph-line);
+}
+.remediation-cap {
+  font-size: 11px; color: var(--c-text-s);
+  margin-top: 6px;
+  line-height: 1.6;
+  max-width: 360px;
+}
+
+/* 画像拡大モーダルプレビュー */
+.img-zoom-modal-preview {
+  background: #FFF8E5;
+  border: 2px dashed var(--c-ann-bdr);
+  padding: 20px 24px;
+  margin-top: 26px;
+}
+.img-zoom-modal-preview-label {
+  display: inline-block;
+  font-size: 10px; font-weight: 700;
+  background: var(--c-ann-bdr); color: #fff;
+  padding: 3px 10px;
+  letter-spacing: 0.08em; margin-bottom: 14px;
+}
+.img-zoom-modal-preview-desc {
+  font-size: 11px; color: var(--c-text-s);
+  margin-bottom: 18px; line-height: 1.7;
+}
+.img-zoom-modal {
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+  position: relative;
+  overflow: hidden;
+  max-width: 720px;
+}
+.img-zoom-modal-head {
+  background: var(--c-text-h); color: #fff;
+  padding: 12px 18px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 10px;
+}
+.img-zoom-modal-title { font-size: 13px; font-weight: 700; }
+.img-zoom-modal-close {
+  width: 22px; height: 22px;
+  background: #fff; color: var(--c-text-h);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700;
+  border-radius: 50%;
+  cursor: default;
+}
+.img-zoom-modal-body { padding: 18px; }
+.img-zoom-modal-figure {
+  background: var(--c-ph); border: 1px solid var(--c-ph-line);
+  aspect-ratio: 16 / 9;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.img-zoom-modal-figure::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent 0 12px, rgba(0,0,0,0.04) 12px 13px); }
+.img-zoom-modal-figure-label { position: relative; z-index: 1; font-size: 11px; color: var(--c-text-s); background: rgba(255,255,255,0.92); padding: 4px 10px; letter-spacing: 0.04em; border: 1px dashed var(--c-ph-line); }
+.img-zoom-modal-cap { font-size: 11px; color: var(--c-text-s); margin-top: 10px; line-height: 1.7; }
+
+/* フッター */
+.wf-footer { background: #F5F5F5; border-top: 1px solid var(--c-border); padding: 32px var(--pad-h) 20px; }
+.wf-footer-note { text-align: center; font-size: 10px; color: #999; background: #EBEBEB; border: 1px solid var(--c-border); padding: 6px; margin-bottom: 20px; }
+.wf-footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 24px; }
+.wf-footer-col-title { font-size: 11px; font-weight: 700; color: var(--c-text); border-bottom: 1px solid var(--c-border); padding-bottom: 8px; margin-bottom: 8px; }
+.wf-footer-link { display: block; font-size: 11px; color: var(--c-text-s); padding: 3px 0; }
+.wf-footer-bottom { border-top: 1px solid var(--c-border); padding-top: 14px; display: flex; justify-content: space-between; font-size: 11px; color: var(--c-text-xs); }
+
+/* アノテーション */
+.wf-annotation { background: var(--c-ann-bg); border-left: 3px solid var(--c-ann-bdr); padding: 16px; position: sticky; top: 0; max-height: 100vh; overflow-y: auto; }
+.wf-annotation h3 { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: #888; border-bottom: 1px solid var(--c-ann-bdr); padding-bottom: 8px; margin-bottom: 14px; }
+.ann-item { margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid #EEE; }
+.ann-item:last-child { border-bottom: none; }
+.ann-num { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; background: #222; color: #fff; font-size: 10px; font-weight: 700; border-radius: 50%; margin-bottom: 5px; }
+.ann-head { font-size: 11px; font-weight: 700; color: #222; display: block; margin-bottom: 6px; line-height: 1.4; }
+.ann-body { font-size: 10px; color: #555; line-height: 1.6; margin-top: 6px; }
+
+</style>
+</head>
+<body>
+
+<!-- WF管理バー -->
+<div class="wf-meta-bar">
+  <div>
+    <strong>KONICA MINOLTA サステナビリティ</strong>
+    <span class="meta-badge">人権</span>
+    <span class="meta-badge">WF v1.4</span>
+    <span class="meta-badge">#140</span>
+    <span class="meta-badge">L3</span>
+    <span class="meta-badge" style="background:#7a4a00; color:#fff;">v1.3：[]書き注記を全削除／H3アコの左4px縦棒＋枠囲い罫線を撤去（くどさ解消）</span>
+  </div>
+  <div style="font-size:10px; color:#666;">2026.05 / v1.2→v1.3：FB2点反映</div>
+</div>
+
+<div class="wf-canvas">
+  <div class="wf-page">
+
+    <div class="wf-page-indicator">
+      <span>人権 / URL: /about/csr/social/human-rights/</span>
+      <span class="pi-layer">L3 第3階層 — 人権</span>
+    </div>
+
+    <!-- ヘッダー -->
+    <header class="wf-header">
+      <div class="wf-header-inner">
+        <div class="wf-logo"><div class="wf-logo-mark"></div><div class="wf-logo-text">KONICA MINOLTA</div></div>
+        <div class="wf-header-utils"><span>サポート・ダウンロード</span><span>お問い合わせ</span><span>Countries/Regions</span><span>ja | en | zh</span></div>
+      </div>
+      <nav class="wf-gnav">
+        <span class="wf-gnav-item">企業情報</span>
+        <span class="wf-gnav-item">Newsroom</span>
+        <span class="wf-gnav-item">株主・投資家情報</span>
+        <span class="wf-gnav-item is-active">サステナビリティ</span>
+        <span class="wf-gnav-item">テクノロジー</span>
+        <span class="wf-gnav-item">採用情報</span>
+      </nav>
+      <nav class="wf-lnav">
+        <span class="wf-lnav-label">サステナビリティ</span>
+        <span class="wf-lnav-item">TOP</span>
+        <span class="wf-lnav-item">サステナビリティ戦略</span>
+        <span class="wf-lnav-item">サステナビリティマネジメント</span>
+        <span class="wf-lnav-item">環境</span>
+        <span class="wf-lnav-item is-active">社会</span>
+        <span class="wf-lnav-item">ガバナンス</span>
+      </nav>
+      <div class="wf-header-note">⚠ ヘッダーは既確定。変更なし。</div>
+    </header>
+
+    <!-- パンくず -->
+    <nav class="wf-breadcrumb">
+      ホーム <span class="sep">›</span>
+      サステナビリティ <span class="sep">›</span>
+      社会 <span class="sep">›</span>
+      <span class="current">人権</span>
+    </nav>
+
+    <!-- ページタイトル -->
+    <div class="wf-page-title-area">
+      <h1 class="wf-page-title">人権</h1>
+      <div class="wf-page-parent-cat">
+        【<a href="005_social_index.html">社会</a>】に関する取り組み
+      </div>
+    </div>
+
+    <!-- メインコンテンツ＋右コンパクトアンカーナビ -->
+    <div class="wf-layout-with-anchornav">
+      <div class="wf-anchornav-main">
+
+        <!-- ============================================================
+             A. 基本的な考え方
+        ============================================================ -->
+        <section class="wf-section bg-white" id="policy">
+          <span class="wf-section-marker">A</span>
+          <h2 class="wf-section-title">基本的な考え方</h2>
+
+          <p class="wf-section-desc">
+            人権は、すべての人間が持って生まれた権利であり、普遍的な価値の一つです。近年、国際社会で、ビジネスが人権に与える影響の大きさについて、人々の意識が高まっています。
+          </p>
+
+          <p class="wf-section-desc">
+            コニカミノルタでは事業活動を行う行動原則を「コニカミノルタグループ行動憲章」に定めており、2022年4月取締役会の承認のもと、人権の尊重を行動の原則の一つとして追加しました。
+          </p>
+          <div class="policy-link-row">
+            <a class="policy-link">コニカミノルタグループ行動憲章</a>
+          </div>
+
+          <p class="wf-section-desc">
+            また、コニカミノルタグループの企業理念、経営ビジョンに基づいて、人権に対するコニカミノルタグループの責任と決意を「コニカミノルタグループ人権方針」に定めています。本方針は2021年9月経営審議会にて承認されています。
+          </p>
+          <div class="policy-link-row">
+            <a class="policy-link">コニカミノルタグループ人権方針</a>
+          </div>
+
+          <p class="wf-section-desc">
+            さらに、コニカミノルタグループ各社が取るべき具体的な行動を「コニカミノルタサプライチェーン行動規範」に定め、サプライヤー、パートナーにも同様の行動を要請しています。なお、「コニカミノルタサプライチェーン行動規範」は、2013年にCSR調達の質と透明性向上を図るために加盟したRBA(Responsible Business Alliance)の行動規範の最新版を基にしています。
+          </p>
+          <div class="policy-link-row">
+            <a class="policy-link">コニカミノルタサプライチェーン行動規範</a>
+          </div>
+
+          <!-- グローバルな原則・国際規範 -->
+          <p class="wf-section-desc">
+            取り組みにあたっては、特に下記のグローバルな原則や国際規範の最新版を支持し尊重しています。
+          </p>
+
+          <div class="norm-list">
+            <ul>
+              <li>世界人権宣言</li>
+              <li>国際人権規約</li>
+              <li>国際労働機関（ILO）労働の基本的原則および権利に関する宣言</li>
+              <li>国連「ビジネスと人権に関する指導原則」</li>
+              <li>OECD多国籍企業行動指針</li>
+              <li>国連グローバル・コンパクト</li>
+              <li>ISO26000</li>
+              <li>RBA行動規範</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             B. 体制
+        ============================================================ -->
+        <section class="wf-section bg-sub" id="structure">
+          <span class="wf-section-marker">B</span>
+          <h2 class="wf-section-title">体制</h2>
+
+          <p class="wf-section-desc">
+            コニカミノルタの人権尊重の取り組みは、サステナビリティを所管する経営企画部門を中心に、人事部門、各事業調達部門、リスクマネジメント部門と連携しながら推進しています。特にサプライチェーン全体にわたる人権尊重の取組みを推進するために、リスクマネジメント担当役員が管轄するリスクマネジメント委員会のもと、全社人権推進体制を構築しています。経営企画部門、法務部門、生産企画部門を中心に全社的な活動を進めるとともに、事業領域ごとに選任した推進責任者と連携しながら推進しています。
+          </p>
+          <p class="wf-section-desc">
+            人権尊重に関する活動状況や抽出された重大な人権リスクについては、年2回開催されるリスクマネジメント委員会において報告・審議される体制を整えています。
+          </p>
+
+          <h3 class="wf-sub-title">人権対応の体制図</h3>
+          <div class="gov-structure-fig">
+            <span class="gov-structure-fig-label">
+              <strong>図：人権対応の全社推進体制 PH</strong>
+              リスクマネジメント担当役員 ／ リスクマネジメント委員会 ／ 経営企画部門・法務部門・生産企画部門 ／ 事業領域別推進責任者<br>
+              ※ 年2回のリスクマネジメント委員会で報告・審議
+            </span>
+            <span class="img-zoom-btn"></span>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             C. 人権デュー・ディリジェンス
+        ============================================================ -->
+        <section class="wf-section bg-white" id="dd">
+          <span class="wf-section-marker">C</span>
+          <h2 class="wf-section-title">人権デュー・ディリジェンス</h2>
+
+          <p class="wf-section-desc">
+            コニカミノルタは、国連「ビジネスと人権に関する指導原則」に則り、人権方針の作成、人権デュー・ディリジェンスの実施、是正・苦情処理メカニズムの構築を行い、人権尊重の実践に取り組んでいます。
+          </p>
+          <p class="wf-section-desc">
+            コニカミノルタは人権デュー・ディリジェンスの仕組みを構築し、自社の事業活動がステークホルダーに対して及ぼす潜在的・顕在的な人権リスクの特定、人権への負の影響の防止または軽減策の検討・実施、進捗状況についての情報開示を継続して行っています。なお、自社の事業活動には、新規および追加投資、M&Aによる事業拡大、新規プロジェクトへの参入を含み投資判断基準に人権に対する評価項目を盛り込んでいます。
+          </p>
+
+          <!-- v1.2：DD 4ステップブロックは削除 -->
+
+          <!-- 1. 特定・評価 -->
+          <h3 class="wf-sub-title">1. 人権への負の影響の特定、評価（インパクトアセスメント）</h3>
+          <p class="wf-section-desc">
+            コニカミノルタの事業活動や取引の結果として、潜在的または顕在的に負の影響を受けるステークホルダーとその人権課題について、日本の法務省が人権に関する主要な国際ルール／フレームワーク／ガイドラインからリストアップした"企業が配慮すべき主要な人権リスク類型"の項目をもとに整理しました。
+          </p>
+
+          <h4 class="wf-card-title has-mark">人権リスク項目の特定とステークホルダーの関連性</h4>
+          <div class="impact-table-wrap">
+            <table class="impact-table">
+              <thead>
+                <tr>
+                  <th rowspan="2" style="text-align:left;">人権リスク項目</th>
+                  <th colspan="2" class="sub-th">労働者</th>
+                  <th colspan="2" class="sub-th">労働者以外のステークホルダー</th>
+                  <th rowspan="2">想定されるリスク事例</th>
+                </tr>
+                <tr>
+                  <th class="sub-th">グループ従業員</th>
+                  <th class="sub-th">調達/委託先<br>の従業員</th>
+                  <th class="sub-th">お客様</th>
+                  <th class="sub-th">地域住民/<br>先住民</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><th>賃金・福利厚生</th><td class="check">✓</td><td class="check">✓</td><td>—</td><td>—</td><td class="ex">賃金の不足、未払、生活賃金の不確保、同一労働・同一資格における賃金の不均等など</td></tr>
+                <tr><th>過剰・不当な労働</th><td class="check">✓</td><td class="check">✓</td><td>—</td><td>—</td><td class="ex">法定外の時間外労働、連続勤務、休暇の取得制限など</td></tr>
+                <tr><th>労働安全衛生</th><td class="check">✓</td><td class="check">✓</td><td>—</td><td>—</td><td class="ex">労働負荷への健康障害の防止不備、労働災害の発生など</td></tr>
+                <tr><th>結社の自由</th><td class="check">✓</td><td class="check">✓</td><td>—</td><td>—</td><td class="ex">労働組合、団体交渉への参加／不参加の強制など</td></tr>
+                <tr><th>差別</th><td class="check">✓</td><td class="check">✓</td><td>—</td><td>—</td><td class="ex">性別、年齢、国籍や雇用形態（正規・非正規）による差別など</td></tr>
+                <tr><th>賄賂・腐敗</th><td class="check">✓</td><td class="check">✓</td><td>—</td><td>—</td><td class="ex">公務員に対する贈収賄、通関手続き等における金品の提供など</td></tr>
+                <tr><th>消費者の安全と知る権利</th><td>—</td><td>—</td><td class="check">✓</td><td>—</td><td class="ex">消費者の心身や健康を害するような製品・サービスの提供や製品表示等における不当表示、消費者の知る権利の侵害など</td></tr>
+                <tr><th>ジェンダーに関する人権問題</th><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td>—</td><td class="ex">男女間での賃金等の待遇格差、性的マイノリティー当事者が不利益を被る、広告における差別的な表現など</td></tr>
+                <tr><th>ハラスメント</th><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td>—</td><td class="ex">パワハラ、セクハラ、マタハラ、パタハラ、介護ハラスメントなど</td></tr>
+                <tr><th>表現の自由</th><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td>—</td><td class="ex">企業活動への意見の抑制、従業員による会社や待遇への意見の抑制など</td></tr>
+                <tr><th>知的財産権</th><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td>—</td><td class="ex">発明に対する対価の不払い、個人の知的財産権への侵害など</td></tr>
+                <tr><th>強制的な労働</th><td class="check">✓</td><td class="check">✓</td><td>—</td><td class="check">✓</td><td class="ex">労働者の同意のない労働、人身売買への関与、身分証明書の保管など</td></tr>
+                <tr><th>児童労働・若年労働</th><td class="check">✓</td><td class="check">✓</td><td>—</td><td class="check">✓</td><td class="ex">児童の学習機会の損失、成長・健康への影響、18歳未満の若年労働者の配慮不足など</td></tr>
+                <tr><th>居住移転の自由</th><td class="check">✓</td><td class="check">✓</td><td>—</td><td class="check">✓</td><td class="ex">意志に反した居住地の移転、事業活動による地域住人の立ち退き、転勤の強制など</td></tr>
+                <tr><th>生態系劣化や水、気候変動に関する人権課題</th><td class="check">✓</td><td class="check">✓</td><td>—</td><td class="check">✓</td><td class="ex">事業活動による環境破壊、生態系の劣化や水ストレス、地球温暖化加速事業への資金提供など</td></tr>
+                <tr><th>外国人・移民労働者の権利</th><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="ex">外国人・移民労働者への差別、労働条件の特定言語での提示、採用における手数料の搾取など</td></tr>
+                <tr><th>救済へアクセスする権利</th><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="ex">申し立てプロセスの認知不十分、アクセスの制限など</td></tr>
+                <tr><th>テクノロジー・AIに関する人権課題</th><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="ex">AI利用による差別的な人権問題の発生、自社製品による差別的利用など</td></tr>
+                <tr><th>プライバシーの権利</th><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="ex">個人情報、要配慮情報の不適切な取得、保管、公開または、第三者への提供など</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4 class="wf-card-title has-mark">人権への負の影響評価</h4>
+          <p class="wf-section-desc">
+            抽出した負の影響を受けるステークホルダーとその人権課題に対して、製品サプライチェーンの各プロセス（開発、調達、生産、販売、回収、リサイクル・廃棄）における人権侵害が発生した際の事業影響、発生の可能性を評価し、CEOを含む経営層に報告、協議の上、優先度が高いと思われる人権項目を特定しました。
+          </p>
+          <p class="wf-section-desc">
+            事業影響は、人権侵害が発生した際の社会やお客様への影響の度合い、是正に対する困難度を人権対応のガイダンスや過去の企業における人権侵害事例より評価しています。発生の可能性は、RBA SAQや監査結果より評価しています。
+          </p>
+          <p class="wf-section-desc">
+            評価は、定期的に見直すとともに人事／法務／調達／品質／サステナビリティを担当する各部門が目標設定・施策の検討・推進を通じ負の影響の防止・軽減を進めてまいります。
+          </p>
+
+          <h4 class="wf-card-title has-mark">ステークホルダーごとの優先度が高いと特定した人権リスク項目</h4>
+          <div class="priority-table-wrap">
+            <table class="priority-table">
+              <thead>
+                <tr>
+                  <th>ステークホルダー</th>
+                  <th>優先度が高いと特定した人権リスク項目</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>グループ従業員</th>
+                  <td>過剰・不当な労働、労働安全衛生、差別（女性活躍）、ジェンダーに関する人権問題、強制的な労働、児童労働・若年労働、プライバシーの権利</td>
+                </tr>
+                <tr>
+                  <th>調達・委託先の従業員</th>
+                  <td>過剰・不当な労働、労働安全衛生、差別、外国人・移民労働者の権利</td>
+                </tr>
+                <tr>
+                  <th>地域住民／先住民</th>
+                  <td>強制的な労働、児童労働・若年労働</td>
+                </tr>
+                <tr>
+                  <th>お客様</th>
+                  <td>プライバシーの権利</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 2. 適切な措置 ＋ 3. 実効性の追跡評価 -->
+          <h3 class="wf-sub-title">2. 適切な措置の実施（負の影響の防止・軽減）／ 3. 実効性の追跡評価</h3>
+          <p class="wf-section-desc">
+            コニカミノルタでは優先度が高いと特定した人権リスクについて、適切な措置を実施し、実効性を追跡評価しています。
+          </p>
+
+          <h4 class="wf-card-title has-mark">優先度が高いと特定した人権リスク項目に対する適切な措置の実施と実効性の追跡評価の事例</h4>
+          <div class="measure-table-wrap">
+            <table class="measure-table">
+              <thead>
+                <tr>
+                  <th class="col-stake">ステークホルダー</th>
+                  <th class="col-risk">優先度が高いと特定した<br>人権リスク項目</th>
+                  <th>2. 適切な措置の実施<br>（負の影響の防止・軽減）</th>
+                  <th>3. 実効性の追跡評価</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th rowspan="6">グループ従業員</th>
+                  <td>過剰・不当な労働<br><span class="risk-detail-link">過重労働対策</span></td>
+                  <td>勤怠システムにて所定外労働時間を把握</td>
+                  <td>直近3年間の所定外労働時間が減少傾向</td>
+                </tr>
+                <tr>
+                  <td>労働安全衛生<br><span class="risk-detail-link">就業時災害の防止</span></td>
+                  <td>事業変化に対応するリスクアセスメント実施／安全巡視や安全教育実施</td>
+                  <td>重篤災害発生件数0件を継続</td>
+                </tr>
+                <tr>
+                  <td>差別（女性活躍）<br><span class="risk-detail-link">女性活躍推進</span></td>
+                  <td>女性リーダー候補への個別育成計画の立案・実行と研修の実施／男性従業員の育児参画促進や仕事と介護の両立支援の充実</td>
+                  <td>女性管理職比率が上昇傾向（2024年度は構造改革の影響により減少）</td>
+                </tr>
+                <tr>
+                  <td>ジェンダーに関する人権問題<br><span class="risk-detail-link">コンプライアンスの基本的な考え方・推進体制</span></td>
+                  <td>セクシャルハラスメント防止ガイドラインを設定しハラスメント防止教育実施／従業員が差別やハラスメントをした場合、是正措置、もしくは就業規則に従って懲戒処分実施</td>
+                  <td>セクシュアルハラスメントや差別を含む人権関連の内部通報35件のうち、公表を要する重大な通報なし</td>
+                </tr>
+                <tr>
+                  <td>強制的な労働</td>
+                  <td>国際基準と懲戒規程の整合確認</td>
+                  <td>懲戒処分における減給措置を廃止</td>
+                </tr>
+                <tr>
+                  <td>児童労働・若年労働</td>
+                  <td>各国での採用時に年齢確認を徹底</td>
+                  <td>児童労働の事例なし</td>
+                </tr>
+                <tr>
+                  <th>グループ従業員</th>
+                  <td>プライバシーの権利<br><span class="risk-detail-link">情報セキュリティの推進</span></td>
+                  <td>個人情報保護および情報セキュリティに関する教育実施／グループ全体でインシデントに備えた体制（KM-CSIRT）を整備</td>
+                  <td>KM-CSIRTへの5件のインシデント報告に適切に対応し、事業への影響なし</td>
+                </tr>
+                <tr>
+                  <th>調達／委託先<br>従業員</th>
+                  <td>過剰・不当な労働、労働安全衛生、差別、外国人・移民労働者の権利<br><span class="risk-detail-link">CSR調達の取り組み</span></td>
+                  <td>コニカミノルタサプライチェーン行動規範（=RBA行動規範）の遵守を要請／コニカミノルタサプライチェーン行動規範への実施レベルを診断するための自己診断アンケート実施（SAQ）</td>
+                  <td>重要サプライヤー143社中131社にSAQを実施しハイリスクサプライヤー3社を特定、現地訪問による改善支援の結果、是正完了</td>
+                </tr>
+                <tr>
+                  <th>地元住民／先住民</th>
+                  <td>強制的な労働、児童労働・若年労働<br><span class="risk-detail-link">責任ある鉱物調達への対応</span></td>
+                  <td>責任ある鉱物調達の実施</td>
+                  <td>デジタルワークプレイス事業、プロフェッショナルプリント事業において、紛争非関与が確認された3TG製錬所・監査プロセス中の製錬所割合が64％／主要製品の一つであるトナー、光学レンズと機能フィルムの一部製品が紛争非関与であることを確認</td>
+                </tr>
+                <tr>
+                  <th>お客様</th>
+                  <td>プライバシーの権利<br><span class="risk-detail-link">個人情報の保護、製品・サービスのセキュリティ強化</span></td>
+                  <td>GDPRに対応した個人情報保護方針および個人情報保護規程を策定／製品セキュリティガイドラインを制定し、グループ全体で製品・サービスのセキュア開発・運用プロセスを推進</td>
+                  <td>製品の重大セキュリティ事故発生件数0件を継続</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4 class="wf-card-title has-mark">グループ生産拠点のRBA VAP監査の受審</h4>
+          <p class="wf-section-desc">
+            コニカミノルタでは自社生産拠点における人権リスク軽減のため第三者監査（RBA VAP監査）を継続的に受審しています。2025年4月1日時点では以下の主要な3拠点にて認証を保有しています。
+          </p>
+          <div class="audit-table-wrap">
+            <table class="audit-table">
+              <thead>
+                <tr>
+                  <th style="text-align:left;">事業所名</th>
+                  <th>所在国</th>
+                  <th>認証ランク</th>
+                  <th>認証期限</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Konica Minolta Business Technologies (DONGGUAN) Co., Ltd.</td>
+                  <td>中国</td>
+                  <td class="rank">Platinum</td>
+                  <td>2026年1月10日</td>
+                </tr>
+                <tr>
+                  <td>Konica Minolta Business Technologies (Malaysia) Sdn. Bhd.</td>
+                  <td>マレーシア</td>
+                  <td class="rank">Platinum</td>
+                  <td>2025年11月30日</td>
+                </tr>
+                <tr>
+                  <td>Konica Minolta Mechatronics Co.,Ltd. (Mikawa)</td>
+                  <td>日本</td>
+                  <td class="rank">Platinum</td>
+                  <td>2026年10月9日</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4 class="wf-card-title has-mark">生活賃金</h4>
+          <p class="wf-section-desc">
+            コニカミノルタは事業展開する各国・地域において最低賃金を順守するだけではなく、従業員が意欲を持って働ける適正水準の賃金確保に努めています。2021年度には従業員への生活賃金支払いの実態を調査しました。生活賃金は基礎生活費と税金から成り、その基礎生活費の見積もりには基本的にマーケット・バスケット方式を用いますが、国によっては、必需品予算（Basic Needs Budget）基準を用いて算定されます。また、同一国における地域差も考慮する必要があるため、日本労働組合総連合会、WageIndicator Foundationを参考に生活賃金を算定しています。この結果、生活賃金の支払いについて、特に課題は見いだされませんでした。
+          </p>
+
+          <!-- 4. 情報公開 -->
+          <h3 class="wf-sub-title">4. 情報公開</h3>
+          <p class="wf-section-desc">
+            コニカミノルタはウェブサイトや統合報告書を通じて、定期的かつタイムリーに取り組み内容を公開していきます。
+          </p>
+          <div>
+            <a class="wf-btn">統合報告書</a>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             D. 相談・通報窓口（グリーバンスメカニズム）
+        ============================================================ -->
+        <section class="wf-section bg-sub" id="grievance">
+          <span class="wf-section-marker">D</span>
+          <h2 class="wf-section-title">相談・通報窓口（グリーバンスメカニズム）</h2>
+
+          <p class="wf-section-desc">
+            人権に関する懸念を通報できる制度を活用して、人権侵害の申し立てがあった場合には、速やかに調査し、コニカミノルタが人権に対する負の影響を直接的に引き起こした、あるいはこれに関与したことが明確である場合、社内外のしかるべき手続きを通して是正策を講じていきます。
+          </p>
+
+          <!-- 1) グループ従業員 -->
+          <details class="wf-acc-h3" open>
+            <summary class="wf-acc-h3-summary">グループ従業員</summary>
+            <div class="wf-acc-h3-body">
+
+              <h4 class="wf-card-title has-mark">ヘルプライン　コニカミノルタグループ内</h4>
+              <p style="font-size:13px; line-height:1.95; margin-bottom:14px;">
+                コニカミノルタでは国内グループだけでなく海外にも内部通報制度「ヘルプライン」窓口を設けています。この制度は匿名で連絡可能で通報者が不利益を被ることはありません。
+              </p>
+              <p style="font-size:13px; line-height:1.95; margin-bottom:14px;">
+                寄せられた通報については、調査の必要性を公正・公平かつ誠実に検討し、通報者に今後の対応について連絡するとともに、内部通報によって得た情報は調査に関わる者のみで共有し、通報者に不利益を与えない運用を行っています。コンプライアンス上の問題があった場合には通報システムの主幹部門が関係部門と連携し是正するとともに、再発防止を図っています。
+              </p>
+              <p style="font-size:13px; line-height:1.95; margin-bottom:14px;">
+                グループコンプライアンス担当役員は、すべての内部通報情報を定期的に監査委員会に報告しています。2024年度の内部通報のうち、人権関連（パワーハラスメント／セクシュアルハラスメント／差別／不適切な扱い）に関連する内部通報件数は、国内11件、海外24件でした。なお、公表を必要とする重要問題の発生はありませんでした。
+              </p>
+              <span class="detail-link">コンプライアンスの基本的な考え方・推進体制 ＞ 内部通報制度「ヘルプライン」</span>
+
+              <h4 class="wf-card-title has-mark">ハラスメント相談窓口</h4>
+              <p style="font-size:13px; line-height:1.95; margin-bottom:14px;">
+                コニカミノルタでは健全な職場環境の確保を企業の責任と考え、ハラスメントの発生を防止し、万一発生した場合には迅速かつ適切に対応するため、「ハラスメント相談窓口」を設けています。窓口では、相談者のプライバシーを厳重に保護し、相談内容に関する秘密を厳守します。また、相談を行ったことにより、相談者が不利益を被ることはありません。寄せられた相談については、「ハラスメント相談対応フロー」に基づき、適切かつ公平に対応しています。
+              </p>
+              <div style="margin-top:8px;">
+                <a class="wf-btn">ハラスメント相談対応フロー</a>
+              </div>
+
+            </div>
+          </details>
+
+          <!-- 2) 調達・委託先の従業員 -->
+          <details class="wf-acc-h3" open>
+            <summary class="wf-acc-h3-summary">調達・委託先の従業員</summary>
+            <div class="wf-acc-h3-body">
+
+              <h4 class="wf-card-title has-mark">ヘルプライン　サプライヤー</h4>
+              <p style="font-size:13px; line-height:1.95; margin-bottom:14px;">
+                日本、中国、東南アジア地域の「ヘルプライン」では、サプライヤーに対しても「ヘルプライン」を開放し、欧州でもサプライヤーに対して開放しました。北米においてはサプライヤーを含む全ステークホルダーに開放しています。なお、2024年度のサプライヤーからの通報はありませんでした。
+              </p>
+              <span class="detail-link">コンプライアンスの基本的な考え方・推進体制 ＞ 内部通報制度「ヘルプライン」</span>
+
+            </div>
+          </details>
+
+          <!-- 3) お客様（v1.1：すべてのステークホルダー＝JaCERをここに統合） -->
+          <details class="wf-acc-h3" open>
+            <summary class="wf-acc-h3-summary">お客様</summary>
+            <div class="wf-acc-h3-body">
+
+              <h4 class="wf-card-title has-mark">脆弱性情報の収集</h4>
+              <p style="font-size:13px; line-height:1.95; margin-bottom:14px;">
+                製品・サービスの脆弱性に関する情報を全社で一元管理し必要な対応を推進するとともに、社外の公的機関などと連携するための全社共通組織として「KONICA MINOLTA PSIRT」を立ち上げています。KONICA MINOLTA PSIRTでは社外ステークホルダーからコニカミノルタの製品・サービスに関する脆弱性の届け出を受けた場合、国際的な脆弱性ハンドリングプロセスに準拠して適切な対応を行います。
+              </p>
+              <span class="detail-link">製品・サービスのセキュリティ強化 ＞ 脆弱性情報の収集と対処</span>
+
+              <!-- すべてのステークホルダー：JaCER対話救済プラットフォーム（お客様配下に統合） -->
+              <h4 class="wf-card-title has-mark">対話救済プラットフォーム（JaCER）　— すべてのステークホルダー対象</h4>
+              <p style="font-size:13px; line-height:1.95; margin-bottom:14px;">
+                コニカミノルタは、国連「ビジネスと人権に関する指導原則」に基づき、コニカミノルタの事業活動およびサプライチェーンに関連して、人権への負の影響を受けたまたはその恐れがある場合に、適切な是正および救済につなげるための通報窓口（グリーバンスメカニズム）を整備しています。
+              </p>
+              <p style="font-size:13px; line-height:1.95; margin-bottom:14px;">
+                コニカミノルタは、一般社団法人ビジネスと人権対話救済機構（JaCER）の正会員として、JaCERが運営する対話救済プラットフォームを通じ、人権に関する通報を受け付けています。このプラットフォームは、非司法的なグリーバンスメカニズムとして、第三者の立場から専門的な知見を活かし、公正かつ適切に処理されるよう支援するものです。従業員、取引先、サプライチェーン関係者、地域住民、その他コニカミノルタの事業活動に関係する方など、すべてのステークホルダーが利用でき、匿名での通報も可能です。また、代理人や支援団体の利用も可能であり、通報者が十分な情報に基づき、公平に手続きへ参加できるよう配慮しています。
+              </p>
+              <p style="font-size:13px; line-height:1.95; margin-bottom:14px;">
+                通報にあたっては、不利益や報復が生じないよう配慮し、通報者が安心して声を上げられる環境の確保に努めています。通報を受け付けた後の手続きや各段階の流れについては、JaCERが定める手続きに基づき、内容に応じて適切に進められます。コニカミノルタは通報者に進捗状況を共有しながら、必要な事実確認や対話を通じて、是正および救済に向けた対応を検討・実施します。これらの対応は、国際的に認められた人権基準に適合する形で行います。
+              </p>
+              <p style="font-size:13px; line-height:1.95; margin-bottom:14px;">
+                コニカミノルタは、寄せられた通報内容や傾向を分析し、その結果を人権デュー・ディリジェンスの改善や再発防止策の検討に活かすことで、グリーバンスメカニズムの実効性向上と継続的な改善に取り組みます。あわせて、個人情報や守秘義務に十分配慮したうえで、制度全体の運用状況については、JaCERが公開する情報も活用し、透明性の確保に努めています。
+              </p>
+
+              <div class="jacer-fig">
+                <span class="jacer-fig-label">
+                  <strong>図：JaCER対話救済プラットフォーム 全ステークホルダー対応フロー PH</strong>
+                  受付（匿名OK・代理人OK）→ JaCERによる第三者支援 → 事実確認・対話 → 是正・救済 → 進捗共有・公開
+                </span>
+                <span class="img-zoom-btn"></span>
+              </div>
+
+              <div style="margin-top:8px;">
+                <a class="wf-btn">JaCER対話救済プラットフォーム</a>
+              </div>
+            </div>
+          </details>
+        </section>
+
+        <!-- ============================================================
+             E. 是正
+        ============================================================ -->
+        <section class="wf-section bg-white" id="remediation">
+          <span class="wf-section-marker">E</span>
+          <h2 class="wf-section-title">是正</h2>
+
+          <p class="wf-section-desc">
+            人権デュー・ディリジェンスやグリーバンスメカニズムを通じて発見された人権課題について、負の影響を受ける可能性のある当事者の声や社内外の有識者の助言を取り入れ適切に是正策を講じています。
+          </p>
+
+          <h3 class="wf-sub-title">自社</h3>
+          <p class="wf-section-desc">
+            コニカミノルタメカトロニクス株式会社本社が2024年に受審したRBA VAP監査にて、火災発生時の避難経路の一部に容易にアクセスできない避難口が確認され、避難口の追加工事を行いました。また、就業規則の懲戒の項において減給処分がありましたが、当該規定は労働対価の不払いにあたると判断し、コニカミノルタ株式会社に遡り就業規則の改定を実施しました。
+          </p>
+
+          <div class="remediation-photo">
+            <span class="remediation-photo-label">[ 写真PH ]</span>
+            <span class="img-zoom-btn"></span>
+          </div>
+          <p class="remediation-cap">自動ドアの停電時に備え設置された非常出口</p>
+
+          <h3 class="wf-sub-title">サプライヤー</h3>
+          <p class="wf-section-desc">
+            マレーシアのサプライヤー2社とタイの生産委託先1社において、外国人労働者に対する採用手数料搾取や不十分な安全対策等の情報提供がステークホルダーからありました。サプライヤー・生産委託先へ、事実確認と事実がある場合の是正、是正後の第三者による確認を依頼し、是正（例：返金、適切な保護具の提供）および第三者による是正の確認を進めています。
+          </p>
+        </section>
+
+        <!-- ============================================================
+             F. ステークホルダーエンゲージメント
+        ============================================================ -->
+        <section class="wf-section bg-sub" id="engagement">
+          <span class="wf-section-marker">F</span>
+          <h2 class="wf-section-title">ステークホルダーエンゲージメント</h2>
+
+          <p class="wf-section-desc">
+            ステークホルダー別にエンゲージメント施策事例を記載します。今後コンテンツが拡充する予定のため、ステークホルダー毎に項目を分けて掲載しています。
+          </p>
+
+          <details class="wf-acc-h3" open>
+            <summary class="wf-acc-h3-summary">グループ従業員</summary>
+            <div class="wf-acc-h3-body">
+              <h4 class="wf-card-title has-mark">労使による経営協議会</h4>
+              <p style="font-size:13px; line-height:1.95; margin-bottom:14px;">
+                コニカミノルタは、「国連グローバル・コンパクト」への参加を通じて、結社の自由と団体交渉の権利の保障を示しています。コニカミノルタ（株）では労働協約が締結されており、社長出席のもと、年4回の定例の労使間での経営協議会を通して、会社経営状況について、労働組合に説明する場を設けるとともに、労働組合の方針の説明も受けています。また、その他多くのグループ会社においても、各々に労働組合や従業員会が組織されており、良好な労使関係を築いています。
+              </p>
+            </div>
+          </details>
+
+          <details class="wf-acc-h3" open>
+            <summary class="wf-acc-h3-summary">調達・委託先の従業員</summary>
+            <div class="wf-acc-h3-body">
+              <h4 class="wf-card-title has-mark">お取引先説明会</h4>
+              <p style="font-size:13px; line-height:1.95; margin-bottom:14px;">
+                お取引先説明会や調達コラボレーションシステムを通して、「コニカミノルタ調達方針」の説明や、調達実績および次年度の調達計画の報告を行い、目標や課題の共有化を図るとともに、品質、納期、生産性、環境の側面について、優れた実績があったお取引先を表彰することで、お取引先の皆様にさらなる改善の取り組みを進めていただくようお願いしています。
+              </p>
+              <span class="detail-link">調達に関する取り組み ＞ 「お取引先説明会」の実施</span>
+            </div>
+          </details>
+
+          <details class="wf-acc-h3" open>
+            <summary class="wf-acc-h3-summary">お客様</summary>
+            <div class="wf-acc-h3-body">
+              <h4 class="wf-card-title has-mark">お客様窓口</h4>
+              <p style="font-size:13px; line-height:1.95; margin-bottom:14px;">
+                コニカミノルタは、製品、サービスごとに、コールセンターやウェブサイトの相談窓口を世界各国で設置しています。各窓口に寄せられる不具合情報やお問い合わせに迅速に対応するとともに、それらの情報を一元集約して、品質状況やご要望などの把握に努めています。また、AI技術の利活用について、外部有識者を交えたAI倫理審査委員会を設置し、適正な利活用について確認しています。
+              </p>
+              <span class="detail-link">AIの利活用 ＞ AIガバナンス体制</span>
+            </div>
+          </details>
+        </section>
+
+        <!-- ============================================================
+             画像拡大モーダル PREVIEW
+        ============================================================ -->
+        <section class="wf-section bg-white pad-sm">
+          <div class="img-zoom-modal-preview">
+            <span class="img-zoom-modal-preview-label">IMAGE ZOOM MODAL PREVIEW</span>
+            <p class="img-zoom-modal-preview-desc">
+              ページ内の図PH／写真PHには右下に「<strong>+</strong>」拡大ボタンを配置。クリックすると以下のような拡大モーダルが画面中央にオーバーレイ表示されます。実装時は背景に半透明黒のオーバーレイ＋ESCキー／背景クリックで閉じる挙動を想定。本ページでは「人権対応の体制図」「JaCER対話救済プラットフォーム図」「是正の写真（非常出口）」など、すべて同フォーマットで拡大表示。
+            </p>
+            <div class="img-zoom-modal">
+              <div class="img-zoom-modal-head">
+                <span class="img-zoom-modal-title">図：JaCER対話救済プラットフォーム</span>
+                <span class="img-zoom-modal-close">×</span>
+              </div>
+              <div class="img-zoom-modal-body">
+                <div class="img-zoom-modal-figure">
+                  <span class="img-zoom-modal-figure-label">[ 拡大画像PH ]</span>
+                </div>
+                <p class="img-zoom-modal-cap">受付（匿名OK・代理人OK）→ JaCER第三者支援 → 事実確認・対話 → 是正・救済 → 進捗共有・公開</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div><!-- /wf-anchornav-main -->
+
+      <!-- 右コンパクトアンカーナビ -->
+      <nav class="wf-anchor-nav">
+        <div class="wf-anchor-nav-title">目次</div>
+        <a class="wf-anchor-nav-item is-current" href="#policy">基本的な考え方</a>
+        <a class="wf-anchor-nav-item" href="#structure">体制</a>
+        <a class="wf-anchor-nav-item" href="#dd">人権デュー・ディリジェンス</a>
+        <a class="wf-anchor-nav-item" href="#grievance">相談・通報窓口</a>
+        <a class="wf-anchor-nav-item" href="#remediation">是正</a>
+        <a class="wf-anchor-nav-item" href="#engagement">ステークホルダー<br>エンゲージメント</a>
+      </nav>
+
+    </div><!-- /wf-layout-with-anchornav -->
+
+    <!-- フッター -->
+    <footer class="wf-footer">
+      <div class="wf-footer-note">フッターは既確定。変更なし。</div>
+      <div class="wf-footer-grid">
+        <div>
+          <div class="wf-footer-col-title">企業情報</div>
+          <span class="wf-footer-link">企業情報トップ</span>
+          <span class="wf-footer-link">Newsroom</span>
+        </div>
+        <div>
+          <div class="wf-footer-col-title">環境</div>
+          <span class="wf-footer-link">気候変動</span>
+          <span class="wf-footer-link">資源循環</span>
+        </div>
+        <div>
+          <div class="wf-footer-col-title">社会</div>
+          <span class="wf-footer-link">人材戦略</span>
+          <span class="wf-footer-link">DE&I</span>
+          <span class="wf-footer-link">健康経営</span>
+          <span class="wf-footer-link">人権</span>
+        </div>
+        <div>
+          <div class="wf-footer-col-title">ガバナンス</div>
+          <span class="wf-footer-link">コンプライアンス</span>
+          <span class="wf-footer-link">情報セキュリティ</span>
+        </div>
+      </div>
+      <div class="wf-footer-bottom">
+        <div>サイトのご利用について ｜ 個人情報保護方針 ｜ サイトマップ</div>
+        <div>&copy;2011-2026 Konica Minolta, Inc.</div>
+      </div>
+    </footer>
+
+  </div><!-- /wf-page -->
+
+  <!-- アノテーション -->
+  <aside class="wf-annotation">
+    <h3>設計ポイント — 人権 v1.3（#140）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">★</span>
+      <span class="ann-head">v1.3 変更（FB2点反映）</span>
+      <p class="ann-body">
+        ① ［企業情報サイトの該当ページへ遷移／PDF不可］等の[]書きの注記を全削除（policy-link 3箇所＋JaCERボタン）<br>
+        ② 相談・通報窓口配下H3アコの左4px縦棒（summary／body両方）＋body枠囲い罫線を撤去（UI的にくどい指摘）。アコーディオンはグレー背景＋＋/−マーカーのみで識別
+      </p>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">v1.0</span>
+      <span class="ann-head">v1.0までの構成（参考）</span>
+      <p class="ann-body">
+        6セクション構成（基本／体制／DD／窓口／是正／エンゲージメント）。窓口・エンゲージメントはH3＋H4の2階層アコ。基本は本文集約＋3ボタンスタック。
+      </p>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">A</span>
+      <span class="ann-head">基本的な考え方</span>
+      <p class="ann-body">
+        マテリアリティに紐づかないため「現基本的な考え方」（人権の普遍性／行動憲章への追加／人権方針／サプライチェーン行動規範）を地の文＋関連リンク3点＋国際規範8件で構成。
+      </p>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">B</span>
+      <span class="ann-head">体制</span>
+      <p class="ann-body">
+        リスクマネジメント担当役員管轄／リスクマネジメント委員会（年2回報告・審議）／経営企画・法務・生産企画＋事業領域別推進責任者の連携体制。体制図PHあり。
+      </p>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">C</span>
+      <span class="ann-head">人権デュー・ディリジェンス</span>
+      <p class="ann-body">
+        4ステップ図（特定→措置→追跡→公開）＋詳細：<br>
+        ・1. インパクトアセスメント：19項目×4ステークホルダーの大型表＋優先度サマリ表<br>
+        ・2/3. 措置と追跡評価：10行の事例表（リスク詳細リンク付）<br>
+        ・RBA VAP監査3拠点表＋生活賃金<br>
+        ・4. 情報公開：統合報告書ボタン
+      </p>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">D</span>
+      <span class="ann-head">相談・通報窓口（グリーバンス）</span>
+      <p class="ann-body">
+        4ステークホルダーをH3アコで整理：<br>
+        ・グループ従業員（H4：ヘルプライン／ハラスメント相談窓口）<br>
+        ・調達・委託先（H4：ヘルプラインサプライヤー）<br>
+        ・お客様（H4：脆弱性情報の収集／PSIRT）<br>
+        ・すべてのステークホルダー（JaCER対話救済プラットフォーム＋全フロー図PH）
+      </p>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">E</span>
+      <span class="ann-head">是正</span>
+      <p class="ann-body">
+        自社（メカトロニクス本社RBA VAP監査での非常出口追加・減給処分廃止／写真PH付）／サプライヤー（マレーシア2社・タイ1社の外国人労働者対応）。
+      </p>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">F</span>
+      <span class="ann-head">ステークホルダーエンゲージメント</span>
+      <p class="ann-body">
+        3ステークホルダーをH3アコで整理（コンテンツ拡充予定）：グループ従業員（労使経営協議会）／調達・委託先（お取引先説明会）／お客様（お客様窓口・AI倫理審査委員会）。サステナマネジメントSHEから本ページへリンク想定。
+      </p>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">M</span>
+      <span class="ann-head">主要モジュール</span>
+      <p class="ann-body">
+        共通: ヘッダー／lnav／パンくず／フッター／H2/H3/H4／wf-btn／img-zoom-btn＋modal preview／コンパクトアンカーナビ（6項目）<br>
+        新規: norm-list（国際規範◆2列）／dd-process（4ステップ›連結）／impact-table（19×4の大型マトリクス）／priority-table／measure-table（リスク詳細リンク付）／audit-table（RBA VAP）／jacer-fig／remediation-photo／detail-link<br>
+        流用: gov-structure-fig（131）／wf-acc-h3＋h4（131 v2.1丸枠アイコン）
+      </p>
+    </div>
+  </aside>
+
+</div>
+
+</body>
+</html>
+}

@@ -1,0 +1,1997 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>社会貢献活動 — KM サステナビリティ WF v3.2</title>
+<style>
+/* ============================================================
+   KM SUSTAINABILITY WF — SHARED CSS v3.0
+   すべてのWF HTMLファイルの <style> タグにこのブロックを含めること
+   参照：TOPワイヤーフレーム案.png / ベンチマーク：オムロン・リコー
+============================================================ */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  /* グレースケール */
+  --c-white:    #FFFFFF;
+  --c-bg:       #F7F7F7;   /* ページ背景 */
+  --c-bg-sub:   #F2F2F2;   /* セクション背景（薄グレー） */
+  --c-border:   #E0E0E0;   /* 標準ボーダー */
+  --c-border-s: #E8E8E8;   /* 薄いセクション区切り */
+  --c-ph:       #EBEBEB;   /* 画像PH背景 */
+  --c-ph-line:  #D8D8D8;   /* テキストラインPH */
+  --c-text-h:   #111111;   /* 見出し */
+  --c-text:     #333333;   /* 本文 */
+  --c-text-s:   #666666;   /* サブテキスト */
+  --c-text-xs:  #999999;   /* 注記・ラベル */
+  --c-black:    #111111;   /* ボタン塗り・強調 */
+
+  /* アノテーション */
+  --c-ann-bg:   #FFFBF0;
+  --c-ann-bdr:  #C8A000;
+
+  /* レイアウト */
+  --content-w:  1080px;    /* コンテンツ最大幅 */
+  --page-w:     1280px;    /* ページ最大幅 */
+  --pad-section: 52px;     /* セクション上下パディング（標準） */
+  --pad-section-sm: 32px;  /* セクション上下パディング（コンパクト） */
+  --pad-h: 100px;          /* コンテンツ左右パディング */
+}
+
+body {
+  font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--c-text);
+  background: var(--c-bg);
+}
+
+/* ============================================================
+   META / 管理バー（WF管理用・印刷時非表示）
+============================================================ */
+.wf-meta-bar {
+  background: #111;
+  color: #ccc;
+  font-size: 11px;
+  padding: 8px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 2000;
+  letter-spacing: 0.03em;
+}
+.wf-meta-bar strong { color: #fff; font-size: 12px; }
+.wf-meta-bar .meta-badge {
+  background: #333;
+  color: #aaa;
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 2px;
+  margin-left: 8px;
+}
+
+/* ============================================================
+   LAYOUT：WFページ全体
+============================================================ */
+.wf-canvas {
+  max-width: var(--page-w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  align-items: start;
+}
+.wf-page {
+  background: var(--c-white);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.10);
+  min-height: 100vh;
+}
+.wf-content-wrap {
+  max-width: var(--content-w);
+  margin: 0 auto;
+  padding: 0 var(--pad-h);
+}
+
+/* ============================================================
+   HEADER（確定済み・変更不可）
+============================================================ */
+.wf-header {
+  background: var(--c-white);
+  border-bottom: 1px solid var(--c-border);
+}
+.wf-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 32px;
+  border-bottom: 1px solid var(--c-border-s);
+}
+.wf-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.wf-logo-mark {
+  width: 32px;
+  height: 21px;
+  background: #555;
+  border-radius: 50% 50% 0 50%;
+}
+.wf-logo-text {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.wf-header-utils {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 11px;
+  color: var(--c-text-s);
+}
+.wf-gnav {
+  display: flex;
+  align-items: stretch;
+  padding: 0 32px;
+}
+.wf-gnav-item {
+  padding: 11px 16px;
+  font-size: 12px;
+  color: var(--c-text-s);
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+}
+.wf-gnav-item.is-active {
+  color: var(--c-text-h);
+  font-weight: 700;
+  border-bottom-color: var(--c-text-h);
+}
+.wf-lnav {
+  background: #3A3A3A;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0 32px;
+}
+.wf-lnav-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  padding: 10px 16px 10px 0;
+  margin-right: 8px;
+  border-right: 1px solid #555;
+  white-space: nowrap;
+}
+.wf-lnav-item {
+  font-size: 11px;
+  color: #BBB;
+  padding: 10px 14px;
+  white-space: nowrap;
+}
+.wf-lnav-item.is-active {
+  color: #fff;
+  border-bottom: 2px solid #fff;
+}
+.wf-header-note {
+  background: #F0F0F0;
+  text-align: center;
+  font-size: 10px;
+  color: #888;
+  padding: 4px 24px;
+  border-top: 1px solid #E0E0E0;
+}
+
+/* ============================================================
+   BREADCRUMB
+============================================================ */
+.wf-breadcrumb {
+  background: var(--c-white);
+  border-bottom: 1px solid var(--c-border-s);
+  padding: 10px var(--pad-h);
+  font-size: 12px;
+  color: var(--c-text-s);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.wf-breadcrumb span.sep { color: var(--c-border); }
+.wf-breadcrumb span.current { color: var(--c-text); }
+
+/* ============================================================
+   PAGE INDICATOR（WF管理用）
+============================================================ */
+.wf-page-indicator {
+  background: #2A2A2A;
+  color: #aaa;
+  padding: 6px 32px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.wf-page-indicator .pi-layer {
+  background: #444;
+  color: #888;
+  font-size: 9px;
+  padding: 1px 8px;
+  border-radius: 2px;
+}
+
+/* ============================================================
+   PAGE HERO（ページタイトルエリア）
+   WFイメージ：左にh1、右に画像PH
+============================================================ */
+.wf-page-hero {
+  background: var(--c-white);
+  border-bottom: 1px solid var(--c-border-s);
+  padding: 32px var(--pad-h) 0;
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 24px;
+  align-items: end;
+}
+.wf-page-hero-copy {
+  padding-bottom: 32px;
+}
+.wf-page-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  line-height: 1.2;
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+.wf-page-title-note {
+  font-size: 11px;
+  color: var(--c-text-xs);
+  margin-top: 4px;
+}
+.wf-page-hero-img {
+  /* 画像PHはセクションの高さに合わせる */
+  align-self: stretch;
+  min-height: 140px;
+}
+
+/* ============================================================
+   SECTION（共通構造）
+   WFイメージ：十分な上下余白 / 1セクション1テーマ
+============================================================ */
+.wf-section {
+  padding: var(--pad-section) var(--pad-h);
+  border-bottom: 1px solid var(--c-border-s);
+  position: relative;
+}
+.wf-section.bg-sub { background: var(--c-bg-sub); }
+.wf-section.bg-white { background: var(--c-white); }
+.wf-section.pad-sm {
+  padding-top: var(--pad-section-sm);
+  padding-bottom: var(--pad-section-sm);
+}
+
+/* セクションマーカー（WF管理用 A/B/C...バッジ） */
+.wf-section-marker {
+  position: absolute;
+  top: 12px;
+  left: 8px;
+  width: 22px;
+  height: 22px;
+  background: #222;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0;
+}
+
+/* セクション見出し（h2） */
+.wf-section-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  margin-bottom: 20px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+/* 中央揃えセクション見出し（TOPページのキャッチコピー等） */
+.wf-section-title.center {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+/* セクション説明文（h2直下の本文） */
+.wf-section-desc {
+  font-size: 13px;
+  color: var(--c-text-s);
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+.wf-section-desc.center { text-align: center; }
+
+/* サブ見出し（h3）— 左ボーダー付き */
+.wf-sub-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  margin-bottom: 12px;
+  line-height: 1.4;
+  padding-left: 14px;
+  border-left: 4px solid var(--c-black);
+}
+
+/* カード内見出し（h4） */
+.wf-card-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+/* ============================================================
+   IMAGE PLACEHOLDER
+   WFイメージ：薄グレー矩形、軽めのハッチング
+============================================================ */
+.wf-img {
+  background: var(--c-ph);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* 軽めのハッチング（WFイメージに準拠：細い斜線） */
+.wf-img::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent 0px,
+    transparent 10px,
+    rgba(0,0,0,0.04) 10px,
+    rgba(0,0,0,0.04) 11px
+  );
+}
+.wf-img-label {
+  position: relative;
+  z-index: 1;
+  font-size: 11px;
+  color: var(--c-text-xs);
+  text-align: center;
+  line-height: 1.5;
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.75);
+}
+/* よく使うサイズのユーティリティ */
+.wf-img.h-80  { height: 80px; }
+.wf-img.h-120 { height: 120px; }
+.wf-img.h-160 { height: 160px; }
+.wf-img.h-200 { height: 200px; }
+.wf-img.h-240 { height: 240px; }
+.wf-img.ratio-16-9::before { padding-top: 56.25%; }
+/* 画像キャプション（写真下の説明文） */
+.wf-img-caption {
+  font-size: 11px;
+  color: var(--c-text-xs);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   TEXT LINE PLACEHOLDER
+   WFイメージ：グレーの横棒でテキストを模す
+============================================================ */
+.wf-textlines { display: flex; flex-direction: column; gap: 8px; }
+.wf-line {
+  height: 10px;
+  background: var(--c-ph-line);
+  border-radius: 3px;
+}
+.wf-line.w-full  { width: 100%; }
+.wf-line.w-90    { width: 90%; }
+.wf-line.w-75    { width: 75%; }
+.wf-line.w-60    { width: 60%; }
+.wf-line.w-45    { width: 45%; }
+/* 見出し用（少し太く・濃く） */
+.wf-line.h-title {
+  height: 14px;
+  background: #C0C0C0;
+}
+
+/* ============================================================
+   CARD
+   WFイメージ：白背景、細い枠線、内側20px余白
+============================================================ */
+.wf-card {
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  padding: 20px;
+}
+/* グリッドレイアウト */
+.wf-grid { display: grid; gap: 16px; }
+.wf-grid.col-2 { grid-template-columns: repeat(2, 1fr); }
+.wf-grid.col-3 { grid-template-columns: repeat(3, 1fr); }
+.wf-grid.col-4 { grid-template-columns: repeat(4, 1fr); }
+.wf-grid.col-2-1 { grid-template-columns: 2fr 1fr; }
+.wf-grid.col-1-2 { grid-template-columns: 1fr 2fr; }
+.wf-grid.col-1-1-1-2 { grid-template-columns: 1fr 1fr 1fr 2fr; }
+/* gap variants */
+.wf-grid.gap-24 { gap: 24px; }
+.wf-grid.gap-32 { gap: 32px; }
+
+/* カードカテゴリタグ */
+.wf-card-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--c-text-s);
+  border: 1px solid var(--c-border);
+  padding: 2px 8px;
+  margin-bottom: 10px;
+  letter-spacing: 0.04em;
+}
+
+/* ============================================================
+   KPI / 数値表示
+============================================================ */
+/* KPIストリップ：主要数値を横並びに */
+.wf-kpi-strip {
+  display: grid;
+  border: 1px solid var(--c-border);
+  background: var(--c-white);
+}
+.wf-kpi-strip.col-3 { grid-template-columns: repeat(3, 1fr); }
+.wf-kpi-strip.col-4 { grid-template-columns: repeat(4, 1fr); }
+.wf-kpi-item {
+  padding: 20px 16px;
+  text-align: center;
+  border-right: 1px solid var(--c-border);
+}
+.wf-kpi-item:last-child { border-right: none; }
+.wf-kpi-num {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.wf-kpi-label {
+  font-size: 11px;
+  color: var(--c-text-s);
+  line-height: 1.4;
+}
+.wf-kpi-sub {
+  font-size: 10px;
+  color: var(--c-text-xs);
+  margin-top: 3px;
+}
+
+/* ============================================================
+   GRAPH PLACEHOLDER
+   WFイメージ：グレーのバーグラフ、アニメーションなし
+============================================================ */
+.wf-graph {
+  background: #F8F8F8;
+  border: 1px solid var(--c-border);
+  padding: 16px;
+  position: relative;
+}
+.wf-graph-label {
+  font-size: 10px;
+  color: var(--c-text-xs);
+  margin-bottom: 10px;
+}
+.wf-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 80px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #CCC;
+}
+.wf-bar {
+  flex: 1;
+  background: #AAAAAA;
+  border-radius: 2px 2px 0 0;
+  min-width: 12px;
+}
+.wf-bar.target {
+  background: transparent;
+  border: 1.5px dashed #AAAAAA;
+}
+.wf-bar-year {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+.wf-bar-year span {
+  flex: 1;
+  font-size: 9px;
+  color: var(--c-text-xs);
+  text-align: center;
+}
+/* 折れ線グラフPH */
+.wf-linechart {
+  background: #F8F8F8;
+  border: 1px solid var(--c-border);
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: var(--c-text-xs);
+}
+
+/* ============================================================
+   BUTTON / LINK
+   WFイメージ：シンプルな黒塗り・黒枠線の2種
+============================================================ */
+.wf-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: inherit;
+  padding: 11px 28px;
+  cursor: default;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  border: 1.5px solid var(--c-black);
+}
+.wf-btn.primary {
+  background: var(--c-black);
+  color: var(--c-white);
+}
+.wf-btn.outline {
+  background: var(--c-white);
+  color: var(--c-black);
+}
+.wf-btn.sm {
+  font-size: 11px;
+  padding: 8px 18px;
+}
+.wf-btn.lg {
+  font-size: 13px;
+  padding: 14px 36px;
+}
+/* CTA 2ボタン横並びグループ（WFイメージ：Strategy節に2ボタン並列） */
+.wf-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+/* テキストリンク */
+.wf-link {
+  font-size: 12px;
+  color: var(--c-text-s);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: default;
+  text-decoration: none;
+}
+.wf-link::before { content: '→ '; font-size: 11px; }
+/* 「一覧へ」系リンク（右寄せ配置） */
+.wf-link-more {
+  font-size: 12px;
+  color: var(--c-text-s);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: default;
+}
+.wf-link-more::after { content: ' →'; font-size: 11px; }
+
+/* ============================================================
+   LABEL / BADGE
+============================================================ */
+.wf-label {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--c-text-s);
+  border: 1px solid var(--c-border);
+  padding: 2px 8px;
+  letter-spacing: 0.04em;
+}
+.wf-label.filled {
+  background: #333;
+  color: #fff;
+  border-color: #333;
+}
+/* フィルタバー */
+.wf-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.wf-filter-btn {
+  font-size: 11px;
+  color: var(--c-text-s);
+  border: 1px solid var(--c-border);
+  padding: 4px 14px;
+  cursor: default;
+  background: var(--c-white);
+}
+.wf-filter-btn.active {
+  background: #333;
+  color: #fff;
+  border-color: #333;
+}
+
+/* ============================================================
+   TAB（ESG環境/社会/ガバナンス切替）
+============================================================ */
+.wf-tabs {
+  display: flex;
+  border-bottom: 2px solid var(--c-border);
+  margin-bottom: 24px;
+}
+.wf-tab {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c-text-xs);
+  padding: 10px 24px;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  cursor: default;
+}
+.wf-tab.is-active {
+  color: var(--c-text-h);
+  border-bottom-color: var(--c-text-h);
+}
+
+/* ============================================================
+   TOPICS / NEWS LIST
+   WFイメージ：日付・タグ・タイトルの横並びリスト
+============================================================ */
+.wf-news-list { display: flex; flex-direction: column; }
+.wf-news-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--c-border-s);
+  font-size: 13px;
+  color: var(--c-text);
+}
+.wf-news-date {
+  font-size: 12px;
+  color: var(--c-text-xs);
+  white-space: nowrap;
+  min-width: 80px;
+}
+.wf-news-tag {
+  font-size: 10px;
+  color: var(--c-text-s);
+  border: 1px solid var(--c-border);
+  padding: 1px 7px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.wf-news-title {
+  flex: 1;
+}
+
+/* ============================================================
+   ICON / EXTERNAL EVALUATION
+   WFイメージ：外部評価ロゴのグリッド
+============================================================ */
+.wf-icon-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+}
+.wf-icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.wf-icon-mark {
+  width: 64px;
+  height: 64px;
+  background: var(--c-ph);
+  border: 1px solid var(--c-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  color: var(--c-text-xs);
+  text-align: center;
+}
+.wf-icon-name {
+  font-size: 10px;
+  color: var(--c-text-s);
+  text-align: center;
+  max-width: 72px;
+  line-height: 1.3;
+}
+
+/* ============================================================
+   DATA / DOWNLOAD TILE
+   WFイメージ：データ集のリンクタイル群
+============================================================ */
+.wf-data-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.wf-data-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--c-border);
+  padding: 10px 16px;
+  background: var(--c-white);
+  font-size: 12px;
+  color: var(--c-text);
+  min-width: 180px;
+}
+.wf-data-icon {
+  width: 22px;
+  height: 22px;
+  background: var(--c-ph);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   STRATEGY ROW（戦略テーブル：環境3領域など）
+   WFイメージ：ラベル列 / テキスト列 / KPI・グラフ列 の3カラム行
+============================================================ */
+.wf-strategy-row {
+  display: grid;
+  grid-template-columns: 120px 1fr 200px;
+  border: 1px solid var(--c-border);
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+.wf-strategy-label {
+  background: #3A3A3A;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 16px 8px;
+  line-height: 1.4;
+}
+.wf-strategy-body {
+  padding: 16px;
+  border-left: 1px solid var(--c-border);
+}
+.wf-strategy-kpi {
+  padding: 16px;
+  background: #FAFAFA;
+  border-left: 1px solid var(--c-border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ============================================================
+   SIDENAV（第3階層ローカルナビ）
+============================================================ */
+.wf-layout-with-sidenav {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  align-items: start;
+}
+.wf-sidenav {
+  border-right: 1px solid var(--c-border);
+  background: #FAFAFA;
+  padding: 20px 0;
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+}
+.wf-sidenav-head {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  padding: 0 16px 10px;
+  border-bottom: 1px solid var(--c-border);
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+.wf-sidenav-item {
+  display: block;
+  font-size: 12px;
+  color: var(--c-text-s);
+  padding: 8px 16px;
+  border-bottom: 1px solid #F0F0F0;
+  line-height: 1.4;
+}
+.wf-sidenav-item.is-active {
+  color: var(--c-text-h);
+  font-weight: 700;
+  background: var(--c-white);
+  border-left: 3px solid var(--c-text-h);
+  padding-left: 13px;
+}
+.wf-sidenav-cta {
+  margin: 12px 12px 0;
+}
+
+/* ============================================================
+   FOOTER（確定済み・変更不可）
+============================================================ */
+.wf-footer {
+  background: #F5F5F5;
+  border-top: 1px solid var(--c-border);
+  padding: 32px var(--pad-h) 20px;
+}
+.wf-footer-note {
+  text-align: center;
+  font-size: 10px;
+  color: #999;
+  background: #EBEBEB;
+  border: 1px solid var(--c-border);
+  padding: 6px;
+  margin-bottom: 20px;
+}
+.wf-footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 24px;
+}
+.wf-footer-col-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--c-text);
+  border-bottom: 1px solid var(--c-border);
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+}
+.wf-footer-link {
+  display: block;
+  font-size: 11px;
+  color: var(--c-text-s);
+  padding: 3px 0;
+}
+.wf-footer-bottom {
+  border-top: 1px solid var(--c-border);
+  padding-top: 14px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--c-text-xs);
+}
+
+/* ============================================================
+   ANNOTATION PANEL（設計ポイント）
+============================================================ */
+.wf-annotation {
+  background: var(--c-ann-bg);
+  border-left: 3px solid var(--c-ann-bdr);
+  padding: 16px;
+  position: sticky;
+  top: 0;
+  max-height: 100vh;
+  overflow-y: auto;
+}
+.wf-annotation h3 {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #888;
+  border-bottom: 1px solid var(--c-ann-bdr);
+  padding-bottom: 8px;
+  margin-bottom: 14px;
+}
+.ann-item {
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #EEE;
+}
+.ann-item:last-child { border-bottom: none; }
+.ann-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background: #222;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: 50%;
+  margin-bottom: 5px;
+}
+.ann-head {
+  font-size: 11px;
+  font-weight: 700;
+  color: #222;
+  display: block;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+/* ターゲット・モジュール・定義書 の各行 */
+.ann-row {
+  font-size: 10px;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 5px;
+  padding-left: 4px;
+  border-left: 2px solid #E0D090;
+}
+.ann-row .ann-row-label {
+  font-weight: 700;
+  color: #888;
+  display: block;
+  font-size: 9px;
+  margin-bottom: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.ann-body {
+  font-size: 10px;
+  color: #555;
+  line-height: 1.6;
+  margin-top: 6px;
+}
+
+/* ============================================================
+   UTILITY
+============================================================ */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.gap-8  { gap: 8px; }
+.gap-12 { gap: 12px; }
+.gap-16 { gap: 16px; }
+.gap-20 { gap: 20px; }
+.gap-24 { gap: 24px; }
+.mt-8  { margin-top: 8px; }
+.mt-12 { margin-top: 12px; }
+.mt-16 { margin-top: 16px; }
+.mt-20 { margin-top: 20px; }
+.mt-24 { margin-top: 24px; }
+.mb-8  { margin-bottom: 8px; }
+.mb-12 { margin-bottom: 12px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-20 { margin-bottom: 20px; }
+.mb-24 { margin-bottom: 24px; }
+.text-right { text-align: right; }
+.text-center { text-align: center; }
+
+/* ============================================================
+   HERO FULLWIDTH（全幅キービジュアル）
+   TOPページ・インデックスページ共通
+============================================================ */
+.wf-hero-fullwidth {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  background: var(--c-ph);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.wf-hero-fullwidth::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent 0px, transparent 10px,
+    rgba(0,0,0,0.04) 10px, rgba(0,0,0,0.04) 11px
+  );
+}
+.wf-hero-fullwidth .wf-hero-title-box {
+  position: relative;
+  z-index: 1;
+  background: rgba(255,255,255,0.88);
+  border: 1px solid var(--c-border);
+  padding: 14px 28px;
+  margin-left: var(--pad-h);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  letter-spacing: 0.02em;
+}
+.wf-hero-fullwidth .wf-img-label {
+  position: absolute;
+  right: 20px;
+  bottom: 12px;
+}
+
+/* ============================================================
+   LAYOUT WITH ANCHOR NAV（右アンカーナビ付きレイアウト）
+   第3〜4階層の長文ページで使用
+============================================================ */
+.wf-layout-with-anchornav {
+  display: grid;
+  grid-template-columns: 1fr 140px;
+  align-items: start;
+}
+.wf-anchornav-main { min-width: 0; }
+.wf-anchor-nav {
+  position: sticky;
+  top: 40px;
+  padding: 20px 0 20px 16px;
+  border-left: 1px solid var(--c-border-s);
+}
+.wf-anchor-nav-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  margin-bottom: 12px;
+}
+.wf-anchor-nav-item {
+  display: block;
+  font-size: 11px;
+  color: var(--c-text-s);
+  padding: 5px 0;
+  cursor: default;
+  line-height: 1.4;
+  text-decoration: none;
+}
+.wf-anchor-nav-item.is-current {
+  color: var(--c-text-h);
+  font-weight: 700;
+}
+
+/* ============================================================
+   ACCORDION（開閉パネル）
+   TCFD開示・社会貢献活動など長文ページで使用
+============================================================ */
+.wf-accordion {
+  border: 1px solid var(--c-border);
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+.wf-accordion-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: var(--c-bg-sub);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  cursor: pointer;
+  gap: 12px;
+}
+.wf-accordion-head:hover {
+  background: #ECECEC;
+}
+.wf-accordion.is-open .wf-accordion-head {
+  background: var(--c-white);
+  border-bottom: 1px solid var(--c-border-s);
+}
+.wf-accordion-icon {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--c-border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: var(--c-text-s);
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+.wf-accordion.is-open .wf-accordion-icon {
+  transform: rotate(180deg);
+}
+.wf-accordion-body {
+  display: none;
+  padding: 20px;
+  background: var(--c-white);
+}
+.wf-accordion.is-open .wf-accordion-body {
+  display: block;
+}
+/* アコーディオンヘッド：タイトル左＋タグ右 */
+.wf-accordion-head-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+.wf-accordion-head-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  line-height: 1.4;
+}
+
+/* ============================================================
+   PHOTO GRID（写真＋キャプション）
+   拠点写真の横並び表示に使用
+============================================================ */
+.wf-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.wf-photo-grid.col-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* ============================================================
+   DATA TABLE（データテーブル共通）
+   KPIテーブル・ESGデータ等で使用
+============================================================ */
+.wf-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.wf-data-table th,
+.wf-data-table td {
+  border: 1px solid var(--c-border);
+  padding: 10px 12px;
+  text-align: center;
+  vertical-align: middle;
+}
+.wf-data-table thead th {
+  background: #3A3A3A;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.wf-data-table tbody th {
+  background: #F5F5F5;
+  font-weight: 600;
+  text-align: left;
+  font-size: 11px;
+  color: var(--c-text-h);
+}
+.wf-data-table td.hl {
+  background: #F8F8F0;
+  font-weight: 700;
+  color: var(--c-text-h);
+}
+.wf-data-table-note {
+  font-size: 10px;
+  color: var(--c-text-xs);
+  line-height: 1.6;
+  margin-top: 8px;
+}
+
+/* ============================================================
+   RELATED LINK BOX（関連リンクボックス）
+   セクション末尾の関連リンクまとめに使用
+============================================================ */
+.wf-related-box {
+  background: var(--c-bg-sub);
+  border: 1px solid var(--c-border);
+  padding: 20px 24px;
+  margin-top: 28px;
+}
+.wf-related-box-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--c-border);
+  letter-spacing: 0.03em;
+}
+
+/* ============================================================
+   FIRSTVIEW LINE（WF管理用・ファーストビュー境界線）
+============================================================ */
+.wf-firstview-line {
+  position: relative;
+  height: 0;
+  border: none;
+  margin: 0;
+  padding: 0;
+  z-index: 1500;
+}
+.wf-firstview-line::before {
+  content: '';
+  position: absolute;
+  left: -100px;
+  right: -160px;
+  top: 0;
+  border-top: 2px dashed #E74C3C;
+  z-index: 1500;
+}
+.wf-firstview-line::after {
+  content: 'FIRST VIEW LINE — 1280\00d7 800 ここまでがスクロールなしで表示';
+  position: absolute;
+  right: 0;
+  top: -18px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #E74C3C;
+  background: rgba(255,255,255,0.92);
+  padding: 2px 10px;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  z-index: 1501;
+}
+
+/* ============================================================
+   END OF SHARED CSS
+============================================================ */
+
+/* ============================================================
+   PAGE-LOCAL: 077 社会貢献活動（統合ページ）v3.2
+============================================================ */
+
+/* メイン＋右アンカーナビ */
+.sc-layout { display: grid; grid-template-columns: 1fr 160px; align-items: start; }
+.sc-main { min-width: 0; }
+.sc-anchor-nav {
+  position: sticky; top: 40px; padding: 20px 0 20px 16px;
+  border-left: 1px solid var(--c-border-s); margin-top: 24px; margin-right: 16px;
+}
+.sc-anchor-title { font-size: 11px; font-weight: 700; color: var(--c-text-h); letter-spacing: 0.08em; padding-bottom: 10px; margin-bottom: 6px; border-bottom: 1px solid var(--c-border-s); text-transform: uppercase; }
+.sc-anchor-item { display: block; font-size: 11px; color: var(--c-text-s); padding: 7px 0 7px 10px; cursor: default; line-height: 1.4; text-decoration: none; border-left: 2px solid transparent; }
+.sc-anchor-item.is-current { color: var(--c-text-h); font-weight: 700; border-left-color: var(--c-text-h); }
+.sc-anchor-item.sc-anchor-sub { padding-left: 18px; font-size: 10.5px; }
+
+/* 関連情報グリッド */
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px 24px;
+}
+
+
+</style>
+</head>
+<body>
+
+<!-- WF管理バー -->
+<div class="wf-meta-bar">
+  <div>
+    <strong>077_social_contribution</strong>
+    <span class="meta-badge">PAGE #077</span>
+    <span class="meta-badge">第3層 目次</span>
+    <span class="meta-badge">v3.2</span>
+  </div>
+  <div>KM SUSTAINABILITY WF — 社会貢献活動（統合ページ）</div>
+</div>
+
+<div class="wf-canvas">
+  <div class="wf-page">
+
+    <!-- ヘッダー（確定済み） -->
+    <header class="wf-header">
+      <div class="wf-header-inner">
+        <div class="wf-logo"><div class="wf-logo-mark"></div><span class="wf-logo-text">Konica Minolta</span></div>
+        <div class="wf-header-utils"><span>JP / EN</span><span>検索</span></div>
+      </div>
+      <nav class="wf-gnav">
+        <span class="wf-gnav-item">企業情報</span><span class="wf-gnav-item">Newsroom</span><span class="wf-gnav-item">株主・投資家情報</span>
+        <span class="wf-gnav-item is-active">サステナビリティ</span><span class="wf-gnav-item">テクノロジー</span><span class="wf-gnav-item">採用情報</span>
+      </nav>
+      <nav class="wf-lnav">
+        <span class="wf-lnav-label">サステナビリティ</span>
+        <span class="wf-lnav-item">サステナビリティ戦略</span><span class="wf-lnav-item">サステナビリティマネジメント</span>
+        <span class="wf-lnav-item">環境</span><span class="wf-lnav-item is-active">社会</span><span class="wf-lnav-item">ガバナンス</span>
+      </nav>
+      <div class="wf-header-note">⚠ ヘッダーは既確定。変更なし。</div>
+    </header>
+
+    <!-- パンくず -->
+    <nav class="wf-breadcrumb">
+      ホーム <span class="sep">›</span> サステナビリティ <span class="sep">›</span> 社会 <span class="sep">›</span>
+      <span class="current">社会貢献活動</span>
+    </nav>
+
+    <div class="wf-page-indicator">
+      <div>PAGE #077 — social_contribution — 社会貢献活動</div>
+      <span class="pi-layer">第3層 目次（統合ページ）</span>
+    </div>
+
+    <div>
+      <!-- ページタイトル -->
+      <div class="wf-page-hero">
+        <h1 class="wf-page-title">社会貢献活動</h1>
+        <p class="wf-page-title-note">Social Contribution Activities</p>
+      </div>
+
+      <!-- メイン＋右アンカーナビ -->
+      <div class="sc-layout">
+        <div class="sc-main">
+
+        <!-- ============================================================
+             セクション A：基本的な考え方
+        ============================================================ -->
+        <section class="wf-section bg-white" id="sec-policy">
+          <span class="wf-section-marker">A</span>
+          <h2 class="wf-section-title">基本的な考え方</h2>
+
+          <!-- H3見出し＋テキスト＋画像（wf-grid col-2-1） -->
+          <h3 class="wf-sub-title mb-12">コニカミノルタのフィロソフィーと社会貢献</h3>
+          <div class="wf-grid col-2-1 gap-24 mb-24">
+            <div>
+              <p class="wf-section-desc" style="margin-bottom:0;">
+                コニカミノルタは、「企業市民」として事業活動を通じて培ってきた技術やノウハウを活かし、社会課題の解決に取り組んでいます。経営ビジョン「Imaging to the People」のもと、現場の業務変革を支援し、生きがいと幸せを感じることのできる社会の実現に向けて、持続可能な社会への貢献を目指しています。<br><br>
+                3つの注力分野を軸にグローバルで活動を展開しています。<br>
+                <strong>健康・医学</strong> — 早期発見とQOL向上<br>
+                <strong>環境</strong> — バリューチェーン全体での負荷低減<br>
+                <strong>学術・研究・教育</strong> — 次世代への理工系教育支援<br><br>
+                2024年度は、国内で約31百万円相当の金銭的または物品による支援を実施しました。
+              </p>
+            </div>
+            <div>
+              <div class="wf-img h-240">
+                <div class="wf-img-label">メインビジュアル<br>世界中の笑顔のために<br>社会貢献活動イメージ</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ============================================================
+             セクション B：取り組み
+        ============================================================ -->
+        <section class="wf-section bg-white" id="sec-activities">
+          <span class="wf-section-marker">B</span>
+          <h2 class="wf-section-title">取り組み</h2>
+
+          <!-- ============================================================
+               B-1: 地球環境問題
+          ============================================================ -->
+          <h3 class="wf-sub-title mb-12" id="sub-environment">地球環境問題</h3>
+
+          <!-- 地球環境問題-1: 環境戦略（展開状態） -->
+          <div class="wf-accordion is-open mb-8">
+            <div class="wf-accordion-head" onclick="this.parentElement.classList.toggle('is-open')">
+              <div class="wf-accordion-head-left">
+                <span class="wf-accordion-head-title">コニカミノルタの環境戦略と社会貢献</span>
+              </div>
+              <span class="wf-accordion-tag">日本</span>
+              <span class="wf-accordion-icon">▼</span>
+            </div>
+            <div class="wf-accordion-body">
+              <p class="acc-body-text">
+                地球環境保全は、人類共通の最重要課題です。コニカミノルタは、長年にわたって培ってきた環境経営のノウハウをさまざまなステークホルダーに展開しています。企業、地方自治体、アカデミアに向けた環境セミナー・講演会の実施、お客様企業の環境負荷低減を支援するグリーンマーケティング活動、取引先を支援するカーボンニュートラルパートナー活動などを推進しています。
+              </p>
+              <div class="acc-body-images">
+                <figure>
+                  <div class="wf-img h-160"><div class="wf-img-label">環境セミナー<br>開催風景</div></div>
+                  <figcaption>環境経営ノウハウを企業・自治体・アカデミアに展開</figcaption>
+                </figure>
+                <figure>
+                  <div class="wf-img h-160"><div class="wf-img-label">顧客工場での<br>省エネ診断実施</div></div>
+                  <figcaption>お客様の工場・オフィスを訪問し省エネルギー診断を実施</figcaption>
+                </figure>
+              </div>
+              <div class="acc-links">
+                <div class="acc-links-title">関連リンク</div>
+                <div class="acc-links-list">
+                  <span class="wf-link">コニカミノルタの環境方針 (/about/csr/environment/policy/)</span>
+                  <span class="wf-link">エコビジョン2050 (/about/csr/environment/policy/vision2050.html)</span>
+                  <span class="wf-link">グリーンマーケティング活動 (/about/csr/environment/activity/marketing.html)</span>
+                  <span class="wf-link">カーボンニュートラルパートナー活動 (/about/csr/environment/activity/supplier.html)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 地球環境問題-2: 養蜂 -->
+          <div class="wf-accordion mb-8">
+            <div class="wf-accordion-head" onclick="this.parentElement.classList.toggle('is-open')">
+              <div class="wf-accordion-head-left">
+                <span class="wf-accordion-head-title">生物多様性保全のため養蜂を実施</span>
+              </div>
+              <span class="wf-accordion-tag">フランス</span>
+              <span class="wf-accordion-icon">▼</span>
+            </div>
+            <div class="wf-accordion-body">
+              <p class="acc-body-text">
+                コニカミノルタビジネスソリューションズ（フランス）社では、パリのビル屋上を緑化し、ミツバチの巣箱を設置して養蜂を実施しています。周辺地域の果樹・野菜・花などの受粉に役立てるとともに、採取した蜂蜜を瓶詰めにして従業員向けに販売し、売上をチャリティー基金に寄付しています。
+              </p>
+              <div class="acc-body-images single">
+                <figure>
+                  <div class="wf-img h-160"><div class="wf-img-label">パリ ビル屋上<br>養蜂風景</div></div>
+                  <figcaption>パリのビル屋上で養蜂を実施</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+
+          <!-- 地球環境問題-3: アーバー・デイ財団 -->
+          <div class="wf-accordion mb-8">
+            <div class="wf-accordion-head" onclick="this.parentElement.classList.toggle('is-open')">
+              <div class="wf-accordion-head-left">
+                <span class="wf-accordion-head-title">アーバー・デイ財団と共に世界的な森林再生活動に貢献</span>
+              </div>
+              <span class="wf-accordion-tag">米国</span>
+              <span class="wf-accordion-icon">▼</span>
+            </div>
+            <div class="wf-accordion-body">
+              <p class="acc-body-text">
+                コニカミノルタビジネスソリューションズ（USA）社は、従業員に非営利団体ボランティアへの参加機会を提供。MEVO（Mahwah Environmental Volunteers Organization）を支援し、アーバー・デイ財団と協力して、最近森林火災が発生した地域に20,000本以上の木を植樹しています。
+              </p>
+              <div class="acc-body-images">
+                <figure>
+                  <div class="wf-img h-160"><div class="wf-img-label">MEVO<br>ボランティア風景</div></div>
+                  <figcaption>農作物の植え付け・収穫作業に従業員が参加</figcaption>
+                </figure>
+                <figure>
+                  <div class="wf-img h-160"><div class="wf-img-label">NY/NJ Trail Conference<br>参加風景</div></div>
+                  <figcaption>New York/New Jersey Trail Conferenceでのトレイル整備</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+
+          <!-- 地球環境問題-4: 環境保全（豪州） -->
+          <div class="wf-accordion mb-8">
+            <div class="wf-accordion-head" onclick="this.parentElement.classList.toggle('is-open')">
+              <div class="wf-accordion-head-left">
+                <span class="wf-accordion-head-title">環境保全活動を支援</span>
+              </div>
+              <span class="wf-accordion-tag">オーストラリア</span>
+              <span class="wf-accordion-icon">▼</span>
+            </div>
+            <div class="wf-accordion-body">
+              <p class="acc-body-text">
+                コニカミノルタビジネスソリューションズオーストラリア社は、地域のボランティア団体を長年にわたり支援。2017年度には、環境保全週間（ランドケア・ウィーク）に25名の従業員が参加し、低木林地の雑草除去や植樹作業を行いました。
+              </p>
+              <div class="acc-body-images single">
+                <figure>
+                  <div class="wf-img h-160"><div class="wf-img-label">環境保全<br>ボランティア活動</div></div>
+                  <figcaption>ランドケア・ウィークでの植樹活動</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+
+          <!-- 地球環境問題-5: 森林保護（日本） -->
+          <div class="wf-accordion mb-8">
+            <div class="wf-accordion-head" onclick="this.parentElement.classList.toggle('is-open')">
+              <div class="wf-accordion-head-left">
+                <span class="wf-accordion-head-title">森林保護活動に協力</span>
+              </div>
+              <span class="wf-accordion-tag">日本</span>
+              <span class="wf-accordion-icon">▼</span>
+            </div>
+            <div class="wf-accordion-body">
+              <p class="acc-body-text">
+                「高尾の森づくりの会」は東京都西部・裏高尾の国有林で間伐・植樹・下草刈りなどを通じて、針葉樹と広葉樹が混交した豊かな森の復元を目指しています。コニカミノルタは法人会員として参加し、従業員も毎月ボランティアとして森づくりに携わっています。デジタル印刷システムを用いて同会の季刊会報を制作・提供しています。
+              </p>
+              <div class="acc-body-images single">
+                <figure>
+                  <div class="wf-img h-160"><div class="wf-img-label">高尾の森<br>間伐・植樹作業</div></div>
+                  <figcaption>裏高尾国有林での森づくり活動</figcaption>
+                </figure>
+              </div>
+              <div class="acc-links">
+                <div class="acc-links-title">関連リンク</div>
+                <div class="acc-links-list">
+                  <span class="wf-link">高尾の森づくりの会（外部サイト：http://jactakao.net/）</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 地球環境問題-6: 国立森林局 -->
+          <div class="wf-accordion mb-32">
+            <div class="wf-accordion-head" onclick="this.parentElement.classList.toggle('is-open')">
+              <div class="wf-accordion-head-left">
+                <span class="wf-accordion-head-title">フランス国立森林局との提携</span>
+              </div>
+              <span class="wf-accordion-tag">フランス</span>
+              <span class="wf-accordion-icon">▼</span>
+            </div>
+            <div class="wf-accordion-body">
+              <p class="acc-body-text">
+                コニカミノルタビジネスソリューションズ（フランス）社は、生態系を支える取り組みを強化するため、フランスの生物多様性を担う主要機関であるフランス国立森林局（ONF）とパートナーシップを構築しています。
+              </p>
+            </div>
+          </div>
+
+          <!-- ============================================================
+               B-2: ウェルビーイング・地域社会
+          ============================================================ -->
+          <h3 class="wf-sub-title mb-12" id="sub-wellbeing">ウェルビーイング・地域社会</h3>
+
+          <!-- ウェルビーイング-1: 介護DX（展開状態） -->
+          <div class="wf-accordion is-open mb-8">
+            <div class="wf-accordion-head" onclick="this.parentElement.classList.toggle('is-open')">
+              <div class="wf-accordion-head-left">
+                <span class="wf-accordion-head-title">介護現場のDX化による社会課題解決の支援</span>
+              </div>
+              <span class="wf-accordion-tag">日本</span>
+              <span class="wf-accordion-icon">▼</span>
+            </div>
+            <div class="wf-accordion-body">
+              <p class="acc-body-text">
+                日本の超高齢化社会において、介護スタッフの人手不足（2040年に約57万人不足と推計）に対応するため、2016年からICT活用のケアサポートソリューション「HitomeQ」を展開。画像センシング技術を活用した行動分析センサーとスマートフォンを軸に、業務効率化とケア品質向上を実現しています。2024年度までにセミナーで累計7,100名以上が受講。2019年から介護福祉士養成専門学校内に「コニカミノルタICT介護実習室」を開設し、次世代の介護人材育成にも貢献しています。
+              </p>
+              <div class="acc-body-images">
+                <figure>
+                  <div class="wf-img h-160"><div class="wf-img-label">コニカミノルタ<br>ICT介護実習室</div></div>
+                  <figcaption>介護福祉士養成専門学校での実習の様子</figcaption>
+                </figure>
+                <figure>
+                  <div class="wf-img h-160"><div class="wf-img-label">HitomeQ<br>導入施設</div></div>
+                  <figcaption>ICT活用ケアサポートソリューション</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+
+          <!-- B-2: 新生児黄疸 -->
+          <div class="wf-accordion mb-8">
+            <div class="wf-accordion-head" onclick="this.parentElement.classList.toggle('is-open')">
+              <div class="wf-accordion-head-left">
+                <span class="wf-accordion-head-title">新生児の病的黄疸（核黄疸）の早期発見・治療支援</span>
+              </div>
+              <span class="wf-accordion-tag">ミャンマー / 米国</span>
+              <span class="wf-accordion-icon">▼</span>
+            </div>
+            <div class="wf-accordion-body">
+              <p class="acc-body-text">
+                コニカミノルタは1980年に世界初の経皮式黄疸計を開発。ミャンマー（2017-2019年）ではヤンゴン小児病院で「核黄疸撲滅プロジェクト」に参加し、測定機器の貸し出しとメンテナンスを実施。米国では2020年にUCSFベニオフ小児病院の新生児遠隔医療プログラムに黄疸計12台を提供しています。
+              </p>
+              <div class="acc-body-images">
+                <figure>
+                  <div class="wf-img h-160"><div class="wf-img-label">Yangon Children Hospital<br>式典（2019年12月）</div></div>
+                  <figcaption>ミャンマー・ヤンゴン小児病院での式典</figcaption>
+                </figure>
+                <figure>
+                  <div class="wf-img h-160"><div class="wf-img-label">経皮黄疸計<br>JM-105 測定風景</div></div>
+                  <figcaption>経皮式黄疸計による新生児の測定</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+
+          <!-- B-3: 乳がん早期発見 -->
+          <div class="wf-accordion mb-8">
+            <div class="wf-accordion-head" onclick="this.parentElement.classList.toggle('is-open')">
+              <div class="wf-accordion-head-left">
+                <span class="wf-accordion-head-title">乳がんの早期発見推進の取り組み</span>
+              </div>
+              <span class="wf-accordion-tag">グローバル</span>
+              <span class="wf-accordion-icon">▼</span>
+            </div>
+            <div class="wf-accordion-body">
+              <p class="acc-body-text">
+                乳房X線撮影装置（デジタルマンモグラフィ）と乳房用超音波診断装置を提供し、乳がんの早期発見に貢献。「ピンクリボン運動」の支援を通じ、乳がんに対する正しい知識の普及と検診受診率向上を推進しています。
+              </p>
+              <div class="acc-body-images single">
+                <figure>
+                  <div class="wf-img h-160"><div class="wf-img-label">ピンクリボン運動</div></div>
+                  <figcaption>ピンクリボン運動を通じた啓発活動</figcaption>
+                </figure>
+              </div>
+              <div class="acc-links">
+                <div class="acc-links-title">関連リンク</div>
+                <div class="acc-links-list">
+                  <span class="wf-link">コニカミノルタのピンクリボン運動 (/healthcare/pinkribbon/)</span>
+                  <span class="wf-link">一人ひとりにとって乳がん検診をより良いものに（ニュースリリース 2021.10.08）</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- B-4: がん患者支援 -->
+          <div class="wf-accordion mb-8">
+            <div class="wf-accordion-head" onclick="this.parentElement.classList.toggle('is-open')">
+              <div class="wf-accordion-head-left">
+                <span class="wf-accordion-head-title">各地でがん患者支援団体を支援</span>
+              </div>
+              <span class="wf-accordion-tag">北米 / 豪州 / 欧州 / アジア</span>
+              <span class="wf-accordion-icon">▼</span>
+            </div>
+            <div class="wf-accordion-body">
+              <p class="acc-body-text">
+                北米ではスーザン・G・コーメン乳がん基金などを支援。オーストラリアではBreast Cancer Network of Australiaを支援。英国ではチャリティーランに社員が参加するなど、カナダ、マレーシアを含む世界各国でがん関連の支援団体を通じた貢献活動を展開しています。
+              </p>
+              <div class="acc-body-images single">
+                <figure>
+                  <div class="wf-img h-160"><div class="wf-img-label">がん患者支援活動</div></div>
+                  <figcaption>各国でのがん患者支援活動の様子</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+
+          <!-- ウェルビーイング-5: スポーツ振興 -->
+          <div class="wf-accordion mb-8">
+            <div class="wf-accordion-head" onclick="this.parentElement.classList.toggle('is-open')">
+              <div class="wf-accordion-head-left">
+                <span class="wf-accordion-head-title">地域のスポーツにおける社会貢献</span>
+              </div>
+              <span class="wf-accordion-tag">日本</span>
+              <span class="wf-accordion-icon">▼</span>
+            </div>
+            <div class="wf-accordion-body">
+              <p class="acc-body-text">
+                コニカミノルタ陸上競技部が「ジョギング教室」を開催し、地域社会との交流を促進。スポーツを通じた健康増進と地域コミュニティの活性化に貢献しています。
+              </p>
+              <div class="acc-body-images single">
+                <figure>
+                  <div class="wf-img h-160"><div class="wf-img-label">ジョギング教室風景</div></div>
+                  <figcaption>コニカミノルタ陸上競技部によるジョギング教室</figcaption>
+                </figure>
+              </div>
+              <div class="acc-links">
+                <div class="acc-links-title">関連リンク</div>
+                <div class="acc-links-list">
+                  <span class="wf-link">コニカミノルタ陸上競技部（外部サイト）</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ウェルビーイング-6: 救いの泉 -->
+          <div class="wf-accordion mb-8">
+            <div class="wf-accordion-head" onclick="this.parentElement.classList.toggle('is-open')">
+              <div class="wf-accordion-head-left">
+                <span class="wf-accordion-head-title">防災水資源「救いの泉」を地域に提供</span>
+              </div>
+              <span class="wf-accordion-tag">日本</span>
+              <span class="wf-accordion-icon">▼</span>
+            </div>
+            <div class="wf-accordion-body">
+              <p class="acc-body-text">
+                コニカミノルタ（株）は2014年度に東京都日野市・日野市立病院と災害時協力協定を締結。東京サイト日野の井戸に自家発電装置を設置し、「救いの泉」として整備しました。停電時も地域住民への水供給が可能な体制を整備しています。2021年度に東京都八王子市への対象拡大を実施しています。
+              </p>
+              <div class="acc-body-images single">
+                <figure>
+                  <div class="wf-img h-160"><div class="wf-img-label">災害時協力<br>協定締結式</div></div>
+                  <figcaption>東京都日野市との災害時協力協定締結</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+
+          <!-- ウェルビーイング-7: 企業内基金（展開状態） -->
+          <div class="wf-accordion is-open mb-32">
+            <div class="wf-accordion-head" onclick="this.parentElement.classList.toggle('is-open')">
+              <div class="wf-accordion-head-left">
+                <span class="wf-accordion-head-title">ハンディキャップを持つ人々を支援する企業内基金を設立</span>
+              </div>
+              <span class="wf-accordion-tag">フランス</span>
+              <span class="wf-accordion-icon">▼</span>
+            </div>
+            <div class="wf-accordion-body">
+              <p class="acc-body-text">
+                コニカミノルタビジネスソリューションズ（フランス）社は、障がいを持つ人々がスポーツ、娯楽、文化、教育や仕事などに参加しやすい環境を作ることを目指し、企業内基金「Fondation d'entreprise」を設立しました。
+              </p>
+              <ul style="font-size:12px;color:var(--c-text);line-height:1.8;padding-left:20px;margin-bottom:16px;">
+                <li>パリのケ・ブランリ美術館での視覚障がい者向け三次元モデル制作支援</li>
+                <li>シャモニー渓谷の車いす用小道建設支援</li>
+                <li>大西洋岸での車いす海水浴設備建設協力</li>
+                <li>パラスポーツ用品寄付、介助犬購入養成など</li>
+              </ul>
+              <div class="acc-body-images">
+                <figure>
+                  <div class="wf-img h-160"><div class="wf-img-label">Fondation<br>d'entreprise</div></div>
+                  <figcaption>企業内基金のロゴ</figcaption>
+                </figure>
+                <figure>
+                  <div class="wf-img h-160"><div class="wf-img-label">障がい者支援<br>活動風景</div></div>
+                  <figcaption>障がい者の社会参加を支援する活動</figcaption>
+                </figure>
+              </div>
+              <div class="acc-links">
+                <div class="acc-links-title">関連リンク</div>
+                <div class="acc-links-list">
+                  <span class="wf-link">Fondation d'entreprise Konica Minolta（外部サイト：http://www.fondationdentreprise-konicaminolta.fr/）</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ============================================================
+               B-3: 次世代人財育成
+          ============================================================ -->
+          <h3 class="wf-sub-title mb-12" id="sub-talent">次世代人財育成</h3>
+
+          <!-- 次世代人財育成-1: 産業知能系マテリアリティと連動した名称変更（新規） -->
+          <div class="wf-accordion mb-8">
+            <div class="wf-accordion-head" onclick="this.parentElement.classList.toggle('is-open')">
+              <div class="wf-accordion-head-left">
+                <span class="wf-accordion-head-title">「産業知能系」の新価値創出マテリアリティと連動した名称へ変更</span>
+              </div>
+              <span class="wf-accordion-tag">グローバル</span>
+              <span class="wf-accordion-icon">▼</span>
+            </div>
+            <div class="wf-accordion-body">
+              <p class="acc-body-text">
+                ※追加予定。「産業知能系」の新価値創出マテリアリティと連動した名称変更に関する内容をここに記載します。
+              </p>
+            </div>
+          </div>
+
+          <!-- D-1: IoT人財育成 -->
+          <div class="wf-accordion mb-8">
+            <div class="wf-accordion-head" onclick="this.parentElement.classList.toggle('is-open')">
+              <div class="wf-accordion-head-left">
+                <span class="wf-accordion-head-title">将来のIoT人財育成への貢献</span>
+              </div>
+              <span class="wf-accordion-tag">日本</span>
+              <span class="wf-accordion-icon">▼</span>
+            </div>
+            <div class="wf-accordion-body">
+              <p class="acc-body-text">
+                2017年から2021年まで、毎回約30名程度の大学院生・学部生・短大生・専門学校生を選抜し、ハッカソンやアイデアソンを開催。AIや画像IoT技術などの最新テクノロジーを駆使した課題解決型のイノベーター育成に取り組んでいます。当社画像IoT技術者がメンターとして参加しています。
+              </p>
+              <div class="acc-body-images single">
+                <figure>
+                  <div class="wf-img h-160"><div class="wf-img-label">2021年度<br>ハッカソン参加者</div></div>
+                  <figcaption>ハッカソン・アイデアソンの開催風景</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+
+          <!-- D-2: 若者キャリア形成 -->
+          <div class="wf-accordion mb-8">
+            <div class="wf-accordion-head" onclick="this.parentElement.classList.toggle('is-open')">
+              <div class="wf-accordion-head-left">
+                <span class="wf-accordion-head-title">若者のキャリア形成を支援</span>
+              </div>
+              <span class="wf-accordion-tag">インド</span>
+              <span class="wf-accordion-icon">▼</span>
+            </div>
+            <div class="wf-accordion-body">
+              <p class="acc-body-text">
+                コニカミノルタビジネスソリューションズインド社が、現地の職業訓練機関と提携し、2016年から貧困層の若者を対象としたスキル開発プログラムを実施。参加者は2カ月間で英語、電子工学、機械の基礎トレーニングと複合機のサービストレーニングを受講しています。
+              </p>
+            </div>
+          </div>
+
+          <!-- D-3: 女性IT支援 -->
+          <div class="wf-accordion mb-8">
+            <div class="wf-accordion-head" onclick="this.parentElement.classList.toggle('is-open')">
+              <div class="wf-accordion-head-left">
+                <span class="wf-accordion-head-title">IT業界における女性のキャリア形成を支援</span>
+              </div>
+              <span class="wf-accordion-tag">チェコ / ドイツ</span>
+              <span class="wf-accordion-icon">▼</span>
+            </div>
+            <div class="wf-accordion-body">
+              <p class="acc-body-text">
+                NGO団体「Impact Hub」および「Czechitas」と協働で、女性を対象にITナレッジのキャパシティビルディングを実施。IT業界での就職・転職・起業を目指す女性へのワークショップ協賛、資金提供、社内IT専門家の派遣を行い、女性のIT業界におけるキャリア形成と業界のダイバーシティ促進を目指しています。
+              </p>
+              <div class="acc-body-images single">
+                <figure>
+                  <div class="wf-img h-160"><div class="wf-img-label">ワークショップ風景</div></div>
+                  <figcaption>女性向けITキャパシティビルディングの様子</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+
+          <!-- D-4: 就学支援（展開状態） -->
+          <div class="wf-accordion is-open mb-8">
+            <div class="wf-accordion-head" onclick="this.parentElement.classList.toggle('is-open')">
+              <div class="wf-accordion-head-left">
+                <span class="wf-accordion-head-title">子どもたちの就学支援</span>
+              </div>
+              <span class="wf-accordion-tag">北米 / 中国</span>
+              <span class="wf-accordion-icon">▼</span>
+            </div>
+            <div class="wf-accordion-body">
+              <p class="acc-body-text">
+                北米：コニカミノルタビジネスソリューションズ（U.S.A.）社が「Books2BETTER」（低収入家庭の就学前児童へ本を寄付）と「Back to School」（学用品寄付）プログラムに参加。<br><br>
+                中国：中国青少年基金会の「希望プロジェクト」（1989年開始）に参画し、校舎・設備の建築・改修費用を支援。コニカミノルタオプト（大連）社は6月1日の中国の子どもの日に学校訪問し支援金・文房具を贈呈。コニカミノルタオプティカルプロダクト（上海）社は農民工の子弟向けに地域小学校への支援を実施しています。
+              </p>
+              <div class="acc-body-images">
+                <figure>
+                  <div class="wf-img h-160"><div class="wf-img-label">就学支援<br>活動風景</div></div>
+                  <figcaption>子どもたちへの教育支援の様子</figcaption>
+                </figure>
+                <figure>
+                  <div class="wf-img h-160"><div class="wf-img-label">卒業旅行で<br>同社を訪問</div></div>
+                  <figcaption>卒業旅行で同社を訪れた子どもたち</figcaption>
+                </figure>
+              </div>
+            </div>
+          </div>
+
+          <!-- D-5: 科学技術振興財団 -->
+          <div class="wf-accordion mb-8">
+            <div class="wf-accordion-head" onclick="this.parentElement.classList.toggle('is-open')">
+              <div class="wf-accordion-head-left">
+                <span class="wf-accordion-head-title">公益財団法人コニカミノルタ科学技術振興財団</span>
+              </div>
+              <span class="wf-accordion-tag">日本</span>
+              <span class="wf-accordion-icon">▼</span>
+            </div>
+            <div class="wf-accordion-body">
+              <p class="acc-body-text">
+                コニカ創立者の杉浦仙之助の遺志により、昭和41年に設立された「橘保善会」を基とし、平成5年より財団としての活動を開始。科学技術（特に光と画像の領域）の研究に対する援助・支援を行い、科学技術の振興、学術の発展及び文化の向上に寄与しています。コニカミノルタは趣意に賛同し、寄付等により協力しています。
+              </p>
+              <div class="acc-body-images single">
+                <figure>
+                  <div class="wf-img h-160"><div class="wf-img-label">科学技術振興財団</div></div>
+                  <figcaption>研究助成・支援活動</figcaption>
+                </figure>
+              </div>
+              <div class="acc-links">
+                <div class="acc-links-title">関連リンク</div>
+                <div class="acc-links-list">
+                  <span class="wf-link">公益財団法人 コニカミノルタ科学技術振興財団（外部サイト：https://www.konicaminoltastf.or.jp/）</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- D-6: プラネタリウム -->
+          <div class="wf-accordion">
+            <div class="wf-accordion-head" onclick="this.parentElement.classList.toggle('is-open')">
+              <div class="wf-accordion-head-left">
+                <span class="wf-accordion-head-title">プラネタリウムを通した地域貢献</span>
+              </div>
+              <span class="wf-accordion-tag">グローバル</span>
+              <span class="wf-accordion-icon">▼</span>
+            </div>
+            <div class="wf-accordion-body">
+              <p class="acc-body-text">
+                プラネタリウムは、科学や天文学に対する知的好奇心を育てるとともに、宇宙を知り地球や人間について考えるきっかけともなります。小学校の授業に対応した番組を提供し、季節の星座や星・月の動きをテーマとした学習投影を実施しています。
+              </p>
+              <div class="acc-body-images single">
+                <figure>
+                  <div class="wf-img h-160"><div class="wf-img-label">プラネタリウム<br>学習投影</div></div>
+                  <figcaption>小学校向け学習投影の様子</figcaption>
+                </figure>
+              </div>
+              <div class="acc-links">
+                <div class="acc-links-title">関連リンク</div>
+                <div class="acc-links-list">
+                  <span class="wf-link">プラネタリウム製品 > コンテンツ情報 > 幼児・学習番組 (/planetarium/program/children/)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+
+        <!-- ============================================================
+             セクション C：関連情報
+        ============================================================ -->
+        <section class="wf-section bg-sub" id="sec-related">
+          <span class="wf-section-marker">C</span>
+          <h2 class="wf-section-title">関連情報</h2>
+          <div class="related-grid">
+            <span class="wf-link">目標と実績 (/about/csr/goals-achievements.html)</span>
+            <span class="wf-link">方針一覧 (/about/csr/policy/)</span>
+            <span class="wf-link">ESGデータ (/about/csr/esg/)</span>
+            <span class="wf-link">第三者保証 (/about/csr/warranty/)</span>
+            <span class="wf-link">レポートアーカイブ (/about/csr/csr/download/)</span>
+            <span class="wf-link">ガイドライン対照表 (/about/csr/csr/vision/gri.html)</span>
+            <span class="wf-link">報告方針 (/about/csr/editorial-policy/)</span>
+            <span class="wf-link">お問い合わせ (konicaminolta.com/jp-ja/contact/)</span>
+          </div>
+        </section>
+
+        </div><!-- /sc-main -->
+
+        <!-- 右アンカーナビ -->
+        <nav class="sc-anchor-nav">
+          <div class="sc-anchor-title">目次 / INDEX</div>
+          <a class="sc-anchor-item is-current" href="#sec-policy">基本的な考え方</a>
+          <a class="sc-anchor-item" href="#sec-activities">取り組み</a>
+          <a class="sc-anchor-item sc-anchor-sub" href="#sub-environment">└ 地球環境問題</a>
+          <a class="sc-anchor-item sc-anchor-sub" href="#sub-wellbeing">└ ウェルビーイング・地域社会</a>
+          <a class="sc-anchor-item sc-anchor-sub" href="#sub-talent">└ 次世代人財育成</a>
+          <a class="sc-anchor-item" href="#sec-related">関連情報</a>
+        </nav>
+
+      </div><!-- /sc-layout -->
+
+      <!-- フッター -->
+      <footer class="wf-footer">
+        <div class="wf-footer-note">⚠ フッターは既確定。変更なし。</div>
+        <div class="wf-footer-grid">
+          <div><div class="wf-footer-col-title">企業情報</div><span class="wf-footer-link">企業情報トップ</span><span class="wf-footer-link">Newsroom</span></div>
+          <div><div class="wf-footer-col-title">環境</div><span class="wf-footer-link">気候変動</span><span class="wf-footer-link">資源循環</span></div>
+          <div><div class="wf-footer-col-title">社会</div><span class="wf-footer-link">人材戦略</span><span class="wf-footer-link">DE&I</span><span class="wf-footer-link">社会貢献活動</span></div>
+          <div><div class="wf-footer-col-title">ガバナンス</div><span class="wf-footer-link">コンプライアンス</span><span class="wf-footer-link">情報セキュリティ</span></div>
+        </div>
+        <div class="wf-footer-bottom">
+          <div>サイトのご利用について ｜ 個人情報保護方針 ｜ サイトマップ</div>
+          <div>©2011-2026 Konica Minolta, Inc.</div>
+        </div>
+      </footer>
+
+    </div>
+  </div><!-- /wf-page -->
+
+  <!-- アノテーション -->
+  <aside class="wf-annotation">
+    <h3>設計ポイント — 社会貢献活動（統合ページ v4.0）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">A</span>
+      <span class="ann-head">基本的な考え方：H3左縦棒見出し＋テキスト左・画像右レイアウト</span>
+      <div class="ann-row">
+        <span class="ann-row-label">見出し体系</span>
+        H2 = .wf-section-title（アンダーラインなし・大きめ文字のみ）<br>
+        H3 = .wf-sub-title（border-left: 4px solid #555 + padding-left: 14px）<br>
+        既存WFファイル（019, 029等）の見出しルールを踏襲。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">レイアウト</span>
+        .wf-grid.col-2-1.gap-24 でテキスト(2fr)左＋画像(1fr)右の1ブロック構成。
+      </div>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">B</span>
+      <span class="ann-head">取り組み：3つのH3カテゴリ配下にアコーディオンを集約</span>
+      <div class="ann-row">
+        <span class="ann-row-label">H3カテゴリ構成</span>
+        取り組みH2配下に以下3つのH3カテゴリを配置：<br>
+        ・地球環境問題（6件）<br>
+        ・ウェルビーイング・地域社会（7件）<br>
+        ・次世代人財育成（7件・うち1件は名称変更反映の新規枠）
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">アコーディオン仕様</span>
+        035_tcfd.html 等で使用される .wf-accordion を採用。<br>
+        ・閉じ状態：背景 #F2F2F2（グレー）でブロック識別性を向上<br>
+        ・開き状態：背景 #FFFFFF（白）に切替＋border-bottom で区切り<br>
+        ・各ブロック間：margin-bottom: 8px で明確に分離<br>
+        ・カテゴリ最終ブロック：margin-bottom: 32px で次カテゴリH3との間に余白を確保
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">タイトル・タグ配置</span>
+        [タイトル（左詰め）] ← flex:1 → [タグ] [▼アイコン]<br>
+        視線の流れがタイトル→タグ→開閉アイコンの順で自然に。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">展開デモ</span>
+        地球環境問題-1（環境戦略）、ウェルビーイング-1（介護DX）、ウェルビーイング-7（企業内基金）、次世代人財育成-5（就学支援）の計4箇所をデフォルト展開。
+      </div>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">C</span>
+      <span class="ann-head">関連情報リンク</span>
+      <div class="ann-row">
+        <span class="ann-row-label">構成</span>
+        H2見出し＋2カラムグリッドリンク。bg-sub背景で他セクションと視覚的に区分。
+      </div>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">※</span>
+      <span class="ann-head">v3.2→v4.0 変更サマリー</span>
+      <div class="ann-row">
+        <span class="ann-row-label">主な変更</span>
+        1. H2「基本方針」→「基本的な考え方」にリネーム<br>
+        2. H2「取り組み」を新設し、旧B〜Eセクションをこの配下に統合<br>
+        3. 取り組み配下に3つのH3カテゴリ（地球環境問題／ウェルビーイング・地域社会／次世代人財育成）を新設<br>
+        4. 旧カテゴリ「災害支援・ボランティア活動」をウェルビーイング・地域社会に統合<br>
+        5. 旧「タンチョウチャリティ企画」アコーディオンを削除<br>
+        6. 次世代人財育成に「産業知能系マテリアリティと連動した名称変更」の新規アコーディオン枠を追加<br>
+        7. 右アンカーナビをH2/H3構造に合わせてサブ項目インデント対応
+      </div>
+    </div>
+  </aside>
+
+</div><!-- /wf-canvas -->
+
+</body>
+</html>

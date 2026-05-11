@@ -1,0 +1,2212 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>サステナビリティサイトアーカイブ — KM サステナビリティ WF v1.3</title>
+<style>
+/* ============================================================
+   KM SUSTAINABILITY WF — SHARED CSS v3.0
+   すべてのWF HTMLファイルの <style> タグにこのブロックを含めること
+   参照：TOPワイヤーフレーム案.png / ベンチマーク：オムロン・リコー
+============================================================ */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  /* グレースケール */
+  --c-white:    #FFFFFF;
+  --c-bg:       #F7F7F7;   /* ページ背景 */
+  --c-bg-sub:   #F2F2F2;   /* セクション背景（薄グレー） */
+  --c-border:   #E0E0E0;   /* 標準ボーダー */
+  --c-border-s: #E8E8E8;   /* 薄いセクション区切り */
+  --c-ph:       #EBEBEB;   /* 画像PH背景 */
+  --c-ph-line:  #D8D8D8;   /* テキストラインPH */
+  --c-text-h:   #111111;   /* 見出し */
+  --c-text:     #333333;   /* 本文 */
+  --c-text-s:   #666666;   /* サブテキスト */
+  --c-text-xs:  #999999;   /* 注記・ラベル */
+  --c-black:    #111111;   /* ボタン塗り・強調 */
+
+  /* アノテーション */
+  --c-ann-bg:   #FFFBF0;
+  --c-ann-bdr:  #C8A000;
+
+  /* レイアウト */
+  --content-w:  1080px;    /* コンテンツ最大幅 */
+  --page-w:     1280px;    /* ページ最大幅 */
+  --pad-section: 52px;     /* セクション上下パディング（標準） */
+  --pad-section-sm: 32px;  /* セクション上下パディング（コンパクト） */
+  --pad-h: 100px;          /* コンテンツ左右パディング */
+}
+
+body {
+  font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--c-text);
+  background: var(--c-bg);
+}
+
+/* ============================================================
+   META / 管理バー（WF管理用・印刷時非表示）
+============================================================ */
+.wf-meta-bar {
+  background: #111;
+  color: #ccc;
+  font-size: 11px;
+  padding: 8px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 2000;
+  letter-spacing: 0.03em;
+}
+.wf-meta-bar strong { color: #fff; font-size: 12px; }
+.wf-meta-bar .meta-badge {
+  background: #333;
+  color: #aaa;
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 2px;
+  margin-left: 8px;
+}
+
+/* ============================================================
+   LAYOUT：WFページ全体
+============================================================ */
+.wf-canvas {
+  max-width: var(--page-w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  align-items: start;
+}
+.wf-page {
+  background: var(--c-white);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.10);
+  min-height: 100vh;
+}
+.wf-content-wrap {
+  max-width: var(--content-w);
+  margin: 0 auto;
+  padding: 0 var(--pad-h);
+}
+
+/* ============================================================
+   HEADER（確定済み・変更不可）
+============================================================ */
+.wf-header {
+  background: var(--c-white);
+  border-bottom: 1px solid var(--c-border);
+}
+.wf-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 32px;
+  border-bottom: 1px solid var(--c-border-s);
+}
+.wf-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.wf-logo-mark {
+  width: 32px;
+  height: 21px;
+  background: #555;
+  border-radius: 50% 50% 0 50%;
+}
+.wf-logo-text {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.wf-header-utils {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 11px;
+  color: var(--c-text-s);
+}
+.wf-gnav {
+  display: flex;
+  align-items: stretch;
+  padding: 0 32px;
+}
+.wf-gnav-item {
+  padding: 11px 16px;
+  font-size: 12px;
+  color: var(--c-text-s);
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+}
+.wf-gnav-item.is-active {
+  color: var(--c-text-h);
+  font-weight: 700;
+  border-bottom-color: var(--c-text-h);
+}
+.wf-lnav {
+  background: #3A3A3A;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0 32px;
+}
+.wf-lnav-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  padding: 10px 16px 10px 0;
+  margin-right: 8px;
+  border-right: 1px solid #555;
+  white-space: nowrap;
+}
+.wf-lnav-item {
+  font-size: 11px;
+  color: #BBB;
+  padding: 10px 14px;
+  white-space: nowrap;
+}
+.wf-lnav-item.is-active {
+  color: #fff;
+  border-bottom: 2px solid #fff;
+}
+.wf-header-note {
+  background: #F0F0F0;
+  text-align: center;
+  font-size: 10px;
+  color: #888;
+  padding: 4px 24px;
+  border-top: 1px solid #E0E0E0;
+}
+
+/* ============================================================
+   BREADCRUMB
+============================================================ */
+.wf-breadcrumb {
+  background: var(--c-white);
+  border-bottom: 1px solid var(--c-border-s);
+  padding: 10px var(--pad-h);
+  font-size: 12px;
+  color: var(--c-text-s);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.wf-breadcrumb span.sep { color: var(--c-border); }
+.wf-breadcrumb span.current { color: var(--c-text); }
+
+/* ============================================================
+   PAGE INDICATOR（WF管理用）
+============================================================ */
+.wf-page-indicator {
+  background: #2A2A2A;
+  color: #aaa;
+  padding: 6px 32px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.wf-page-indicator .pi-layer {
+  background: #444;
+  color: #888;
+  font-size: 9px;
+  padding: 1px 8px;
+  border-radius: 2px;
+}
+
+/* ============================================================
+   PAGE HERO（ページタイトルエリア）
+   WFイメージ：左にh1、右に画像PH
+============================================================ */
+.wf-page-hero {
+  background: var(--c-white);
+  border-bottom: 1px solid var(--c-border-s);
+  padding: 32px var(--pad-h) 0;
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 24px;
+  align-items: end;
+}
+.wf-page-hero-copy {
+  padding-bottom: 32px;
+}
+.wf-page-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  line-height: 1.2;
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+.wf-page-title-note {
+  font-size: 11px;
+  color: var(--c-text-xs);
+  margin-top: 4px;
+}
+.wf-page-hero-img {
+  /* 画像PHはセクションの高さに合わせる */
+  align-self: stretch;
+  min-height: 140px;
+}
+
+/* ============================================================
+   SECTION（共通構造）
+   WFイメージ：十分な上下余白 / 1セクション1テーマ
+============================================================ */
+.wf-section {
+  padding: var(--pad-section) var(--pad-h);
+  border-bottom: 1px solid var(--c-border-s);
+  position: relative;
+}
+.wf-section.bg-sub { background: var(--c-bg-sub); }
+.wf-section.bg-white { background: var(--c-white); }
+.wf-section.pad-sm {
+  padding-top: var(--pad-section-sm);
+  padding-bottom: var(--pad-section-sm);
+}
+
+/* セクションマーカー（WF管理用 A/B/C...バッジ） */
+.wf-section-marker {
+  position: absolute;
+  top: 12px;
+  left: 8px;
+  width: 22px;
+  height: 22px;
+  background: #222;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0;
+}
+
+/* セクション見出し（h2）— catalog v6 正準（24px+下線+グラデ） */
+.wf-section-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  margin-bottom: 28px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--c-border);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  position: relative;
+}
+.wf-section-title::after {
+  content: ''; position: absolute; left: 0; bottom: -1px;
+  width: 140px; height: 3px;
+  background: linear-gradient(90deg, #111 0%, #444 40%, #888 70%, transparent 100%);
+}
+.wf-section-title.center {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+/* セクション説明文（h2直下の本文） */
+.wf-section-desc {
+  font-size: 13px;
+  color: var(--c-text);
+  line-height: 1.955;
+  margin-bottom: 24px;
+}
+.wf-section-desc.center { text-align: center; }
+
+/* サブ見出し（h3）— catalog v6 正準（16px / mb16 / lh1.5） */
+.wf-sub-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  margin-bottom: 16px;
+  line-height: 1.5;
+  padding-left: 14px;
+  border-left: 4px solid var(--c-text-h);
+  letter-spacing: -0.01em;
+}
+
+/* カード内見出し（h4） */
+.wf-card-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+/* ============================================================
+   IMAGE PLACEHOLDER
+   WFイメージ：薄グレー矩形、軽めのハッチング
+============================================================ */
+.wf-img {
+  background: var(--c-ph);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* 軽めのハッチング（WFイメージに準拠：細い斜線） */
+.wf-img::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent 0px,
+    transparent 10px,
+    rgba(0,0,0,0.04) 10px,
+    rgba(0,0,0,0.04) 11px
+  );
+}
+.wf-img-label {
+  position: relative;
+  z-index: 1;
+  font-size: 11px;
+  color: var(--c-text-xs);
+  text-align: center;
+  line-height: 1.5;
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.75);
+}
+/* よく使うサイズのユーティリティ */
+.wf-img.h-80  { height: 80px; }
+.wf-img.h-120 { height: 120px; }
+.wf-img.h-160 { height: 160px; }
+.wf-img.h-200 { height: 200px; }
+.wf-img.h-240 { height: 240px; }
+.wf-img.ratio-16-9::before { padding-top: 56.25%; }
+/* 画像キャプション（写真下の説明文） */
+.wf-img-caption {
+  font-size: 11px;
+  color: var(--c-text-xs);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   TEXT LINE PLACEHOLDER
+   WFイメージ：グレーの横棒でテキストを模す
+============================================================ */
+.wf-textlines { display: flex; flex-direction: column; gap: 8px; }
+.wf-line {
+  height: 10px;
+  background: var(--c-ph-line);
+  border-radius: 3px;
+}
+.wf-line.w-full  { width: 100%; }
+.wf-line.w-90    { width: 90%; }
+.wf-line.w-75    { width: 75%; }
+.wf-line.w-60    { width: 60%; }
+.wf-line.w-45    { width: 45%; }
+/* 見出し用（少し太く・濃く） */
+.wf-line.h-title {
+  height: 14px;
+  background: #C0C0C0;
+}
+
+/* ============================================================
+   CARD
+   WFイメージ：白背景、細い枠線、内側20px余白
+============================================================ */
+.wf-card {
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  padding: 20px;
+}
+/* グリッドレイアウト */
+.wf-grid { display: grid; gap: 16px; }
+.wf-grid.col-2 { grid-template-columns: repeat(2, 1fr); }
+.wf-grid.col-3 { grid-template-columns: repeat(3, 1fr); }
+.wf-grid.col-4 { grid-template-columns: repeat(4, 1fr); }
+.wf-grid.col-2-1 { grid-template-columns: 2fr 1fr; }
+.wf-grid.col-1-2 { grid-template-columns: 1fr 2fr; }
+.wf-grid.col-1-1-1-2 { grid-template-columns: 1fr 1fr 1fr 2fr; }
+/* gap variants */
+.wf-grid.gap-24 { gap: 24px; }
+.wf-grid.gap-32 { gap: 32px; }
+
+/* カードカテゴリタグ */
+.wf-card-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--c-text-s);
+  border: 1px solid var(--c-border);
+  padding: 2px 8px;
+  margin-bottom: 10px;
+  letter-spacing: 0.04em;
+}
+
+/* ============================================================
+   KPI / 数値表示
+============================================================ */
+/* KPIストリップ：主要数値を横並びに */
+.wf-kpi-strip {
+  display: grid;
+  border: 1px solid var(--c-border);
+  background: var(--c-white);
+}
+.wf-kpi-strip.col-3 { grid-template-columns: repeat(3, 1fr); }
+.wf-kpi-strip.col-4 { grid-template-columns: repeat(4, 1fr); }
+.wf-kpi-item {
+  padding: 20px 16px;
+  text-align: center;
+  border-right: 1px solid var(--c-border);
+}
+.wf-kpi-item:last-child { border-right: none; }
+.wf-kpi-num {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.wf-kpi-label {
+  font-size: 11px;
+  color: var(--c-text-s);
+  line-height: 1.4;
+}
+.wf-kpi-sub {
+  font-size: 10px;
+  color: var(--c-text-xs);
+  margin-top: 3px;
+}
+
+/* ============================================================
+   GRAPH PLACEHOLDER
+   WFイメージ：グレーのバーグラフ、アニメーションなし
+============================================================ */
+.wf-graph {
+  background: #F8F8F8;
+  border: 1px solid var(--c-border);
+  padding: 16px;
+  position: relative;
+}
+.wf-graph-label {
+  font-size: 10px;
+  color: var(--c-text-xs);
+  margin-bottom: 10px;
+}
+.wf-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 80px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #CCC;
+}
+.wf-bar {
+  flex: 1;
+  background: #AAAAAA;
+  border-radius: 2px 2px 0 0;
+  min-width: 12px;
+}
+.wf-bar.target {
+  background: transparent;
+  border: 1.5px dashed #AAAAAA;
+}
+.wf-bar-year {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+.wf-bar-year span {
+  flex: 1;
+  font-size: 9px;
+  color: var(--c-text-xs);
+  text-align: center;
+}
+/* 折れ線グラフPH */
+.wf-linechart {
+  background: #F8F8F8;
+  border: 1px solid var(--c-border);
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: var(--c-text-xs);
+}
+
+/* ============================================================
+   BUTTON / LINK
+   WFイメージ：シンプルな黒塗り・黒枠線の2種
+============================================================ */
+.wf-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: inherit;
+  padding: 11px 28px;
+  cursor: default;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  border: 1.5px solid var(--c-black);
+}
+.wf-btn.primary {
+  background: var(--c-black);
+  color: var(--c-white);
+}
+.wf-btn.outline {
+  background: var(--c-white);
+  color: var(--c-black);
+}
+.wf-btn.sm {
+  font-size: 11px;
+  padding: 8px 18px;
+}
+.wf-btn.lg {
+  font-size: 13px;
+  padding: 14px 36px;
+}
+/* CTA 2ボタン横並びグループ（WFイメージ：Strategy節に2ボタン並列） */
+.wf-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+/* テキストリンク */
+.wf-link {
+  font-size: 12px;
+  color: var(--c-text-s);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: default;
+  text-decoration: none;
+}
+.wf-link::before { content: '→ '; font-size: 11px; }
+/* 「一覧へ」系リンク（右寄せ配置） */
+.wf-link-more {
+  font-size: 12px;
+  color: var(--c-text-s);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: default;
+}
+.wf-link-more::after { content: ' →'; font-size: 11px; }
+
+/* ============================================================
+   LABEL / BADGE
+============================================================ */
+.wf-label {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--c-text-s);
+  border: 1px solid var(--c-border);
+  padding: 2px 8px;
+  letter-spacing: 0.04em;
+}
+.wf-label.filled {
+  background: #333;
+  color: #fff;
+  border-color: #333;
+}
+/* フィルタバー */
+.wf-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.wf-filter-btn {
+  font-size: 11px;
+  color: var(--c-text-s);
+  border: 1px solid var(--c-border);
+  padding: 4px 14px;
+  cursor: default;
+  background: var(--c-white);
+}
+.wf-filter-btn.active {
+  background: #333;
+  color: #fff;
+  border-color: #333;
+}
+
+/* ============================================================
+   TAB（ESG環境/社会/ガバナンス切替）
+============================================================ */
+.wf-tabs {
+  display: flex;
+  border-bottom: 2px solid var(--c-border);
+  margin-bottom: 24px;
+}
+.wf-tab {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c-text-xs);
+  padding: 10px 24px;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  cursor: default;
+}
+.wf-tab.is-active {
+  color: var(--c-text-h);
+  border-bottom-color: var(--c-text-h);
+}
+
+/* ============================================================
+   TOPICS / NEWS LIST
+   WFイメージ：日付・タグ・タイトルの横並びリスト
+============================================================ */
+.wf-news-list { display: flex; flex-direction: column; }
+.wf-news-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--c-border-s);
+  font-size: 13px;
+  color: var(--c-text);
+}
+.wf-news-date {
+  font-size: 12px;
+  color: var(--c-text-xs);
+  white-space: nowrap;
+  min-width: 80px;
+}
+.wf-news-tag {
+  font-size: 10px;
+  color: var(--c-text-s);
+  border: 1px solid var(--c-border);
+  padding: 1px 7px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.wf-news-title {
+  flex: 1;
+}
+
+/* ============================================================
+   ICON / EXTERNAL EVALUATION
+   WFイメージ：外部評価ロゴのグリッド
+============================================================ */
+.wf-icon-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+}
+.wf-icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.wf-icon-mark {
+  width: 64px;
+  height: 64px;
+  background: var(--c-ph);
+  border: 1px solid var(--c-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  color: var(--c-text-xs);
+  text-align: center;
+}
+.wf-icon-name {
+  font-size: 10px;
+  color: var(--c-text-s);
+  text-align: center;
+  max-width: 72px;
+  line-height: 1.3;
+}
+
+/* ============================================================
+   DATA / DOWNLOAD TILE
+   WFイメージ：データ集のリンクタイル群
+============================================================ */
+.wf-data-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.wf-data-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--c-border);
+  padding: 10px 16px;
+  background: var(--c-white);
+  font-size: 12px;
+  color: var(--c-text);
+  min-width: 180px;
+}
+.wf-data-icon {
+  width: 22px;
+  height: 22px;
+  background: var(--c-ph);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   STRATEGY ROW（戦略テーブル：環境3領域など）
+   WFイメージ：ラベル列 / テキスト列 / KPI・グラフ列 の3カラム行
+============================================================ */
+.wf-strategy-row {
+  display: grid;
+  grid-template-columns: 120px 1fr 200px;
+  border: 1px solid var(--c-border);
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+.wf-strategy-label {
+  background: #3A3A3A;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 16px 8px;
+  line-height: 1.4;
+}
+.wf-strategy-body {
+  padding: 16px;
+  border-left: 1px solid var(--c-border);
+}
+.wf-strategy-kpi {
+  padding: 16px;
+  background: #FAFAFA;
+  border-left: 1px solid var(--c-border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ============================================================
+   SIDENAV（第3階層ローカルナビ）
+============================================================ */
+.wf-layout-with-sidenav {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  align-items: start;
+}
+.wf-sidenav {
+  border-right: 1px solid var(--c-border);
+  background: #FAFAFA;
+  padding: 20px 0;
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+}
+.wf-sidenav-head {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  padding: 0 16px 10px;
+  border-bottom: 1px solid var(--c-border);
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+.wf-sidenav-item {
+  display: block;
+  font-size: 12px;
+  color: var(--c-text-s);
+  padding: 8px 16px;
+  border-bottom: 1px solid #F0F0F0;
+  line-height: 1.4;
+}
+.wf-sidenav-item.is-active {
+  color: var(--c-text-h);
+  font-weight: 700;
+  background: var(--c-white);
+  border-left: 3px solid var(--c-text-h);
+  padding-left: 13px;
+}
+.wf-sidenav-cta {
+  margin: 12px 12px 0;
+}
+
+/* ============================================================
+   FOOTER（確定済み・変更不可）
+============================================================ */
+.wf-footer {
+  background: #F5F5F5;
+  border-top: 1px solid var(--c-border);
+  padding: 32px var(--pad-h) 20px;
+}
+.wf-footer-note {
+  text-align: center;
+  font-size: 10px;
+  color: #999;
+  background: #EBEBEB;
+  border: 1px solid var(--c-border);
+  padding: 6px;
+  margin-bottom: 20px;
+}
+.wf-footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 24px;
+}
+.wf-footer-col-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--c-text);
+  border-bottom: 1px solid var(--c-border);
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+}
+.wf-footer-link {
+  display: block;
+  font-size: 11px;
+  color: var(--c-text-s);
+  padding: 3px 0;
+}
+.wf-footer-bottom {
+  border-top: 1px solid var(--c-border);
+  padding-top: 14px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--c-text-xs);
+}
+
+/* ============================================================
+   ANNOTATION PANEL（設計ポイント）
+============================================================ */
+.wf-annotation {
+  background: var(--c-ann-bg);
+  border-left: 3px solid var(--c-ann-bdr);
+  padding: 16px;
+  position: sticky;
+  top: 0;
+  max-height: 100vh;
+  overflow-y: auto;
+}
+.wf-annotation h3 {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #888;
+  border-bottom: 1px solid var(--c-ann-bdr);
+  padding-bottom: 8px;
+  margin-bottom: 14px;
+}
+.ann-item {
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #EEE;
+}
+.ann-item:last-child { border-bottom: none; }
+.ann-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background: #222;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: 50%;
+  margin-bottom: 5px;
+}
+.ann-head {
+  font-size: 11px;
+  font-weight: 700;
+  color: #222;
+  display: block;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+/* ターゲット・モジュール・定義書 の各行 */
+.ann-row {
+  font-size: 10px;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 5px;
+  padding-left: 4px;
+  border-left: 2px solid #E0D090;
+}
+.ann-row .ann-row-label {
+  font-weight: 700;
+  color: #888;
+  display: block;
+  font-size: 9px;
+  margin-bottom: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.ann-body {
+  font-size: 10px;
+  color: #555;
+  line-height: 1.6;
+  margin-top: 6px;
+}
+
+/* ============================================================
+   UTILITY
+============================================================ */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.gap-8  { gap: 8px; }
+.gap-12 { gap: 12px; }
+.gap-16 { gap: 16px; }
+.gap-20 { gap: 20px; }
+.gap-24 { gap: 24px; }
+.mt-8  { margin-top: 8px; }
+.mt-12 { margin-top: 12px; }
+.mt-16 { margin-top: 16px; }
+.mt-20 { margin-top: 20px; }
+.mt-24 { margin-top: 24px; }
+.mb-8  { margin-bottom: 8px; }
+.mb-12 { margin-bottom: 12px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-20 { margin-bottom: 20px; }
+.mb-24 { margin-bottom: 24px; }
+.text-right { text-align: right; }
+.text-center { text-align: center; }
+
+/* ============================================================
+   HERO FULLWIDTH（全幅キービジュアル）
+   TOPページ・インデックスページ共通
+============================================================ */
+.wf-hero-fullwidth {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  background: var(--c-ph);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.wf-hero-fullwidth::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent 0px, transparent 10px,
+    rgba(0,0,0,0.04) 10px, rgba(0,0,0,0.04) 11px
+  );
+}
+.wf-hero-fullwidth .wf-hero-title-box {
+  position: relative;
+  z-index: 1;
+  background: rgba(255,255,255,0.88);
+  border: 1px solid var(--c-border);
+  padding: 14px 28px;
+  margin-left: var(--pad-h);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  letter-spacing: 0.02em;
+}
+.wf-hero-fullwidth .wf-img-label {
+  position: absolute;
+  right: 20px;
+  bottom: 12px;
+}
+
+/* ============================================================
+   LAYOUT WITH ANCHOR NAV（右アンカーナビ付きレイアウト）
+   第3〜4階層の長文ページで使用
+============================================================ */
+.wf-layout-with-anchornav {
+  display: grid;
+  grid-template-columns: 1fr 100px;
+  align-items: start;
+}
+.wf-anchornav-main { min-width: 0; }
+.wf-anchor-nav {
+  position: sticky;
+  top: 40px;
+  padding: 20px 0 20px 16px;
+  border-left: 1px solid var(--c-border-s);
+}
+.wf-anchor-nav-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  margin-bottom: 12px;
+}
+.wf-anchor-nav-item {
+  display: block;
+  font-size: 11px;
+  color: var(--c-text-s);
+  padding: 5px 0;
+  cursor: default;
+  line-height: 1.4;
+  text-decoration: none;
+}
+.wf-anchor-nav-item.is-current {
+  color: var(--c-text-h);
+  font-weight: 700;
+}
+
+/* アコーディオンヘッド：タイトル左＋タグ右 */
+.wf-accordion-head-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+.wf-accordion-head-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  line-height: 1.4;
+}
+
+/* ============================================================
+   PHOTO GRID（写真＋キャプション）
+   拠点写真の横並び表示に使用
+============================================================ */
+.wf-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.wf-photo-grid.col-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* ============================================================
+   DATA TABLE（データテーブル共通）
+   KPIテーブル・ESGデータ等で使用
+============================================================ */
+.wf-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.wf-data-table th,
+.wf-data-table td {
+  border: 1px solid var(--c-border);
+  padding: 10px 12px;
+  text-align: center;
+  vertical-align: middle;
+}
+.wf-data-table thead th {
+  background: #3A3A3A;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.wf-data-table tbody th {
+  background: #F5F5F5;
+  font-weight: 600;
+  text-align: left;
+  font-size: 11px;
+  color: var(--c-text-h);
+}
+.wf-data-table td.hl {
+  background: #F8F8F0;
+  font-weight: 700;
+  color: var(--c-text-h);
+}
+.wf-data-table-note {
+  font-size: 10px;
+  color: var(--c-text-xs);
+  line-height: 1.6;
+  margin-top: 8px;
+}
+
+/* ============================================================
+   RELATED LINK BOX（関連リンクボックス）
+   セクション末尾の関連リンクまとめに使用
+============================================================ */
+.wf-related-box {
+  background: var(--c-bg-sub);
+  border: 1px solid var(--c-border);
+  padding: 20px 24px;
+  margin-top: 28px;
+}
+.wf-related-box-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--c-border);
+  letter-spacing: 0.03em;
+}
+
+/* ============================================================
+   FIRSTVIEW LINE（WF管理用・ファーストビュー境界線）
+============================================================ */
+.wf-firstview-line {
+  position: relative;
+  height: 0;
+  border: none;
+  margin: 0;
+  padding: 0;
+  z-index: 1500;
+}
+.wf-firstview-line::before {
+  content: '';
+  position: absolute;
+  left: -100px;
+  right: -160px;
+  top: 0;
+  border-top: 2px dashed #E74C3C;
+  z-index: 1500;
+}
+.wf-firstview-line::after {
+  content: 'FIRST VIEW LINE — 1280\00d7 800 ここまでがスクロールなしで表示';
+  position: absolute;
+  right: 0;
+  top: -18px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #E74C3C;
+  background: rgba(255,255,255,0.92);
+  padding: 2px 10px;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  z-index: 1501;
+}
+
+/* ============================================================
+   END OF SHARED CSS
+============================================================ */
+
+/* ============================================================
+   PAGE-LOCAL: サステナビリティレポート 用追加スタイル
+============================================================ */
+
+/* 情報開示体系図（2軸ポジショニングチャート） */
+.positioning-chart {
+  border: 1px solid var(--c-border);
+  background: var(--c-white);
+  padding: 16px 20px;
+  margin-bottom: 20px;
+}
+.pc-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  margin-bottom: 10px;
+}
+.pc-body {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 20px;
+  align-items: stretch;
+}
+.pc-intro {
+  font-size: 11px;
+  color: var(--c-text-s);
+  line-height: 1.7;
+}
+.pc-intro ul {
+  margin-top: 8px;
+  padding-left: 16px;
+}
+.pc-intro li {
+  margin-bottom: 3px;
+}
+.pc-chart {
+  position: relative;
+  border: 1px solid var(--c-border-s);
+  background: #FAFAFA;
+  height: 280px;
+  padding: 24px 48px 28px 56px;
+}
+/* 軸ラベル */
+.pc-axis-y-top,
+.pc-axis-y-bottom,
+.pc-axis-x-left,
+.pc-axis-x-right {
+  position: absolute;
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--c-text-s);
+  background: var(--c-white);
+  padding: 2px 6px;
+  border: 1px solid var(--c-border);
+}
+.pc-axis-y-top { top: 4px; left: 50%; transform: translateX(-50%); }
+.pc-axis-y-bottom { bottom: 4px; left: 50%; transform: translateX(-50%); }
+.pc-axis-x-left { left: 4px; top: 50%; transform: translateY(-50%); writing-mode: vertical-rl; }
+.pc-axis-x-right { right: 4px; top: 50%; transform: translateY(-50%); writing-mode: vertical-rl; }
+/* 軸線 */
+.pc-chart::before,
+.pc-chart::after {
+  content: '';
+  position: absolute;
+  background: var(--c-ph-line);
+}
+.pc-chart::before { /* 縦軸 */
+  left: 50%;
+  top: 24px;
+  bottom: 28px;
+  width: 1px;
+}
+.pc-chart::after { /* 横軸 */
+  top: 50%;
+  left: 56px;
+  right: 48px;
+  height: 1px;
+}
+/* プロットエリア */
+.pc-plot-area {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.pc-item {
+  position: absolute;
+  background: var(--c-white);
+  border: 1px solid var(--c-text-s);
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  padding: 4px 8px;
+  white-space: nowrap;
+  text-align: center;
+  line-height: 1.3;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+.pc-item.is-current {
+  background: var(--c-white);
+  border: 2px solid var(--c-text-h);
+  color: var(--c-text-h);
+  z-index: 3;
+  font-size: 10px;
+  padding: 6px 12px;
+}
+.pc-item.muted {
+  background: #F0F0F0;
+  color: var(--c-text-s);
+  border-color: var(--c-border);
+}
+.pc-item.has-dl {
+  background: #FFFFFF;
+  border: 1.5px solid var(--c-text-h);
+  color: var(--c-text-h);
+}
+.pc-item-dl {
+  display: inline-block;
+  font-size: 8px;
+  font-weight: 700;
+  padding: 1px 4px;
+  margin-left: 3px;
+  color: #fff;
+  background: #555;
+  border-radius: 2px;
+  vertical-align: middle;
+  letter-spacing: 0.04em;
+}
+.pc-item-dl.pdf,
+.pc-item-dl.data,
+.pc-item-dl.web { background: #555; }
+/* レポートグループカード（他ページと共通モジュール：report-group） */
+.report-group-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  align-items: stretch;
+}
+.report-group {
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  display: flex;
+  flex-direction: column;
+}
+.report-group-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: #3A3A3A;
+  color: #fff;
+  gap: 12px;
+}
+.report-group-title {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+}
+.report-group-head-link {
+  font-size: 11px;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 4px 12px;
+  white-space: nowrap;
+  text-decoration: none;
+  letter-spacing: 0.03em;
+}
+.report-group-head-link::after { content: ' →'; }
+.report-group-body {
+  padding: 16px 18px 18px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.report-group-desc {
+  font-size: 12px;
+  color: var(--c-text-s);
+  line-height: 1.7;
+}
+.report-group-meta {
+  font-size: 11px;
+  color: var(--c-text-xs);
+  margin-top: 8px;
+  line-height: 1.5;
+}
+/* 凡例 */
+.pc-legend {
+  display: flex;
+  gap: 14px;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--c-border-s);
+  font-size: 9px;
+  color: var(--c-text-xs);
+}
+.pc-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.pc-legend-dot {
+  width: 14px;
+  height: 10px;
+  border: 1px solid var(--c-text-s);
+  background: var(--c-white);
+}
+.pc-legend-dot.current { background: var(--c-white); border: 2px solid var(--c-text-h); }
+.pc-legend-dot.muted { background: #F0F0F0; border-color: var(--c-border); }
+
+/* 開示体系図（組織図スタイル） */
+.ds-container {
+  border: 1px solid var(--c-border);
+  background: var(--c-white);
+  padding: 20px 20px 14px;
+}
+.ds-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  margin-bottom: 14px;
+}
+.ds-body {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 0;
+}
+.ds-axis {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: stretch;
+  border-right: 1px solid var(--c-border-s);
+  margin-right: 14px;
+  padding-right: 4px;
+  position: relative;
+}
+.ds-axis-label {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--c-text-xs);
+  writing-mode: vertical-rl;
+  letter-spacing: 0.15em;
+  white-space: nowrap;
+}
+.ds-axis-arrow {
+  width: 1px;
+  flex: 1;
+  background: var(--c-border);
+  margin: 4px 0;
+  position: relative;
+}
+.ds-axis-arrow::after {
+  content: '▼';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 7px;
+  color: var(--c-border);
+}
+.ds-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ds-row {
+  display: grid;
+  gap: 8px;
+}
+.ds-row.col-2 { grid-template-columns: 1fr 1fr; }
+.ds-row.col-3 { grid-template-columns: 1fr 1fr 1fr; }
+.ds-card {
+  border: 1px solid var(--c-border);
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.ds-card.is-current {
+  border: 2px solid var(--c-text-h);
+  background: #FAFAFA;
+}
+.ds-card-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.ds-card-badge {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+.ds-card-badge.web,
+.ds-card-badge.pdf,
+.ds-card-badge.data,
+.ds-card-badge.ref,
+.ds-card-badge.ir,
+.ds-card-badge.corp { background: #555; color: #fff; }
+.ds-card-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  line-height: 1.3;
+}
+.ds-card-desc {
+  font-size: 10px;
+  color: var(--c-text-s);
+  line-height: 1.5;
+}
+.ds-card-link {
+  font-size: 10px;
+  color: var(--c-text-s);
+}
+.ds-card-link::after {
+  content: ' →';
+  font-size: 9px;
+}
+.ds-legend {
+  display: flex;
+  gap: 16px;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--c-border-s);
+  font-size: 9px;
+  color: var(--c-text-xs);
+}
+.ds-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.ds-legend-dot {
+  width: 8px;
+  height: 8px;
+  border: 1px solid var(--c-border);
+}
+.ds-legend-dot.filled {
+  background: var(--c-text-h);
+  border-color: var(--c-text-h);
+}
+
+/* 媒体一覧テーブル */
+.media-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--c-border);
+}
+.media-table th {
+  background: #3A3A3A;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 10px 14px;
+  text-align: left;
+  border: 1px solid #555;
+}
+.media-table td {
+  font-size: 12px;
+  color: var(--c-text);
+  padding: 10px 14px;
+  border: 1px solid var(--c-border-s);
+  vertical-align: top;
+  line-height: 1.6;
+}
+.media-table .media-primary {
+  background: #F8F8F8;
+  font-weight: 700;
+}
+.media-badge {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 2px;
+  margin-right: 4px;
+}
+.media-badge.web,
+.media-badge.pdf,
+.media-badge.xlsx { background: #555; color: #fff; }
+
+/* アコーディオン */
+/* v7：catalog .wf-acc-h3 準拠（旧 .accordion onclick JS 方式は廃止） */
+/* 035 TCFD アコーディオン共通モジュール（左縦棒なし／黒丸トグル） */
+.wf-acc-h3 {
+  margin-top: 16px; margin-bottom: 16px;
+  border: 1px solid var(--c-border);
+  background: var(--c-white);
+}
+.wf-acc-h3:first-child, .wf-section-desc + .wf-acc-h3 { margin-top: 0; }
+.wf-acc-h3-summary {
+  list-style: none;
+  cursor: default;
+  padding: 12px 60px 12px 22px;
+  font-size: 14px; font-weight: 700;
+  color: var(--c-text-h);
+  background: var(--c-border);
+  display: flex; align-items: center; gap: 12px;
+  letter-spacing: -0.01em;
+  position: relative;
+  line-height: 1.5;
+}
+.wf-acc-h3-summary:hover { background: #D5D5D5; }
+.wf-acc-h3-summary::-webkit-details-marker { display: none; }
+.wf-acc-h3-summary::marker { content: ''; }
+.wf-acc-h3-summary::after {
+  content: '＋';
+  position: absolute;
+  right: 16px; top: 50%; transform: translateY(-50%);
+  width: 28px; height: 28px;
+  background: var(--c-text-h); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  font-size: 14px; font-weight: 700;
+  line-height: 1;
+}
+.wf-acc-h3[open] .wf-acc-h3-summary::after { content: '−'; }
+.wf-acc-h3-body { background: var(--c-white); padding: 16px 0 4px; }
+.wf-acc-h3-body > p { font-size: 13px; color: var(--c-text); line-height: 1.95; margin-bottom: 14px; }
+.wf-acc-h3-body > p:last-child { margin-bottom: 0; }
+.accordion-body-inner { padding: 16px 20px; }
+
+/* バックナンバーリスト */
+.backnumber-list {
+  display: flex;
+  flex-direction: column;
+}
+.backnumber-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 16px;
+  align-items: baseline;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--c-border-s);
+  font-size: 12px;
+  color: var(--c-text);
+}
+.backnumber-row:last-child {
+  border-bottom: none;
+}
+.backnumber-year {
+  font-weight: 700;
+  color: var(--c-text-h);
+  font-size: 13px;
+}
+.backnumber-links {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.backnumber-link {
+  font-size: 12px;
+  color: var(--c-text);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.backnumber-link::before {
+  content: '>';
+  font-size: 10px;
+  color: var(--c-text-xs);
+}
+.backnumber-link .file-size {
+  font-size: 10px;
+  color: var(--c-text-xs);
+}
+
+/* 注釈テキスト */
+.note-box {
+  background: #F8F8F8;
+  border: 1px solid var(--c-border-s);
+  padding: 16px 20px;
+  font-size: 12px;
+  color: var(--c-text-s);
+  line-height: 1.8;
+}
+
+/* ============================================================
+   汎用モジュール｜箇条書きリスト（km-bullet-list）
+   ・現行コニカミノルタサイトの ul li 表現を踏襲
+   ・項目=●マーカー＋本文（補足文は同じインデントでぶら下げ）
+   ・リスト直下の注記は無マーカーの段落として続ける
+============================================================ */
+.km-bullet-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.km-bullet-list > li {
+  position: relative;
+  padding-left: 16px;
+  margin-bottom: 6px;
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--c-text);
+}
+.km-bullet-list > li:last-child {
+  margin-bottom: 0;
+}
+.km-bullet-list > li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 9px;
+  width: 5px;
+  height: 5px;
+  background: var(--c-text-h);
+  border-radius: 50%;
+}
+.km-bullet-list > li > .km-bullet-desc {
+  display: block;
+  font-size: 12px;
+  color: var(--c-text);
+  line-height: 1.8;
+  margin-top: 0;
+}
+.km-bullet-note {
+  font-size: 12px;
+  color: var(--c-text);
+  line-height: 1.8;
+  margin-top: 12px;
+}
+.km-bullet-note .wf-link {
+  display: inline;
+  text-decoration: underline;
+}
+.km-bullet-note .wf-link::before { content: ''; }
+
+</style>
+</head>
+
+<body>
+
+<!-- WF管理バー -->
+<div class="wf-meta-bar">
+  <div>
+    <strong>KONICA MINOLTA サステナビリティ</strong>
+    <span class="meta-badge">サステナビリティサイトアーカイブ</span>
+    <span class="meta-badge">WF v1.3</span>
+    <span class="meta-badge">#096 (旧 #230)</span>
+  </div>
+  <div style="font-size:10px; color:#666;">2026.03</div>
+</div>
+
+<!-- ============================================================ -->
+<div class="wf-canvas">
+  <div class="wf-page">
+
+    <!-- ファーストビュー境界線（1280×800想定） -->
+    <div class="wf-firstview-line"></div>
+
+    <div class="wf-page-indicator">
+      <span>サステナビリティサイトアーカイブ / URL: /about/csr/report-archive/</span>
+      <span class="pi-layer">関連情報（1-G） — 目次ページ</span>
+    </div>
+
+    <!-- ヘッダー（確定済み・変更不可） -->
+    <header class="wf-header">
+      <div class="wf-header-inner">
+        <div class="wf-logo">
+          <div class="wf-logo-mark"></div>
+          <div class="wf-logo-text">KONICA MINOLTA</div>
+        </div>
+        <div class="wf-header-utils">
+          <span>サポート・ダウンロード</span>
+          <span>お問い合わせ</span>
+          <span>Countries/Regions</span>
+          <span>ja | en | zh</span>
+        </div>
+      </div>
+      <nav class="wf-gnav">
+        <span class="wf-gnav-item">企業情報</span>
+        <span class="wf-gnav-item">Newsroom</span>
+        <span class="wf-gnav-item">株主・投資家情報</span>
+        <span class="wf-gnav-item is-active">サステナビリティ</span>
+        <span class="wf-gnav-item">テクノロジー</span>
+        <span class="wf-gnav-item">採用情報</span>
+      </nav>
+      <nav class="wf-lnav">
+        <span class="wf-lnav-label">サステナビリティ</span>
+        <span class="wf-lnav-item">TOP</span>
+        <span class="wf-lnav-item">サステナビリティ戦略</span>
+        <span class="wf-lnav-item">サステナビリティマネジメント</span>
+        <span class="wf-lnav-item">環境</span>
+        <span class="wf-lnav-item">社会</span>
+        <span class="wf-lnav-item">ガバナンス</span>
+      </nav>
+      <div class="wf-header-note">⚠ ヘッダーは既確定。変更なし。</div>
+    </header>
+
+    <!-- パンくず -->
+    <nav class="wf-breadcrumb">
+      ホーム <span class="sep">›</span>
+      サステナビリティ <span class="sep">›</span>
+      <span class="current">サステナビリティサイトアーカイブ</span>
+    </nav>
+
+    <!-- ============================================================
+         ヒーロー｜ページタイトル（KV画像なし・テキストのみ）
+    ============================================================ -->
+    <div style="background:var(--c-white); border-bottom:1px solid var(--c-border-s); padding:20px var(--pad-h) 16px;">
+      <h1 style="font-size:24px; font-weight:700; color:var(--c-text-h); line-height:1.2; margin-bottom:6px;">サステナビリティサイトアーカイブ</h1>
+      <p style="font-size:12px; color:var(--c-text-s); line-height:1.7;">
+        コニカミノルタのサステナビリティに関する詳細な報告は、コニカミノルタサステナビリティウェブサイト（以下「本サイト」）に一本化しています。本サイトの情報をPDF化した「サステナビリティレポート」も発行しています。本ページでは、情報開示体系における本サイトの位置づけ、本サイトの報告概要、およびバックナンバーを掲載しています。
+      </p>
+    </div>
+
+    <!-- ============================================================
+         A｜情報開示体系
+    ============================================================ -->
+    <section id="info-disclosure" class="wf-section bg-white" style="padding-top:32px; padding-bottom:32px; scroll-margin-top:80px;">
+      <span class="wf-section-marker">A</span>
+      <h2 class="wf-section-title">情報開示体系</h2>
+      <p class="wf-section-desc">
+        本サイトは、サステナビリティに関する詳細な報告を一本化した中核媒体です。関連性の高い媒体（統合報告書、ESGデータ、サステナビリティレポート（PDF）など）と連携し、財務／非財務の両面から情報を体系的に開示しています。
+      </p>
+
+      <!-- 情報開示体系図（2軸ポジショニングチャート） -->
+      <div class="positioning-chart">
+        <div class="pc-title">情報開示体系図 — 本サイトの位置づけ</div>
+        <div class="pc-body">
+          <div class="pc-intro">
+            本サイトの位置づけを、関連性の高い媒体との関係で以下の2軸で整理しています。
+            <ul>
+              <li><strong>縦軸：</strong>非財務情報（上）↔ 財務情報（下）</li>
+              <li><strong>横軸：</strong>定量情報（左）↔ 定性情報（右）</li>
+            </ul>
+            <p style="margin-top:8px;">本サイトはESG領域の中長期視点での取り組み・実績を定量・定性の両面から包括的に開示する中核媒体です。図中の各媒体は、ラベルをクリックすると該当ダウンロードまたは参照先に遷移します。</p>
+          </div>
+          <div class="pc-chart">
+            <span class="pc-axis-y-top">非財務情報</span>
+            <span class="pc-axis-y-bottom">財務情報</span>
+            <span class="pc-axis-x-left">定量情報</span>
+            <span class="pc-axis-x-right">定性情報</span>
+            <div class="pc-plot-area">
+              <!-- 本サイト（中心・強調） -->
+              <div class="pc-item is-current" style="top:28%; left:55%;">本サイト<br>（サステナビリティ<br>ウェブサイト）</div>
+              <!-- サステナビリティレポート（本サイトのPDF版） -->
+              <div class="pc-item has-dl" style="top:48%; left:62%;">サステナビリティ<br>レポート <span class="pc-item-dl pdf">PDF</span></div>
+              <!-- ESGデータ -->
+              <div class="pc-item has-dl" style="top:22%; left:22%;">ESGデータ <span class="pc-item-dl data">XLSX</span></div>
+              <!-- 統合報告書 -->
+              <div class="pc-item has-dl" style="top:58%; left:80%;">統合報告書 <span class="pc-item-dl pdf">PDF</span></div>
+              <!-- 有価証券報告書（参照） -->
+              <div class="pc-item muted" style="top:80%; left:28%;">有価証券<br>報告書</div>
+              <!-- コーポレートガバナンス報告書（参照） -->
+              <div class="pc-item muted" style="top:78%; left:82%;">コーポレート<br>ガバナンス<br>報告書</div>
+            </div>
+          </div>
+        </div>
+        <div class="pc-legend">
+          <div class="pc-legend-item"><div class="pc-legend-dot current"></div> 本サイト（中核媒体）</div>
+          <div class="pc-legend-item"><div class="pc-legend-dot"></div> 本サイトと関連性の高い媒体（PDF／データをダウンロード可）</div>
+          <div class="pc-legend-item"><div class="pc-legend-dot muted"></div> 関連する参照媒体</div>
+        </div>
+      </div>
+
+      <!-- 最新：サステナビリティレポート2025（PDF） — 体系図で示した本サイトのアーカイブ／最もDLを促す媒体 -->
+      <div class="report-group-grid" style="grid-template-columns:1fr; margin-top:20px; margin-bottom:12px;">
+        <div class="report-group" style="border:2px solid var(--c-text-h);">
+          <div class="report-group-head">
+            <div class="report-group-title">サステナビリティレポート 2025（PDF）<span style="font-size:11px; font-weight:400; color:#CCC; margin-left:10px;">本サイトのPDFアーカイブ</span></div>
+            <a class="report-group-head-link">PDFダウンロード（16.0MB）</a>
+          </div>
+          <div class="report-group-body">
+            <p class="report-group-desc">
+              コニカミノルタのサステナビリティ報告はコニカミノルタサステナビリティウェブサイト（本サイト）にて行っています。<br>
+              環境・社会を含めたサステナビリティに関する2024年度の実績や取り組み状況について、本サイトにて公開しました（2025年10月）。本サイトの2025年10月時点の情報は「サステナビリティレポート2025」としてPDF化して公開します。<br>
+              なお、本サイトは、2025年10月以降も随時更新しています。
+            </p>
+            <p class="report-group-meta">対象期間：2024年4月〜2025年3月（2024年度）｜発行：2025年10月｜16.0MB</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 関連媒体への導線（統合報告書・ESGデータ） -->
+      <div class="report-group-grid">
+        <div class="report-group">
+          <div class="report-group-head">
+            <div class="report-group-title">統合報告書</div>
+            <a class="report-group-head-link">ページを開く</a>
+          </div>
+          <div class="report-group-body">
+            <p class="report-group-desc">
+              経営戦略・財務・非財務を統合的に報告する統合報告書（IRサイト内）へ遷移します。
+            </p>
+          </div>
+        </div>
+        <div class="report-group">
+          <div class="report-group-head">
+            <div class="report-group-title">ESGデータ</div>
+            <a class="report-group-head-link">ページを開く</a>
+          </div>
+          <div class="report-group-body">
+            <p class="report-group-desc">
+              ESGに関する定量データの閲覧・一括ダウンロード（XLSX）が可能なデータ集ページです。
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ============================================================
+         B｜サステナビリティサイトについて（報告概要）
+    ============================================================ -->
+    <section id="about-site" class="wf-section bg-sub" style="padding-top:32px; padding-bottom:32px; scroll-margin-top:80px;">
+      <span class="wf-section-marker">B</span>
+      <h2 class="wf-section-title">サステナビリティサイトについて</h2>
+      <p class="wf-section-desc">
+        本サイトの編集方針および報告概要を記載しています。サステナビリティに関する詳細な報告は本サイトに一本化しており、グローバルに求められる各種ガイドラインや、ステークホルダーからの情報開示へのニーズをもとに内容を精査しています。
+      </p>
+
+      <!-- 報告概要テーブル（editorial-policy 準拠） -->
+      <table class="media-table" style="margin-bottom:20px;">
+        <tbody>
+          <tr>
+            <td style="width:30%; background:#F5F5F5; font-weight:700;">報告対象範囲</td>
+            <td>
+              コニカミノルタ（株）および連結対象の関係会社。報告対象が限定されている報告については、個別に対象範囲を記載しています。<br>
+              本報告における「コニカミノルタ」はコニカミノルタグループを、「コニカミノルタ（株）」はコニカミノルタ株式会社単体を指しています。<br>
+              なお、期中に連結対象の関係会社に買収や拠点の新設・閉鎖等の変化があった場合、影響の大きい生産会社についての環境関連データは、月単位で実績値を反映させています。
+            </td>
+          </tr>
+          <tr>
+            <td style="background:#F5F5F5; font-weight:700;">報告対象期間</td>
+            <td>
+              原則として2024年4月1日から2025年3月31日までの活動を報告していますが、対象期間以前からの取り組みや、直近の活動報告も一部含んでいます。
+            </td>
+          </tr>
+          <tr>
+            <td style="background:#F5F5F5; font-weight:700;">発行時期</td>
+            <td>
+              2025年10月（前回：2024年9月　次回：2026年8月予定）
+            </td>
+          </tr>
+          <tr>
+            <td style="background:#F5F5F5; font-weight:700;">各種ガイドラインの<br>準拠・参照状況</td>
+            <td>
+              <ul class="km-bullet-list">
+                <li>
+                  GRIスタンダード
+                  <span class="km-bullet-desc">コニカミノルタは、2024年4月1日から2025年3月31日までの期間について、GRIスタンダードに準拠して報告しています。</span>
+                </li>
+                <li>SASBスタンダード</li>
+                <li>国連グローバル・コンパクト10原則</li>
+                <li>ISO26000、ISO30414</li>
+                <li>環境報告ガイドライン（2018年版）</li>
+              </ul>
+              <p class="km-bullet-note">
+                GRIスタンダード、国連グローバル・コンパクト、ISO26000、SASBスタンダードの対照表については、<span class="wf-link">ガイドライン対照表</span>をご参照ください。
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td style="background:#F5F5F5; font-weight:700;">第三者保証</td>
+            <td>
+              2024年度（2024年4月1日〜2025年3月31日）の環境データおよび社会データの一部について、KPMGあずさサステナビリティ株式会社による第三者保証を取得しています。詳しくは第三者保証をご参照ください。<br>
+              <span class="wf-link" style="margin-top:4px;">第三者保証</span>
+            </td>
+          </tr>
+          <tr>
+            <td style="background:#F5F5F5; font-weight:700;">関連情報</td>
+            <td>
+              当社に関する各資料は資料ダウンロードよりご覧いただけます。<br>
+              統合報告書／株主通信／有価証券報告書／コーポレートガバナンス報告書／知的財産報告書／テクノロジーレポート<br>
+              <span class="wf-link" style="margin-top:4px;">資料ダウンロード</span>
+            </td>
+          </tr>
+          <tr>
+            <td style="background:#F5F5F5; font-weight:700;">本報告に関する<br>お問い合わせ</td>
+            <td>
+              コニカミノルタ株式会社 経営企画部<br>
+              <span class="wf-link" style="margin-top:4px;">お問い合わせ</span>
+            </td>
+          </tr>
+          <tr>
+            <td style="background:#F5F5F5; font-weight:700;">免責事項</td>
+            <td>
+              当サイトには、過去と現在の事実以外に当社グループの現在の計画および将来予想に関する記述が含まれています。こうした記述は、現在入手可能な情報に基づき、当社が現時点で合理的であると判断したものです。今後の事業環境により、実際の結果と異なる可能性があることを、あらかじめご承知おきください。
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- H3 バックナンバー -->
+      <h3 class="wf-sub-title">バックナンバー</h3>
+
+      <p style="font-size:11px; color:var(--c-text-s); line-height:1.7; margin-bottom:12px;">
+        2020年以降は本サイト（サステナビリティウェブサイト）のPDFアーカイブとして発行しています。2015〜2019年はCSRレポートと環境報告書の2本立てで発行していました。
+      </p>
+
+      <!-- バックナンバー一覧（2025年〜2015年を一本化／デフォルトオープン）
+           v7：catalog .wf-acc-h3 に統合（onclick JS → details/summary 方式） -->
+      <details class="wf-acc-h3 mb-16" open>
+        <summary class="wf-acc-h3-summary">
+          <span>バックナンバー一覧（2015年〜2025年）</span>
+        </summary>
+        <div class="wf-acc-h3-body">
+          <div class="accordion-body-inner">
+            <div class="backnumber-list">
+              <div class="backnumber-row">
+                <div class="backnumber-year">2025年</div>
+                <div class="backnumber-links">
+                  <span class="backnumber-link">サステナビリティレポート2025 <span class="file-size">（16.0MB）</span></span>
+                </div>
+              </div>
+              <div class="backnumber-row">
+                <div class="backnumber-year">2024年</div>
+                <div class="backnumber-links">
+                  <span class="backnumber-link">サステナビリティレポート2024 <span class="file-size">（16.6MB）</span></span>
+                </div>
+              </div>
+              <div class="backnumber-row">
+                <div class="backnumber-year">2023年</div>
+                <div class="backnumber-links">
+                  <span class="backnumber-link">サステナビリティレポート2023 <span class="file-size">（17.6MB）</span></span>
+                </div>
+              </div>
+              <div class="backnumber-row">
+                <div class="backnumber-year">2022年</div>
+                <div class="backnumber-links">
+                  <span class="backnumber-link">サステナビリティレポート2022 <span class="file-size">（16.3MB）</span></span>
+                </div>
+              </div>
+              <div class="backnumber-row">
+                <div class="backnumber-year">2021年</div>
+                <div class="backnumber-links">
+                  <span class="backnumber-link">サステナビリティレポート2021 <span class="file-size">（19.4MB）</span></span>
+                </div>
+              </div>
+              <div class="backnumber-row">
+                <div class="backnumber-year">2020年</div>
+                <div class="backnumber-links">
+                  <span class="backnumber-link">サステナビリティレポート2020 <span class="file-size">（23.9MB）</span></span>
+                </div>
+              </div>
+              <div class="backnumber-row">
+                <div class="backnumber-year">2019年</div>
+                <div class="backnumber-links">
+                  <span class="backnumber-link">CSRレポート2019 <span class="file-size">（9.7MB）</span></span>
+                  <span class="backnumber-link">環境報告書2019 <span class="file-size">（21.9MB）</span></span>
+                </div>
+              </div>
+              <div class="backnumber-row">
+                <div class="backnumber-year">2018年</div>
+                <div class="backnumber-links">
+                  <span class="backnumber-link">CSRレポート2018 <span class="file-size">（8.7MB）</span></span>
+                  <span class="backnumber-link">環境報告書2018 <span class="file-size">（20.0MB）</span></span>
+                </div>
+              </div>
+              <div class="backnumber-row">
+                <div class="backnumber-year">2017年</div>
+                <div class="backnumber-links">
+                  <span class="backnumber-link">CSRレポート2017 <span class="file-size">（9.5MB）</span></span>
+                  <span class="backnumber-link">環境報告書2017 <span class="file-size">（6.8MB）</span></span>
+                </div>
+              </div>
+              <div class="backnumber-row">
+                <div class="backnumber-year">2016年</div>
+                <div class="backnumber-links">
+                  <span class="backnumber-link">CSRレポート2016 <span class="file-size">（8.3MB）</span></span>
+                  <span class="backnumber-link">環境報告書2016 <span class="file-size">（20.3MB）</span></span>
+                </div>
+              </div>
+              <div class="backnumber-row">
+                <div class="backnumber-year">2015年</div>
+                <div class="backnumber-links">
+                  <span class="backnumber-link">CSRレポート2015 <span class="file-size">（6.8MB）</span></span>
+                  <span class="backnumber-link">環境報告書2015 <span class="file-size">（13.9MB）</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </details>
+
+    </section>
+
+    <!-- ============================================================
+         C｜資料ダウンロード（旧「その他レポート」）
+         ※得意先FB：「その他レポート」というタイトルは違和感。実体は会社資料一覧への
+           まとまったリンクなので、セクション名を「資料ダウンロード」に変更。
+           旧リード文「会社紹介・ファクトブックなど」はダミー由来の架空表現
+           （ファクトブックは現状サイトに存在しない媒体名）のため、編集方針表
+           「関連情報」行と同じ実在媒体の列挙にダミー明示で差し替え。
+    ============================================================ -->
+    <section class="wf-section bg-white">
+      <span class="wf-section-marker">C</span>
+      <h2 class="wf-section-title">資料ダウンロード</h2>
+      <p class="wf-section-desc">
+        当社に関する各種資料は、コーポレートサイトの「資料ダウンロード」ページから一覧で閲覧・ダウンロードいただけます。
+      </p>
+
+      <div class="report-group-grid" style="grid-template-columns:1fr;">
+        <div class="report-group">
+          <div class="report-group-head">
+            <div class="report-group-title">会社資料一覧</div>
+            <a class="report-group-head-link">ページを開く</a>
+          </div>
+          <div class="report-group-body">
+            <p class="report-group-desc">
+              （文章はダミーです）統合報告書／株主通信／有価証券報告書／コーポレートガバナンス報告書／知的財産報告書／テクノロジーレポートなど、当社の各種コーポレート資料をダウンロードいただけるページに遷移します。
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- フッター（確定済み・変更不可） -->
+    <footer class="wf-footer">
+      <div class="wf-footer-note">⚠ フッターは既確定。変更なし。</div>
+      <div class="wf-footer-grid">
+        <div>
+          <div class="wf-footer-col-title">企業情報</div>
+          <span class="wf-footer-link">企業情報トップ</span>
+          <span class="wf-footer-link">Newsroom</span>
+        </div>
+        <div>
+          <div class="wf-footer-col-title">環境</div>
+          <span class="wf-footer-link">気候変動</span>
+          <span class="wf-footer-link">資源循環</span>
+        </div>
+        <div>
+          <div class="wf-footer-col-title">社会</div>
+          <span class="wf-footer-link">人材戦略</span>
+          <span class="wf-footer-link">DE&amp;I</span>
+        </div>
+        <div>
+          <div class="wf-footer-col-title">ガバナンス</div>
+          <span class="wf-footer-link">コンプライアンス</span>
+          <span class="wf-footer-link">情報セキュリティ</span>
+        </div>
+      </div>
+      <div class="wf-footer-bottom">
+        <div>サイトのご利用について ｜ 個人情報保護方針 ｜ サイトマップ</div>
+        <div>&copy;2011-2026 Konica Minolta, Inc.</div>
+      </div>
+    </footer>
+
+  </div><!-- /wf-page -->
+
+  <!-- ============================================================
+       アノテーションパネル
+  ============================================================ -->
+  <aside class="wf-annotation">
+    <h3>設計ポイント — サステナビリティサイトアーカイブ（v1.2：得意先FB #230反映）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">v1.2</span>
+      <span class="ann-head">今回の修正サマリー（FB #230）</span>
+      <div class="ann-row">
+        <span class="ann-row-label">FB1</span>
+        ページタイトルを「サステナビリティレポート」→「<strong>サステナビリティサイトアーカイブ</strong>」に変更（title／meta-bar／パンくず／H1／URL表示すべて統一）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">FB2</span>
+        編集方針表「各種ガイドラインの準拠・参照状況」セルを<strong>現行サイト（editorial-policy/index.html）の箇条書きUIをそのまま踏襲</strong>。●マーカー付きの素直なリスト＋GRIスタンダードのみ補足説明をぶら下げ、リスト下部に対照表案内文（ガイドライン対照表リンク）を無マーカー段落で続ける構造。汎用モジュール化（<code>.km-bullet-list</code> ＋ <code>.km-bullet-note</code>）。<br>
+        <span style="color:#999;">※v1.1の「準拠／参照」ステータスバッジは現行サイト準拠FBにより撤去。</span>
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">FB3</span>
+        バックナンバーを「2020-2025」「2015-2019」の2アコーディオンから<strong>1アコーディオン</strong>に一本化。2025〜2015を時系列降順で連続表示。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">FB4</span>
+        セクションC「その他レポート」を<strong>「資料ダウンロード」</strong>に改題（まとまったリンク＝コーポレート資料ダウンロード導線という実体に合わせる）。リード文の「ファクトブック」表記は架空媒体だったため削除し、編集方針表「関連情報」行と同じ実在媒体（統合報告書／株主通信／有価証券報告書／コーポレートガバナンス報告書／知的財産報告書／テクノロジーレポート）に差し替え＋ダミー明示プレフィックス。
+      </div>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">A</span>
+      <span class="ann-head">情報開示体系：本サイトを中心とした関連媒体との位置づけ</span>
+      <div class="ann-row">
+        <span class="ann-row-label">構成</span>
+        H2「情報開示体系」＋説明文＋2軸ポジショニング図＋最新PDF大型カード（サステナビリティレポート2025）＋関連媒体2カード（統合報告書・ESGデータ）
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">設計意図</span>
+        図とDL導線を別物レイアウトにしないという要望を受け、図の直下に最新PDF（サステナビリティレポート2025）を大型カードで強調配置。続けて関連媒体2リンクを並べ「体系図→最もDLを促す媒体→関連媒体」の連続フローに。
+      </div>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">B</span>
+      <span class="ann-head">サステナビリティサイトについて：編集方針・報告概要テーブル＋バックナンバー</span>
+      <div class="ann-row">
+        <span class="ann-row-label">構成</span>
+        H2「サステナビリティサイトについて」＋報告概要テーブル（8項目）＋H3「バックナンバー」（1アコーディオン／2025-2015 一本化）
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">ガイドライン<br>UI設計</span>
+        ［準拠］GRI＝1件のみ（黒塗りバッジ）／［参照］SASB・UNGC・ISO26000等＝4件（白枠バッジ）の2層に視覚分離。注記文（対照表参照案内）はリスト下部の灰色背景＋左ライン枠に囲み、リスト項目との混同を防ぐ。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">バックナンバー<br>運用</span>
+        2020年以降は本サイトのPDFアーカイブ／2015-2019はCSRレポート＋環境報告書の2本立てだが、UI上は分けず単一リストに統合。各行の「年」＋発行物名で媒体の違いは識別可能。
+      </div>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">C</span>
+      <span class="ann-head">資料ダウンロード（旧「その他レポート」）：会社資料一覧への導線</span>
+      <div class="ann-row">
+        <span class="ann-row-label">改題理由</span>
+        実体は「会社資料ダウンロードページへのまとまったリンク」であり、レポートそのものを掲載するセクションではないため、「その他レポート」という名称は不適切。「資料ダウンロード」に変更し、コーポレートサイトの該当ページ名と整合。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">本文方針</span>
+        旧リード文中の「ファクトブック」は現状サイトに存在しない媒体名＝架空表現だったため削除。編集方針表「関連情報」行で列挙されている実在媒体のみに揃え、本文には「（文章はダミーです）」プレフィックスを付与してダミーであることを明示。
+      </div>
+    </div>
+
+  </aside>
+
+</div><!-- /wf-canvas -->
+</body>
+</html>

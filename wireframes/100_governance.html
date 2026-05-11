@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>コーポレートガバナンス基本方針 — KM サステナビリティ WF v4.4</title>
+<style>
+/* ============================================================
+   KM SUSTAINABILITY WF — SHARED CSS v4.0
+   ※035_tcfd.html と同一の SHARED CSS を使用
+============================================================ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --c-white: #FFFFFF;
+  --c-bg: #F7F7F7;
+  --c-bg-sub: #F2F2F2;
+  --c-border: #E0E0E0;
+  --c-border-s: #E8E8E8;
+  --c-ph: #EBEBEB;
+  --c-ph-line: #D8D8D8;
+  --c-text-h: #111111;
+  --c-text: #333333;
+  --c-text-s: #666666;
+  --c-text-xs: #999999;
+  --c-black: #111111;
+  --c-ann-bg: #FFFBF0;
+  --c-ann-bdr: #C8A000;
+  --content-w: 1080px;
+  --page-w: 1280px;
+  --pad-section: 52px;
+  --pad-section-sm: 32px;
+  --pad-h: 100px;
+}
+
+body {
+  font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--c-text);
+  background: var(--c-bg);
+}
+
+/* META BAR */
+.wf-meta-bar {
+  background: #111; color: #ccc; font-size: 11px; padding: 8px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 2000; letter-spacing: 0.03em;
+}
+.wf-meta-bar strong { color: #fff; font-size: 12px; }
+.wf-meta-bar .meta-badge {
+  background: #333; color: #aaa; font-size: 10px;
+  padding: 2px 8px; border-radius: 2px; margin-left: 8px;
+}
+
+/* LAYOUT */
+.wf-canvas {
+  max-width: var(--page-w); margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 280px; align-items: start;
+}
+.wf-page {
+  background: var(--c-white);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.10);
+  min-height: 100vh;
+}
+
+/* HEADER */
+.wf-header { background: var(--c-white); border-bottom: 1px solid var(--c-border); }
+.wf-header-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 32px; border-bottom: 1px solid var(--c-border-s);
+}
+.wf-logo { display: flex; align-items: center; gap: 10px; }
+.wf-logo-mark { width: 32px; height: 21px; background: #555; border-radius: 50% 50% 0 50%; }
+.wf-logo-text { font-size: 13px; font-weight: 700; color: var(--c-text-h); letter-spacing: 0.06em; text-transform: uppercase; }
+.wf-header-utils { display: flex; align-items: center; gap: 16px; font-size: 11px; color: var(--c-text-s); }
+.wf-gnav { display: flex; align-items: stretch; padding: 0 32px; }
+.wf-gnav-item { padding: 11px 16px; font-size: 12px; color: var(--c-text-s); border-bottom: 2px solid transparent; white-space: nowrap; }
+.wf-gnav-item.is-active { color: var(--c-text-h); font-weight: 700; border-bottom-color: var(--c-text-h); }
+.wf-lnav { background: #3A3A3A; display: flex; align-items: center; gap: 0; padding: 0 32px; }
+.wf-lnav-label { font-size: 12px; font-weight: 700; color: #fff; padding: 10px 16px 10px 0; margin-right: 8px; border-right: 1px solid #555; white-space: nowrap; }
+.wf-lnav-item { font-size: 11px; color: #BBB; padding: 10px 14px; white-space: nowrap; }
+.wf-lnav-item.is-active { color: #fff; border-bottom: 2px solid #fff; }
+.wf-header-note { background: #F0F0F0; text-align: center; font-size: 10px; color: #888; padding: 4px 24px; border-top: 1px solid #E0E0E0; }
+
+/* BREADCRUMB */
+.wf-breadcrumb {
+  background: var(--c-white); border-bottom: 1px solid var(--c-border-s);
+  padding: 10px var(--pad-h); font-size: 12px; color: var(--c-text-s);
+  display: flex; align-items: center; gap: 4px;
+}
+.wf-breadcrumb span.sep { color: var(--c-border); }
+.wf-breadcrumb span.current { color: var(--c-text); }
+
+/* PAGE INDICATOR */
+.wf-page-indicator {
+  background: #2A2A2A; color: #aaa; padding: 6px 32px; font-size: 10px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.wf-page-indicator .pi-layer { background: #444; color: #888; font-size: 9px; padding: 1px 8px; border-radius: 2px; }
+
+/* PAGE TITLE */
+.wf-page-title { font-size: 28px; font-weight: 700; color: var(--c-text-h); line-height: 1.2; margin-bottom: 12px; letter-spacing: -0.01em; }
+
+/* SECTION */
+.wf-section { padding: var(--pad-section) var(--pad-h); border-bottom: 1px solid var(--c-border-s); position: relative; }
+.wf-section.bg-sub { background: var(--c-bg-sub); }
+.wf-section.bg-white { background: var(--c-white); }
+.wf-section.pad-sm { padding-top: var(--pad-section-sm); padding-bottom: var(--pad-section-sm); }
+.wf-section-marker {
+  position: absolute; top: 12px; left: 8px;
+  width: 22px; height: 22px; background: #222; color: #fff;
+  border-radius: 50%; font-size: 10px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+.wf-section-title { font-size: 20px; font-weight: 700; color: var(--c-text-h); margin-bottom: 20px; line-height: 1.3; letter-spacing: -0.01em; }
+.wf-sub-title { font-size: 15px; font-weight: 700; color: var(--c-text-h); margin-bottom: 12px; line-height: 1.4; padding-left: 14px; border-left: 4px solid var(--c-black); }
+.wf-section-desc { font-size: 13px; color: var(--c-text-s); line-height: 1.8; margin-bottom: 24px; }
+
+/* LINK */
+.wf-link { font-size: 12px; color: var(--c-text-s); display: inline-flex; align-items: center; gap: 4px; cursor: default; text-decoration: none; }
+.wf-link::before { content: '→ '; font-size: 11px; }
+
+/* LAYOUT WITH ANCHOR NAV */
+.wf-layout-with-anchornav { display: grid; grid-template-columns: 1fr 100px; align-items: start; }
+.wf-anchornav-main { min-width: 0; }
+.wf-anchor-nav {
+  position: sticky; top: 40px;
+  padding: 20px 16px 20px 16px;
+  border-left: 1px solid var(--c-border-s);
+  margin-right: 12px;
+}
+.wf-anchor-nav-title { font-size: 12px; font-weight: 700; color: var(--c-text-h); margin-bottom: 12px; }
+.wf-anchor-nav-item {
+  display: block; font-size: 11px; color: var(--c-text-s);
+  padding: 5px 0; cursor: default; line-height: 1.4; text-decoration: none;
+}
+.wf-anchor-nav-item.is-current { color: var(--c-text-h); font-weight: 700; }
+
+/* ACCORDION */
+.wf-accordion { border: 1px solid var(--c-border); margin-bottom: 8px; overflow: hidden; }
+.wf-accordion-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 20px; background: var(--c-bg-sub);
+  font-size: 13px; font-weight: 700; color: var(--c-text-h);
+  cursor: pointer; gap: 12px;
+}
+.wf-accordion-head:hover { background: #ECECEC; }
+.wf-accordion.is-open .wf-accordion-head { background: var(--c-white); border-bottom: 1px solid var(--c-border-s); }
+.wf-accordion-icon {
+  width: 22px; height: 22px; border: 1px solid var(--c-border); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; color: var(--c-text-s); flex-shrink: 0;
+  font-weight: 400;
+}
+.wf-accordion.is-open .wf-accordion-icon { background: var(--c-text-h); color: #fff; border-color: var(--c-text-h); }
+.wf-accordion-body { display: none; padding: 18px 22px 22px; background: var(--c-white); }
+.wf-accordion.is-open .wf-accordion-body { display: block; }
+.wf-accordion-head-num {
+  flex-shrink: 0; font-size: 11px; font-weight: 700; color: #fff;
+  background: #555; padding: 3px 10px; letter-spacing: 0.04em; border-radius: 2px;
+}
+
+/* GOV：本文 */
+.gov-body p { font-size: 13px; color: var(--c-text); line-height: 1.85; margin-bottom: 10px; }
+.gov-body p.lead { font-size: 13px; color: var(--c-text); line-height: 1.85; margin-bottom: 14px; }
+.gov-body ol, .gov-body ul { font-size: 13px; color: var(--c-text); line-height: 1.85; padding-left: 22px; margin-bottom: 8px; }
+.gov-body ol li, .gov-body ul li { margin-bottom: 4px; }
+.gov-body ol.num-paren { list-style: none; padding-left: 0; }
+.gov-body ol.num-paren li { padding-left: 28px; position: relative; }
+.gov-body ol.num-paren li::before {
+  content: counter(item) "."; counter-increment: item;
+  position: absolute; left: 0; font-weight: 700; color: var(--c-text-s);
+}
+.gov-body ol.num-paren { counter-reset: item; }
+.gov-body .gov-h4 {
+  font-size: 13px; font-weight: 700; color: var(--c-text-h);
+  margin: 14px 0 8px; padding-left: 10px; border-left: 3px solid #999;
+}
+.gov-body .gov-note {
+  font-size: 11px; color: var(--c-text-xs); line-height: 1.6;
+  margin-top: 10px; padding-top: 8px; border-top: 1px dashed var(--c-border);
+}
+
+/* 序章用：箇条書きカード */
+.gov-intro-card {
+  background: var(--c-bg-sub); border: 1px solid var(--c-border);
+  padding: 18px 22px; margin-top: 14px;
+}
+.gov-intro-card-title { font-size: 12px; font-weight: 700; color: var(--c-text-h); margin-bottom: 8px; letter-spacing: 0.03em; }
+.gov-intro-card ul { font-size: 12px; padding-left: 18px; line-height: 1.85; color: var(--c-text); }
+.gov-intro-card ul li { margin-bottom: 2px; }
+
+/* 改定履歴テーブル */
+.gov-history {
+  width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 10px;
+}
+.gov-history th, .gov-history td {
+  border: 1px solid var(--c-border); padding: 8px 14px; text-align: left;
+}
+.gov-history th { background: #F5F5F5; font-weight: 700; color: var(--c-text-h); font-size: 11px; }
+
+/* 関連リンク */
+.related-links { display: flex; flex-direction: column; gap: 4px; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--c-border-s); }
+.related-links-label { font-size: 10px; font-weight: 700; color: var(--c-text-xs); margin-bottom: 4px; }
+
+/* データカード（関連コンテンツ） */
+.data-card-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.data-card { background: var(--c-white); border: 1px solid var(--c-border); border-left: 3px solid #333; padding: 20px 20px 16px; }
+.data-card-title { font-size: 13px; font-weight: 700; color: var(--c-text-h); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+.data-card-title::after { content: '>'; font-size: 12px; color: var(--c-text-s); }
+.data-card-desc { font-size: 12px; color: var(--c-text-s); line-height: 1.7; }
+
+/* 別紙バッジ */
+.gov-annex-badge {
+  display: inline-block; font-size: 10px; font-weight: 700; color: #fff;
+  background: #555; padding: 2px 8px; margin-right: 10px; letter-spacing: 0.04em; border-radius: 2px;
+}
+
+/* utility */
+.mb-12 { margin-bottom: 12px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-24 { margin-bottom: 24px; }
+
+/* FOOTER */
+.wf-footer { background: #F5F5F5; border-top: 1px solid var(--c-border); padding: 32px var(--pad-h) 20px; }
+.wf-footer-note { text-align: center; font-size: 10px; color: #999; background: #EBEBEB; border: 1px solid var(--c-border); padding: 6px; margin-bottom: 20px; }
+.wf-footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 24px; }
+.wf-footer-col-title { font-size: 11px; font-weight: 700; color: var(--c-text); border-bottom: 1px solid var(--c-border); padding-bottom: 8px; margin-bottom: 8px; }
+.wf-footer-link { display: block; font-size: 11px; color: var(--c-text-s); padding: 3px 0; }
+.wf-footer-bottom { border-top: 1px solid var(--c-border); padding-top: 14px; display: flex; justify-content: space-between; font-size: 11px; color: var(--c-text-xs); }
+
+/* ANNOTATION */
+.wf-annotation {
+  background: var(--c-ann-bg); border-left: 3px solid var(--c-ann-bdr);
+  padding: 16px; position: sticky; top: 0;
+  max-height: 100vh; overflow-y: auto;
+}
+.wf-annotation h3 {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: #888;
+  border-bottom: 1px solid var(--c-ann-bdr); padding-bottom: 8px; margin-bottom: 14px;
+}
+.ann-item { margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid #EEE; }
+.ann-item:last-child { border-bottom: none; }
+.ann-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; background: #222; color: #fff;
+  font-size: 10px; font-weight: 700; border-radius: 50%; margin-bottom: 5px;
+}
+.ann-head { font-size: 11px; font-weight: 700; color: #222; display: block; margin-bottom: 6px; line-height: 1.4; }
+.ann-row { font-size: 10px; color: #555; line-height: 1.5; margin-bottom: 5px; padding-left: 4px; border-left: 2px solid #E0D090; }
+.ann-row .ann-row-label { font-weight: 700; color: #888; display: block; }
+.ann-body { font-size: 10px; color: #555; line-height: 1.6; margin-top: 4px; }
+
+/* ファーストビューライン */
+.wf-firstview-line { position: relative; height: 0; border: none; margin: 0; padding: 0; z-index: 1500; }
+.wf-firstview-line::before {
+  content: ''; position: absolute; left: -100px; right: -160px; top: 0;
+  border-top: 2px dashed #E74C3C; z-index: 1500;
+}
+.wf-firstview-line::after {
+  content: 'FIRST VIEW LINE — 1280×800 ここまでがスクロールなしで表示';
+  position: absolute; right: 0; top: -18px;
+  font-size: 10px; font-weight: 700; color: #E74C3C;
+  background: rgba(255,255,255,0.92); padding: 2px 10px;
+  letter-spacing: 0.03em; white-space: nowrap; z-index: 1501;
+}
+</style>
+</head>
+<body>
+
+<div class="wf-meta-bar">
+  <div>
+    <strong>KONICA MINOLTA サステナビリティ</strong>
+    <span class="meta-badge">コーポレートガバナンス基本方針</span>
+    <span class="meta-badge">WF v4.4</span>
+    <span class="meta-badge">#100</span>
+  </div>
+  <div style="font-size:10px; color:#666;">2026.04</div>
+</div>
+
+<div class="wf-canvas">
+  <div class="wf-page">
+
+    <div class="wf-page-indicator">
+      <span>コーポレートガバナンス基本方針 / URL: /about/csr/governance/basic-policy/</span>
+      <span class="pi-layer">第4階層 — アコーディオン集約・右アンカーナビ版</span>
+    </div>
+
+    <!-- ヘッダー（確定済み） -->
+    <header class="wf-header">
+      <div class="wf-header-inner">
+        <div class="wf-logo"><div class="wf-logo-mark"></div><div class="wf-logo-text">KONICA MINOLTA</div></div>
+        <div class="wf-header-utils"><span>サポート・ダウンロード</span><span>お問い合わせ</span><span>Countries/Regions</span><span>ja | en | zh</span></div>
+      </div>
+      <nav class="wf-gnav">
+        <span class="wf-gnav-item">企業情報</span><span class="wf-gnav-item">Newsroom</span><span class="wf-gnav-item">株主・投資家情報</span>
+        <span class="wf-gnav-item is-active">サステナビリティ</span><span class="wf-gnav-item">テクノロジー</span><span class="wf-gnav-item">採用情報</span>
+      </nav>
+      <nav class="wf-lnav">
+        <span class="wf-lnav-label">サステナビリティ</span>
+        <span class="wf-lnav-item">サステナビリティ戦略</span><span class="wf-lnav-item">サステナビリティマネジメント</span>
+        <span class="wf-lnav-item">環境</span><span class="wf-lnav-item">社会</span><span class="wf-lnav-item is-active">ガバナンス</span>
+      </nav>
+      <div class="wf-header-note">ヘッダーは既確定。変更なし。</div>
+    </header>
+
+    <nav class="wf-breadcrumb">
+      ホーム <span class="sep">›</span> サステナビリティ <span class="sep">›</span> ガバナンス <span class="sep">›</span>
+      <span class="current">コーポレートガバナンス基本方針</span>
+    </nav>
+
+    <!-- ページタイトル -->
+    <div style="padding: 16px var(--pad-h) 12px; border-bottom: 1px solid var(--c-border-s);">
+      <h1 class="wf-page-title" style="margin-bottom:4px;">コーポレートガバナンス基本方針</h1>
+      <div style="font-size:11px; color:var(--c-text-xs);">最終改定：2025年7月31日</div>
+    </div>
+
+    <!-- メインコンテンツ＋右アンカーナビ -->
+    <div class="wf-layout-with-anchornav">
+      <div class="wf-anchornav-main">
+
+        <!-- ============================================================
+             A: 序章 基本的な考え方
+        ============================================================ -->
+        <section class="wf-section bg-white" id="intro" style="padding-top:32px;">
+          <span class="wf-section-marker">A</span>
+          <h2 class="wf-section-title">序章　基本的な考え方</h2>
+          <div class="gov-body">
+            <p>当社は、持続的な成長及び中長期的な企業価値の向上に資するコーポレートガバナンスには、経営の執行における適切なリスクテイクを促す一方、執行に対する実効性の高い監督機能を確立し運用することが必要と考え、監督側の視点からコーポレートガバナンスの仕組みを構築しました。</p>
+            <p>会社法上の機関設計としては、「委員会等設置会社」（現「指名委員会等設置会社」）を2003年に選択するとともに、属人性を排したシステムとして、コニカミノルタ流のガバナンスを追求してきました。コーポレートガバナンス委員会は、2025年6月をもって活動を休止しています（必要性が認められた場合は速やかに活動を再開）。</p>
+
+            <div class="gov-intro-card">
+              <div class="gov-intro-card-title">ガバナンス体制に関する基本的な考え方</div>
+              <ul>
+                <li>経営の監督と執行を分離し、企業価値向上に資するべく経営の監督機能を確保する。</li>
+                <li>株主の目線からの監督を担うことができる独立社外取締役を選任する。</li>
+                <li>これらにより経営の透明性・健全性・効率性を向上させる。</li>
+              </ul>
+            </div>
+
+            <!-- ===== ファーストビューライン（1280×800） ===== -->
+            <div class="wf-firstview-line" style="margin-top:22px;"></div>
+
+            <div style="margin-top:28px;">
+              <h3 class="wf-sub-title">１）取締役会</h3>
+              <ul>
+                <li>独立社外取締役を取締役総数の過半数</li>
+                <li>原則、独立社外取締役から議長を選定</li>
+              </ul>
+
+              <h3 class="wf-sub-title" style="margin-top:20px;">２）指名・監査・報酬の各委員会</h3>
+              <ul>
+                <li>5名前後／過半数を社外取締役</li>
+                <li>委員長は社外取締役から選定</li>
+                <li>代表執行役社長は委員選定対象外</li>
+              </ul>
+
+              <h3 class="wf-sub-title" style="margin-top:20px;">３）コーポレートガバナンス委員会</h3>
+              <ul>
+                <li>5名前後／過半数を社外取締役</li>
+                <li>委員長は社外取締役から選定</li>
+                <li>※2025年6月活動休止</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             B: 第1章 株主の権利・平等性の確保
+        ============================================================ -->
+        <section class="wf-section bg-sub" id="ch1">
+          <span class="wf-section-marker">B</span>
+          <h2 class="wf-section-title">第１章　株主の権利・平等性の確保</h2>
+          <p class="wf-section-desc">株主総会における権利行使の環境整備、資本政策、政策保有株式、関連当事者間の取引について定めています。</p>
+
+          <!-- 第1条 -->
+          <div class="wf-accordion is-open">
+            <div class="wf-accordion-head">
+              <span class="wf-accordion-head-num">第1条</span>
+              <span style="flex:1;">株主総会における権利行使</span>
+              <span class="wf-accordion-icon">−</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <ol class="num-paren">
+                <li>当社は、株主の視点に立ち、株主総会における株主の権利行使に係る適切な環境整備に努める。</li>
+                <li>株主への招集通知発送日は、株主総会当日から3週間以上前を目途とし、招集通知発送日に当社ホームページ及び東京証券取引所のホームページ等に掲載することにより株主の十分な議案検討期間の確保に努める。海外投資家を考慮し招集通知の英訳も同日に掲載する。</li>
+                <li>株主による議決権の電子行使を可能とするため、複数の議決権行使サイト（ICJプラットフォーム、E-VOTE）を利用できる環境を整備する。</li>
+                <li>定時株主総会開催日を、いわゆる集中日の一週間以上前を目安に設定する。</li>
+              </ol>
+            </div>
+          </div>
+
+          <!-- 第2条 -->
+          <div class="wf-accordion">
+            <div class="wf-accordion-head">
+              <span class="wf-accordion-head-num">第2条</span>
+              <span style="flex:1;">資本政策の基本的な方針</span>
+              <span class="wf-accordion-icon">＋</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <p>当社は、中長期的な企業価値向上に向けた持続的な成長を支えるために、「成長投資の実施」「株主還元の充実」及び「財務基盤の強化」の最適バランスを目指した資本政策を推進し、適宜、株主・投資家へ説明する。「資本政策の基本的な方針」については別紙１に定める。</p>
+              <div class="related-links">
+                <span class="related-links-label">＜関連情報＞</span>
+                <span class="wf-link">別紙１　資本政策の基本的な方針</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 第3条 -->
+          <div class="wf-accordion">
+            <div class="wf-accordion-head">
+              <span class="wf-accordion-head-num">第3条</span>
+              <span style="flex:1;">政策保有株式</span>
+              <span class="wf-accordion-icon">＋</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <p>当社は、保有の意義・合理性が認められる場合を除き、原則として上場株式を政策保有株式として保有しない。保有の意義・合理性については、発行会社との企業連携や事業シナジーが見込めるか、また保有に伴う便益やリスクが資本コストに見合っているかを毎年個別銘柄ごとに検証した上で判断する。</p>
+              <div class="related-links">
+                <span class="related-links-label">＜関連情報＞</span>
+                <span class="wf-link">別紙２　政策保有株式に関する方針（縮減方針／議決権行使基準）</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 第4条 -->
+          <div class="wf-accordion">
+            <div class="wf-accordion-head">
+              <span class="wf-accordion-head-num">第4条</span>
+              <span style="flex:1;">関連当事者間の取引</span>
+              <span class="wf-accordion-icon">＋</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <ol class="num-paren">
+                <li>役員（取締役または執行役）との間で会社法に定める利益相反取引を行う場合は、会社法及び取締役会規則に基づき取締役会の承認決議を得る。</li>
+                <li>役員及びその近親者（二親等内）と当社グループとの間の取引（役員報酬を除く）の有無等を毎年定期的に役員各々に確認する。</li>
+                <li>主要株主や子会社・関連会社等の関連当事者との取引については、当社及び株主共同の利益を害することのないよう、第三者との取引と同様に権限規程に基づき社内承認手続きを実施する。</li>
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             C: 第2章 株主以外のステークホルダーとの適切な協働
+        ============================================================ -->
+        <section class="wf-section bg-white" id="ch2">
+          <span class="wf-section-marker">C</span>
+          <h2 class="wf-section-title">第２章　株主以外のステークホルダーとの適切な協働</h2>
+          <p class="wf-section-desc">経営理念・サステナビリティ・行動憲章・内部通報・多様性・企業年金など、ステークホルダーとの協働方針を定めています。</p>
+
+          <div class="wf-accordion is-open">
+            <div class="wf-accordion-head">
+              <span class="wf-accordion-head-num">第5条</span>
+              <span style="flex:1;">ステークホルダーとの適切な協働</span>
+              <span class="wf-accordion-icon">−</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <p>当社は、中長期的な企業価値の向上のためには、従業員、顧客、ビジネスパートナー（取引先、協業先）、債権者及び地域社会等、様々なステークホルダーとの適切な協働が必須と考え、これに努める。</p>
+            </div>
+          </div>
+
+          <div class="wf-accordion">
+            <div class="wf-accordion-head">
+              <span class="wf-accordion-head-num">第6条</span>
+              <span style="flex:1;">経営理念、サステナビリティ</span>
+              <span class="wf-accordion-icon">＋</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <ol class="num-paren">
+                <li>経営理念「新しい価値の創造」のもと、様々なステークホルダーとともに価値を創造し、互いに成長することにより、中長期的な企業価値の向上を図る。</li>
+                <li>グローバル企業として持続的成長を遂げるため、「サステナビリティ経営」を推進。社会課題が当社グループと社会に与える影響を機会とリスクの観点から評価し、マテリアリティ（重要課題）を特定、事業活動を通じて解決に貢献。</li>
+                <li>取締役会は、社会・環境問題をはじめとするサステナビリティをめぐる課題に積極的に対応する。</li>
+              </ol>
+              <div class="related-links">
+                <span class="related-links-label">＜関連情報＞</span>
+                <span class="wf-link">別紙４　コニカミノルタフィロソフィー</span>
+                <span class="wf-link">マテリアリティの評価・特定プロセス</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="wf-accordion">
+            <div class="wf-accordion-head">
+              <span class="wf-accordion-head-num">第7条</span>
+              <span style="flex:1;">行動憲章</span>
+              <span class="wf-accordion-icon">＋</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <p>「コニカミノルタグループ行動憲章」を策定し、全社員が本憲章の精神を深く認識し、社会的良識をもって行動し、当社の持続的成長に資するよう、社員教育等を通じて周知徹底する。</p>
+              <div class="related-links">
+                <span class="related-links-label">＜関連情報＞</span>
+                <span class="wf-link">別紙３　コニカミノルタグループ行動憲章（8項目）</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="wf-accordion">
+            <div class="wf-accordion-head">
+              <span class="wf-accordion-head-num">第8条</span>
+              <span style="flex:1;">内部通報</span>
+              <span class="wf-accordion-icon">＋</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <p>コンプライアンスの違反を発見又は予見した者が通報できる内部通報窓口を社内だけでなく社外にも設けるなど、内部通報のための適切な体制を運用するとともに、通報者に対する不利益取り扱いの禁止を社内規則に明示し周知する。</p>
+            </div>
+          </div>
+
+          <div class="wf-accordion">
+            <div class="wf-accordion-head">
+              <span class="wf-accordion-head-num">第9条</span>
+              <span style="flex:1;">あらゆる属性の人財の活躍を推進する多様性の確保</span>
+              <span class="wf-accordion-icon">＋</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <p>人種、国籍、性別、性自認、性的志向、宗教、信条、障がいなどによらない、あらゆる属性の従業員がプロフェッショナルな人財としてそのパフォーマンス・ポテンシャルを最大限に発揮できる環境を追求し提供する。これにより、新しい顧客価値を生み出し、社会課題の解決と会社の持続的成長を実現していく。</p>
+            </div>
+          </div>
+
+          <div class="wf-accordion">
+            <div class="wf-accordion-head">
+              <span class="wf-accordion-head-num">第10条</span>
+              <span style="flex:1;">企業年金のアセットオーナーとしての機能発揮</span>
+              <span class="wf-accordion-icon">＋</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <ol class="num-paren">
+                <li>運用に関する適切な資質を持った人財を計画的に登用・配置し、アセットオーナーとして期待される機能を発揮する。</li>
+                <li>「アセットオーナー・プリンシプル」の受け入れを表明。「日本版スチュワードシップ・コード」を受け入れ、運用受託機関に対しスチュワードシップ責任の遂行を要請、継続的にモニタリング。</li>
+                <li>企業年金の受益者と当社との間に生じ得る利益相反を適切に管理する。</li>
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             D: 第3章 適切な情報開示と透明性の確保
+        ============================================================ -->
+        <section class="wf-section bg-sub" id="ch3">
+          <span class="wf-section-marker">D</span>
+          <h2 class="wf-section-title">第３章　適切な情報開示と透明性の確保</h2>
+          <p class="wf-section-desc">情報開示の充実方針、外部会計監査人の独立性確保について定めています。</p>
+
+          <div class="wf-accordion is-open">
+            <div class="wf-accordion-head">
+              <span class="wf-accordion-head-num">第11条</span>
+              <span style="flex:1;">情報開示の充実</span>
+              <span class="wf-accordion-icon">−</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <p>法令に基づく開示を適切に行うことに加え、意思決定の透明性・公正性を確保し、実効的なコーポレートガバナンスを実現するとの観点から、以下の事項について主体的に情報発信を行う。</p>
+              <ol class="num-paren">
+                <li>経営理念、経営ビジョン等の「コニカミノルタフィロソフィー」（別紙４）及び経営計画</li>
+                <li>サステナビリティ・無形資産に関する取組み</li>
+                <li>コーポレートガバナンスに関する基本的な考え方と基本方針</li>
+                <li>「取締役及び執行役の報酬決定方針」（別紙５）</li>
+                <li>「取締役会が執行役の選解任を行う際の方針及び手続」（別紙６）／「指名委員会が取締役候補者の指名を行う際の方針及び手続」（別紙７）</li>
+                <li>個々の選解任・指名の説明</li>
+              </ol>
+              <p style="margin-top:10px;">海外投資家を考慮し、当社ホームページ等の英文版を作成し、海外投資家に対して積極的に情報を開示する。</p>
+            </div>
+          </div>
+
+          <div class="wf-accordion">
+            <div class="wf-accordion-head">
+              <span class="wf-accordion-head-num">第12条</span>
+              <span style="flex:1;">外部会計監査人</span>
+              <span class="wf-accordion-icon">＋</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <ol class="num-paren">
+                <li>外部会計監査人が株主及び投資家に対して責務を負っていることを認識し、適正な監査の確保に向けて適切な対応を行う。</li>
+                <li>当社からの独立性と専門性を有していなければならない。</li>
+                <li>監査委員会は会計監査人の選任、解任又は不再任の決定の方針を定める。</li>
+                <li>監査委員会は外部会計監査人の評価の基準を策定し、毎年評価を行う。</li>
+                <li>適正な監査を確保するため、監査時間確保／経営者インタビューの実施確認／監査委員会・経営監査室との連携／不正発見時の対応等を行う。</li>
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             E: 第4章 取締役会等の責務（最も内容が多い章）
+        ============================================================ -->
+        <section class="wf-section bg-white" id="ch4">
+          <span class="wf-section-marker">E</span>
+          <h2 class="wf-section-title">第４章　取締役会等の責務</h2>
+          <p class="wf-section-desc">経営の監督と執行、取締役会の役割、構成・規模・多様性、各委員会の役割、実効性評価、トレーニング方針までを定めた本基本方針の中核章です。</p>
+
+          <h3 class="wf-sub-title">基本構造</h3>
+
+          <div class="wf-accordion is-open">
+            <div class="wf-accordion-head">
+              <span class="wf-accordion-head-num">第13条</span>
+              <span style="flex:1;">経営の監督と執行</span>
+              <span class="wf-accordion-icon">−</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <ol class="num-paren">
+                <li>取締役及び執行役は、それぞれの株主に対する受託者責任を認識し、ステークホルダーとの適切な協働を確保しつつ、会社及び株主共同の利益のために行動する。</li>
+                <li>指名委員会等設置会社を採用することにより、経営の監督と執行の分離を徹底し、監督と執行を車の両輪と位置づけ、両機能の強化を図る。</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="wf-accordion">
+            <div class="wf-accordion-head">
+              <span class="wf-accordion-head-num">第14条</span>
+              <span style="flex:1;">取締役会の役割及び責務</span>
+              <span class="wf-accordion-icon">＋</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <ol class="num-paren">
+                <li>経営の監督機能を発揮することにより、当社の持続的成長、企業価値の向上を実現していく。執行役の適切なリスクテイクを支援する。</li>
+                <li>戦略的な方向付けを主要な役割と考え、経営の基本方針等の建設的な議論に十分な時間を投入する。</li>
+                <li>業務の決定を執行役に大幅に委任して機動的な業務執行を図る。</li>
+                <li>中期経営計画を策定。執行役は目標達成に最善の努力を行い、取締役会は推進状況の報告を受け助言を行う。</li>
+                <li>サステナビリティを巡る取り組みに関する基本方針を策定。経営資源の配分や事業の選択と集中に関する戦略の実行を実効的に監督する。</li>
+                <li>客観的な立場から執行役に対する実効性の高い監督を行いつつ、会社業績及び個人業績を適切に評価。</li>
+                <li>指名委員会による代表執行役社長の後継者計画の監督を踏まえ、次期代表執行役社長を選任する。</li>
+                <li>代表執行役社長の資格要件を充たさなくなる重大な事象が生じた時は、必要に応じ、指名委員会や監査委員会の意見を聴取した後、慎重に審議のうえ、解職の是非を判断する。</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="wf-accordion">
+            <div class="wf-accordion-head">
+              <span class="wf-accordion-head-num">第15条</span>
+              <span style="flex:1;">取締役会の構成、規模と多様性</span>
+              <span class="wf-accordion-icon">＋</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <ol class="num-paren">
+                <li>定款の定める取締役の人数の範囲内で取締役会を構成。</li>
+                <li>経営の透明性及び監督の客観性を確保するため、取締役総数の過半数を独立社外取締役とする。</li>
+                <li>独立社外取締役との連携及び執行役との連絡・調整を強化するため、執行役を兼務しない社内取締役を1名以上置く。</li>
+                <li>経営上重要な意思決定における審議をより充実させるため、代表執行役社長の他、主要な職務を担当する執行役数名を取締役とする。</li>
+                <li>知識・経験・能力をバランス良く備えることを最優先とし、ジェンダー、国際性、職歴、年齢等を含む多様性に考慮した取締役会構成とする。</li>
+              </ol>
+              <div class="related-links">
+                <span class="related-links-label">＜関連情報＞</span>
+                <span class="wf-link">別紙８　取締役選任基準</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="wf-accordion">
+            <div class="wf-accordion-head">
+              <span class="wf-accordion-head-num">第16条</span>
+              <span style="flex:1;">取締役会議長</span>
+              <span class="wf-accordion-icon">＋</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <p>取締役会議長は原則、独立社外取締役から選定される。実効性評価の結果も活かしつつ、自由闊達で建設的な議論及び意見交換を尊ぶ気風の醸成に努める。</p>
+            </div>
+          </div>
+
+          <div class="wf-accordion">
+            <div class="wf-accordion-head">
+              <span class="wf-accordion-head-num">第17条</span>
+              <span style="flex:1;">独立社外取締役</span>
+              <span class="wf-accordion-icon">＋</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <div class="gov-h4">期待する5つの役割</div>
+              <ol>
+                <li>取締役会の重要な意思決定への参画とプロセスの監督</li>
+                <li>経営方針・経営計画の策定、経営執行状況の報告に対する助言</li>
+                <li>当社及び株主と経営陣等との間の利益相反の監督</li>
+                <li>株主の保護及び株主共同の利益のための経営監督</li>
+                <li>指名・監査・報酬の各委員会委員としての職務を通じた経営監督</li>
+              </ol>
+              <p>独立社外取締役の候補者選定にあたり、独立性を最も重要なファクターと考え、「社外取締役の独立性基準」（別紙９）を指名委員会において定める。十分な時間が確保できることを必要要件とし、他の上場会社役員の兼任数等を考慮する。</p>
+            </div>
+          </div>
+
+          <div class="wf-accordion">
+            <div class="wf-accordion-head">
+              <span class="wf-accordion-head-num">第18条</span>
+              <span style="flex:1;">執行役</span>
+              <span class="wf-accordion-icon">＋</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <ol class="num-paren">
+                <li>執行役は取締役会決議により委任を受けた業務の決定と業務の執行にあたる。</li>
+                <li>代表執行役社長は、執行役選定基準に基づいて毎年次期執行役選定案を作成し、取締役会に提案する。</li>
+                <li>取締役会から執行役へ大幅に権限委譲することにより、意思決定の迅速化を図る。</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="wf-accordion">
+            <div class="wf-accordion-head">
+              <span class="wf-accordion-head-num">第19条</span>
+              <span style="flex:1;">内部統制システムの構築</span>
+              <span class="wf-accordion-icon">＋</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <p>取締役会は、会社法が規定する「業務の適正を確保するための体制の整備に関する事項」（別紙１０）に関して、体制の適切性、運用の有効性等の点から毎年レビューし、必要な場合は改定を審議及び決定し、事業報告に体制の整備及び運用状況に関する事項を開示する。</p>
+            </div>
+          </div>
+
+          <h3 class="wf-sub-title" style="margin-top:32px; padding-top:20px; border-top:1px solid var(--c-border-s);">三委員会・コーポレートガバナンス委員会</h3>
+
+          <div class="wf-accordion">
+            <div class="wf-accordion-head">
+              <span class="wf-accordion-head-num">第20条</span>
+              <span style="flex:1;">指名委員会</span>
+              <span class="wf-accordion-icon">＋</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <ol class="num-paren">
+                <li>「指名委員会が取締役候補者の指名を行う際の方針と手続」（別紙７）、「取締役選任基準」（別紙８）を定め、株主総会に提出する取締役の選任及び解任議案の内容を決定。</li>
+                <li>委員長は、独立社外取締役である指名委員の中から選定。</li>
+                <li>取締役候補者の選定プロセスにおいて、多様性及び規模・三委員会の編成等を考慮の上、妥当性をチェック。スキル・マトリックスを決定。</li>
+                <li>代表執行役社長から後継者計画の報告を受け、必要な監督を行う。</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="wf-accordion">
+            <div class="wf-accordion-head">
+              <span class="wf-accordion-head-num">第21条</span>
+              <span style="flex:1;">監査委員会</span>
+              <span class="wf-accordion-icon">＋</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <ol class="num-paren">
+                <li>取締役及び執行役の職務の執行の監査、監査報告の作成、株主総会に提出する会計監査人の選任・解任・不再任の議案の内容を決定。</li>
+                <li>財務・会計に関する十分な知見を有する者を1名以上監査委員に選定。</li>
+                <li>経営執行経験と高度な情報収集力を有する常勤の社内取締役を監査委員に選定し、調査を担当させる。</li>
+                <li>委員長は、独立社外取締役である監査委員の中から選定。</li>
+                <li>常勤の使用人を配置した監査委員会室を設置。</li>
+                <li>適時経営監査室から直接報告を受け、必要な事項を取締役会に報告。</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="wf-accordion">
+            <div class="wf-accordion-head">
+              <span class="wf-accordion-head-num">第22条</span>
+              <span style="flex:1;">報酬委員会</span>
+              <span class="wf-accordion-icon">＋</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <ol class="num-paren">
+                <li>取締役及び執行役が受ける個人別の報酬等の内容を決定。</li>
+                <li>委員長は、独立社外取締役である報酬委員の中から選定。</li>
+                <li>取締役・執行役各々の役割に相応しい報酬体系に区分するとともに、中長期業績との連動並びに現金報酬及び自社株報酬の組み合わせを考慮した「取締役及び執行役の報酬決定方針」（別紙５）を定める。</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="wf-accordion">
+            <div class="wf-accordion-head">
+              <span class="wf-accordion-head-num">第23条</span>
+              <span style="flex:1;">コーポレートガバナンス委員会</span>
+              <span class="wf-accordion-icon">＋</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <p>取締役会傘下の専門委員会として、当社のコーポレートガバナンスの全体設計、及び運用の継続的な改善に係る事項について検討。決議が必要と判断された事項については、その原案を策定し、取締役会または法定三委員会に提案する。委員長は、独立社外取締役であるコーポレートガバナンス委員の中から選定。</p>
+              <p class="gov-note">※2025年6月をもって活動休止。必要性が認められた場合は速やかに活動を再開する。</p>
+            </div>
+          </div>
+
+          <h3 class="wf-sub-title" style="margin-top:32px; padding-top:20px; border-top:1px solid var(--c-border-s);">取締役会の運営・支援・育成</h3>
+
+          <div class="wf-accordion">
+            <div class="wf-accordion-head">
+              <span class="wf-accordion-head-num">第24条</span>
+              <span style="flex:1;">審議の活性化</span>
+              <span class="wf-accordion-icon">＋</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <ol>
+                <li>取締役会議長は年間開催スケジュールを適切な時期に作成し、各取締役に通知。</li>
+                <li>年間開催回数、各取締役会の議題数及び所要時間を適切に設定し、審議の時間を十分確保。</li>
+                <li>重要な議題では資料を事前に配付するとともに、必要に応じて事前説明を行う。</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="wf-accordion">
+            <div class="wf-accordion-head">
+              <span class="wf-accordion-head-num">第25条</span>
+              <span style="flex:1;">独立社外取締役のみの会合</span>
+              <span class="wf-accordion-icon">＋</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <p>独立社外取締役議長は、独立した客観的な立場に基づく意見交換や認識の共有化を行うことで、取締役会での議論をより深化させる好循環を生みだすことを目的に、必要性がある場合、独立社外取締役のみで構成する会合を開催する。</p>
+            </div>
+          </div>
+
+          <div class="wf-accordion">
+            <div class="wf-accordion-head">
+              <span class="wf-accordion-head-num">第26条</span>
+              <span style="flex:1;">取締役会等の実効性評価</span>
+              <span class="wf-accordion-icon">＋</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <p>取締役会は、取締役会及び委員会の構成、議題、運営等に関して、各取締役の自己評価を含むアンケートを毎年実施し、取締役会全体の実効性について分析・評価を行い、課題を抽出し、必要に応じ改善を図る。なお、その結果については概要を開示する。</p>
+            </div>
+          </div>
+
+          <div class="wf-accordion">
+            <div class="wf-accordion-head">
+              <span class="wf-accordion-head-num">第27条</span>
+              <span style="flex:1;">取締役への支援体制</span>
+              <span class="wf-accordion-icon">＋</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <ol class="num-paren">
+                <li>取締役会並びに指名委員会、報酬委員会及びコーポレートガバナンス委員会の事務局を担当する取締役会室を設置し、常勤の使用人を配置。</li>
+                <li>独立社外取締役を含む取締役が必要と考える場合には、執行役が顧問契約等を締結している者とは別の外部の専門家から助言を得られるよう予算を確保して運用する。</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="wf-accordion">
+            <div class="wf-accordion-head">
+              <span class="wf-accordion-head-num">第28条</span>
+              <span style="flex:1;">取締役のトレーニング方針</span>
+              <span class="wf-accordion-icon">＋</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <ol class="num-paren">
+                <li>新任取締役の知識、経験等の実状に合わせてトレーニングの必要性を確認し、必要な場合はその機会を適宜提供。</li>
+                <li>新任の独立社外取締役には就任に当たり当社グループの組織、事業及び財務をはじめ、中期経営計画の内容及び進捗状況などの情報提供を行う。</li>
+                <li>独立社外取締役には当社各事業の開発、生産、販売及びサービス等の現場への視察を実施し、担当の執行役から最新の情報提供を行う。</li>
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             F: 第5章 株主を含む資本市場との対話
+        ============================================================ -->
+        <section class="wf-section bg-sub" id="ch5">
+          <span class="wf-section-marker">F</span>
+          <h2 class="wf-section-title">第５章　株主を含む資本市場との対話</h2>
+          <p class="wf-section-desc">建設的な対話の促進方針、経営戦略・経営計画の策定・公表方針について定めています。</p>
+
+          <div class="wf-accordion is-open">
+            <div class="wf-accordion-head">
+              <span class="wf-accordion-head-num">第29条</span>
+              <span style="flex:1;">建設的な対話に関する方針</span>
+              <span class="wf-accordion-icon">−</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <p>「株主を含む資本市場との建設的な対話に関する方針」（別紙１１）を定め、株主を含む資本市場との建設的な対話を促進し、これにより当社の持続的な成長と中期的な企業価値の向上に資するよう積極的なIR活動に努める。</p>
+            </div>
+          </div>
+
+          <div class="wf-accordion">
+            <div class="wf-accordion-head">
+              <span class="wf-accordion-head-num">第30条</span>
+              <span style="flex:1;">経営戦略や経営計画の策定・公表</span>
+              <span class="wf-accordion-icon">＋</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <ol class="num-paren">
+                <li>経営計画の策定・公表に当たり、中長期的な収益・資本効率等に関する目標を提示し、それに向けた戦略・施策および資本政策について示すとともに、経営資源への投資・配分や非財務情報（サステナビリティ・無形資産）についても説明する。</li>
+                <li>収益性・成長性及び資本効率、戦略適合性などをもとに事業ポートフォリオを最適化するとともに、その状況を適宜説明する。</li>
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             G: 別紙一覧（11種）
+        ============================================================ -->
+        <section class="wf-section bg-white" id="annex">
+          <span class="wf-section-marker">G</span>
+          <h2 class="wf-section-title">別紙一覧</h2>
+          <p class="wf-section-desc">本基本方針に紐付く11の別紙を、いずれも初期非表示のアコーディオンで集約しています。クリックで全文を展開いただけます。</p>
+
+          <div class="wf-accordion">
+            <div class="wf-accordion-head">
+              <span class="gov-annex-badge">別紙1</span>
+              <span style="flex:1;">資本政策の基本的な方針</span>
+              <span class="wf-accordion-icon">＋</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <p>キャッシュ・フロー創出力の強化と資本効率（ROE・ROIC）の向上を重視し、「成長投資の実施」「財務基盤の強化」「株主還元の充実」の最適バランスを目指した資本政策を推進。</p>
+              <ol>
+                <li><strong>資本効率の向上</strong>：資本コストを安定的に上回るROE・ROICの向上を目指す。当期純利益率の改善、KM-ROIC及び投下資本収益という独自指標を設定。</li>
+                <li><strong>株主還元の充実</strong>：配当を基本として利益還元の充実に努める。自己株式の取得については、当社の財務状況や株価の推移等も勘案しつつ判断。</li>
+                <li><strong>財務健全性の担保</strong>：財務ガバナンスの強化、財務リスクの最小化、資金効率の向上、株主資本の充実。</li>
+              </ol>
+              <p class="gov-note">最終更新：2023年6月20日</p>
+            </div>
+          </div>
+
+          <div class="wf-accordion">
+            <div class="wf-accordion-head">
+              <span class="gov-annex-badge">別紙2</span>
+              <span style="flex:1;">政策保有株式に関する方針（縮減方針／議決権行使の基準）</span>
+              <span class="wf-accordion-icon">＋</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <ol class="num-paren">
+                <li><strong>縮減方針</strong>：保有の意義・合理性が乏しいと判断される政策保有株式については、適宜株価や市場動向その他の事情を考慮しつつ売却。</li>
+                <li><strong>議決権行使の基準</strong>：定型的・短期的な基準で画一的に賛否を判断するのではなく、投資先企業の経営方針・戦略等を十分検討した上で議案ごとに確認。特に「重要な資産の譲渡」「合併等による株式の異動」「有利発行による第三者割当増資」「敵対的買収防衛策の導入」は慎重に検討。</li>
+              </ol>
+              <p class="gov-note">最終更新：2018年11月22日</p>
+            </div>
+          </div>
+
+          <div class="wf-accordion">
+            <div class="wf-accordion-head">
+              <span class="gov-annex-badge">別紙3</span>
+              <span style="flex:1;">コニカミノルタグループ行動憲章（8項目）</span>
+              <span class="wf-accordion-icon">＋</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <ol>
+                <li>顧客・社会への価値の提供</li>
+                <li>公正・透明な事業活動</li>
+                <li>環境問題への取り組み</li>
+                <li>社会とのコミュニケーションと情報の開示</li>
+                <li>人権の尊重</li>
+                <li>ステークホルダーとの協働</li>
+                <li>人財育成と組織風土醸成</li>
+                <li>責任ある対処</li>
+              </ol>
+              <p class="gov-note">最終更新：2022年4月21日</p>
+            </div>
+          </div>
+
+          <div class="wf-accordion">
+            <div class="wf-accordion-head">
+              <span class="gov-annex-badge">別紙4</span>
+              <span style="flex:1;">コニカミノルタフィロソフィー（経営理念／経営ビジョン／6つのバリュー／お客さまへの約束）</span>
+              <span class="wf-accordion-icon">＋</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <div class="gov-h4">経営理念</div>
+              <p>新しい価値の創造</p>
+              <div class="gov-h4">経営ビジョン</div>
+              <p>Imaging to the People — 2030年を見据えた長期の経営ビジョン</p>
+              <div class="gov-h4">6つのバリュー</div>
+              <p>Open and honest／Customer-centric／Innovative／Passionate／Inclusive and collaborative／Accountable</p>
+              <div class="gov-h4">お客さまへの約束</div>
+              <p>Giving Shape to Ideas</p>
+              <p class="gov-note">最終更新：2024年7月31日</p>
+            </div>
+          </div>
+
+          <div class="wf-accordion">
+            <div class="wf-accordion-head">
+              <span class="gov-annex-badge">別紙5</span>
+              <span style="flex:1;">取締役及び執行役の報酬決定方針</span>
+              <span class="wf-accordion-icon">＋</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <p>社外取締役が過半数を占める報酬委員会において、透明性を確保し公正かつ適正に報酬を決定。</p>
+              <ul>
+                <li>非執行の社内取締役：「固定報酬」＋「株式報酬（中期非業績連動・長期）」</li>
+                <li>社外取締役：役割に応じた「固定報酬」のみ</li>
+                <li>執行役：「固定報酬」＋「年度業績連動金銭報酬」＋「株式報酬（中期業績連動・長期）」</li>
+                <li>執行役社長の報酬構成比目安：固定45：年度業績30：株式25</li>
+                <li>クローバック条項あり（不正・誤りによる業績修正時）</li>
+                <li>2025年4月決議：株式報酬の評価指標としてTSRを導入（評価期間2025年度から）</li>
+              </ul>
+              <p class="gov-note">最終更新：2025年4月28日</p>
+            </div>
+          </div>
+
+          <div class="wf-accordion">
+            <div class="wf-accordion-head">
+              <span class="gov-annex-badge">別紙6</span>
+              <span style="flex:1;">取締役会が執行役の選解任を行う際の方針及び手続</span>
+              <span class="wf-accordion-icon">＋</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <p>「執行役選定基準」を判断基準として、書類・面接による1次審査＋アセスメントを実施。代表執行役及び人事担当執行役で構成される評価会議で執行役候補者群を決定。代表執行役社長が次期執行役選定案を作成し、指名委員会の事前監督を経て取締役会が決議する。</p>
+              <p class="gov-note">最終更新：2019年6月18日</p>
+            </div>
+          </div>
+
+          <div class="wf-accordion">
+            <div class="wf-accordion-head">
+              <span class="gov-annex-badge">別紙7</span>
+              <span style="flex:1;">指名委員会が取締役候補者の指名を行う際の方針及び手続（スキル・マトリックス含む）</span>
+              <span class="wf-accordion-icon">＋</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <p>毎年、取締役会・委員会の構成や選任基準等のレビューから始め、知識・経験・能力のバランス・多様性の観点から審議。</p>
+              <div class="gov-h4">取締役候補者に期待する専門性及び経験（スキル・マトリックス9項目）</div>
+              <ol>
+                <li>上場企業のトップマネジメント</li>
+                <li>グローバル経営（海外ビジネス経験を含む）</li>
+                <li>製造業界／当社事業関連業界</li>
+                <li>技術・研究開発／モノづくり</li>
+                <li>営業／マーケティング</li>
+                <li>財務・会計／投資家目線</li>
+                <li>人財マネジメント</li>
+                <li>ガバナンス／内部統制／法務</li>
+                <li>事業転換／新規事業育成／DX</li>
+              </ol>
+              <p class="gov-note">サステナビリティのスキルは、リスクマネジメント同様、すべての取締役に期待する上位概念。最終更新：2025年7月31日</p>
+            </div>
+          </div>
+
+          <div class="wf-accordion">
+            <div class="wf-accordion-head">
+              <span class="gov-annex-badge">別紙8</span>
+              <span style="flex:1;">取締役選任基準</span>
+              <span class="wf-accordion-icon">＋</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <ol>
+                <li>心身ともに健康であること</li>
+                <li>人望、品格、倫理観を有していること</li>
+                <li>遵法精神に富んでいること</li>
+                <li>経営に関し客観的判断能力を有するとともに、先見性、洞察力に優れていること</li>
+                <li>主要事業分野において経営判断に影響を及ぼすおそれのある利害関係・取引関係がないこと、及び産官学の組織運営経験／専門性を有していること</li>
+                <li>社外取締役については、出身分野での実績と識見、十分な時間確保、必置三委員会のいずれかの委員としての職務遂行資質を有していること</li>
+                <li>社外取締役の在任期間は最長8年（基本6年＋1回限り2年延長可）。4年経過時に指名委員会で確認</li>
+                <li>性別、国籍・出身国・文化的背景、人種・民族などを理由に取締役候補の対象外とすることはない</li>
+              </ol>
+              <p class="gov-note">最終更新：2024年6月18日</p>
+            </div>
+          </div>
+
+          <div class="wf-accordion">
+            <div class="wf-accordion-head">
+              <span class="gov-annex-badge">別紙9</span>
+              <span style="flex:1;">社外取締役の独立性基準</span>
+              <span class="wf-accordion-icon">＋</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <p>以下のいずれにも該当しないことを条件とする。</p>
+              <ol>
+                <li><strong>コニカミノルタグループ関係者</strong>：本人がグループ出身者／過去5年で家族（二親等以内）が役員・経営幹部の場合</li>
+                <li><strong>大口取引先関係者</strong>：いずれかの連結売上高の2%以上を占める取引先の業務執行関係者</li>
+                <li><strong>専門的サービス提供者</strong>：過去2年間に年間500万円以上の報酬を受領する弁護士・会計士・コンサルタント等</li>
+                <li><strong>その他</strong>：10%以上の議決権を保有する株主／取締役の相互派遣／競合企業の役員・3%以上の株式保有／その他の重要な利害関係</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="wf-accordion">
+            <div class="wf-accordion-head">
+              <span class="gov-annex-badge">別紙10</span>
+              <span style="flex:1;">業務の適正を確保するための体制の整備に関する事項（内部統制）</span>
+              <span class="wf-accordion-icon">＋</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <div class="gov-h4">Ⅰ. 監査委員会の職務の執行のために必要な事項</div>
+              <ul>
+                <li>監査委員会室の設置と常勤使用人の配置</li>
+                <li>使用人の人事権に関する監査委員会の事前同意</li>
+                <li>経営監査室・リスクマネジメント委員会・コンプライアンス委員会等からの定期報告</li>
+                <li>必要かつ妥当な額の予算確保</li>
+                <li>主要会議への出席機会の提供</li>
+              </ul>
+              <div class="gov-h4">Ⅱ. 当社グループの業務の適正を確保するための体制</div>
+              <ul>
+                <li>文書管理規則に基づく情報の保存・閲覧管理</li>
+                <li>リスクマネジメント委員会によるリスク管理体制の構築・運用</li>
+                <li>経営監査室による内部監査</li>
+                <li>財務報告に係る内部統制システムの構築・運用</li>
+                <li>グループ行動憲章の周知徹底</li>
+                <li>コンプライアンス委員会／内部通報システム</li>
+                <li>グループ各社の内部統制実効性確保</li>
+                <li>経営組織基本規則・権限規程等</li>
+              </ul>
+              <p class="gov-note">最終更新：2023年6月20日</p>
+            </div>
+          </div>
+
+          <div class="wf-accordion">
+            <div class="wf-accordion-head">
+              <span class="gov-annex-badge">別紙11</span>
+              <span style="flex:1;">株主を含む資本市場との建設的な対話に関する方針</span>
+              <span class="wf-accordion-icon">＋</span>
+            </div>
+            <div class="wf-accordion-body gov-body">
+              <ol>
+                <li>株主を含む資本市場との建設的な対話を促進し、積極的なIR活動に努める。</li>
+                <li>代表執行役社長が中心となり、IR担当の執行役及びIR担当部門が補佐・推進。</li>
+                <li>IR担当部門が中心となり、経理・財務・法務・各事業部門が連携。</li>
+                <li>株主総会を重要な対話の場と位置付け、十分かつ分かり易い情報開示。決算説明会、経営方針説明会、個人投資家向け会社説明会を随時開催。</li>
+                <li>対話で把握された意見・懸念を代表執行役社長から取締役会・経営執行会議等に報告する体制。</li>
+                <li>「企業情報開示委員会」と「グループインサイダー取引防止規程」による情報管理。</li>
+                <li>実質株主判明調査等により実質株主との対話も重視。</li>
+                <li>財務情報に加え、中長期視点での経営の考え方、ESG情報、独立社外取締役からの情報発信を充実。</li>
+              </ol>
+              <p class="gov-note">最終更新：2024年7月31日</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             H: 改定履歴・関連コンテンツ
+        ============================================================ -->
+        <section class="wf-section bg-sub" id="history">
+          <span class="wf-section-marker">H</span>
+          <h2 class="wf-section-title">改定履歴</h2>
+          <table class="gov-history">
+            <thead><tr><th style="width:90px;">No.</th><th style="width:200px;">日付</th><th>区分</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>2015年9月25日</td><td>制定</td></tr>
+              <tr><td>2</td><td>2018年11月22日</td><td>改定</td></tr>
+              <tr><td>3</td><td>2019年6月18日</td><td>改定</td></tr>
+              <tr><td>4</td><td>2021年11月25日</td><td>改定</td></tr>
+              <tr><td>5</td><td>2022年5月12日</td><td>改定</td></tr>
+              <tr><td>6</td><td>2023年6月20日</td><td>改定</td></tr>
+              <tr><td>7</td><td>2024年2月27日</td><td>改定</td></tr>
+              <tr><td>8</td><td>2024年7月31日</td><td>改定</td></tr>
+              <tr><td>9</td><td>2024年11月27日</td><td>改定</td></tr>
+              <tr><td>10</td><td>2025年7月31日</td><td>最終改定</td></tr>
+            </tbody>
+          </table>
+          <div style="margin-top:16px;">
+            <span class="wf-link">PDFダウンロード（governance_01.pdf）</span>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             I: 関連コンテンツ
+        ============================================================ -->
+        <section class="wf-section bg-white" id="related">
+          <span class="wf-section-marker">I</span>
+          <h2 class="wf-section-title">関連コンテンツ</h2>
+          <div class="data-card-grid">
+            <div class="data-card"><div class="data-card-title">コーポレートガバナンス</div><p class="data-card-desc">体制図・取締役一覧・委員会構成など、ガバナンスの実装状況を解説します。</p></div>
+            <div class="data-card"><div class="data-card-title">サステナビリティマネジメント</div><p class="data-card-desc">マテリアリティ特定プロセスやサステナビリティ推進体制を解説します。</p></div>
+            <div class="data-card"><div class="data-card-title">コンプライアンス</div><p class="data-card-desc">コンプライアンス推進体制・内部通報システムの運用状況を紹介します。</p></div>
+          </div>
+        </section>
+
+        <!-- フッター -->
+        <footer class="wf-footer">
+          <div class="wf-footer-note">フッターは既確定。変更なし。</div>
+          <div class="wf-footer-grid">
+            <div><div class="wf-footer-col-title">企業情報</div><span class="wf-footer-link">企業情報トップ</span><span class="wf-footer-link">Newsroom</span></div>
+            <div><div class="wf-footer-col-title">環境</div><span class="wf-footer-link">気候変動</span><span class="wf-footer-link">資源循環</span></div>
+            <div><div class="wf-footer-col-title">社会</div><span class="wf-footer-link">人材戦略</span><span class="wf-footer-link">DE&amp;I</span></div>
+            <div><div class="wf-footer-col-title">ガバナンス</div><span class="wf-footer-link">コーポレートガバナンス</span><span class="wf-footer-link">コンプライアンス</span></div>
+          </div>
+          <div class="wf-footer-bottom"><div>サイトのご利用について ｜ 個人情報保護方針 ｜ サイトマップ</div><div>&copy;2011-2026 Konica Minolta, Inc.</div></div>
+        </footer>
+
+      </div><!-- /wf-anchornav-main -->
+
+      <!-- 右アンカーリンク（sticky追従） -->
+      <nav class="wf-anchor-nav">
+        <div class="wf-anchor-nav-title">目次</div>
+        <a class="wf-anchor-nav-item is-current" href="#intro">序章 基本的な考え方</a>
+        <a class="wf-anchor-nav-item" href="#ch1">第1章 株主の権利・平等性</a>
+        <a class="wf-anchor-nav-item" href="#ch2">第2章 ステークホルダー協働</a>
+        <a class="wf-anchor-nav-item" href="#ch3">第3章 情報開示と透明性</a>
+        <a class="wf-anchor-nav-item" href="#ch4">第4章 取締役会等の責務</a>
+        <a class="wf-anchor-nav-item" href="#ch5">第5章 資本市場との対話</a>
+        <a class="wf-anchor-nav-item" href="#annex">別紙一覧（11種）</a>
+        <a class="wf-anchor-nav-item" href="#history">改定履歴</a>
+        <a class="wf-anchor-nav-item" href="#related">関連コンテンツ</a>
+      </nav>
+
+    </div><!-- /wf-layout-with-anchornav -->
+
+  </div><!-- /wf-page -->
+
+  <!-- アノテーション -->
+  <aside class="wf-annotation">
+    <h3>設計ポイント — コーポレートガバナンス基本方針 v4.4</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">A</span>
+      <span class="ann-head">序章：常時表示で全体像を即時把握</span>
+      <div class="ann-row"><span class="ann-row-label">ターゲット</span>機関投資家・第三者評価機関：基本姿勢の即時確認。一般株主：方針の俯瞰。</div>
+      <div class="ann-row"><span class="ann-row-label">既存内容との対応</span>原文の序章テキストを完全踏襲。「ガバナンス体制に関する基本的な考え方」の3項目はカード化、「取締役会及び委員会の構成」は通常の見出し＋リスト形式で構造化（汎用見出しモジュールで他ページとも共通化）。</div>
+      <p class="ann-body">ファーストビューで「序章」「カード」までを表示。次章以降の見通しを右アンカーナビで瞬時に把握できる構成。</p>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">B〜F</span>
+      <span class="ann-head">第1〜5章：条文単位でアコーディオン化</span>
+      <div class="ann-row"><span class="ann-row-label">アクセシビリティ</span>各条文の冒頭にバッジ（第1条 等）を配置。タイトルは原文条タイトルそのまま。条文番号 + タイトルで「探したい条文」へ即到達可能。</div>
+      <div class="ann-row"><span class="ann-row-label">初期表示状態</span>各章の「先頭1条のみ開」「以降閉」がデフォルト。31条構成の長文ドキュメントを、スクロール量1/4以下に圧縮。</div>
+      <p class="ann-body">章の冒頭にh3「基本構造」「三委員会」「運営・支援・育成」のグルーピング見出し（第4章のみ）を入れて条文間を意味ブロックで整理。</p>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">G</span>
+      <span class="ann-head">別紙一覧：11種をすべて閉アコーディオンで集約</span>
+      <div class="ann-row"><span class="ann-row-label">設計判断</span>原PDFでは別紙が後半11ページを占める。本WFでは1セクションに集約しタイトル＋badgeで一覧化。必要な別紙のみ展開する運用へ。</div>
+      <p class="ann-body">各別紙の最終更新日を末尾に明示することで、本則と別紙の改訂時系列を追える。</p>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">H・I</span>
+      <span class="ann-head">改定履歴 + 関連コンテンツへの横移動</span>
+      <div class="ann-row"><span class="ann-row-label">情報の到達性</span>10回の改定履歴をシンプルなテーブルで提示。最終ブロックでコーポレートガバナンス本体・サステナビリティマネジメント・コンプライアンスへ横移動を促す。</div>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">★</span>
+      <span class="ann-head">右アンカーナビ（G モジュール）：9項目で章構造を反映</span>
+      <div class="ann-row"><span class="ann-row-label">採用モジュール</span>035_tcfd.html と同一の wf-anchor-nav。stickyで常時追従。serif的英訳ではなく日本語の章タイトルで親しみを担保。</div>
+      <p class="ann-body">原PDFでは「全体を順読み」しないと到達しなかった任意の章へ、ワンクリックで到達可能に。</p>
+    </div>
+
+    <div class="ann-item" style="background:#FDF0F0; padding:12px; border-radius:4px; border-left:3px solid #E74C3C;">
+      <span class="ann-head" style="font-size:10px; color:#E74C3C;">ファーストビュー（1280×800）</span>
+      <div style="font-size:9px; color:#666; line-height:1.6;">
+        赤破線 = PC標準画面（1280×800px）でのファーストビュー境界。<br><br>
+        <strong>スクロールなしで見える範囲：</strong><br>
+        ・パンくず＋ページタイトル「コーポレートガバナンス基本方針」<br>
+        ・序章 h2見出し＋導入テキスト<br>
+        ・基本的な考え方カード（3項目）<br>
+        ・右アンカーナビ（目次9項目）が常時表示<br><br>
+        ※ WF管理バー（36px sticky）は実装時に消えるため、実際は更に下まで見える想定。
+      </div>
+    </div>
+
+    <div class="ann-item" style="background:#F8F5E8; padding:12px; border-radius:4px;">
+      <span class="ann-head" style="font-size:10px; color:#888;">採用モジュール</span>
+      <div style="font-size:9px; color:#666; line-height:1.6;">
+        <strong>共通モジュール（カタログ準拠）</strong><br>
+        ・A: wf-page-title（h1 28px）<br>
+        ・wf-section-title（h2 20px）／wf-sub-title（h3 15px・黒帯左ボーダー）<br>
+        ・G: wf-anchor-nav（右側sticky）<br>
+        ・H: wf-accordion（基本／開時白）<br>
+        ・F: gov-history（シンプル表）<br>
+        ・E: data-card-grid（関連コンテンツ3カラム）<br>
+        ・D: wf-link / related-links<br><br>
+        <strong>本ページ固有要素</strong><br>
+        ・gov-annex-badge（別紙ナンバリング）<br>
+        ・wf-accordion-head-num（条文ナンバリング）<br>
+        ・gov-annex-badge ＋ wf-accordion-head-num（条文／別紙ナンバリング）
+      </div>
+    </div>
+
+  </aside>
+
+</div>
+</body>
+</html>

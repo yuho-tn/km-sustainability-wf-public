@@ -1,0 +1,3215 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>気候変動 — KM サステナビリティ WF v1.0</title>
+<style>
+/* ============================================================
+   KM SUSTAINABILITY WF — SHARED CSS v3.0
+   すべてのWF HTMLファイルの <style> タグにこのブロックを含めること
+   参照：TOPワイヤーフレーム案.png / ベンチマーク：オムロン・リコー
+============================================================ */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  /* グレースケール */
+  --c-white:    #FFFFFF;
+  --c-bg:       #F7F7F7;   /* ページ背景 */
+  --c-bg-sub:   #F2F2F2;   /* セクション背景（薄グレー） */
+  --c-border:   #E0E0E0;   /* 標準ボーダー */
+  --c-border-s: #E8E8E8;   /* 薄いセクション区切り */
+  --c-ph:       #EBEBEB;   /* 画像PH背景 */
+  --c-ph-line:  #D8D8D8;   /* テキストラインPH */
+  --c-text-h:   #111111;   /* 見出し */
+  --c-text:     #333333;   /* 本文 */
+  --c-text-s:   #666666;   /* サブテキスト */
+  --c-text-xs:  #999999;   /* 注記・ラベル */
+  --c-black:    #111111;   /* ボタン塗り・強調 */
+
+  /* アノテーション */
+  --c-ann-bg:   #FFFBF0;
+  --c-ann-bdr:  #C8A000;
+
+  /* レイアウト */
+  --content-w:  1080px;    /* コンテンツ最大幅 */
+  --page-w:     1280px;    /* ページ最大幅 */
+  --pad-section: 52px;     /* セクション上下パディング（標準） */
+  --pad-section-sm: 32px;  /* セクション上下パディング（コンパクト） */
+  --pad-h: 100px;          /* コンテンツ左右パディング */
+}
+
+body {
+  font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--c-text);
+  background: var(--c-bg);
+}
+
+/* ============================================================
+   META / 管理バー（WF管理用・印刷時非表示）
+============================================================ */
+.wf-meta-bar {
+  background: #111;
+  color: #ccc;
+  font-size: 11px;
+  padding: 8px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 2000;
+  letter-spacing: 0.03em;
+}
+.wf-meta-bar strong { color: #fff; font-size: 12px; }
+.wf-meta-bar .meta-badge {
+  background: #333;
+  color: #aaa;
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 2px;
+  margin-left: 8px;
+}
+
+/* ============================================================
+   LAYOUT：WFページ全体
+============================================================ */
+.wf-canvas {
+  max-width: var(--page-w);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  align-items: start;
+}
+.wf-page {
+  background: var(--c-white);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.10);
+  min-height: 100vh;
+}
+.wf-content-wrap {
+  max-width: var(--content-w);
+  margin: 0 auto;
+  padding: 0 var(--pad-h);
+}
+
+/* ============================================================
+   HEADER（確定済み・変更不可）
+============================================================ */
+.wf-header {
+  background: var(--c-white);
+  border-bottom: 1px solid var(--c-border);
+}
+.wf-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 32px;
+  border-bottom: 1px solid var(--c-border-s);
+}
+.wf-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.wf-logo-mark {
+  width: 32px;
+  height: 21px;
+  background: #555;
+  border-radius: 50% 50% 0 50%;
+}
+.wf-logo-text {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.wf-header-utils {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 11px;
+  color: var(--c-text-s);
+}
+.wf-gnav {
+  display: flex;
+  align-items: stretch;
+  padding: 0 32px;
+}
+.wf-gnav-item {
+  padding: 11px 16px;
+  font-size: 12px;
+  color: var(--c-text-s);
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+}
+.wf-gnav-item.is-active {
+  color: var(--c-text-h);
+  font-weight: 700;
+  border-bottom-color: var(--c-text-h);
+}
+.wf-lnav {
+  background: #3A3A3A;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0 32px;
+}
+.wf-lnav-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  padding: 10px 16px 10px 0;
+  margin-right: 8px;
+  border-right: 1px solid #555;
+  white-space: nowrap;
+}
+.wf-lnav-item {
+  font-size: 11px;
+  color: #BBB;
+  padding: 10px 14px;
+  white-space: nowrap;
+}
+.wf-lnav-item.is-active {
+  color: #fff;
+  border-bottom: 2px solid #fff;
+}
+.wf-header-note {
+  background: #F0F0F0;
+  text-align: center;
+  font-size: 10px;
+  color: #888;
+  padding: 4px 24px;
+  border-top: 1px solid #E0E0E0;
+}
+
+/* ============================================================
+   BREADCRUMB
+============================================================ */
+.wf-breadcrumb {
+  background: var(--c-white);
+  border-bottom: 1px solid var(--c-border-s);
+  padding: 10px var(--pad-h);
+  font-size: 12px;
+  color: var(--c-text-s);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.wf-breadcrumb span.sep { color: var(--c-border); }
+.wf-breadcrumb span.current { color: var(--c-text); }
+
+/* ============================================================
+   PAGE INDICATOR（WF管理用）
+============================================================ */
+.wf-page-indicator {
+  background: #2A2A2A;
+  color: #aaa;
+  padding: 6px 32px;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.wf-page-indicator .pi-layer {
+  background: #444;
+  color: #888;
+  font-size: 9px;
+  padding: 1px 8px;
+  border-radius: 2px;
+}
+
+/* ============================================================
+   PAGE HERO（ページタイトルエリア）
+   WFイメージ：左にh1、右に画像PH
+============================================================ */
+.wf-page-hero {
+  background: var(--c-white);
+  border-bottom: 1px solid var(--c-border-s);
+  padding: 32px var(--pad-h) 0;
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 24px;
+  align-items: end;
+}
+.wf-page-hero-copy {
+  padding-bottom: 32px;
+}
+.wf-page-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  line-height: 1.2;
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+.wf-page-title-note {
+  font-size: 11px;
+  color: var(--c-text-xs);
+  margin-top: 4px;
+}
+.wf-page-hero-img {
+  /* 画像PHはセクションの高さに合わせる */
+  align-self: stretch;
+  min-height: 140px;
+}
+
+/* ============================================================
+   SECTION（共通構造）
+   WFイメージ：十分な上下余白 / 1セクション1テーマ
+============================================================ */
+.wf-section {
+  padding: var(--pad-section) var(--pad-h);
+  border-bottom: 1px solid var(--c-border-s);
+  position: relative;
+}
+.wf-section.bg-sub { background: var(--c-bg-sub); }
+.wf-section.bg-white { background: var(--c-white); }
+.wf-section.pad-sm {
+  padding-top: var(--pad-section-sm);
+  padding-bottom: var(--pad-section-sm);
+}
+
+/* セクションマーカー（WF管理用 A/B/C...バッジ） */
+.wf-section-marker {
+  position: absolute;
+  top: 12px;
+  left: 8px;
+  width: 22px;
+  height: 22px;
+  background: #222;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0;
+}
+
+/* セクション見出し（h2） */
+.wf-section-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  margin-bottom: 20px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+/* 中央揃えセクション見出し（TOPページのキャッチコピー等） */
+.wf-section-title.center {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+/* セクション説明文（h2直下の本文） */
+.wf-section-desc {
+  font-size: 13px;
+  color: var(--c-text-s);
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+.wf-section-desc.center { text-align: center; }
+
+/* サブ見出し（h3）— 左ボーダー付き */
+.wf-sub-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  margin-bottom: 12px;
+  line-height: 1.4;
+  padding-left: 14px;
+  border-left: 4px solid var(--c-black);
+}
+
+/* カード内見出し（h4） */
+.wf-card-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+/* ============================================================
+   IMAGE PLACEHOLDER
+   WFイメージ：薄グレー矩形、軽めのハッチング
+============================================================ */
+.wf-img {
+  background: var(--c-ph);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* 軽めのハッチング（WFイメージに準拠：細い斜線） */
+.wf-img::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent 0px,
+    transparent 10px,
+    rgba(0,0,0,0.04) 10px,
+    rgba(0,0,0,0.04) 11px
+  );
+}
+.wf-img-label {
+  position: relative;
+  z-index: 1;
+  font-size: 11px;
+  color: var(--c-text-xs);
+  text-align: center;
+  line-height: 1.5;
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.75);
+}
+/* よく使うサイズのユーティリティ */
+.wf-img.h-80  { height: 80px; }
+.wf-img.h-120 { height: 120px; }
+.wf-img.h-160 { height: 160px; }
+.wf-img.h-200 { height: 200px; }
+.wf-img.h-240 { height: 240px; }
+.wf-img.ratio-16-9::before { padding-top: 56.25%; }
+/* 画像キャプション（写真下の説明文） */
+.wf-img-caption {
+  font-size: 11px;
+  color: var(--c-text-xs);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   TEXT LINE PLACEHOLDER
+   WFイメージ：グレーの横棒でテキストを模す
+============================================================ */
+.wf-textlines { display: flex; flex-direction: column; gap: 8px; }
+.wf-line {
+  height: 10px;
+  background: var(--c-ph-line);
+  border-radius: 3px;
+}
+.wf-line.w-full  { width: 100%; }
+.wf-line.w-90    { width: 90%; }
+.wf-line.w-75    { width: 75%; }
+.wf-line.w-60    { width: 60%; }
+.wf-line.w-45    { width: 45%; }
+/* 見出し用（少し太く・濃く） */
+.wf-line.h-title {
+  height: 14px;
+  background: #C0C0C0;
+}
+
+/* ============================================================
+   CARD
+   WFイメージ：白背景、細い枠線、内側20px余白
+============================================================ */
+.wf-card {
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  padding: 20px;
+}
+/* グリッドレイアウト */
+.wf-grid { display: grid; gap: 16px; }
+.wf-grid.col-2 { grid-template-columns: repeat(2, 1fr); }
+.wf-grid.col-3 { grid-template-columns: repeat(3, 1fr); }
+.wf-grid.col-4 { grid-template-columns: repeat(4, 1fr); }
+.wf-grid.col-2-1 { grid-template-columns: 2fr 1fr; }
+.wf-grid.col-1-2 { grid-template-columns: 1fr 2fr; }
+.wf-grid.col-1-1-1-2 { grid-template-columns: 1fr 1fr 1fr 2fr; }
+/* gap variants */
+.wf-grid.gap-24 { gap: 24px; }
+.wf-grid.gap-32 { gap: 32px; }
+
+/* カードカテゴリタグ */
+.wf-card-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--c-text-s);
+  border: 1px solid var(--c-border);
+  padding: 2px 8px;
+  margin-bottom: 10px;
+  letter-spacing: 0.04em;
+}
+
+/* ============================================================
+   KPI / 数値表示
+============================================================ */
+/* KPIストリップ：主要数値を横並びに */
+.wf-kpi-strip {
+  display: grid;
+  border: 1px solid var(--c-border);
+  background: var(--c-white);
+}
+.wf-kpi-strip.col-3 { grid-template-columns: repeat(3, 1fr); }
+.wf-kpi-strip.col-4 { grid-template-columns: repeat(4, 1fr); }
+.wf-kpi-item {
+  padding: 20px 16px;
+  text-align: center;
+  border-right: 1px solid var(--c-border);
+}
+.wf-kpi-item:last-child { border-right: none; }
+.wf-kpi-num {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.wf-kpi-label {
+  font-size: 11px;
+  color: var(--c-text-s);
+  line-height: 1.4;
+}
+.wf-kpi-sub {
+  font-size: 10px;
+  color: var(--c-text-xs);
+  margin-top: 3px;
+}
+
+/* ============================================================
+   GRAPH PLACEHOLDER
+   WFイメージ：グレーのバーグラフ、アニメーションなし
+============================================================ */
+.wf-graph {
+  background: #F8F8F8;
+  border: 1px solid var(--c-border);
+  padding: 16px;
+  position: relative;
+}
+.wf-graph-label {
+  font-size: 10px;
+  color: var(--c-text-xs);
+  margin-bottom: 10px;
+}
+.wf-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 80px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #CCC;
+}
+.wf-bar {
+  flex: 1;
+  background: #AAAAAA;
+  border-radius: 2px 2px 0 0;
+  min-width: 12px;
+}
+.wf-bar.target {
+  background: transparent;
+  border: 1.5px dashed #AAAAAA;
+}
+.wf-bar-year {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+.wf-bar-year span {
+  flex: 1;
+  font-size: 9px;
+  color: var(--c-text-xs);
+  text-align: center;
+}
+/* 折れ線グラフPH */
+.wf-linechart {
+  background: #F8F8F8;
+  border: 1px solid var(--c-border);
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: var(--c-text-xs);
+}
+
+/* ============================================================
+   BUTTON / LINK
+   WFイメージ：シンプルな黒塗り・黒枠線の2種
+============================================================ */
+.wf-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: inherit;
+  padding: 11px 28px;
+  cursor: default;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  border: 1.5px solid var(--c-black);
+}
+.wf-btn.primary {
+  background: var(--c-black);
+  color: var(--c-white);
+}
+.wf-btn.outline {
+  background: var(--c-white);
+  color: var(--c-black);
+}
+.wf-btn.sm {
+  font-size: 11px;
+  padding: 8px 18px;
+}
+.wf-btn.lg {
+  font-size: 13px;
+  padding: 14px 36px;
+}
+/* CTA 2ボタン横並びグループ（WFイメージ：Strategy節に2ボタン並列） */
+.wf-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+/* テキストリンク */
+.wf-link {
+  font-size: 12px;
+  color: var(--c-text-s);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: default;
+  text-decoration: none;
+}
+.wf-link::before { content: '→ '; font-size: 11px; }
+/* 「一覧へ」系リンク（右寄せ配置） */
+.wf-link-more {
+  font-size: 12px;
+  color: var(--c-text-s);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: default;
+}
+.wf-link-more::after { content: ' →'; font-size: 11px; }
+
+/* ============================================================
+   LABEL / BADGE
+============================================================ */
+.wf-label {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--c-text-s);
+  border: 1px solid var(--c-border);
+  padding: 2px 8px;
+  letter-spacing: 0.04em;
+}
+.wf-label.filled {
+  background: #333;
+  color: #fff;
+  border-color: #333;
+}
+/* フィルタバー */
+.wf-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.wf-filter-btn {
+  font-size: 11px;
+  color: var(--c-text-s);
+  border: 1px solid var(--c-border);
+  padding: 4px 14px;
+  cursor: default;
+  background: var(--c-white);
+}
+.wf-filter-btn.active {
+  background: #333;
+  color: #fff;
+  border-color: #333;
+}
+
+/* ============================================================
+   TAB（ESG環境/社会/ガバナンス切替）
+============================================================ */
+.wf-tabs {
+  display: flex;
+  border-bottom: 2px solid var(--c-border);
+  margin-bottom: 24px;
+}
+.wf-tab {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c-text-xs);
+  padding: 10px 24px;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  cursor: default;
+}
+.wf-tab.is-active {
+  color: var(--c-text-h);
+  border-bottom-color: var(--c-text-h);
+}
+
+/* ============================================================
+   TOPICS / NEWS LIST
+   WFイメージ：日付・タグ・タイトルの横並びリスト
+============================================================ */
+.wf-news-list { display: flex; flex-direction: column; }
+.wf-news-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--c-border-s);
+  font-size: 13px;
+  color: var(--c-text);
+}
+.wf-news-date {
+  font-size: 12px;
+  color: var(--c-text-xs);
+  white-space: nowrap;
+  min-width: 80px;
+}
+.wf-news-tag {
+  font-size: 10px;
+  color: var(--c-text-s);
+  border: 1px solid var(--c-border);
+  padding: 1px 7px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.wf-news-title {
+  flex: 1;
+}
+
+/* ============================================================
+   ICON / EXTERNAL EVALUATION
+   WFイメージ：外部評価ロゴのグリッド
+============================================================ */
+.wf-icon-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+}
+.wf-icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.wf-icon-mark {
+  width: 64px;
+  height: 64px;
+  background: var(--c-ph);
+  border: 1px solid var(--c-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  color: var(--c-text-xs);
+  text-align: center;
+}
+.wf-icon-name {
+  font-size: 10px;
+  color: var(--c-text-s);
+  text-align: center;
+  max-width: 72px;
+  line-height: 1.3;
+}
+
+/* ============================================================
+   DATA / DOWNLOAD TILE
+   WFイメージ：データ集のリンクタイル群
+============================================================ */
+.wf-data-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.wf-data-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--c-border);
+  padding: 10px 16px;
+  background: var(--c-white);
+  font-size: 12px;
+  color: var(--c-text);
+  min-width: 180px;
+}
+.wf-data-icon {
+  width: 22px;
+  height: 22px;
+  background: var(--c-ph);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   STRATEGY ROW（戦略テーブル：環境3領域など）
+   WFイメージ：ラベル列 / テキスト列 / KPI・グラフ列 の3カラム行
+============================================================ */
+.wf-strategy-row {
+  display: grid;
+  grid-template-columns: 120px 1fr 200px;
+  border: 1px solid var(--c-border);
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+.wf-strategy-label {
+  background: #3A3A3A;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 16px 8px;
+  line-height: 1.4;
+}
+.wf-strategy-body {
+  padding: 16px;
+  border-left: 1px solid var(--c-border);
+}
+.wf-strategy-kpi {
+  padding: 16px;
+  background: #FAFAFA;
+  border-left: 1px solid var(--c-border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ============================================================
+   SIDENAV（第3階層ローカルナビ）
+============================================================ */
+.wf-layout-with-sidenav {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  align-items: start;
+}
+.wf-sidenav {
+  border-right: 1px solid var(--c-border);
+  background: #FAFAFA;
+  padding: 20px 0;
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+}
+.wf-sidenav-head {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  padding: 0 16px 10px;
+  border-bottom: 1px solid var(--c-border);
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+.wf-sidenav-item {
+  display: block;
+  font-size: 12px;
+  color: var(--c-text-s);
+  padding: 8px 16px;
+  border-bottom: 1px solid #F0F0F0;
+  line-height: 1.4;
+}
+.wf-sidenav-item.is-active {
+  color: var(--c-text-h);
+  font-weight: 700;
+  background: var(--c-white);
+  border-left: 3px solid var(--c-text-h);
+  padding-left: 13px;
+}
+.wf-sidenav-cta {
+  margin: 12px 12px 0;
+}
+
+/* ============================================================
+   FOOTER（確定済み・変更不可）
+============================================================ */
+.wf-footer {
+  background: #F5F5F5;
+  border-top: 1px solid var(--c-border);
+  padding: 32px var(--pad-h) 20px;
+}
+.wf-footer-note {
+  text-align: center;
+  font-size: 10px;
+  color: #999;
+  background: #EBEBEB;
+  border: 1px solid var(--c-border);
+  padding: 6px;
+  margin-bottom: 20px;
+}
+.wf-footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 24px;
+}
+.wf-footer-col-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--c-text);
+  border-bottom: 1px solid var(--c-border);
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+}
+.wf-footer-link {
+  display: block;
+  font-size: 11px;
+  color: var(--c-text-s);
+  padding: 3px 0;
+}
+.wf-footer-bottom {
+  border-top: 1px solid var(--c-border);
+  padding-top: 14px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--c-text-xs);
+}
+
+/* ============================================================
+   ANNOTATION PANEL（設計ポイント）
+============================================================ */
+.wf-annotation {
+  background: var(--c-ann-bg);
+  border-left: 3px solid var(--c-ann-bdr);
+  padding: 16px;
+  position: sticky;
+  top: 0;
+  max-height: 100vh;
+  overflow-y: auto;
+}
+.wf-annotation h3 {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #888;
+  border-bottom: 1px solid var(--c-ann-bdr);
+  padding-bottom: 8px;
+  margin-bottom: 14px;
+}
+.ann-item {
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #EEE;
+}
+.ann-item:last-child { border-bottom: none; }
+.ann-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background: #222;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: 50%;
+  margin-bottom: 5px;
+}
+.ann-head {
+  font-size: 11px;
+  font-weight: 700;
+  color: #222;
+  display: block;
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+/* ターゲット・モジュール・定義書 の各行 */
+.ann-row {
+  font-size: 10px;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 5px;
+  padding-left: 4px;
+  border-left: 2px solid #E0D090;
+}
+.ann-row .ann-row-label {
+  font-weight: 700;
+  color: #888;
+  display: block;
+  font-size: 9px;
+  margin-bottom: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.ann-body {
+  font-size: 10px;
+  color: #555;
+  line-height: 1.6;
+  margin-top: 6px;
+}
+
+/* ============================================================
+   UTILITY
+============================================================ */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.gap-8  { gap: 8px; }
+.gap-12 { gap: 12px; }
+.gap-16 { gap: 16px; }
+.gap-20 { gap: 20px; }
+.gap-24 { gap: 24px; }
+.mt-8  { margin-top: 8px; }
+.mt-12 { margin-top: 12px; }
+.mt-16 { margin-top: 16px; }
+.mt-20 { margin-top: 20px; }
+.mt-24 { margin-top: 24px; }
+.mb-8  { margin-bottom: 8px; }
+.mb-12 { margin-bottom: 12px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-20 { margin-bottom: 20px; }
+.mb-24 { margin-bottom: 24px; }
+.text-right { text-align: right; }
+.text-center { text-align: center; }
+
+/* ============================================================
+   HERO FULLWIDTH（全幅キービジュアル）
+   TOPページ・インデックスページ共通
+============================================================ */
+.wf-hero-fullwidth {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  background: var(--c-ph);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.wf-hero-fullwidth::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent 0px, transparent 10px,
+    rgba(0,0,0,0.04) 10px, rgba(0,0,0,0.04) 11px
+  );
+}
+.wf-hero-fullwidth .wf-hero-title-box {
+  position: relative;
+  z-index: 1;
+  background: rgba(255,255,255,0.88);
+  border: 1px solid var(--c-border);
+  padding: 14px 28px;
+  margin-left: var(--pad-h);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  letter-spacing: 0.02em;
+}
+.wf-hero-fullwidth .wf-img-label {
+  position: absolute;
+  right: 20px;
+  bottom: 12px;
+}
+
+/* ============================================================
+   LAYOUT WITH ANCHOR NAV（右アンカーナビ付きレイアウト）
+   第3〜4階層の長文ページで使用
+============================================================ */
+.wf-layout-with-anchornav {
+  display: grid;
+  grid-template-columns: 1fr 140px;
+  align-items: start;
+}
+.wf-anchornav-main { min-width: 0; }
+.wf-anchor-nav {
+  position: sticky;
+  top: 40px;
+  padding: 20px 0 20px 16px;
+  border-left: 1px solid var(--c-border-s);
+}
+.wf-anchor-nav-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  margin-bottom: 12px;
+}
+.wf-anchor-nav-item {
+  display: block;
+  font-size: 11px;
+  color: var(--c-text-s);
+  padding: 5px 0;
+  cursor: default;
+  line-height: 1.4;
+  text-decoration: none;
+}
+.wf-anchor-nav-item.is-current {
+  color: var(--c-text-h);
+  font-weight: 700;
+}
+
+/* ============================================================
+   ACCORDION（開閉パネル）
+   TCFD開示・社会貢献活動など長文ページで使用
+============================================================ */
+.wf-accordion {
+  border: 1px solid var(--c-border);
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+.wf-accordion-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: var(--c-bg-sub);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  cursor: pointer;
+  gap: 12px;
+}
+.wf-accordion-head:hover {
+  background: #ECECEC;
+}
+.wf-accordion.is-open .wf-accordion-head {
+  background: var(--c-white);
+  border-bottom: 1px solid var(--c-border-s);
+}
+.wf-accordion-icon {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--c-border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: var(--c-text-s);
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+.wf-accordion.is-open .wf-accordion-icon {
+  transform: rotate(180deg);
+}
+.wf-accordion-body {
+  display: none;
+  padding: 20px;
+  background: var(--c-white);
+}
+.wf-accordion.is-open .wf-accordion-body {
+  display: block;
+}
+/* アコーディオンヘッド：タイトル左＋タグ右 */
+.wf-accordion-head-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+.wf-accordion-head-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  line-height: 1.4;
+}
+
+/* ============================================================
+   PHOTO GRID（写真＋キャプション）
+   拠点写真の横並び表示に使用
+============================================================ */
+.wf-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.wf-photo-grid.col-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* ============================================================
+   DATA TABLE（データテーブル共通）
+   KPIテーブル・ESGデータ等で使用
+============================================================ */
+.wf-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.wf-data-table th,
+.wf-data-table td {
+  border: 1px solid var(--c-border);
+  padding: 10px 12px;
+  text-align: center;
+  vertical-align: middle;
+}
+.wf-data-table thead th {
+  background: #3A3A3A;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.wf-data-table tbody th {
+  background: #F5F5F5;
+  font-weight: 600;
+  text-align: left;
+  font-size: 11px;
+  color: var(--c-text-h);
+}
+.wf-data-table td.hl {
+  background: #F8F8F0;
+  font-weight: 700;
+  color: var(--c-text-h);
+}
+.wf-data-table-note {
+  font-size: 10px;
+  color: var(--c-text-xs);
+  line-height: 1.6;
+  margin-top: 8px;
+}
+
+/* ============================================================
+   RELATED LINK BOX（関連リンクボックス）
+   セクション末尾の関連リンクまとめに使用
+============================================================ */
+.wf-related-box {
+  background: var(--c-bg-sub);
+  border: 1px solid var(--c-border);
+  padding: 20px 24px;
+  margin-top: 28px;
+}
+.wf-related-box-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--c-border);
+  letter-spacing: 0.03em;
+}
+
+/* ============================================================
+   FIRSTVIEW LINE（WF管理用・ファーストビュー境界線）
+============================================================ */
+.wf-firstview-line {
+  position: relative;
+  height: 0;
+  border: none;
+  margin: 0;
+  padding: 0;
+  z-index: 1500;
+}
+.wf-firstview-line::before {
+  content: '';
+  position: absolute;
+  left: -100px;
+  right: -160px;
+  top: 0;
+  border-top: 2px dashed #E74C3C;
+  z-index: 1500;
+}
+.wf-firstview-line::after {
+  content: 'FIRST VIEW LINE — 1280\00d7 800 ここまでがスクロールなしで表示';
+  position: absolute;
+  right: 0;
+  top: -18px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #E74C3C;
+  background: rgba(255,255,255,0.92);
+  padding: 2px 10px;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  z-index: 1501;
+}
+
+/* ============================================================
+   END OF SHARED CSS
+============================================================ */
+
+/* ============================================================
+   PAGE-LOCAL: 気候変動 目次用追加スタイル
+============================================================ */
+
+/* 時系列グラフ（デュアル軸） — Section C */
+.ts-graph-block { margin-bottom: 32px; }
+.ts-graph-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.ts-legend {
+  display: flex;
+  gap: 16px;
+  font-size: 10px;
+  color: var(--c-text-s);
+  flex-shrink: 0;
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+}
+.ts-legend-bar, .ts-legend-line {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.ts-legend-bar::before {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background: #AAAAAA;
+  border-radius: 1px;
+  flex-shrink: 0;
+}
+.ts-legend-line::before {
+  content: '';
+  display: inline-block;
+  width: 18px;
+  height: 0;
+  border-top: 2px dashed #555;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+.ts-graph-area {
+  background: #F8F8F8;
+  border: 1px solid var(--c-border);
+  padding: 12px 16px 8px;
+}
+.ts-bars-dual {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 90px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #CCC;
+  position: relative;
+}
+.ts-bar {
+  flex: 1;
+  background: #AAAAAA;
+  border-radius: 2px 2px 0 0;
+}
+.ts-bar.plan {
+  background: transparent;
+  border: 1.5px dashed #AAAAAA;
+}
+.ts-line-svg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 90px;
+  pointer-events: none;
+}
+.ts-year-axis {
+  display: flex;
+  gap: 6px;
+  margin-top: 5px;
+}
+.ts-year-axis span {
+  flex: 1;
+  font-size: 9px;
+  color: var(--c-text-xs);
+  text-align: center;
+}
+.ts-graph-note {
+  font-size: 10px;
+  color: var(--c-text-xs);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+.ts-dl-area {
+  display: flex;
+  align-items: center;
+  padding-top: 20px;
+  border-top: 1px solid var(--c-border-s);
+  margin-top: 4px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ============================================================
+   PAGE-LOCAL：概念図モジュール（.concept-vis）
+   3パターン対応：full / multi / text-img
+============================================================ */
+.concept-vis { margin-bottom: 20px; }
+.concept-vis + .concept-vis { margin-top: 24px; }
+.concept-vis-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--c-text-xs);
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+}
+.concept-vis-label .pattern-tag {
+  background: var(--c-text-h);
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 2px;
+  font-size: 9px;
+  letter-spacing: 0.05em;
+}
+.concept-caption {
+  font-size: 11px;
+  color: var(--c-text-xs);
+  margin-top: 8px;
+  line-height: 1.6;
+}
+/* パターン① フルワイド1枚 */
+.concept-vis.full .wf-img { height: 220px; }
+/* パターン② マルチ画像（2枚以上横並び）— data-cols で列数指定 */
+.concept-vis.multi .concept-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.concept-vis.multi[data-cols="3"] .concept-grid { grid-template-columns: repeat(3, 1fr); }
+.concept-vis.multi .wf-img { height: 180px; }
+.concept-vis.multi .concept-item .concept-sub-cap {
+  font-size: 10px;
+  color: var(--c-text-xs);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+/* パターン③ テキスト＋画像 2カラム */
+.concept-vis.text-img .concept-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+.concept-vis.text-img .wf-img { height: 200px; }
+/* モジュールガイド（WFのみ表示） */
+.concept-module-note {
+  background: #FFFDF6;
+  border: 1px dashed #D4B000;
+  border-radius: 2px;
+  padding: 10px 14px;
+  font-size: 10px;
+  color: #8A6D00;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+.concept-module-note strong { color: #6A5400; }
+
+/* ============================================================
+   PAGE-LOCAL：時系列グラフ 文脈リンクセット
+   （.ts-graph-context）
+   — データ単独提示を避け、取り組み詳細リンク／データ定義リンクを
+     必ずセットで配置するモジュール
+============================================================ */
+.ts-graph-context {
+  background: #FAFAFA;
+  border: 1px solid var(--c-border);
+  border-top: none;
+  padding: 14px 20px 12px;
+}
+.ts-graph-context-lede {
+  font-size: 11px;
+  color: var(--c-text-s);
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+.ts-graph-context-linkset {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.ts-graph-context-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 14px;
+  background: var(--c-white);
+  border: 1px solid var(--c-border-s);
+}
+.ts-graph-context-group-label {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--c-text-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.ts-graph-context-group-label::before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: var(--c-text-h);
+  flex-shrink: 0;
+}
+.ts-graph-context-group.def .ts-graph-context-group-label::before {
+  background: #888;
+}
+.ts-graph-context-link {
+  font-size: 11px;
+  color: var(--c-text-h);
+  font-weight: 600;
+  text-decoration: none;
+  line-height: 1.5;
+}
+.ts-graph-context-link::after { content: '  →'; color: var(--c-text-xs); font-weight: 400; }
+
+/* 戦略テーブルブロック（既存サイト好評フォーマット踏襲） */
+.strat-block {
+  margin-bottom: 28px;
+}
+.strat-block-header {
+  background: #3A3A3A;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 12px 20px;
+  line-height: 1.4;
+}
+.strat-block-header .scope-tag {
+  font-size: 10px;
+  font-weight: 400;
+  color: #CCC;
+  margin-left: 8px;
+}
+.strat-block-body {
+  border: 1px solid var(--c-border);
+  border-top: none;
+  background: var(--c-white);
+}
+.strat-row {
+  display: grid;
+  grid-template-columns: 140px 1fr 1fr;
+  border-bottom: 1px solid var(--c-border-s);
+}
+.strat-row:last-child { border-bottom: none; }
+.strat-row-label {
+  background: #F5F5F5;
+  padding: 14px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  border-right: 1px solid var(--c-border);
+  display: flex;
+  align-items: center;
+  line-height: 1.4;
+}
+.strat-row-value,
+.strat-row-target {
+  padding: 14px 20px;
+}
+.strat-row-value {
+  border-right: 1px solid var(--c-border-s);
+}
+.strat-row-target {
+  background: #FAFAFA;
+}
+.strat-col-head {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--c-text-xs);
+  margin-bottom: 6px;
+  letter-spacing: 0.03em;
+}
+.strat-num {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  line-height: 1.2;
+}
+.strat-num .unit {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--c-text-s);
+}
+.strat-sub {
+  font-size: 11px;
+  color: var(--c-text-s);
+  margin-top: 2px;
+}
+.strat-note {
+  font-size: 10px;
+  color: var(--c-text-xs);
+  line-height: 1.6;
+  margin-top: 8px;
+  padding-left: 4px;
+}
+
+/* データ集 3列カード（015_environment_index セクションF と同一モジュール） */
+.data-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.data-card {
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  border-left: 3px solid #333;
+  padding: 20px 20px 16px;
+}
+.data-card-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.data-card-title::after {
+  content: '>';
+  font-size: 12px;
+  color: var(--c-text-s);
+}
+.data-card-desc {
+  font-size: 12px;
+  color: var(--c-text-s);
+  line-height: 1.7;
+}
+
+/* ============================================================
+   PAGE-LOCAL：詳細説明アコーディオン（.detail-accordion）
+   — 実績データ・グラフの補足説明を開閉式で表示
+============================================================ */
+.detail-accordion {
+  border: 1px solid var(--c-border);
+  border-radius: 2px;
+  margin-top: 12px;
+  background: var(--c-white);
+}
+.detail-accordion-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 16px;
+  background: #FAFAFA;
+  border: none;
+  border-bottom: 1px solid transparent;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--c-text-h);
+  line-height: 1.4;
+  text-align: left;
+  transition: background 0.15s;
+}
+.detail-accordion-trigger:hover {
+  background: #F0F0F0;
+}
+.detail-accordion-trigger .acc-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  font-size: 14px;
+  color: var(--c-text-s);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+.detail-accordion.is-open .detail-accordion-trigger {
+  border-bottom-color: var(--c-border);
+}
+.detail-accordion.is-open .detail-accordion-trigger .acc-icon {
+  transform: rotate(180deg);
+}
+.detail-accordion-body {
+  display: none;
+  padding: 16px 20px;
+  font-size: 12px;
+  color: var(--c-text-s);
+  line-height: 1.8;
+}
+.detail-accordion.is-open .detail-accordion-body {
+  display: block;
+}
+.detail-accordion-body .acc-placeholder {
+  background: #F5F5F5;
+  border: 1px dashed var(--c-border);
+  padding: 16px 20px;
+  font-size: 11px;
+  color: var(--c-text-xs);
+  line-height: 1.7;
+}
+.detail-accordion-body .acc-placeholder strong {
+  color: var(--c-text-s);
+  display: block;
+  margin-bottom: 4px;
+  font-size: 12px;
+}
+.detail-accordion-label {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--c-text-xs);
+  background: #EBEBEB;
+  padding: 2px 6px;
+  border-radius: 2px;
+  margin-right: 8px;
+  letter-spacing: 0.04em;
+  vertical-align: middle;
+}
+
+/* ============================================================
+   PAGE-LOCAL：詳細説明モーダル（.detail-modal）
+   — より長い説明・図表等をオーバーレイ表示
+============================================================ */
+.detail-modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 3000;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+.detail-modal-overlay.is-visible {
+  display: flex;
+}
+.detail-modal {
+  background: var(--c-white);
+  max-width: 720px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+  position: relative;
+}
+.detail-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--c-border);
+  background: #FAFAFA;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.detail-modal-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  line-height: 1.4;
+}
+.detail-modal-close {
+  width: 28px;
+  height: 28px;
+  background: none;
+  border: 1px solid var(--c-border);
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--c-text-s);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.detail-modal-close:hover {
+  background: #F0F0F0;
+}
+.detail-modal-body {
+  padding: 24px;
+  font-size: 13px;
+  color: var(--c-text);
+  line-height: 1.8;
+}
+.detail-modal-body .modal-placeholder {
+  background: #F5F5F5;
+  border: 1px dashed var(--c-border);
+  padding: 20px 24px;
+  font-size: 11px;
+  color: var(--c-text-xs);
+  line-height: 1.7;
+}
+.detail-modal-body .modal-placeholder strong {
+  color: var(--c-text-s);
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+}
+/* モーダル起動ボタン */
+.detail-modal-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--c-text-s);
+  background: none;
+  border: 1px solid var(--c-border);
+  padding: 5px 12px;
+  cursor: pointer;
+  font-family: inherit;
+  margin-top: 8px;
+  transition: background 0.15s;
+}
+.detail-modal-btn:hover {
+  background: #F5F5F5;
+}
+.detail-modal-btn::before {
+  content: '📖';
+  font-size: 12px;
+}
+
+/* ============================================================
+   PAGE-LOCAL：右アンカーナビ（目次） — 035_tcfdと共通思想
+   H2見出しをアンカーリンクとして掲載。sticky追従。
+============================================================ */
+.climate-layout {
+  display: grid;
+  grid-template-columns: 1fr 160px;
+  align-items: start;
+}
+.climate-main { min-width: 0; }
+.climate-anchor-nav {
+  position: sticky;
+  top: 40px;
+  padding: 20px 0 20px 16px;
+  border-left: 1px solid var(--c-border-s);
+  margin-top: 24px;
+  margin-right: 16px;
+}
+.climate-anchor-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  letter-spacing: 0.08em;
+  padding-bottom: 10px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid var(--c-border-s);
+  text-transform: uppercase;
+}
+.climate-anchor-item {
+  display: block;
+  font-size: 12px;
+  color: var(--c-text-s);
+  padding: 8px 0 8px 10px;
+  cursor: default;
+  line-height: 1.4;
+  text-decoration: none;
+  border-left: 2px solid transparent;
+}
+.climate-anchor-item.is-current {
+  color: var(--c-text-h);
+  font-weight: 700;
+  border-left-color: var(--c-text-h);
+}
+.climate-anchor-item .anchor-label {
+  display: block;
+  font-size: 9px;
+  color: var(--c-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-bottom: 2px;
+}
+
+/* ============================================================
+   PAGE-LOCAL：用語ヘルプアイコン（.term-help）
+   — 実績データ内などで、専門用語の直後に配置。
+     クリックすると .detail-modal-overlay が起動し、
+     用語の定義・背景解説をモーダル表示する。
+============================================================ */
+.term-with-help {
+  border-bottom: 1px dotted #888;
+  padding-bottom: 0;
+}
+.term-help {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 1px solid #888;
+  color: #555;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: inherit;
+  line-height: 1;
+  margin: 0 2px 0 4px;
+  cursor: pointer;
+  vertical-align: middle;
+  padding: 0;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.term-help:hover {
+  background: #222;
+  border-color: #222;
+  color: #FFFFFF;
+}
+.term-help::before { content: '?'; }
+/* 用語モーダル本体：定義リスト＋出典リンク構造 */
+.detail-modal-body .term-def {
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px dashed var(--c-border);
+}
+.detail-modal-body .term-def:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.detail-modal-body .term-def dt {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  margin-bottom: 6px;
+  padding: 3px 8px;
+  background: #F0F0F0;
+  display: inline-block;
+}
+.detail-modal-body .term-def dd {
+  font-size: 12px;
+  color: var(--c-text);
+  line-height: 1.8;
+  margin-bottom: 6px;
+}
+.detail-modal-body .term-def .term-source {
+  font-size: 10px;
+  color: var(--c-text-xs);
+  display: block;
+  margin-top: 4px;
+}
+
+</style>
+</head>
+<body>
+
+<!-- WF管理バー -->
+<div class="wf-meta-bar">
+  <div>
+    <strong>KONICA MINOLTA サステナビリティ</strong>
+    <span class="meta-badge">気候変動</span>
+    <span class="meta-badge">WF v1.0</span>
+  </div>
+  <div style="font-size:10px; color:#666;">2026.03</div>
+</div>
+
+<!-- WFキャンバス：左=ページ本体、右=アノテーション -->
+<div class="wf-canvas">
+  <div class="wf-page">
+
+    <!-- ページ管理バー -->
+    <div class="wf-page-indicator">
+      <span>気候変動 / URL: /about/csr/environment/climate/</span>
+      <span class="pi-layer">第3階層 — 目次ページ</span>
+    </div>
+
+    <!-- ヘッダー（確定済み） -->
+    <header class="wf-header">
+      <div class="wf-header-inner">
+        <div class="wf-logo">
+          <div class="wf-logo-mark"></div>
+          <div class="wf-logo-text">KONICA MINOLTA</div>
+        </div>
+        <div class="wf-header-utils">
+          <span>サポート・ダウンロード</span>
+          <span>お問い合わせ</span>
+          <span>Countries/Regions</span>
+          <span>ja | en | zh</span>
+        </div>
+      </div>
+      <nav class="wf-gnav">
+        <span class="wf-gnav-item">企業情報</span>
+        <span class="wf-gnav-item">Newsroom</span>
+        <span class="wf-gnav-item">株主・投資家情報</span>
+        <span class="wf-gnav-item is-active">サステナビリティ</span>
+        <span class="wf-gnav-item">テクノロジー</span>
+        <span class="wf-gnav-item">採用情報</span>
+      </nav>
+      <nav class="wf-lnav">
+        <span class="wf-lnav-label">サステナビリティ</span>
+        <span class="wf-lnav-item">サステナビリティ戦略</span>
+        <span class="wf-lnav-item">サステナビリティマネジメント</span>
+        <span class="wf-lnav-item is-active">環境</span>
+        <span class="wf-lnav-item">社会</span>
+        <span class="wf-lnav-item">ガバナンス</span>
+      </nav>
+      <div class="wf-header-note">⚠ ヘッダーは既確定。変更なし。</div>
+    </header>
+
+    <!-- パンくず -->
+    <nav class="wf-breadcrumb">
+      ホーム <span class="sep">›</span> サステナビリティ <span class="sep">›</span> 環境 <span class="sep">›</span>
+      <span class="current">気候変動</span>
+    </nav>
+
+    <!-- メインコンテンツ -->
+    <div>
+
+        <!-- ページヒーロー -->
+        <div class="wf-page-hero">
+          <div class="wf-page-hero-copy">
+            <h1 class="wf-page-title">気候変動</h1>
+            <p class="wf-page-title-note">Climate Change</p>
+          </div>
+          <div class="wf-img h-120">
+            <div class="wf-img-label">キービジュアル<br>（再エネ・脱炭素イメージ）</div>
+          </div>
+        </div>
+
+        <!-- ============================================================
+             メインコンテンツ＋右アンカーナビ（目次）
+             035_tcfdと同じ思想：H2見出しをアンカーリンクとして掲載
+        ============================================================ -->
+        <div class="climate-layout">
+          <div class="climate-main">
+
+        <!-- ============================================================
+             セクション A：気候変動ヴィジョン — 導入
+        ============================================================ -->
+        <section class="wf-section bg-white" id="vision">
+          <span class="wf-section-marker">A</span>
+          <h2 class="wf-section-title">気候変動への対応 — ヴィジョン</h2>
+          <p class="wf-section-desc" style="margin-bottom:20px;">
+            コニカミノルタは、エコビジョン2050における「気候変動への対応」を基盤に、バリューチェーン全体での脱炭素化を推進しています。マテリアリティの見直しにおいても「気候変動への対応」を重要課題として特定し、事業活動を通じたカーボンマイナスの実現を目指します。
+          </p>
+
+          <!-- 概念図モジュール（.concept-vis）— 3パターン対応 -->
+          <div class="concept-module-note">
+            <strong>概念図モジュール仕様：</strong> パターン①フルワイド1枚／②マルチ画像（2枚以上）／③テキスト＋画像2カラム　— 掲載内容に応じて切替可能な共通モジュール。以下にWF上で3パターンを並記。
+          </div>
+
+          <!-- パターン①：フルワイド 1枚 -->
+          <div class="concept-vis full">
+            <div class="concept-vis-label"><span class="pattern-tag">PATTERN ①</span>フルワイド1枚（数直線・ロードマップ等）</div>
+            <div class="wf-img">
+              <div class="wf-img-label">気候変動ヴィジョン概念図（横幅いっぱい）<br>例：2030→2050年に向けたカーボンマイナスへの道筋／数直線型ロードマップ</div>
+            </div>
+            <p class="concept-caption">※ 1枚で全体像を見せたい場合（ロードマップ・数直線型など、横長の概念図に最適）</p>
+          </div>
+
+          <!-- パターン②：マルチ画像（2枚以上） -->
+          <div class="concept-vis multi" data-cols="2">
+            <div class="concept-vis-label"><span class="pattern-tag">PATTERN ②</span>マルチ画像（2枚／3枚横並び）</div>
+            <div class="concept-grid">
+              <div class="concept-item">
+                <div class="wf-img">
+                  <div class="wf-img-label">概念図A<br>（例：緩和策）</div>
+                </div>
+                <p class="concept-sub-cap">緩和（Mitigation）の考え方</p>
+              </div>
+              <div class="concept-item">
+                <div class="wf-img">
+                  <div class="wf-img-label">概念図B<br>（例：適応策）</div>
+                </div>
+                <p class="concept-sub-cap">適応（Adaptation）の考え方</p>
+              </div>
+            </div>
+            <p class="concept-caption">※ 2枚以上を並列に見せたい場合（対比・カテゴリ分解。data-cols で 2/3 列切替可能）</p>
+          </div>
+
+          <!-- パターン③：テキスト＋画像 2カラム -->
+          <div class="concept-vis text-img">
+            <div class="concept-vis-label"><span class="pattern-tag">PATTERN ③</span>テキスト＋画像 2カラム</div>
+            <div class="concept-layout">
+              <div>
+                <h3 class="wf-sub-title mb-12">基本的な考え方</h3>
+                <div class="wf-textlines mb-16">
+                  <div class="wf-line w-full"></div>
+                  <div class="wf-line w-90"></div>
+                  <div class="wf-line w-full"></div>
+                  <div class="wf-line w-75"></div>
+                  <div class="wf-line w-full"></div>
+                  <div class="wf-line w-60"></div>
+                </div>
+              </div>
+              <div>
+                <div class="wf-img">
+                  <div class="wf-img-label">概念図<br>（例：エコビジョン2050と<br>気候変動の位置づけ）</div>
+                </div>
+              </div>
+            </div>
+            <p class="concept-caption">※ 補足解説と概念図をセットで見せたい場合（説明重視・文脈付き）</p>
+          </div>
+
+          <div class="wf-btn-group" style="margin-top:24px;">
+            <button class="wf-btn outline sm">環境戦略の詳細へ →</button>
+            <button class="wf-btn outline sm">マテリアリティ4へ →</button>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             セクション B：戦略と目標 — 主要KPIと進捗
+        ============================================================ -->
+        <section class="wf-section bg-sub" id="strategy">
+          <span class="wf-section-marker">B</span>
+          <h2 class="wf-section-title">戦略と目標</h2>
+          <p class="wf-section-desc">マテリアリティの変更を受けた目標とKPIのアップデート、および計画の進捗（時系列比較と今後の見込み）をご紹介します。</p>
+
+          <!-- 主要KPI ストリップ -->
+          <h3 class="wf-sub-title mb-12">主要KPI</h3>
+          <div class="wf-kpi-strip col-3 mb-24">
+            <div class="wf-kpi-item">
+              <div class="wf-kpi-num">XX%<span style="font-size:14px;">削減</span></div>
+              <div class="wf-kpi-label">GHG排出量（Scope1+2）</div>
+              <div class="wf-kpi-sub">2030年目標（vs 基準年）</div>
+            </div>
+            <div class="wf-kpi-item">
+              <div class="wf-kpi-num">XX%<span style="font-size:14px;">削減</span></div>
+              <div class="wf-kpi-label">GHG排出量（Scope3）</div>
+              <div class="wf-kpi-sub">2030年目標（vs 基準年）</div>
+            </div>
+            <div class="wf-kpi-item">
+              <div class="wf-kpi-num">XX<span style="font-size:14px;">万t</span></div>
+              <div class="wf-kpi-label">CO₂削減貢献量</div>
+              <div class="wf-kpi-sub">カーボンマイナス目標</div>
+            </div>
+          </div>
+          <!-- KPI詳細説明アコーディオン -->
+          <div class="detail-accordion">
+            <button class="detail-accordion-trigger" onclick="this.parentElement.classList.toggle('is-open')">
+              <span><span class="detail-accordion-label">解説</span>主要KPIの定義・算定方法について</span>
+              <span class="acc-icon">▼</span>
+            </button>
+            <div class="detail-accordion-body">
+              <div class="acc-placeholder">
+                <strong>記載予定コンテンツ</strong>
+                ・GHG排出量（Scope1+2）の算定範囲・基準年の定義<br>
+                ・GHG排出量（Scope3）の算定カテゴリと集計方法<br>
+                ・CO₂削減貢献量（カーボンマイナス）の定義と算定ロジック<br>
+                ・目標値の根拠（SBT認定・中期経営計画との整合）
+              </div>
+              <button class="detail-modal-btn" onclick="document.getElementById('modal-kpi-detail').classList.add('is-visible')">さらに詳しく見る</button>
+            </div>
+          </div>
+
+          <!-- 主要KPI グラフ（CO₂削減＋カーボンマイナス）— 最優先で上部表示 -->
+          <div class="wf-grid col-2 gap-24 mb-24">
+            <div>
+              <h3 class="wf-sub-title mb-12">CO₂排出量の推移（Scope1+2）</h3>
+              <div class="wf-graph">
+                <div class="wf-graph-label">単位：万t-CO₂　　※ 破線は中計目標値</div>
+                <div class="wf-bars" style="height:100px;">
+                  <div class="wf-bar" style="height:95px;"></div>
+                  <div class="wf-bar" style="height:88px;"></div>
+                  <div class="wf-bar" style="height:80px;"></div>
+                  <div class="wf-bar" style="height:72px;"></div>
+                  <div class="wf-bar" style="height:65px;"></div>
+                  <div class="wf-bar" style="height:58px;"></div>
+                  <div class="wf-bar target" style="height:42px;"></div>
+                  <div class="wf-bar target" style="height:34px;"></div>
+                  <div class="wf-bar target" style="height:26px;"></div>
+                </div>
+                <div class="wf-bar-year">
+                  <span>FY19</span><span>FY20</span><span>FY21</span><span>FY22</span><span>FY23</span><span>FY24</span><span>FY25</span><span>FY26</span><span>FY27</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 class="wf-sub-title mb-12">「カーボンマイナス」に向けた進捗</h3>
+              <div class="wf-graph">
+                <div class="wf-graph-label">単位：万t-CO₂　　※ 破線は中計目標値</div>
+                <div class="wf-bars" style="height:100px;">
+                  <div class="wf-bar" style="height:30px;"></div>
+                  <div class="wf-bar" style="height:40px;"></div>
+                  <div class="wf-bar" style="height:50px;"></div>
+                  <div class="wf-bar" style="height:55px;"></div>
+                  <div class="wf-bar" style="height:62px;"></div>
+                  <div class="wf-bar" style="height:68px;"></div>
+                  <div class="wf-bar target" style="height:80px;"></div>
+                  <div class="wf-bar target" style="height:88px;"></div>
+                  <div class="wf-bar target" style="height:95px;"></div>
+                </div>
+                <div class="wf-bar-year">
+                  <span>FY19</span><span>FY20</span><span>FY21</span><span>FY22</span><span>FY23</span><span>FY24</span><span>FY25</span><span>FY26</span><span>FY27</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- グラフ詳細説明アコーディオン -->
+          <div class="detail-accordion">
+            <button class="detail-accordion-trigger" onclick="this.parentElement.classList.toggle('is-open')">
+              <span><span class="detail-accordion-label">解説</span>CO₂排出量・カーボンマイナスグラフの読み方</span>
+              <span class="acc-icon">▼</span>
+            </button>
+            <div class="detail-accordion-body">
+              <div class="acc-placeholder">
+                <strong>記載予定コンテンツ</strong>
+                ・Scope1+2 CO₂排出量グラフ：基準年からの削減トレンドと中計目標への進捗解説<br>
+                ・カーボンマイナス進捗グラフ：CO₂削減貢献量の積み上げ推移と目標ギャップ分析<br>
+                ・破線（計画値）の前提条件・主要な変動要因<br>
+                ・前年度比の増減がある場合の要因説明
+              </div>
+            </div>
+          </div>
+
+          <!-- 戦略テーブル：お客様の業務プロセス変革（既存サイト好評フォーマット踏襲） -->
+          <div class="strat-block">
+            <div class="strat-block-header">
+              お客様の業務プロセス変革でエネルギー・CO₂を削減
+              <span class="scope-tag">（スコープ4相当該当領域）</span>
+            </div>
+            <div class="strat-block-body">
+              <div class="strat-row">
+                <div class="strat-row-label">日本・情報機器<br>CO₂削減量</div>
+                <div class="strat-row-value">
+                  <div class="strat-col-head">2024年度</div>
+                  <div class="strat-num">XX<span class="unit">万t</span></div>
+                  <div class="strat-sub">見通し XX万t</div>
+                </div>
+                <div class="strat-row-target">
+                  <div class="strat-col-head">2025年度目標</div>
+                  <div class="strat-num">XX<span class="unit">万t</span></div>
+                </div>
+              </div>
+              <div class="strat-row">
+                <div class="strat-row-label">Gプロダクツ<br>売上高</div>
+                <div class="strat-row-value">
+                  <div class="strat-col-head">2024年度</div>
+                  <div class="strat-num">XX<span class="unit">億円</span></div>
+                  <div class="strat-sub">見通し XX億円</div>
+                </div>
+                <div class="strat-row-target">
+                  <div class="strat-col-head">2025年度目標</div>
+                  <div class="strat-num">XX<span class="unit">億円</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="strat-note">※ CO₂削減量は自社製品使用時のお客様先でのエネルギー削減量から算出。売上高はGプロダクツ認定製品の合計。</div>
+          </div>
+          <!-- 戦略テーブル①詳細説明 -->
+          <div class="detail-accordion">
+            <button class="detail-accordion-trigger" onclick="this.parentElement.classList.toggle('is-open')">
+              <span><span class="detail-accordion-label">解説</span>お客様の業務プロセス変革 — 指標の詳細</span>
+              <span class="acc-icon">▼</span>
+            </button>
+            <div class="detail-accordion-body">
+              <div class="acc-placeholder">
+                <strong>記載予定コンテンツ</strong>
+                ・CO₂削減量の算定方法（お客様先でのエネルギー削減量→CO₂換算プロセス）<br>
+                ・Gプロダクツ認定基準と対象製品カテゴリ<br>
+                ・スコープ4相当の考え方と国際基準との整合<br>
+                ・実績と見通しの差異が生じた場合の要因
+              </div>
+              <button class="detail-modal-btn" onclick="document.getElementById('modal-strat-customer').classList.add('is-visible')">さらに詳しく見る</button>
+            </div>
+          </div>
+
+          <!-- 戦略テーブル：自社拠点・製品・取引先 -->
+          <div class="strat-block">
+            <div class="strat-block-header">
+              自社拠点、自社製品・サービス、お取引先のエネルギー・CO₂を削減
+              <span class="scope-tag">（スコープ1、2、3削減）</span>
+            </div>
+            <div class="strat-block-body">
+              <div class="strat-row">
+                <div class="strat-row-label">Scope1+2<br>CO₂排出量</div>
+                <div class="strat-row-value">
+                  <div class="strat-col-head">2024年度</div>
+                  <div class="strat-num">XX<span class="unit">万t</span></div>
+                  <div class="strat-sub">見通し XX万t</div>
+                </div>
+                <div class="strat-row-target">
+                  <div class="strat-col-head">2025年度目標</div>
+                  <div class="strat-num">XX<span class="unit">万t</span></div>
+                </div>
+              </div>
+              <div class="strat-row">
+                <div class="strat-row-label">省エネ</div>
+                <div class="strat-row-value">
+                  <div class="strat-col-head">2024年度</div>
+                  <div class="strat-num">XX<span class="unit">万kWh</span></div>
+                  <div class="strat-sub">見通し XX万kWh</div>
+                </div>
+                <div class="strat-row-target">
+                  <div class="strat-col-head">2025年度目標</div>
+                  <div class="strat-num">XX<span class="unit">万kWh</span></div>
+                </div>
+              </div>
+              <div class="strat-row">
+                <div class="strat-row-label">再エネ導入率</div>
+                <div class="strat-row-value">
+                  <div class="strat-col-head">2024年度</div>
+                  <div class="strat-num">XX<span class="unit">%</span></div>
+                  <div class="strat-sub">見通し XX%</div>
+                </div>
+                <div class="strat-row-target">
+                  <div class="strat-col-head">2025年度目標</div>
+                  <div class="strat-num">XX<span class="unit">%</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="strat-note">※ Scope1+2は生産拠点・オフィスの直接排出＋電力由来排出。省エネは自社拠点の省エネルギー量。再エネ導入率は全拠点合計。</div>
+          </div>
+          <!-- 戦略テーブル②詳細説明 -->
+          <div class="detail-accordion">
+            <button class="detail-accordion-trigger" onclick="this.parentElement.classList.toggle('is-open')">
+              <span><span class="detail-accordion-label">解説</span>自社拠点・製品・サービス — 指標の詳細</span>
+              <span class="acc-icon">▼</span>
+            </button>
+            <div class="detail-accordion-body">
+              <div class="acc-placeholder">
+                <strong>記載予定コンテンツ</strong>
+                ・Scope1+2の算定対象拠点と排出係数<br>
+                ・省エネルギー量の算出方法（基準年比/前年比）<br>
+                ・再エネ導入率の算定範囲（自家発電/証書含む）<br>
+                ・SBT目標との整合性・進捗評価
+              </div>
+              <button class="detail-modal-btn" onclick="document.getElementById('modal-strat-own').classList.add('is-visible')">さらに詳しく見る</button>
+            </div>
+          </div>
+
+          <!-- 戦略テーブル：お取引先 -->
+          <div class="strat-block">
+            <div class="strat-block-header">
+              お取引先でのエネルギー、CO₂を削減
+            </div>
+            <div class="strat-block-body">
+              <div class="strat-row">
+                <div class="strat-row-label">調達先<br>CO₂削減量</div>
+                <div class="strat-row-value">
+                  <div class="strat-col-head">2024年度</div>
+                  <div class="strat-num">XX<span class="unit">t</span></div>
+                  <div class="strat-sub">見通し XXt</div>
+                </div>
+                <div class="strat-row-target">
+                  <div class="strat-col-head">2025年度目標</div>
+                  <div class="strat-num">XX<span class="unit">t</span></div>
+                </div>
+              </div>
+              <div class="strat-row">
+                <div class="strat-row-label">経済価値</div>
+                <div class="strat-row-value">
+                  <div class="strat-col-head">2024年度</div>
+                  <div class="strat-num">XX<span class="unit">億円</span></div>
+                  <div class="strat-sub">見通し XX億円</div>
+                </div>
+                <div class="strat-row-target">
+                  <div class="strat-col-head">2025年度目標</div>
+                  <div class="strat-num">XX<span class="unit">億円</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="strat-note">※ CNパートナー活動による調達先でのCO₂削減量。経済価値はエネルギーコスト低減額。<br>※ 2025年度からの中期経営計画における目標値。</div>
+          </div>
+          <!-- 戦略テーブル③詳細説明 -->
+          <div class="detail-accordion">
+            <button class="detail-accordion-trigger" onclick="this.parentElement.classList.toggle('is-open')">
+              <span><span class="detail-accordion-label">解説</span>お取引先でのCO₂削減 — 指標の詳細</span>
+              <span class="acc-icon">▼</span>
+            </button>
+            <div class="detail-accordion-body">
+              <div class="acc-placeholder">
+                <strong>記載予定コンテンツ</strong>
+                ・CNパートナー活動の概要と参加条件<br>
+                ・調達先CO₂削減量の集計方法（報告ベース/推計）<br>
+                ・経済価値（エネルギーコスト低減額）の算出根拠<br>
+                ・Scope3カテゴリとの対応関係
+              </div>
+            </div>
+          </div>
+
+          <div class="wf-btn-group" style="margin-top:24px;">
+            <button class="wf-btn primary sm">TCFD開示の詳細へ →</button>
+            <button class="wf-btn outline sm">ESGデータ（Excel DL）</button>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             セクション C：実績データ — 時系列グラフ（環境価値×経済価値）
+        ============================================================ -->
+        <section class="wf-section bg-white" id="performance">
+          <span class="wf-section-marker">C</span>
+          <h2 class="wf-section-title">実績データ</h2>
+          <p class="wf-section-desc">各活動における環境価値（CO₂削減量）と経済価値（売上高・コスト削減等）の推移を時系列グラフで確認できます。FY19〜FY24の実績と、FY25〜FY27の中計目標<button type="button" class="term-help" aria-label="用語解説：中計目標" onclick="document.getElementById('modal-term-midplan').classList.add('is-visible')"></button>を可視化しています。グラフ中の専門用語（<span class="term-with-help">スコープ4</span><button type="button" class="term-help" aria-label="用語解説：スコープ4" onclick="document.getElementById('modal-term-scope4').classList.add('is-visible')"></button>／<span class="term-with-help">Scope1+2</span><button type="button" class="term-help" aria-label="用語解説：Scope1+2" onclick="document.getElementById('modal-term-scope12').classList.add('is-visible')"></button>／<span class="term-with-help">Scope3</span><button type="button" class="term-help" aria-label="用語解説：Scope3" onclick="document.getElementById('modal-term-scope3').classList.add('is-visible')"></button>）は、見出し横のハテナ（?）アイコンから定義を確認できます。</p>
+          <div style="font-size:11px; color:var(--c-text-xs); background:#FFFBF0; border-left:3px solid #C8A000; padding:8px 12px; margin-bottom:20px; line-height:1.7;">
+            <strong style="color:#888;">【用語解説モーダル仕様】</strong>本文・グラフ見出し中の専門用語の右側にハテナ（?）アイコンを配置。クリックするとモーダルが立ち上がり、用語の定義・算定範囲・出典を表示する。モーダルは <code>.detail-modal-overlay</code> モジュールを共通利用。
+          </div>
+
+          <!-- グラフ①：お客様の業務プロセス変革 -->
+          <div class="ts-graph-block">
+            <div class="ts-graph-head">
+              <h3 class="wf-sub-title" style="margin-bottom:0;">① お客様の業務プロセス変革（<span class="term-with-help">グリーンプロダクツ</span><button type="button" class="term-help" aria-label="用語解説：グリーンプロダクツ" onclick="document.getElementById('modal-term-gproduct').classList.add('is-visible')"></button>）</h3>
+              <div class="ts-legend">
+                <span class="ts-legend-bar">CO₂削減量（万t）— 棒・左軸</span>
+                <span class="ts-legend-line">Gプロダクツ売上高（億円）— 折れ線・右軸</span>
+              </div>
+            </div>
+            <div class="ts-graph-area">
+              <div class="ts-bars-dual">
+                <div class="ts-bar" style="height:38px;"></div>
+                <div class="ts-bar" style="height:45px;"></div>
+                <div class="ts-bar" style="height:52px;"></div>
+                <div class="ts-bar" style="height:58px;"></div>
+                <div class="ts-bar" style="height:64px;"></div>
+                <div class="ts-bar" style="height:70px;"></div>
+                <div class="ts-bar plan" style="height:76px;"></div>
+                <div class="ts-bar plan" style="height:82px;"></div>
+                <div class="ts-bar plan" style="height:88px;"></div>
+                <!-- 折れ線オーバーレイ（経済価値・右軸） -->
+                <svg class="ts-line-svg" viewBox="0 0 100 90" preserveAspectRatio="none" aria-hidden="true">
+                  <polyline points="5.5,80 16.5,72 27.5,62 38.5,52 50,43 61,35 72,26 83,19 94,12"
+                    fill="none" stroke="#444" stroke-width="1.8" stroke-dasharray="4,2"/>
+                  <circle cx="5.5"  cy="80" r="2.5" fill="#444"/>
+                  <circle cx="16.5" cy="72" r="2.5" fill="#444"/>
+                  <circle cx="27.5" cy="62" r="2.5" fill="#444"/>
+                  <circle cx="38.5" cy="52" r="2.5" fill="#444"/>
+                  <circle cx="50"   cy="43" r="2.5" fill="#444"/>
+                  <circle cx="61"   cy="35" r="2.5" fill="#444"/>
+                  <circle cx="72"   cy="26" r="2.5" fill="none" stroke="#444" stroke-width="1.8"/>
+                  <circle cx="83"   cy="19" r="2.5" fill="none" stroke="#444" stroke-width="1.8"/>
+                  <circle cx="94"   cy="12" r="2.5" fill="none" stroke="#444" stroke-width="1.8"/>
+                </svg>
+              </div>
+              <div class="ts-year-axis">
+                <span>FY19</span><span>FY20</span><span>FY21</span><span>FY22</span><span>FY23</span><span>FY24</span><span>FY25</span><span>FY26</span><span>FY27</span>
+              </div>
+            </div>
+            <!-- 文脈リンクセット（取り組み詳細／データ定義・背景の2系統） -->
+            <div class="ts-graph-context">
+              <p class="ts-graph-context-lede">Gプロダクツ認定製品の使用時CO₂削減量とその売上高の推移（スコープ4相当）。</p>
+              <div class="ts-graph-context-linkset">
+                <div class="ts-graph-context-group">
+                  <span class="ts-graph-context-group-label">取り組み詳細</span>
+                  <a href="#" class="ts-graph-context-link">グリーンプロダクツ認定制度</a>
+                  <a href="#" class="ts-graph-context-link">製品での脱炭素化（#031）</a>
+                </div>
+                <div class="ts-graph-context-group def">
+                  <span class="ts-graph-context-group-label">データ定義・背景解説</span>
+                  <a href="#" class="ts-graph-context-link">指標の算定範囲・算定方法</a>
+                  <a href="#" class="ts-graph-context-link">スコープ4の考え方</a>
+                </div>
+              </div>
+            </div>
+            <p class="ts-graph-note">指標（E-001/E-046）：CO₂削減量（環境価値・棒グラフ左軸）／Gプロダクツ売上高（経済価値・折れ線右軸）　白抜き丸・破線枠は計画値</p>
+            <!-- グラフ①詳細説明アコーディオン -->
+            <div class="detail-accordion" style="margin-top:16px;">
+              <button class="detail-accordion-trigger" onclick="this.parentElement.classList.toggle('is-open')">
+                <span><span class="detail-accordion-label">解説</span>グリーンプロダクツ実績の詳細解説</span>
+                <span class="acc-icon">▼</span>
+              </button>
+              <div class="detail-accordion-body">
+                <div class="acc-placeholder">
+                  <strong>記載予定コンテンツ</strong>
+                  ・Gプロダクツ認定製品のCO₂削減量算定プロセス（LCA手法との関係）<br>
+                  ・売上高との相関要因（製品ポートフォリオ変化、市場環境等）<br>
+                  ・年度ごとの主な変動要因（新製品投入、撤退製品等）<br>
+                  ・計画値（FY25〜FY27）の前提条件・リスク要因
+                </div>
+                <button class="detail-modal-btn" onclick="document.getElementById('modal-graph-gproduct').classList.add('is-visible')">さらに詳しく見る</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- グラフ②：自社拠点・製品・サービス -->
+          <div class="ts-graph-block">
+            <div class="ts-graph-head">
+              <h3 class="wf-sub-title" style="margin-bottom:0;">② 自社拠点・自社製品・サービス（<span class="term-with-help">グリーンファクトリー</span><button type="button" class="term-help" aria-label="用語解説：グリーンファクトリー" onclick="document.getElementById('modal-term-gfactory').classList.add('is-visible')"></button>）</h3>
+              <div class="ts-legend">
+                <span class="ts-legend-bar">CO₂排出量（万t）— 棒・左軸</span>
+                <span class="ts-legend-line">省エネ・再エネ（万kWh）— 折れ線・右軸</span>
+              </div>
+            </div>
+            <div class="ts-graph-area">
+              <div class="ts-bars-dual">
+                <div class="ts-bar" style="height:86px;"></div>
+                <div class="ts-bar" style="height:76px;"></div>
+                <div class="ts-bar" style="height:68px;"></div>
+                <div class="ts-bar" style="height:60px;"></div>
+                <div class="ts-bar" style="height:52px;"></div>
+                <div class="ts-bar" style="height:44px;"></div>
+                <div class="ts-bar plan" style="height:35px;"></div>
+                <div class="ts-bar plan" style="height:27px;"></div>
+                <div class="ts-bar plan" style="height:20px;"></div>
+                <svg class="ts-line-svg" viewBox="0 0 100 90" preserveAspectRatio="none" aria-hidden="true">
+                  <polyline points="5.5,82 16.5,74 27.5,64 38.5,54 50,44 61,35 72,26 83,19 94,13"
+                    fill="none" stroke="#444" stroke-width="1.8" stroke-dasharray="4,2"/>
+                  <circle cx="5.5"  cy="82" r="2.5" fill="#444"/>
+                  <circle cx="16.5" cy="74" r="2.5" fill="#444"/>
+                  <circle cx="27.5" cy="64" r="2.5" fill="#444"/>
+                  <circle cx="38.5" cy="54" r="2.5" fill="#444"/>
+                  <circle cx="50"   cy="44" r="2.5" fill="#444"/>
+                  <circle cx="61"   cy="35" r="2.5" fill="#444"/>
+                  <circle cx="72"   cy="26" r="2.5" fill="none" stroke="#444" stroke-width="1.8"/>
+                  <circle cx="83"   cy="19" r="2.5" fill="none" stroke="#444" stroke-width="1.8"/>
+                  <circle cx="94"   cy="13" r="2.5" fill="none" stroke="#444" stroke-width="1.8"/>
+                </svg>
+              </div>
+              <div class="ts-year-axis">
+                <span>FY19</span><span>FY20</span><span>FY21</span><span>FY22</span><span>FY23</span><span>FY24</span><span>FY25</span><span>FY26</span><span>FY27</span>
+              </div>
+            </div>
+            <!-- 文脈リンクセット（取り組み詳細／データ定義・背景の2系統） -->
+            <div class="ts-graph-context">
+              <p class="ts-graph-context-lede">グリーンファクトリーを中心とした自社排出（Scope1+2）の削減と、省エネ・再エネ導入量の推移。</p>
+              <div class="ts-graph-context-linkset">
+                <div class="ts-graph-context-group">
+                  <span class="ts-graph-context-group-label">取り組み詳細</span>
+                  <a href="#" class="ts-graph-context-link">グリーンファクトリー認定</a>
+                  <a href="#" class="ts-graph-context-link">再生可能エネルギー導入（#029）</a>
+                  <a href="#" class="ts-graph-context-link">生産での脱炭素化（#030）</a>
+                </div>
+                <div class="ts-graph-context-group def">
+                  <span class="ts-graph-context-group-label">データ定義・背景解説</span>
+                  <a href="#" class="ts-graph-context-link">Scope1+2の算定範囲</a>
+                  <a href="#" class="ts-graph-context-link">再エネ導入率の算定方法</a>
+                </div>
+              </div>
+            </div>
+            <p class="ts-graph-note">指標（E-046）：CO₂排出量削減（環境価値・棒グラフ左軸）／省エネ・再エネ導入量（折れ線右軸）　白抜き丸・破線枠は計画値</p>
+            <!-- グラフ②詳細説明アコーディオン -->
+            <div class="detail-accordion" style="margin-top:16px;">
+              <button class="detail-accordion-trigger" onclick="this.parentElement.classList.toggle('is-open')">
+                <span><span class="detail-accordion-label">解説</span>グリーンファクトリー実績の詳細解説</span>
+                <span class="acc-icon">▼</span>
+              </button>
+              <div class="detail-accordion-body">
+                <div class="acc-placeholder">
+                  <strong>記載予定コンテンツ</strong>
+                  ・Scope1+2排出量の内訳（地域別・拠点種別）<br>
+                  ・省エネ施策の具体例と効果量（設備更新、運用改善等）<br>
+                  ・再エネ導入の内訳（自家発電/PPA/証書購入等）<br>
+                  ・前年度比で増減がある年度の要因分析
+                </div>
+                <button class="detail-modal-btn" onclick="document.getElementById('modal-graph-factory').classList.add('is-visible')">さらに詳しく見る</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- グラフ③：お取引先様 -->
+          <div class="ts-graph-block">
+            <div class="ts-graph-head">
+              <h3 class="wf-sub-title" style="margin-bottom:0;">③ お取引先様（<span class="term-with-help">CNパートナー活動</span><button type="button" class="term-help" aria-label="用語解説：CNパートナー活動" onclick="document.getElementById('modal-term-cnpartner').classList.add('is-visible')"></button>）</h3>
+              <div class="ts-legend">
+                <span class="ts-legend-bar">調達先CO₂削減量（t）— 棒・左軸</span>
+                <span class="ts-legend-line">CN活動参加社数（社）— 折れ線・右軸</span>
+              </div>
+            </div>
+            <div class="ts-graph-area">
+              <div class="ts-bars-dual">
+                <div class="ts-bar" style="height:18px;"></div>
+                <div class="ts-bar" style="height:28px;"></div>
+                <div class="ts-bar" style="height:38px;"></div>
+                <div class="ts-bar" style="height:50px;"></div>
+                <div class="ts-bar" style="height:60px;"></div>
+                <div class="ts-bar" style="height:68px;"></div>
+                <div class="ts-bar plan" style="height:74px;"></div>
+                <div class="ts-bar plan" style="height:81px;"></div>
+                <div class="ts-bar plan" style="height:87px;"></div>
+                <svg class="ts-line-svg" viewBox="0 0 100 90" preserveAspectRatio="none" aria-hidden="true">
+                  <polyline points="5.5,84 16.5,76 27.5,66 38.5,55 50,45 61,36 72,27 83,20 94,14"
+                    fill="none" stroke="#444" stroke-width="1.8" stroke-dasharray="4,2"/>
+                  <circle cx="5.5"  cy="84" r="2.5" fill="#444"/>
+                  <circle cx="16.5" cy="76" r="2.5" fill="#444"/>
+                  <circle cx="27.5" cy="66" r="2.5" fill="#444"/>
+                  <circle cx="38.5" cy="55" r="2.5" fill="#444"/>
+                  <circle cx="50"   cy="45" r="2.5" fill="#444"/>
+                  <circle cx="61"   cy="36" r="2.5" fill="#444"/>
+                  <circle cx="72"   cy="27" r="2.5" fill="none" stroke="#444" stroke-width="1.8"/>
+                  <circle cx="83"   cy="20" r="2.5" fill="none" stroke="#444" stroke-width="1.8"/>
+                  <circle cx="94"   cy="14" r="2.5" fill="none" stroke="#444" stroke-width="1.8"/>
+                </svg>
+              </div>
+              <div class="ts-year-axis">
+                <span>FY19</span><span>FY20</span><span>FY21</span><span>FY22</span><span>FY23</span><span>FY24</span><span>FY25</span><span>FY26</span><span>FY27</span>
+              </div>
+            </div>
+            <!-- 文脈リンクセット（取り組み詳細／データ定義・背景の2系統） -->
+            <div class="ts-graph-context">
+              <p class="ts-graph-context-lede">CNパートナー活動による調達先でのCO₂削減量と活動参加社数の推移（Scope3）。</p>
+              <div class="ts-graph-context-linkset">
+                <div class="ts-graph-context-group">
+                  <span class="ts-graph-context-group-label">取り組み詳細</span>
+                  <a href="#" class="ts-graph-context-link">CNパートナー活動</a>
+                  <a href="#" class="ts-graph-context-link">サステナブル調達方針</a>
+                </div>
+                <div class="ts-graph-context-group def">
+                  <span class="ts-graph-context-group-label">データ定義・背景解説</span>
+                  <a href="#" class="ts-graph-context-link">Scope3算定・開示方法</a>
+                  <a href="#" class="ts-graph-context-link">調達先CO₂削減量の集計方法</a>
+                </div>
+              </div>
+            </div>
+            <p class="ts-graph-note">指標（E-003/E-046）：調達先CO₂削減量（環境価値・棒グラフ左軸）／CNパートナー参加社数（折れ線右軸）　白抜き丸・破線枠は計画値</p>
+            <!-- グラフ③詳細説明アコーディオン -->
+            <div class="detail-accordion" style="margin-top:16px;">
+              <button class="detail-accordion-trigger" onclick="this.parentElement.classList.toggle('is-open')">
+                <span><span class="detail-accordion-label">解説</span>CNパートナー活動実績の詳細解説</span>
+                <span class="acc-icon">▼</span>
+              </button>
+              <div class="detail-accordion-body">
+                <div class="acc-placeholder">
+                  <strong>記載予定コンテンツ</strong>
+                  ・CNパートナー活動の参加企業数推移と地域分布<br>
+                  ・調達先CO₂削減量の集計プロセス（自己申告/第三者検証）<br>
+                  ・活動参加社数と削減量の相関分析<br>
+                  ・今後の目標達成に向けた課題と施策の方向性
+                </div>
+                <button class="detail-modal-btn" onclick="document.getElementById('modal-graph-partner').classList.add('is-visible')">さらに詳しく見る</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- データセットDL -->
+          <div class="ts-dl-area">
+            <button class="wf-btn outline sm">データセットをダウンロード（Excel） →</button>
+            <span style="font-size:11px; color:#999;">GHG排出量・CO₂削減量・経済価値データ　各年度実績＋中計目標</span>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             セクション D：取り組み — サプライチェーン別カード
+             015セクションD「代表的な取り組み」と同一モジュール
+             （wf-card + wf-card-tag + wf-img + wf-textlines + wf-link）
+        ============================================================ -->
+        <section class="wf-section bg-sub" id="activities">
+          <span class="wf-section-marker">D</span>
+          <h2 class="wf-section-title">取り組み</h2>
+          <p class="wf-section-desc">サプライチェーンの各フェーズにおける脱炭素の取り組みを紹介します。</p>
+
+          <div class="wf-grid col-3 gap-24">
+            <!-- 製品/ソリューション -->
+            <div class="wf-card">
+              <span class="wf-card-tag">製品・ソリューション</span>
+              <div class="wf-img h-120 mb-12">
+                <div class="wf-img-label">取り組み画像<br>（グリーンプロダクツ等）</div>
+              </div>
+              <h4 class="wf-card-title">製品/ソリューションでの脱炭素化</h4>
+              <div class="wf-textlines mb-12">
+                <div class="wf-line w-full"></div>
+                <div class="wf-line w-90"></div>
+                <div class="wf-line w-75"></div>
+              </div>
+              <span class="wf-link">詳細を見る</span>
+            </div>
+
+            <!-- 再生可能エネルギー -->
+            <div class="wf-card">
+              <span class="wf-card-tag">自社拠点</span>
+              <div class="wf-img h-120 mb-12">
+                <div class="wf-img-label">取り組み画像<br>（太陽光・再エネ設備等）</div>
+              </div>
+              <h4 class="wf-card-title">自社拠点での再生可能エネルギー導入</h4>
+              <div class="wf-textlines mb-12">
+                <div class="wf-line w-full"></div>
+                <div class="wf-line w-90"></div>
+                <div class="wf-line w-75"></div>
+              </div>
+              <span class="wf-link">詳細を見る</span>
+            </div>
+
+            <!-- 生産活動 -->
+            <div class="wf-card">
+              <span class="wf-card-tag">生産</span>
+              <div class="wf-img h-120 mb-12">
+                <div class="wf-img-label">取り組み画像<br>（グリーンファクトリー等）</div>
+              </div>
+              <h4 class="wf-card-title">生産活動での脱炭素化</h4>
+              <div class="wf-textlines mb-12">
+                <div class="wf-line w-full"></div>
+                <div class="wf-line w-90"></div>
+                <div class="wf-line w-75"></div>
+              </div>
+              <span class="wf-link">詳細を見る</span>
+            </div>
+
+            <!-- 販売活動 -->
+            <div class="wf-card">
+              <span class="wf-card-tag">販売</span>
+              <div class="wf-img h-120 mb-12">
+                <div class="wf-img-label">取り組み画像<br>（グリーンマーケティング等）</div>
+              </div>
+              <h4 class="wf-card-title">販売活動での脱炭素</h4>
+              <div class="wf-textlines mb-12">
+                <div class="wf-line w-full"></div>
+                <div class="wf-line w-90"></div>
+                <div class="wf-line w-75"></div>
+              </div>
+              <span class="wf-link">詳細を見る</span>
+            </div>
+
+            <!-- 物流 -->
+            <div class="wf-card">
+              <span class="wf-card-tag">物流</span>
+              <div class="wf-img h-120 mb-12">
+                <div class="wf-img-label">取り組み画像<br>（モーダルシフト等）</div>
+              </div>
+              <h4 class="wf-card-title">物流での脱炭素化</h4>
+              <div class="wf-textlines mb-12">
+                <div class="wf-line w-full"></div>
+                <div class="wf-line w-90"></div>
+                <div class="wf-line w-75"></div>
+              </div>
+              <span class="wf-link">詳細を見る</span>
+            </div>
+
+            <!-- 適応 -->
+            <div class="wf-card">
+              <span class="wf-card-tag">適応</span>
+              <div class="wf-img h-120 mb-12">
+                <div class="wf-img-label">取り組み画像<br>（気候変動適応策・BCP等）</div>
+              </div>
+              <h4 class="wf-card-title">気候変動への適応</h4>
+              <div class="wf-textlines mb-12">
+                <div class="wf-line w-full"></div>
+                <div class="wf-line w-90"></div>
+                <div class="wf-line w-75"></div>
+              </div>
+              <span class="wf-link">詳細を見る</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================
+             セクション E：関連コンテンツ一覧
+             015セクションF「環境関連コンテンツ」と同一モジュール
+             （data-card-grid + data-card）
+        ============================================================ -->
+        <section class="wf-section bg-white" id="related">
+          <span class="wf-section-marker">E</span>
+          <h2 class="wf-section-title">関連コンテンツ</h2>
+
+          <div class="data-card-grid">
+            <div class="data-card">
+              <div class="data-card-title">TCFD開示</div>
+              <p class="data-card-desc">気候関連財務情報開示タスクフォース（TCFD）に基づくガバナンス・戦略・リスク管理・指標の開示情報です。</p>
+            </div>
+            <div class="data-card">
+              <div class="data-card-title">ESGデータ</div>
+              <p class="data-card-desc">GHG排出量、エネルギー使用量、再エネ比率など、環境関連の定量データを一覧で確認いただけます。</p>
+            </div>
+            <div class="data-card">
+              <div class="data-card-title">イニシアティブ（SBT / RE100）</div>
+              <p class="data-card-desc">SBT認定、RE100加盟など、気候変動に関する国際イニシアティブへの参画状況をご紹介します。</p>
+            </div>
+            <div class="data-card">
+              <div class="data-card-title">環境戦略</div>
+              <p class="data-card-desc">エコビジョン2050・環境マテリアリティなど、気候変動を含む環境経営の全体方針をご紹介します。</p>
+            </div>
+            <div class="data-card">
+              <div class="data-card-title">環境マネジメント</div>
+              <p class="data-card-desc">ISO14001に基づく環境マネジメント体制・環境方針をご紹介します。</p>
+            </div>
+            <div class="data-card">
+              <div class="data-card-title">環境ラベル・認証等</div>
+              <p class="data-card-desc">エコリーフ、各種環境認証など、製品・組織に関する環境ラベル・認証情報です。</p>
+            </div>
+          </div>
+        </section>
+
+          </div><!-- /climate-main -->
+
+          <!-- 右アンカーリンク（sticky追従） -->
+          <nav class="climate-anchor-nav">
+            <div class="climate-anchor-title">目次 / INDEX</div>
+            <a class="climate-anchor-item is-current" href="#vision">
+              <span class="anchor-label">A</span>ヴィジョン
+            </a>
+            <a class="climate-anchor-item" href="#strategy">
+              <span class="anchor-label">B</span>戦略と目標
+            </a>
+            <a class="climate-anchor-item" href="#performance">
+              <span class="anchor-label">C</span>実績データ
+            </a>
+            <a class="climate-anchor-item" href="#activities">
+              <span class="anchor-label">D</span>取り組み
+            </a>
+            <a class="climate-anchor-item" href="#related">
+              <span class="anchor-label">E</span>関連コンテンツ
+            </a>
+          </nav>
+
+        </div><!-- /climate-layout -->
+
+        <!-- フッター（確定済み） -->
+        <footer class="wf-footer">
+          <div class="wf-footer-note">⚠ フッターは既確定。変更なし。</div>
+          <div class="wf-footer-grid">
+            <div>
+              <div class="wf-footer-col-title">企業情報</div>
+              <span class="wf-footer-link">企業情報トップ</span>
+              <span class="wf-footer-link">Newsroom</span>
+            </div>
+            <div>
+              <div class="wf-footer-col-title">環境</div>
+              <span class="wf-footer-link">気候変動</span>
+              <span class="wf-footer-link">資源循環</span>
+            </div>
+            <div>
+              <div class="wf-footer-col-title">社会</div>
+              <span class="wf-footer-link">人材戦略</span>
+              <span class="wf-footer-link">DE&I</span>
+            </div>
+            <div>
+              <div class="wf-footer-col-title">ガバナンス</div>
+              <span class="wf-footer-link">コンプライアンス</span>
+              <span class="wf-footer-link">情報セキュリティ</span>
+            </div>
+          </div>
+          <div class="wf-footer-bottom">
+            <div>サイトのご利用について ｜ 個人情報保護方針 ｜ サイトマップ</div>
+            <div>©2011-2026 Konica Minolta, Inc.</div>
+          </div>
+        </footer>
+
+    </div><!-- /メインコンテンツ -->
+
+  </div><!-- /wf-page -->
+
+  <!-- アノテーションパネル -->
+  <aside class="wf-annotation">
+    <h3>設計ポイント — 気候変動</h3>
+
+    <!-- A -->
+    <div class="ann-item">
+      <span class="ann-num">A</span>
+      <span class="ann-head">気候変動ヴィジョン：導入＋概念図モジュール3パターン</span>
+      <div class="ann-row">
+        <span class="ann-row-label">ターゲット</span>
+        機関投資家（メイン）/ 第三者評価機関（メイン）
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">行動変容定義との対応</span>
+        「導入：現状のエコビジョン2050にある『気候変動への対応』を元に基本的な考え方を記載」に対応。リード文で基本姿勢を冒頭提示。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">概念図モジュール仕様</span>
+        得意先フィードバック反映：概念図の表示を単一固定ではなく <strong>.concept-vis</strong> モジュールとして3パターン可変化。<br>
+        <strong>パターン①</strong>フルワイド1枚（数直線・ロードマップ型／横長概念図向き）／<strong>パターン②</strong>マルチ画像（2〜3枚横並び。<code>data-cols</code>で列数指定。対比・カテゴリ分解向き）／<strong>パターン③</strong>テキスト＋画像2カラム（補足解説と概念図をセットで提示）。掲載コンテンツに応じて切替え可能。
+      </div>
+      <p class="ann-body">
+        機関投資家がKW検索（CDP/SBT等）から直接流入した際、気候変動への基本姿勢を冒頭で把握できるよう配置。概念図は運用フェーズで差替え頻度が高いため、共通モジュール化して保守性を担保。WF上は3パターンを並記し CMS 設定仕様を明示。
+      </p>
+    </div>
+
+    <!-- B -->
+    <div class="ann-item">
+      <span class="ann-num">B</span>
+      <span class="ann-head">戦略と目標：主要KPIグラフ優先＋戦略テーブル</span>
+      <div class="ann-row">
+        <span class="ann-row-label">ターゲット</span>
+        機関投資家（メイン）/ 第三者評価機関（メイン）
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">行動変容定義との対応</span>
+        「CO₂削減とカーボンマイナスを前に持ってくる（マテリアリティ更新と連動）」の指示に対応。構成：①KPIストリップで3指標を概観 → ②CO₂削減・カーボンマイナスの時系列グラフを2カラムで最上部に表示 → ③既存サイト好評フォーマットの戦略テーブル3ブロック（カテゴリヘッダー＋指標行＋実績値/見通し＋目標値）。グラフを戦略テーブルより前に配置することで「進捗の全体像」を先に示す構成。
+      </div>
+      <p class="ann-body">
+        機関投資家・ESG評価機関が求める「時系列での進捗把握」に最初に応答。戦略テーブルは既確定フォーマットを踏襲しつつ、グラフで文脈を補完。テキスト説明とグラフの組み合わせで、計画とその進捗を柔軟に提示できるレイアウト。
+      </p>
+    </div>
+
+    <!-- C -->
+    <div class="ann-item">
+      <span class="ann-num">C</span>
+      <span class="ann-head">実績データ：時系列デュアル軸グラフ＋解説・取り組みリンク</span>
+      <div class="ann-row">
+        <span class="ann-row-label">ターゲット</span>
+        機関投資家（メイン）/ 第三者評価機関（メイン）
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">行動変容定義との対応</span>
+        「表組み廃止→時系列グラフ複数」「環境的効果と経済的効果の2軸をセット」に対応。3グラフ構成（①Gプロダクツ ②グリーンファクトリー ③CNパートナー）、棒（環境価値・左軸）＋折れ線（経済価値・右軸）のデュアル軸。データDLボタン付き。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">データモジュール拡張仕様</span>
+        得意先フィードバック反映：「データ単独提示は『良いことだけを言っている』懸念を生む／長文解説ではなくリンクで解消する」方針に対応。各グラフ直下に <strong>.ts-graph-context</strong> を必ずセットで配置（グラフ＋リンク＝1モジュール）。短いリード文（1行）の直下に <strong>2系統リンクボックス</strong>：<strong>①取り組み詳細</strong>（認定制度・下層取り組みページ#029〜#031 等）／<strong>②データ定義・背景解説</strong>（算定範囲・算定方法・Scope定義 等）。
+      </div>
+      <p class="ann-body">
+        単年表より推移の文脈が伝わるグラフ形式で投資家の事業インパクト確認に対応。環境×経済の2軸で社会価値と事業価値の連動を可視化。加えて、グラフ直下に「取り組み詳細」「データ定義・背景」2系統のリンクを強制的にセットにすることで「数字だけの提示」を構造的に回避し、定義の透明性と下層ページへの回遊を両立する。
+      </p>
+    </div>
+
+    <!-- D -->
+    <div class="ann-item">
+      <span class="ann-num">D</span>
+      <span class="ann-head">取り組み：サプライチェーン別カード</span>
+      <div class="ann-row">
+        <span class="ann-row-label">ターゲット</span>
+        ビジネスパーソン（サブ）/ 機関投資家（メイン）
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">行動変容定義との対応</span>
+        行動変容定義「取り組み：サプライチェーン（生産/販売など）でラベルをつくり取り組みを整理して、カード形式で概要（画像1枚と概要文など）を紹介する」に対応。015セクションD「代表的な取り組み」と同一モジュール（wf-card + wf-card-tag + wf-img + wf-textlines + wf-link の wf-grid col-3 配置）で統一。#029〜#034の6ページを各カードに対応。
+      </div>
+      <p class="ann-body">
+        ビジネスパートナーが自社調達方針との整合を確認しやすいよう、サプライチェーンのフェーズ別にタグ付きで整理。カードモジュールを015と統一することで、サイト全体のUI一貫性を維持。
+      </p>
+    </div>
+
+    <!-- B/C 共通：詳細説明モジュール -->
+    <div class="ann-item">
+      <span class="ann-num">★</span>
+      <span class="ann-head">詳細説明モジュール：アコーディオン＋モーダル</span>
+      <div class="ann-row">
+        <span class="ann-row-label">対象セクション</span>
+        B（戦略と目標）全KPI・グラフ・戦略テーブル ＋ C（実績データ）全時系列グラフ
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">モジュール仕様</span>
+        <strong>.detail-accordion</strong>：各データ箇所の直下に配置。クリックで開閉する補足説明エリア。デフォルト閉じ。算定方法・変動要因・前提条件等を記載。<br>
+        <strong>.detail-modal</strong>：アコーディオン内の「さらに詳しく見る」ボタンから起動。より詳細な説明・図表・データテーブル等を表示するオーバーレイモーダル。オーバーレイクリックまたは✕ボタンで閉じる。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">設計意図</span>
+        データの透明性確保と閲覧体験の両立。初見ユーザーはグラフ・数値で全体像を把握、深堀したいユーザー（ESG評価機関等）はアコーディオン→モーダルで段階的に詳細情報にアクセス。ページの縦長化を防ぎつつ、説明文の記載領域を十分に確保。
+      </div>
+      <p class="ann-body">
+        将来的に他の環境領域（資源循環・生物多様性等）の実績データページにも同一モジュールを展開予定。CMS上ではアコーディオン／モーダルのコンテンツ領域をリッチテキストエディタで編集可能にする想定。
+      </p>
+    </div>
+
+    <!-- E -->
+    <div class="ann-item">
+      <span class="ann-num">E</span>
+      <span class="ann-head">関連コンテンツ一覧</span>
+      <div class="ann-row">
+        <span class="ann-row-label">ターゲット</span>
+        第三者評価機関（メイン）/ 機関投資家（メイン）
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">行動変容定義との対応</span>
+        015セクションF「環境関連コンテンツ」と同一モジュール（data-card-grid + data-card）で統一。目次ページとしてTCFD・ESGデータ・イニシアティブ・環境戦略・環境マネジメント・環境ラベルへの導線を一覧化。サイト全体で一貫した関連コンテンツ導線UIを維持。
+      </div>
+      <p class="ann-body">
+        クローリングロボットの構造解析にも配慮し、h2見出し直下に左ボーダー付きリンクカードを配置。ESG評価機関の「関連開示の有無確認」に対応。
+      </p>
+    </div>
+
+  </aside>
+
+</div><!-- /wf-canvas -->
+
+<!-- ============================================================
+     モーダル群（詳細説明用）
+============================================================ -->
+
+<!-- モーダル：主要KPI定義 -->
+<div class="detail-modal-overlay" id="modal-kpi-detail" onclick="if(event.target===this)this.classList.remove('is-visible')">
+  <div class="detail-modal">
+    <div class="detail-modal-header">
+      <span class="detail-modal-title">主要KPIの定義・算定方法</span>
+      <button class="detail-modal-close" onclick="this.closest('.detail-modal-overlay').classList.remove('is-visible')">✕</button>
+    </div>
+    <div class="detail-modal-body">
+      <div class="modal-placeholder">
+        <strong>記載予定コンテンツ（詳細版）</strong>
+        ここに主要KPIの詳細な定義、算定方法、基準年の考え方、SBT・中期経営計画との整合に関する説明を記載します。<br><br>
+        【想定構成】<br>
+        1. GHG排出量（Scope1+2）の定義と算定範囲<br>
+        2. GHG排出量（Scope3）の算定カテゴリ一覧<br>
+        3. CO₂削減貢献量の算定ロジック<br>
+        4. 基準年・目標年の設定根拠<br>
+        5. 第三者保証の範囲と結果<br>
+        6. 前年度レポートからの変更点
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- モーダル：戦略テーブル①お客様の業務プロセス変革 -->
+<div class="detail-modal-overlay" id="modal-strat-customer" onclick="if(event.target===this)this.classList.remove('is-visible')">
+  <div class="detail-modal">
+    <div class="detail-modal-header">
+      <span class="detail-modal-title">お客様の業務プロセス変革 — 指標の詳細説明</span>
+      <button class="detail-modal-close" onclick="this.closest('.detail-modal-overlay').classList.remove('is-visible')">✕</button>
+    </div>
+    <div class="detail-modal-body">
+      <div class="modal-placeholder">
+        <strong>記載予定コンテンツ（詳細版）</strong>
+        ここにお客様の業務プロセス変革に関する指標の詳細な解説を記載します。<br><br>
+        【想定構成】<br>
+        1. CO₂削減量の算定フロー（製品LCA→お客様先削減量換算）<br>
+        2. Gプロダクツ認定基準の詳細（環境性能評価項目）<br>
+        3. 売上高集計における対象製品の範囲<br>
+        4. スコープ4相当の国際的な位置づけ（GHGプロトコルとの関係）<br>
+        5. 過去の目標達成状況と改訂経緯
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- モーダル：戦略テーブル②自社拠点 -->
+<div class="detail-modal-overlay" id="modal-strat-own" onclick="if(event.target===this)this.classList.remove('is-visible')">
+  <div class="detail-modal">
+    <div class="detail-modal-header">
+      <span class="detail-modal-title">自社拠点・製品・サービス — 指標の詳細説明</span>
+      <button class="detail-modal-close" onclick="this.closest('.detail-modal-overlay').classList.remove('is-visible')">✕</button>
+    </div>
+    <div class="detail-modal-body">
+      <div class="modal-placeholder">
+        <strong>記載予定コンテンツ（詳細版）</strong>
+        ここに自社拠点での脱炭素に関する指標の詳細な解説を記載します。<br><br>
+        【想定構成】<br>
+        1. Scope1+2の算定対象拠点リストと排出係数<br>
+        2. 省エネルギー量の算出基準（生産原単位/総量）<br>
+        3. 再エネ導入率の内訳（自家発電/PPA/グリーン電力証書/J-クレジット）<br>
+        4. SBT 1.5℃目標との整合評価<br>
+        5. RE100コミットメントとの進捗対比
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- モーダル：グラフ①グリーンプロダクツ -->
+<div class="detail-modal-overlay" id="modal-graph-gproduct" onclick="if(event.target===this)this.classList.remove('is-visible')">
+  <div class="detail-modal">
+    <div class="detail-modal-header">
+      <span class="detail-modal-title">グリーンプロダクツ実績 — 詳細データ解説</span>
+      <button class="detail-modal-close" onclick="this.closest('.detail-modal-overlay').classList.remove('is-visible')">✕</button>
+    </div>
+    <div class="detail-modal-body">
+      <div class="modal-placeholder">
+        <strong>記載予定コンテンツ（詳細版）</strong>
+        ここにグリーンプロダクツの実績に関する詳細な解説を記載します。<br><br>
+        【想定構成】<br>
+        1. CO₂削減量のLCA算定手法と前提条件<br>
+        2. 製品カテゴリ別の削減寄与度分析<br>
+        3. 売上高との相関要因（製品ミックス変化・価格変動等）<br>
+        4. 年度別トピック（新認定製品・廃番製品等）<br>
+        5. 計画値（FY25〜FY27）のシナリオ前提<br>
+        6. 補足データテーブル（年度別内訳）
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- モーダル：グラフ②グリーンファクトリー -->
+<div class="detail-modal-overlay" id="modal-graph-factory" onclick="if(event.target===this)this.classList.remove('is-visible')">
+  <div class="detail-modal">
+    <div class="detail-modal-header">
+      <span class="detail-modal-title">グリーンファクトリー実績 — 詳細データ解説</span>
+      <button class="detail-modal-close" onclick="this.closest('.detail-modal-overlay').classList.remove('is-visible')">✕</button>
+    </div>
+    <div class="detail-modal-body">
+      <div class="modal-placeholder">
+        <strong>記載予定コンテンツ（詳細版）</strong>
+        ここにグリーンファクトリーの実績に関する詳細な解説を記載します。<br><br>
+        【想定構成】<br>
+        1. Scope1+2排出量の地域別・拠点種別内訳<br>
+        2. 省エネ施策の実施状況（設備更新、運用改善、生産効率化）<br>
+        3. 再エネ導入の進捗（PPAスケジュール、自家発電設備計画）<br>
+        4. 増減要因分析（M&A・事業再編・為替影響等）<br>
+        5. グリーンファクトリー認定基準と認定拠点一覧<br>
+        6. 補足データテーブル（年度別内訳）
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     用語解説モーダル群（.detail-modal-overlay を共通利用）
+     本文中のハテナ（?）アイコンから起動。用語の定義・算定範囲・出典を提示。
+     ※ 以下はサンプル実装。実際の運用では用語集マスタから動的生成する想定。
+============================================================ -->
+
+<!-- 用語：スコープ4（サンプル・本番イメージ） -->
+<div class="detail-modal-overlay" id="modal-term-scope4" onclick="if(event.target===this)this.classList.remove('is-visible')">
+  <div class="detail-modal">
+    <div class="detail-modal-header">
+      <span class="detail-modal-title">用語解説 ｜ スコープ4（Scope 4）</span>
+      <button class="detail-modal-close" onclick="this.closest('.detail-modal-overlay').classList.remove('is-visible')">✕</button>
+    </div>
+    <div class="detail-modal-body">
+      <dl class="term-def">
+        <dt>定義</dt>
+        <dd>
+          自社の製品・サービスが社会で使用されることによって<strong>他社のGHG排出量を削減する量（回避排出量／Avoided Emissions）</strong>を指す概念。GHGプロトコルが定める自社排出（Scope1〜3）には含まれない「削減貢献」を可視化するための指標。
+          <span class="term-source">出典：WRI/WBCSD「GHG Protocol — Avoided Emissions Guidance」</span>
+        </dd>
+      </dl>
+      <dl class="term-def">
+        <dt>コニカミノルタにおける算定範囲</dt>
+        <dd>
+          グリーンプロダクツ認定製品を顧客が使用することによる、業務プロセスのCO₂削減量（例：ペーパーレス化による印刷削減、オンデマンド生産による廃棄削減）を対象とする。ベースライン（比較基準）は従来手法を想定し、製品LCAデータから算定。
+          <span class="term-source">参照：グリーンプロダクツ認定制度 ｜ 製品での脱炭素化（#031）</span>
+        </dd>
+      </dl>
+      <dl class="term-def">
+        <dt>留意事項</dt>
+        <dd>Scope4はScope1〜3と<strong>合算できない</strong>（ダブルカウント防止のため別建てで開示）。第三者検証の範囲・基準も異なる。</dd>
+      </dl>
+      <div class="modal-placeholder" style="margin-top:16px;">
+        <strong>記載予定コンテンツ</strong>
+        このモーダルはサンプル表示です。本番では用語集マスタ（CMS）から自動生成し、定義・算定範囲・出典・関連リンクを構造化データとして提供します。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 用語：Scope1+2 -->
+<div class="detail-modal-overlay" id="modal-term-scope12" onclick="if(event.target===this)this.classList.remove('is-visible')">
+  <div class="detail-modal">
+    <div class="detail-modal-header">
+      <span class="detail-modal-title">用語解説 ｜ Scope1+2</span>
+      <button class="detail-modal-close" onclick="this.closest('.detail-modal-overlay').classList.remove('is-visible')">✕</button>
+    </div>
+    <div class="detail-modal-body">
+      <dl class="term-def">
+        <dt>Scope1（直接排出）</dt>
+        <dd>事業者自らによる温室効果ガスの直接排出。例：社有車の燃料燃焼、自社工場のボイラー、ガス使用等。</dd>
+      </dl>
+      <dl class="term-def">
+        <dt>Scope2（間接排出／エネルギー起源）</dt>
+        <dd>他社から供給された電気・熱・蒸気の使用に伴う間接排出。再エネ電力に切替えることで削減可能。</dd>
+      </dl>
+      <dl class="term-def">
+        <dt>算定範囲（コニカミノルタ）</dt>
+        <dd>全グループ拠点（生産／開発／オフィス）を対象。排出係数は電力会社公表値および IEA 係数を使用。<span class="term-source">出典：GHGプロトコル Corporate Standard / ISO 14064-1</span></dd>
+      </dl>
+      <div class="modal-placeholder" style="margin-top:16px;">
+        <strong>記載予定コンテンツ</strong>
+        ※ 実装時はサンプル用語ではなく、用語集マスタ連動。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 用語：Scope3 -->
+<div class="detail-modal-overlay" id="modal-term-scope3" onclick="if(event.target===this)this.classList.remove('is-visible')">
+  <div class="detail-modal">
+    <div class="detail-modal-header">
+      <span class="detail-modal-title">用語解説 ｜ Scope3（その他の間接排出）</span>
+      <button class="detail-modal-close" onclick="this.closest('.detail-modal-overlay').classList.remove('is-visible')">✕</button>
+    </div>
+    <div class="detail-modal-body">
+      <dl class="term-def">
+        <dt>定義</dt>
+        <dd>Scope1・Scope2以外の<strong>バリューチェーン全体での間接排出</strong>。15カテゴリ（購入した製品・サービス／輸送／出張／製品使用／廃棄 等）で構成される。</dd>
+      </dl>
+      <dl class="term-def">
+        <dt>コニカミノルタの主要カテゴリ</dt>
+        <dd>Cat.1（購入した製品・サービス）、Cat.4（輸送）、Cat.11（販売した製品の使用）が大宗。特にCat.11は全Scope3の半数以上を占める。</dd>
+      </dl>
+      <div class="modal-placeholder" style="margin-top:16px;">
+        <strong>記載予定コンテンツ</strong>
+        ※ サンプル。本番ではカテゴリ別内訳グラフ等を含む予定。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 用語：グリーンプロダクツ -->
+<div class="detail-modal-overlay" id="modal-term-gproduct" onclick="if(event.target===this)this.classList.remove('is-visible')">
+  <div class="detail-modal">
+    <div class="detail-modal-header">
+      <span class="detail-modal-title">用語解説 ｜ グリーンプロダクツ</span>
+      <button class="detail-modal-close" onclick="this.closest('.detail-modal-overlay').classList.remove('is-visible')">✕</button>
+    </div>
+    <div class="detail-modal-body">
+      <dl class="term-def">
+        <dt>定義</dt>
+        <dd>コニカミノルタ独自の環境適合製品認定制度。製品ライフサイクル全体における環境性能（CO₂削減、省資源、化学物質削減等）を評価し、一定基準を満たした製品を「グリーンプロダクツ」として認定。</dd>
+      </dl>
+      <dl class="term-def">
+        <dt>認定基準カテゴリ</dt>
+        <dd>①脱炭素／②循環型／③化学物質管理／④生物多様性 — 各項目で定量的な基準を設け、社内委員会で認定。</dd>
+      </dl>
+      <div class="modal-placeholder" style="margin-top:16px;">
+        <strong>記載予定コンテンツ</strong>
+        ※ サンプル。実装時は認定製品一覧・更新履歴等とリンク予定。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 用語：グリーンファクトリー -->
+<div class="detail-modal-overlay" id="modal-term-gfactory" onclick="if(event.target===this)this.classList.remove('is-visible')">
+  <div class="detail-modal">
+    <div class="detail-modal-header">
+      <span class="detail-modal-title">用語解説 ｜ グリーンファクトリー</span>
+      <button class="detail-modal-close" onclick="this.closest('.detail-modal-overlay').classList.remove('is-visible')">✕</button>
+    </div>
+    <div class="detail-modal-body">
+      <dl class="term-def">
+        <dt>定義</dt>
+        <dd>コニカミノルタ独自の生産拠点認定制度。エネルギー効率・再エネ導入率・廃棄物削減など、環境負荷低減の取り組みを評価し、一定基準を満たした拠点を「グリーンファクトリー」として認定。</dd>
+      </dl>
+      <dl class="term-def">
+        <dt>認定レベル</dt>
+        <dd>Level 1〜3の3段階で評価。最高位のLevel 3は再エネ比率100%・廃棄物リサイクル率95%以上等が必須条件。</dd>
+      </dl>
+      <div class="modal-placeholder" style="margin-top:16px;">
+        <strong>記載予定コンテンツ</strong>
+        ※ サンプル。本番では認定拠点リストと連携予定。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 用語：CNパートナー活動 -->
+<div class="detail-modal-overlay" id="modal-term-cnpartner" onclick="if(event.target===this)this.classList.remove('is-visible')">
+  <div class="detail-modal">
+    <div class="detail-modal-header">
+      <span class="detail-modal-title">用語解説 ｜ CNパートナー活動（カーボンニュートラルパートナー活動）</span>
+      <button class="detail-modal-close" onclick="this.closest('.detail-modal-overlay').classList.remove('is-visible')">✕</button>
+    </div>
+    <div class="detail-modal-body">
+      <dl class="term-def">
+        <dt>定義</dt>
+        <dd>コニカミノルタが主要な取引先と協働し、サプライチェーン全体でのCO₂削減を推進する活動。自社の省エネ・脱炭素ノウハウを取引先に提供し、取引先での排出削減（Scope3 Cat.1相当）を支援する。</dd>
+      </dl>
+      <dl class="term-def">
+        <dt>活動内容</dt>
+        <dd>省エネ診断／再エネ導入支援／データ可視化ツール提供／優良事例共有／合同ワークショップ 等。</dd>
+      </dl>
+      <div class="modal-placeholder" style="margin-top:16px;">
+        <strong>記載予定コンテンツ</strong>
+        ※ サンプル。本番では参加企業数・代表事例を掲載予定。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 用語：中計目標 -->
+<div class="detail-modal-overlay" id="modal-term-midplan" onclick="if(event.target===this)this.classList.remove('is-visible')">
+  <div class="detail-modal">
+    <div class="detail-modal-header">
+      <span class="detail-modal-title">用語解説 ｜ 中計目標（中期経営計画目標）</span>
+      <button class="detail-modal-close" onclick="this.closest('.detail-modal-overlay').classList.remove('is-visible')">✕</button>
+    </div>
+    <div class="detail-modal-body">
+      <dl class="term-def">
+        <dt>定義</dt>
+        <dd>中期経営計画（現行：FY25〜FY27）において設定した3ヵ年の定量目標。気候変動領域ではGHG排出量／CO₂削減貢献量／再エネ比率などが該当する。SBT長期目標との整合を確認のうえ設定。</dd>
+      </dl>
+      <div class="modal-placeholder" style="margin-top:16px;">
+        <strong>記載予定コンテンツ</strong>
+        ※ サンプル。本番では中計ハイライトページへのリンクを掲載予定。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- モーダル：グラフ③CNパートナー -->
+<div class="detail-modal-overlay" id="modal-graph-partner" onclick="if(event.target===this)this.classList.remove('is-visible')">
+  <div class="detail-modal">
+    <div class="detail-modal-header">
+      <span class="detail-modal-title">CNパートナー活動実績 — 詳細データ解説</span>
+      <button class="detail-modal-close" onclick="this.closest('.detail-modal-overlay').classList.remove('is-visible')">✕</button>
+    </div>
+    <div class="detail-modal-body">
+      <div class="modal-placeholder">
+        <strong>記載予定コンテンツ（詳細版）</strong>
+        ここにCNパートナー活動の実績に関する詳細な解説を記載します。<br><br>
+        【想定構成】<br>
+        1. CNパートナー活動の制度概要と参加フロー<br>
+        2. 参加企業の地域分布・業種別構成<br>
+        3. CO₂削減量の検証プロセス（自己申告/第三者検証の割合）<br>
+        4. 活動参加社数と削減量の相関分析<br>
+        5. 成功事例（代表的な取引先のケーススタディ）<br>
+        6. 今後の拡大計画と課題
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

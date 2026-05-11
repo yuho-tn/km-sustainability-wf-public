@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>社会 インデックス — KM サステナビリティ WF v5.0 (#005)</title>
+<style>
+/* ============================================================
+   KM SUSTAINABILITY WF — SHARED CSS v4.3
+   #004環境Indexと同一の共通CSSを継承
+============================================================ */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --c-white:    #FFFFFF;
+  --c-bg:       #F7F7F7;
+  --c-bg-sub:   #F2F2F2;
+  --c-border:   #E0E0E0;
+  --c-border-s: #E8E8E8;
+  --c-ph:       #EBEBEB;
+  --c-ph-line:  #D8D8D8;
+  --c-text-h:   #111111;
+  --c-text:     #333333;
+  --c-text-s:   #666666;
+  --c-text-xs:  #999999;
+  --c-black:    #111111;
+
+  --c-ann-bg:   #FFFBF0;
+  --c-ann-bdr:  #C8A000;
+
+  --content-w:  1080px;
+  --page-w:     1280px;
+  --pad-section: 64px;
+  --pad-section-sm: 40px;
+  --pad-h: 100px;
+}
+
+body {
+  font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--c-text);
+  background: var(--c-bg);
+}
+
+.wf-meta-bar {
+  background: #111; color: #ccc; font-size: 11px; padding: 8px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 2000; letter-spacing: 0.03em;
+}
+.wf-meta-bar strong { color: #fff; font-size: 12px; }
+.wf-meta-bar .meta-badge {
+  background: #333; color: #aaa; font-size: 10px;
+  padding: 2px 8px; border-radius: 2px; margin-left: 8px;
+}
+
+.wf-canvas {
+  max-width: var(--page-w); margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 280px; align-items: start;
+}
+.wf-page { background: var(--c-white); box-shadow: 0 2px 20px rgba(0,0,0,0.10); min-height: 100vh; }
+
+.wf-header { background: var(--c-white); border-bottom: 1px solid var(--c-border); }
+.wf-header-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 32px; border-bottom: 1px solid var(--c-border-s);
+}
+.wf-logo { display: flex; align-items: center; gap: 10px; }
+.wf-logo-mark { width: 32px; height: 21px; background: #555; border-radius: 50% 50% 0 50%; }
+.wf-logo-text { font-size: 13px; font-weight: 700; color: var(--c-text-h); letter-spacing: 0.06em; text-transform: uppercase; }
+.wf-header-utils { display: flex; align-items: center; gap: 16px; font-size: 11px; color: var(--c-text-s); }
+.wf-gnav { display: flex; align-items: stretch; padding: 0 32px; }
+.wf-gnav-item { padding: 11px 16px; font-size: 12px; color: var(--c-text-s); border-bottom: 2px solid transparent; white-space: nowrap; }
+.wf-gnav-item.is-active { color: var(--c-text-h); font-weight: 700; border-bottom-color: var(--c-text-h); }
+.wf-lnav { background: #3A3A3A; display: flex; align-items: center; gap: 0; padding: 0 32px; }
+.wf-lnav-label { font-size: 12px; font-weight: 700; color: #fff; padding: 10px 16px 10px 0; margin-right: 8px; border-right: 1px solid #555; white-space: nowrap; }
+.wf-lnav-item { font-size: 11px; color: #BBB; padding: 10px 14px; white-space: nowrap; }
+.wf-lnav-item.is-active { color: #fff; border-bottom: 2px solid #fff; }
+.wf-header-note { background: #F0F0F0; text-align: center; font-size: 10px; color: #888; padding: 4px 24px; border-top: 1px solid #E0E0E0; }
+
+.wf-breadcrumb {
+  background: var(--c-white); border-bottom: 1px solid var(--c-border-s);
+  padding: 10px var(--pad-h); font-size: 12px; color: var(--c-text-s);
+  display: flex; align-items: center; gap: 4px;
+}
+.wf-breadcrumb span.sep { color: var(--c-border); }
+.wf-breadcrumb span.current { color: var(--c-text); }
+
+.wf-page-indicator {
+  background: #2A2A2A; color: #aaa; padding: 6px 32px; font-size: 10px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.wf-page-indicator .pi-layer { background: #444; color: #888; font-size: 9px; padding: 1px 8px; border-radius: 2px; }
+
+.wf-section { padding: var(--pad-section) var(--pad-h); border-bottom: 1px solid var(--c-border-s); position: relative; }
+.wf-section.bg-sub { background: var(--c-bg-sub); }
+.wf-section.bg-white { background: var(--c-white); }
+.wf-section.pad-sm { padding-top: var(--pad-section-sm); padding-bottom: var(--pad-section-sm); }
+.wf-section-marker {
+  position: absolute; top: 12px; left: 8px; width: 22px; height: 22px;
+  background: #222; color: #fff; border-radius: 50%; font-size: 10px;
+  font-weight: 700; display: flex; align-items: center; justify-content: center;
+}
+
+/* H2 — グラデ下線つき（v1.2） */
+.wf-section-title {
+  font-size: 24px; font-weight: 700; color: var(--c-text-h);
+  margin-bottom: 28px; padding-bottom: 14px;
+  border-bottom: 1px solid var(--c-border);
+  line-height: 1.3; letter-spacing: -0.01em;
+  position: relative;
+}
+.wf-section-title::after {
+  content: ''; position: absolute; left: 0; bottom: -1px;
+  width: 140px; height: 3px;
+  background: linear-gradient(90deg, #111 0%, #444 40%, #888 70%, transparent 100%);
+}
+
+/* H2 + 横リンク（v4.3） */
+.section-head-row {
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: 24px; margin-bottom: 28px; padding-bottom: 14px;
+  border-bottom: 1px solid var(--c-border);
+  position: relative; flex-wrap: wrap;
+}
+.section-head-row::after {
+  content: ''; position: absolute; left: 0; bottom: -1px;
+  width: 140px; height: 3px;
+  background: linear-gradient(90deg, #111 0%, #444 40%, #888 70%, transparent 100%);
+}
+.section-head-row .wf-section-title {
+  margin-bottom: 0; padding-bottom: 0; border-bottom: none;
+}
+.section-head-row .wf-section-title::after { display: none; }
+.section-head-link {
+  font-size: 12px; font-weight: 600; color: var(--c-text-h);
+  white-space: nowrap; cursor: default; letter-spacing: 0.03em;
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.15s;
+}
+.section-head-link:hover { border-bottom-color: var(--c-text-h); }
+.section-head-link::before { content: '› '; font-weight: 700; }
+
+.wf-section-desc { font-size: 13px; color: var(--c-text); line-height: 1.95; margin-bottom: 24px; }
+
+/* H3 — 左縦棒付き */
+.wf-sub-title {
+  font-size: 16px; font-weight: 700; color: var(--c-text-h);
+  margin-bottom: 16px; line-height: 1.5;
+  padding-left: 14px; border-left: 4px solid var(--c-text-h);
+  letter-spacing: -0.01em;
+}
+
+/* H3 + 横リンク */
+.h3-head-row {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 20px; margin-bottom: 16px; flex-wrap: wrap;
+}
+.h3-head-row .wf-sub-title { margin-bottom: 0; }
+
+/* H4 — ◾プレフィックス付き */
+.wf-card-title {
+  font-size: 14px; font-weight: 700; color: var(--c-text-h);
+  margin-bottom: 12px; line-height: 1.4;
+  display: flex; align-items: center; gap: 6px;
+}
+.wf-card-title.has-mark::before { content: '◾'; color: var(--c-text-h); font-size: 12px; flex-shrink: 0; margin-right: 6px; }
+.wf-card .wf-card-title { gap: 0; }
+
+/* テーマブロック（v4.3） */
+.theme-block {
+  background: var(--c-white); border: 1px solid var(--c-border);
+  border-top: 4px solid var(--c-text-h);
+  padding: 24px 28px; margin-bottom: 16px;
+}
+.theme-block-head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; margin-bottom: 16px; padding-bottom: 12px;
+  border-bottom: 1px solid var(--c-border-s);
+  flex-wrap: wrap;
+}
+/* theme-block-head h3: ブロック内H2扱い（アンダーラインのみ・縦棒なし） */
+.theme-block-head h3 {
+  font-size: 18px; font-weight: 700; color: var(--c-text-h);
+  line-height: 1.4;
+}
+
+/* theme-block 内の h4 (.wf-card-title): ブロック内H3扱い（004と同仕様：16px・縦棒・◾なし） */
+.theme-block .wf-card-title {
+  font-size: 16px; font-weight: 700; color: var(--c-text-h);
+  margin-bottom: 12px; line-height: 1.5;
+  padding-left: 14px;
+  border-left: 4px solid var(--c-text-h);
+  display: block;
+}
+
+/* theme-block 内 さらに deeper（H5扱い・◾プレフィックス） */
+.theme-block .wf-h5-title {
+  font-size: 13px; font-weight: 700; color: var(--c-text-h);
+  margin-bottom: 8px; line-height: 1.4;
+  display: flex; align-items: center; gap: 6px;
+  padding-left: 0; border-left: none;
+}
+.theme-block .wf-h5-title::before {
+  content: '◾'; color: var(--c-text-h); font-size: 11px;
+  flex-shrink: 0;
+}
+.theme-block-link {
+  font-size: 12px; font-weight: 600; color: var(--c-text-h);
+  white-space: nowrap; cursor: default; letter-spacing: 0.03em;
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.15s;
+}
+.theme-block-link:hover { border-bottom-color: var(--c-text-h); }
+.theme-block-link::before { content: '› '; font-weight: 700; }
+
+/* 装飾的グループラベル — 薄グレー背景＋左縦バー（黒背景禁止ルール準拠） */
+.group-label {
+  background: var(--c-bg-sub);
+  color: var(--c-text-h);
+  padding: 10px 18px;
+  margin: 32px 0 14px;
+  display: flex; align-items: baseline; gap: 14px;
+  flex-wrap: wrap;
+  border-left: 4px solid var(--c-text-h);
+}
+.group-label-tag {
+  font-size: 13px; font-weight: 700; color: var(--c-text-h);
+  letter-spacing: 0.06em;
+}
+.group-label-desc {
+  font-size: 11px; color: var(--c-text-s); line-height: 1.6;
+}
+.group-label-count {
+  font-size: 10px; color: var(--c-text-s);
+  background: var(--c-white); border: 1px solid var(--c-border);
+  padding: 2px 10px;
+  margin-left: auto;
+  font-weight: 600; letter-spacing: 0.05em;
+}
+
+/* グラフ画像PH（行動変容定義でグラフ記載のあるテーマに使用） */
+.kpi-graph-ph {
+  background: var(--c-ph);
+  border: 1px solid var(--c-ph-line);
+  aspect-ratio: 4 / 3;
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.kpi-graph-ph::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, rgba(0,0,0,0.04) 10px 11px);
+}
+.kpi-graph-ph-label {
+  position: relative; z-index: 1;
+  font-size: 11px; color: var(--c-text-s);
+  text-align: center;
+  background: rgba(255,255,255,0.85); padding: 4px 12px;
+  letter-spacing: 0.04em;
+}
+
+/* 戦略・目標・実績モジュール — 画像左＋画像下キャプション／右説明文 */
+.kpi-graph-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  margin-top: 14px;
+}
+.kpi-graph-left { display: flex; flex-direction: column; gap: 8px; }
+.kpi-graph-caption {
+  font-size: 11px; color: var(--c-text-s); line-height: 1.7;
+}
+.kpi-graph-desc {
+  font-size: 12px; color: var(--c-text); line-height: 1.9;
+}
+
+/* テーマ内 — トピック差し込み */
+.theme-topic {
+  background: var(--c-bg-sub); border: 1px solid var(--c-border);
+  padding: 14px 18px; margin-top: 14px;
+}
+.theme-topic-head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 14px; margin-bottom: 8px; flex-wrap: wrap;
+}
+.theme-topic-head-left { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.theme-topic-label {
+  display: inline-block;
+  font-size: 9px; font-weight: 700; color: #fff;
+  background: var(--c-text-h);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 3px 8px;
+}
+.theme-topic-title {
+  font-size: 13px; font-weight: 700; color: var(--c-text-h); line-height: 1.4;
+}
+.theme-topic-desc {
+  font-size: 11px; color: var(--c-text); line-height: 1.8;
+}
+
+/* テーマ内 — 関連リンク横並び */
+.theme-related {
+  background: var(--c-bg-sub); border: 1px solid var(--c-border);
+  padding: 10px 16px; margin-top: 12px;
+  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+}
+.theme-related-label {
+  font-size: 11px; font-weight: 700; color: var(--c-text-h);
+  letter-spacing: 0.04em;
+}
+.theme-related .wf-link { font-size: 11px; }
+
+/* アンカーチップ（A導入セクションで使用） */
+.social-anchor-grid {
+  background: var(--c-white); border: 1px solid var(--c-border);
+  padding: 20px 22px; margin-top: 8px;
+}
+.social-anchor-label {
+  font-size: 10px; font-weight: 700; color: var(--c-text-xs);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.social-anchor-chips {
+  display: flex; flex-wrap: wrap; gap: 6px;
+}
+.social-anchor-chips .chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; color: var(--c-text-h);
+  border: 1px solid var(--c-border);
+  background: var(--c-white);
+  padding: 6px 12px;
+  cursor: default; text-decoration: none;
+  white-space: nowrap;
+}
+.social-anchor-chips .chip:hover { background: var(--c-bg-sub); border-color: var(--c-text-h); }
+.social-anchor-chips .chip-num {
+  font-size: 9px; color: var(--c-text-xs);
+  font-family: 'Helvetica Neue', sans-serif; letter-spacing: 0.05em;
+}
+
+/* リンク・カード共通 */
+.wf-link { font-size: 12px; color: var(--c-text-s); display: inline-flex; align-items: center; gap: 4px; cursor: default; }
+.wf-link::before { content: '→ '; font-size: 11px; }
+.wf-card { background: var(--c-white); border: 1px solid var(--c-border); padding: 20px; }
+.wf-grid { display: grid; gap: 16px; }
+.wf-grid.col-2 { grid-template-columns: repeat(2, 1fr); }
+.wf-grid.col-3 { grid-template-columns: repeat(3, 1fr); }
+.wf-grid.gap-24 { gap: 24px; }
+
+/* ヒーロー — 第2階層共通モジュール（004環境と同仕様で統一） */
+.wf-hero-fullwidth {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  background: var(--c-ph);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.wf-hero-fullwidth::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(-45deg, transparent 0px, transparent 10px, rgba(0,0,0,0.04) 10px, rgba(0,0,0,0.04) 11px);
+}
+.wf-hero-fullwidth .wf-hero-title-box {
+  position: relative;
+  z-index: 1;
+  background: rgba(255,255,255,0.88);
+  border: 1px solid var(--c-border);
+  padding: 14px 28px;
+  margin-left: var(--pad-h);
+  letter-spacing: 0.02em;
+}
+.wf-hero-fullwidth .wf-hero-title-box h1 {
+  font-size: 16px; font-weight: 700;
+  color: var(--c-text-h);
+  margin: 0; line-height: 1.4;
+  letter-spacing: 0.02em;
+}
+.wf-hero-fullwidth .wf-img-label {
+  position: absolute;
+  right: 20px; bottom: 12px;
+  z-index: 1;
+  font-size: 11px; color: var(--c-text-xs);
+  background: rgba(255,255,255,0.75); padding: 4px 10px;
+  text-align: right; line-height: 1.5;
+}
+
+/* サステナビリティ関連リンク — 1カラム×3ブロック横並びレイアウト（v4.8 / 縦幅圧縮・両ページ統一） */
+.esg-link-stack {
+  border: 1px solid var(--c-border);
+  background: var(--c-white);
+}
+.esg-link-row {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  align-items: stretch;
+  border-top: 1px solid var(--c-border);
+}
+.esg-link-row:first-child { border-top: none; }
+.esg-link-row.is-current .esg-link-chips { background: var(--c-bg-sub); }
+
+.esg-link-head {
+  background: var(--c-text-h); color: #fff;
+  padding: 14px 18px;
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: default;
+}
+.esg-link-head::after { content: '›'; font-size: 18px; font-weight: 700; }
+
+.esg-link-chips {
+  padding: 12px 14px;
+  display: flex; flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+/* L3チップ：Index内のH3見出しページへの導線 */
+.esg-l3 {
+  display: inline-flex; align-items: center;
+  font-size: 11px; color: var(--c-text-h);
+  border: 1px solid var(--c-border);
+  background: var(--c-white);
+  padding: 4px 10px 4px 18px;
+  cursor: default; white-space: nowrap;
+  position: relative;
+  letter-spacing: 0.02em;
+}
+.esg-l3::before {
+  content: '›'; font-weight: 700; color: var(--c-text-h);
+  position: absolute; left: 7px; top: 3px;
+  font-size: 12px;
+}
+.esg-l3:hover { background: var(--c-bg-sub); border-color: var(--c-text-h); }
+
+/* フッター */
+.wf-footer { background: #F5F5F5; border-top: 1px solid var(--c-border); padding: 32px var(--pad-h) 20px; }
+.wf-footer-note { text-align: center; font-size: 10px; color: #999; background: #EBEBEB; border: 1px solid var(--c-border); padding: 6px; margin-bottom: 20px; }
+.wf-footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 24px; }
+.wf-footer-col-title { font-size: 11px; font-weight: 700; color: var(--c-text); border-bottom: 1px solid var(--c-border); padding-bottom: 8px; margin-bottom: 8px; }
+.wf-footer-link { display: block; font-size: 11px; color: var(--c-text-s); padding: 3px 0; }
+.wf-footer-bottom { border-top: 1px solid var(--c-border); padding-top: 14px; display: flex; justify-content: space-between; font-size: 11px; color: var(--c-text-xs); }
+
+/* アノテーション */
+.wf-annotation { background: var(--c-ann-bg); border-left: 3px solid var(--c-ann-bdr); padding: 16px; position: sticky; top: 0; max-height: 100vh; overflow-y: auto; }
+.wf-annotation h3 { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: #888; border-bottom: 1px solid var(--c-ann-bdr); padding-bottom: 8px; margin-bottom: 14px; }
+.ann-item { margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid #EEE; }
+.ann-item:last-child { border-bottom: none; }
+.ann-num { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; background: #222; color: #fff; font-size: 10px; font-weight: 700; border-radius: 50%; margin-bottom: 5px; }
+.ann-head { font-size: 11px; font-weight: 700; color: #222; display: block; margin-bottom: 6px; line-height: 1.4; }
+.ann-row { font-size: 10px; color: #555; line-height: 1.5; margin-bottom: 5px; padding-left: 4px; border-left: 2px solid #E0D090; }
+.ann-row .ann-row-label { font-weight: 700; color: #888; display: block; font-size: 9px; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.05em; }
+.ann-body { font-size: 10px; color: #555; line-height: 1.6; margin-top: 6px; }
+
+/* 画像拡大ボタン（2カラム以上の画像PHに付与・全WF共通仕様 v4.4） */
+.img-zoom-btn {
+  position: absolute; bottom: 6px; right: 6px;
+  width: 26px; height: 26px;
+  background: #111; color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 700; line-height: 1;
+  cursor: default; z-index: 5;
+  border: 1px solid #fff;
+}
+.img-zoom-btn::before { content: "+"; }
+.img-zoom-btn:hover { background: #2a2a2a; }
+</style>
+</head>
+
+<body>
+
+<!-- WF管理バー -->
+<div class="wf-meta-bar">
+  <div>
+    <strong>KONICA MINOLTA サステナビリティ</strong>
+    <span class="meta-badge">社会 インデックス</span>
+    <span class="meta-badge">WF v5.0</span>
+    <span class="meta-badge">#005</span>
+    <span class="meta-badge">L2</span>
+    <span class="meta-badge" style="background:#7a4a00; color:#fff;">旧 #016 リネーム</span>
+  </div>
+  <div style="font-size:10px; color:#666;">2026.05 / 関連リンク1カラム3ブロック化（H3見出しのみ）</div>
+</div>
+
+<div class="wf-canvas">
+  <div class="wf-page">
+
+    <div class="wf-page-indicator">
+      <span>社会 インデックス / URL: /about/csr/society/</span>
+      <span class="pi-layer">L2 第2階層 — インデックスページ</span>
+    </div>
+
+    <!-- ヘッダー -->
+    <header class="wf-header">
+      <div class="wf-header-inner">
+        <div class="wf-logo"><div class="wf-logo-mark"></div><div class="wf-logo-text">KONICA MINOLTA</div></div>
+        <div class="wf-header-utils"><span>サポート・ダウンロード</span><span>お問い合わせ</span><span>Countries/Regions</span><span>ja | en | zh</span></div>
+      </div>
+      <nav class="wf-gnav">
+        <span class="wf-gnav-item">企業情報</span>
+        <span class="wf-gnav-item">Newsroom</span>
+        <span class="wf-gnav-item">株主・投資家情報</span>
+        <span class="wf-gnav-item is-active">サステナビリティ</span>
+        <span class="wf-gnav-item">テクノロジー</span>
+        <span class="wf-gnav-item">採用情報</span>
+      </nav>
+      <nav class="wf-lnav">
+        <span class="wf-lnav-label">サステナビリティ</span>
+        <span class="wf-lnav-item">TOP</span>
+        <span class="wf-lnav-item">サステナビリティ戦略</span>
+        <span class="wf-lnav-item">サステナビリティマネジメント</span>
+        <span class="wf-lnav-item">環境</span>
+        <span class="wf-lnav-item is-active">社会</span>
+        <span class="wf-lnav-item">ガバナンス</span>
+      </nav>
+      <div class="wf-header-note">⚠ ヘッダーは既確定。変更なし。</div>
+    </header>
+
+    <!-- パンくず -->
+    <nav class="wf-breadcrumb">
+      ホーム <span class="sep">›</span>
+      サステナビリティ <span class="sep">›</span>
+      <span class="current">社会</span>
+    </nav>
+
+    <!-- ページヒーロー（フルワイドKV／第2階層共通） -->
+    <div class="wf-hero-fullwidth">
+      <div class="wf-hero-title-box">
+        <h1>社会</h1>
+      </div>
+      <div class="wf-img-label">キービジュアル画像（全幅）<br>社会イメージ（人財・職場・多様性等）</div>
+    </div>
+
+    <!-- ============================================================
+         セクション A：基本的な考え方 ＋ アンカーナビ
+    ============================================================ -->
+    <section class="wf-section bg-white">
+      <span class="wf-section-marker">A</span>
+      <h2 class="wf-section-title">基本的な考え方</h2>
+      <p style="font-size:13px; color:var(--c-text); line-height:1.9; margin-bottom:14px;">
+        コニカミノルタは、人財育成やDE&amp;Iを中心に、社員一人ひとりの可能性を引き出す職場づくりと、社会との共生を通じた持続可能な事業活動を推進しています。本ページでは、人的資本戦略・人財育成・労働環境・人権・サプライチェーン・顧客責任など、社会領域の取り組みの全体像を紹介します。
+      </p>
+      <p style="font-size:11px; color:var(--c-text-xs); margin-bottom:24px;">（基本的な考え方のテキスト 1〜2段落 — 確定テキスト待ち）</p>
+
+    </section>
+
+    <!-- ============================================================
+         セクション B：取り組み — H2直下にアンカーナビ＋大分類2グループ（装飾ラベル）＋ 13 theme-block 1カラム
+    ============================================================ -->
+    <section class="wf-section bg-sub">
+      <span class="wf-section-marker">B</span>
+      <h2 class="wf-section-title">取り組み</h2>
+      <p class="wf-section-desc">
+        社会領域の13テーマについて、基本的な考え方と戦略・目標・実績を紹介します。各テーマの詳細は「詳細を見る」リンクから個別ページへ進めます。
+      </p>
+
+      <!-- 13テーマへのアンカーナビ（H2「取り組み」直下に配置） -->
+      <div class="social-anchor-grid" style="margin-bottom:24px;">
+        <div class="social-anchor-label">本ページで紹介する取り組み</div>
+        <div style="font-size:11px; font-weight:700; color:var(--c-text-h); margin:6px 0 6px; letter-spacing:0.04em;">人と組織</div>
+        <div class="social-anchor-chips" style="margin-bottom:12px;">
+          <a href="#sec-01" class="chip"><span class="chip-num">01</span>人的資本戦略</a>
+          <a href="#sec-02" class="chip"><span class="chip-num">02</span>人財育成</a>
+          <a href="#sec-03" class="chip"><span class="chip-num">03</span>企業文化・組織風土</a>
+          <a href="#sec-04" class="chip"><span class="chip-num">04</span>DE&amp;I</a>
+          <a href="#sec-05" class="chip"><span class="chip-num">05</span>健康経営</a>
+          <a href="#sec-06" class="chip"><span class="chip-num">06</span>労働安全衛生</a>
+          <a href="#sec-07" class="chip"><span class="chip-num">07</span>労働慣行</a>
+        </div>
+        <div style="font-size:11px; font-weight:700; color:var(--c-text-h); margin:0 0 6px; letter-spacing:0.04em;">社会・お客様</div>
+        <div class="social-anchor-chips">
+          <a href="#sec-08" class="chip"><span class="chip-num">08</span>人権</a>
+          <a href="#sec-09" class="chip"><span class="chip-num">09</span>ステークホルダーエンゲージメント</a>
+          <a href="#sec-10" class="chip"><span class="chip-num">10</span>サプライチェーンマネジメント</a>
+          <a href="#sec-11" class="chip"><span class="chip-num">11</span>顧客責任・品質</a>
+          <a href="#sec-12" class="chip"><span class="chip-num">12</span>社会貢献活動</a>
+          <a href="#sec-13" class="chip"><span class="chip-num">13</span>AIの利活用</a>
+        </div>
+      </div>
+
+      <!-- ── 大分類① 人と組織（装飾ラベル・H3扱いではない） ── -->
+      <div class="group-label">
+        <span class="group-label-tag">人と組織</span>
+        <span class="group-label-desc">自社の人財・職場づくりに関わる取り組み</span>
+      </div>
+
+      <!-- 01 人的資本戦略 -->
+      <div class="theme-block" id="sec-01">
+        <div class="theme-block-head">
+          <h3>人的資本戦略</h3>
+          <a class="theme-block-link">詳細を見る</a>
+        </div>
+        <h4 class="wf-card-title">基本的な考え方</h4>
+        <p style="font-size:12px; color:var(--c-text); line-height:1.9;">
+          個と組織の成長を両立させる人的資本戦略を推進。事業戦略と接続した人事戦略を策定し、エンゲージメントを通じた価値創造を実現します。
+        </p>
+        <h4 class="wf-card-title" style="margin-top:14px;">戦略・目標・実績</h4>
+        <p style="font-size:12px; color:var(--c-text); line-height:1.9;">
+          GES（Global Employee Survey）「エンゲージメントスコア」を主要KPIとし、目標値と実績を経年でモニタリングします。
+        </p>
+        <div class="kpi-graph-row">
+          <div class="kpi-graph-left">
+            <div class="kpi-graph-ph">
+              <span class="kpi-graph-ph-label">[ グラフ画像PH ]</span>
+            <span class="img-zoom-btn"></span></div>
+            <p class="kpi-graph-caption">図：GES エンゲージメントスコアの推移（FY23-25実績／FY28目標）</p>
+          </div>
+          <p class="kpi-graph-desc">
+            個と組織の成長を両立させるエンゲージメント施策を推進。スコアの構成要素ごとに分析し、対話と人材育成の打ち手に接続させることで、中期的な事業成長と人的資本の価値向上を同時に実現します。
+          </p>
+        </div>
+      </div>
+
+      <!-- 02 人財育成 -->
+      <div class="theme-block" id="sec-02">
+        <div class="theme-block-head">
+          <h3>人財育成</h3>
+          <a class="theme-block-link">詳細を見る</a>
+        </div>
+        <h4 class="wf-card-title">基本的な考え方</h4>
+        <p style="font-size:12px; color:var(--c-text); line-height:1.9;">
+          次世代経営人財育成の強化と、事業成長を牽引する専門人財・グローバル人財の育成を進めています。中長期の戦略人事と接続した育成体系を整備しています。
+        </p>
+        <h4 class="wf-card-title" style="margin-top:14px;">戦略・目標・実績</h4>
+        <p style="font-size:12px; color:var(--c-text); line-height:1.9;">
+          次世代経営人財プールの拡充をKPIとして設定。事業戦略と接続したサクセッション計画を策定しています。
+        </p>
+        <div class="kpi-graph-row">
+          <div class="kpi-graph-left">
+            <div class="kpi-graph-ph">
+              <span class="kpi-graph-ph-label">[ グラフ画像PH ]</span>
+            <span class="img-zoom-btn"></span></div>
+            <p class="kpi-graph-caption">図：次世代経営人財プール規模の推移（FY23-25実績／FY28目標）</p>
+          </div>
+          <p class="kpi-graph-desc">
+            グローバル人財プールの可視化と、後継者計画の精緻化を進めることで、経営層の多様性と機動性を確保。経営人財育成プログラム（KMaP/KMS）を通じた選抜・育成を継続的に運営しています。
+          </p>
+        </div>
+      </div>
+
+      <!-- 03 企業文化・組織風土 -->
+      <div class="theme-block" id="sec-03">
+        <div class="theme-block-head">
+          <h3>企業文化・組織風土</h3>
+          <a class="theme-block-link">詳細を見る</a>
+        </div>
+        <h4 class="wf-card-title">基本的な考え方</h4>
+        <p style="font-size:12px; color:var(--c-text); line-height:1.9;">
+          フィロソフィーを基軸とした風土醸成、心理的安全性の確保、対話を通じた組織変革を推進。事業成長を支える企業文化の浸透に取り組みます。
+        </p>
+      </div>
+
+      <!-- 04 DE&I -->
+      <div class="theme-block" id="sec-04">
+        <div class="theme-block-head">
+          <h3>DE&amp;I</h3>
+          <a class="theme-block-link">詳細を見る</a>
+        </div>
+        <h4 class="wf-card-title">基本的な考え方</h4>
+        <p style="font-size:12px; color:var(--c-text); line-height:1.9;">
+          ダイバーシティ・エクイティ＆インクルージョンの推進を通じ、多様な人財が能力を発揮できる組織を目指します。
+        </p>
+        <h4 class="wf-card-title" style="margin-top:14px;">戦略・目標・実績</h4>
+        <p style="font-size:12px; color:var(--c-text); line-height:1.9;">
+          D=女性管理職比率／E=公平性（GES）／I=意見の自由（GES）の3指標をKPIとして設定。グループ・KM（株）の数字を経年で開示します。
+        </p>
+        <div class="kpi-graph-row">
+          <div class="kpi-graph-left">
+            <div class="kpi-graph-ph">
+              <span class="kpi-graph-ph-label">[ グラフ画像PH ]</span>
+            <span class="img-zoom-btn"></span></div>
+            <p class="kpi-graph-caption">図：女性管理職比率（D）／公平性（E）／意見の自由（I）の3指標推移</p>
+          </div>
+          <p class="kpi-graph-desc">
+            女性管理職比率は女性活躍推進法上の開示にも対応。公平性・意見の自由はGESスコアで把握し、DEI推進計画に反映。事業成長に資する多様性の確保を目指します。
+          </p>
+        </div>
+        <div class="theme-topic">
+          <div class="theme-topic-head">
+            <div class="theme-topic-head-left">
+              <span class="theme-topic-label">TOPICS</span>
+              <h4 class="theme-topic-title">女性活躍推進</h4>
+            </div>
+            <a class="section-head-link">詳細を見る</a>
+          </div>
+          <p class="theme-topic-desc">女性のキャリア形成支援、両立支援制度、ジェンダー平等の実現に向けた取り組み（女性活躍推進法上の開示含む）。</p>
+        </div>
+      </div>
+
+      <!-- 05 健康経営 -->
+      <div class="theme-block" id="sec-05">
+        <div class="theme-block-head">
+          <h3>健康経営</h3>
+          <a class="theme-block-link">詳細を見る</a>
+        </div>
+        <h4 class="wf-card-title">基本的な考え方</h4>
+        <p style="font-size:12px; color:var(--c-text); line-height:1.9;">
+          健康第一の風土醸成を通じた健全な経営の推進を重視。健康リスク保有者の最少化、過重労働対策、健康度の見える化、女性の健康支援に取り組みます。
+        </p>
+        <h4 class="wf-card-title" style="margin-top:14px;">戦略・目標・実績</h4>
+        <p style="font-size:12px; color:var(--c-text); line-height:1.9;">
+          健康リスク保有者比率の最少化と、健康経営優良法人（ホワイト500）の継続認定を主要KPIとしています。
+        </p>
+        <div class="kpi-graph-row">
+          <div class="kpi-graph-left">
+            <div class="kpi-graph-ph">
+              <span class="kpi-graph-ph-label">[ グラフ画像PH ]</span>
+            <span class="img-zoom-btn"></span></div>
+            <p class="kpi-graph-caption">図：健康リスク保有者比率の推移／ホワイト500認定の継続実績</p>
+          </div>
+          <p class="kpi-graph-desc">
+            健康診断結果に基づくリスク層の早期介入、女性の健康支援、過重労働対策を体系化。データに基づく健康経営PDCAを回し、生産性向上と医療費適正化の両立を目指します。
+          </p>
+        </div>
+      </div>
+
+      <!-- 06 労働安全衛生 -->
+      <div class="theme-block" id="sec-06">
+        <div class="theme-block-head">
+          <h3>労働安全衛生</h3>
+          <a class="theme-block-link">詳細を見る</a>
+        </div>
+        <h4 class="wf-card-title">基本的な考え方</h4>
+        <p style="font-size:12px; color:var(--c-text); line-height:1.9;">
+          製造会社として義務的に必要な労働安全衛生体制を構築。労働災害ゼロを目指し、労働安全衛生方針に基づく管理体制とリスクアセスメントを実施しています。
+        </p>
+        <h4 class="wf-card-title" style="margin-top:14px;">戦略・目標・実績</h4>
+        <p style="font-size:12px; color:var(--c-text); line-height:1.9;">
+          休業度数率と重大災害発生件数を主要KPIとし、労働災害ゼロを目指して継続的に管理しています。
+        </p>
+        <div class="kpi-graph-row">
+          <div class="kpi-graph-left">
+            <div class="kpi-graph-ph">
+              <span class="kpi-graph-ph-label">[ グラフ画像PH ]</span>
+            <span class="img-zoom-btn"></span></div>
+            <p class="kpi-graph-caption">図：休業度数率の推移／重大災害発生件数</p>
+          </div>
+          <p class="kpi-graph-desc">
+            危険源の特定からリスクアセスメント、是正措置までのサイクルを各拠点で運用。グローバル拠点での労働安全衛生マネジメントシステム（ISO45001）導入を推進しています。
+          </p>
+        </div>
+      </div>
+
+      <!-- 07 労働慣行 -->
+      <div class="theme-block" id="sec-07">
+        <div class="theme-block-head">
+          <h3>労働慣行</h3>
+          <a class="theme-block-link">詳細を見る</a>
+        </div>
+        <h4 class="wf-card-title">基本的な考え方</h4>
+        <p style="font-size:12px; color:var(--c-text); line-height:1.9;">
+          ILO中核的労働基準を踏まえた労働慣行の遵守、結社の自由・団体交渉権の尊重、強制労働・児童労働の禁止など、グローバルでの労働者の権利保護を推進します。
+        </p>
+      </div>
+
+      <!-- ── 大分類② 社会・お客様 ── -->
+      <div class="group-label">
+        <span class="group-label-tag">社会・お客様</span>
+        <span class="group-label-desc">外部ステークホルダーへの責任に関わる取り組み</span>
+      </div>
+
+      <!-- 08 人権 -->
+      <div class="theme-block" id="sec-08">
+        <div class="theme-block-head">
+          <h3>人権</h3>
+          <a class="theme-block-link">詳細を見る</a>
+        </div>
+        <h4 class="wf-card-title">基本的な考え方</h4>
+        <p style="font-size:12px; color:var(--c-text); line-height:1.9;">
+          人権方針・KMグループ行動憲章・サプライチェーン行動規範を基盤に、グローバルな原則・国際規範に沿った人権尊重を実践。網羅的な人権デュー・デリジェンスを実施しています。
+        </p>
+        <div class="theme-related">
+          <span class="theme-related-label">関連リンク</span>
+          <span class="wf-link">人権デュー・デリジェンス</span>
+          <span class="wf-link">相談・通報窓口</span>
+          <span class="wf-link">是正</span>
+        </div>
+      </div>
+
+      <!-- 09 ステークホルダーエンゲージメント -->
+      <div class="theme-block" id="sec-09">
+        <div class="theme-block-head">
+          <h3>ステークホルダーエンゲージメント</h3>
+          <a class="theme-block-link">詳細を見る</a>
+        </div>
+        <h4 class="wf-card-title">基本的な考え方</h4>
+        <p style="font-size:12px; color:var(--c-text); line-height:1.9;">
+          お客様・お取引先・従業員・株主投資家・地域社会など、多様なステークホルダーとの対話を通じて、共に持続可能な未来を創造します。
+        </p>
+      </div>
+
+      <!-- 10 サプライチェーンマネジメント -->
+      <div class="theme-block" id="sec-10">
+        <div class="theme-block-head">
+          <h3>サプライチェーンマネジメント</h3>
+          <a class="theme-block-link">詳細を見る</a>
+        </div>
+        <h4 class="wf-card-title">基本的な考え方</h4>
+        <p style="font-size:12px; color:var(--c-text); line-height:1.9;">
+          サプライチェーン全体での人権・環境・倫理に配慮した責任ある調達活動を推進。サプライヤーとの協働を通じた持続可能なバリューチェーン構築を目指します。
+        </p>
+        <div class="theme-related">
+          <span class="theme-related-label">関連リンク</span>
+          <span class="wf-link">サステナブル調達</span>
+          <span class="wf-link">責任ある鉱物調達</span>
+        </div>
+      </div>
+
+      <!-- 11 顧客責任・品質 -->
+      <div class="theme-block" id="sec-11">
+        <div class="theme-block-head">
+          <h3>顧客責任・品質</h3>
+          <a class="theme-block-link">詳細を見る</a>
+        </div>
+        <h4 class="wf-card-title">基本的な考え方</h4>
+        <p style="font-size:12px; color:var(--c-text); line-height:1.9;">
+          コンプライアンス／品質不正防止、製品セキュリティ、製品品質、顧客満足度の4軸でTQM（Total Quality Management）を推進。お客様への責任を多面的に果たします。
+        </p>
+        <h4 class="wf-card-title" style="margin-top:14px;">戦略・目標・実績</h4>
+        <p style="font-size:12px; color:var(--c-text); line-height:1.9;">
+          製品セキュリティ重大事故件数・製品の重大事故件数・顧客満足度調査結果を主要KPIとして設定しています。
+        </p>
+        <div class="kpi-graph-row">
+          <div class="kpi-graph-left">
+            <div class="kpi-graph-ph">
+              <span class="kpi-graph-ph-label">[ グラフ画像PH ]</span>
+            <span class="img-zoom-btn"></span></div>
+            <p class="kpi-graph-caption">図：製品セキュリティ重大事故件数／製品の重大事故件数（過去3か年）</p>
+          </div>
+          <p class="kpi-graph-desc">
+            TQMの考え方に基づく品質保証体制の強化、セキュア開発・運用プロセスの推進、顧客の声を起点とした改善活動を継続。お客様への責任を全社横断で果たす運営体制を整備しています。
+          </p>
+        </div>
+      </div>
+
+      <!-- 12 社会貢献活動 -->
+      <div class="theme-block" id="sec-12">
+        <div class="theme-block-head">
+          <h3>社会貢献活動</h3>
+          <a class="theme-block-link">詳細を見る</a>
+        </div>
+        <h4 class="wf-card-title">基本的な考え方</h4>
+        <p style="font-size:12px; color:var(--c-text); line-height:1.9;">
+          事業活動を通じた社会価値創出に加え、地域社会への貢献活動を推進。教育・文化・スポーツ・環境保全等の分野で、社員参加型の活動を展開しています。
+        </p>
+      </div>
+
+      <!-- 13 AIの利活用 -->
+      <div class="theme-block" id="sec-13">
+        <div class="theme-block-head">
+          <h3>AIの利活用</h3>
+          <a class="theme-block-link">詳細を見る</a>
+        </div>
+        <h4 class="wf-card-title">基本的な考え方</h4>
+        <p style="font-size:12px; color:var(--c-text); line-height:1.9;">
+          AI利活用に関する基本方針のもと、お客様・社員・社会への価値提供と、AI倫理・ガバナンスを両立。責任あるAI利活用を推進しています。
+        </p>
+      </div>
+
+    </section>
+
+    <!-- ============================================================
+         セクション I：サステナビリティ関連リンク（環境ページと共通）
+    ============================================================ -->
+    <section class="wf-section bg-white" style="padding-top:40px; padding-bottom:40px;">
+      <span class="wf-section-marker">I</span>
+      <h2 class="wf-section-title" style="font-size:18px;">サステナビリティ 関連リンク</h2>
+      <p class="wf-section-desc" style="margin-bottom:24px;">環境・社会・ガバナンス各インデックスページで紹介する主要ページへのリンクです。</p>
+
+      <div class="esg-link-stack">
+        <!-- 環境（環境Index #004 のH3見出しと同期） -->
+        <div class="esg-link-row">
+          <div class="esg-link-head">環境 インデックスへ</div>
+          <div class="esg-link-chips">
+            <div class="esg-l3">コニカミノルタの環境戦略</div>
+            <div class="esg-l3">気候変動</div>
+            <div class="esg-l3">資源循環</div>
+            <div class="esg-l3">生物多様性</div>
+            <div class="esg-l3">化学物質・汚染防止</div>
+            <div class="esg-l3">水資源</div>
+            <div class="esg-l3">環境マネジメント</div>
+            <div class="esg-l3">環境技術</div>
+            <div class="esg-l3">環境ラベル認証など</div>
+          </div>
+        </div>
+
+        <!-- 社会（現在ページ） -->
+        <div class="esg-link-row is-current">
+          <div class="esg-link-head">社会 インデックスへ</div>
+          <div class="esg-link-chips">
+            <div class="esg-l3">人的資本戦略</div>
+            <div class="esg-l3">人財育成</div>
+            <div class="esg-l3">企業文化・組織風土</div>
+            <div class="esg-l3">DE&amp;I</div>
+            <div class="esg-l3">健康経営</div>
+            <div class="esg-l3">労働安全衛生</div>
+            <div class="esg-l3">労働慣行</div>
+            <div class="esg-l3">人権</div>
+            <div class="esg-l3">ステークホルダーエンゲージメント</div>
+            <div class="esg-l3">サプライチェーンマネジメント</div>
+            <div class="esg-l3">顧客責任・品質</div>
+            <div class="esg-l3">社会貢献活動</div>
+            <div class="esg-l3">AIの利活用</div>
+          </div>
+        </div>
+
+        <!-- ガバナンス -->
+        <div class="esg-link-row">
+          <div class="esg-link-head">ガバナンス インデックスへ</div>
+          <div class="esg-link-chips">
+            <div class="esg-l3">コーポレートガバナンス</div>
+            <div class="esg-l3">コンプライアンス</div>
+            <div class="esg-l3">リスクマネジメント</div>
+            <div class="esg-l3">情報セキュリティ</div>
+            <div class="esg-l3">税務方針</div>
+            <div class="esg-l3">AIガバナンス</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="wf-footer">
+      <div class="wf-footer-note">⚠ フッターは既確定。変更なし。</div>
+      <div class="wf-footer-grid">
+        <div>
+          <div class="wf-footer-col-title">企業情報</div>
+          <span class="wf-footer-link">企業情報トップ</span>
+          <span class="wf-footer-link">Newsroom</span>
+        </div>
+        <div>
+          <div class="wf-footer-col-title">環境</div>
+          <span class="wf-footer-link">気候変動</span>
+          <span class="wf-footer-link">資源循環</span>
+        </div>
+        <div>
+          <div class="wf-footer-col-title">社会</div>
+          <span class="wf-footer-link">人的資本戦略</span>
+          <span class="wf-footer-link">DE&amp;I</span>
+        </div>
+        <div>
+          <div class="wf-footer-col-title">ガバナンス</div>
+          <span class="wf-footer-link">コンプライアンス</span>
+          <span class="wf-footer-link">情報セキュリティ</span>
+        </div>
+      </div>
+      <div class="wf-footer-bottom">
+        <div>サイトのご利用について ｜ 個人情報保護方針 ｜ サイトマップ</div>
+        <div>&copy;2011-2026 Konica Minolta, Inc.</div>
+      </div>
+    </footer>
+
+  </div><!-- /wf-page -->
+
+  <!-- アノテーションパネル -->
+  <aside class="wf-annotation">
+    <h3>設計ポイント — 社会 インデックス v4.4（旧 #016 → #005）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">★</span>
+      <span class="ann-head">v4.4 主要変更点</span>
+      <div class="ann-row">
+        <span class="ann-row-label">CHANGE 1</span>
+        H2「戦略・目標・実績」→「取り組み」へ変更。Bセクションを「13テーマの羅列」から「2大分類＋ 13テーマ」の階層に再構成。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">CHANGE 2</span>
+        大分類は装飾的グループラベル（H3扱いではない／グレー帯＋小文字＋件数バッジ）で表現：「人と組織」(7) / 「社会・お客様」(6)。モジュール定義のルール上、テーマ自体のH3を維持しつつ大分類を視覚的に表示。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">CHANGE 3</span>
+        2カラム → 1カラム。各theme-block内に「H4 ◾基本的な考え方／H4 ◾戦略・目標・実績」のサブ見出しを導入（環境Index 気候変動ブロックと同型）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">CHANGE 4</span>
+        KPI数値ストリップ（kpi-strip / kpi-item）を新規追加。グラフは省略しコンパクト数値表示で縦量を圧縮。主要KPI明記の5テーマ（人的資本／人財育成／DE&amp;I／健康経営／労働安全衛生／顧客責任）に適用。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">CHANGE 5</span>
+        アンカーチップを大分類ラベル付き2行表示に変更（一目で分類が見える）。
+      </div>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">A</span>
+      <span class="ann-head">基本的な考え方 ＋ グルーピング済アンカー</span>
+      <p class="ann-body">
+        導入文 → 「人と組織」7チップ ／ 「社会・お客様」6チップ。各チップは番号＋テーマ名のシンプル表示で縦余白を最小化。
+      </p>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">B</span>
+      <span class="ann-head">取り組み：大分類装飾ラベル＋ 1カラム theme-block</span>
+      <div class="ann-row">
+        <span class="ann-row-label">大分類A 人と組織</span>
+        ①人的資本戦略 ②人財育成 ③企業文化・組織風土 ④DE&amp;I ⑤健康経営 ⑥労働安全衛生 ⑦労働慣行
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">大分類B 社会・お客様</span>
+        ⑧人権 ⑨ステークホルダーエンゲージメント ⑩SCM ⑪顧客責任・品質 ⑫社会貢献活動 ⑬AIの利活用
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">テーマブロック内構成</span>
+        H3 テーマ名（左縦棒）＋詳細を見るリンク／H4 ◾基本的な考え方＋本文／（該当時）H4 ◾戦略・目標・実績＋本文＋KPIストリップ／（該当時）TOPICSや関連リンク。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">コンパクト化の工夫</span>
+        ・グラフは原則省略しKPI数値ストリップで代替<br>
+        ・戦略・目標・実績がないテーマ（企業文化・労働慣行・SHE・社会貢献・AI利活用）は基本的な考え方のみで簡潔に<br>
+        ・テキストは2-3行に圧縮、詳細は下層ページへ移譲
+      </div>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">I</span>
+      <span class="ann-head">サステナビリティ関連リンク：3カラム階層UI</span>
+      <p class="ann-body">
+        環境Index と完全同型の3カラム階層リンク。現在ページである社会カラムは黒outlineで明示。
+      </p>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">★</span>
+      <span class="ann-head">未確定論点（要相談）</span>
+      <div class="ann-row">
+        <span class="ann-row-label">論点1</span>
+        KPIストリップは「— %」のダミー値表示。確定実績値が出揃った段階で差し替え。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">論点2</span>
+        各テーマの「戦略・目標・実績」は行動変容定義P10で明記の有無に基づき選択的に表示。掲載漏れ・追加希望テーマがあれば調整。
+      </div>
+    </div>
+
+  </aside>
+
+</div><!-- /wf-canvas -->
+</body>
+</html>

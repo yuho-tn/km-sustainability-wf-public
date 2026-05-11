@@ -1,0 +1,1825 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第4階層ページ集約戦略 ＆ 重複コンテンツ処理方針 ― コニカミノルタ サステナビリティサイト</title>
+<style>
+/* ============================================================
+   PROPOSAL DOCUMENT — PAGE CONSOLIDATION STRATEGY v2
+   コニカミノルタ サステナビリティサイト
+============================================================ */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --c-bg:        #F5F6F8;
+  --c-white:     #FFFFFF;
+  --c-ink:       #0F172A;
+  --c-text:      #1E293B;
+  --c-text-s:    #475569;
+  --c-text-xs:   #64748B;
+  --c-border:    #E2E8F0;
+  --c-border-s:  #EEF0F3;
+  --c-accent:    #0033A0;
+  --c-accent-s:  #E8EEFA;
+  --c-accent-d:  #002170;
+  --c-warn:      #D97706;
+  --c-warn-bg:   #FEF3C7;
+  --c-ok:        #059669;
+  --c-ok-bg:     #D1FAE5;
+  --c-ng:        #DC2626;
+  --c-ng-bg:     #FEE2E2;
+  --c-gray-bg:   #F1F3F6;
+  --c-ph:        #E5E7EB;
+  --radius:      12px;
+  --radius-s:    8px;
+  --shadow:      0 1px 3px rgba(15, 23, 42, 0.04), 0 8px 24px rgba(15, 23, 42, 0.05);
+  --shadow-lg:   0 2px 6px rgba(15, 23, 42, 0.06), 0 24px 48px rgba(15, 23, 42, 0.08);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--c-text);
+  background: var(--c-bg);
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0.01em;
+}
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ============================================================
+   HERO
+============================================================ */
+.hero {
+  background: linear-gradient(135deg, #0033A0 0%, #001a52 100%);
+  color: #fff;
+  padding: 96px 0 112px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -200px; right: -200px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -150px; left: -150px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.hero-inner { position: relative; z-index: 1; }
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.85);
+  padding: 8px 16px;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 999px;
+  margin-bottom: 28px;
+  text-transform: uppercase;
+}
+.hero-eyebrow .dot { width: 6px; height: 6px; background: #fff; border-radius: 50%; }
+.hero h1 {
+  font-size: 48px;
+  line-height: 1.3;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 24px;
+}
+.hero h1 .accent { color: #8FB4FF; }
+.hero-lead {
+  font-size: 17px;
+  line-height: 1.9;
+  color: rgba(255,255,255,0.85);
+  max-width: 720px;
+}
+.hero-meta {
+  display: flex;
+  gap: 40px;
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+.hero-meta-item .label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.6);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.hero-meta-item .value {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* ============================================================
+   INDEX NAV
+============================================================ */
+.index-nav {
+  background: var(--c-white);
+  border-bottom: 1px solid var(--c-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 0 rgba(15,23,42,0.03);
+}
+.index-nav-inner {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  padding: 14px 0;
+}
+.index-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c-text-s);
+  padding: 8px 14px;
+  border-radius: 999px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.15s;
+}
+.index-nav a:hover { background: var(--c-gray-bg); color: var(--c-ink); }
+.index-nav a .num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px; height: 20px;
+  background: var(--c-gray-bg);
+  color: var(--c-text-s);
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 700;
+}
+.index-nav a:hover .num { background: var(--c-accent); color: #fff; }
+
+/* ============================================================
+   SECTION
+============================================================ */
+section {
+  padding: 96px 0;
+  position: relative;
+}
+section.alt { background: var(--c-white); }
+
+.section-head { margin-bottom: 56px; }
+.section-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; height: 40px;
+  background: var(--c-accent);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  margin-bottom: 20px;
+}
+.section-title {
+  font-size: 32px;
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--c-ink);
+  margin-bottom: 16px;
+}
+.section-lead {
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--c-text-s);
+  max-width: 780px;
+}
+
+/* ============================================================
+   POLICY — 前提と方針（統合セクション）
+============================================================ */
+.policy-hero {
+  background: linear-gradient(135deg, var(--c-white) 0%, #FAFBFD 100%);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: 48px 40px;
+  box-shadow: var(--shadow-lg);
+  margin-bottom: 32px;
+}
+.policy-hero-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--c-accent-s);
+  color: var(--c-accent);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 6px 14px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+.policy-hero h3 {
+  font-size: 26px;
+  line-height: 1.5;
+  font-weight: 700;
+  color: var(--c-ink);
+  margin-bottom: 16px;
+}
+.policy-hero p {
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--c-text);
+  max-width: 820px;
+}
+.policy-chips {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+  padding-top: 28px;
+  border-top: 1px solid var(--c-border-s);
+}
+.policy-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+.policy-chip.no {
+  background: var(--c-ng-bg);
+  color: var(--c-ng);
+}
+.policy-chip.ok {
+  background: var(--c-ok);
+  color: #fff;
+}
+.policy-chip .mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px; height: 18px;
+  background: rgba(255,255,255,0.3);
+  border-radius: 50%;
+  font-size: 11px;
+}
+.policy-chip.no .mark { background: rgba(220,38,38,0.18); }
+
+/* Three reason cards */
+.policy-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.15fr;
+  gap: 20px;
+}
+.policy-card {
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: 28px 28px 24px;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+.policy-card.reject {
+  border-top: 4px solid var(--c-ng);
+}
+.policy-card.adopt {
+  border-top: 4px solid var(--c-ok);
+  background: linear-gradient(135deg, #FFFFFF 0%, #F0FDF6 100%);
+}
+.policy-card-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.policy-card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+.policy-card.reject .policy-card-badge { background: var(--c-ng-bg); color: var(--c-ng); }
+.policy-card.adopt .policy-card-badge { background: var(--c-ok-bg); color: var(--c-ok); }
+.policy-card-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--c-ink);
+}
+.policy-card-body {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--c-text);
+  margin-bottom: 16px;
+}
+.policy-card-reasons {
+  list-style: none;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.policy-card-reasons li {
+  padding: 8px 0;
+  border-top: 1px dashed var(--c-border-s);
+  display: flex;
+  gap: 8px;
+  color: var(--c-text-s);
+}
+.policy-card-reasons li:first-child { border-top: 0; padding-top: 0; }
+.policy-card-reasons li .arr {
+  flex-shrink: 0;
+  font-weight: 700;
+}
+.policy-card.reject .policy-card-reasons li .arr { color: var(--c-ng); }
+.policy-card.adopt .policy-card-reasons li .arr { color: var(--c-ok); }
+
+/* ============================================================
+   CRITERIA v2 — 個別ページ vs アコーディオン集約 対比
+============================================================ */
+.criteria-matrix {
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.criteria-row {
+  display: grid;
+  grid-template-columns: 180px 1fr 1fr;
+  border-top: 1px solid var(--c-border-s);
+}
+.criteria-row:first-child { border-top: 0; }
+.criteria-row.header {
+  background: var(--c-ink);
+  color: #fff;
+}
+.criteria-row.header > div {
+  padding: 24px 28px;
+  font-weight: 700;
+  font-size: 14px;
+}
+.criteria-row.header .col-axis {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.6);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.criteria-row.header .col-page {
+  border-left: 1px solid rgba(255,255,255,0.15);
+  color: #8FB4FF;
+}
+.criteria-row.header .col-accord {
+  border-left: 1px solid rgba(255,255,255,0.15);
+  color: #6EE7B7;
+}
+.criteria-row.header .col-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 17px;
+}
+.criteria-row.header .col-title .sub {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.5);
+  font-weight: 500;
+  margin-left: 4px;
+}
+.criteria-row .col-axis {
+  padding: 28px 28px;
+  background: var(--c-gray-bg);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--c-ink);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  justify-content: center;
+}
+.criteria-row .col-axis .axis-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px; height: 22px;
+  background: var(--c-accent);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+}
+.criteria-row .col-axis .axis-label {
+  font-size: 16px;
+  margin-top: 4px;
+}
+.criteria-row .col-axis .axis-sub {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--c-text-xs);
+}
+.criteria-row .col-page, .criteria-row .col-accord {
+  padding: 28px 28px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--c-text);
+  border-left: 1px solid var(--c-border-s);
+}
+.criteria-row .col-page { background: #FAFBFE; }
+.criteria-row .col-accord { background: #F9FDFB; }
+.criteria-row .cell-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.criteria-row .cell-list li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.criteria-row .cell-list li .icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+  margin-top: 3px;
+}
+.criteria-row .col-page .icon { background: var(--c-accent); }
+.criteria-row .col-accord .icon { background: var(--c-ok); }
+.criteria-row .cell-list li .txt { flex: 1; font-size: 13px; line-height: 1.7; }
+.criteria-row .cell-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--c-text-s);
+  margin-right: 6px;
+  margin-bottom: 6px;
+}
+
+/* ============================================================
+   LINE DIAGRAM — 判断のライン
+============================================================ */
+.line-diagram {
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: 40px;
+  box-shadow: var(--shadow);
+  margin-top: 32px;
+}
+.line-diagram-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--c-accent);
+  text-align: center;
+  margin-bottom: 28px;
+  text-transform: uppercase;
+}
+.line-axis-wrap {
+  position: relative;
+  padding: 40px 0 80px;
+}
+.line-axis {
+  position: relative;
+  height: 6px;
+  background: linear-gradient(90deg, var(--c-ok) 0%, var(--c-ok) 48%, var(--c-accent) 52%, var(--c-accent) 100%);
+  border-radius: 3px;
+}
+.line-axis .divider {
+  position: absolute;
+  top: -14px; bottom: -14px;
+  left: 50%;
+  width: 2px;
+  background: var(--c-ink);
+  transform: translateX(-50%);
+}
+.line-axis .divider::after {
+  content: 'ライン';
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--c-ink);
+  background: var(--c-white);
+  padding: 0 6px;
+}
+.line-label {
+  position: absolute;
+  bottom: 0;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.line-label.left { left: 8%; color: var(--c-ok); }
+.line-label.right { right: 8%; color: var(--c-accent); text-align: right; align-items: flex-end; }
+.line-label .lmain { font-size: 16px; }
+.line-label .lsub { font-size: 11px; color: var(--c-text-s); font-weight: 500; line-height: 1.6; }
+.line-marker {
+  position: absolute;
+  top: -32px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid currentColor;
+}
+.line-label.left .line-marker { left: 0; color: var(--c-ok); }
+.line-label.right .line-marker { right: 0; color: var(--c-accent); }
+
+/* ============================================================
+   EXAMPLES v2 — 領域別の仕分け
+============================================================ */
+.domain-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+.domain-card {
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+}
+.domain-head {
+  padding: 24px 24px 20px;
+  border-bottom: 1px solid var(--c-border-s);
+}
+.domain-head .dhname {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--c-text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.domain-head .dhtitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--c-ink);
+  margin-bottom: 12px;
+}
+.domain-head .dhtag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 5px 12px;
+  border-radius: 999px;
+}
+.domain-card.env .dhtag { background: var(--c-accent); color: #fff; }
+.domain-card.social .dhtag { background: var(--c-ok); color: #fff; }
+.domain-card.gov .dhtag { background: var(--c-ok); color: #fff; }
+.domain-card.mixed .dhtag { background: var(--c-warn); color: #fff; }
+
+.domain-body {
+  padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.domain-why {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--c-text);
+}
+.domain-pages {
+  background: var(--c-gray-bg);
+  padding: 14px 16px;
+  border-radius: var(--radius-s);
+}
+.domain-pages .pglabel {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--c-text-xs);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.domain-pages .pglist {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--c-text);
+}
+.domain-pages .pglist .pgitem {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+.domain-pages .pglist .pgitem::before {
+  content: '';
+  flex-shrink: 0;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--c-text-xs);
+  margin-top: 8px;
+}
+.domain-card.env .domain-pages .pglist .pgitem::before { background: var(--c-accent); }
+.domain-card.social .domain-pages .pglist .pgitem::before { background: var(--c-ok); }
+.domain-card.gov .domain-pages .pglist .pgitem::before { background: var(--c-ok); }
+.domain-card.mixed .domain-pages .pglist .pgitem::before { background: var(--c-warn); }
+
+/* ============================================================
+   THRESHOLD (kept)
+============================================================ */
+.threshold-bar {
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: 40px;
+  box-shadow: var(--shadow);
+}
+.threshold-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--c-accent);
+  text-align: center;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+.threshold-sub {
+  font-size: 14px;
+  color: var(--c-text-s);
+  text-align: center;
+  margin-bottom: 28px;
+}
+.threshold-legend {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 24px;
+}
+.threshold-legend .lg {
+  padding: 20px;
+  border-radius: var(--radius-s);
+}
+.threshold-legend .lg.ok { background: var(--c-ok-bg); }
+.threshold-legend .lg.mid { background: var(--c-warn-bg); }
+.threshold-legend .lg.page { background: var(--c-accent-s); }
+.threshold-legend .lg .lghead {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+.threshold-legend .lg.ok .lghead { color: var(--c-ok); }
+.threshold-legend .lg.mid .lghead { color: var(--c-warn); }
+.threshold-legend .lg.page .lghead { color: var(--c-accent); }
+.threshold-legend .lg .lgtext {
+  font-size: 13px;
+  color: var(--c-text);
+  line-height: 1.8;
+}
+.threshold-scale {
+  position: relative;
+  height: 56px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--c-ok-bg) 0%, var(--c-ok-bg) 42%, var(--c-warn-bg) 42%, var(--c-warn-bg) 58%, var(--c-accent-s) 58%, var(--c-accent-s) 100%);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+.threshold-scale .zone {
+  flex: 1;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.threshold-scale .zone.ok { color: var(--c-ok); flex: 0.85; }
+.threshold-scale .zone.mid { color: var(--c-warn); flex: 0.3; }
+.threshold-scale .zone.page { color: var(--c-accent); flex: 0.85; }
+.threshold-scale .divider {
+  position: absolute;
+  top: -8px; bottom: -8px;
+  width: 2px;
+  background: var(--c-ink);
+}
+.threshold-scale .divider.d1 { left: 42%; }
+.threshold-scale .divider.d2 { left: 58%; }
+.threshold-axis {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--c-text-xs);
+  padding: 0 20px;
+}
+
+/* ============================================================
+   MOCKUP v2 — サイドナビ共通+中身2パターン
+============================================================ */
+.mockup-note {
+  background: var(--c-accent-s);
+  border-left: 3px solid var(--c-accent);
+  padding: 14px 20px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--c-accent-d);
+  margin-bottom: 32px;
+  font-weight: 500;
+}
+.mockup-note strong { font-weight: 700; }
+.mockup-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.mockup {
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow);
+}
+.mockup-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--c-accent);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.mockup-card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--c-ink);
+  margin-bottom: 20px;
+}
+.mockup-frame {
+  background: var(--c-bg);
+  border-radius: var(--radius-s);
+  padding: 16px;
+  display: grid;
+  grid-template-columns: 1fr 100px;
+  gap: 12px;
+  min-height: 340px;
+}
+.mockup-frame .mmain {
+  background: var(--c-white);
+  border-radius: 6px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.mockup-frame .mside {
+  background: var(--c-white);
+  border-radius: 6px;
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.mockup-frame .mside .sidelabel {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--c-text-xs);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.mockup-frame .mside .sitem {
+  font-size: 10px;
+  color: var(--c-text-s);
+  padding: 4px 6px;
+  border-left: 2px solid var(--c-border);
+}
+.mockup-frame .mside .sitem.active {
+  color: var(--c-accent);
+  font-weight: 700;
+  border-left-color: var(--c-accent);
+  background: var(--c-accent-s);
+}
+.mockup-frame .mtitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--c-ink);
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--c-ink);
+  margin-bottom: 4px;
+}
+.mockup-frame .msec {
+  padding: 8px 0;
+  border-top: 1px solid var(--c-border-s);
+}
+.mockup-frame .msec:first-of-type { border-top: 0; padding-top: 0; }
+.mockup-frame .msec .sh {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--c-ink);
+  margin-bottom: 6px;
+}
+.mockup-frame .msec .sb {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.mockup-frame .msec .sb .ln {
+  height: 4px;
+  background: var(--c-ph);
+  border-radius: 2px;
+}
+.mockup-frame .msec .sb .ln.s { width: 60%; }
+.mockup-frame .mac {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.mockup-frame .mac .ait {
+  border: 1px solid var(--c-border);
+  border-radius: 4px;
+  overflow: hidden;
+  font-size: 10px;
+}
+.mockup-frame .mac .ait .ah {
+  padding: 8px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  color: var(--c-text);
+}
+.mockup-frame .mac .ait.open .ah {
+  background: var(--c-ink);
+  color: #fff;
+}
+.mockup-frame .mac .ait .ab {
+  padding: 8px 10px;
+  border-top: 1px solid var(--c-border-s);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.mockup-frame .mac .ait .ab .ln {
+  height: 3px;
+  background: var(--c-ph);
+  border-radius: 2px;
+}
+.mockup-frame .mac .ait .ab .ln.s { width: 65%; }
+.mockup-type-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 3px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.mockup.pattern-a .mockup-type-tag { background: var(--c-accent-s); color: var(--c-accent); }
+.mockup.pattern-b .mockup-type-tag { background: var(--c-ok-bg); color: var(--c-ok); }
+.mockup-desc {
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--c-text-s);
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--c-border-s);
+}
+
+/* ============================================================
+   SUMMARY
+============================================================ */
+.summary {
+  background: var(--c-ink);
+  color: #fff;
+  padding: 80px 0;
+}
+.summary h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.summary .lead {
+  font-size: 15px;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 40px;
+  max-width: 720px;
+}
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.summary-grid.sg-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+.summary-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+}
+.summary-card .snum {
+  font-size: 40px;
+  font-weight: 800;
+  font-family: 'Inter', sans-serif;
+  line-height: 1;
+  background: linear-gradient(135deg, #8FB4FF 0%, #fff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 16px;
+}
+.summary-card .stitle {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #fff;
+}
+.summary-card .sdesc {
+  font-size: 12px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.65);
+}
+
+/* ============================================================
+   TOPIC DIVIDER — 大論点の切り分けラベル
+============================================================ */
+.topic-divider {
+  background: var(--c-ink);
+  color: #fff;
+  padding: 64px 0 40px;
+  position: relative;
+}
+.topic-divider .topic-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.6);
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 999px;
+  margin-bottom: 24px;
+}
+.topic-divider .topic-eyebrow .tnum {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px; height: 22px;
+  background: #8FB4FF;
+  color: var(--c-ink);
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 800;
+}
+.topic-divider .topic-title {
+  font-size: 36px;
+  line-height: 1.4;
+  font-weight: 700;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+.topic-divider .topic-title .accent { color: #8FB4FF; }
+.topic-divider .topic-lead {
+  font-size: 15px;
+  line-height: 1.9;
+  color: rgba(255,255,255,0.75);
+  max-width: 820px;
+}
+.topic-divider .topic-meta {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+.topic-divider .topic-meta .tm {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.85);
+  font-weight: 600;
+}
+
+/* TOPIC SCOPE BAR — 各セクションがどの論点に属するか視認させる */
+.topic-scope {
+  background: var(--c-accent-s);
+  border-bottom: 1px solid var(--c-border);
+  padding: 14px 0;
+}
+.topic-scope.t2 { background: #FEF3C7; }
+.topic-scope-inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--c-accent);
+  letter-spacing: 0.05em;
+}
+.topic-scope.t2 .topic-scope-inner { color: #B45309; }
+.topic-scope-inner .label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--c-accent);
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.topic-scope.t2 .topic-scope-inner .label { background: var(--c-warn); }
+
+/* ============================================================
+   DUPLICATE CONTENT — 重複コンテンツ処理セクション
+============================================================ */
+.dup-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+.dup-block {
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: 32px 32px 28px;
+  box-shadow: var(--shadow);
+}
+.dup-block .dh {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--c-border-s);
+}
+.dup-block .dh .dnum {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px; height: 28px;
+  background: var(--c-warn);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 700;
+}
+.dup-block .dh .dtitle {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--c-ink);
+}
+.dup-block .dbody {
+  font-size: 14px;
+  line-height: 1.85;
+  color: var(--c-text);
+}
+.dup-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+}
+.dup-list li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--c-text);
+}
+.dup-list li::before {
+  content: '';
+  flex-shrink: 0;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--c-warn);
+  margin-top: 9px;
+}
+.dup-list li .sub {
+  display: block;
+  font-size: 12px;
+  color: var(--c-text-s);
+  margin-top: 4px;
+  padding-left: 12px;
+  border-left: 2px solid var(--c-border-s);
+}
+.dup-list li .ex {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--c-warn);
+  background: var(--c-warn-bg);
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-right: 6px;
+}
+
+.dup-policy {
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.dup-policy-row {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  border-top: 1px solid var(--c-border-s);
+}
+.dup-policy-row:first-child { border-top: 0; }
+.dup-policy-row .dpnum {
+  background: var(--c-warn);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 800;
+  font-family: 'Inter', sans-serif;
+}
+.dup-policy-row .dpbody {
+  padding: 28px 32px;
+}
+.dup-policy-row .dptitle {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--c-ink);
+  margin-bottom: 12px;
+}
+.dup-policy-row .dpreasons {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.dup-policy-row .dpreasons li {
+  display: flex;
+  gap: 10px;
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--c-text-s);
+}
+.dup-policy-row .dpreasons li .arr {
+  flex-shrink: 0;
+  color: var(--c-warn);
+  font-weight: 700;
+}
+
+.dup-callout {
+  background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
+  border: 1px solid #FBBF24;
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  margin-top: 32px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+.dup-callout .dico {
+  flex-shrink: 0;
+  width: 48px; height: 48px;
+  background: var(--c-warn);
+  color: #fff;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+}
+.dup-callout .dctitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: #B45309;
+  margin-bottom: 8px;
+}
+.dup-callout .dctxt {
+  font-size: 13px;
+  line-height: 1.85;
+  color: var(--c-text);
+}
+.dup-callout .dctxt strong { color: var(--c-ink); font-weight: 700; }
+
+/* ============================================================
+   FOOTER
+============================================================ */
+.foot {
+  padding: 40px 0;
+  background: var(--c-bg);
+  border-top: 1px solid var(--c-border);
+  font-size: 12px;
+  color: var(--c-text-xs);
+  text-align: center;
+}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width: 900px) {
+  .hero h1 { font-size: 32px; }
+  .section-title { font-size: 24px; }
+  .wrap { padding: 0 24px; }
+  .policy-grid, .domain-grid, .mockup-grid, .summary-grid, .threshold-legend, .dup-grid { grid-template-columns: 1fr; }
+  .topic-divider .topic-title { font-size: 26px; }
+  .dup-callout { flex-direction: column; }
+  .criteria-row { grid-template-columns: 1fr; }
+  .criteria-row .col-axis { padding: 16px 20px; }
+  .criteria-row .col-page, .criteria-row .col-accord { border-left: 0; border-top: 1px solid var(--c-border-s); padding: 20px; }
+  .hero-meta { flex-direction: column; gap: 20px; }
+  .mockup-frame { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<div class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-eyebrow"><span class="dot"></span>PROPOSAL / SITE CONSOLIDATION POLICY</div>
+    <h1>第4階層ページの<span class="accent">集約戦略</span><br>＆ <span class="accent">重複コンテンツ</span>処理方針</h1>
+    <p class="hero-lead">
+      コニカミノルタ サステナビリティサイトにおける、ページ構成設計の2つの論点を整理する提案書。
+      <strong style="color:#fff;">論点1：第4階層ページの集約戦略</strong>として、モーダル・タブを排しアコーディオンを基本に統一。
+      <strong style="color:#fff;">論点2：重複コンテンツの処理方針</strong>として、限定的に発生する重複コンテンツはモーダル化で更新性を担保する。
+    </p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <div class="label">Client</div>
+        <div class="value">コニカミノルタ株式会社</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="label">Target</div>
+        <div class="value">機関投資家・ESG評価機関</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="label">Scope</div>
+        <div class="value">集約戦略 ＋ 重複コンテンツ処理</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="label">Version</div>
+        <div class="value">v4.0 / 2026.04</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     INDEX NAV
+============================================================ -->
+<div class="index-nav">
+  <div class="wrap">
+    <div class="index-nav-inner">
+      <a href="#topic1"><span class="num">A</span>論点1：集約戦略</a>
+      <a href="#policy"><span class="num">1</span>前提と方針</a>
+      <a href="#criteria"><span class="num">2</span>判定基準</a>
+      <a href="#threshold"><span class="num">3</span>コンテンツ量の目安</a>
+      <a href="#examples"><span class="num">4</span>領域別の仕分け</a>
+      <a href="#topic2"><span class="num">B</span>論点2：重複コンテンツ処理</a>
+      <a href="#dup-bg"><span class="num">5</span>背景・目的</a>
+      <a href="#dup-target"><span class="num">6</span>対象</a>
+      <a href="#dup-policy"><span class="num">7</span>対応方針</a>
+      <a href="#summary"><span class="num">8</span>まとめ</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     ★ TOPIC 1 — 第4階層ページの集約戦略
+============================================================ -->
+<div id="topic1" class="topic-divider">
+  <div class="wrap">
+    <div class="topic-eyebrow"><span class="tnum">A</span>TOPIC 1 / CONSOLIDATION STRATEGY</div>
+    <h2 class="topic-title">論点1：第4階層ページの<span class="accent">集約戦略</span></h2>
+    <p class="topic-lead">
+      取り組みページ（第4階層）の表現ルールを統一する設計方針。モーダル・タブを排し、汎用性の高いアコーディオンを基本としたページ集約で、UI/UXの一貫性と情報の到達性を両立する。
+    </p>
+    <div class="topic-meta">
+      <span class="tm">対象：第4階層 取り組みページ全体</span>
+      <span class="tm">論点：表現ルールの統一</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     1. 前提と方針 ─ 統合
+============================================================ -->
+<section id="policy" class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">1</span>
+      <h2 class="section-title">前提と方針</h2>
+      <p class="section-lead">
+        モーダル・タブを除外し、汎用性の高いアコーディオンを基本表現に据える。
+      </p>
+    </div>
+
+    <!-- メイン方針カード -->
+    <div class="policy-hero">
+      <span class="policy-hero-label">CORE POLICY</span>
+      <h3>アコーディオンを基本に、ページを集約する</h3>
+      <div class="policy-chips">
+        <span class="policy-chip no"><span class="mark">×</span>モーダル</span>
+        <span class="policy-chip no"><span class="mark">×</span>タブ</span>
+        <span class="policy-chip ok"><span class="mark">✓</span>アコーディオン</span>
+      </div>
+    </div>
+
+    <!-- 3つの表現の採否理由 -->
+    <div class="policy-grid">
+      <div class="policy-card reject">
+        <div class="policy-card-head">
+          <span class="policy-card-badge">REJECT</span>
+          <span class="policy-card-name">モーダル</span>
+        </div>
+        <div class="policy-card-body">独立URLが発行できず、共有・クローラー・SEO全てで不利。</div>
+        <ul class="policy-card-reasons">
+          <li><span class="arr">→</span>直接リンク共有ができない</li>
+          <li><span class="arr">→</span>ESGクローラーが拾いにくい</li>
+          <li><span class="arr" style="color:var(--c-warn);">※</span><span style="color:var(--c-warn);">論点2「重複コンテンツの処理」では限定的に採用</span></li>
+        </ul>
+      </div>
+
+      <div class="policy-card reject">
+        <div class="policy-card-head">
+          <span class="policy-card-badge">REJECT</span>
+          <span class="policy-card-name">タブ</span>
+        </div>
+        <div class="policy-card-body">並列情報しか扱えず、汎用性が低い。</div>
+        <ul class="policy-card-reasons">
+          <li><span class="arr">→</span>粒度差がある取り組みで破綻する</li>
+          <li><span class="arr">→</span>個数が3〜6個程度に制約される</li>
+        </ul>
+      </div>
+
+      <div class="policy-card adopt">
+        <div class="policy-card-head">
+          <span class="policy-card-badge">ADOPT</span>
+          <span class="policy-card-name">アコーディオン</span>
+        </div>
+        <div class="policy-card-body">並列・非並列どちらも扱える、最も汎用性の高い表現。</div>
+        <ul class="policy-card-reasons">
+          <li><span class="arr">✓</span>粒度・個数の差を柔軟に吸収できる</li>
+          <li><span class="arr">✓</span>アンカーで特定項目への直接参照可能</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     2. 判定基準 ─ 個別ページ vs アコーディオン集約
+============================================================ -->
+<section id="criteria">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">2</span>
+      <h2 class="section-title">判定基準 ─ 2つの軸で使い分ける</h2>
+      <p class="section-lead">
+        ① 情報の性質 ② 情報量 の2軸で判定する。いずれかで個別ページ条件を満たせば独立化する。
+      </p>
+    </div>
+
+    <!-- 対比マトリクス -->
+    <div class="criteria-matrix">
+      <div class="criteria-row header">
+        <div class="col-axis">AXIS / 差分軸</div>
+        <div class="col-page">
+          <div class="col-title">■ 個別ページ化<span class="sub">INDEPENDENT</span></div>
+        </div>
+        <div class="col-accord">
+          <div class="col-title">● アコーディオン集約<span class="sub">ACCORDION</span></div>
+        </div>
+      </div>
+
+      <div class="criteria-row">
+        <div class="col-axis">
+          <span class="axis-num">1</span>
+          <span class="axis-label">情報の性質</span>
+          <span class="axis-sub">NATURE</span>
+        </div>
+        <div class="col-page">
+          <ul class="cell-list">
+            <li><span class="icon">○</span><span class="txt">独立性が高く、単独で深く読まれる取り組み</span></li>
+            <li><span class="icon">○</span><span class="txt">特に訴求したい重要トピック</span></li>
+          </ul>
+        </div>
+        <div class="col-accord">
+          <ul class="cell-list">
+            <li><span class="icon">○</span><span class="txt">親テーマの理解を補完する位置づけ</span></li>
+            <li><span class="icon">○</span><span class="txt">複数取り組みの網羅性・一覧性を優先</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="criteria-row">
+        <div class="col-axis">
+          <span class="axis-num">2</span>
+          <span class="axis-label">情報量</span>
+          <span class="axis-sub">VOLUME</span>
+        </div>
+        <div class="col-page">
+          <ul class="cell-list">
+            <li><span class="icon">○</span><span class="txt">H3見出しが4つ以上必要な構成</span></li>
+            <li><span class="icon">○</span><span class="txt">画像・図版・グラフが多く、縦スクロールが長大</span></li>
+          </ul>
+        </div>
+        <div class="col-accord">
+          <ul class="cell-list">
+            <li><span class="icon">○</span><span class="txt">H3見出しが1〜3個程度で完結</span></li>
+            <li><span class="icon">○</span><span class="txt">画像・図版1〜2点程度、コンパクトに収まる</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     3. コンテンツ量の目安
+============================================================ -->
+<section id="threshold" class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">3</span>
+      <h2 class="section-title">コンテンツ量のラインは可変運用</h2>
+      <p class="section-lead">
+        数値で明確な線を引くのは難しいため、以下を目安として運用する。
+        制作を進める過程で基準を揃え、プロジェクト全体で統一感を担保する。
+      </p>
+    </div>
+
+    <div class="threshold-bar">
+      <div class="threshold-title">Content Volume Scale ─ 情報量の目安</div>
+      <div class="threshold-sub">※ 明確なラインは引けないため、制作過程で基準を揃える運用とする</div>
+
+      <div class="threshold-scale">
+        <div class="divider d1"></div>
+        <div class="divider d2"></div>
+        <div class="zone ok">アコーディオン集約</div>
+        <div class="zone mid">ケースバイケース</div>
+        <div class="zone page">個別ページ化</div>
+      </div>
+      <div class="threshold-axis">
+        <span>情報量：少</span>
+        <span>情報量：中</span>
+        <span>情報量：多</span>
+      </div>
+
+      <div class="threshold-legend">
+        <div class="lg ok">
+          <div class="lghead">● アコーディオン向き</div>
+          <div class="lgtext">
+            H3見出し：1〜3個<br>
+            本文：〜1,500字程度<br>
+            画像・図版：1〜2点<br>
+            単独ページで薄く見えるリスクあり
+          </div>
+        </div>
+        <div class="lg mid">
+          <div class="lghead">◐ ケースバイケース</div>
+          <div class="lgtext">
+            H3見出し：3〜4個<br>
+            本文：1,500〜2,500字程度<br>
+            画像・図版：2〜3点<br>
+            訴求性・重要度で判断を分ける
+          </div>
+        </div>
+        <div class="lg page">
+          <div class="lghead">■ 個別ページ向き</div>
+          <div class="lgtext">
+            H3見出し：4個以上<br>
+            本文：2,500字以上<br>
+            画像・図版：多数／グラフあり<br>
+            縦スクロールが長大化するもの
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     4. 領域別の仕分け
+============================================================ -->
+<section id="examples">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num">4</span>
+      <h2 class="section-title">領域別の仕分け ─ 環境／社会／ガバナンス</h2>
+      <p class="section-lead">
+        全領域でアコーディオン集約を基本とする。例外として、環境領域の気候変動配下・資源循環配下の取り組みのみ個別ページ化する。
+      </p>
+    </div>
+
+    <div class="domain-grid">
+      <!-- 環境：アコーディオン中心 -->
+      <div class="domain-card social">
+        <div class="domain-head">
+          <div class="dhname">ENVIRONMENT</div>
+          <div class="dhtitle">環境 領域</div>
+          <span class="dhtag">● アコーディオン中心</span>
+        </div>
+        <div class="domain-body">
+          <div class="domain-why">
+            環境領域の大部分はアコーディオンで集約する。親の第3階層ページに複数の取り組みをまとめ、領域全体の俯瞰性を優先する。
+          </div>
+          <div class="domain-pages">
+            <div class="pglabel">アコーディオン集約する対象</div>
+            <div class="pglist">
+              <div class="pgitem">コニカミノルタの環境戦略</div>
+              <div class="pgitem">化学物質・汚染防止</div>
+              <div class="pgitem">水資源</div>
+              <div class="pgitem">生物多様性</div>
+              <div class="pgitem">TCFD開示</div>
+              <div class="pgitem">TNFD開示</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 環境：個別ページ化の例外 -->
+      <div class="domain-card env">
+        <div class="domain-head">
+          <div class="dhname">ENVIRONMENT (EXCEPTION)</div>
+          <div class="dhtitle">環境 領域（例外）</div>
+          <span class="dhtag">■ 個別ページ化</span>
+        </div>
+        <div class="domain-body">
+          <div class="domain-why">
+            環境領域の中でも、情報量が特に多く複数の章立てで構成される以下の配下ページは、例外的に個別ページ化し深く展開する。
+          </div>
+          <div class="domain-pages">
+            <div class="pglabel">個別ページ化する対象</div>
+            <div class="pglist">
+              <div class="pgitem">気候変動 配下の各取り組み</div>
+              <div class="pgitem">資源循環 配下の各取り組み</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 社会・ガバナンス：アコーディオン中心 -->
+      <div class="domain-card social">
+        <div class="domain-head">
+          <div class="dhname">SOCIAL / GOVERNANCE</div>
+          <div class="dhtitle">社会 ／ ガバナンス 領域</div>
+          <span class="dhtag">● アコーディオン中心</span>
+        </div>
+        <div class="domain-body">
+          <div class="domain-why">
+            各取り組みの情報量が限定的なケースが中心。第3階層ページにアコーディオンで集約し、テーマの全体像を一画面で把握できる構成にする。
+          </div>
+          <div class="domain-pages">
+            <div class="pglabel">アコーディオン集約する対象</div>
+            <div class="pglist">
+              <div class="pgitem">人的資本戦略（社会）</div>
+              <div class="pgitem">DE&I（社会）</div>
+              <div class="pgitem">労働安全衛生・健康経営（社会）</div>
+              <div class="pgitem">コンプライアンス（ガバナンス）</div>
+              <div class="pgitem">情報セキュリティ（ガバナンス）</div>
+              <div class="pgitem">社会貢献活動（社会）</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ★ TOPIC 2 — 重複コンテンツの処理
+============================================================ -->
+<div id="topic2" class="topic-divider">
+  <div class="wrap">
+    <div class="topic-eyebrow"><span class="tnum" style="background:#FBBF24;">B</span>TOPIC 2 / DUPLICATE CONTENT POLICY</div>
+    <h2 class="topic-title">論点2：<span class="accent" style="color:#FCD34D;">重複コンテンツ</span>の処理</h2>
+    <p class="topic-lead">
+      論点1とは別の話として、ページ間で重複するコンテンツの取り扱いを整理する。
+      該当するコンテンツは限定的だが、更新性を担保する仕組みとしてモーダル化を採用する。
+    </p>
+    <div class="topic-meta">
+      <span class="tm">対象：ページ間で重複するコンテンツ</span>
+      <span class="tm">論点：更新性の担保</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     5. 背景・目的
+============================================================ -->
+<section id="dup-bg" class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num" style="background:var(--c-warn);">5</span>
+      <h2 class="section-title">背景・目的</h2>
+      <p class="section-lead">
+        ページ間で重複しているコンテンツは、共通化した上で更新性を担保したい。
+      </p>
+    </div>
+
+    <div class="dup-block" style="max-width:820px;">
+      <div class="dh">
+        <span class="dnum">!</span>
+        <span class="dtitle">なぜ共通化が必要か</span>
+      </div>
+      <div class="dbody">
+        同じ内容が複数ページに散在していると、更新時にページごとに修正が必要となり、抜け漏れ・記載不一致のリスクが発生する。<br>
+        <strong>共通モジュール化することで、1箇所の更新が全箇所に反映される運用を実現する。</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     6. 対象
+============================================================ -->
+<section id="dup-target">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num" style="background:var(--c-warn);">6</span>
+      <h2 class="section-title">対象 ─ 重複コンテンツの範囲</h2>
+      <p class="section-lead">
+        重複コンテンツはほとんどない認識。行動変容定義の中で重複を省く形で整理している。
+        ただし、具体的な該当箇所は別途精査が必要なステータス。
+      </p>
+    </div>
+
+    <div class="dup-grid">
+      <div class="dup-block">
+        <div class="dh">
+          <span class="dnum">●</span>
+          <span class="dtitle">基本認識</span>
+        </div>
+        <div class="dbody">
+          重複コンテンツはほとんどない想定。
+          <ul class="dup-list">
+            <li>行動変容定義の中で、重複を省く形で整理済み</li>
+            <li>サイト全体としては大きな重複構造を持たない</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="dup-block">
+        <div class="dh">
+          <span class="dnum">?</span>
+          <span class="dtitle">精査が必要なステータス</span>
+        </div>
+        <div class="dbody">
+          該当コンテンツが具体的にどこになるかは、別途精査が必要。
+          <ul class="dup-list">
+            <li><span class="ex">例</span>体制の組織図 など、共通利用される図版が想定対象</li>
+            <li>原稿フェーズで該当箇所を洗い出し、モジュール化の要否を判断</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     7. 対応方針
+============================================================ -->
+<section id="dup-policy" class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-num" style="background:var(--c-warn);">7</span>
+      <h2 class="section-title">対応方針 ─ モーダル化＋モジュール化</h2>
+      <p class="section-lead">
+        該当する重複コンテンツに対しては、モーダルで共通化した上でモジュール化し、原稿フェーズで適宜対応する。
+      </p>
+    </div>
+
+    <div class="dup-policy">
+      <div class="dup-policy-row">
+        <div class="dpnum">1</div>
+        <div class="dpbody">
+          <div class="dptitle">重複コンテンツについては「モーダル」処理を想定</div>
+          <ul class="dpreasons">
+            <li><span class="arr">→</span>統一の更新性を目的とするため、モーダル処理以外の方法がない</li>
+            <li><span class="arr">→</span>該当コンテンツが限定的になるため、UI/UX上も影響は限定的</li>
+          </ul>
+        </div>
+      </div>
+      <div class="dup-policy-row">
+        <div class="dpnum">2</div>
+        <div class="dpbody">
+          <div class="dptitle">モーダルイメージを「モジュール化」した上で、適宜対応</div>
+          <ul class="dpreasons">
+            <li><span class="arr">→</span>原稿フェーズで、モジュールを元に適宜モーダル化を対応する</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 論点1との切り分け注記 -->
+    <div class="dup-callout">
+      <span class="dico">!</span>
+      <div>
+        <div class="dctitle">論点1（集約戦略）との切り分け</div>
+        <div class="dctxt">
+          論点1では、第4階層ページの<strong>表現ルール</strong>としてモーダルを不採用とした。
+          一方、論点2の「重複コンテンツの処理」は、<strong>更新性の担保</strong>という別目的のため、限定的にモーダルを採用する。
+          両者は<strong>適用シーンも目的も異なる</strong>ため、矛盾なく併存する方針となる。
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     8. まとめ
+============================================================ -->
+<section id="summary" class="summary">
+  <div class="wrap">
+    <h2>まとめ ─ 2つの論点 × 設計原則</h2>
+    <p class="lead">論点1「集約戦略」と論点2「重複コンテンツ処理」は適用シーンも目的も異なる。両者を切り分けた上で、サイト全体に適用する。</p>
+
+    <div class="summary-grid sg-3" style="margin-bottom:32px;">
+      <div class="summary-card" style="border-top:3px solid #8FB4FF;">
+        <div class="snum">01</div>
+        <div class="stitle">【論点1】モーダル・タブ不採用</div>
+        <div class="sdesc">第4階層ページの表現ルールとして、URL・SEOで不利なモーダル、汎用性が低いタブは原則使わない。</div>
+      </div>
+      <div class="summary-card" style="border-top:3px solid #8FB4FF;">
+        <div class="snum">02</div>
+        <div class="stitle">【論点1】アコーディオン基本＋例外個別化</div>
+        <div class="sdesc">集約表現はアコーディオンに統一。情報の性質または情報量が条件を満たすトピックのみ個別ページ化。</div>
+      </div>
+      <div class="summary-card" style="border-top:3px solid #FBBF24;">
+        <div class="snum">03</div>
+        <div class="stitle">【論点2】重複はモーダル＋モジュール化</div>
+        <div class="sdesc">ページ間で重複するコンテンツは、更新性の担保を目的にモーダル化＋モジュール化で対応。原稿フェーズで適宜実装。</div>
+      </div>
+    </div>
+
+    <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); border-radius:12px; padding:24px 28px; font-size:13px; line-height:1.85; color:rgba(255,255,255,0.8);">
+      <strong style="color:#fff;">▼ 2つの論点の関係</strong><br>
+      論点1（集約戦略）はあくまで<strong style="color:#fff;">第4階層ページの表現ルール</strong>に関するもの。論点2（重複コンテンツ処理）は<strong style="color:#fff;">更新性の担保</strong>という別目的の運用方針。両者でモーダルの取り扱いが異なるが、適用シーンが分かれているため矛盾なく併存する。
+    </div>
+  </div>
+</section>
+
+<div class="foot">
+  コニカミノルタ サステナビリティサイト リニューアル ／ 第4階層ページ集約戦略 ＆ 重複コンテンツ処理方針 提案書 v3.0
+</div>
+
+</body>
+</html>

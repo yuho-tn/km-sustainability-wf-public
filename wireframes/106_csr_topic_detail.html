@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSRトピックス詳細 モジュールカタログ — KM サステナビリティ WF v2.0</title>
+<style>
+/* ============================================================
+   KM SUSTAINABILITY WF — SHARED CSS v4.0
+============================================================ */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --c-white:    #FFFFFF;
+  --c-bg:       #F7F7F7;
+  --c-bg-sub:   #F2F2F2;
+  --c-border:   #E0E0E0;
+  --c-border-s: #E8E8E8;
+  --c-ph:       #EBEBEB;
+  --c-ph-line:  #D8D8D8;
+  --c-text-h:   #111111;
+  --c-text:     #333333;
+  --c-text-s:   #666666;
+  --c-text-xs:  #999999;
+  --c-black:    #111111;
+  --c-ann-bg:   #FFFBF0;
+  --c-ann-bdr:  #C8A000;
+  --content-w:  1080px;
+  --page-w:     1280px;
+  --pad-section: 52px;
+  --pad-section-sm: 32px;
+  --pad-h: 100px;
+}
+
+body {
+  font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--c-text);
+  background: var(--c-bg);
+}
+
+/* META BAR */
+.wf-meta-bar { background: #111; color: #ccc; font-size: 11px; padding: 8px 20px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 2000; letter-spacing: 0.03em; }
+.wf-meta-bar strong { color: #fff; font-size: 12px; }
+.wf-meta-bar .meta-badge { background: #333; color: #aaa; font-size: 10px; padding: 2px 8px; border-radius: 2px; margin-left: 8px; }
+
+/* TYPOGRAPHY */
+.wf-section-title { font-size: 20px; font-weight: 700; color: var(--c-text-h); line-height: 1.3; margin-bottom: 20px; letter-spacing: -0.01em; }
+.wf-sub-title     { font-size: 15px; font-weight: 700; color: var(--c-text-h); line-height: 1.4; margin-bottom: 12px; padding-left: 14px; border-left: 4px solid var(--c-black); }
+.wf-card-title    { font-size: 13px; font-weight: 700; color: var(--c-text-h); line-height: 1.4; margin-bottom: 8px; }
+.wf-section-desc  { font-size: 13px; color: var(--c-text-s); line-height: 1.8; margin-bottom: 24px; }
+.wf-h4-inline     { font-size: 13px; font-weight: 700; color: var(--c-text-h); margin: 16px 0 6px; padding-left: 10px; border-left: 3px solid var(--c-black); line-height: 1.5; }
+
+/* IMAGE */
+.wf-img { background: var(--c-ph); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.wf-img::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, transparent 0px, transparent 10px, rgba(0,0,0,0.04) 10px, rgba(0,0,0,0.04) 11px); }
+.wf-img-label { position: relative; z-index: 1; font-size: 11px; color: var(--c-text-xs); text-align: center; line-height: 1.5; padding: 8px 12px; background: rgba(255,255,255,0.75); }
+.wf-img.h-160 { height: 160px; } .wf-img.h-200 { height: 200px; } .wf-img.h-240 { height: 240px; } .wf-img.h-280 { height: 280px; }
+.wf-img-caption { font-size: 11px; color: var(--c-text-xs); margin-top: 6px; line-height: 1.5; }
+
+/* PHOTO GRID */
+.wf-photo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+
+/* TEXT + IMAGE 2COL */
+.wf-content-2col { display: grid; grid-template-columns: 1.3fr 1fr; gap: 24px; align-items: start; }
+.wf-content-2col.img-left { grid-template-columns: 1fr 1.3fr; }
+.wf-content-2col.img-left .wf-content-2col-img { order: -1; }
+
+/* SIMPLE TABLE */
+.wf-simple-table { width: 100%; border-collapse: collapse; font-size: 13px; background: var(--c-white); border-top: 1px solid var(--c-border); }
+.wf-simple-table th, .wf-simple-table td { border-bottom: 1px solid var(--c-border); padding: 14px 16px; text-align: left; vertical-align: top; line-height: 1.7; }
+.wf-simple-table th { background: #FAFAFA; font-weight: 700; color: var(--c-text-h); width: 200px; font-size: 12px; }
+.wf-simple-table td { color: var(--c-text); }
+
+/* BUTTON / LINK */
+.wf-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; font-size: 12px; font-weight: 600; font-family: inherit; padding: 11px 28px; cursor: default; letter-spacing: 0.03em; white-space: nowrap; border: 1.5px solid var(--c-black); }
+.wf-btn.primary { background: var(--c-black); color: var(--c-white); }
+.wf-btn.outline { background: var(--c-white); color: var(--c-black); }
+.wf-btn.lg { font-size: 13px; padding: 14px 36px; }
+.wf-btn-group { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.wf-link { font-size: 12px; color: var(--c-text-s); display: inline-flex; align-items: center; gap: 4px; cursor: default; text-decoration: none; }
+.wf-link::before { content: '→ '; font-size: 11px; }
+
+/* RELATED LINK BOX */
+.wf-related-box { background: var(--c-bg-sub); border: 1px solid var(--c-border); padding: 22px 26px; }
+.wf-related-box-title { font-size: 12px; font-weight: 700; color: var(--c-text-h); margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid var(--c-border); letter-spacing: 0.03em; display: flex; align-items: center; gap: 8px; }
+.wf-related-box-title::before { content: ''; display: inline-block; width: 3px; height: 12px; background: var(--c-black); }
+.wf-related-list { display: flex; flex-direction: column; gap: 6px; }
+
+/* NOTICE LIST */
+.wf-notice-list { display: flex; flex-direction: column; gap: 10px; padding-left: 4px; }
+.wf-notice-item { position: relative; padding-left: 18px; font-size: 13px; color: var(--c-text); line-height: 1.7; }
+.wf-notice-item::before { content: '・'; position: absolute; left: 0; top: 0; color: var(--c-text-h); font-weight: 700; }
+
+/* NOTICE BOX */
+.wf-notice-box { background: var(--c-white); border: 1px solid var(--c-border); padding: 20px 24px; }
+
+/* BULLET LIST（汎用箇条書き） */
+.wf-bullet-list { display: flex; flex-direction: column; gap: 8px; padding-left: 4px; }
+.wf-bullet-item { position: relative; padding-left: 18px; font-size: 13px; color: var(--c-text); line-height: 1.8; }
+.wf-bullet-item::before { content: ''; position: absolute; left: 4px; top: 11px; width: 6px; height: 6px; background: var(--c-text-h); border-radius: 50%; }
+.wf-num-list { counter-reset: num; display: flex; flex-direction: column; gap: 8px; padding-left: 4px; }
+.wf-num-list .wf-num-item { counter-increment: num; position: relative; padding-left: 28px; font-size: 13px; color: var(--c-text); line-height: 1.8; }
+.wf-num-list .wf-num-item::before { content: counter(num) "."; position: absolute; left: 4px; top: 0; font-weight: 700; color: var(--c-text-h); }
+
+/* ============================================================
+   CATALOG-LOCAL STYLES
+============================================================ */
+.cat-page { max-width: var(--page-w); margin: 0 auto; background: var(--c-white); box-shadow: 0 2px 20px rgba(0,0,0,0.10); min-height: 100vh; }
+
+/* Header */
+.cat-header { padding: 56px 60px 36px; border-bottom: 4px solid var(--c-black); }
+.cat-header-eyebrow { font-size: 11px; letter-spacing: 0.18em; color: var(--c-text-xs); margin-bottom: 14px; text-transform: uppercase; }
+.cat-header-title { font-size: 30px; font-weight: 800; color: var(--c-text-h); line-height: 1.3; margin-bottom: 14px; letter-spacing: -0.01em; }
+.cat-header-desc { font-size: 13px; color: var(--c-text-s); line-height: 1.9; max-width: 820px; }
+.cat-header-meta { display: flex; gap: 24px; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--c-border); flex-wrap: wrap; }
+.cat-header-meta-item { font-size: 11px; color: var(--c-text-s); }
+.cat-header-meta-item strong { color: var(--c-text-h); font-weight: 700; margin-left: 4px; }
+
+/* TOC */
+.cat-toc-wrap { padding: 32px 60px; background: var(--c-bg-sub); border-bottom: 1px solid var(--c-border); }
+.cat-toc-title { font-size: 13px; font-weight: 700; color: var(--c-text-h); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.cat-toc-title::before { content: ''; display: inline-block; width: 3px; height: 14px; background: var(--c-black); }
+.cat-toc { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.cat-toc a { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border: 1px solid var(--c-border); text-decoration: none; font-size: 12px; color: var(--c-text); background: var(--c-white); font-weight: 600; }
+.cat-toc a:hover { background: #FAFAFA; }
+.cat-toc-id { display: inline-flex; align-items: center; justify-content: center; min-width: 28px; height: 22px; padding: 0 6px; background: #111; color: #fff; font-size: 11px; font-weight: 700; flex-shrink: 0; font-family: 'SF Mono', 'Menlo', monospace; }
+
+/* Module section */
+.cat-module { padding: 40px 60px; border-bottom: 1px solid var(--c-border-s); }
+.cat-module:nth-child(even) { background: #FAFAFA; }
+.cat-module-header { display: flex; align-items: baseline; gap: 14px; margin-bottom: 8px; flex-wrap: wrap; }
+.cat-module-code { font-size: 11px; font-weight: 700; color: #fff; background: var(--c-black); padding: 4px 10px; font-family: 'SF Mono', 'Menlo', monospace; letter-spacing: 0.05em; }
+.cat-module-name { font-size: 17px; font-weight: 700; color: var(--c-text-h); letter-spacing: -0.01em; }
+.cat-module-type { font-size: 9px; font-weight: 700; padding: 2px 8px; border-radius: 2px; letter-spacing: 0.06em; background: #E8E8E8; color: #333; text-transform: uppercase; }
+.cat-module-desc { font-size: 12px; color: var(--c-text-s); margin-bottom: 8px; line-height: 1.8; }
+.cat-module-classes { font-size: 11px; color: var(--c-text-xs); margin-bottom: 18px; font-family: 'SF Mono', 'Menlo', monospace; line-height: 1.8; padding: 6px 10px; background: #F0F0F0; border-left: 2px solid var(--c-border); display: inline-block; }
+.cat-demo { border: 1px solid var(--c-border); background: var(--c-white); padding: 28px 32px; position: relative; }
+.cat-demo-label { position: absolute; top: 0; right: 0; background: #F5F5F5; border-left: 1px solid var(--c-border); border-bottom: 1px solid var(--c-border); font-size: 9px; color: var(--c-text-xs); padding: 3px 10px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; }
+.cat-demo + .cat-demo { margin-top: 16px; }
+.cat-demo-variant-label { font-size: 10px; font-weight: 700; color: var(--c-text-xs); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.1em; padding-bottom: 8px; border-bottom: 1px dashed var(--c-border); }
+
+/* Footer */
+.cat-footer { padding: 32px 60px; background: #F5F5F5; border-top: 1px solid var(--c-border); display: flex; justify-content: space-between; font-size: 11px; color: var(--c-text-xs); }
+</style>
+</head>
+<body>
+
+<div class="wf-meta-bar">
+  <div>
+    <strong>KONICA MINOLTA サステナビリティ</strong>
+    <span class="meta-badge">CSRトピックス詳細 モジュールカタログ</span>
+    <span class="meta-badge">WF v2.0</span>
+    <span class="meta-badge">#106</span>
+  </div>
+  <div style="font-size:10px; color:#666;">2026.04</div>
+</div>
+
+<div class="cat-page">
+
+  <!-- HEADER -->
+  <header class="cat-header">
+    <div class="cat-header-eyebrow">CSR TOPICS DETAIL — MODULE CATALOG</div>
+    <h1 class="cat-header-title">CSRトピックス詳細ページ<br>を構成するモジュール一覧</h1>
+    <p class="cat-header-desc">
+      CSRトピックス詳細ページは、本カタログに掲載された <strong>13モジュール</strong> の組み合わせで構成します。<br>
+      新規トピックスを制作する際は、本カタログから必要なモジュールを選び、原稿に応じて配置してください。<br>
+      ベンチマーク：<a href="https://www.konicaminolta.jp/about/csr/news/2016/0708_01_01.html" style="color:var(--c-text-s);">夏のリコチャレ「コニカミノルタ最新研究棟見学＆体験学習会」</a>
+    </p>
+    <div class="cat-header-meta">
+      <div class="cat-header-meta-item">対象ページ：<strong>第4階層 CSRトピックス詳細</strong></div>
+      <div class="cat-header-meta-item">想定ページ数：<strong>年間20〜30本</strong></div>
+      <div class="cat-header-meta-item">CSS依存：<strong>SHARED CSS v4.0</strong></div>
+    </div>
+  </header>
+
+  <!-- TOC -->
+  <div class="cat-toc-wrap">
+    <div class="cat-toc-title">モジュール一覧（13種）</div>
+    <div class="cat-toc">
+      <a href="#M01"><span class="cat-toc-id">M01</span>見出し H2</a>
+      <a href="#M02"><span class="cat-toc-id">M02</span>見出し H3</a>
+      <a href="#M03"><span class="cat-toc-id">M03</span>見出し H4</a>
+      <a href="#M04"><span class="cat-toc-id">M04</span>箇条書き</a>
+      <a href="#M05"><span class="cat-toc-id">M05</span>画像（全幅）</a>
+      <a href="#M06"><span class="cat-toc-id">M06</span>画像（2カラム）</a>
+      <a href="#M07"><span class="cat-toc-id">M07</span>左テキスト＋右画像</a>
+      <a href="#M08"><span class="cat-toc-id">M08</span>右テキスト＋左画像</a>
+      <a href="#M09"><span class="cat-toc-id">M09</span>注意事項</a>
+      <a href="#M10"><span class="cat-toc-id">M10</span>イベント概要（表）</a>
+      <a href="#M11"><span class="cat-toc-id">M11</span>関連リンク</a>
+      <a href="#M12"><span class="cat-toc-id">M12</span>CTA 黒背景</a>
+      <a href="#M13"><span class="cat-toc-id">M13</span>CTA 白背景</a>
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       M01 見出し H2
+  ============================================================ -->
+  <section class="cat-module" id="M01">
+    <div class="cat-module-header">
+      <span class="cat-module-code">M01</span>
+      <span class="cat-module-name">見出し H2（セクション見出し）</span>
+      <span class="cat-module-type">SHARED</span>
+    </div>
+    <p class="cat-module-desc">記事内の主要セクションを区切る最大級の見出し。1記事内で 3〜6本程度の使用を想定。20px / 700。</p>
+    <div class="cat-module-classes">.wf-section-title</div>
+    <div class="cat-demo">
+      <span class="cat-demo-label">DEMO</span>
+      <h2 class="wf-section-title">募集概要</h2>
+      <h2 class="wf-section-title" style="margin-bottom:0;">開催内容（予定）</h2>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       M02 見出し H3
+  ============================================================ -->
+  <section class="cat-module" id="M02">
+    <div class="cat-module-header">
+      <span class="cat-module-code">M02</span>
+      <span class="cat-module-name">見出し H3（サブセクション見出し）</span>
+      <span class="cat-module-type">SHARED</span>
+    </div>
+    <p class="cat-module-desc">H2配下を細分化するサブ見出し。左に黒い縦バーが付くデザインで階層を視覚化。15px / 700。</p>
+    <div class="cat-module-classes">.wf-sub-title</div>
+    <div class="cat-demo">
+      <span class="cat-demo-label">DEMO</span>
+      <h3 class="wf-sub-title">プログラム1 ｜ 施設見学</h3>
+      <h3 class="wf-sub-title" style="margin-bottom:0;">プログラム2 ｜ 体験学習</h3>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       M03 見出し H4
+  ============================================================ -->
+  <section class="cat-module" id="M03">
+    <div class="cat-module-header">
+      <span class="cat-module-code">M03</span>
+      <span class="cat-module-name">見出し H4（補助見出し）</span>
+      <span class="cat-module-type">SHARED</span>
+    </div>
+    <p class="cat-module-desc">H3配下の項目見出し、または箇条書き直前のラベル等に使用。13px / 700・左に細い黒バー。</p>
+    <div class="cat-module-classes">.wf-h4-inline</div>
+    <div class="cat-demo">
+      <span class="cat-demo-label">DEMO</span>
+      <h4 class="wf-h4-inline" style="margin-top:0;">見学エリア（予定）</h4>
+      <p style="font-size:12px; color:var(--c-text-s); margin-bottom:12px;">本文サンプル：H4の下に詳細を記述するパターン。</p>
+      <h4 class="wf-h4-inline">対話テーマ</h4>
+      <p style="font-size:12px; color:var(--c-text-s); margin-bottom:0;">本文サンプル：箇条書きや表との組み合わせで使用する。</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       M04 箇条書き
+  ============================================================ -->
+  <section class="cat-module" id="M04">
+    <div class="cat-module-header">
+      <span class="cat-module-code">M04</span>
+      <span class="cat-module-name">箇条書き（黒丸／番号付き）</span>
+      <span class="cat-module-type">SHARED</span>
+    </div>
+    <p class="cat-module-desc">並列項目の列挙に使用。順序がある場合は番号付きを選択。注意事項用の中黒（・）リストは別途 M09 で提供。</p>
+    <div class="cat-module-classes">.wf-bullet-list / .wf-bullet-item ／ .wf-num-list / .wf-num-item</div>
+    <div class="cat-demo">
+      <span class="cat-demo-label">DEMO ｜ 黒丸</span>
+      <ul class="wf-bullet-list">
+        <li class="wf-bullet-item">研究棟エントランス（吹き抜けの大空間）の見学</li>
+        <li class="wf-bullet-item">最新製品・技術の展示エリアの見学</li>
+        <li class="wf-bullet-item">研究員によるショートトーク</li>
+        <li class="wf-bullet-item">参加者同士の意見交換</li>
+      </ul>
+    </div>
+    <div class="cat-demo">
+      <span class="cat-demo-label">DEMO ｜ 番号付き</span>
+      <ol class="wf-num-list">
+        <li class="wf-num-item">申込フォームに必要事項を入力する</li>
+        <li class="wf-num-item">送信ボタンを押す（自動返信メールを受信）</li>
+        <li class="wf-num-item">事務局から確認メールを受信したら参加確定</li>
+        <li class="wf-num-item">当日は集合場所までお越しください</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       M05 画像（全幅）
+  ============================================================ -->
+  <section class="cat-module" id="M05">
+    <div class="cat-module-header">
+      <span class="cat-module-code">M05</span>
+      <span class="cat-module-name">画像 ｜ 全幅</span>
+      <span class="cat-module-type">SHARED</span>
+    </div>
+    <p class="cat-module-desc">記事のキービジュアル、または重要な1枚を本文幅いっぱいに配置。下にキャプションを付けることが可能。h: 280pxを推奨。</p>
+    <div class="cat-module-classes">.wf-img / .wf-img-label / .wf-img-caption</div>
+    <div class="cat-demo">
+      <span class="cat-demo-label">DEMO</span>
+      <div class="wf-img" style="height:280px;">
+        <span class="wf-img-label">キービジュアル画像（全幅）<br>1080 × 480 推奨</span>
+      </div>
+      <p class="wf-img-caption">活動の様子を表すメインビジュアル（前回開催時の集合写真など）</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       M06 画像（2カラム）
+  ============================================================ -->
+  <section class="cat-module" id="M06">
+    <div class="cat-module-header">
+      <span class="cat-module-code">M06</span>
+      <span class="cat-module-name">画像 ｜ 2カラム</span>
+      <span class="cat-module-type">SHARED</span>
+    </div>
+    <p class="cat-module-desc">2枚の画像を横並びに配置。ビフォア／アフター、別アングル、複数シーンの提示などに使用。各画像の下にキャプション可。</p>
+    <div class="cat-module-classes">.wf-photo-grid + .wf-img + .wf-img-caption</div>
+    <div class="cat-demo">
+      <span class="cat-demo-label">DEMO</span>
+      <div class="wf-photo-grid">
+        <div>
+          <div class="wf-img h-200">
+            <span class="wf-img-label">画像 1<br>（例：体験学習中の様子）</span>
+          </div>
+          <p class="wf-img-caption">静電気の性質を利用した手動コピーに挑戦！</p>
+        </div>
+        <div>
+          <div class="wf-img h-200">
+            <span class="wf-img-label">画像 2<br>（例：完成したコピーを確認する様子）</span>
+          </div>
+          <p class="wf-img-caption">うまくコピーできるかな？</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       M07 左テキスト＋右画像
+  ============================================================ -->
+  <section class="cat-module" id="M07">
+    <div class="cat-module-header">
+      <span class="cat-module-code">M07</span>
+      <span class="cat-module-name">テキスト＋画像 ｜ 左テキスト＋右画像</span>
+      <span class="cat-module-type">SHARED</span>
+    </div>
+    <p class="cat-module-desc">本文を主軸に置きつつ、補足画像を右側に添える基本パターン。比率はテキスト 1.3 : 画像 1。</p>
+    <div class="cat-module-classes">.wf-content-2col + .wf-content-2col-img</div>
+    <div class="cat-demo">
+      <span class="cat-demo-label">DEMO</span>
+      <div class="wf-content-2col">
+        <div>
+          <p style="font-size:13px; color:var(--c-text); line-height:1.9; margin-bottom:12px;">
+            最新の研究施設の見学を行います。普段は立ち入ることのできないエリアを含め、当社の取り組みの全体像をご紹介します。
+          </p>
+          <p style="font-size:13px; color:var(--c-text); line-height:1.9; margin-bottom:0;">
+            研究員が直接、開発の経緯や技術的なポイントを解説します。質疑応答の時間も設けますので、興味のある分野について深く知ることができます。
+          </p>
+        </div>
+        <div class="wf-content-2col-img">
+          <div class="wf-img h-200">
+            <span class="wf-img-label">補足画像<br>（例：研究棟外観）</span>
+          </div>
+          <p class="wf-img-caption">開放的な吹き抜けの研究棟</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       M08 右テキスト＋左画像
+  ============================================================ -->
+  <section class="cat-module" id="M08">
+    <div class="cat-module-header">
+      <span class="cat-module-code">M08</span>
+      <span class="cat-module-name">テキスト＋画像 ｜ 右テキスト＋左画像</span>
+      <span class="cat-module-type">SHARED</span>
+    </div>
+    <p class="cat-module-desc">画像を主役に、本文を右側に配置するパターン。視覚的なフックを優先したいときに M07 の代替として使用。比率は画像 1.3 : テキスト 1（反転）。</p>
+    <div class="cat-module-classes">.wf-content-2col.img-left + .wf-content-2col-img</div>
+    <div class="cat-demo">
+      <span class="cat-demo-label">DEMO</span>
+      <div class="wf-content-2col img-left">
+        <div>
+          <p style="font-size:13px; color:var(--c-text); line-height:1.9; margin-bottom:12px;">
+            当社の技術を実際に体感できるワークショップ形式のプログラムを実施します。手を動かしながら技術原理を理解することで、座学では得られない発見があります。
+          </p>
+          <p style="font-size:13px; color:var(--c-text); line-height:1.9; margin-bottom:0;">
+            初心者の方も安心してご参加いただけるよう、専門スタッフが丁寧にご案内します。
+          </p>
+        </div>
+        <div class="wf-content-2col-img">
+          <div class="wf-img h-200">
+            <span class="wf-img-label">主画像（左配置）<br>（例：手動コピー体験中の様子）</span>
+          </div>
+          <p class="wf-img-caption">体験学習：手動コピーに挑戦！</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       M09 注意事項
+  ============================================================ -->
+  <section class="cat-module" id="M09">
+    <div class="cat-module-header">
+      <span class="cat-module-code">M09</span>
+      <span class="cat-module-name">注意事項（中黒リスト＋囲み）</span>
+      <span class="cat-module-type">SHARED</span>
+    </div>
+    <p class="cat-module-desc">参加条件・免責・運営上の注意事項などを目立たせて掲載するための囲みリスト。白カードに枠線で「申込み前に必ず読む」ニュアンスを表現。</p>
+    <div class="cat-module-classes">.wf-notice-box + .wf-notice-list + .wf-notice-item</div>
+    <div class="cat-demo">
+      <span class="cat-demo-label">DEMO</span>
+      <div class="wf-notice-box">
+        <ul class="wf-notice-list">
+          <li class="wf-notice-item">当日の集合場所までの交通費は、参加者ご自身でご負担ください。</li>
+          <li class="wf-notice-item">未成年の参加者は、保護者の同意を得たうえでお申し込みください。</li>
+          <li class="wf-notice-item">当日撮影した写真・動画は、CSRレポート等の広報物に使用させていただく場合があります。</li>
+          <li class="wf-notice-item">天候・社会情勢等の理由により、開催を中止または内容を変更する場合があります。</li>
+          <li class="wf-notice-item">昼食は各自でご用意ください（会場周辺に飲食店あり）。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       M10 イベント概要（表）
+  ============================================================ -->
+  <section class="cat-module" id="M10">
+    <div class="cat-module-header">
+      <span class="cat-module-code">M10</span>
+      <span class="cat-module-name">イベント概要（定義表）</span>
+      <span class="cat-module-type">SHARED</span>
+    </div>
+    <p class="cat-module-desc">イベント名／開催日時／集合場所／対象／参加費／募集人員／申込締切／主催 など、イベント基本情報を一覧化する2カラム定義表。左ラベル200px固定。</p>
+    <div class="cat-module-classes">.wf-simple-table</div>
+    <div class="cat-demo">
+      <span class="cat-demo-label">DEMO</span>
+      <table class="wf-simple-table">
+        <tbody>
+          <tr><th>イベント名称</th><td>コニカミノルタ最新研究棟見学＆体験学習会</td></tr>
+          <tr><th>開催日時</th><td>XXXX年X月X日（◯）13:30 〜 16:30</td></tr>
+          <tr>
+            <th>集合場所</th>
+            <td>
+              コニカミノルタ ◯◯サイト（◯◯都◯◯市◯◯町X-X-X）<br>
+              <span style="font-size:11px; color:var(--c-text-xs);">※最寄り駅：◯◯線「◯◯駅」より徒歩X分</span>
+            </td>
+          </tr>
+          <tr><th>対象者</th><td>中学生・高校生（女性限定）</td></tr>
+          <tr><th>参加費</th><td>無料（ただし、現地までの交通費は参加者負担）</td></tr>
+          <tr><th>募集人員</th><td>30名（先着順）</td></tr>
+          <tr><th>申込締切</th><td>XXXX年X月X日（◯）</td></tr>
+          <tr><th>主催</th><td>コニカミノルタ株式会社</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       M11 関連リンク
+  ============================================================ -->
+  <section class="cat-module" id="M11">
+    <div class="cat-module-header">
+      <span class="cat-module-code">M11</span>
+      <span class="cat-module-name">関連リンク（グレー囲みボックス）</span>
+      <span class="cat-module-type">SHARED</span>
+    </div>
+    <p class="cat-module-desc">記事末に配置する関連ページ・PDF・外部サイトへの導線。グレー背景＋枠線で本文と区別。タイトル＋リンクリストの2部構成。複数ボックスの並置可。</p>
+    <div class="cat-module-classes">.wf-related-box + .wf-related-box-title + .wf-related-list + .wf-link</div>
+    <div class="cat-demo">
+      <span class="cat-demo-label">DEMO</span>
+      <div class="wf-related-box">
+        <div class="wf-related-box-title">サステナビリティサイト内 関連ページ</div>
+        <div class="wf-related-list">
+          <span class="wf-link">社会貢献活動 トップページ</span>
+          <span class="wf-link">環境活動を通した貢献</span>
+          <span class="wf-link">学術・研究・教育の支援</span>
+          <span class="wf-link">DE&I／女性のキャリア形成支援</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       M12 CTAボタン（黒背景）
+  ============================================================ -->
+  <section class="cat-module" id="M12">
+    <div class="cat-module-header">
+      <span class="cat-module-code">M12</span>
+      <span class="cat-module-name">CTAボタン ｜ 黒背景（プライマリ）</span>
+      <span class="cat-module-type">SHARED</span>
+    </div>
+    <p class="cat-module-desc">記事内で最も優先度の高い行動喚起に使用。黒地白文字で視覚的に最も強い導線。標準サイズと大型（lg）の2バリエーション。</p>
+    <div class="cat-module-classes">.wf-btn.primary ／ .wf-btn.primary.lg</div>
+    <div class="cat-demo">
+      <span class="cat-demo-label">DEMO ｜ 標準サイズ</span>
+      <div class="wf-btn-group">
+        <span class="wf-btn primary">申込フォームへ進む</span>
+        <span class="wf-btn primary">エントリー</span>
+      </div>
+    </div>
+    <div class="cat-demo">
+      <span class="cat-demo-label">DEMO ｜ 大型（lg）— 主要CTA</span>
+      <div class="wf-btn-group">
+        <span class="wf-btn primary lg">申込フォームへ進む</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       M13 CTAボタン（白背景）
+  ============================================================ -->
+  <section class="cat-module" id="M13">
+    <div class="cat-module-header">
+      <span class="cat-module-code">M13</span>
+      <span class="cat-module-name">CTAボタン ｜ 白背景（セカンダリ）</span>
+      <span class="cat-module-type">SHARED</span>
+    </div>
+    <p class="cat-module-desc">プライマリCTAに対する副導線。白地黒文字＋黒枠線。資料DL／別ページ参照／キャンセルなど、優先度2位の行動喚起に使用。M12と並列することで主従関係を明示。</p>
+    <div class="cat-module-classes">.wf-btn.outline ／ .wf-btn.outline.lg</div>
+    <div class="cat-demo">
+      <span class="cat-demo-label">DEMO ｜ 単独配置</span>
+      <div class="wf-btn-group">
+        <span class="wf-btn outline">参加要項をPDFでダウンロード</span>
+        <span class="wf-btn outline">過去の開催レポート</span>
+      </div>
+    </div>
+    <div class="cat-demo">
+      <span class="cat-demo-label">DEMO ｜ 黒CTAと併置（推奨パターン）</span>
+      <div class="wf-btn-group">
+        <span class="wf-btn primary lg">申込フォームへ進む</span>
+        <span class="wf-btn outline">参加要項をPDFでダウンロード</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="cat-footer">
+    <div>CSRトピックス詳細 モジュールカタログ — KM サステナビリティ WF v2.0</div>
+    <div>&copy; 2011-2026 Konica Minolta, Inc.</div>
+  </footer>
+
+</div><!-- /cat-page -->
+
+</body>
+</html>
