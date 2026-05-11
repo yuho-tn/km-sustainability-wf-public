@@ -117,7 +117,7 @@ body {
   margin-bottom: 8px; line-height: 1.5;
   display: flex; align-items: center; gap: 6px;
 }
-.wf-h5-title::before { content: '◾'; color: var(--c-text-h); font-size: 10px; flex-shrink: 0; }
+/* H5は太字のみ・マーカーなし（catalog v3.1準拠） */
 
 /* リンク */
 .section-head-link { font-size: 12px; font-weight: 600; color: var(--c-text-h); white-space: nowrap; cursor: default; letter-spacing: 0.03em; padding: 4px 0; border-bottom: 2px solid transparent; transition: border-color 0.15s; }
@@ -1079,31 +1079,6 @@ body {
         <span class="wf-link">ESGデータ</span>
       </div>
 
-      <!-- モーダルプレビューエリア（WF確認用） -->
-      <div class="modal-preview-zone">
-        <span class="modal-preview-zone-label">MODAL PREVIEW</span>
-        <p class="modal-preview-zone-desc">
-          各ブロック下部の用語注釈ボタン（<span class="term-trigger"><span class="term-trigger-mark">?</span>グリーンプロダクツ</span> など）をクリックすると、以下のような用語解説モーダルが画面中央にオーバーレイ表示されます。実装時は背景に半透明黒のオーバーレイ＋ESCキー／背景クリックで閉じる挙動を想定。見出しはアコーディオンの開閉操作のみを担当します。
-        </p>
-        <div style="max-width:420px;">
-
-          <!-- Modal sample（1つのみ：グリーンプロダクツ）— 他項目も同一フォーマット -->
-          <div class="term-modal" id="modal-greenproducts">
-            <div class="term-modal-head">
-              <span class="term-modal-title">グリーンプロダクツ</span>
-              <span class="term-modal-close">×</span>
-            </div>
-            <div class="term-modal-body">
-              <p>コニカミノルタが社内基準に基づき独自に認定する、環境配慮型の製品・サービス群の総称です。</p>
-              <p>製品ライフサイクル全体での省エネ性・省資源性・リサイクル性等を評価軸とし、お客様の業務プロセス変革を通じてCO<sub>2</sub>削減に貢献するソリューションをグリーンプロダクツとして展開しています。</p>
-            </div>
-          </div>
-
-        </div>
-        <p style="font-size:10px; color:var(--c-text-xs); margin-top:10px; line-height:1.7;">
-          ※ 他の用語ボタン（グリーンファクトリー／CNパートナー活動）も同一のモーダルフォーマットで表示されます。
-        </p>
-      </div>
     </section>
 
 

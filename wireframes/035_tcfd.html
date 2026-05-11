@@ -118,7 +118,7 @@ body {
   display: flex; align-items: center; gap: 6px;
   margin-top: 14px;
 }
-.wf-h5-title::before { content: '◾'; color: var(--c-text-h); font-size: 10px; flex-shrink: 0; }
+/* H5は太字のみ・マーカーなし（catalog v3.1準拠） */
 
 /* リンク */
 .wf-link { font-size: 12px; color: var(--c-text-s); display: inline-flex; align-items: center; gap: 4px; cursor: default; }
@@ -1523,61 +1523,6 @@ body {
             <span class="wf-link">グリーンファクトリー認定制度</span>
             <span class="wf-link">グリーンマーケティング活動</span>
             <span class="wf-link">ガバナンスの仕組み・運営 ＞ 役員報酬について</span>
-          </div>
-        </section>
-
-        <!-- ============================================================
-             画像拡大モーダル PREVIEW（共通仕様の見本）
-        ============================================================ -->
-        <section class="wf-section bg-white pad-sm">
-          <div class="img-zoom-modal-preview">
-            <span class="img-zoom-modal-preview-label">IMAGE ZOOM MODAL PREVIEW</span>
-            <p class="img-zoom-modal-preview-desc">
-              ページ内の図表・グラフPHには右下に「<strong>+</strong>」拡大ボタン（<span class="img-zoom-btn" style="position:relative; bottom:auto; right:auto; display:inline-flex;"></span>）を配置。クリックすると以下のような拡大モーダルが画面中央にオーバーレイ表示されます。実装時は背景に半透明黒のオーバーレイ＋ESCキー／背景クリックで閉じる挙動を想定。
-            </p>
-            <div class="img-zoom-modal">
-              <div class="img-zoom-modal-head">
-                <span class="img-zoom-modal-title">図：コニカミノルタの気候関連リスクと機会</span>
-                <span class="img-zoom-modal-close">×</span>
-              </div>
-              <div class="img-zoom-modal-body">
-                <div class="img-zoom-modal-figure">
-                  <span class="img-zoom-modal-figure-label">[ 拡大画像PH ]</span>
-                </div>
-                <p class="img-zoom-modal-cap">移行／物理リスク × 機会の全体マッピング（事業セグメント別・時間軸別）</p>
-              </div>
-            </div>
-            <p style="font-size:10px; color:var(--c-text-xs); margin-top:10px; line-height:1.7;">
-              ※ 他の図表PH（再エネ比率グラフ等）も同一のモーダルフォーマットで表示されます。
-            </p>
-          </div>
-        </section>
-
-        <!-- ============================================================
-             用語モーダル PREVIEW（共通仕様の見本）
-        ============================================================ -->
-        <section class="wf-section bg-white pad-sm" style="border-top:1px solid var(--c-border-s);">
-          <div class="modal-preview-zone">
-            <span class="modal-preview-zone-label">TERM MODAL PREVIEW</span>
-            <p class="modal-preview-zone-desc">
-              本文中のブロック下部に配置された用語注釈ボタン（<span class="term-trigger"><span class="term-trigger-mark">?</span>SBT</span> など）をクリックすると、以下のような用語解説モーダルが画面中央にオーバーレイ表示されます。実装時は背景に半透明黒のオーバーレイ＋ESCキー／背景クリックで閉じる挙動を想定。
-            </p>
-
-            <!-- Modal sample（1つのみ：SBT）— 他項目も同一フォーマット -->
-            <div class="term-modal" id="modal-sbt">
-              <div class="term-modal-head">
-                <span class="term-modal-title">SBT（Science Based Targets）</span>
-                <span class="term-modal-close">×</span>
-              </div>
-              <div class="term-modal-body">
-                <p>パリ協定が求める水準と整合した、企業が設定する科学的根拠に基づく温室効果ガス排出削減目標。</p>
-                <p>コニカミノルタはパリ協定および１．５℃目標に整合したSBTを設定し、短期・中期・長期にわたる時間軸で段階的な気候移行計画を策定しています。</p>
-              </div>
-            </div>
-
-            <p style="font-size:10px; color:var(--c-text-xs); margin-top:14px; line-height:1.7;">
-              ※ 他の用語ボタン（ICP／CNパートナー活動／環境デジタルプラットフォーム／スコープ１〜４／カーボンマイナス／ネットゼロ／グリーンプロダクツ など）も同一のモーダルフォーマットで表示されます。
-            </p>
           </div>
         </section>
 

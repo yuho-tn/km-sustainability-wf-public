@@ -119,7 +119,7 @@ body {
   display: flex; align-items: center; gap: 6px;
   margin-top: 16px;
 }
-.wf-h5-title::before { content: '◾'; color: var(--c-text-h); font-size: 10px; flex-shrink: 0; }
+/* H5は太字のみ・マーカーなし（catalog v3.1準拠） */
 
 /* L3ページタイトル */
 .wf-page-title-area {
@@ -1202,30 +1202,6 @@ body {
               <span class="detail-link">AIの利活用 ＞ AIガバナンス体制</span>
             </div>
           </details>
-        </section>
-
-        <!-- ============================================================
-             画像拡大モーダル PREVIEW
-        ============================================================ -->
-        <section class="wf-section bg-white pad-sm">
-          <div class="img-zoom-modal-preview">
-            <span class="img-zoom-modal-preview-label">IMAGE ZOOM MODAL PREVIEW</span>
-            <p class="img-zoom-modal-preview-desc">
-              ページ内の図PH／写真PHには右下に「<strong>+</strong>」拡大ボタンを配置。クリックすると以下のような拡大モーダルが画面中央にオーバーレイ表示されます。実装時は背景に半透明黒のオーバーレイ＋ESCキー／背景クリックで閉じる挙動を想定。本ページでは「人権対応の体制図」「JaCER対話救済プラットフォーム図」「是正の写真（非常出口）」など、すべて同フォーマットで拡大表示。
-            </p>
-            <div class="img-zoom-modal">
-              <div class="img-zoom-modal-head">
-                <span class="img-zoom-modal-title">図：JaCER対話救済プラットフォーム</span>
-                <span class="img-zoom-modal-close">×</span>
-              </div>
-              <div class="img-zoom-modal-body">
-                <div class="img-zoom-modal-figure">
-                  <span class="img-zoom-modal-figure-label">[ 拡大画像PH ]</span>
-                </div>
-                <p class="img-zoom-modal-cap">受付（匿名OK・代理人OK）→ JaCER第三者支援 → 事実確認・対話 → 是正・救済 → 進捗共有・公開</p>
-              </div>
-            </div>
-          </div>
         </section>
 
       </div><!-- /wf-anchornav-main -->
