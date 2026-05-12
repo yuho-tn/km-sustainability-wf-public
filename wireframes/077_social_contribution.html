@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>社会貢献活動 — KM サステナビリティ WF v4.0</title>
+<title>社会貢献活動 — KM サステナビリティ WF v4.1</title>
 <style>
 /* ============================================================
    KM SUSTAINABILITY WF — SHARED CSS（catalog v3.1 / 148 v2.3準拠）
@@ -273,13 +273,44 @@ body {
 }
 .wf-img.h-160 { height: 160px; }
 .wf-img.h-200 { height: 200px; }
-.wf-img.h-240 { height: 240px; }
 .wf-img-caption {
   font-size: 11px; color: var(--c-text-xs);
   margin-top: 6px; line-height: 1.5;
 }
 
-/* 画像拡大ボタン（単独画像PHのみ） */
+/* ============================================================
+   catalog 3-1：ページ上 大型画像PH（全幅・16:8）
+   キービジュアル／価値創造プロセス図／体制図 用
+============================================================ */
+.large-figure-ph {
+  background: var(--c-ph);
+  border: 1px solid var(--c-ph-line);
+  position: relative; overflow: hidden;
+  aspect-ratio: 16 / 8;
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 14px;
+}
+.large-figure-ph::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(45deg,
+    transparent 0 12px, rgba(0,0,0,0.04) 12px 13px);
+}
+.large-figure-ph-label {
+  position: relative; z-index: 1;
+  font-size: 11px; color: var(--c-text-s);
+  text-align: center; line-height: 1.7;
+  background: rgba(255,255,255,0.92); padding: 10px 18px;
+  letter-spacing: 0.04em;
+  border: 1px dashed var(--c-ph-line);
+  max-width: 80%;
+}
+.large-figure-ph-label strong {
+  display: block; font-size: 12px; color: var(--c-text-h);
+  margin-bottom: 4px;
+}
+
+/* catalog 3-6：画像拡大「+」ボタン（単独画像PHのみ／グラフ・体制図・模式図・全幅画像） */
 .img-zoom-btn {
   position: absolute;
   bottom: 6px; right: 6px;
@@ -350,18 +381,17 @@ body {
   font-size: 14px; font-weight: 700; line-height: 1;
 }
 .wf-acc-h3[open] .wf-acc-h3-summary::after { content: '−'; }
-.wf-acc-h3-title { flex: 1; min-width: 0; }
-/* タグ派生（catalog 7-5：薄グレー背景） */
+/* catalog 7-5：タグ派生（薄グレー bg・border なし・summary 内 左配置） */
 .wf-acc-tag {
   display: inline-block;
   background: var(--c-bg-sub); color: var(--c-text-h);
   font-size: 10px; font-weight: 700;
   letter-spacing: 0.06em;
   padding: 3px 10px;
-  margin-left: auto;
   flex-shrink: 0; white-space: nowrap;
-  border: 1px solid var(--c-ph-line);
 }
+/* タイトルラッパ（catalog 7-5 / 035 TCFD 準拠：タグの後ろで残りスペースを埋める） */
+.wf-acc-text { flex: 1; min-width: 0; }
 .wf-acc-h3-body {
   background: var(--c-white);
   padding: 18px 22px;
@@ -474,9 +504,9 @@ body {
     <strong>077_social_contribution</strong>
     <span class="meta-badge">PAGE #077</span>
     <span class="meta-badge">第3層 目次</span>
-    <span class="meta-badge">v4.0 module-unified</span>
+    <span class="meta-badge">v4.1 catalog-spec-aligned</span>
   </div>
-  <div>KM SUSTAINABILITY WF — 社会貢献活動（共通モジュール統一版）</div>
+  <div>KM SUSTAINABILITY WF — 社会貢献活動（catalog v3.1 規定準拠版）</div>
 </div>
 
 <div class="wf-canvas">
@@ -531,27 +561,26 @@ body {
           <h2 class="wf-section-title">基本的な考え方</h2>
 
           <h3 class="wf-sub-title">コニカミノルタのフィロソフィーと社会貢献</h3>
-          <div class="wf-grid col-2-1 gap-24">
-            <div>
-              <p class="wf-section-desc">
-                コニカミノルタは、「企業市民」として事業活動を通じて培ってきた技術やノウハウを活かし、社会課題の解決に取り組んでいます。経営ビジョン「Imaging to the People」のもと、現場の業務変革を支援し、生きがいと幸せを感じることのできる社会の実現に向けて、持続可能な社会への貢献を目指しています。
-              </p>
-              <p class="wf-section-desc">
-                3つの注力分野を軸にグローバルで活動を展開しています。<br>
-                <strong>健康・医学</strong> — 早期発見とQOL向上<br>
-                <strong>環境</strong> — バリューチェーン全体での負荷低減<br>
-                <strong>学術・研究・教育</strong> — 次世代への理工系教育支援
-              </p>
-              <p class="wf-section-desc">
-                2024年度は、国内で約31百万円相当の金銭的または物品による支援を実施しました。
-              </p>
-            </div>
-            <div>
-              <div class="wf-img h-240">
-                <div class="wf-img-label">メインビジュアル<br>世界中の笑顔のために<br>社会貢献活動イメージ</div>
-                <span class="img-zoom-btn" aria-label="拡大"></span>
-              </div>
-            </div>
+          <p class="wf-section-desc">
+            コニカミノルタは、「企業市民」として事業活動を通じて培ってきた技術やノウハウを活かし、社会課題の解決に取り組んでいます。経営ビジョン「Imaging to the People」のもと、現場の業務変革を支援し、生きがいと幸せを感じることのできる社会の実現に向けて、持続可能な社会への貢献を目指しています。
+          </p>
+          <p class="wf-section-desc">
+            3つの注力分野を軸にグローバルで活動を展開しています。<br>
+            <strong>健康・医学</strong> — 早期発見とQOL向上<br>
+            <strong>環境</strong> — バリューチェーン全体での負荷低減<br>
+            <strong>学術・研究・教育</strong> — 次世代への理工系教育支援
+          </p>
+          <p class="wf-section-desc">
+            2024年度は、国内で約31百万円相当の金銭的または物品による支援を実施しました。
+          </p>
+
+          <!-- catalog 3-1：ページ上 大型画像PH（全幅・16:8・キービジュアル） -->
+          <div class="large-figure-ph">
+            <span class="large-figure-ph-label">
+              <strong>キービジュアル：社会貢献活動メインビジュアル PH</strong>
+              世界中の笑顔のために — 3つの注力分野（健康・医学／環境／学術・研究・教育）を象徴するイメージ
+            </span>
+            <span class="img-zoom-btn" aria-label="拡大"></span>
           </div>
         </section>
 
@@ -571,8 +600,8 @@ body {
           <!-- B-1-1：環境戦略（展開状態） -->
           <details class="wf-acc-h3" open>
             <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-h3-title">コニカミノルタの環境戦略と社会貢献</span>
               <span class="wf-acc-tag">日本</span>
+              <span class="wf-acc-text">コニカミノルタの環境戦略と社会貢献</span>
             </summary>
             <div class="wf-acc-h3-body">
               <p>
@@ -582,14 +611,12 @@ body {
                 <figure>
                   <div class="wf-img h-160">
                     <div class="wf-img-label">環境セミナー<br>開催風景</div>
-                    <span class="img-zoom-btn" aria-label="拡大"></span>
                   </div>
                   <figcaption class="wf-img-caption">環境経営ノウハウを企業・自治体・アカデミアに展開</figcaption>
                 </figure>
                 <figure>
                   <div class="wf-img h-160">
                     <div class="wf-img-label">顧客工場での<br>省エネ診断実施</div>
-                    <span class="img-zoom-btn" aria-label="拡大"></span>
                   </div>
                   <figcaption class="wf-img-caption">お客様の工場・オフィスを訪問し省エネルギー診断を実施</figcaption>
                 </figure>
@@ -607,8 +634,8 @@ body {
           <!-- B-1-2：養蜂 -->
           <details class="wf-acc-h3">
             <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-h3-title">生物多様性保全のため養蜂を実施</span>
               <span class="wf-acc-tag">フランス</span>
+              <span class="wf-acc-text">生物多様性保全のため養蜂を実施</span>
             </summary>
             <div class="wf-acc-h3-body">
               <p>
@@ -618,7 +645,6 @@ body {
                 <figure>
                   <div class="wf-img h-200">
                     <div class="wf-img-label">パリ ビル屋上<br>養蜂風景</div>
-                    <span class="img-zoom-btn" aria-label="拡大"></span>
                   </div>
                   <figcaption class="wf-img-caption">パリのビル屋上で養蜂を実施</figcaption>
                 </figure>
@@ -629,8 +655,8 @@ body {
           <!-- B-1-3：アーバー・デイ財団 -->
           <details class="wf-acc-h3">
             <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-h3-title">アーバー・デイ財団と共に世界的な森林再生活動に貢献</span>
               <span class="wf-acc-tag">米国</span>
+              <span class="wf-acc-text">アーバー・デイ財団と共に世界的な森林再生活動に貢献</span>
             </summary>
             <div class="wf-acc-h3-body">
               <p>
@@ -640,14 +666,12 @@ body {
                 <figure>
                   <div class="wf-img h-160">
                     <div class="wf-img-label">MEVO<br>ボランティア風景</div>
-                    <span class="img-zoom-btn" aria-label="拡大"></span>
                   </div>
                   <figcaption class="wf-img-caption">農作物の植え付け・収穫作業に従業員が参加</figcaption>
                 </figure>
                 <figure>
                   <div class="wf-img h-160">
                     <div class="wf-img-label">NY/NJ Trail Conference<br>参加風景</div>
-                    <span class="img-zoom-btn" aria-label="拡大"></span>
                   </div>
                   <figcaption class="wf-img-caption">New York/New Jersey Trail Conferenceでのトレイル整備</figcaption>
                 </figure>
@@ -658,8 +682,8 @@ body {
           <!-- B-1-4：環境保全（豪州） -->
           <details class="wf-acc-h3">
             <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-h3-title">環境保全活動を支援</span>
               <span class="wf-acc-tag">オーストラリア</span>
+              <span class="wf-acc-text">環境保全活動を支援</span>
             </summary>
             <div class="wf-acc-h3-body">
               <p>
@@ -669,7 +693,6 @@ body {
                 <figure>
                   <div class="wf-img h-200">
                     <div class="wf-img-label">環境保全<br>ボランティア活動</div>
-                    <span class="img-zoom-btn" aria-label="拡大"></span>
                   </div>
                   <figcaption class="wf-img-caption">ランドケア・ウィークでの植樹活動</figcaption>
                 </figure>
@@ -680,8 +703,8 @@ body {
           <!-- B-1-5：森林保護（日本） -->
           <details class="wf-acc-h3">
             <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-h3-title">森林保護活動に協力</span>
               <span class="wf-acc-tag">日本</span>
+              <span class="wf-acc-text">森林保護活動に協力</span>
             </summary>
             <div class="wf-acc-h3-body">
               <p>
@@ -691,7 +714,6 @@ body {
                 <figure>
                   <div class="wf-img h-200">
                     <div class="wf-img-label">高尾の森<br>間伐・植樹作業</div>
-                    <span class="img-zoom-btn" aria-label="拡大"></span>
                   </div>
                   <figcaption class="wf-img-caption">裏高尾国有林での森づくり活動</figcaption>
                 </figure>
@@ -706,8 +728,8 @@ body {
           <!-- B-1-6：国立森林局（カテゴリ最終） -->
           <details class="wf-acc-h3 is-last-in-group">
             <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-h3-title">フランス国立森林局との提携</span>
               <span class="wf-acc-tag">フランス</span>
+              <span class="wf-acc-text">フランス国立森林局との提携</span>
             </summary>
             <div class="wf-acc-h3-body">
               <p>
@@ -725,8 +747,8 @@ body {
           <!-- B-2-1：介護DX（展開状態） -->
           <details class="wf-acc-h3" open>
             <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-h3-title">介護現場のDX化による社会課題解決の支援</span>
               <span class="wf-acc-tag">日本</span>
+              <span class="wf-acc-text">介護現場のDX化による社会課題解決の支援</span>
             </summary>
             <div class="wf-acc-h3-body">
               <p>
@@ -736,14 +758,12 @@ body {
                 <figure>
                   <div class="wf-img h-160">
                     <div class="wf-img-label">コニカミノルタ<br>ICT介護実習室</div>
-                    <span class="img-zoom-btn" aria-label="拡大"></span>
                   </div>
                   <figcaption class="wf-img-caption">介護福祉士養成専門学校での実習の様子</figcaption>
                 </figure>
                 <figure>
                   <div class="wf-img h-160">
                     <div class="wf-img-label">HitomeQ<br>導入施設</div>
-                    <span class="img-zoom-btn" aria-label="拡大"></span>
                   </div>
                   <figcaption class="wf-img-caption">ICT活用ケアサポートソリューション</figcaption>
                 </figure>
@@ -754,8 +774,8 @@ body {
           <!-- B-2-2：新生児黄疸 -->
           <details class="wf-acc-h3">
             <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-h3-title">新生児の病的黄疸（核黄疸）の早期発見・治療支援</span>
               <span class="wf-acc-tag">ミャンマー / 米国</span>
+              <span class="wf-acc-text">新生児の病的黄疸（核黄疸）の早期発見・治療支援</span>
             </summary>
             <div class="wf-acc-h3-body">
               <p>
@@ -765,14 +785,12 @@ body {
                 <figure>
                   <div class="wf-img h-160">
                     <div class="wf-img-label">Yangon Children Hospital<br>式典（2019年12月）</div>
-                    <span class="img-zoom-btn" aria-label="拡大"></span>
                   </div>
                   <figcaption class="wf-img-caption">ミャンマー・ヤンゴン小児病院での式典</figcaption>
                 </figure>
                 <figure>
                   <div class="wf-img h-160">
                     <div class="wf-img-label">経皮黄疸計<br>JM-105 測定風景</div>
-                    <span class="img-zoom-btn" aria-label="拡大"></span>
                   </div>
                   <figcaption class="wf-img-caption">経皮式黄疸計による新生児の測定</figcaption>
                 </figure>
@@ -783,8 +801,8 @@ body {
           <!-- B-2-3：乳がん早期発見 -->
           <details class="wf-acc-h3">
             <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-h3-title">乳がんの早期発見推進の取り組み</span>
               <span class="wf-acc-tag">グローバル</span>
+              <span class="wf-acc-text">乳がんの早期発見推進の取り組み</span>
             </summary>
             <div class="wf-acc-h3-body">
               <p>
@@ -794,7 +812,6 @@ body {
                 <figure>
                   <div class="wf-img h-200">
                     <div class="wf-img-label">ピンクリボン運動</div>
-                    <span class="img-zoom-btn" aria-label="拡大"></span>
                   </div>
                   <figcaption class="wf-img-caption">ピンクリボン運動を通じた啓発活動</figcaption>
                 </figure>
@@ -810,8 +827,8 @@ body {
           <!-- B-2-4：がん患者支援 -->
           <details class="wf-acc-h3">
             <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-h3-title">各地でがん患者支援団体を支援</span>
               <span class="wf-acc-tag">北米 / 豪州 / 欧州 / アジア</span>
+              <span class="wf-acc-text">各地でがん患者支援団体を支援</span>
             </summary>
             <div class="wf-acc-h3-body">
               <p>
@@ -821,7 +838,6 @@ body {
                 <figure>
                   <div class="wf-img h-200">
                     <div class="wf-img-label">がん患者支援活動</div>
-                    <span class="img-zoom-btn" aria-label="拡大"></span>
                   </div>
                   <figcaption class="wf-img-caption">各国でのがん患者支援活動の様子</figcaption>
                 </figure>
@@ -832,8 +848,8 @@ body {
           <!-- B-2-5：スポーツ振興 -->
           <details class="wf-acc-h3">
             <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-h3-title">地域のスポーツにおける社会貢献</span>
               <span class="wf-acc-tag">日本</span>
+              <span class="wf-acc-text">地域のスポーツにおける社会貢献</span>
             </summary>
             <div class="wf-acc-h3-body">
               <p>
@@ -843,7 +859,6 @@ body {
                 <figure>
                   <div class="wf-img h-200">
                     <div class="wf-img-label">ジョギング教室風景</div>
-                    <span class="img-zoom-btn" aria-label="拡大"></span>
                   </div>
                   <figcaption class="wf-img-caption">コニカミノルタ陸上競技部によるジョギング教室</figcaption>
                 </figure>
@@ -858,8 +873,8 @@ body {
           <!-- B-2-6：救いの泉 -->
           <details class="wf-acc-h3">
             <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-h3-title">防災水資源「救いの泉」を地域に提供</span>
               <span class="wf-acc-tag">日本</span>
+              <span class="wf-acc-text">防災水資源「救いの泉」を地域に提供</span>
             </summary>
             <div class="wf-acc-h3-body">
               <p>
@@ -869,7 +884,6 @@ body {
                 <figure>
                   <div class="wf-img h-200">
                     <div class="wf-img-label">災害時協力<br>協定締結式</div>
-                    <span class="img-zoom-btn" aria-label="拡大"></span>
                   </div>
                   <figcaption class="wf-img-caption">東京都日野市との災害時協力協定締結</figcaption>
                 </figure>
@@ -880,8 +894,8 @@ body {
           <!-- B-2-7：企業内基金（展開状態・カテゴリ最終） -->
           <details class="wf-acc-h3 is-last-in-group" open>
             <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-h3-title">ハンディキャップを持つ人々を支援する企業内基金を設立</span>
               <span class="wf-acc-tag">フランス</span>
+              <span class="wf-acc-text">ハンディキャップを持つ人々を支援する企業内基金を設立</span>
             </summary>
             <div class="wf-acc-h3-body">
               <p>
@@ -897,14 +911,12 @@ body {
                 <figure>
                   <div class="wf-img h-160">
                     <div class="wf-img-label">Fondation<br>d'entreprise</div>
-                    <span class="img-zoom-btn" aria-label="拡大"></span>
                   </div>
                   <figcaption class="wf-img-caption">企業内基金のロゴ</figcaption>
                 </figure>
                 <figure>
                   <div class="wf-img h-160">
                     <div class="wf-img-label">障がい者支援<br>活動風景</div>
-                    <span class="img-zoom-btn" aria-label="拡大"></span>
                   </div>
                   <figcaption class="wf-img-caption">障がい者の社会参加を支援する活動</figcaption>
                 </figure>
@@ -925,8 +937,8 @@ body {
           <!-- B-3-1：名称変更（新規枠／追加予定） -->
           <details class="wf-acc-h3">
             <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-h3-title">「産業知能系」の新価値創出マテリアリティと連動した名称へ変更</span>
               <span class="wf-acc-tag">グローバル</span>
+              <span class="wf-acc-text">「産業知能系」の新価値創出マテリアリティと連動した名称へ変更</span>
             </summary>
             <div class="wf-acc-h3-body">
               <p>
@@ -938,8 +950,8 @@ body {
           <!-- B-3-2：IoT人財育成 -->
           <details class="wf-acc-h3">
             <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-h3-title">将来のIoT人財育成への貢献</span>
               <span class="wf-acc-tag">日本</span>
+              <span class="wf-acc-text">将来のIoT人財育成への貢献</span>
             </summary>
             <div class="wf-acc-h3-body">
               <p>
@@ -949,7 +961,6 @@ body {
                 <figure>
                   <div class="wf-img h-200">
                     <div class="wf-img-label">2021年度<br>ハッカソン参加者</div>
-                    <span class="img-zoom-btn" aria-label="拡大"></span>
                   </div>
                   <figcaption class="wf-img-caption">ハッカソン・アイデアソンの開催風景</figcaption>
                 </figure>
@@ -960,8 +971,8 @@ body {
           <!-- B-3-3：若者キャリア形成 -->
           <details class="wf-acc-h3">
             <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-h3-title">若者のキャリア形成を支援</span>
               <span class="wf-acc-tag">インド</span>
+              <span class="wf-acc-text">若者のキャリア形成を支援</span>
             </summary>
             <div class="wf-acc-h3-body">
               <p>
@@ -973,8 +984,8 @@ body {
           <!-- B-3-4：女性IT支援 -->
           <details class="wf-acc-h3">
             <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-h3-title">IT業界における女性のキャリア形成を支援</span>
               <span class="wf-acc-tag">チェコ / ドイツ</span>
+              <span class="wf-acc-text">IT業界における女性のキャリア形成を支援</span>
             </summary>
             <div class="wf-acc-h3-body">
               <p>
@@ -984,7 +995,6 @@ body {
                 <figure>
                   <div class="wf-img h-200">
                     <div class="wf-img-label">ワークショップ風景</div>
-                    <span class="img-zoom-btn" aria-label="拡大"></span>
                   </div>
                   <figcaption class="wf-img-caption">女性向けITキャパシティビルディングの様子</figcaption>
                 </figure>
@@ -995,8 +1005,8 @@ body {
           <!-- B-3-5：就学支援（展開状態） -->
           <details class="wf-acc-h3" open>
             <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-h3-title">子どもたちの就学支援</span>
               <span class="wf-acc-tag">北米 / 中国</span>
+              <span class="wf-acc-text">子どもたちの就学支援</span>
             </summary>
             <div class="wf-acc-h3-body">
               <p>
@@ -1009,14 +1019,12 @@ body {
                 <figure>
                   <div class="wf-img h-160">
                     <div class="wf-img-label">就学支援<br>活動風景</div>
-                    <span class="img-zoom-btn" aria-label="拡大"></span>
                   </div>
                   <figcaption class="wf-img-caption">子どもたちへの教育支援の様子</figcaption>
                 </figure>
                 <figure>
                   <div class="wf-img h-160">
                     <div class="wf-img-label">卒業旅行で<br>同社を訪問</div>
-                    <span class="img-zoom-btn" aria-label="拡大"></span>
                   </div>
                   <figcaption class="wf-img-caption">卒業旅行で同社を訪れた子どもたち</figcaption>
                 </figure>
@@ -1027,8 +1035,8 @@ body {
           <!-- B-3-6：科学技術振興財団 -->
           <details class="wf-acc-h3">
             <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-h3-title">公益財団法人コニカミノルタ科学技術振興財団</span>
               <span class="wf-acc-tag">日本</span>
+              <span class="wf-acc-text">公益財団法人コニカミノルタ科学技術振興財団</span>
             </summary>
             <div class="wf-acc-h3-body">
               <p>
@@ -1038,7 +1046,6 @@ body {
                 <figure>
                   <div class="wf-img h-200">
                     <div class="wf-img-label">科学技術振興財団</div>
-                    <span class="img-zoom-btn" aria-label="拡大"></span>
                   </div>
                   <figcaption class="wf-img-caption">研究助成・支援活動</figcaption>
                 </figure>
@@ -1053,8 +1060,8 @@ body {
           <!-- B-3-7：プラネタリウム（カテゴリ最終） -->
           <details class="wf-acc-h3 is-last-in-group">
             <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-h3-title">プラネタリウムを通した地域貢献</span>
               <span class="wf-acc-tag">グローバル</span>
+              <span class="wf-acc-text">プラネタリウムを通した地域貢献</span>
             </summary>
             <div class="wf-acc-h3-body">
               <p>
@@ -1064,7 +1071,6 @@ body {
                 <figure>
                   <div class="wf-img h-200">
                     <div class="wf-img-label">プラネタリウム<br>学習投影</div>
-                    <span class="img-zoom-btn" aria-label="拡大"></span>
                   </div>
                   <figcaption class="wf-img-caption">小学校向け学習投影の様子</figcaption>
                 </figure>

@@ -190,6 +190,52 @@ body {
 .wf-footer-link { display: block; font-size: 10px; color: #999; padding: 3px 0; line-height: 1.6; }
 .wf-footer-bottom { display: flex; justify-content: space-between; font-size: 10px; color: #777; margin-top: 12px; }
 
+/* ヘッダー：KM公式デザイン画像版（全ページ共通） */
+.wf-header-img { background: var(--c-white); border-bottom: 1px solid var(--c-border); line-height: 0; }
+.wf-header-img-asset { display: block; width: 100%; height: auto; }
+
+/* サステナビリティサイトフッター（アコーディオン式・全ページ共通） */
+.sus-footer { background: #2A2A2A; color: #ddd; border-top: 1px solid #444; }
+.sus-footer-toggle {
+  display: flex; align-items: center; gap: 12px;
+  width: 100%; padding: 14px var(--pad-h);
+  background: #1A1A1A; border: none; border-bottom: 1px solid #333;
+  color: #fff; font-size: 13px; font-weight: 700;
+  cursor: pointer; text-align: left; letter-spacing: 0.02em;
+  font-family: inherit;
+}
+.sus-footer-toggle:hover { background: #222; }
+.sus-footer-toggle-icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 14px; height: 14px; font-size: 10px; color: #fff;
+  transition: transform 0.2s ease;
+}
+.sus-footer[data-open="false"] .sus-footer-toggle-icon { transform: rotate(-90deg); }
+.sus-footer-content {
+  padding: 32px var(--pad-h) 36px;
+  background: #2A2A2A;
+}
+.sus-footer[data-open="false"] .sus-footer-content { display: none; }
+.sus-footer-grid {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 28px;
+}
+.sus-footer-col-title {
+  font-size: 13px; font-weight: 700; color: #fff;
+  padding-bottom: 10px; margin-bottom: 12px;
+  border-bottom: 1px solid #555;
+  letter-spacing: 0.02em;
+}
+.sus-footer-link {
+  display: block; font-size: 12px; color: #fff;
+  font-weight: 600; padding: 6px 0 4px; line-height: 1.5;
+  cursor: default;
+}
+.sus-footer-sublink {
+  display: block; font-size: 11px; color: #aaa;
+  font-weight: 400; padding: 2px 0 2px 12px; line-height: 1.6;
+  cursor: default;
+}
+
 .wf-annotation { background: var(--c-ann-bg); border-left: 3px solid var(--c-ann-bdr); padding: 16px; position: sticky; top: 0; max-height: 100vh; overflow-y: auto; }
 .wf-annotation h3 { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: #888; border-bottom: 1px solid var(--c-ann-bdr); padding-bottom: 8px; margin-bottom: 14px; }
 .ann-item { margin-bottom: 16px; padding-bottom: 16px; border-bottom: 1px solid #EEE; }
@@ -454,38 +500,9 @@ body {
       <span class="pi-layer">L1 第1階層 — 全エントリーゲートウェイ</span>
     </div>
 
-    <!-- ヘッダー -->
-    <header class="wf-header">
-      <div class="wf-header-inner">
-        <div class="wf-logo">
-          <div class="wf-logo-mark"></div>
-          <div class="wf-logo-text">KONICA MINOLTA</div>
-        </div>
-        <div class="wf-header-utils">
-          <span>サポート・ダウンロード</span>
-          <span>お問い合わせ</span>
-          <span>Countries/Regions</span>
-          <span>ja | en | zh</span>
-        </div>
-      </div>
-      <nav class="wf-gnav">
-        <span class="wf-gnav-item">企業情報</span>
-        <span class="wf-gnav-item">Newsroom</span>
-        <span class="wf-gnav-item">株主・投資家情報</span>
-        <span class="wf-gnav-item is-active">サステナビリティ</span>
-        <span class="wf-gnav-item">テクノロジー</span>
-        <span class="wf-gnav-item">採用情報</span>
-      </nav>
-      <nav class="wf-lnav">
-        <span class="wf-lnav-label">サステナビリティ</span>
-        <span class="wf-lnav-item is-active">TOP</span>
-        <span class="wf-lnav-item">サステナビリティ戦略</span>
-        <span class="wf-lnav-item">サステナビリティマネジメント</span>
-        <span class="wf-lnav-item">環境</span>
-        <span class="wf-lnav-item">社会</span>
-        <span class="wf-lnav-item">ガバナンス</span>
-      </nav>
-      <div class="wf-header-note">⚠ ヘッダーは既確定。変更なし。</div>
+    <!-- ヘッダー：KM公式デザイン（画像差し替え） -->
+    <header class="wf-header-img">
+      <img src="assets/km-header.png" alt="KONICA MINOLTA ヘッダー（公式デザイン）" class="wf-header-img-asset">
     </header>
 
     <!-- パンくず -->
@@ -724,7 +741,88 @@ body {
       </div>
     </section>
 
-    <!-- フッター -->
+    <!-- サステナビリティサイトフッター（アコーディオン式・サイトマップ） -->
+    <div class="sus-footer" data-open="true">
+      <button class="sus-footer-toggle" type="button" onclick="this.parentElement.dataset.open = this.parentElement.dataset.open === 'true' ? 'false' : 'true'">
+        <span class="sus-footer-toggle-icon">▼</span>
+        <span>サステナビリティ サイトマップ</span>
+      </button>
+      <div class="sus-footer-content">
+        <div class="sus-footer-grid">
+          <div class="sus-footer-col">
+            <div class="sus-footer-col-title">サステナビリティ戦略</div>
+            <span class="sus-footer-link">マテリアリティ</span>
+            <span class="sus-footer-sublink">評価・特定プロセス</span>
+            <span class="sus-footer-sublink">KPI・目標と実績</span>
+            <span class="sus-footer-link">価値創造ストーリー</span>
+            <span class="sus-footer-link">ソーシャルイノベーション事例</span>
+            <span class="sus-footer-link">サステナビリティマネジメント</span>
+            <span class="sus-footer-sublink">推進体制</span>
+            <span class="sus-footer-sublink">ステークホルダーエンゲージメント</span>
+          </div>
+          <div class="sus-footer-col">
+            <div class="sus-footer-col-title">環境</div>
+            <span class="sus-footer-link">環境戦略</span>
+            <span class="sus-footer-link">環境マネジメント</span>
+            <span class="sus-footer-link">気候変動</span>
+            <span class="sus-footer-sublink">再エネ導入</span>
+            <span class="sus-footer-sublink">脱炭素化</span>
+            <span class="sus-footer-link">TCFD開示</span>
+            <span class="sus-footer-link">資源循環</span>
+            <span class="sus-footer-link">化学物質・汚染防止</span>
+            <span class="sus-footer-link">水資源</span>
+            <span class="sus-footer-link">生物多様性</span>
+            <span class="sus-footer-link">TNFD開示</span>
+            <span class="sus-footer-link">環境ラベル・認証等</span>
+            <span class="sus-footer-link">環境パフォーマンスデータ</span>
+          </div>
+          <div class="sus-footer-col">
+            <div class="sus-footer-col-title">社会</div>
+            <span class="sus-footer-link">人的資本</span>
+            <span class="sus-footer-sublink">人材育成</span>
+            <span class="sus-footer-sublink">企業文化・組織風土</span>
+            <span class="sus-footer-link">DE&amp;I</span>
+            <span class="sus-footer-link">労働慣行</span>
+            <span class="sus-footer-link">健康経営</span>
+            <span class="sus-footer-link">労働安全衛生</span>
+            <span class="sus-footer-link">人権</span>
+            <span class="sus-footer-sublink">人権デューデリジェンス</span>
+            <span class="sus-footer-link">サプライチェーンマネジメント</span>
+            <span class="sus-footer-sublink">CSR調達</span>
+            <span class="sus-footer-sublink">責任ある鉱物調達</span>
+            <span class="sus-footer-link">顧客責任・品質</span>
+            <span class="sus-footer-link">社会貢献活動</span>
+            <span class="sus-footer-link">AIガバナンス</span>
+          </div>
+          <div class="sus-footer-col">
+            <div class="sus-footer-col-title">ガバナンス</div>
+            <span class="sus-footer-link">コーポレート・ガバナンス</span>
+            <span class="sus-footer-link">コンプライアンス</span>
+            <span class="sus-footer-sublink">腐敗防止</span>
+            <span class="sus-footer-sublink">独占禁止法の遵守</span>
+            <span class="sus-footer-sublink">安全保障輸出管理</span>
+            <span class="sus-footer-link">情報セキュリティ</span>
+            <span class="sus-footer-link">リスクマネジメント</span>
+            <span class="sus-footer-link">グループ税務方針</span>
+          </div>
+          <div class="sus-footer-col">
+            <div class="sus-footer-col-title">報告・データ</div>
+            <span class="sus-footer-link">サステナビリティレポート</span>
+            <span class="sus-footer-sublink">アーカイブ</span>
+            <span class="sus-footer-link">ESGデータ</span>
+            <span class="sus-footer-link">グリーンファイナンス</span>
+            <span class="sus-footer-link">ガイドライン対照表</span>
+            <span class="sus-footer-link">第三者保証</span>
+            <span class="sus-footer-link">方針一覧</span>
+            <span class="sus-footer-link">社外からの評価</span>
+            <span class="sus-footer-link">イニシアチブへの参画</span>
+            <span class="sus-footer-link">トピックス一覧</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- フッター（全体サイト共通） -->
     <footer class="wf-footer">
       <div class="wf-footer-note">⚠ フッターは既確定。変更なし。</div>
       <div class="wf-footer-grid">

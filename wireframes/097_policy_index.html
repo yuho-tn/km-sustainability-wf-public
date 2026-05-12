@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>方針一覧 — KM サステナビリティ WF v1.0</title>
+<title>方針一覧 — KM サステナビリティ WF v2.0</title>
 <style>
 /* ============================================================
    KM SUSTAINABILITY WF — SHARED CSS v3.0
@@ -507,41 +507,6 @@ body {
    PAGE-LOCAL: 方針一覧 用追加スタイル
 ============================================================ */
 
-/* サマリーストリップ（カテゴリ別件数表示） */
-.summary-strip {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  border: 1px solid var(--c-border);
-  background: var(--c-white);
-  margin-bottom: 24px;
-}
-.summary-cell {
-  padding: 14px 12px;
-  text-align: center;
-  border-right: 1px solid var(--c-border-s);
-  cursor: default;
-}
-.summary-cell:last-child { border-right: none; }
-.summary-cell:hover { background: #FAFAFA; }
-.summary-num {
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--c-text-h);
-  line-height: 1;
-  margin-bottom: 4px;
-}
-.summary-num .summary-num-unit {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--c-text-s);
-  margin-left: 2px;
-}
-.summary-label {
-  font-size: 11px;
-  color: var(--c-text-s);
-  line-height: 1.4;
-}
-
 /* カテゴリアンカーバー（sticky） */
 .category-nav {
   position: sticky;
@@ -580,40 +545,6 @@ body {
   background: #FAFAFA;
   border-color: var(--c-text-h);
 }
-.category-nav-item .count {
-  font-size: 10px;
-  color: var(--c-text-xs);
-  background: #F0F0F0;
-  padding: 1px 6px;
-  border-radius: 10px;
-}
-
-/* フォーマットフィルタ（PDF/WEB絞り込み） */
-.format-filter {
-  display: flex;
-  gap: 6px;
-  margin-left: auto;
-  align-items: center;
-}
-.format-filter-label {
-  font-size: 10px;
-  color: var(--c-text-xs);
-  margin-right: 4px;
-  letter-spacing: 0.04em;
-}
-.format-filter-btn {
-  font-size: 10px;
-  color: var(--c-text-s);
-  border: 1px solid var(--c-border);
-  padding: 4px 10px;
-  background: var(--c-white);
-  cursor: default;
-}
-.format-filter-btn.active {
-  background: var(--c-text-h);
-  color: #fff;
-  border-color: var(--c-text-h);
-}
 
 /* カテゴリセクション見出し */
 .policy-cat-head {
@@ -644,265 +575,48 @@ body {
   color: var(--c-text-h);
   letter-spacing: -0.01em;
 }
-.policy-cat-en {
-  font-size: 11px;
-  color: var(--c-text-xs);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-.policy-cat-count {
-  font-size: 11px;
-  color: var(--c-text-s);
-}
-.policy-cat-count strong {
-  font-size: 16px;
-  color: var(--c-text-h);
-  font-weight: 700;
-  margin-right: 2px;
-}
-.policy-cat-desc {
-  font-size: 12px;
-  color: var(--c-text-s);
-  line-height: 1.7;
-  margin-bottom: 18px;
-}
 
-/* 方針カード（メインモジュール） */
-.policy-card-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  grid-auto-rows: 1fr;
-}
-.policy-card {
-  display: grid;
-  grid-template-columns: 1fr 140px;
-  gap: 20px;
-  align-items: center;
+/* 方針リスト（メインモジュール） — 説明文付き2行リスト */
+.policy-list {
   background: var(--c-white);
   border: 1px solid var(--c-border);
-  padding: 20px 22px;
-  position: relative;
-  min-height: 132px;
 }
-.policy-card:hover {
-  border-color: var(--c-text-h);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
-.policy-card-icon {
-  width: 60px;
-  height: 60px;
-  border: 1px solid var(--c-border);
-  display: flex;
-  flex-direction: column;
+.policy-row {
+  display: grid;
+  grid-template-columns: 1fr 24px;
   align-items: center;
-  justify-content: center;
-  gap: 2px;
-  background: #FAFAFA;
+  gap: 16px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--c-border-s);
+  cursor: default;
 }
-.policy-card-icon .icon-mark {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--c-text-h);
-  line-height: 1;
-  letter-spacing: 0.02em;
-}
-.policy-card-icon .icon-sub {
-  font-size: 8px;
-  color: var(--c-text-xs);
-  letter-spacing: 0.05em;
-  font-weight: 600;
-}
-/* PDFアイコン */
-.policy-card-icon.pdf { background: #2A2A2A; border-color: #2A2A2A; }
-.policy-card-icon.pdf .icon-mark { color: #fff; }
-.policy-card-icon.pdf .icon-sub { color: #BBB; }
-/* WEB アイコン */
-.policy-card-icon.web { background: #FAFAFA; }
-/* 外部 / EXT アイコン */
-.policy-card-icon.ext { background: #FAFAFA; }
-.policy-card-icon.ext .icon-mark { font-size: 14px; }
-
-.policy-card-body {
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  align-self: stretch;
-  justify-content: center;
-}
-.policy-card-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  align-items: center;
-  margin-bottom: 4px;
-  min-height: 18px;
-}
-.policy-tag {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  padding: 2px 7px;
-  border-radius: 2px;
-  text-transform: uppercase;
-}
-.policy-tag.pdf { background: var(--c-text-h); color: #fff; }
-.policy-tag.web { background: var(--c-bg-sub); color: var(--c-text-h); border: 1px solid var(--c-border); }
-.policy-tag.ext {
-  background: var(--c-white);
-  color: var(--c-text-s);
-  border: 1px solid var(--c-border);
-}
-.policy-tag.ext::after { content: ' ↗'; font-size: 10px; margin-left: 1px; }
-.policy-tag.size {
-  background: transparent;
-  color: var(--c-text-xs);
-  font-weight: 600;
-  padding: 0;
-  letter-spacing: 0;
-  text-transform: none;
-  font-size: 10px;
-}
-.policy-tag.size::before { content: '· '; color: var(--c-border); margin-right: 2px; }
-/* タグの最小幅を揃え、行の高さを安定させる */
-.policy-tag:not(.size) { min-width: 38px; text-align: center; }
-
-.policy-card-title {
+.policy-row:last-child { border-bottom: none; }
+.policy-row:hover { background: #FAFAFA; }
+.policy-row-body { min-width: 0; }
+.policy-row-title {
   font-size: 14px;
   font-weight: 700;
   color: var(--c-text-h);
-  line-height: 1.45;
+  line-height: 1.4;
   letter-spacing: -0.01em;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  min-height: calc(14px * 1.45 * 2);
+  margin-bottom: 2px;
 }
-.policy-card-desc {
+.policy-row-desc {
   font-size: 11px;
   color: var(--c-text-s);
   line-height: 1.6;
-  margin-top: 6px;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  min-height: calc(11px * 1.6 * 2);
 }
-
-.policy-card-action {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: center;
-  gap: 4px;
-  width: 140px;
+.policy-row-arrow {
+  font-size: 14px;
+  color: var(--c-text-s);
+  text-align: right;
+  line-height: 1;
 }
-.policy-card-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  padding: 11px 0;
-  background: var(--c-text-h);
-  color: #fff;
-  border: 1.5px solid var(--c-text-h);
-  cursor: default;
-  white-space: nowrap;
-  width: 100%;
-  height: 40px;
-  box-sizing: border-box;
-}
-.policy-card-btn.outline {
-  background: var(--c-white);
-  color: var(--c-text-h);
-}
-.policy-card-btn .btn-icon { font-size: 11px; }
-.policy-card-btn-note { display: none; }
-
-/* 単一行カード（注釈つき） */
-.policy-note {
-  font-size: 11px;
-  color: var(--c-text-xs);
-  line-height: 1.6;
-  margin-top: 10px;
-  padding: 10px 14px;
-  background: #FAFAFA;
-  border: 1px dashed var(--c-border);
-}
+.policy-row:hover .policy-row-arrow { color: var(--c-text-h); }
 
 /* セクション間スペース調整 */
 .policy-section { padding-top: 36px; padding-bottom: 36px; }
 .policy-section + .policy-section { border-top: 1px solid var(--c-border-s); }
-
-/* レジェンド */
-.legend-bar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-  align-items: center;
-  padding: 12px 16px;
-  background: #FAFAFA;
-  border: 1px solid var(--c-border-s);
-  font-size: 10px;
-  color: var(--c-text-s);
-  margin-bottom: 24px;
-}
-.legend-bar-label {
-  font-size: 10px;
-  font-weight: 700;
-  color: var(--c-text-h);
-  letter-spacing: 0.06em;
-  margin-right: 4px;
-}
-.legend-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-/* CTAバナー（最後のセクション） */
-.contact-banner {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 20px;
-  align-items: center;
-  padding: 24px 28px;
-  background: #2A2A2A;
-  color: #fff;
-}
-.contact-banner-text {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.contact-banner-title {
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-}
-.contact-banner-desc {
-  font-size: 11px;
-  color: #BBB;
-  line-height: 1.6;
-}
-.contact-banner-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  font-weight: 700;
-  padding: 12px 24px;
-  background: #fff;
-  color: var(--c-text-h);
-  border: 1.5px solid #fff;
-  cursor: default;
-}
 
 </style>
 </head>
@@ -914,7 +628,7 @@ body {
   <div>
     <strong>KONICA MINOLTA サステナビリティ</strong>
     <span class="meta-badge">方針一覧</span>
-    <span class="meta-badge">WF v1.0</span>
+    <span class="meta-badge">WF v2.0</span>
     <span class="meta-badge">#097</span>
   </div>
   <div style="font-size:10px; color:#666;">2026.04</div>
@@ -984,6 +698,17 @@ body {
     </div>
 
     <!-- ============================================================
+         カテゴリアンカーバー（sticky）
+    ============================================================ -->
+    <nav class="category-nav">
+      <span class="category-nav-label">CATEGORY</span>
+      <a class="category-nav-item" href="#cat-group">コニカミノルタグループ</a>
+      <a class="category-nav-item" href="#cat-env">環境</a>
+      <a class="category-nav-item" href="#cat-social">社会</a>
+      <a class="category-nav-item" href="#cat-governance">ガバナンス</a>
+    </nav>
+
+    <!-- ============================================================
          A｜コニカミノルタグループ
     ============================================================ -->
     <section id="cat-group" class="wf-section bg-white policy-section" style="scroll-margin-top:60px;">
@@ -998,21 +723,14 @@ body {
         </div>
       </div>
 
-      <div class="policy-card-grid">
-
-        <div class="policy-card">
-          <div class="policy-card-body">
-            <div class="policy-card-meta">
-              <span class="policy-tag web">WEB</span>
-            </div>
-            <div class="policy-card-title">コニカミノルタグループ行動憲章</div>
-            <p class="policy-card-desc">グループ全社員が共有する、社会的責任を果たすための行動の基本方針。</p>
+      <div class="policy-list">
+        <div class="policy-row">
+          <div class="policy-row-body">
+            <div class="policy-row-title">コニカミノルタグループ行動憲章</div>
+            <p class="policy-row-desc">グループ全社員が共有する、社会的責任を果たすための行動の基本方針。</p>
           </div>
-          <div class="policy-card-action">
-            <span class="policy-card-btn outline"><span class="btn-icon">→</span>ページを開く</span>
-          </div>
+          <span class="policy-row-arrow">›</span>
         </div>
-
       </div>
 
     </section>
@@ -1032,21 +750,14 @@ body {
         </div>
       </div>
 
-      <div class="policy-card-grid">
-
-        <div class="policy-card">
-          <div class="policy-card-body">
-            <div class="policy-card-meta">
-              <span class="policy-tag web">WEB</span>
-            </div>
-            <div class="policy-card-title">コニカミノルタ環境方針</div>
-            <p class="policy-card-desc">気候変動・資源循環・化学物質管理など、環境課題への取り組み方針。</p>
+      <div class="policy-list">
+        <div class="policy-row">
+          <div class="policy-row-body">
+            <div class="policy-row-title">コニカミノルタ環境方針</div>
+            <p class="policy-row-desc">気候変動・資源循環・化学物質管理など、環境課題への取り組み方針。</p>
           </div>
-          <div class="policy-card-action">
-            <span class="policy-card-btn outline"><span class="btn-icon">→</span>ページを開く</span>
-          </div>
+          <span class="policy-row-arrow">›</span>
         </div>
-
       </div>
 
     </section>
@@ -1066,125 +777,70 @@ body {
         </div>
       </div>
 
-      <div class="policy-card-grid">
-
-        <div class="policy-card">
-          <div class="policy-card-body">
-            <div class="policy-card-meta">
-              <span class="policy-tag pdf">PDF</span>
-            </div>
-            <div class="policy-card-title">コニカミノルタグループ ダイバーシティ経営宣言</div>
-            <p class="policy-card-desc">多様な人材が活躍できる経営の実現に向けた宣言文。</p>
+      <div class="policy-list">
+        <div class="policy-row">
+          <div class="policy-row-body">
+            <div class="policy-row-title">コニカミノルタグループ ダイバーシティ経営宣言</div>
+            <p class="policy-row-desc">多様な人材が活躍できる経営の実現に向けた宣言文。</p>
           </div>
-          <div class="policy-card-action">
-            <span class="policy-card-btn"><span class="btn-icon">↓</span>PDFを開く</span>
-          </div>
+          <span class="policy-row-arrow">›</span>
         </div>
-
-        <div class="policy-card">
-          <div class="policy-card-body">
-            <div class="policy-card-meta">
-              <span class="policy-tag pdf">PDF</span>
-            </div>
-            <div class="policy-card-title">コニカミノルタグループ健康宣言</div>
-            <p class="policy-card-desc">従業員の健康保持・増進を経営課題として取り組む宣言文。</p>
+        <div class="policy-row">
+          <div class="policy-row-body">
+            <div class="policy-row-title">コニカミノルタグループ健康宣言</div>
+            <p class="policy-row-desc">従業員の健康保持・増進を経営課題として取り組む宣言文。</p>
           </div>
-          <div class="policy-card-action">
-            <span class="policy-card-btn"><span class="btn-icon">↓</span>PDFを開く</span>
-          </div>
+          <span class="policy-row-arrow">›</span>
         </div>
-
-        <div class="policy-card">
-          <div class="policy-card-body">
-            <div class="policy-card-meta">
-              <span class="policy-tag pdf">PDF</span>
-            </div>
-            <div class="policy-card-title">コニカミノルタ労働安全衛生方針</div>
-            <p class="policy-card-desc">従業員の安全と健康を最優先する労働安全衛生に関する方針。</p>
+        <div class="policy-row">
+          <div class="policy-row-body">
+            <div class="policy-row-title">コニカミノルタ労働安全衛生方針</div>
+            <p class="policy-row-desc">従業員の安全と健康を最優先する労働安全衛生に関する方針。</p>
           </div>
-          <div class="policy-card-action">
-            <span class="policy-card-btn"><span class="btn-icon">↓</span>PDFを開く</span>
-          </div>
+          <span class="policy-row-arrow">›</span>
         </div>
-
-        <div class="policy-card">
-          <div class="policy-card-body">
-            <div class="policy-card-meta">
-              <span class="policy-tag pdf">PDF</span>
-            </div>
-            <div class="policy-card-title">コニカミノルタグループ人権方針</div>
-            <p class="policy-card-desc">国際規範に基づき、グループ全体で取り組む人権尊重の基本方針。</p>
+        <div class="policy-row">
+          <div class="policy-row-body">
+            <div class="policy-row-title">コニカミノルタグループ人権方針</div>
+            <p class="policy-row-desc">国際規範に基づき、グループ全体で取り組む人権尊重の基本方針。</p>
           </div>
-          <div class="policy-card-action">
-            <span class="policy-card-btn"><span class="btn-icon">↓</span>PDFを開く</span>
-          </div>
+          <span class="policy-row-arrow">›</span>
         </div>
-
-        <div class="policy-card">
-          <div class="policy-card-body">
-            <div class="policy-card-meta">
-              <span class="policy-tag pdf">PDF</span>
-            </div>
-            <div class="policy-card-title">コニカミノルタサプライチェーン行動規範</div>
-            <p class="policy-card-desc">サプライヤーに遵守を求める、人権・労働・環境等の行動基準。</p>
+        <div class="policy-row">
+          <div class="policy-row-body">
+            <div class="policy-row-title">コニカミノルタサプライチェーン行動規範</div>
+            <p class="policy-row-desc">サプライヤーに遵守を求める、人権・労働・環境等の行動基準。</p>
           </div>
-          <div class="policy-card-action">
-            <span class="policy-card-btn"><span class="btn-icon">↓</span>PDFを開く</span>
-          </div>
+          <span class="policy-row-arrow">›</span>
         </div>
-
-        <div class="policy-card">
-          <div class="policy-card-body">
-            <div class="policy-card-meta">
-              <span class="policy-tag pdf">PDF</span>
-            </div>
-            <div class="policy-card-title">コニカミノルタ調達方針</div>
-            <p class="policy-card-desc">公正・公平な取引と社会的責任を果たす調達活動に関する方針。</p>
+        <div class="policy-row">
+          <div class="policy-row-body">
+            <div class="policy-row-title">コニカミノルタ調達方針</div>
+            <p class="policy-row-desc">公正・公平な取引と社会的責任を果たす調達活動に関する方針。</p>
           </div>
-          <div class="policy-card-action">
-            <span class="policy-card-btn"><span class="btn-icon">↓</span>PDFを開く</span>
-          </div>
+          <span class="policy-row-arrow">›</span>
         </div>
-
-        <div class="policy-card">
-          <div class="policy-card-body">
-            <div class="policy-card-meta">
-              <span class="policy-tag pdf">PDF</span>
-            </div>
-            <div class="policy-card-title">コニカミノルタ責任ある鉱物調達方針</div>
-            <p class="policy-card-desc">紛争鉱物等のリスクに対応し、責任ある鉱物調達を推進する方針。</p>
+        <div class="policy-row">
+          <div class="policy-row-body">
+            <div class="policy-row-title">コニカミノルタ責任ある鉱物調達方針</div>
+            <p class="policy-row-desc">紛争鉱物等のリスクに対応し、責任ある鉱物調達を推進する方針。</p>
           </div>
-          <div class="policy-card-action">
-            <span class="policy-card-btn"><span class="btn-icon">↓</span>PDFを開く</span>
-          </div>
+          <span class="policy-row-arrow">›</span>
         </div>
-
-        <div class="policy-card">
-          <div class="policy-card-body">
-            <div class="policy-card-meta">
-              <span class="policy-tag web">WEB</span>
-            </div>
-            <div class="policy-card-title">コニカミノルタ品質方針</div>
-            <p class="policy-card-desc">お客様の期待に応える製品・サービス品質を実現する基本方針。</p>
+        <div class="policy-row">
+          <div class="policy-row-body">
+            <div class="policy-row-title">コニカミノルタ品質方針</div>
+            <p class="policy-row-desc">お客様の期待に応える製品・サービス品質を実現する基本方針。</p>
           </div>
-          <div class="policy-card-action">
-            <span class="policy-card-btn outline"><span class="btn-icon">→</span>ページを開く</span>
-          </div>
+          <span class="policy-row-arrow">›</span>
         </div>
-
-        <div class="policy-card">
-          <div class="policy-card-body">
-            <div class="policy-card-meta">
-              <span class="policy-tag pdf">PDF</span>
-            </div>
-            <div class="policy-card-title">コニカミノルタグループAIの利活用に関する基本方針</div>
-            <p class="policy-card-desc">AIの倫理的・責任ある利活用に関するグループ全体の基本方針。</p>
+        <div class="policy-row">
+          <div class="policy-row-body">
+            <div class="policy-row-title">コニカミノルタグループAIの利活用に関する基本方針</div>
+            <p class="policy-row-desc">AIの倫理的・責任ある利活用に関するグループ全体の基本方針。</p>
           </div>
-          <div class="policy-card-action">
-            <span class="policy-card-btn"><span class="btn-icon">↓</span>PDFを開く</span>
-          </div>
+          <span class="policy-row-arrow">›</span>
         </div>
-
       </div>
 
     </section>
@@ -1204,99 +860,56 @@ body {
         </div>
       </div>
 
-      <div class="policy-card-grid">
-
-        <div class="policy-card">
-          <div class="policy-card-body">
-            <div class="policy-card-meta">
-              <span class="policy-tag pdf">PDF</span>
-            </div>
-            <div class="policy-card-title">コーポレートガバナンス基本方針</div>
-            <p class="policy-card-desc">取締役会の機能・株主の権利確保等、ガバナンス体制の根本ルールを規定。</p>
+      <div class="policy-list">
+        <div class="policy-row">
+          <div class="policy-row-body">
+            <div class="policy-row-title">コーポレートガバナンス基本方針</div>
+            <p class="policy-row-desc">取締役会の機能・株主の権利確保等、ガバナンス体制の根本ルールを規定。</p>
           </div>
-          <div class="policy-card-action">
-            <span class="policy-card-btn"><span class="btn-icon">↓</span>PDFを開く</span>
-          </div>
+          <span class="policy-row-arrow">›</span>
         </div>
-
-        <div class="policy-card">
-          <div class="policy-card-body">
-            <div class="policy-card-meta">
-              <span class="policy-tag web">WEB</span>
-            </div>
-            <div class="policy-card-title">ディスクロージャーポリシー</div>
-            <p class="policy-card-desc">投資家・ステークホルダーへの情報開示に関する基本方針。</p>
+        <div class="policy-row">
+          <div class="policy-row-body">
+            <div class="policy-row-title">ディスクロージャーポリシー</div>
+            <p class="policy-row-desc">投資家・ステークホルダーへの情報開示に関する基本方針。</p>
           </div>
-          <div class="policy-card-action">
-            <span class="policy-card-btn outline"><span class="btn-icon">→</span>ページを開く</span>
-          </div>
+          <span class="policy-row-arrow">›</span>
         </div>
-
-        <div class="policy-card">
-          <div class="policy-card-body">
-            <div class="policy-card-meta">
-              <span class="policy-tag pdf">PDF</span>
-            </div>
-            <div class="policy-card-title">コニカミノルタグループ税務方針</div>
-            <p class="policy-card-desc">適正な納税と税務リスク管理に関するグループ共通の方針。</p>
+        <div class="policy-row">
+          <div class="policy-row-body">
+            <div class="policy-row-title">コニカミノルタグループ税務方針</div>
+            <p class="policy-row-desc">適正な納税と税務リスク管理に関するグループ共通の方針。</p>
           </div>
-          <div class="policy-card-action">
-            <span class="policy-card-btn"><span class="btn-icon">↓</span>PDFを開く</span>
-          </div>
+          <span class="policy-row-arrow">›</span>
         </div>
-
-        <div class="policy-card">
-          <div class="policy-card-body">
-            <div class="policy-card-meta">
-              <span class="policy-tag web">WEB</span>
-            </div>
-            <div class="policy-card-title">コニカミノルタ情報セキュリティ基本方針</div>
-            <p class="policy-card-desc">情報資産の機密性・完全性・可用性を確保する基本方針。</p>
+        <div class="policy-row">
+          <div class="policy-row-body">
+            <div class="policy-row-title">コニカミノルタ情報セキュリティ基本方針</div>
+            <p class="policy-row-desc">情報資産の機密性・完全性・可用性を確保する基本方針。</p>
           </div>
-          <div class="policy-card-action">
-            <span class="policy-card-btn outline"><span class="btn-icon">→</span>ページを開く</span>
-          </div>
+          <span class="policy-row-arrow">›</span>
         </div>
-
-        <div class="policy-card">
-          <div class="policy-card-body">
-            <div class="policy-card-meta">
-              <span class="policy-tag web">WEB</span>
-            </div>
-            <div class="policy-card-title">コニカミノルタグループ個人情報保護方針</div>
-            <p class="policy-card-desc">お客様・従業員等の個人情報を適正に取り扱うためのグループ方針。</p>
+        <div class="policy-row">
+          <div class="policy-row-body">
+            <div class="policy-row-title">コニカミノルタグループ個人情報保護方針</div>
+            <p class="policy-row-desc">お客様・従業員等の個人情報を適正に取り扱うためのグループ方針。</p>
           </div>
-          <div class="policy-card-action">
-            <span class="policy-card-btn outline"><span class="btn-icon">→</span>ページを開く</span>
-          </div>
+          <span class="policy-row-arrow">›</span>
         </div>
-
-        <div class="policy-card">
-          <div class="policy-card-body">
-            <div class="policy-card-meta">
-              <span class="policy-tag web">WEB</span>
-            </div>
-            <div class="policy-card-title">アセットオーナーとしての方針</div>
-            <p class="policy-card-desc">企業年金等のアセットオーナーとしての受託者責任に関する方針。</p>
+        <div class="policy-row">
+          <div class="policy-row-body">
+            <div class="policy-row-title">アセットオーナーとしての方針</div>
+            <p class="policy-row-desc">企業年金等のアセットオーナーとしての受託者責任に関する方針。</p>
           </div>
-          <div class="policy-card-action">
-            <span class="policy-card-btn outline"><span class="btn-icon">→</span>ページを開く</span>
-          </div>
+          <span class="policy-row-arrow">›</span>
         </div>
-
-        <div class="policy-card">
-          <div class="policy-card-body">
-            <div class="policy-card-meta">
-              <span class="policy-tag pdf">PDF</span>
-            </div>
-            <div class="policy-card-title">パートナーシップ構築宣言</div>
-            <p class="policy-card-desc">取引先との連携・共存共栄に向けた構築宣言。</p>
+        <div class="policy-row">
+          <div class="policy-row-body">
+            <div class="policy-row-title">パートナーシップ構築宣言</div>
+            <p class="policy-row-desc">取引先との連携・共存共栄に向けた構築宣言。</p>
           </div>
-          <div class="policy-card-action">
-            <span class="policy-card-btn"><span class="btn-icon">↓</span>PDFを開く</span>
-          </div>
+          <span class="policy-row-arrow">›</span>
         </div>
-
       </div>
 
     </section>
@@ -1338,82 +951,50 @@ body {
        アノテーションパネル
   ============================================================ -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — 方針一覧（v1.0）</h3>
-
-    <div class="ann-item">
-      <span class="ann-num">A</span>
-      <span class="ann-head">サマリーストリップ＋表示凡例：全体把握を最初に</span>
-      <div class="ann-row">
-        <span class="ann-row-label">構成</span>
-        6セルKPIストリップ派生（総数 / PDF件数 / WEB件数 / カテゴリ数 / 最終更新年 / 言語）＋アイコン凡例
-      </div>
-      <div class="ann-row">
-        <span class="ann-row-label">UX改善ポイント</span>
-        現行サイトはフラットなリスト表示で全体感が掴めない。冒頭に件数サマリーを置くことで「何件あるのか／PDFはいくつか」を一目で把握できる構造に。凡例でPDF/WEB/外部の見分け方を最初に示し、利用者の認知負荷を下げる。
-      </div>
-      <p class="ann-body">
-        モジュール：E5 KPIストリップ派生 / D ラベル群。サマリーセル数値はカテゴリ集計と連動。
-      </p>
-    </div>
+    <h3>設計ポイント — 方針一覧（v2.0）</h3>
 
     <div class="ann-item">
       <span class="ann-num">★</span>
-      <span class="ann-head">カテゴリアンカーバー（sticky）：6カテゴリへ即ジャンプ</span>
+      <span class="ann-head">カテゴリアンカーバー（sticky）：4カテゴリへ即ジャンプ</span>
       <div class="ann-row">
         <span class="ann-row-label">構成</span>
-        ヒーロー直下に sticky 固定の横並びアンカー。各カテゴリ名＋件数バッジでスキャナビリティを向上。
+        ヒーロー直下に sticky 固定の横並びアンカー。コニカミノルタグループ／環境／社会／ガバナンスの4カテゴリへ。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">UX改善ポイント</span>
-        18件の方針を1ページに収める前提で、必要な方針へ最短で到達するナビゲーションを最上部に常設。stickyで縦スクロール中も常に表示される。
+        全方針が1ページに集約されるため、縦スクロール中も常にカテゴリへ即ジャンプできる導線を最上部に常設。
       </div>
       <p class="ann-body">
-        モジュール：G アンカーナビ派生（横レイアウト版）。第3階層以下のフィルタバーから派生。
+        モジュール：⑫ナビ アンカーナビ派生（横レイアウト版）。
       </p>
     </div>
 
     <div class="ann-item">
-      <span class="ann-num">B-G</span>
-      <span class="ann-head">カテゴリ別カードグリッド：方針カード（page-localモジュール）</span>
+      <span class="ann-num">A-D</span>
+      <span class="ann-head">カテゴリ別 方針リスト（.policy-list / .policy-row）</span>
       <div class="ann-row">
         <span class="ann-row-label">構成</span>
-        各カテゴリ＝H2＋サブ説明文＋2列カードグリッド。1カード＝アイコン60×60／タイトル＋メタ／CTAボタンの3カラム。
+        各カテゴリ＝番号バッジ＋H2＋横ボーダーで区切ったリスト。1行＝タイトル（14px太字）＋説明文1行（11px薄色）＋右端「›」矢印。
       </div>
       <div class="ann-row">
-        <span class="ann-row-label">UX改善ポイント</span>
-        ① PDF/WEB/外部リンクのフォーマットをアイコン＋タグの2層で明示（誤クリック防止）<br>
-        ② ボタン文言を「PDFを開く」「ページを開く」と動詞で統一し、何が起きるか予測可能に<br>
-        ③ ファイル名等のサブ情報をボタン下に小さく表示（リンク先URLの透明性確保）<br>
-        ④ カードをグリッド配置することでスキャンしやすく、関連方針の比較もしやすい
+        <span class="ann-row-label">v1からの変更</span>
+        ① <strong>PDF廃止前提</strong>：すべて遷移先WEBページ扱いとなるため、PDF/WEBタグ・アイコン・ファイル容量・遷移種別CTAをすべて撤去<br>
+        ② <strong>カード→リスト化</strong>：1件あたり132px → 約56pxへ大幅圧縮。全18件を1スクロール内で見渡し可能に<br>
+        ③ <strong>件数サマリー・凡例撤去</strong>：媒体区別が消えるため不要に
       </div>
       <p class="ann-body">
-        モジュール：E1 基本カード派生／D2 ボタン（PDF=primary・WEB=outline で導線種別を視覚化）／A1 H2見出し。
+        モジュール：⑥-11 .policy-list（方針一覧リスト・新規）。catalog-v2.html に追加。
       </p>
-    </div>
-
-    <div class="ann-item">
-      <span class="ann-num">H</span>
-      <span class="ann-head">関連情報＋お問い合わせCTA：次の動線</span>
-      <div class="ann-row">
-        <span class="ann-row-label">構成</span>
-        4列カード（目標と実績／ESGデータ／第三者保証／レポートアーカイブ）＋濃色CTAバナー
-      </div>
-      <div class="ann-row">
-        <span class="ann-row-label">設計意図</span>
-        方針確認後の自然な遷移先（実績データ・第三者保証・PDFバックナンバー）を一括で提示。最後にお問い合わせ導線を濃色バナーで強調し、疑問解消の出口を確保。
-      </div>
     </div>
 
     <div class="ann-item">
       <span class="ann-num">!</span>
-      <span class="ann-head">UI/UX改善サマリー（vs 現行サイト）</span>
+      <span class="ann-head">UI/UX改善サマリー（vs 現行サイト／v1）</span>
       <p class="ann-body">
-        ① <strong>カテゴリ化</strong>：18件のフラットリスト → 6カテゴリ分類で目的の方針に到達しやすく<br>
-        ② <strong>アイコン＋タグ二重表示</strong>：PDF/WEB/外部の遷移種別を即座に判別<br>
-        ③ <strong>動詞ベースのCTA</strong>：「PDFを開く」「ページを開く」で挙動を明示<br>
-        ④ <strong>件数サマリー</strong>：全体ボリュームを冒頭で把握<br>
-        ⑤ <strong>sticky アンカー</strong>：常時カテゴリ移動可能<br>
-        ⑥ <strong>カードグリッド配置</strong>：横スキャンによる比較性向上
+        ① <strong>カテゴリ化</strong>：フラットリスト → 4カテゴリ分類で目的の方針に到達しやすく<br>
+        ② <strong>コンパクトリスト</strong>：タイトル＋説明文1行の2段構成で情報密度を確保しつつ高さを最小化<br>
+        ③ <strong>遷移先統一</strong>：すべてページ遷移として扱い、誤クリック・遷移種別の混乱を排除<br>
+        ④ <strong>sticky アンカー</strong>：常時カテゴリ移動可能
       </p>
     </div>
 
