@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>労働安全衛生方針 — KM サステナビリティ WF v1.0</title>
+<title>労働安全衛生方針 — KM サステナビリティ WF v1.1</title>
 <style>
 /* ============================================================
    KM SUSTAINABILITY WF — SHARED CSS v5.0（白黒）
@@ -66,14 +66,16 @@ body {
 .wf-section-marker { position: absolute; top: 12px; left: 8px; width: 22px; height: 22px; background: #222; color: #fff; border-radius: 50%; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
 
 /* TYPOGRAPHY */
-.wf-page-title { font-size: 28px; font-weight: 700; color: var(--c-text-h); line-height: 1.3; margin-bottom: 12px; letter-spacing: -0.01em; }
+.wf-page-title { font-size: 26px; font-weight: 700; color: var(--c-text-h); line-height: 1.3; margin-bottom: 6px; letter-spacing: 0.01em; }
 .wf-section-title { font-size: 22px; font-weight: 700; color: var(--c-text-h); line-height: 1.5; margin-bottom: 24px; letter-spacing: 0.02em; }
 .wf-section-title.center { text-align: center; margin-bottom: 28px; }
 .wf-sub-title { font-size: 15px; font-weight: 700; color: var(--c-text-h); line-height: 1.4; margin-bottom: 12px; padding-left: 14px; border-left: 4px solid var(--c-black); }
 
-/* PAGE HERO（4階層・標準H1ヒーロー） */
-.wf-page-hero { padding: 36px var(--pad-h); background: var(--c-white); border-bottom: 1px solid var(--c-border); }
-.wf-page-hero-lead { font-size: 13px; color: var(--c-text-s); line-height: 1.8; max-width: 760px; margin-top: 4px; }
+/* L4ページタイトル（共通モジュール 1-4：wf-page-title-area） */
+.wf-page-title-area { background: var(--c-white); padding: 28px var(--pad-h) 22px; border-bottom: 1px solid var(--c-border-s); }
+.wf-page-parent-cat { font-size: 12px; color: var(--c-text-s); margin-top: 10px; letter-spacing: 0.02em; line-height: 1.5; }
+.wf-page-parent-cat a { color: var(--c-text-h); font-weight: 700; text-decoration: none; border-bottom: 1px dashed var(--c-text-h); cursor: default; padding-bottom: 1px; }
+.wf-page-parent-cat a:hover { border-bottom-style: solid; background: var(--c-bg-sub); }
 
 /* TEXT LINE PH */
 .wf-textlines { display: flex; flex-direction: column; gap: 8px; }
@@ -234,7 +236,7 @@ body {
     <strong>KONICA MINOLTA</strong>
     <span class="meta-badge">SUSTAINABILITY WF</span>
     <span class="meta-badge">P099 / 労働安全衛生方針</span>
-    <span class="meta-badge">v1.0</span>
+    <span class="meta-badge">v1.1</span>
     <span class="meta-badge">SHARED CSS v5.0 (B&amp;W)</span>
   </div>
   <div style="font-size:10px; color:#666;">2026.04</div>
@@ -267,14 +269,14 @@ body {
     </nav>
 
     <!-- ============================================================
-         H1ヒーロー（標準・通常ページと同一UI）
+         ページタイトル（共通モジュール 1-4：L4 wf-page-title-area＋親リンク）
     ============================================================ -->
-    <section class="wf-page-hero">
+    <div class="wf-page-title-area">
       <h1 class="wf-page-title">コニカミノルタ労働安全衛生方針</h1>
-      <p class="wf-page-hero-lead">
-        コニカミノルタグループの労働安全衛生に関する基本方針。職場の安全と社員一人一人の健康の維持・増進を企業経営の基本とし、日常の予防活動に重きをおいた取り組みを推進します。
-      </p>
-    </section>
+      <div class="wf-page-parent-cat">
+        【<a href="131_health_management.html">労働安全衛生・健康経営</a>】に関する方針文書
+      </div>
+    </div>
 
     <!-- ============================================================
          A｜前文（基本姿勢）
@@ -468,11 +470,11 @@ body {
        アノテーションパネル
   ============================================================ -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — 労働安全衛生方針（v1.0）</h3>
+    <h3>設計ポイント — 労働安全衛生方針（v1.1）</h3>
 
     <div class="ann-item">
       <span class="ann-num">H1</span>
-      <span class="ann-head">標準H1ヒーロー：他ページと同一UI</span>
+      <span class="ann-head">L4標準ヒーロー（1-4 wf-page-title-area）：親カテゴリへの戻り導線つき</span>
       <div class="ann-row">
         <span class="ann-row-label">ターゲット</span>
         機関投資家（メイン）：ESG評価における労働安全衛生方針の所在を即特定。<br>
@@ -480,10 +482,10 @@ body {
       </div>
       <div class="ann-row">
         <span class="ann-row-label">行動変容定義との対応</span>
-        宣言・方針文書も他の第4階層ページと同一のヒーロー（タイトル＋リード文・画像なし）で統一。
+        他のL4ページ（025・098）と同一の `.wf-page-title-area` ＋ `.wf-page-parent-cat` パターン。親カテゴリ「労働安全衛生・健康経営」（131）への破線下線リンクを併設し、上層への戻り導線を担保。
       </div>
       <p class="ann-body">
-        モジュール：B5（page-hero派生）。原本PDFのタイトル「コニカミノルタ労働安全衛生方針」をH1に踏襲。
+        モジュール：1-4 第4階層ヒーロー（共通カタログv3.5準拠）。
       </p>
     </div>
 
