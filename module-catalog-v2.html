@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>KMサステナビリティWF — モジュール一覧 v3.4</title>
+<title>KMサステナビリティWF — モジュール一覧 v3.5</title>
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
@@ -535,6 +535,45 @@ body {
 .dem-anchor-nav-item { padding: 3px 0 3px 8px; font-size: 9px; }
 .dem-anchor-nav-item.is-current { font-weight: 700; border-left: 2px solid var(--c-text-h); margin-left: -12px; padding-left: 10px; }
 
+.dem-header-img {
+  background: linear-gradient(180deg, #fff 0%, #fff 60%, #3A3A3A 60%, #3A3A3A 100%);
+  border: 1px solid var(--c-border); padding: 8px 10px; width: 100%;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.dem-header-img-top { display: flex; justify-content: space-between; align-items: center; font-size: 8px; color: #444; }
+.dem-header-img-logo { font-weight: 800; letter-spacing: 0.05em; }
+.dem-header-img-gnav { display: flex; gap: 8px; font-size: 7px; color: #555; padding: 2px 0; }
+.dem-header-img-gnav .is-cur { color: #111; font-weight: 700; border-bottom: 1px solid #111; padding-bottom: 1px; }
+.dem-header-img-lnav { display: flex; gap: 8px; font-size: 7px; color: #ccc; padding-top: 4px; }
+.dem-header-img-lnav .is-cur { color: #fff; font-weight: 700; }
+
+.dem-corp-footer {
+  background: #F0EFEC; border: 1px solid var(--c-border);
+  padding: 8px 10px 6px; width: 100%;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.dem-corp-footer-sec { display: flex; flex-direction: column; gap: 3px; }
+.dem-corp-footer-sec-title {
+  font-size: 8px; font-weight: 700; color: #1B2233;
+  border-left: 3px solid #3D4F7B; padding-left: 5px; line-height: 1.2;
+}
+.dem-corp-footer-links { display: flex; flex-wrap: wrap; gap: 2px 8px; padding-left: 8px; font-size: 7px; color: #555; }
+.dem-corp-footer-links span::after { content: '›'; color: #999; padding-left: 2px; }
+.dem-corp-footer-utils {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 4px 0 0 8px; font-size: 7px; color: #555;
+}
+.dem-corp-footer-region {
+  border: 1px solid #999; background: #fff; padding: 3px 6px;
+  font-size: 7px; color: #222;
+}
+.dem-corp-footer-bottom {
+  background: #2D3447; color: #ddd;
+  display: flex; justify-content: space-between;
+  padding: 4px 8px; font-size: 6px;
+  margin: 4px -10px -6px;
+}
+
 .dem-footer-closed {
   background: #1F1F1F; color: #BBB; padding: 10px 16px; width: 100%;
   display: flex; justify-content: space-between; align-items: center;
@@ -547,10 +586,9 @@ body {
 }
 .dem-footer-open-head { display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px; border-bottom: 1px solid #333; margin-bottom: 10px; font-size: 11px; color: #fff; font-weight: 700; }
 .dem-footer-open-head::after { content: '▲'; color: #888; font-size: 9px; }
-.dem-footer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; padding-bottom: 8px; }
-.dem-footer-col-title { color: #fff; font-weight: 700; font-size: 9px; border-bottom: 1px solid #444; padding-bottom: 3px; margin-bottom: 4px; }
-.dem-footer-link { display: block; padding: 1px 0; font-size: 8px; color: #999; }
-.dem-footer-bottom { border-top: 1px solid #333; padding-top: 6px; display: flex; justify-content: space-between; font-size: 7px; color: #777; }
+.dem-footer-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; padding-bottom: 6px; }
+.dem-footer-col-title { color: #fff; font-weight: 700; font-size: 8px; border-bottom: 1px solid #555; padding-bottom: 3px; margin-bottom: 4px; letter-spacing: 0.02em; }
+.dem-footer-link { display: block; padding: 1px 0; font-size: 7px; color: #ddd; line-height: 1.4; }
 
 /* ⑨ テーブル */
 .dem-tbl { width: 100%; border-collapse: collapse; font-size: 9px; background: #fff; border: 1px solid var(--c-border); }
@@ -596,7 +634,7 @@ body {
 <div class="cat-meta-bar">
   <div>
     <strong>KMサステナビリティWF</strong>
-    <span class="badge">モジュール一覧 v3.4</span>
+    <span class="badge">モジュール一覧 v3.5</span>
     <span class="badge">2026.05</span>
   </div>
   <div style="font-size:10px; color:#888;">12カテゴリで全16ページを構成</div>
@@ -605,8 +643,8 @@ body {
 <div class="cat-page">
 
   <div class="cat-hero">
-    <h1>モジュール一覧（v3.4）</h1>
-    <p>本catalogのみで全16ページが再構成可能なモジュール体系。12カテゴリ・全モジュールにつき「実物プレビュー（開閉両状態を含む）／適用ページ／利用シーン」を一覧化。v3.4：6-11 を「説明文付きリンクボタン（.link-btn / .link-btn-grid）」として汎用共通モジュール化。<strong>独立した枠付きボタンを2カラムgrid（gap:12px）で並列配置</strong>する設計に変更。単独要素／奇数件最終は左カラムのみに枠が描かれ、右側は完全な余白（枠なし）で違和感なし。タイトル＋説明文1行＋›矢印の3要素。097 方針一覧で採用、規約一覧・関連リンク集約等にも転用可。v3.1：プレビュー左上揃え／6-5 横断インデックスを全L3全量表示／6-7 ESGフォトカード差し替え／6-8 EVENTカード実物UI／6-10 説明文付きリンクカード追加／⑨表3行以上／⑩国際規範◆→背景色付きリスト／⑪WF専用セクション番号マーカー削除。</p>
+    <h1>モジュール一覧（v3.5）</h1>
+    <p>本catalogのみで全16ページが再構成可能なモジュール体系。12カテゴリ・全モジュールにつき「実物プレビュー（開閉両状態を含む）／適用ページ／利用シーン」を一覧化。<strong>v3.5（2026.05.13）：⑫ナビゲーションを刷新</strong>。12-3 ヘッダー画像版（.wf-header-img／assets/km-header.png）／12-4 サステナビリティサイトフッター（.sus-footer・アコーディオン式・5列／戦略・環境・社会・ガバナンス・報告データ）／12-5 コーポレート全体フッター（.wf-footer・公式デザイン準拠・企業情報＋事業領域＋SNS／Countries＋紺色ダークバー）の3モジュールを正式定義。全WFに統一適用済。v3.4：6-11 説明文付きリンクボタンを汎用共通モジュール化。v3.1：プレビュー左上揃え／6-5 横断インデックス全L3／6-7 ESGフォトカード／6-8 EVENT実物UI／6-10 説明文付きリンクカード／⑨表3行以上／⑩背景色付きリスト／⑪セクション番号マーカー削除。</p>
   </div>
 
   <nav class="cat-toc">
@@ -1224,7 +1262,7 @@ body {
   <section class="cat-section" id="sec-12" style="border-bottom:none;">
     <span class="cat-section-num">12</span>
     <h2 class="cat-section-title">ナビゲーション</h2>
-    <p class="cat-section-desc">ページ構造を構成する固定UI要素。※ヘッダーは確定済のため本catalogでは扱わない。</p>
+    <p class="cat-section-desc">ページ構造を構成する固定UI要素（ヘッダー／パンくず／アンカーナビ／フッター）。ヘッダー＆フッターは2026.05に公式デザイン版へ刷新。</p>
 
     <div class="cat-mod">
       <div class="cat-mod-id"><span class="cat-mod-id-num">12-1</span><span class="cat-mod-id-name">パンくず</span><span class="cat-mod-id-class">.wf-breadcrumb</span></div>
@@ -1247,19 +1285,67 @@ body {
     </div>
 
     <div class="cat-mod">
-      <div class="cat-mod-id"><span class="cat-mod-id-num">12-3</span><span class="cat-mod-id-name">フッター（アコーディオン式）</span><span class="cat-mod-id-class">.wf-footer.is-acc</span></div>
-      <div class="cat-mod-preview"><div class="cat-mod-preview-col"><div class="cat-mod-preview-state">CLOSED（デフォルト）</div><div class="dem-footer-closed">• サステナビリティ サイトマップ</div></div><div class="cat-mod-preview-col"><div class="cat-mod-preview-state">OPEN（展開）</div><div class="dem-footer-open"><div class="dem-footer-open-head">▼ サステナビリティ サイトマップ</div><div class="dem-footer-grid"><div><div class="dem-footer-col-title">戦略</div><span class="dem-footer-link">マテリアリティ</span><span class="dem-footer-link">価値創造</span><span class="dem-footer-link">推進体制</span></div><div><div class="dem-footer-col-title">環境</div><span class="dem-footer-link">気候変動</span><span class="dem-footer-link">資源循環</span><span class="dem-footer-link">生物多様性</span></div><div><div class="dem-footer-col-title">社会</div><span class="dem-footer-link">人権</span><span class="dem-footer-link">DE&I</span><span class="dem-footer-link">健康経営</span></div><div><div class="dem-footer-col-title">ガバナンス</div><span class="dem-footer-link">CG</span><span class="dem-footer-link">リスク</span><span class="dem-footer-link">コンプラ</span></div></div><div class="dem-footer-bottom"><span>個人情報保護</span><span>©2026 KM</span></div></div></div></div>
+      <div class="cat-mod-id"><span class="cat-mod-id-num">12-3</span><span class="cat-mod-id-name">ヘッダー（公式デザイン画像版）</span><span class="cat-mod-id-class">.wf-header-img / img: assets/km-header.png</span></div>
+      <div class="cat-mod-preview"><div class="dem-header-img">
+        <div class="dem-header-img-top"><span class="dem-header-img-logo">KONICA MINOLTA</span><span>サポート・DL  お問い合わせ  Countries  ja | en | zh</span></div>
+        <div class="dem-header-img-gnav"><span>企業情報</span><span>Newsroom</span><span>株主・投資家</span><span class="is-cur">サステナビリティ</span><span>テクノロジー</span><span>採用</span></div>
+        <div class="dem-header-img-lnav"><span>サステナビリティ</span><span>戦略</span><span>マネジメント</span><span class="is-cur">環境</span><span>社会</span><span>ガバナンス</span></div>
+      </div></div>
       <div class="cat-mod-meta">
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">内容</span><span class="cat-mod-meta-body">デフォルト閉：1行のサイトマップラベル＋▼。クリックで展開し、サステナビリティ全体のサイトマップ（戦略／環境／社会／ガバナンス／報告・データ）を表示。</span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">全16ページ（共通）</span></span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">シーン</span><span class="cat-mod-meta-body">ページ末尾。ファーストビューでは閉じておき、ユーザの能動的展開でサイトマップへアクセス。掲載項目は精査必要。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">内容</span><span class="cat-mod-meta-body">KM公式ヘッダーの確定デザインを画像で配置（ロゴ／ユーティリティ／GNAV／LNAV＋カントリー切替）。WF側で構造を再現せず、`wireframes/assets/km-header.png`（1004×106px）を全幅で挿入。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">全WF（共通）</span></span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">シーン</span><span class="cat-mod-meta-body">パンくずの直上に固定配置。`assets/`は GitHub Pages 同期時に自動コピー（scripts/sync-to-pages.sh）。</span></div>
+      </div>
+    </div>
+
+    <div class="cat-mod">
+      <div class="cat-mod-id"><span class="cat-mod-id-num">12-4</span><span class="cat-mod-id-name">サステナビリティサイトフッター（アコーディオン式）</span><span class="cat-mod-id-class">.sus-footer[data-open]</span></div>
+      <div class="cat-mod-preview"><div class="cat-mod-preview-col"><div class="cat-mod-preview-state">CLOSED（折りたたみ）</div><div class="dem-footer-closed">サステナビリティ サイトマップ</div></div><div class="cat-mod-preview-col"><div class="cat-mod-preview-state">OPEN（デフォルト・5列）</div><div class="dem-footer-open"><div class="dem-footer-open-head">▼ サステナビリティ サイトマップ</div><div class="dem-footer-grid">
+        <div><div class="dem-footer-col-title">サステナビリティ</div><span class="dem-footer-link">戦略</span><span class="dem-footer-link">マネジメント</span><span class="dem-footer-link">ソーシャルイノベ</span></div>
+        <div><div class="dem-footer-col-title">環境</div><span class="dem-footer-link">環境戦略</span><span class="dem-footer-link">気候変動</span><span class="dem-footer-link">TCFD</span><span class="dem-footer-link">資源循環</span><span class="dem-footer-link">水資源</span><span class="dem-footer-link">生物多様性</span><span class="dem-footer-link">TNFD</span></div>
+        <div><div class="dem-footer-col-title">社会</div><span class="dem-footer-link">人的資本</span><span class="dem-footer-link">人材育成</span><span class="dem-footer-link">DE&I</span><span class="dem-footer-link">健康経営</span><span class="dem-footer-link">人権</span><span class="dem-footer-link">SCM</span><span class="dem-footer-link">AI利活用</span></div>
+        <div><div class="dem-footer-col-title">ガバナンス</div><span class="dem-footer-link">コンプラ</span><span class="dem-footer-link">税務</span><span class="dem-footer-link">情報セキュリティ</span></div>
+        <div><div class="dem-footer-col-title">報告・データ</div><span class="dem-footer-link">ESGデータ</span><span class="dem-footer-link">第三者保証</span><span class="dem-footer-link">方針一覧</span><span class="dem-footer-link">ガイドライン</span><span class="dem-footer-link">イニシアチブ・評価</span><span class="dem-footer-link">サステナブルファイナンス</span><span class="dem-footer-link">アーカイブ</span></div>
+      </div></div></div></div>
+      <div class="cat-mod-meta">
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">内容</span><span class="cat-mod-meta-body">暗色背景の5列サイトマップ。「▼ サステナビリティ サイトマップ」トグルバーをクリックで開閉（既定：OPEN／data-open="true"）。サントリーサステナビリティサイト型のUI構造。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">列構成</span><span class="cat-mod-meta-body">①サステナビリティ（戦略／マネジメント／ソーシャルイノベ）／②環境（11項目）／③社会（12項目）／④ガバナンス（3項目）／⑤報告・データ（7項目）。L4サブ階層は廃止し全項目フラット表示。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">全WF（共通）</span></span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">シーン</span><span class="cat-mod-meta-body">コーポレート全体フッター（12-5）の直上に配置。サステナビリティ配下ページ間の横断ナビとして機能。</span></div>
+      </div>
+    </div>
+
+    <div class="cat-mod">
+      <div class="cat-mod-id"><span class="cat-mod-id-num">12-5</span><span class="cat-mod-id-name">コーポレート全体フッター（公式デザイン準拠）</span><span class="cat-mod-id-class">.wf-footer / .wf-footer-section / .wf-footer-bottom</span></div>
+      <div class="cat-mod-preview"><div class="dem-corp-footer">
+        <div class="dem-corp-footer-sec">
+          <div class="dem-corp-footer-sec-title">企業情報</div>
+          <div class="dem-corp-footer-links"><span>企業情報トップ</span><span>Newsroom</span><span>株主・投資家情報</span><span>サステナビリティ</span><span>テクノロジー</span><span>採用情報</span></div>
+        </div>
+        <div class="dem-corp-footer-sec">
+          <div class="dem-corp-footer-sec-title">事業領域</div>
+          <div class="dem-corp-footer-links"><span>ビジネスソリューション</span><span>プロダクションプリント</span><span>ヘルスケア</span><span>センシング</span><span>材料・コンポーネント</span><span>画像IoT・FORXAI</span><span>テキスタイル</span><span>プラネタリウム</span><span>イノベーション</span></div>
+        </div>
+        <div class="dem-corp-footer-utils">
+          <span>ソーシャルメディア オフィシャル ＋</span>
+          <span class="dem-corp-footer-region">⊕ Countries/Regions ＋</span>
+        </div>
+        <div class="dem-corp-footer-bottom">
+          <span>サイトのご利用について｜個人情報保護方針｜サイトマップ</span>
+          <span>©2011-2025 Konica Minolta, Inc.</span>
+        </div>
+      </div></div>
+      <div class="cat-mod-meta">
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">内容</span><span class="cat-mod-meta-body">薄ベージュグレー背景（#F0EFEC）の上段（企業情報＋事業領域＋SNS／Countries）と、紺色ダークバー（#2D3447）下段（利用規約3点＋著作権）の2段構成。各セクション見出しは紺の縦バーつき。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">全WF（共通）</span></span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">シーン</span><span class="cat-mod-meta-body">ページ最下部。サステナビリティサイトフッター（12-4）の直下に配置し、コニカミノルタ全社共通の遷移導線を提供。</span></div>
       </div>
     </div>
   </section>
 
   <!-- Footer note -->
   <div style="background:#1F1F1F; color:#BBB; padding:24px 60px; font-size:11px; line-height:1.85;">
-    <strong style="color:#fff;">KMサステナビリティWF モジュール一覧 v3.0</strong> ｜ 全16ページの共通モジュール体系（2026.05）<br>
+    <strong style="color:#fff;">KMサステナビリティWF モジュール一覧 v3.5</strong> ｜ 全16ページの共通モジュール体系（2026.05.13）<br>
     12カテゴリ・コンパクト一覧型。モジュール追加・改修時は本ファイルを更新し、利用ページ欄を最新化してください。
   </div>
 
