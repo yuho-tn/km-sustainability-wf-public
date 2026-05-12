@@ -414,14 +414,11 @@ body {
 }
 .wf-acc-h3-body > p:last-child { margin-bottom: 0; }
 
-/* H4アコーディオン（v2.1：境界明確化／開閉アフォーダンス強化）
-   - 全体を細いボーダーで囲い、ブロックの範囲を明確化
-   - 見出し帯は薄グレー背景（白本文との差分化）＋＋/−マーカーを丸枠で強調
-*/
+/* H4アコーディオン（148_quality v2.3準拠：上部横ライン＋白背景） */
 .wf-acc-h4 {
-  margin-top: 14px;
+  margin-top: 18px;
   margin-bottom: 4px;
-  border: 1px solid var(--c-border);
+  border-top: 2px solid var(--c-text-h);
   background: var(--c-white);
 }
 .wf-acc-h4:first-child { margin-top: 0; }
@@ -429,41 +426,26 @@ body {
   list-style: none;
   cursor: default;
   font-size: 14px; font-weight: 700; color: var(--c-text-h);
-  padding: 12px 50px 12px 16px;
+  padding: 12px 40px 12px 0;
   letter-spacing: -0.01em;
   line-height: 1.5;
   position: relative;
-  background: var(--c-bg-sub);
-  border-left: 3px solid var(--c-text-h);
-}
-.wf-acc-h4[open] .wf-acc-h4-summary {
-  border-bottom: 1px solid var(--c-border);
 }
 .wf-acc-h4-summary::-webkit-details-marker { display: none; }
 .wf-acc-h4-summary::marker { content: ''; }
 .wf-acc-h4-summary::after {
   content: '＋';
   position: absolute;
-  right: 14px; top: 50%; transform: translateY(-50%);
-  width: 22px; height: 22px;
-  border: 1px solid var(--c-text-h);
-  border-radius: 50%;
-  background: var(--c-white);
+  right: 4px; top: 50%; transform: translateY(-50%);
   font-family: 'Helvetica Neue', sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   color: var(--c-text-h);
-  font-weight: 400;
-  line-height: 20px;
-  text-align: center;
+  font-weight: 300;
+  line-height: 1;
 }
-.wf-acc-h4[open] .wf-acc-h4-summary::after {
-  content: '−';
-  font-size: 18px;
-  background: var(--c-text-h);
-  color: var(--c-white);
-}
+.wf-acc-h4[open] .wf-acc-h4-summary::after { content: '−'; font-size: 20px; }
 .wf-acc-h4-body {
-  padding: 16px 18px 18px;
+  padding: 8px 0 18px;
   background: var(--c-white);
 }
 .wf-acc-h4-body > p {
@@ -472,13 +454,14 @@ body {
 }
 .wf-acc-h4-body > p:last-child { margin-bottom: 0; }
 
-/* 健康宣言下の意識行動アコーディオン body内のサブ見出し・リスト */
+/* アコーディオン body内のサブ見出し（H4・◾マーク） */
 .acc-sub-title {
-  font-size: 12px; font-weight: 700; color: var(--c-text-h);
-  margin-top: 12px; margin-bottom: 6px;
-  padding-left: 10px; border-left: 2px solid var(--c-text-h);
+  font-size: 13px; font-weight: 700; color: var(--c-text-h);
+  margin-top: 14px; margin-bottom: 6px;
   line-height: 1.5;
+  display: flex; align-items: center; gap: 6px;
 }
+.acc-sub-title::before { content: '◾'; color: var(--c-text-h); font-size: 11px; flex-shrink: 0; }
 .acc-sub-title:first-of-type { margin-top: 0; }
 .wf-acc-h4-body ul { padding-left: 18px; font-size: 12px; line-height: 1.85; }
 .wf-acc-h4-body li { margin-bottom: 4px; }
