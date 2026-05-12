@@ -537,14 +537,13 @@ body {
   letter-spacing: -0.01em;
 }
 
-/* 方針リスト（メインモジュール） — 説明文付き2行リスト・2カラム */
+/* 方針リスト（メインモジュール） — 説明文付き2行リスト・2カラム統一 */
 .policy-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   background: var(--c-white);
   border: 1px solid var(--c-border);
 }
-.policy-list.is-single { grid-template-columns: 1fr; }
 .policy-row {
   display: grid;
   grid-template-columns: 1fr 24px;
@@ -557,8 +556,6 @@ body {
 }
 /* 右カラム（偶数番目）には右ボーダー不要 */
 .policy-row:nth-child(2n) { border-right: none; }
-/* 単一カラム時 */
-.policy-list.is-single .policy-row { border-right: none; }
 /* 奇数総数の最終行（左カラムに単独）は右ボーダー不要 */
 .policy-row:last-child:nth-child(2n+1) { border-right: none; }
 /* 最下段の border-bottom を消す（偶数：最後の2件／奇数：最後の1件） */
@@ -685,7 +682,7 @@ body {
         </div>
       </div>
 
-      <div class="policy-list is-single">
+      <div class="policy-list">
         <div class="policy-row">
           <div class="policy-row-body">
             <div class="policy-row-title">コニカミノルタグループ行動憲章</div>
@@ -712,7 +709,7 @@ body {
         </div>
       </div>
 
-      <div class="policy-list is-single">
+      <div class="policy-list">
         <div class="policy-row">
           <div class="policy-row-body">
             <div class="policy-row-title">コニカミノルタ環境方針</div>
@@ -913,20 +910,21 @@ body {
        アノテーションパネル
   ============================================================ -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — 方針一覧（v2.1）</h3>
+    <h3>設計ポイント — 方針一覧（v2.2）</h3>
 
     <div class="ann-item">
       <span class="ann-num">A-D</span>
       <span class="ann-head">カテゴリ別 方針リスト（.policy-list / .policy-row）</span>
       <div class="ann-row">
         <span class="ann-row-label">構成</span>
-        各カテゴリ＝番号バッジ＋H2＋外枠1pxで囲んだリスト。1行＝タイトル（14px太字）＋説明文1行（11px薄色）＋右端「›」矢印。複数件は<strong>2カラム</strong>で並列、単件カテゴリ（A／B）は `.is-single` で1カラム表示。
+        各カテゴリ＝番号バッジ＋H2＋外枠1pxで囲んだリスト。1行＝タイトル（14px太字）＋説明文1行（11px薄色）＋右端「›」矢印。<strong>全カテゴリ2カラム統一</strong>。単件カテゴリ（A／B）は左カラムに配置し右カラムは空きスペース。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">v1からの変更</span>
         ① <strong>PDF廃止前提</strong>：すべて遷移先WEBページ扱いとなるため、PDF/WEBタグ・アイコン・ファイル容量・遷移種別CTAをすべて撤去<br>
         ② <strong>カード→2カラムリスト化</strong>：1件あたり132px → 約56pxへ大幅圧縮の上、2カラム並列でさらに縦方向を半減<br>
-        ③ <strong>件数サマリー・凡例・カテゴリアンカー撤去</strong>：媒体区別が消え4カテゴリのみとなり、いずれもオーバースペックなため
+        ③ <strong>件数サマリー・凡例・カテゴリアンカー撤去</strong>：媒体区別が消え4カテゴリのみとなり、いずれもオーバースペックなため<br>
+        ④ <strong>2カラム統一</strong>：v2.1の単件1カラム切替を廃止し、全カテゴリで2カラム枠を維持して見た目の統一感を担保
       </div>
       <p class="ann-body">
         モジュール：⑥-11 .policy-list（方針一覧リスト・新規）。catalog-v2.html に追加。
@@ -938,7 +936,7 @@ body {
       <span class="ann-head">UI/UX改善サマリー（vs 現行サイト／v1）</span>
       <p class="ann-body">
         ① <strong>カテゴリ化</strong>：フラットリスト → 4カテゴリ分類で目的の方針に到達しやすく<br>
-        ② <strong>2カラムコンパクトリスト</strong>：タイトル＋説明文1行の2段構成 × 2カラム並列で情報密度と一覧性を両立<br>
+        ② <strong>2カラムコンパクトリスト統一</strong>：タイトル＋説明文1行の2段構成 × 2カラム並列で情報密度と一覧性を両立<br>
         ③ <strong>遷移先統一</strong>：すべてページ遷移として扱い、誤クリック・遷移種別の混乱を排除
       </p>
     </div>

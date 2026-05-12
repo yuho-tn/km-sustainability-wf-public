@@ -156,6 +156,37 @@ body {
 .hub-grid.col-1 { grid-template-columns: 1fr; }
 .hub-grid.col-3 { grid-template-columns: repeat(3, 1fr); }
 
+/* SUBGROUP（L3 を ESG 3カテゴリで分類） */
+.hub-subgroup { margin-top: 28px; }
+.hub-subgroup:first-of-type { margin-top: 0; }
+.hub-subgroup-title {
+  font-size: 14px; font-weight: 700; color: var(--c-text-h);
+  margin-bottom: 12px;
+  padding-left: 12px;
+  border-left: 4px solid var(--c-text-h);
+  display: flex; align-items: baseline; gap: 12px;
+  letter-spacing: 0.02em;
+}
+.hub-subgroup-tier {
+  font-size: 10px; font-weight: 700; color: var(--c-text-xs);
+  background: var(--c-bg-sub);
+  border: 1px solid var(--c-border);
+  padding: 2px 8px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.hub-subgroup-count {
+  font-size: 11px; color: var(--c-text-s);
+  font-weight: 500;
+}
+.hub-subgroup-empty {
+  font-size: 12px; color: var(--c-text-xs);
+  background: var(--c-bg-sub);
+  border: 1px dashed var(--c-border);
+  padding: 14px 18px;
+  text-align: center;
+}
+
 /* PAGE CARD */
 .hub-card {
   background: var(--c-white);
@@ -336,6 +367,7 @@ body {
       <nav class="hub-anchor-nav">
         <a href="#l1">L1 TOP</a>
         <a href="#l2">L2 インデックス</a>
+        <a href="#l2-other">L2 その他</a>
         <a href="#l3">L3 第3階層</a>
         <a href="#l4">L4 第4階層</a>
         <a href="#ref">リファレンス</a>
@@ -434,90 +466,17 @@ body {
     </div>
   </section>
 
-  <!-- L3 -->
-  <section id="l3" class="hub-section">
+  <!-- L2 OTHER：第2階層 その他（独立カテゴリ） -->
+  <section id="l2-other" class="hub-section">
     <div class="hub-section-head">
       <div class="hub-section-title">
-        <span class="hub-section-title-tier">L3</span>
-        第3階層 詳細ページ
-        <span class="hub-count">12ページ</span>
+        <span class="hub-section-title-tier">L2</span>
+        第2階層 その他
+        <span class="hub-count">5ページ</span>
       </div>
-      <div class="hub-section-desc">気候変動・TCFD・社会領域・データ集・ガイドライン・アーカイブ等</div>
+      <div class="hub-section-desc">ESGデータ集／ガイドライン対照表／イニシアティブ・社外評価／レポートアーカイブ／トピックス一覧 — サイト横断・独立カテゴリ</div>
     </div>
     <div class="hub-grid">
-      <a class="hub-card" href="wireframes/024_climate_index.html" target="_blank" rel="noopener">
-        <div class="hub-card-head">
-          <div>
-            <span class="hub-card-no">#024</span>
-            <span class="hub-card-no is-old" style="margin-left:4px;">旧 #028</span>
-          </div>
-          <span class="hub-card-version">v1.9</span>
-        </div>
-        <div class="hub-card-title">気候変動</div>
-        <div class="hub-card-path">/wireframes/024_climate_index.html</div>
-        <span class="hub-card-note">環境配下</span>
-        <span class="hub-card-arrow">›</span>
-      </a>
-      <a class="hub-card" href="wireframes/035_tcfd.html" target="_blank" rel="noopener">
-        <div class="hub-card-head">
-          <span class="hub-card-no">#035</span>
-          <span class="hub-card-version">v3.4</span>
-        </div>
-        <div class="hub-card-title">TCFD開示</div>
-        <div class="hub-card-path">/wireframes/035_tcfd.html</div>
-        <span class="hub-card-note">環境配下</span>
-        <span class="hub-card-arrow">›</span>
-      </a>
-      <a class="hub-card" href="wireframes/124_dei.html" target="_blank" rel="noopener">
-        <div class="hub-card-head">
-          <span class="hub-card-no">#124</span>
-          <span class="hub-card-version">v3.2</span>
-        </div>
-        <div class="hub-card-title">DE&amp;I</div>
-        <div class="hub-card-path">/wireframes/124_dei.html</div>
-        <span class="hub-card-note">社会配下</span>
-        <span class="hub-card-arrow">›</span>
-      </a>
-      <a class="hub-card" href="wireframes/131_health_management.html" target="_blank" rel="noopener">
-        <div class="hub-card-head">
-          <span class="hub-card-no">#131</span>
-          <span class="hub-card-version">v2.2</span>
-        </div>
-        <div class="hub-card-title">健康経営</div>
-        <div class="hub-card-path">/wireframes/131_health_management.html</div>
-        <span class="hub-card-note">社会配下</span>
-        <span class="hub-card-arrow">›</span>
-      </a>
-      <a class="hub-card" href="wireframes/140_human_rights.html" target="_blank" rel="noopener">
-        <div class="hub-card-head">
-          <span class="hub-card-no">#140</span>
-          <span class="hub-card-version">v1.4</span>
-        </div>
-        <div class="hub-card-title">人権</div>
-        <div class="hub-card-path">/wireframes/140_human_rights.html</div>
-        <span class="hub-card-note">社会配下</span>
-        <span class="hub-card-arrow">›</span>
-      </a>
-      <a class="hub-card" href="wireframes/148_quality.html" target="_blank" rel="noopener">
-        <div class="hub-card-head">
-          <span class="hub-card-no">#148</span>
-          <span class="hub-card-version">v2.5</span>
-        </div>
-        <div class="hub-card-title">顧客責任・品質</div>
-        <div class="hub-card-path">/wireframes/148_quality.html</div>
-        <span class="hub-card-note">社会配下</span>
-        <span class="hub-card-arrow">›</span>
-      </a>
-      <a class="hub-card" href="wireframes/077_social_contribution.html" target="_blank" rel="noopener">
-        <div class="hub-card-head">
-          <span class="hub-card-no">#077</span>
-          <span class="hub-card-version">v4.1</span>
-        </div>
-        <div class="hub-card-title">社会貢献活動</div>
-        <div class="hub-card-path">/wireframes/077_social_contribution.html</div>
-        <span class="hub-card-note">社会配下</span>
-        <span class="hub-card-arrow">›</span>
-      </a>
       <a class="hub-card" href="wireframes/199_esg_data.html" target="_blank" rel="noopener">
         <div class="hub-card-head">
           <span class="hub-card-no">#199</span>
@@ -574,6 +533,123 @@ body {
         <span class="hub-card-note">独立カテゴリ</span>
         <span class="hub-card-arrow">›</span>
       </a>
+    </div>
+  </section>
+
+  <!-- L3 -->
+  <section id="l3" class="hub-section">
+    <div class="hub-section-head">
+      <div class="hub-section-title">
+        <span class="hub-section-title-tier">L3</span>
+        第3階層 詳細ページ
+        <span class="hub-count">7ページ</span>
+      </div>
+      <div class="hub-section-desc">環境・社会・ガバナンスのESG3分類で整理</div>
+    </div>
+
+    <!-- L3 / 環境 -->
+    <div class="hub-subgroup">
+      <div class="hub-subgroup-title">
+        <span class="hub-subgroup-tier">E</span>
+        環境
+        <span class="hub-subgroup-count">2ページ</span>
+      </div>
+      <div class="hub-grid">
+        <a class="hub-card" href="wireframes/024_climate_index.html" target="_blank" rel="noopener">
+          <div class="hub-card-head">
+            <div>
+              <span class="hub-card-no">#024</span>
+              <span class="hub-card-no is-old" style="margin-left:4px;">旧 #028</span>
+            </div>
+            <span class="hub-card-version">v1.9</span>
+          </div>
+          <div class="hub-card-title">気候変動</div>
+          <div class="hub-card-path">/wireframes/024_climate_index.html</div>
+          <span class="hub-card-note">環境配下</span>
+          <span class="hub-card-arrow">›</span>
+        </a>
+        <a class="hub-card" href="wireframes/035_tcfd.html" target="_blank" rel="noopener">
+          <div class="hub-card-head">
+            <span class="hub-card-no">#035</span>
+            <span class="hub-card-version">v3.4</span>
+          </div>
+          <div class="hub-card-title">TCFD開示</div>
+          <div class="hub-card-path">/wireframes/035_tcfd.html</div>
+          <span class="hub-card-note">環境配下</span>
+          <span class="hub-card-arrow">›</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- L3 / 社会 -->
+    <div class="hub-subgroup">
+      <div class="hub-subgroup-title">
+        <span class="hub-subgroup-tier">S</span>
+        社会
+        <span class="hub-subgroup-count">5ページ</span>
+      </div>
+      <div class="hub-grid">
+        <a class="hub-card" href="wireframes/124_dei.html" target="_blank" rel="noopener">
+          <div class="hub-card-head">
+            <span class="hub-card-no">#124</span>
+            <span class="hub-card-version">v3.2</span>
+          </div>
+          <div class="hub-card-title">DE&amp;I</div>
+          <div class="hub-card-path">/wireframes/124_dei.html</div>
+          <span class="hub-card-note">社会配下</span>
+          <span class="hub-card-arrow">›</span>
+        </a>
+        <a class="hub-card" href="wireframes/131_health_management.html" target="_blank" rel="noopener">
+          <div class="hub-card-head">
+            <span class="hub-card-no">#131</span>
+            <span class="hub-card-version">v2.2</span>
+          </div>
+          <div class="hub-card-title">健康経営</div>
+          <div class="hub-card-path">/wireframes/131_health_management.html</div>
+          <span class="hub-card-note">社会配下</span>
+          <span class="hub-card-arrow">›</span>
+        </a>
+        <a class="hub-card" href="wireframes/140_human_rights.html" target="_blank" rel="noopener">
+          <div class="hub-card-head">
+            <span class="hub-card-no">#140</span>
+            <span class="hub-card-version">v1.4</span>
+          </div>
+          <div class="hub-card-title">人権</div>
+          <div class="hub-card-path">/wireframes/140_human_rights.html</div>
+          <span class="hub-card-note">社会配下</span>
+          <span class="hub-card-arrow">›</span>
+        </a>
+        <a class="hub-card" href="wireframes/148_quality.html" target="_blank" rel="noopener">
+          <div class="hub-card-head">
+            <span class="hub-card-no">#148</span>
+            <span class="hub-card-version">v2.5</span>
+          </div>
+          <div class="hub-card-title">顧客責任・品質</div>
+          <div class="hub-card-path">/wireframes/148_quality.html</div>
+          <span class="hub-card-note">社会配下</span>
+          <span class="hub-card-arrow">›</span>
+        </a>
+        <a class="hub-card" href="wireframes/077_social_contribution.html" target="_blank" rel="noopener">
+          <div class="hub-card-head">
+            <span class="hub-card-no">#077</span>
+            <span class="hub-card-version">v4.1</span>
+          </div>
+          <div class="hub-card-title">社会貢献活動</div>
+          <div class="hub-card-path">/wireframes/077_social_contribution.html</div>
+          <span class="hub-card-note">社会配下</span>
+          <span class="hub-card-arrow">›</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- L3 / ガバナンス -->
+    <div class="hub-subgroup">
+      <div class="hub-subgroup-title">
+        <span class="hub-subgroup-tier">G</span>
+        ガバナンス
+        <span class="hub-subgroup-count">0ページ</span>
+      </div>
+      <div class="hub-subgroup-empty">現在対象ページなし（今期16ページバッチには未収録）</div>
     </div>
   </section>
 
