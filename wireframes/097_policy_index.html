@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>方針一覧 — KM サステナビリティ WF v2.0</title>
+<title>方針一覧 — KM サステナビリティ WF v2.1</title>
 <style>
 /* ============================================================
    KM SUSTAINABILITY WF — SHARED CSS v3.0
@@ -507,45 +507,6 @@ body {
    PAGE-LOCAL: 方針一覧 用追加スタイル
 ============================================================ */
 
-/* カテゴリアンカーバー（sticky） */
-.category-nav {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: var(--c-white);
-  border-top: 1px solid var(--c-border);
-  border-bottom: 1px solid var(--c-border);
-  padding: 10px var(--pad-h);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  align-items: center;
-}
-.category-nav-label {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--c-text-h);
-  margin-right: 8px;
-  letter-spacing: 0.04em;
-}
-.category-nav-item {
-  font-size: 11px;
-  color: var(--c-text-s);
-  border: 1px solid var(--c-border);
-  padding: 6px 14px;
-  background: var(--c-white);
-  cursor: default;
-  text-decoration: none;
-  white-space: nowrap;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-.category-nav-item:hover {
-  background: #FAFAFA;
-  border-color: var(--c-text-h);
-}
-
 /* カテゴリセクション見出し */
 .policy-cat-head {
   display: flex;
@@ -576,11 +537,14 @@ body {
   letter-spacing: -0.01em;
 }
 
-/* 方針リスト（メインモジュール） — 説明文付き2行リスト */
+/* 方針リスト（メインモジュール） — 説明文付き2行リスト・2カラム */
 .policy-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   background: var(--c-white);
   border: 1px solid var(--c-border);
 }
+.policy-list.is-single { grid-template-columns: 1fr; }
 .policy-row {
   display: grid;
   grid-template-columns: 1fr 24px;
@@ -588,9 +552,18 @@ body {
   gap: 16px;
   padding: 14px 20px;
   border-bottom: 1px solid var(--c-border-s);
+  border-right: 1px solid var(--c-border-s);
   cursor: default;
 }
+/* 右カラム（偶数番目）には右ボーダー不要 */
+.policy-row:nth-child(2n) { border-right: none; }
+/* 単一カラム時 */
+.policy-list.is-single .policy-row { border-right: none; }
+/* 奇数総数の最終行（左カラムに単独）は右ボーダー不要 */
+.policy-row:last-child:nth-child(2n+1) { border-right: none; }
+/* 最下段の border-bottom を消す（偶数：最後の2件／奇数：最後の1件） */
 .policy-row:last-child { border-bottom: none; }
+.policy-row:nth-last-child(2):nth-child(2n+1) { border-bottom: none; }
 .policy-row:hover { background: #FAFAFA; }
 .policy-row-body { min-width: 0; }
 .policy-row-title {
@@ -628,7 +601,7 @@ body {
   <div>
     <strong>KONICA MINOLTA サステナビリティ</strong>
     <span class="meta-badge">方針一覧</span>
-    <span class="meta-badge">WF v2.0</span>
+    <span class="meta-badge">WF v2.1</span>
     <span class="meta-badge">#097</span>
   </div>
   <div style="font-size:10px; color:#666;">2026.04</div>
@@ -698,17 +671,6 @@ body {
     </div>
 
     <!-- ============================================================
-         カテゴリアンカーバー（sticky）
-    ============================================================ -->
-    <nav class="category-nav">
-      <span class="category-nav-label">CATEGORY</span>
-      <a class="category-nav-item" href="#cat-group">コニカミノルタグループ</a>
-      <a class="category-nav-item" href="#cat-env">環境</a>
-      <a class="category-nav-item" href="#cat-social">社会</a>
-      <a class="category-nav-item" href="#cat-governance">ガバナンス</a>
-    </nav>
-
-    <!-- ============================================================
          A｜コニカミノルタグループ
     ============================================================ -->
     <section id="cat-group" class="wf-section bg-white policy-section" style="scroll-margin-top:60px;">
@@ -723,7 +685,7 @@ body {
         </div>
       </div>
 
-      <div class="policy-list">
+      <div class="policy-list is-single">
         <div class="policy-row">
           <div class="policy-row-body">
             <div class="policy-row-title">コニカミノルタグループ行動憲章</div>
@@ -750,7 +712,7 @@ body {
         </div>
       </div>
 
-      <div class="policy-list">
+      <div class="policy-list is-single">
         <div class="policy-row">
           <div class="policy-row-body">
             <div class="policy-row-title">コニカミノルタ環境方針</div>
@@ -951,36 +913,20 @@ body {
        アノテーションパネル
   ============================================================ -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — 方針一覧（v2.0）</h3>
-
-    <div class="ann-item">
-      <span class="ann-num">★</span>
-      <span class="ann-head">カテゴリアンカーバー（sticky）：4カテゴリへ即ジャンプ</span>
-      <div class="ann-row">
-        <span class="ann-row-label">構成</span>
-        ヒーロー直下に sticky 固定の横並びアンカー。コニカミノルタグループ／環境／社会／ガバナンスの4カテゴリへ。
-      </div>
-      <div class="ann-row">
-        <span class="ann-row-label">UX改善ポイント</span>
-        全方針が1ページに集約されるため、縦スクロール中も常にカテゴリへ即ジャンプできる導線を最上部に常設。
-      </div>
-      <p class="ann-body">
-        モジュール：⑫ナビ アンカーナビ派生（横レイアウト版）。
-      </p>
-    </div>
+    <h3>設計ポイント — 方針一覧（v2.1）</h3>
 
     <div class="ann-item">
       <span class="ann-num">A-D</span>
       <span class="ann-head">カテゴリ別 方針リスト（.policy-list / .policy-row）</span>
       <div class="ann-row">
         <span class="ann-row-label">構成</span>
-        各カテゴリ＝番号バッジ＋H2＋横ボーダーで区切ったリスト。1行＝タイトル（14px太字）＋説明文1行（11px薄色）＋右端「›」矢印。
+        各カテゴリ＝番号バッジ＋H2＋外枠1pxで囲んだリスト。1行＝タイトル（14px太字）＋説明文1行（11px薄色）＋右端「›」矢印。複数件は<strong>2カラム</strong>で並列、単件カテゴリ（A／B）は `.is-single` で1カラム表示。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">v1からの変更</span>
         ① <strong>PDF廃止前提</strong>：すべて遷移先WEBページ扱いとなるため、PDF/WEBタグ・アイコン・ファイル容量・遷移種別CTAをすべて撤去<br>
-        ② <strong>カード→リスト化</strong>：1件あたり132px → 約56pxへ大幅圧縮。全18件を1スクロール内で見渡し可能に<br>
-        ③ <strong>件数サマリー・凡例撤去</strong>：媒体区別が消えるため不要に
+        ② <strong>カード→2カラムリスト化</strong>：1件あたり132px → 約56pxへ大幅圧縮の上、2カラム並列でさらに縦方向を半減<br>
+        ③ <strong>件数サマリー・凡例・カテゴリアンカー撤去</strong>：媒体区別が消え4カテゴリのみとなり、いずれもオーバースペックなため
       </div>
       <p class="ann-body">
         モジュール：⑥-11 .policy-list（方針一覧リスト・新規）。catalog-v2.html に追加。
@@ -992,9 +938,8 @@ body {
       <span class="ann-head">UI/UX改善サマリー（vs 現行サイト／v1）</span>
       <p class="ann-body">
         ① <strong>カテゴリ化</strong>：フラットリスト → 4カテゴリ分類で目的の方針に到達しやすく<br>
-        ② <strong>コンパクトリスト</strong>：タイトル＋説明文1行の2段構成で情報密度を確保しつつ高さを最小化<br>
-        ③ <strong>遷移先統一</strong>：すべてページ遷移として扱い、誤クリック・遷移種別の混乱を排除<br>
-        ④ <strong>sticky アンカー</strong>：常時カテゴリ移動可能
+        ② <strong>2カラムコンパクトリスト</strong>：タイトル＋説明文1行の2段構成 × 2カラム並列で情報密度と一覧性を両立<br>
+        ③ <strong>遷移先統一</strong>：すべてページ遷移として扱い、誤クリック・遷移種別の混乱を排除
       </p>
     </div>
 
