@@ -1138,23 +1138,55 @@ body {
 
   <!-- アノテーション -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — 社会貢献活動 v4.0（共通モジュール統一）</h3>
+    <h3>設計ポイント — 社会貢献活動 v4.1（catalog v3.1 規定準拠）</h3>
 
     <div class="ann-item">
-      <span class="ann-num">v4.0</span>
-      <span class="ann-head">v3.2 → v4.0 変更サマリー（モジュール統一）</span>
+      <span class="ann-num">v4.1</span>
+      <span class="ann-head">v4.0 → v4.1 変更サマリー（catalog v3.1 規定への整合）</span>
       <div class="ann-row">
-        <span class="ann-row-label">適用モジュール</span>
-        catalog v3.1 / 148_quality v2.3 に準拠して以下を統一適用：<br>
-        ・ヒーロー → <code>.wf-page-title-area</code>（白bg＋親リンク「【社会】に関する取り組み」）<br>
-        ・本文レイアウト → <code>.wf-layout-with-anchornav</code>（1fr 100px・右ボーダー型アンカーナビ）<br>
-        ・アコーディオン → <code>.wf-acc-h3</code> + <code>.wf-acc-tag</code>（catalog 7-5：薄グレー帯＋黒丸＋／−＋タグ）<br>
-        ・関連リンク → <code>.theme-related</code>（薄グレーbg＋全周border＋「関連リンク」ラベル）<br>
-        ・H3カテゴリ見出し → <code>.wf-sub-title</code>（左4px縦棒・035/148準拠）
+        <span class="ann-row-label">背景</span>
+        v4.0 でモジュール統一を進めたが、3点で catalog v3.1 規定からの逸脱があったため修正。
       </div>
       <div class="ann-row">
-        <span class="ann-row-label">削除した独自モジュール</span>
-        <code>.wf-page-hero</code>（→ page-title-area）／<code>.wf-accordion</code>（→ wf-acc-h3）／<code>.related-grid</code>（→ theme-related）／<code>.sc-anchor-nav</code>（→ wf-anchor-nav）／<code>.acc-links</code>（→ theme-related）
+        <span class="ann-row-label">修正① 画像</span>
+        基本的な考え方の画像PH：<code>.wf-grid.col-2-1</code> + <code>.wf-img.h-240</code>（独自パターン）→ <strong>catalog 3-1 <code>.large-figure-ph</code></strong>（全幅16:8＋ハッチング＋点線枠ラベル＋<code>strong</code>タイトル）に変更。テキスト下に配置。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">修正② タグ位置</span>
+        <code>.wf-acc-tag</code>：<code>margin-left:auto</code>＋border 付きで右側配置（独自）→ <strong>catalog 7-5 規定どおり summary 内 左側</strong>（タグ → タイトル の順）。border 削除、薄グレー bg のみ。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">修正③ +ボタン</span>
+        アコ内写真PH に付けていた <code>.img-zoom-btn</code> を撤去。catalog 3-6 のシーン規定は「グラフ／体制図／模式図／全幅画像」のみで、アコ内活動写真はスコープ外。+ボタンは Hero <code>.large-figure-ph</code>（キービジュアル＝全幅画像）のみに残す。
+      </div>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">適用</span>
+      <span class="ann-head">適用モジュール一覧（catalog v3.1 番号体系）</span>
+      <div class="ann-row">
+        <span class="ann-row-label">①ヒーロー</span>
+        <strong>1-3</strong> <code>.wf-page-title-area</code>（第3階層：白bg＋親リンク）
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">②見出し</span>
+        <strong>2-1</strong> <code>.wf-section-title</code>（H2） / <strong>2-2</strong> <code>.wf-sub-title</code>（H3 左縦棒）
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">③画像</span>
+        <strong>3-1</strong> <code>.large-figure-ph</code>（ページ上 1カラム全幅 16:8） / <strong>3-5</strong> アコ内画像（コンパクト・1〜2カラム） / <strong>3-6</strong> <code>.img-zoom-btn</code>（全幅画像のみ）
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">⑥リンク</span>
+        <strong>6-4</strong> <code>.theme-related</code>（関連リンク：薄グレーbg＋全周border＋ラベル）
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">⑦アコーディオン</span>
+        <strong>7-4</strong> <code>.wf-acc-h3</code>（H3以下：グレー帯＋黒丸＋／−／縦棒なし）＋ <strong>7-5</strong> <code>.wf-acc-tag</code>（タグ派生：薄グレー bg・summary 内 左配置）
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">⑫ナビ</span>
+        <code>.wf-anchor-nav</code> ＋ <code>.wf-layout-with-anchornav</code>（1fr 100px・左ボーダー型 sticky）。148/131/140/035 と統一。
       </div>
     </div>
 
@@ -1163,8 +1195,7 @@ body {
       <span class="ann-head">基本的な考え方</span>
       <div class="ann-row">
         <span class="ann-row-label">構成</span>
-        H2 + H3（wf-sub-title）+ <code>.wf-grid.col-2-1.gap-24</code> でテキスト左・画像右1ブロック。<br>
-        画像PHは <code>.wf-img.h-240</code> ＋ <code>.img-zoom-btn</code>（catalog 8-1：単独画像PHには+ボタン）。
+        H2 → H3（<code>.wf-sub-title</code>）→ 本文3段落（<code>.wf-section-desc</code>）→ <code>.large-figure-ph</code>（catalog 3-1）の縦積み。col-2-1 grid は規定モジュール外のため撤去。
       </div>
     </div>
 
@@ -1172,32 +1203,26 @@ body {
       <span class="ann-num">B</span>
       <span class="ann-head">取り組み — H3×3カテゴリ × 19件アコーディオン</span>
       <div class="ann-row">
-        <span class="ann-row-label">構成</span>
-        H2「取り組み」配下に3つのH3カテゴリを <code>.wf-sub-title</code> で配置：<br>
+        <span class="ann-row-label">カテゴリ構成</span>
         ・地球環境問題（6件）<br>
         ・ウェルビーイング・地域社会（7件）<br>
         ・次世代人財育成（7件・うち1件は「産業知能系」名称変更の新規枠）
       </div>
       <div class="ann-row">
         <span class="ann-row-label">アコーディオン</span>
-        <code>&lt;details class="wf-acc-h3"&gt;</code> ＋ <code>.wf-acc-h3-summary</code>。サマリ帯は flex で「タイトル（flex:1）｜ タグ（margin-left:auto）｜ 黒丸+/−」の3要素。035 TCFD / 148 顧客責任・品質と完全同型。
-      </div>
-      <div class="ann-row">
-        <span class="ann-row-label">タグ仕様</span>
-        <code>.wf-acc-tag</code>（catalog 7-5派生）：薄グレー背景＋薄ボーダー＋濃グレー文字。地域・国名（日本／フランス／米国 等）を一律タグ表示。
+        catalog 7-4 + 7-5：<code>&lt;summary&gt;</code> 内に <code>&lt;span class="wf-acc-tag"&gt;国名&lt;/span&gt;</code>（左）→ <code>&lt;span class="wf-acc-text"&gt;タイトル&lt;/span&gt;</code>（flex:1）→ 黒丸+/−（absolute right）の順。035 TCFD / 148 と完全同型。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">展開デモ</span>
         各カテゴリ冒頭の代表エピソードと、ウェルビーイング末尾「企業内基金」の計4件を <code>open</code>。残りは閉。最終ブロックは <code>.is-last-in-group</code> で margin-bottom: 24px。
       </div>
       <div class="ann-row">
-        <span class="ann-row-label">アコ内 画像PH</span>
-        単独画像PH（catalog 8-1：写真ギャラリー含む）は全て <code>.img-zoom-btn</code>+ボタン付き。 1画像／2画像で <code>.acc-figs</code> ／ <code>.acc-figs.col-2</code> を使い分け。<br>
-        図版下キャプションは <code>.wf-img-caption</code>。
+        <span class="ann-row-label">アコ内 画像</span>
+        catalog 3-5 アコ内コンパクト画像。1画像時 <code>.acc-figs</code>（h-200）、2画像時 <code>.acc-figs.col-2</code>（h-160）。キャプションは <code>.wf-img-caption</code>。<strong>+ボタンは付けない</strong>（catalog 3-6 のスコープ外）。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">アコ内 関連リンク</span>
-        各エピソードの参照リンクは <code>.theme-related</code> モジュールに統一（旧 <code>.acc-links</code> 撤去）。
+        catalog 6-4 <code>.theme-related</code>。アコ body 内の参照リンクを全てこのモジュールに統一。
       </div>
     </div>
 
@@ -1206,16 +1231,7 @@ body {
       <span class="ann-head">関連情報</span>
       <div class="ann-row">
         <span class="ann-row-label">構成</span>
-        bg-sub セクション + H2 + <code>.theme-related</code> で 8リンクを横並び表示。各リンクは <code>.wf-link</code>（→記号付き）。035 TCFD / 148 と同UI。
-      </div>
-    </div>
-
-    <div class="ann-item">
-      <span class="ann-num">NAV</span>
-      <span class="ann-head">右アンカーナビ</span>
-      <div class="ann-row">
-        <span class="ann-row-label">構成</span>
-        <code>.wf-anchor-nav</code>（sticky / 左ボーダー型 / 黒文字＋is-current太字）。H3カテゴリは <code>.is-sub</code> で1段インデント・小さめフォント。 148/131/140/035他と統一。
+        bg-sub セクション + H2 + <code>.theme-related</code> で 8リンクを横並び表示。035 TCFD / 148 と同UI。
       </div>
     </div>
 
@@ -1224,7 +1240,7 @@ body {
       <span class="ann-head">既存サイト原文厳守</span>
       <div class="ann-row">
         <span class="ann-row-label">方針</span>
-        本リファクタは「モジュール統一」のみが目的。タイトル文・本文・キャプション・関連リンク名・タグ（国名）は v3.2 と完全に同一の文言を保持。コンテンツの追加・削除・要約・拡張は行っていない。
+        本リファクタは「catalog v3.1 規定へのモジュール整合」のみが目的。タイトル文・本文・キャプション・関連リンク名・タグ（国名）は v3.2 と完全に同一の文言を保持。コンテンツの追加・削除・要約・拡張は行っていない。
       </div>
     </div>
   </aside>
