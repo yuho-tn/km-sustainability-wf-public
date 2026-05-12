@@ -183,12 +183,64 @@ body {
 .wf-link { font-size: 12px; color: var(--c-text-s); display: inline-flex; align-items: center; gap: 4px; cursor: default; }
 .wf-link::before { content: '→ '; font-size: 11px; }
 
-.wf-footer { background: #1F1F1F; color: #BBB; padding: 40px var(--pad-h) 20px; border-top: 1px solid var(--c-border); }
-.wf-footer-note { text-align: center; font-size: 10px; color: #777; background: #2A2A2A; border: 1px solid #333; padding: 6px; margin-bottom: 24px; }
-.wf-footer-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 24px; margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid #333; }
-.wf-footer-col-title { font-size: 11px; font-weight: 700; color: #fff; margin-bottom: 12px; }
-.wf-footer-link { display: block; font-size: 10px; color: #999; padding: 3px 0; line-height: 1.6; }
-.wf-footer-bottom { display: flex; justify-content: space-between; font-size: 10px; color: #777; margin-top: 12px; }
+/* コーポレート全体フッター（公式デザイン準拠） */
+.wf-footer { background: #F0EFEC; color: #444; border-top: 1px solid #D8D7D3; }
+.wf-footer-main { padding: 36px var(--pad-h) 28px; }
+.wf-footer-section { margin-bottom: 22px; }
+.wf-footer-section:last-of-type { margin-bottom: 26px; }
+.wf-footer-section-title {
+  font-size: 13px; font-weight: 700; color: #1B2233;
+  border-left: 4px solid #3D4F7B;
+  padding-left: 10px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.wf-footer-links {
+  display: flex; flex-wrap: wrap; row-gap: 8px; column-gap: 26px;
+  padding-left: 14px;
+}
+.wf-footer-link {
+  font-size: 12px; color: #4A4A4A; cursor: default;
+  white-space: nowrap; line-height: 1.6;
+}
+.wf-footer-link::after { content: ' ›'; color: #888; padding-left: 4px; }
+.wf-footer-utils {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 0 4px 14px;
+  margin-top: 6px;
+}
+.wf-footer-sns {
+  font-size: 12px; color: #4A4A4A;
+  display: inline-flex; align-items: center; gap: 8px;
+  cursor: default;
+}
+.wf-footer-icon-plus {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 16px; height: 16px;
+  border: 1px solid #999; color: #555;
+  font-size: 11px; line-height: 1;
+}
+.wf-footer-region {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 10px 22px;
+  border: 1px solid #999; background: var(--c-white);
+  font-size: 12px; color: #2A2A2A; cursor: default;
+}
+.wf-footer-region-globe {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 16px; height: 16px;
+  border: 1px solid #555; border-radius: 50%;
+  font-size: 9px; line-height: 1;
+}
+.wf-footer-bottom {
+  background: #2D3447; color: #D8D8D8;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px var(--pad-h);
+  font-size: 11px; letter-spacing: 0.02em;
+}
+.wf-footer-bottom-links { display: inline-flex; align-items: center; gap: 14px; }
+.wf-footer-bottom-links .sep { color: #777; }
+.wf-footer-bottom-link { color: #D8D8D8; cursor: default; }
 
 /* ヘッダー：KM公式デザイン画像版（全ページ共通） */
 .wf-header-img { background: var(--c-white); border-bottom: 1px solid var(--c-border); line-height: 0; }
@@ -804,66 +856,58 @@ body {
       </div>
     </div>
 
-    <!-- フッター（全体サイト共通） -->
+    <!-- フッター（コーポレート全体・公式デザイン準拠） -->
     <footer class="wf-footer">
-      <div class="wf-footer-note">⚠ フッターは既確定。変更なし。</div>
-      <div class="wf-footer-grid">
-        <div>
-          <div class="wf-footer-col-title">サステナビリティ</div>
-          <span class="wf-footer-link">一覧でわかるコニカミノルタ</span>
-          <span class="wf-footer-link">事業領域</span>
-          <span class="wf-footer-link">沿革</span>
-          <span class="wf-footer-link">トップメッセージ</span>
-          <span class="wf-footer-link">フィロソフィー</span>
-          <span class="wf-footer-link">シンボルロゴ</span>
+      <div class="wf-footer-main">
+
+        <div class="wf-footer-section">
+          <div class="wf-footer-section-title">企業情報</div>
+          <div class="wf-footer-links">
+            <span class="wf-footer-link">企業情報トップ</span>
+            <span class="wf-footer-link">Newsroom</span>
+            <span class="wf-footer-link">株主・投資家情報</span>
+            <span class="wf-footer-link">サステナビリティ</span>
+            <span class="wf-footer-link">テクノロジー</span>
+            <span class="wf-footer-link">採用情報</span>
+          </div>
         </div>
-        <div>
-          <div class="wf-footer-col-title">Newsroom</div>
-          <span class="wf-footer-link">ニュースリリース一覧</span>
-          <span class="wf-footer-link">個人投資家の皆様へ</span>
-          <span class="wf-footer-link">重要なお知らせ</span>
-          <span class="wf-footer-link">広報ブログ ↗</span>
+
+        <div class="wf-footer-section">
+          <div class="wf-footer-section-title">事業領域</div>
+          <div class="wf-footer-links">
+            <span class="wf-footer-link">ビジネスソリューション</span>
+            <span class="wf-footer-link">プロダクションプリント&amp;グラフィック</span>
+            <span class="wf-footer-link">ヘルスケア</span>
+            <span class="wf-footer-link">センシング</span>
+            <span class="wf-footer-link">材料・コンポーネント</span>
+            <span class="wf-footer-link">画像IoT・FORXAI</span>
+            <span class="wf-footer-link">テキスタイルプリンター</span>
+            <span class="wf-footer-link">プラネタリウム事業</span>
+            <span class="wf-footer-link">イノベーション・サービス</span>
+          </div>
         </div>
-        <div>
-          <div class="wf-footer-col-title">株主・投資家情報</div>
-          <span class="wf-footer-link">経営方針</span>
-          <span class="wf-footer-link">個人投資家の皆様へ</span>
-          <span class="wf-footer-link">決算資料</span>
-          <span class="wf-footer-link">財務・業績情報</span>
-          <span class="wf-footer-link">株式・債券情報</span>
-          <span class="wf-footer-link">IRニュース</span>
+
+        <div class="wf-footer-utils">
+          <span class="wf-footer-sns">
+            ソーシャルメディア オフィシャルアカウント
+            <span class="wf-footer-icon-plus">+</span>
+          </span>
+          <span class="wf-footer-region">
+            <span class="wf-footer-region-globe">⊕</span>
+            Countries/Regions
+            <span class="wf-footer-icon-plus">+</span>
+          </span>
         </div>
-        <div>
-          <div class="wf-footer-col-title">サステナビリティ</div>
-          <span class="wf-footer-link">基本的な考え方／体制</span>
-          <span class="wf-footer-link">サステナビリティ戦略</span>
-          <span class="wf-footer-link">マテリアリティ</span>
-          <span class="wf-footer-link">環境</span>
-          <span class="wf-footer-link">社会</span>
-          <span class="wf-footer-link">ガバナンス</span>
-          <span class="wf-footer-link">ESGデータ</span>
-        </div>
-        <div>
-          <div class="wf-footer-col-title">テクノロジー</div>
-          <span class="wf-footer-link">技術紹介</span>
-          <span class="wf-footer-link">論文紹介</span>
-          <span class="wf-footer-link">ビジョン</span>
-          <span class="wf-footer-link">外部発表</span>
-          <span class="wf-footer-link">ニュース</span>
-          <span class="wf-footer-link">研究開発体制等紹介</span>
-        </div>
-        <div>
-          <div class="wf-footer-col-title">採用情報</div>
-          <span class="wf-footer-link">早わかりコニカミノルタ</span>
-          <span class="wf-footer-link">フィロソフィー</span>
-          <span class="wf-footer-link">事業部紹介</span>
-          <span class="wf-footer-link">グローバルとコニカミノルタ</span>
-          <span class="wf-footer-link">人事教育・能力開発</span>
-          <span class="wf-footer-link">インターンシップ・イベント情報</span>
-        </div>
+
       </div>
       <div class="wf-footer-bottom">
-        <div>サイトのご利用について ｜ 個人情報保護方針 ｜ サイトマップ</div>
+        <div class="wf-footer-bottom-links">
+          <span class="wf-footer-bottom-link">サイトのご利用について</span>
+          <span class="sep">｜</span>
+          <span class="wf-footer-bottom-link">個人情報保護方針</span>
+          <span class="sep">｜</span>
+          <span class="wf-footer-bottom-link">サイトマップ</span>
+        </div>
         <div>&copy;2011-2025 Konica Minolta, Inc.</div>
       </div>
     </footer>
