@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>KMサステナビリティWF — モジュール一覧 v3.3</title>
+<title>KMサステナビリティWF — モジュール一覧 v3.4</title>
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
@@ -405,13 +405,11 @@ body {
 .dem-news-row .date { color: var(--c-text-s); letter-spacing: 0.04em; }
 .dem-news-row .title { color: var(--c-text-h); }
 
-.dem-policy-list { display: grid; grid-template-columns: repeat(2, 1fr); background: #fff; border: 1px solid var(--c-border); width: 100%; }
-.dem-policy-row { display: grid; grid-template-columns: 1fr 14px; align-items: center; gap: 8px; padding: 7px 10px; border-bottom: 1px solid var(--c-border-s); border-right: 1px solid var(--c-border-s); }
-.dem-policy-row:nth-child(2n) { border-right: none; }
-.dem-policy-row:nth-last-child(-n+2) { border-bottom: none; }
-.dem-policy-row-title { font-size: 10px; font-weight: 700; color: var(--c-text-h); line-height: 1.3; }
-.dem-policy-row-desc { font-size: 8px; color: var(--c-text-s); line-height: 1.5; margin-top: 1px; }
-.dem-policy-row-arrow { font-size: 10px; color: var(--c-text-s); text-align: right; line-height: 1; }
+.dem-link-btn-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; width: 100%; }
+.dem-link-btn { display: grid; grid-template-columns: 1fr 14px; align-items: center; gap: 8px; padding: 7px 10px; background: #fff; border: 1px solid var(--c-border); }
+.dem-link-btn-title { font-size: 10px; font-weight: 700; color: var(--c-text-h); line-height: 1.3; }
+.dem-link-btn-desc { font-size: 8px; color: var(--c-text-s); line-height: 1.5; margin-top: 1px; }
+.dem-link-btn-arrow { font-size: 10px; color: var(--c-text-s); text-align: right; line-height: 1; }
 
 .dem-qa {
   background: #fff; border: 1px solid var(--c-border);
@@ -598,7 +596,7 @@ body {
 <div class="cat-meta-bar">
   <div>
     <strong>KMサステナビリティWF</strong>
-    <span class="badge">モジュール一覧 v3.3</span>
+    <span class="badge">モジュール一覧 v3.4</span>
     <span class="badge">2026.05</span>
   </div>
   <div style="font-size:10px; color:#888;">12カテゴリで全16ページを構成</div>
@@ -607,8 +605,8 @@ body {
 <div class="cat-page">
 
   <div class="cat-hero">
-    <h1>モジュール一覧（v3.3）</h1>
-    <p>本catalogのみで全16ページが再構成可能なモジュール体系。12カテゴリ・全モジュールにつき「実物プレビュー（開閉両状態を含む）／適用ページ／利用シーン」を一覧化。v3.3：6-11 方針一覧リスト（.policy-list/.policy-row）追加。<strong>全カテゴリ2カラム統一</strong>のコンパクト2行リストUI。奇数件最終項目は左カラム配置で border-right を抑止し、右半分の枠を消す（空きボタン風防止）。097 方針一覧で採用。v3.1：プレビュー左上揃え／6-5 横断インデックスを全L3全量表示／6-7 ESGフォトカード差し替え／6-8 EVENTカード実物UI／6-10 説明文付きリンクカード追加／⑨表3行以上／⑩国際規範◆→背景色付きリスト／⑪WF専用セクション番号マーカー削除。</p>
+    <h1>モジュール一覧（v3.4）</h1>
+    <p>本catalogのみで全16ページが再構成可能なモジュール体系。12カテゴリ・全モジュールにつき「実物プレビュー（開閉両状態を含む）／適用ページ／利用シーン」を一覧化。v3.4：6-11 を「説明文付きリンクボタン（.link-btn / .link-btn-grid）」として汎用共通モジュール化。<strong>独立した枠付きボタンを2カラムgrid（gap:12px）で並列配置</strong>する設計に変更。単独要素／奇数件最終は左カラムのみに枠が描かれ、右側は完全な余白（枠なし）で違和感なし。タイトル＋説明文1行＋›矢印の3要素。097 方針一覧で採用、規約一覧・関連リンク集約等にも転用可。v3.1：プレビュー左上揃え／6-5 横断インデックスを全L3全量表示／6-7 ESGフォトカード差し替え／6-8 EVENTカード実物UI／6-10 説明文付きリンクカード追加／⑨表3行以上／⑩国際規範◆→背景色付きリスト／⑪WF専用セクション番号マーカー削除。</p>
   </div>
 
   <nav class="cat-toc">
@@ -880,7 +878,7 @@ body {
   <section class="cat-section" id="sec-6">
     <span class="cat-section-num">6</span>
     <h2 class="cat-section-title">リンク</h2>
-    <p class="cat-section-desc">遷移系の表現バリエーション。テキスト／ボタン／カード／関連リンク／横断インデックス／PDF DL／ESG3フォト／EVENT／ニュース行／説明文付きリンクカード／方針一覧リスト の11タイプ。</p>
+    <p class="cat-section-desc">遷移系の表現バリエーション。テキスト／ボタン／カード／関連リンク／横断インデックス／PDF DL／ESG3フォト／EVENT／ニュース行／説明文付きリンクカード／説明文付きリンクボタン の11タイプ。</p>
 
     <div class="cat-mod">
       <div class="cat-mod-id"><span class="cat-mod-id-num">6-1</span><span class="cat-mod-id-name">テキストリンク（policy-link）</span><span class="cat-mod-id-class">.policy-link</span></div>
@@ -983,12 +981,12 @@ body {
     </div>
 
     <div class="cat-mod">
-      <div class="cat-mod-id"><span class="cat-mod-id-num">6-11</span><span class="cat-mod-id-name">方針一覧リスト</span><span class="cat-mod-id-class">.policy-list / .policy-row</span></div>
-      <div class="cat-mod-preview"><div class="dem-policy-list"><div class="dem-policy-row"><div><div class="dem-policy-row-title">コニカミノルタグループ行動憲章</div><div class="dem-policy-row-desc">グループ全社員が共有する、社会的責任を果たすための行動の基本方針。</div></div><span class="dem-policy-row-arrow">›</span></div><div class="dem-policy-row"><div><div class="dem-policy-row-title">コニカミノルタ環境方針</div><div class="dem-policy-row-desc">気候変動・資源循環・化学物質管理など、環境課題への取り組み方針。</div></div><span class="dem-policy-row-arrow">›</span></div><div class="dem-policy-row"><div><div class="dem-policy-row-title">コニカミノルタグループ ダイバーシティ経営宣言</div><div class="dem-policy-row-desc">多様な人材が活躍できる経営の実現に向けた宣言文。</div></div><span class="dem-policy-row-arrow">›</span></div><div class="dem-policy-row"><div><div class="dem-policy-row-title">コニカミノルタグループ人権方針</div><div class="dem-policy-row-desc">国際規範に基づき、グループ全体で取り組む人権尊重の基本方針。</div></div><span class="dem-policy-row-arrow">›</span></div></div></div>
+      <div class="cat-mod-id"><span class="cat-mod-id-num">6-11</span><span class="cat-mod-id-name">説明文付きリンクボタン</span><span class="cat-mod-id-class">.link-btn / .link-btn-grid</span></div>
+      <div class="cat-mod-preview"><div class="dem-link-btn-grid"><div class="dem-link-btn"><div><div class="dem-link-btn-title">コニカミノルタグループ行動憲章</div><div class="dem-link-btn-desc">グループ全社員が共有する、社会的責任を果たすための行動の基本方針。</div></div><span class="dem-link-btn-arrow">›</span></div><div class="dem-link-btn"><div><div class="dem-link-btn-title">コニカミノルタ環境方針</div><div class="dem-link-btn-desc">気候変動・資源循環・化学物質管理など、環境課題への取り組み方針。</div></div><span class="dem-link-btn-arrow">›</span></div><div class="dem-link-btn"><div><div class="dem-link-btn-title">ダイバーシティ経営宣言</div><div class="dem-link-btn-desc">多様な人材が活躍できる経営の実現に向けた宣言文。</div></div><span class="dem-link-btn-arrow">›</span></div><div class="dem-link-btn"><div><div class="dem-link-btn-title">コニカミノルタグループ人権方針</div><div class="dem-link-btn-desc">国際規範に基づき、グループ全体で取り組む人権尊重の基本方針。</div></div><span class="dem-link-btn-arrow">›</span></div><div class="dem-link-btn"><div><div class="dem-link-btn-title">コニカミノルタ品質方針</div><div class="dem-link-btn-desc">お客様の期待に応える製品・サービス品質を実現する基本方針。</div></div><span class="dem-link-btn-arrow">›</span></div></div></div>
       <div class="cat-mod-meta">
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">内容</span><span class="cat-mod-meta-body">外枠1px＋縦横ボーダーで区切る<strong>2カラム</strong>2行リスト。1行＝タイトル（14px太字）＋説明文1行（11px薄色）＋右端「›」矢印。<strong>全ブロック2カラム統一</strong>。奇数件の最終単独項目は border-right を抑止して右半分の枠を消し、空きボタン風に見えないよう処理。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">内容</span><span class="cat-mod-meta-body">独立した枠付きボタン（タイトル14px太字＋説明文1行11px薄色＋右端「›」矢印）を<strong>2カラムgrid（gap:12px）</strong>で並列配置。各ボタンは独立したborder/paddingを持ち、単独要素は左カラムに配置されて右側は完全余白（枠なし）。</span></div>
         <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">097 方針一覧</span></span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">シーン</span><span class="cat-mod-meta-body">方針一覧／規約一覧のような、説明文付きの遷移リンクを多数並べる場面。すべてページ遷移前提（媒体区別なし）で、カテゴリヘッダ単位で複数ブロック設置可。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">シーン</span><span class="cat-mod-meta-body">方針一覧／規約一覧／関連リンク集約など、説明文付きの遷移リンクを多数並べる汎用モジュール。カテゴリヘッダ単位で複数grid設置可。すべてページ遷移前提（媒体区別なし）。</span></div>
       </div>
     </div>
   </section>

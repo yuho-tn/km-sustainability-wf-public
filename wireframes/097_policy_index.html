@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>方針一覧 — KM サステナビリティ WF v2.4</title>
+<title>方針一覧 — KM サステナビリティ WF v2.5</title>
 <style>
 /* ============================================================
    KM SUSTAINABILITY WF — SHARED CSS v3.0
@@ -87,90 +87,9 @@ body {
   padding: 0 var(--pad-h);
 }
 
-.wf-header {
-  background: var(--c-white);
-  border-bottom: 1px solid var(--c-border);
-}
-.wf-header-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 32px;
-  border-bottom: 1px solid var(--c-border-s);
-}
-.wf-logo { display: flex; align-items: center; gap: 10px; }
-.wf-logo-mark {
-  width: 32px;
-  height: 21px;
-  background: #555;
-  border-radius: 50% 50% 0 50%;
-}
-.wf-logo-text {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--c-text-h);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-.wf-header-utils {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  font-size: 11px;
-  color: var(--c-text-s);
-}
-.wf-gnav {
-  display: flex;
-  align-items: stretch;
-  padding: 0 32px;
-}
-.wf-gnav-item {
-  padding: 11px 16px;
-  font-size: 12px;
-  color: var(--c-text-s);
-  border-bottom: 2px solid transparent;
-  white-space: nowrap;
-}
-.wf-gnav-item.is-active {
-  color: var(--c-text-h);
-  font-weight: 700;
-  border-bottom-color: var(--c-text-h);
-}
-.wf-lnav {
-  background: #3A3A3A;
-  display: flex;
-  align-items: center;
-  gap: 0;
-  padding: 0 32px;
-}
-.wf-lnav-label {
-  font-size: 12px;
-  font-weight: 700;
-  color: #fff;
-  padding: 10px 16px 10px 0;
-  margin-right: 8px;
-  border-right: 1px solid #555;
-  white-space: nowrap;
-}
-.wf-lnav-item {
-  font-size: 11px;
-  color: #BBB;
-  padding: 10px 14px;
-  white-space: nowrap;
-}
-.wf-lnav-item.is-active {
-  color: #fff;
-  border-bottom: 2px solid #fff;
-}
-.wf-header-note {
-  background: #F0F0F0;
-  text-align: center;
-  font-size: 10px;
-  color: #888;
-  padding: 4px 24px;
-  border-top: 1px solid #E0E0E0;
-}
-
+/* ヘッダー：KM公式デザイン画像版（全ページ共通） */
+.wf-header-img { background: var(--c-white); border-bottom: 1px solid var(--c-border); line-height: 0; }
+.wf-header-img-asset { display: block; width: 100%; height: auto; }
 .wf-breadcrumb {
   background: var(--c-white);
   border-bottom: 1px solid var(--c-border-s);
@@ -355,49 +274,106 @@ body {
   letter-spacing: 0.03em;
 }
 
-.wf-footer {
-  background: #F5F5F5;
-  border-top: 1px solid var(--c-border);
-  padding: 32px var(--pad-h) 20px;
+/* サステナビリティサイトフッター（アコーディオン式・全ページ共通） */
+.sus-footer { background: #2A2A2A; color: #ddd; border-top: 1px solid #444; }
+.sus-footer-toggle {
+  display: flex; align-items: center; gap: 12px;
+  width: 100%; padding: 14px var(--pad-h);
+  background: #1A1A1A; border: none; border-bottom: 1px solid #333;
+  color: #fff; font-size: 13px; font-weight: 700;
+  cursor: pointer; text-align: left; letter-spacing: 0.02em;
+  font-family: inherit;
 }
-.wf-footer-note {
-  text-align: center;
-  font-size: 10px;
-  color: #999;
-  background: #EBEBEB;
-  border: 1px solid var(--c-border);
-  padding: 6px;
-  margin-bottom: 20px;
+.sus-footer-toggle:hover { background: #222; }
+.sus-footer-toggle-icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 14px; height: 14px; font-size: 10px; color: #fff;
+  transition: transform 0.2s ease;
 }
-.wf-footer-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  margin-bottom: 24px;
+.sus-footer[data-open="false"] .sus-footer-toggle-icon { transform: rotate(-90deg); }
+.sus-footer-content {
+  padding: 32px var(--pad-h) 36px;
+  background: #2A2A2A;
 }
-.wf-footer-col-title {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--c-text);
-  border-bottom: 1px solid var(--c-border);
-  padding-bottom: 8px;
-  margin-bottom: 8px;
+.sus-footer[data-open="false"] .sus-footer-content { display: none; }
+.sus-footer-grid {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 28px;
 }
-.wf-footer-link {
-  display: block;
-  font-size: 11px;
-  color: var(--c-text-s);
-  padding: 3px 0;
+.sus-footer-col-title {
+  font-size: 13px; font-weight: 700; color: #fff;
+  padding-bottom: 10px; margin-bottom: 12px;
+  border-bottom: 1px solid #555;
+  letter-spacing: 0.02em;
 }
-.wf-footer-bottom {
-  border-top: 1px solid var(--c-border);
-  padding-top: 14px;
-  display: flex;
-  justify-content: space-between;
-  font-size: 11px;
-  color: var(--c-text-xs);
+.sus-footer-link {
+  display: block; font-size: 12px; color: #fff;
+  font-weight: 600; padding: 6px 0 4px; line-height: 1.5;
+  cursor: default;
+}
+.sus-footer-sublink {
+  display: block; font-size: 11px; color: #aaa;
+  font-weight: 400; padding: 2px 0 2px 12px; line-height: 1.6;
+  cursor: default;
 }
 
+/* コーポレート全体フッター（公式デザイン準拠） */
+.wf-footer { background: #F0EFEC; color: #444; border-top: 1px solid #D8D7D3; }
+.wf-footer-main { padding: 36px var(--pad-h) 28px; }
+.wf-footer-section { margin-bottom: 22px; }
+.wf-footer-section:last-of-type { margin-bottom: 26px; }
+.wf-footer-section-title {
+  font-size: 13px; font-weight: 700; color: #1B2233;
+  border-left: 4px solid #3D4F7B;
+  padding-left: 10px;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+.wf-footer-links {
+  display: flex; flex-wrap: wrap; row-gap: 8px; column-gap: 26px;
+  padding-left: 14px;
+}
+.wf-footer-link {
+  font-size: 12px; color: #4A4A4A; cursor: default;
+  white-space: nowrap; line-height: 1.6;
+}
+.wf-footer-link::after { content: ' ›'; color: #888; padding-left: 4px; }
+.wf-footer-utils {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 8px 0 4px 14px;
+  margin-top: 6px;
+}
+.wf-footer-sns {
+  font-size: 12px; color: #4A4A4A;
+  display: inline-flex; align-items: center; gap: 8px;
+  cursor: default;
+}
+.wf-footer-icon-plus {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 16px; height: 16px;
+  border: 1px solid #999; color: #555;
+  font-size: 11px; line-height: 1;
+}
+.wf-footer-region {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 10px 22px;
+  border: 1px solid #999; background: var(--c-white);
+  font-size: 12px; color: #2A2A2A; cursor: default;
+}
+.wf-footer-region-globe {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 16px; height: 16px;
+  border: 1px solid #555; border-radius: 50%;
+  font-size: 9px; line-height: 1;
+}
+.wf-footer-bottom {
+  background: #2D3447; color: #D8D8D8;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px var(--pad-h);
+  font-size: 11px; letter-spacing: 0.02em;
+}
+.wf-footer-bottom-links { display: inline-flex; align-items: center; gap: 14px; }
+.wf-footer-bottom-links .sep { color: #777; }
+.wf-footer-bottom-link { color: #D8D8D8; cursor: default; }
 .wf-annotation {
   background: var(--c-ann-bg);
   border-left: 3px solid var(--c-ann-bdr);
@@ -537,33 +513,28 @@ body {
   letter-spacing: -0.01em;
 }
 
-/* 方針リスト（メインモジュール） — 説明文付き2行リスト・2カラム統一 */
-.policy-list {
+/* 説明文付きリンクボタン（共通モジュール 6-11） — タイトル＋説明文1行＋›矢印の独立ボタン */
+.link-btn-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  background: var(--c-white);
-  border: 1px solid var(--c-border);
+  gap: 12px;
 }
-.policy-row {
+.link-btn {
   display: grid;
   grid-template-columns: 1fr 24px;
   align-items: center;
   gap: 16px;
   padding: 14px 20px;
-  border-bottom: 1px solid var(--c-border-s);
-  border-right: 1px solid var(--c-border-s);
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
   cursor: default;
 }
-/* 右カラム（偶数番目）には右ボーダー不要 */
-.policy-row:nth-child(2n) { border-right: none; }
-/* 奇数総数の最終行（左カラムに単独）も右ボーダー不要：右半分の枠を消して空きボタン風に見えないようにする */
-.policy-row:last-child:nth-child(2n+1) { border-right: none; }
-/* 最下段の border-bottom を消す（最後の2件） */
-.policy-row:last-child,
-.policy-row:nth-last-child(2):nth-child(2n+1) { border-bottom: none; }
-.policy-row:hover { background: #FAFAFA; }
-.policy-row-body { min-width: 0; }
-.policy-row-title {
+.link-btn:hover {
+  border-color: var(--c-text-h);
+  background: #FAFAFA;
+}
+.link-btn-body { min-width: 0; }
+.link-btn-title {
   font-size: 14px;
   font-weight: 700;
   color: var(--c-text-h);
@@ -571,18 +542,18 @@ body {
   letter-spacing: -0.01em;
   margin-bottom: 2px;
 }
-.policy-row-desc {
+.link-btn-desc {
   font-size: 11px;
   color: var(--c-text-s);
   line-height: 1.6;
 }
-.policy-row-arrow {
+.link-btn-arrow {
   font-size: 14px;
   color: var(--c-text-s);
   text-align: right;
   line-height: 1;
 }
-.policy-row:hover .policy-row-arrow { color: var(--c-text-h); }
+.link-btn:hover .link-btn-arrow { color: var(--c-text-h); }
 
 /* セクション間スペース調整 */
 .policy-section { padding-top: 36px; padding-bottom: 36px; }
@@ -598,7 +569,7 @@ body {
   <div>
     <strong>KONICA MINOLTA サステナビリティ</strong>
     <span class="meta-badge">方針一覧</span>
-    <span class="meta-badge">WF v2.4</span>
+    <span class="meta-badge">WF v2.5</span>
     <span class="meta-badge">#097</span>
   </div>
   <div style="font-size:10px; color:#666;">2026.04</div>
@@ -616,38 +587,9 @@ body {
       <span class="pi-layer">関連情報（1-G） — 目次・PDF集約ページ</span>
     </div>
 
-    <!-- ヘッダー -->
-    <header class="wf-header">
-      <div class="wf-header-inner">
-        <div class="wf-logo">
-          <div class="wf-logo-mark"></div>
-          <div class="wf-logo-text">KONICA MINOLTA</div>
-        </div>
-        <div class="wf-header-utils">
-          <span>サポート・ダウンロード</span>
-          <span>お問い合わせ</span>
-          <span>Countries/Regions</span>
-          <span>ja | en | zh</span>
-        </div>
-      </div>
-      <nav class="wf-gnav">
-        <span class="wf-gnav-item">企業情報</span>
-        <span class="wf-gnav-item">Newsroom</span>
-        <span class="wf-gnav-item">株主・投資家情報</span>
-        <span class="wf-gnav-item is-active">サステナビリティ</span>
-        <span class="wf-gnav-item">テクノロジー</span>
-        <span class="wf-gnav-item">採用情報</span>
-      </nav>
-      <nav class="wf-lnav">
-        <span class="wf-lnav-label">サステナビリティ</span>
-        <span class="wf-lnav-item">TOP</span>
-        <span class="wf-lnav-item">サステナビリティ戦略</span>
-        <span class="wf-lnav-item">サステナビリティマネジメント</span>
-        <span class="wf-lnav-item">環境</span>
-        <span class="wf-lnav-item">社会</span>
-        <span class="wf-lnav-item">ガバナンス</span>
-      </nav>
-      <div class="wf-header-note">⚠ ヘッダーは既確定。変更なし。</div>
+    <!-- ヘッダー：KM公式デザイン（画像差し替え） -->
+    <header class="wf-header-img">
+      <img src="assets/km-header.png" alt="KONICA MINOLTA ヘッダー（公式デザイン）" class="wf-header-img-asset">
     </header>
 
     <!-- パンくず -->
@@ -682,13 +624,13 @@ body {
         </div>
       </div>
 
-      <div class="policy-list">
-        <div class="policy-row">
-          <div class="policy-row-body">
-            <div class="policy-row-title">コニカミノルタグループ行動憲章</div>
-            <p class="policy-row-desc">グループ全社員が共有する、社会的責任を果たすための行動の基本方針。</p>
+      <div class="link-btn-grid">
+        <div class="link-btn">
+          <div class="link-btn-body">
+            <div class="link-btn-title">コニカミノルタグループ行動憲章</div>
+            <p class="link-btn-desc">グループ全社員が共有する、社会的責任を果たすための行動の基本方針。</p>
           </div>
-          <span class="policy-row-arrow">›</span>
+          <span class="link-btn-arrow">›</span>
         </div>
       </div>
 
@@ -709,13 +651,13 @@ body {
         </div>
       </div>
 
-      <div class="policy-list">
-        <div class="policy-row">
-          <div class="policy-row-body">
-            <div class="policy-row-title">コニカミノルタ環境方針</div>
-            <p class="policy-row-desc">気候変動・資源循環・化学物質管理など、環境課題への取り組み方針。</p>
+      <div class="link-btn-grid">
+        <div class="link-btn">
+          <div class="link-btn-body">
+            <div class="link-btn-title">コニカミノルタ環境方針</div>
+            <p class="link-btn-desc">気候変動・資源循環・化学物質管理など、環境課題への取り組み方針。</p>
           </div>
-          <span class="policy-row-arrow">›</span>
+          <span class="link-btn-arrow">›</span>
         </div>
       </div>
 
@@ -736,69 +678,69 @@ body {
         </div>
       </div>
 
-      <div class="policy-list">
-        <div class="policy-row">
-          <div class="policy-row-body">
-            <div class="policy-row-title">コニカミノルタグループ ダイバーシティ経営宣言</div>
-            <p class="policy-row-desc">多様な人材が活躍できる経営の実現に向けた宣言文。</p>
+      <div class="link-btn-grid">
+        <div class="link-btn">
+          <div class="link-btn-body">
+            <div class="link-btn-title">コニカミノルタグループ ダイバーシティ経営宣言</div>
+            <p class="link-btn-desc">多様な人材が活躍できる経営の実現に向けた宣言文。</p>
           </div>
-          <span class="policy-row-arrow">›</span>
+          <span class="link-btn-arrow">›</span>
         </div>
-        <div class="policy-row">
-          <div class="policy-row-body">
-            <div class="policy-row-title">コニカミノルタグループ健康宣言</div>
-            <p class="policy-row-desc">従業員の健康保持・増進を経営課題として取り組む宣言文。</p>
+        <div class="link-btn">
+          <div class="link-btn-body">
+            <div class="link-btn-title">コニカミノルタグループ健康宣言</div>
+            <p class="link-btn-desc">従業員の健康保持・増進を経営課題として取り組む宣言文。</p>
           </div>
-          <span class="policy-row-arrow">›</span>
+          <span class="link-btn-arrow">›</span>
         </div>
-        <div class="policy-row">
-          <div class="policy-row-body">
-            <div class="policy-row-title">コニカミノルタ労働安全衛生方針</div>
-            <p class="policy-row-desc">従業員の安全と健康を最優先する労働安全衛生に関する方針。</p>
+        <div class="link-btn">
+          <div class="link-btn-body">
+            <div class="link-btn-title">コニカミノルタ労働安全衛生方針</div>
+            <p class="link-btn-desc">従業員の安全と健康を最優先する労働安全衛生に関する方針。</p>
           </div>
-          <span class="policy-row-arrow">›</span>
+          <span class="link-btn-arrow">›</span>
         </div>
-        <div class="policy-row">
-          <div class="policy-row-body">
-            <div class="policy-row-title">コニカミノルタグループ人権方針</div>
-            <p class="policy-row-desc">国際規範に基づき、グループ全体で取り組む人権尊重の基本方針。</p>
+        <div class="link-btn">
+          <div class="link-btn-body">
+            <div class="link-btn-title">コニカミノルタグループ人権方針</div>
+            <p class="link-btn-desc">国際規範に基づき、グループ全体で取り組む人権尊重の基本方針。</p>
           </div>
-          <span class="policy-row-arrow">›</span>
+          <span class="link-btn-arrow">›</span>
         </div>
-        <div class="policy-row">
-          <div class="policy-row-body">
-            <div class="policy-row-title">コニカミノルタサプライチェーン行動規範</div>
-            <p class="policy-row-desc">サプライヤーに遵守を求める、人権・労働・環境等の行動基準。</p>
+        <div class="link-btn">
+          <div class="link-btn-body">
+            <div class="link-btn-title">コニカミノルタサプライチェーン行動規範</div>
+            <p class="link-btn-desc">サプライヤーに遵守を求める、人権・労働・環境等の行動基準。</p>
           </div>
-          <span class="policy-row-arrow">›</span>
+          <span class="link-btn-arrow">›</span>
         </div>
-        <div class="policy-row">
-          <div class="policy-row-body">
-            <div class="policy-row-title">コニカミノルタ調達方針</div>
-            <p class="policy-row-desc">公正・公平な取引と社会的責任を果たす調達活動に関する方針。</p>
+        <div class="link-btn">
+          <div class="link-btn-body">
+            <div class="link-btn-title">コニカミノルタ調達方針</div>
+            <p class="link-btn-desc">公正・公平な取引と社会的責任を果たす調達活動に関する方針。</p>
           </div>
-          <span class="policy-row-arrow">›</span>
+          <span class="link-btn-arrow">›</span>
         </div>
-        <div class="policy-row">
-          <div class="policy-row-body">
-            <div class="policy-row-title">コニカミノルタ責任ある鉱物調達方針</div>
-            <p class="policy-row-desc">紛争鉱物等のリスクに対応し、責任ある鉱物調達を推進する方針。</p>
+        <div class="link-btn">
+          <div class="link-btn-body">
+            <div class="link-btn-title">コニカミノルタ責任ある鉱物調達方針</div>
+            <p class="link-btn-desc">紛争鉱物等のリスクに対応し、責任ある鉱物調達を推進する方針。</p>
           </div>
-          <span class="policy-row-arrow">›</span>
+          <span class="link-btn-arrow">›</span>
         </div>
-        <div class="policy-row">
-          <div class="policy-row-body">
-            <div class="policy-row-title">コニカミノルタ品質方針</div>
-            <p class="policy-row-desc">お客様の期待に応える製品・サービス品質を実現する基本方針。</p>
+        <div class="link-btn">
+          <div class="link-btn-body">
+            <div class="link-btn-title">コニカミノルタ品質方針</div>
+            <p class="link-btn-desc">お客様の期待に応える製品・サービス品質を実現する基本方針。</p>
           </div>
-          <span class="policy-row-arrow">›</span>
+          <span class="link-btn-arrow">›</span>
         </div>
-        <div class="policy-row">
-          <div class="policy-row-body">
-            <div class="policy-row-title">コニカミノルタグループAIの利活用に関する基本方針</div>
-            <p class="policy-row-desc">AIの倫理的・責任ある利活用に関するグループ全体の基本方針。</p>
+        <div class="link-btn">
+          <div class="link-btn-body">
+            <div class="link-btn-title">コニカミノルタグループAIの利活用に関する基本方針</div>
+            <p class="link-btn-desc">AIの倫理的・責任ある利活用に関するグループ全体の基本方針。</p>
           </div>
-          <span class="policy-row-arrow">›</span>
+          <span class="link-btn-arrow">›</span>
         </div>
       </div>
 
@@ -819,88 +761,176 @@ body {
         </div>
       </div>
 
-      <div class="policy-list">
-        <div class="policy-row">
-          <div class="policy-row-body">
-            <div class="policy-row-title">コーポレートガバナンス基本方針</div>
-            <p class="policy-row-desc">取締役会の機能・株主の権利確保等、ガバナンス体制の根本ルールを規定。</p>
+      <div class="link-btn-grid">
+        <div class="link-btn">
+          <div class="link-btn-body">
+            <div class="link-btn-title">コーポレートガバナンス基本方針</div>
+            <p class="link-btn-desc">取締役会の機能・株主の権利確保等、ガバナンス体制の根本ルールを規定。</p>
           </div>
-          <span class="policy-row-arrow">›</span>
+          <span class="link-btn-arrow">›</span>
         </div>
-        <div class="policy-row">
-          <div class="policy-row-body">
-            <div class="policy-row-title">ディスクロージャーポリシー</div>
-            <p class="policy-row-desc">投資家・ステークホルダーへの情報開示に関する基本方針。</p>
+        <div class="link-btn">
+          <div class="link-btn-body">
+            <div class="link-btn-title">ディスクロージャーポリシー</div>
+            <p class="link-btn-desc">投資家・ステークホルダーへの情報開示に関する基本方針。</p>
           </div>
-          <span class="policy-row-arrow">›</span>
+          <span class="link-btn-arrow">›</span>
         </div>
-        <div class="policy-row">
-          <div class="policy-row-body">
-            <div class="policy-row-title">コニカミノルタグループ税務方針</div>
-            <p class="policy-row-desc">適正な納税と税務リスク管理に関するグループ共通の方針。</p>
+        <div class="link-btn">
+          <div class="link-btn-body">
+            <div class="link-btn-title">コニカミノルタグループ税務方針</div>
+            <p class="link-btn-desc">適正な納税と税務リスク管理に関するグループ共通の方針。</p>
           </div>
-          <span class="policy-row-arrow">›</span>
+          <span class="link-btn-arrow">›</span>
         </div>
-        <div class="policy-row">
-          <div class="policy-row-body">
-            <div class="policy-row-title">コニカミノルタ情報セキュリティ基本方針</div>
-            <p class="policy-row-desc">情報資産の機密性・完全性・可用性を確保する基本方針。</p>
+        <div class="link-btn">
+          <div class="link-btn-body">
+            <div class="link-btn-title">コニカミノルタ情報セキュリティ基本方針</div>
+            <p class="link-btn-desc">情報資産の機密性・完全性・可用性を確保する基本方針。</p>
           </div>
-          <span class="policy-row-arrow">›</span>
+          <span class="link-btn-arrow">›</span>
         </div>
-        <div class="policy-row">
-          <div class="policy-row-body">
-            <div class="policy-row-title">コニカミノルタグループ個人情報保護方針</div>
-            <p class="policy-row-desc">お客様・従業員等の個人情報を適正に取り扱うためのグループ方針。</p>
+        <div class="link-btn">
+          <div class="link-btn-body">
+            <div class="link-btn-title">コニカミノルタグループ個人情報保護方針</div>
+            <p class="link-btn-desc">お客様・従業員等の個人情報を適正に取り扱うためのグループ方針。</p>
           </div>
-          <span class="policy-row-arrow">›</span>
+          <span class="link-btn-arrow">›</span>
         </div>
-        <div class="policy-row">
-          <div class="policy-row-body">
-            <div class="policy-row-title">アセットオーナーとしての方針</div>
-            <p class="policy-row-desc">企業年金等のアセットオーナーとしての受託者責任に関する方針。</p>
+        <div class="link-btn">
+          <div class="link-btn-body">
+            <div class="link-btn-title">アセットオーナーとしての方針</div>
+            <p class="link-btn-desc">企業年金等のアセットオーナーとしての受託者責任に関する方針。</p>
           </div>
-          <span class="policy-row-arrow">›</span>
+          <span class="link-btn-arrow">›</span>
         </div>
-        <div class="policy-row">
-          <div class="policy-row-body">
-            <div class="policy-row-title">パートナーシップ構築宣言</div>
-            <p class="policy-row-desc">取引先との連携・共存共栄に向けた構築宣言。</p>
+        <div class="link-btn">
+          <div class="link-btn-body">
+            <div class="link-btn-title">パートナーシップ構築宣言</div>
+            <p class="link-btn-desc">取引先との連携・共存共栄に向けた構築宣言。</p>
           </div>
-          <span class="policy-row-arrow">›</span>
+          <span class="link-btn-arrow">›</span>
         </div>
       </div>
 
     </section>
 
-    <!-- フッター -->
-    <footer class="wf-footer">
-      <div class="wf-footer-note">⚠ フッターは既確定。変更なし。</div>
-      <div class="wf-footer-grid">
-        <div>
-          <div class="wf-footer-col-title">企業情報</div>
-          <span class="wf-footer-link">企業情報トップ</span>
-          <span class="wf-footer-link">Newsroom</span>
-        </div>
-        <div>
-          <div class="wf-footer-col-title">環境</div>
-          <span class="wf-footer-link">気候変動</span>
-          <span class="wf-footer-link">資源循環</span>
-        </div>
-        <div>
-          <div class="wf-footer-col-title">社会</div>
-          <span class="wf-footer-link">人材戦略</span>
-          <span class="wf-footer-link">DE&amp;I</span>
-        </div>
-        <div>
-          <div class="wf-footer-col-title">ガバナンス</div>
-          <span class="wf-footer-link">コンプライアンス</span>
-          <span class="wf-footer-link">情報セキュリティ</span>
+    <!-- サステナビリティサイトフッター（アコーディオン式・サイトマップ） -->
+    <div class="sus-footer" data-open="true">
+      <button class="sus-footer-toggle" type="button" onclick="this.parentElement.dataset.open = this.parentElement.dataset.open === 'true' ? 'false' : 'true'">
+        <span class="sus-footer-toggle-icon">▼</span>
+        <span>サステナビリティ サイトマップ</span>
+      </button>
+      <div class="sus-footer-content">
+        <div class="sus-footer-grid">
+          <div class="sus-footer-col">
+            <div class="sus-footer-col-title">サステナビリティ</div>
+            <span class="sus-footer-link">サステナビリティ戦略</span>
+            <span class="sus-footer-link">サステナビリティマネジメント</span>
+            <span class="sus-footer-link">ソーシャルイノベーション</span>
+          </div>
+          <div class="sus-footer-col">
+            <div class="sus-footer-col-title">環境</div>
+            <span class="sus-footer-link">コニカミノルタの環境戦略</span>
+            <span class="sus-footer-link">環境課題解決を推進する活動</span>
+            <span class="sus-footer-link">環境マネジメント</span>
+            <span class="sus-footer-link">気候変動</span>
+            <span class="sus-footer-link">TCFD開示</span>
+            <span class="sus-footer-link">資源循環</span>
+            <span class="sus-footer-link">化学物質・汚染防止</span>
+            <span class="sus-footer-link">水資源</span>
+            <span class="sus-footer-link">生物多様性</span>
+            <span class="sus-footer-link">TNFD開示</span>
+            <span class="sus-footer-link">環境ラベル・認証等</span>
+          </div>
+          <div class="sus-footer-col">
+            <div class="sus-footer-col-title">社会</div>
+            <span class="sus-footer-link">人的資本経営</span>
+            <span class="sus-footer-link">企業文化・組織風土</span>
+            <span class="sus-footer-link">人材育成</span>
+            <span class="sus-footer-link">DE&amp;I</span>
+            <span class="sus-footer-link">労働慣行</span>
+            <span class="sus-footer-link">健康経営</span>
+            <span class="sus-footer-link">労働安全衛生</span>
+            <span class="sus-footer-link">人権</span>
+            <span class="sus-footer-link">サプライチェーンマネジメント</span>
+            <span class="sus-footer-link">顧客責任・品質</span>
+            <span class="sus-footer-link">社会貢献活動</span>
+            <span class="sus-footer-link">AI利活用</span>
+          </div>
+          <div class="sus-footer-col">
+            <div class="sus-footer-col-title">ガバナンス</div>
+            <span class="sus-footer-link">コンプライアンス</span>
+            <span class="sus-footer-link">税務に関する取り組み</span>
+            <span class="sus-footer-link">情報セキュリティ</span>
+          </div>
+          <div class="sus-footer-col">
+            <div class="sus-footer-col-title">報告・データ</div>
+            <span class="sus-footer-link">ESGデータ</span>
+            <span class="sus-footer-link">第三者保証</span>
+            <span class="sus-footer-link">方針一覧</span>
+            <span class="sus-footer-link">ガイドライン</span>
+            <span class="sus-footer-link">イニシアティブ・外部評価</span>
+            <span class="sus-footer-link">サステナブルファイナンス</span>
+            <span class="sus-footer-link">サステナビリティサイトアーカイブ</span>
+          </div>
         </div>
       </div>
+    </div>
+
+    <!-- フッター（コーポレート全体・公式デザイン準拠） -->
+    <footer class="wf-footer">
+      <div class="wf-footer-main">
+
+        <div class="wf-footer-section">
+          <div class="wf-footer-section-title">企業情報</div>
+          <div class="wf-footer-links">
+            <span class="wf-footer-link">企業情報トップ</span>
+            <span class="wf-footer-link">Newsroom</span>
+            <span class="wf-footer-link">株主・投資家情報</span>
+            <span class="wf-footer-link">サステナビリティ</span>
+            <span class="wf-footer-link">テクノロジー</span>
+            <span class="wf-footer-link">採用情報</span>
+          </div>
+        </div>
+
+        <div class="wf-footer-section">
+          <div class="wf-footer-section-title">事業領域</div>
+          <div class="wf-footer-links">
+            <span class="wf-footer-link">ビジネスソリューション</span>
+            <span class="wf-footer-link">プロダクションプリント&amp;グラフィック</span>
+            <span class="wf-footer-link">ヘルスケア</span>
+            <span class="wf-footer-link">センシング</span>
+            <span class="wf-footer-link">材料・コンポーネント</span>
+            <span class="wf-footer-link">画像IoT・FORXAI</span>
+            <span class="wf-footer-link">テキスタイルプリンター</span>
+            <span class="wf-footer-link">プラネタリウム事業</span>
+            <span class="wf-footer-link">イノベーション・サービス</span>
+          </div>
+        </div>
+
+        <div class="wf-footer-utils">
+          <span class="wf-footer-sns">
+            ソーシャルメディア オフィシャルアカウント
+            <span class="wf-footer-icon-plus">+</span>
+          </span>
+          <span class="wf-footer-region">
+            <span class="wf-footer-region-globe">⊕</span>
+            Countries/Regions
+            <span class="wf-footer-icon-plus">+</span>
+          </span>
+        </div>
+
+      </div>
       <div class="wf-footer-bottom">
-        <div>サイトのご利用について ｜ 個人情報保護方針 ｜ サイトマップ</div>
-        <div>&copy;2011-2026 Konica Minolta, Inc.</div>
+        <div class="wf-footer-bottom-links">
+          <span class="wf-footer-bottom-link">サイトのご利用について</span>
+          <span class="sep">｜</span>
+          <span class="wf-footer-bottom-link">個人情報保護方針</span>
+          <span class="sep">｜</span>
+          <span class="wf-footer-bottom-link">サイトマップ</span>
+        </div>
+        <div>&copy;2011-2025 Konica Minolta, Inc.</div>
       </div>
     </footer>
 
@@ -910,33 +940,33 @@ body {
        アノテーションパネル
   ============================================================ -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — 方針一覧（v2.4）</h3>
+    <h3>設計ポイント — 方針一覧（v2.5）</h3>
 
     <div class="ann-item">
       <span class="ann-num">A-D</span>
-      <span class="ann-head">カテゴリ別 方針リスト（.policy-list / .policy-row）</span>
+      <span class="ann-head">カテゴリ別 説明文付きリンクボタン（.link-btn / .link-btn-grid）</span>
       <div class="ann-row">
         <span class="ann-row-label">構成</span>
-        各カテゴリ＝番号バッジ＋H2＋外枠1pxで囲んだリスト。1行＝タイトル（14px太字）＋説明文1行（11px薄色）＋右端「›」矢印。<strong>全カテゴリ2カラム統一</strong>。奇数件カテゴリの最終単独項目は border-right を消すことで、右半分が空きボタン風に見えないよう処理。
+        各ボタン＝独立した枠付き矩形。タイトル（14px太字）＋説明文1行（11px薄色）＋右端「›」矢印。<strong>2カラムgrid（gap:12px）</strong>で並列配置。単独項目（A／B）は左カラムにボタン1個・右側は完全な余白（枠なし）。奇数件最終も同じ挙動。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">v1からの変更</span>
         ① <strong>PDF廃止前提</strong>：すべて遷移先WEBページ扱いとなるため、PDF/WEBタグ・アイコン・ファイル容量・遷移種別CTAをすべて撤去<br>
-        ② <strong>カード→2カラムリスト化</strong>：1件あたり132px → 約56pxへ大幅圧縮の上、2カラム並列でさらに縦方向を半減<br>
-        ③ <strong>件数サマリー・凡例・カテゴリアンカー撤去</strong>：媒体区別が消え4カテゴリのみとなり、いずれもオーバースペックなため<br>
-        ④ <strong>2カラム統一</strong>：v2.4の単件1カラム切替を廃止し、全カテゴリで2カラム枠を維持して見た目の統一感を担保
+        ② <strong>カード→リンクボタン化</strong>：1件あたり132px → 約64pxへ圧縮、さらに2カラムで縦方向半減<br>
+        ③ <strong>件数サマリー・凡例・カテゴリアンカー撤去</strong>：媒体区別が消え4カテゴリのみとなりオーバースペック<br>
+        ④ <strong>独立ボタン × 2カラムgrid設計</strong>：単独要素時は左半分のみに枠が描かれ、右側は完全余白で違和感なし
       </div>
       <p class="ann-body">
-        モジュール：⑥-11 .policy-list（方針一覧リスト・新規）。catalog-v2.html に追加。
+        モジュール：⑥-11 .link-btn / .link-btn-grid（説明文付きリンクボタン・新規共通モジュール）。catalog-v2.html v3.4 に登録。方針一覧／規約一覧／関連リンク集約など汎用に使用可能。
       </p>
     </div>
 
     <div class="ann-item">
       <span class="ann-num">!</span>
-      <span class="ann-head">UI/UX改善サマリー（vs 現行サイト／v1）</span>
+      <span class="ann-head">UI/UX改善サマリー（vs 現行サイト）</span>
       <p class="ann-body">
         ① <strong>カテゴリ化</strong>：フラットリスト → 4カテゴリ分類で目的の方針に到達しやすく<br>
-        ② <strong>2カラムコンパクトリスト統一</strong>：タイトル＋説明文1行の2段構成 × 2カラム並列で情報密度と一覧性を両立<br>
+        ② <strong>独立ボタン × 2カラムgrid</strong>：タイトル＋説明文1行の2段構成 × 2カラム並列で情報密度と一覧性を両立<br>
         ③ <strong>遷移先統一</strong>：すべてページ遷移として扱い、誤クリック・遷移種別の混乱を排除
       </p>
     </div>
