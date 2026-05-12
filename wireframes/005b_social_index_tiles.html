@@ -180,12 +180,45 @@ body {
   border-right: 1px solid var(--c-border);
   border-bottom: 1px solid var(--c-border);
   padding: 22px 24px 56px;
-  min-height: 180px;
+  min-height: 220px;
   cursor: default;
   transition: background 0.15s;
 }
 .social-tile:hover {
   background: var(--c-bg-sub);
+}
+
+/* タイル内 — 下層見出しへの#アンカーリンク群 */
+.social-tile-anchors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--c-border);
+}
+.social-tile-anchor {
+  display: inline-flex;
+  align-items: center;
+  font-size: 10.5px;
+  color: var(--c-text);
+  background: var(--c-bg-sub);
+  border: 1px solid var(--c-border);
+  padding: 3px 8px;
+  cursor: default;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+}
+.social-tile-anchor::before {
+  content: '#';
+  color: var(--c-text-xs);
+  margin-right: 4px;
+  font-weight: 700;
+}
+.social-tile-anchor:hover {
+  background: var(--c-white);
+  border-color: var(--c-text-h);
+  color: var(--c-text-h);
 }
 
 .social-tile-num {
@@ -354,12 +387,12 @@ body {
   <div>
     <strong>KONICA MINOLTA サステナビリティ</strong>
     <span class="meta-badge">社会 インデックス（タイル版／別案）</span>
-    <span class="meta-badge">WF v1.0</span>
+    <span class="meta-badge">WF v1.1</span>
     <span class="meta-badge">#005b</span>
     <span class="meta-badge">L2</span>
-    <span class="meta-badge" style="background:#7a4a00; color:#fff;">005 別案 / 12タイル リンク集型</span>
+    <span class="meta-badge" style="background:#7a4a00; color:#fff;">005 別案 / 12タイル＋#アンカー</span>
   </div>
-  <div style="font-size:10px; color:#666;">2026.05 / リコー型タイル一覧UI採用</div>
+  <div style="font-size:10px; color:#666;">2026.05 / 見出し削除＋下層#アンカー導線追加</div>
 </div>
 
 <div class="wf-canvas">
@@ -412,33 +445,18 @@ body {
     </div>
 
     <!-- ============================================================
-         セクション A：基本的な考え方
+         セクション 導入：本文のみ（見出しなし）
     ============================================================ -->
-    <section class="wf-section bg-white">
-      <span class="wf-section-marker">A</span>
-      <h2 class="wf-section-title">基本的な考え方</h2>
-      <p style="font-size:13px; color:var(--c-text); line-height:1.9; margin-bottom:14px;">
-        コニカミノルタは、人財育成やDE&amp;Iを中心に、社員一人ひとりの可能性を引き出す職場づくりと、社会との共生を通じた持続可能な事業活動を推進しています。本ページでは、人的資本戦略・人財育成・労働環境・人権・サプライチェーン・顧客責任など、社会領域の取り組みの全体像を紹介します。
+    <section class="wf-section bg-white" style="padding-top:40px; padding-bottom:32px;">
+      <p style="font-size:13px; color:var(--c-text); line-height:1.95;">
+        （文章はダミーです）コニカミノルタは、人財育成やDE&amp;Iを中心に、社員一人ひとりの可能性を引き出す職場づくりと、社会との共生を通じた持続可能な事業活動を推進しています。本ページでは、人的資本戦略・人財育成・労働環境・人権・サプライチェーン・顧客責任など、社会領域における12テーマの取り組みの全体像を紹介します。
       </p>
-      <p style="font-size:11px; color:var(--c-text-xs);">（基本的な考え方のテキスト 1〜2段落 — 確定テキスト待ち）</p>
     </section>
 
     <!-- ============================================================
-         セクション B：取り組み（12タイル ブロック型リンク集）
+         セクション：12タイル ブロック型リンク集（見出しなし）
     ============================================================ -->
-    <section class="wf-section bg-sub">
-      <span class="wf-section-marker">B</span>
-      <h2 class="wf-section-title">取り組み</h2>
-      <p class="wf-section-desc">
-        社会領域の12テーマについて、各取り組みの概要と詳細ページへのリンクを掲載しています。タイルをクリックすると個別ページへ移動します。
-      </p>
-
-      <!-- ── 大分類① 人と組織 ── -->
-      <div class="social-group-label">
-        <span class="social-group-label-tag">人と組織</span>
-        <span class="social-group-label-desc">自社の人財・職場づくりに関わる取り組み</span>
-        <span class="social-group-label-count">7テーマ</span>
-      </div>
+    <section class="wf-section bg-sub" style="padding-top:40px;">
 
       <div class="social-tile-grid">
         <!-- 01 人的資本戦略 -->
@@ -448,6 +466,10 @@ body {
           <p class="social-tile-desc">
             個と組織の成長を両立させる人的資本戦略を推進。事業戦略と接続した人事戦略を策定し、エンゲージメントを通じた価値創造を実現します。
           </p>
+          <div class="social-tile-anchors">
+            <span class="social-tile-anchor">基本的な考え方</span>
+            <span class="social-tile-anchor">戦略・目標・実績</span>
+          </div>
           <span class="social-tile-arrow"></span>
         </a>
 
@@ -458,6 +480,10 @@ body {
           <p class="social-tile-desc">
             次世代経営人財育成の強化と、事業成長を牽引する専門人財・グローバル人財の育成を進めています。中長期の戦略人事と接続した育成体系を整備しています。
           </p>
+          <div class="social-tile-anchors">
+            <span class="social-tile-anchor">基本的な考え方</span>
+            <span class="social-tile-anchor">戦略・目標・実績</span>
+          </div>
           <span class="social-tile-arrow"></span>
         </a>
 
@@ -468,6 +494,10 @@ body {
           <p class="social-tile-desc">
             フィロソフィーを基軸とした風土醸成、心理的安全性の確保、対話を通じた組織変革を推進。事業成長を支える企業文化の浸透に取り組みます。
           </p>
+          <div class="social-tile-anchors">
+            <span class="social-tile-anchor">基本的な考え方</span>
+            <span class="social-tile-anchor">取り組み</span>
+          </div>
           <span class="social-tile-arrow"></span>
         </a>
 
@@ -478,6 +508,11 @@ body {
           <p class="social-tile-desc">
             ダイバーシティ・エクイティ＆インクルージョンの推進を通じ、多様な人財が能力を発揮できる組織を目指します。
           </p>
+          <div class="social-tile-anchors">
+            <span class="social-tile-anchor">基本的な考え方</span>
+            <span class="social-tile-anchor">戦略・目標・実績</span>
+            <span class="social-tile-anchor">女性活躍推進</span>
+          </div>
           <span class="social-tile-arrow"></span>
         </a>
 
@@ -488,6 +523,10 @@ body {
           <p class="social-tile-desc">
             健康第一の風土醸成を通じた健全な経営の推進を重視。健康リスク保有者の最少化、過重労働対策、健康度の見える化、女性の健康支援に取り組みます。
           </p>
+          <div class="social-tile-anchors">
+            <span class="social-tile-anchor">基本的な考え方</span>
+            <span class="social-tile-anchor">戦略・目標・実績</span>
+          </div>
           <span class="social-tile-arrow"></span>
         </a>
 
@@ -498,6 +537,10 @@ body {
           <p class="social-tile-desc">
             製造会社として義務的に必要な労働安全衛生体制を構築。労働災害ゼロを目指し、労働安全衛生方針に基づく管理体制とリスクアセスメントを実施しています。
           </p>
+          <div class="social-tile-anchors">
+            <span class="social-tile-anchor">基本的な考え方</span>
+            <span class="social-tile-anchor">戦略・目標・実績</span>
+          </div>
           <span class="social-tile-arrow"></span>
         </a>
 
@@ -508,18 +551,12 @@ body {
           <p class="social-tile-desc">
             ILO中核的労働基準を踏まえた労働慣行の遵守、結社の自由・団体交渉権の尊重、強制労働・児童労働の禁止など、グローバルでの労働者の権利保護を推進します。
           </p>
+          <div class="social-tile-anchors">
+            <span class="social-tile-anchor">基本的な考え方</span>
+          </div>
           <span class="social-tile-arrow"></span>
         </a>
-      </div>
 
-      <!-- ── 大分類② 社会・お客様 ── -->
-      <div class="social-group-label">
-        <span class="social-group-label-tag">社会・お客様</span>
-        <span class="social-group-label-desc">外部ステークホルダーへの責任に関わる取り組み</span>
-        <span class="social-group-label-count">5テーマ</span>
-      </div>
-
-      <div class="social-tile-grid">
         <!-- 08 人権 -->
         <a class="social-tile is-group-b">
           <span class="social-tile-num">08</span>
@@ -527,6 +564,14 @@ body {
           <p class="social-tile-desc">
             人権方針・KMグループ行動憲章・サプライチェーン行動規範を基盤に、グローバルな原則・国際規範に沿った人権尊重を実践。網羅的な人権デュー・デリジェンスを実施しています。
           </p>
+          <div class="social-tile-anchors">
+            <span class="social-tile-anchor">基本的な考え方</span>
+            <span class="social-tile-anchor">体制</span>
+            <span class="social-tile-anchor">人権デュー・デリジェンス</span>
+            <span class="social-tile-anchor">相談・通報窓口</span>
+            <span class="social-tile-anchor">是正</span>
+            <span class="social-tile-anchor">ステークホルダーエンゲージメント</span>
+          </div>
           <span class="social-tile-arrow"></span>
         </a>
 
@@ -537,6 +582,12 @@ body {
           <p class="social-tile-desc">
             サプライチェーン全体での人権・環境・倫理に配慮した責任ある調達活動を推進。サプライヤーとの協働を通じた持続可能なバリューチェーン構築を目指します。
           </p>
+          <div class="social-tile-anchors">
+            <span class="social-tile-anchor">基本的な考え方</span>
+            <span class="social-tile-anchor">体制</span>
+            <span class="social-tile-anchor">サステナブル調達</span>
+            <span class="social-tile-anchor">責任ある鉱物調達</span>
+          </div>
           <span class="social-tile-arrow"></span>
         </a>
 
@@ -547,6 +598,11 @@ body {
           <p class="social-tile-desc">
             コンプライアンス／品質不正防止、製品セキュリティ、製品品質、顧客満足度の4軸でTQM（Total Quality Management）を推進。お客様への責任を多面的に果たします。
           </p>
+          <div class="social-tile-anchors">
+            <span class="social-tile-anchor">基本的な考え方</span>
+            <span class="social-tile-anchor">体制</span>
+            <span class="social-tile-anchor">戦略・目標・実績</span>
+          </div>
           <span class="social-tile-arrow"></span>
         </a>
 
@@ -557,6 +613,9 @@ body {
           <p class="social-tile-desc">
             AI利活用に関する基本方針のもと、お客様・社員・社会への価値提供と、AI倫理・ガバナンスを両立。責任あるAI利活用を推進しています。
           </p>
+          <div class="social-tile-anchors">
+            <span class="social-tile-anchor">基本的な考え方</span>
+          </div>
           <span class="social-tile-arrow"></span>
         </a>
 
@@ -567,6 +626,9 @@ body {
           <p class="social-tile-desc">
             事業活動を通じた社会価値創出に加え、地域社会への貢献活動を推進。教育・文化・スポーツ・環境保全等の分野で、社員参加型の活動を展開しています。
           </p>
+          <div class="social-tile-anchors">
+            <span class="social-tile-anchor">基本的な考え方</span>
+          </div>
           <span class="social-tile-arrow"></span>
         </a>
       </div>
@@ -667,59 +729,92 @@ body {
 
   <!-- アノテーションパネル -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — 社会 インデックス v1.0（別案 #005b／タイル版）</h3>
+    <h3>設計ポイント — 社会 インデックス v1.1（別案 #005b／タイル版）</h3>
 
     <div class="ann-item">
       <span class="ann-num">★</span>
-      <span class="ann-head">005からの主要変更点</span>
+      <span class="ann-head">v1.1 主要変更点</span>
       <div class="ann-row">
         <span class="ann-row-label">CHANGE 1</span>
-        13テーマ詳細ブロック型（KPI／グラフ／TOPICS含む）→<strong>12タイル ブロック型リンク集</strong>に変更。リコー社会サイトの一覧UIに準拠。
+        「基本的な考え方」H2見出し・「取り組み」H2見出し・大分類ラベル（人と組織／社会・お客様）を<strong>すべて削除</strong>。タイル本体だけで構成されるフラットな一覧UIに変更。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">CHANGE 2</span>
-        ステークホルダーエンゲージメントを単独テーマから外し、<strong>12テーマ</strong>体系に整理。
+        導入セクションはダミー本文1段落のみを残置（見出しなし）。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">CHANGE 3</span>
-        各タイルは「番号＋テーマ名＋概要文（既存005の基本的な考え方原文）＋詳細遷移矢印」のみのシンプル構成。KPIグラフ・TOPICS・関連リンクはタイルから外し、各L3個別ページへ集約。
-      </div>
-      <div class="ann-row">
-        <span class="ann-row-label">CHANGE 4</span>
-        大分類「人と組織(7)」「社会・お客様(5)」のグルーピングは継承。タイル上端に色帯（黒/グレー）で視覚的に区別。
+        各タイル内に<strong>「# 〇〇」型のアンカーリンク群</strong>を追加。下層L3ページの該当見出しへ直接遷移する導線として機能（行動変容定義 P10準拠）。
       </div>
     </div>
 
     <div class="ann-item">
-      <span class="ann-num">A</span>
-      <span class="ann-head">基本的な考え方</span>
-      <p class="ann-body">
-        005と同一の導入文。アンカーナビは廃止（12タイルが一覧UI兼アンカーとして機能）。
-      </p>
-    </div>
-
-    <div class="ann-item">
-      <span class="ann-num">B</span>
-      <span class="ann-head">取り組み：12タイル ブロック型</span>
+      <span class="ann-num">●</span>
+      <span class="ann-head">タイル構成</span>
       <div class="ann-row">
         <span class="ann-row-label">レイアウト</span>
-        3列×4段の12タイル。グループラベルでブロックを2分割（7+5）。
+        3列×4段の12タイル。グループラベルは廃止しフラット配置。タイル上端の色帯（人と組織=黒／社会・お客様=グレー）は視覚的差別化のため残置。
       </div>
       <div class="ann-row">
-        <span class="ann-row-label">大分類A 人と組織（7）</span>
-        ①人的資本戦略 ②人財育成 ③企業文化・組織風土 ④DE&amp;I ⑤健康経営 ⑥労働安全衛生 ⑦労働慣行
+        <span class="ann-row-label">タイル中身</span>
+        番号(01〜12)／H3テーマ名／概要2-3行／#アンカーリンク群（点線上部ボーダー）／右下に黒丸→ボタン。
       </div>
       <div class="ann-row">
-        <span class="ann-row-label">大分類B 社会・お客様（5）</span>
-        ⑧人権 ⑨サプライチェーンマネジメント ⑩顧客責任・品質 ⑪AIの利活用 ⑫社会貢献活動
+        <span class="ann-row-label">タイル→L3遷移</span>
+        タイル全体クリックで該当L3ページのトップへ。#アンカーチップは個別見出しへのジャンプ。
+      </div>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">#</span>
+      <span class="ann-head">#アンカー（行動変容定義 P10準拠）</span>
+      <div class="ann-row">
+        <span class="ann-row-label">01 人的資本戦略</span>
+        # 基本的な考え方 ／ # 戦略・目標・実績
       </div>
       <div class="ann-row">
-        <span class="ann-row-label">タイル構成</span>
-        番号(01〜12)＋H3テーマ名＋概要2-3行＋右下に黒丸→ボタン。ホバー時にbg-sub薄グレーに反転。
+        <span class="ann-row-label">02 人財育成</span>
+        # 基本的な考え方 ／ # 戦略・目標・実績
       </div>
       <div class="ann-row">
-        <span class="ann-row-label">概要文</span>
-        各テーマの「基本的な考え方」を005からそのまま流用。原稿確定後に差し替え。
+        <span class="ann-row-label">03 企業文化・組織風土</span>
+        # 基本的な考え方 ／ # 取り組み
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">04 DE&amp;I</span>
+        # 基本的な考え方 ／ # 戦略・目標・実績 ／ # 女性活躍推進
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">05 健康経営</span>
+        # 基本的な考え方 ／ # 戦略・目標・実績
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">06 労働安全衛生</span>
+        # 基本的な考え方 ／ # 戦略・目標・実績
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">07 労働慣行</span>
+        # 基本的な考え方
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">08 人権</span>
+        # 基本的な考え方 ／ # 体制 ／ # 人権デュー・デリジェンス ／ # 相談・通報窓口 ／ # 是正 ／ # ステークホルダーエンゲージメント
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">09 サプライチェーンマネジメント</span>
+        # 基本的な考え方 ／ # 体制 ／ # サステナブル調達 ／ # 責任ある鉱物調達
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">10 顧客責任・品質</span>
+        # 基本的な考え方 ／ # 体制 ／ # 戦略・目標・実績
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">11 AIの利活用</span>
+        # 基本的な考え方
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">12 社会貢献活動</span>
+        # 基本的な考え方
       </div>
     </div>
 
@@ -733,18 +828,18 @@ body {
 
     <div class="ann-item">
       <span class="ann-num">★</span>
-      <span class="ann-head">005との比較で残る論点</span>
+      <span class="ann-head">残る論点</span>
       <div class="ann-row">
         <span class="ann-row-label">論点1</span>
-        005で表示していたKPIグラフ（人的資本/人財育成/DE&amp;I/健康経営/労働安全衛生/顧客責任）を本ページから完全に外す方針で良いか。L3個別ページに集約する形で問題ないか。
+        005で表示していたKPIグラフ（人的資本/人財育成/DE&amp;I/健康経営/労働安全衛生/顧客責任）を本ページから外し、L3個別ページに集約する方針で良いか。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">論点2</span>
-        ステークホルダーエンゲージメントは独立タイルから外したが、別箇所（TOP/戦略Index/グループ会社情報等）に統合配置するかは別途検討。
+        ステークホルダーエンゲージメントは独立タイルから外し、人権タイル配下のアンカーに統合。別箇所（TOP/戦略Index/グループ会社情報等）への配置検討は別途。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">論点3</span>
-        タイル順序は005のアンカーチップ順を踏襲。順序変更要望があれば調整。
+        #アンカーの粒度は行動変容定義P10の見出し構成を踏襲。L3ページ実装時に該当`id`をHTML側で付与する前提。
       </div>
     </div>
 
