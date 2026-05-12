@@ -273,10 +273,20 @@ body {
 }
 .dem-logo-stack .dem-logo-row { padding: 4px 6px; border-bottom: 1px dashed var(--c-border); }
 .dem-logo-stack .dem-logo-row:last-child { border-bottom: none; }
-.dem-logo-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; width: 100%;
+.dem-graph-link {
+  display: flex; flex-direction: column; gap: 4px; width: 100%;
 }
-.dem-logo-grid .dem-logo-ph { aspect-ratio: 4/3; }
+.dem-graph-link .dem-img-ph { aspect-ratio: 16/9; }
+.dem-graph-link-row {
+  display: flex; justify-content: flex-end; padding-right: 2px;
+}
+.dem-graph-link-row span {
+  font-size: 8px; font-weight: 600; color: var(--c-text-h);
+  border-bottom: 1px solid var(--c-text-h);
+  padding-bottom: 1px;
+}
+.dem-graph-link-row span::before { content: '› '; font-weight: 700; }
+
 .dem-logo-vert {
   display: flex; flex-direction: column; gap: 4px;
   padding: 6px; border: 1px solid var(--c-border); background: #fff;
@@ -682,7 +692,7 @@ body {
 
   <div class="cat-hero">
     <h1>モジュール一覧（v3.6）</h1>
-    <p>本catalogのみで全16ページが再構成可能なモジュール体系。<strong>13カテゴリ</strong>・全モジュールにつき「実物プレビュー（開閉両状態を含む）／適用ページ／利用シーン」を一覧化。<strong>v3.6（2026.05.13）：⑤画像＋テキストを新設</strong>。5-1 画像左+テキスト右／5-2 反転（画像右）／5-3 ロゴ+テキスト（縦積み）／5-4 ロゴ横並びグリッド／5-5 ロゴ縦型カード の5モジュール。これに伴い旧⑤〜⑫を⑥〜⑬に繰り下げ。v3.5：⑬ナビゲーションを刷新（13-3 ヘッダー画像版／13-4 サステナビリティサイトフッター／13-5 コーポレート全体フッター）。v3.4：7-11 説明文付きリンクボタンを汎用共通モジュール化。v3.1：プレビュー左上揃え／7-5 横断インデックス全L3／7-7 ESGフォトカード／7-8 EVENT実物UI／7-10 説明文付きリンクカード／⑩表3行以上／⑪背景色付きリスト／⑫セクション番号マーカー削除。</p>
+    <p>本catalogのみで全16ページが再構成可能なモジュール体系。<strong>13カテゴリ</strong>・全モジュールにつき「実物プレビュー（開閉両状態を含む）／適用ページ／利用シーン」を一覧化。<strong>v3.6（2026.05.13）：⑤画像＋テキストを新設</strong>。5-1 画像左+テキスト右／5-2 反転（画像右）／5-3 ロゴ+テキスト（縦積み）／5-4 グラフ画像+右下テキストリンク／5-5 ロゴ縦型カード の5モジュール。これに伴い旧⑤〜⑫を⑥〜⑬に繰り下げ。v3.5：⑬ナビゲーションを刷新（13-3 ヘッダー画像版／13-4 サステナビリティサイトフッター／13-5 コーポレート全体フッター）。v3.4：7-11 説明文付きリンクボタンを汎用共通モジュール化。v3.1：プレビュー左上揃え／7-5 横断インデックス全L3／7-7 ESGフォトカード／7-8 EVENT実物UI／7-10 説明文付きリンクカード／⑩表3行以上／⑪背景色付きリスト／⑫セクション番号マーカー削除。</p>
   </div>
 
   <nav class="cat-toc">
@@ -964,12 +974,15 @@ body {
     </div>
 
     <div class="cat-mod">
-      <div class="cat-mod-id"><span class="cat-mod-id-num">5-4</span><span class="cat-mod-id-name">ロゴ横並びグリッド（複数イニシアチブ一覧）</span><span class="cat-mod-id-class">.logo-grid</span></div>
-      <div class="cat-mod-preview"><div class="dem-logo-grid"><div class="dem-logo-ph">[ ロゴ ]</div><div class="dem-logo-ph">[ ロゴ ]</div><div class="dem-logo-ph">[ ロゴ ]</div><div class="dem-logo-ph">[ ロゴ ]</div><div class="dem-logo-ph">[ ロゴ ]</div><div class="dem-logo-ph">[ ロゴ ]</div><div class="dem-logo-ph">[ ロゴ ]</div><div class="dem-logo-ph">[ ロゴ ]</div></div></div>
+      <div class="cat-mod-id"><span class="cat-mod-id-num">5-4</span><span class="cat-mod-id-name">グラフ画像 + 右下テキストリンク</span><span class="cat-mod-id-class">.graph-link-block</span></div>
+      <div class="cat-mod-preview"><div class="dem-graph-link">
+        <div class="dem-img-ph"><span>[ グラフ画像 PH（例：CO2削減量推移／RE100進捗／売上推移）]</span></div>
+        <div class="dem-graph-link-row"><span>グラフの詳細・操作画面へ</span></div>
+      </div></div>
       <div class="cat-mod-meta">
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">内容</span><span class="cat-mod-meta-body">同サイズロゴを 4-6 列のグリッドで一覧表示（説明文なし／クリックでモーダル詳細・遷移）。</span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">225 イニシアチブ・社外評価</span><span class="page-chip">001 TOP</span></span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">シーン</span><span class="cat-mod-meta-body">セクション冒頭の「参画団体一覧」サマリ。詳細は 5-3 や別ページに繋ぐ導線として機能。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">内容</span><span class="cat-mod-meta-body">グラフ画像（16:9）の下、右寄せに下線つきテキストリンク「› ◯◯へ」。プレビュー画像はサマリ表示、リンク先で対話的グラフ操作画面（フィルタ／年度切替／ドリルダウン）へ遷移。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">199 ESGデータ</span><span class="page-chip">024 気候変動</span><span class="page-chip">035 TCFD</span><span class="page-chip">131 健康経営</span></span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">シーン</span><span class="cat-mod-meta-body">本文中にグラフのプレビューだけを置き、詳細データや年次切替などの操作はリンク先のインタラクティブ画面に分離。本文の流れを止めずに「もっと詳しく見たい」ニーズに対応。</span></div>
       </div>
     </div>
 

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>方針一覧 — KM サステナビリティ WF v2.5</title>
+<title>方針一覧 — KM サステナビリティ WF v2.6</title>
 <style>
 /* ============================================================
    KM SUSTAINABILITY WF — SHARED CSS v3.0
@@ -147,12 +147,24 @@ body {
   justify-content: center;
 }
 .wf-section-title {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 700;
   color: var(--c-text-h);
-  margin-bottom: 20px;
+  margin-bottom: 28px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--c-border);
   line-height: 1.3;
   letter-spacing: -0.01em;
+  position: relative;
+}
+.wf-section-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 140px;
+  height: 3px;
+  background: linear-gradient(90deg, #111 0%, #444 40%, #888 70%, transparent 100%);
 }
 .wf-section-desc {
   font-size: 13px;
@@ -483,36 +495,6 @@ body {
    PAGE-LOCAL: 方針一覧 用追加スタイル
 ============================================================ */
 
-/* カテゴリセクション見出し */
-.policy-cat-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 18px;
-  padding-bottom: 10px;
-  border-bottom: 2px solid var(--c-text-h);
-}
-.policy-cat-head-left { display: flex; align-items: baseline; gap: 14px; }
-.policy-cat-num {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  background: var(--c-text-h);
-  color: #fff;
-  font-size: 12px;
-  font-weight: 700;
-  font-family: 'Helvetica Neue', sans-serif;
-  letter-spacing: 0;
-}
-.policy-cat-title {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--c-text-h);
-  letter-spacing: -0.01em;
-}
-
 /* 説明文付きリンクボタン（共通モジュール 6-11） — タイトル＋説明文1行＋›矢印の独立ボタン */
 .link-btn-grid {
   display: grid;
@@ -569,7 +551,7 @@ body {
   <div>
     <strong>KONICA MINOLTA サステナビリティ</strong>
     <span class="meta-badge">方針一覧</span>
-    <span class="meta-badge">WF v2.5</span>
+    <span class="meta-badge">WF v2.6</span>
     <span class="meta-badge">#097</span>
   </div>
   <div style="font-size:10px; color:#666;">2026.04</div>
@@ -615,14 +597,7 @@ body {
     <section id="cat-group" class="wf-section bg-white policy-section" style="scroll-margin-top:60px;">
       <span class="wf-section-marker">A</span>
 
-      <div class="policy-cat-head">
-        <div class="policy-cat-head-left">
-          <span class="policy-cat-num">01</span>
-          <div>
-            <div class="policy-cat-title">コニカミノルタグループ</div>
-          </div>
-        </div>
-      </div>
+      <h2 class="wf-section-title">コニカミノルタグループ</h2>
 
       <div class="link-btn-grid">
         <div class="link-btn">
@@ -642,14 +617,7 @@ body {
     <section id="cat-env" class="wf-section bg-white policy-section" style="scroll-margin-top:60px;">
       <span class="wf-section-marker">B</span>
 
-      <div class="policy-cat-head">
-        <div class="policy-cat-head-left">
-          <span class="policy-cat-num">02</span>
-          <div>
-            <div class="policy-cat-title">環境</div>
-          </div>
-        </div>
-      </div>
+      <h2 class="wf-section-title">環境</h2>
 
       <div class="link-btn-grid">
         <div class="link-btn">
@@ -669,14 +637,7 @@ body {
     <section id="cat-social" class="wf-section bg-white policy-section" style="scroll-margin-top:60px;">
       <span class="wf-section-marker">C</span>
 
-      <div class="policy-cat-head">
-        <div class="policy-cat-head-left">
-          <span class="policy-cat-num">03</span>
-          <div>
-            <div class="policy-cat-title">社会</div>
-          </div>
-        </div>
-      </div>
+      <h2 class="wf-section-title">社会</h2>
 
       <div class="link-btn-grid">
         <div class="link-btn">
@@ -752,14 +713,7 @@ body {
     <section id="cat-governance" class="wf-section bg-white policy-section" style="scroll-margin-top:60px;">
       <span class="wf-section-marker">D</span>
 
-      <div class="policy-cat-head">
-        <div class="policy-cat-head-left">
-          <span class="policy-cat-num">04</span>
-          <div>
-            <div class="policy-cat-title">ガバナンス</div>
-          </div>
-        </div>
-      </div>
+      <h2 class="wf-section-title">ガバナンス</h2>
 
       <div class="link-btn-grid">
         <div class="link-btn">
