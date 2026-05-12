@@ -918,94 +918,69 @@ body {
        アノテーションパネル
   ============================================================ -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — サステナビリティTOP（v1.2）</h3>
-
-    <div class="ann-item">
-      <span class="ann-num">★</span>
-      <span class="ann-head">v1.2 主要変更点</span>
-      <div class="ann-row">
-        <span class="ann-row-label">CHANGE 1</span>
-        ヒーロー：青系→グレースケール（45度斜め線パターン＋ダークオーバーレイ）に変更。WF全体の白黒方針を厳守。
-      </div>
-      <div class="ann-row">
-        <span class="ann-row-label">CHANGE 2</span>
-        H2見出し：左下から右へフェードアウトする3pxグラデ下線（黒→グレー→透明）を追加。1pxボーダーラインとレイヤーで重ね、装飾性とミニマルさを両立。
-      </div>
-      <div class="ann-row">
-        <span class="ann-row-label">CHANGE 3</span>
-        H3見出し：左に4px黒縦棒（border-left）で「塊感」を視覚化。下層ページ（環境・社会・第3階層全般）に共通適用される基本ルール。
-      </div>
-      <div class="ann-row">
-        <span class="ann-row-label">CHANGE 4</span>
-        マネジメントセクション：「サステナビリティマネジメントの詳細へ」ボタン削除。「ステークホルダーエンゲージメント」リンク1つのみに集約。
-      </div>
-      <div class="ann-row">
-        <span class="ann-row-label">CHANGE 5</span>
-        H2横リンクUI：見出しと同名ページへのリンクは下部ボタンではなく見出しの右側に配置（戦略／社外評価／トピックス3箇所に適用）。下線つきテキストリンク形式で軽量化。
-      </div>
-    </div>
+    <h3>設計ポイント — サステナビリティTOP</h3>
 
     <div class="ann-item">
       <span class="ann-num">1</span>
-      <span class="ann-head">ヒーロー：白黒画像PH＋テキストオーバーレイ</span>
+      <span class="ann-head">ヒーロー：全幅画像PH＋テキストオーバーレイ（モジュール①ヒーロー 1-1 TOP用 .top-hero）</span>
       <p class="ann-body">
-        ダークオーバーレイで可読性を確保しつつ、PH中央にラベル表示。本実装時に風景白黒画像を当てる前提。
+        TOPだけに使う最大幅のキービジュアル枠。タイトル・サブコピー・リード文を画像の上に重ねて、ファーストビューを1ブロックに圧縮。下層用ヒーローは使わず、サイト入口としての存在感だけに専念させる。
       </p>
     </div>
 
     <div class="ann-item">
       <span class="ann-num">2</span>
-      <span class="ann-head">サステナビリティ戦略：H2横リンク＋灰色注記</span>
+      <span class="ann-head">サステナビリティ戦略：見出し横リンク＋トピックボックス（⑦リンク 7-2 ＋ ⑥強調 6-3）</span>
       <p class="ann-body">
-        H2の右に「› サステナビリティ戦略の詳細へ」を配置（同名ページ遷移ルール）。本文＋灰色注記でKPI補足。
+        同名ページへの動線はボタンを置かず、H2の右にテキストリンク（.section-head-link）で軽く処理。中長期戦略の説明は本文2段で済ませ、補足のKPI話はトピックボックス（.callout-box）1個に格納。導線・本文・補足の3要素を最小限の縦量で並べる。
       </p>
     </div>
 
     <div class="ann-item">
       <span class="ann-num">3</span>
-      <span class="ann-head">マネジメント：「ステークホルダーエンゲージメント」リンクのみ</span>
+      <span class="ann-head">サステナビリティマネジメント：見出し横リンク＋単一ボタン（⑦リンク 7-2 ＋ ボタン .wf-btn）</span>
       <p class="ann-body">
-        H2はサステナビリティマネジメントだが、ページ自体への導線は今回は持たない（本セクションで概要を完結）。「ステークホルダーエンゲージメント」のみ別ページ動線として残置。
+        概要文で完結させ、別ページ遷移は「ステークホルダーエンゲージメント」1つのみに絞る。カード・リスト等を置かずに導線数を1本化することで、トップから下層への枝分かれを増やしすぎない構成。
       </p>
     </div>
 
     <div class="ann-item">
       <span class="ann-num">4</span>
-      <span class="ann-head">資料・データ（QUICK ACCESS）：PDF/Excel 2DLカード</span>
+      <span class="ann-head">資料・データ（QUICK ACCESS）：DL2枚カード（⑦リンク 7-9 ファイルDLカード）</span>
       <p class="ann-body">
-        サステナビリティレポート（PDF）／ESGデータ（Excel）の主要ダウンロードを上部に。
+        PDF（レポート）／Excel（ESGデータ）の主要DLだけを2カードで横並び。背景はグレー（bg-sub）にしてQUICK ACCESSであることを区切りで示し、長いリンクリストを置かずに「すぐ取れる2点」に絞る。
       </p>
     </div>
 
     <div class="ann-item">
       <span class="ann-num">5</span>
-      <span class="ann-head">ESGの取り組み：写真PH付き3カード</span>
+      <span class="ann-head">ESGの取り組み：写真＋レターバッジ3カード（⑤画像＋テキスト 5-5 ロゴ縦型カード派生）</span>
       <p class="ann-body">
-        E/S/Gの3カード。写真PH左上にレターバッジを重ねる構成。
+        環境／社会／ガバナンスの3カテゴリ入口を写真カード3枚で並列化。画像左上にE/S/Gのレターバッジを重ねることで、テキスト見出しを大きくせずにカテゴリ識別を成立させる。下層リンク群はここに集約せず、各インデックスに送る役割に専念。
       </p>
     </div>
 
     <div class="ann-item">
       <span class="ann-num">6</span>
-      <span class="ann-head">社外からの評価：H2横リンク＋4ロゴ</span>
+      <span class="ann-head">社外からの評価：見出し横リンク＋ロゴグリッド（⑦リンク 7-2 ＋ ⑤画像＋テキスト 5-4 ロゴ横並び）</span>
       <p class="ann-body">
-        H2右に「› 社外からの評価とイニシアチブへの参画」リンク。4ロゴPHを並列配置（FTSE4Good／MSCI／ISS ESG／CDP）。
+        評価実績は説明文を置かず、ロゴPH4点（FTSE4Good／MSCI／ISS ESG／CDP）の横並びで視覚的に証拠提示。詳細は見出し横リンクから別ページへ。文章量を抑え、ファクト訴求のみで成立させる。
       </p>
     </div>
 
     <div class="ann-item">
       <span class="ann-num">7</span>
-      <span class="ann-head">トピックス：H2横リンク＋3カラムリスト＋EVENTカード</span>
+      <span class="ann-head">トピックス：見出し横リンク＋日付タイトル5行＋EVENTカード（⑪リスト ＋ ⑥強調 6-8 EVENTカード）</span>
       <p class="ann-body">
-        H2右に「› トピックス一覧へ」リンク。日付・カテゴリ・タイトル3カラム×5件。EVENTカードで年次インベスターデイ等を強調。
+        最新ニュースは日付＋タイトルの2列リストを5件だけ表示し、一覧ページへは見出し横リンクで送る。年次インベスターデイ等の特定イベントだけは枠線つきEVENTカードで1点抜き出し、新着情報＋重点告知を縦に短くまとめる。
       </p>
     </div>
 
     <div class="ann-item">
       <span class="ann-num">8</span>
-      <span class="ann-head">関連情報・関連リンク：2列ボックス</span>
+      <span class="ann-head">関連情報・関連リンク：2列リンクリスト（⑦リンク 7-1 関連リンクボックス）</span>
       <p class="ann-body">
-        報告・データ／方針・基準の2分類。リファレンスへの動線として機能。
+        ページ末尾の落穂拾い導線を「報告・データ／方針・基準」の2列に整理。各列3件程度のテキストリンクのみで、追加のカード化や説明文は付けず、リファレンス系へ確実に飛ばすためだけの最小ブロックとして配置。
       </p>
     </div>
 
