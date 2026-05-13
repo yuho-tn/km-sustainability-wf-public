@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>KMサステナビリティWF — モジュール選定ガイド v2.0</title>
+<title>KMサステナビリティWF — モジュール選定ガイド v3.0</title>
 
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -80,7 +80,7 @@ body {
 .g-section-desc { font-size: 12px; color: var(--c-text-s); margin-bottom: 22px; line-height: 1.85; }
 
 /* FLOW CARD */
-.g-flow { background: #fff; border: 1px solid var(--c-border); margin-bottom: 24px; }
+.g-flow { background: #fff; border: 1px solid var(--c-border); margin-bottom: 28px; }
 .g-flow-head {
   background: var(--c-text-h); color: #fff;
   padding: 12px 18px; font-size: 14px; font-weight: 700;
@@ -99,6 +99,12 @@ body {
   font-weight: 700; letter-spacing: 0.04em;
   text-transform: uppercase; border-bottom: 1px solid var(--c-border);
 }
+.g-flow-axis {
+  padding: 6px 18px 10px; background: var(--c-bg-sub);
+  font-size: 10px; color: var(--c-text-s); letter-spacing: 0.02em;
+  border-bottom: 1px solid var(--c-border);
+}
+.g-flow-axis strong { color: var(--c-text-h); font-weight: 700; }
 
 .g-flow-row {
   display: grid;
@@ -108,12 +114,21 @@ body {
   min-height: 88px;
 }
 .g-flow-row:last-child { border-bottom: none; }
+.g-flow-rank {
+  position: absolute; top: 14px; left: 16px;
+  width: 20px; height: 20px;
+  background: var(--c-text-h); color: #fff;
+  font-size: 10px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; font-family: 'Helvetica Neue', sans-serif;
+}
 .g-flow-when {
-  padding: 14px 16px;
+  padding: 14px 16px 14px 44px;
   background: #fff;
   border-right: 1px solid var(--c-border);
   font-size: 12px; line-height: 1.7;
   display: flex; align-items: center;
+  position: relative;
 }
 .g-flow-preview {
   padding: 12px 14px;
@@ -148,7 +163,7 @@ body {
 .g-flow-meta strong { color: var(--c-text-h); }
 .g-flow-meta code { background: #fff; border: 1px solid var(--c-border); padding: 1px 5px; font-family: 'SF Mono', monospace; font-size: 10px; }
 
-/* WHEN / WHEN-NOT CARDS （③） */
+/* WHEN / WHEN-NOT CARDS */
 .g-wn-card {
   background: #fff; border: 1px solid var(--c-border);
   margin-bottom: 22px;
@@ -231,12 +246,6 @@ body {
 .dem-img-ph { background: var(--c-ph); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 8px; color: var(--c-text-xs); }
 .dem-img-ph::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, transparent 0 6px, rgba(0,0,0,0.04) 6px 7px); }
 .dem-img-ph span { position: relative; z-index: 1; background: rgba(255,255,255,0.85); padding: 2px 6px; }
-.dem-img-grid { display: grid; gap: 4px; width: 100%; }
-.dem-img-grid.col-2 { grid-template-columns: 1fr 1fr; }
-.dem-img-grid.col-3 { grid-template-columns: repeat(3, 1fr); }
-.dem-img-grid.col-4 { grid-template-columns: repeat(4, 1fr); }
-.dem-img-grid .dem-img-ph { aspect-ratio: 16/9; }
-.dem-img-cap { font-size: 8px; color: var(--c-text-xs); margin-top: 2px; line-height: 1.4; text-align: center; }
 .dem-img-zoom-btn { position: absolute; right: 4px; bottom: 4px; width: 18px; height: 18px; background: #111; color: #fff; border: 1px solid #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; z-index: 2; }
 
 .dem-strong { font-size: 12px; font-weight: 700; color: var(--c-text-h); line-height: 1.7; }
@@ -314,32 +323,11 @@ body {
 .dem-term-modal-title { font-size: 10px; font-weight: 700; color: var(--c-text-h); padding-bottom: 4px; border-bottom: 1px solid var(--c-border-s); margin-bottom: 4px; }
 .dem-term-modal-body { font-size: 8px; color: var(--c-text); line-height: 1.6; }
 
-.dem-tbl { width: 100%; border-collapse: collapse; font-size: 9px; background: #fff; border: 1px solid var(--c-border); }
-.dem-tbl th, .dem-tbl td { padding: 4px 6px; border: 1px solid var(--c-border-s); }
-.dem-tbl th { background: var(--c-bg-sub); font-weight: 700; text-align: left; }
-.dem-tbl td { line-height: 1.5; }
-.dem-tbl .target { background: #F0F0F0; font-weight: 700; text-align: center; }
-.dem-tbl .num { text-align: center; }
-.dem-tbl .cat-row th { background: var(--c-border); }
-.dem-tbl .badge-l { background: #111; color: #fff; font-size: 8px; padding: 1px 5px; font-weight: 700; }
-.dem-tbl .badge-m { background: #666; color: #fff; font-size: 8px; padding: 1px 5px; font-weight: 700; }
-.dem-tbl .badge-s { background: #AAA; color: #fff; font-size: 8px; padding: 1px 5px; font-weight: 700; }
-
-.dem-ol { font-size: 10px; padding-left: 18px; line-height: 1.7; color: var(--c-text); margin: 0; }
-.dem-ul-basic { list-style: disc; padding-left: 16px; font-size: 10px; line-height: 1.7; color: var(--c-text); margin: 0; }
-.dem-ul-basic li { padding: 2px 0; }
-.dem-ul-dot { list-style: none; padding: 0; font-size: 10px; margin: 0; }
-.dem-ul-dot li { padding: 3px 0 3px 12px; position: relative; border-bottom: 1px dashed var(--c-border); line-height: 1.6; }
-.dem-ul-dot li:last-child { border-bottom: none; }
-.dem-ul-dot li::before { content: '・'; position: absolute; left: 0; color: var(--c-text-h); font-weight: 700; }
-.dem-ul-norm { background: var(--c-bg-sub); border: 1px solid var(--c-border); padding: 8px 12px; list-style: none; font-size: 10px; margin: 0; }
-.dem-ul-norm li { padding: 2px 0 2px 12px; position: relative; }
-.dem-ul-norm li::before { content: '◆'; position: absolute; left: 0; color: var(--c-text-h); font-size: 7px; top: 5px; }
-
 @media (max-width: 1024px) {
   .g-toc ul { grid-template-columns: 1fr; }
   .g-wn-grid { grid-template-columns: 1fr; }
   .g-flow-row { grid-template-columns: 1fr; }
+  .g-flow-when { padding-left: 44px; }
   .g-flow-when, .g-flow-preview { border-right: none; border-bottom: 1px solid var(--c-border); }
 }
 </style>
@@ -349,7 +337,7 @@ body {
 <div class="g-meta-bar">
   <div>
     <strong>KMサステナビリティWF</strong>
-    <span class="badge">モジュール選定ガイド v2.0</span>
+    <span class="badge">モジュール選定ガイド v3.0</span>
     <span class="badge">2026.05</span>
   </div>
   <div>
@@ -364,387 +352,55 @@ body {
     <div class="g-hero-eyebrow">Module Usage Guide</div>
     <h1>モジュール選定ガイド — どのモジュールを、どの場面で、なぜ使うのか</h1>
     <p class="g-hero-lead">
-      モジュール一覧（v3.6.5）に収録した <strong>13カテゴリ・全47モジュール</strong> を、実装時の「選び方ロジック」で整理した資料。
-      <strong>類似モジュールの選び分け（5フロー）</strong> と <strong>採用基準（WHEN／WHEN NOT）</strong> の2部構成。各判断箇所には実モジュールのプレビューを併載し、「結局どれを指しているか」が一目でわかる作りにしている。
+      WF制作で迷いやすい <strong>4つのモジュール領域</strong> に絞って選定基準を整理した資料。
+      <strong>①見出し ②アコーディオン／モーダル／直接表示 ③リンクモジュール ④強調モジュール</strong> の順で、状況→実モジュール→選ぶ理由を一覧化。
+      実モジュールはモジュール一覧（v3.6.5）と同一描画。
     </p>
     <a class="g-hero-link" href="module-catalog-v2.html">モジュール一覧 v3.6.5（カタログ）を開く</a>
   </div>
 
   <nav class="g-toc">
-    <div class="g-toc-title">Contents</div>
+    <div class="g-toc-title">Contents — 4つの選定基準</div>
     <ul>
-      <li><a href="#sec-1"><span class="g-toc-no">①</span>類似モジュールの選び分け（5フロー）</a></li>
-      <li><a href="#sec-2"><span class="g-toc-no">②</span>採用基準（WHEN／WHEN NOT）</a></li>
+      <li><a href="#sec-1"><span class="g-toc-no">①</span>見出しの選び分け</a></li>
+      <li><a href="#sec-2"><span class="g-toc-no">②</span>アコーディオン／モーダル／直接表示</a></li>
+      <li><a href="#sec-3"><span class="g-toc-no">③</span>リンクモジュール（誘導の強さ順）</a></li>
+      <li><a href="#sec-4"><span class="g-toc-no">④</span>強調モジュール</a></li>
     </ul>
   </nav>
 
-  <!-- ① 類似モジュールの選び分け -->
+  <!-- ① 見出し -->
   <section class="g-section" id="sec-1">
     <span class="g-section-num">1</span>
-    <div class="g-section-eyebrow">Part 1 — Differentiation</div>
-    <h2 class="g-section-title">類似モジュールの選び分け：迷いやすいペア／トリオの判定フロー</h2>
+    <div class="g-section-eyebrow">Criterion 1 — Headings</div>
+    <h2 class="g-section-title">見出しの選び分け：階層レベル H2〜H5</h2>
     <p class="g-section-desc">
-      役割が近く判断に悩むモジュール群について、「どんな条件のときに、どれを選ぶか」を判定表で明示する。各行は <strong>「状況 ／ 実モジュール ／ 選ぶ理由」</strong> の3カラム構成。プレビューはモジュール一覧（v3.6.5）と同一描画。
+      ページ内の情報階層に応じて4段階を使い分ける。<strong>H2が最上位</strong>、H5が末端。H2→H3→H4→H5の順で必ず階層を踏み、飛ばさない（H2の次にH4を置かない）。
     </p>
 
-    <!-- FLOW 1 -->
     <div class="g-flow">
       <div class="g-flow-head">
-        <span class="flow-num">FLOW 1</span>
-        アコーディオン × モーダル × 直接表示
-        <span class="flow-tags">8-1〜8-6 / 9-1〜9-2 / 直接表示</span>
-      </div>
-      <div class="g-flow-q">Q. 情報を「畳む」か「出す」か「浮かせる」か</div>
-
-      <div class="g-flow-row">
-        <div class="g-flow-when">同列で並ぶ3項目以上の長文セクション。<br>全員に必読でなくよい場合。</div>
-        <div class="g-flow-preview"><div class="g-flow-preview-inner">
-          <div class="dem-acc is-open"><div class="dem-acc-summary">取締役会での承認事項</div><div class="dem-acc-body">2008年：長期環境目標 / 2020年：5マテリアリティ...</div></div>
-        </div></div>
-        <div class="g-flow-choice">
-          <span class="mod-id">8-4</span><span class="mod-name">通常アコーディオン（H3以下）</span>
-          <span class="mod-class">.wf-acc-h3</span>
-          <span class="mod-reason">H3配下の長文を畳む基本モジュール。H4配下は <code>.wf-acc-h4</code> を使う。すべて <code>&lt;details open&gt;</code> で初期展開する。</span>
-        </div>
-      </div>
-
-      <div class="g-flow-row">
-        <div class="g-flow-when">大セクション全体を畳む。<br>マテリアリティ各項目の展開等。</div>
-        <div class="g-flow-preview"><div class="g-flow-preview-inner">
-          <div class="dem-acc h2-style is-open"><div class="dem-acc-summary">情報開示体系</div><div class="dem-acc-body">本文コンテンツが展開表示されます。</div></div>
-        </div></div>
-        <div class="g-flow-choice">
-          <span class="mod-id">8-1</span><span class="mod-name">通常アコーディオン（H2）</span>
-          <span class="mod-class">.wf-acc-h2</span>
-          <span class="mod-reason">H2レベルのアコーディオン。タグ付き（<code>.process-step</code>）／番号付きの派生は8-2／8-3。</span>
-        </div>
-      </div>
-
-      <div class="g-flow-row">
-        <div class="g-flow-when">ページ流れを止めずに<br>「用語・略語」だけ補足する。</div>
-        <div class="g-flow-preview"><div class="g-flow-preview-inner">
-          <div style="width:100%;"><span class="dem-term-trigger"><span class="dem-term-mark">?</span>SBT</span><div class="dem-term-modal"><div class="dem-term-modal-title">SBT（Science Based Targets）</div><div class="dem-term-modal-body">パリ協定整合の科学的根拠に基づく削減目標。当社2018年認定取得。</div></div></div>
-        </div></div>
-        <div class="g-flow-choice">
-          <span class="mod-id">9-2</span><span class="mod-name">注釈モーダル（用語ヘルプ）</span>
-          <span class="mod-class">.term-trigger / .term-modal</span>
-          <span class="mod-reason">本文インライン埋込はせず、ブロック下部の <code>.term-note</code> に集約配置する。</span>
-        </div>
-      </div>
-
-      <div class="g-flow-row">
-        <div class="g-flow-when">本文中の画像を<br>拡大して見せたい。</div>
-        <div class="g-flow-preview"><div class="g-flow-preview-inner">
-          <div class="dem-zoom"><div class="dem-zoom-frame"><div class="dem-zoom-head"><span>図：価値創造プロセス</span><span>×</span></div><div class="dem-zoom-img"><span>[ 拡大画像 ]</span></div></div></div>
-        </div></div>
-        <div class="g-flow-choice">
-          <span class="mod-id">9-1</span><span class="mod-name">画像拡大モーダル</span>
-          <span class="mod-class">.img-zoom-modal</span>
-          <span class="mod-reason">単独画像PHにのみ「+」拡大ボタン（3-6）を併用。カード内画像（<code>.activity-card-img</code>）には付けない。</span>
-        </div>
-      </div>
-
-      <div class="g-flow-row">
-        <div class="g-flow-when">項目が1〜2個しかない／<br>ページの主目的そのもの。</div>
-        <div class="g-flow-preview"><div class="g-flow-preview-inner">
-          <div class="dem-normal"><span class="dem-dummy">（文章はダミーです）</span>コニカミノルタは、マテリアリティを軸に事業を通じて社会課題の解決に貢献します。</div>
-        </div></div>
-        <div class="g-flow-choice">
-          <span class="mod-id">—</span><span class="mod-name">直接表示（畳まない）</span>
-          <span class="mod-class">通常テキスト / 4-2</span>
-          <span class="mod-reason">アコーディオン化は冗長。畳むと意図が消えるためそのまま見せる。</span>
-        </div>
-      </div>
-
-      <div class="g-flow-meta">
-        <strong>共通ルール：</strong>アコーディオンは必ず <code>&lt;details open&gt;</code> で初期展開する。WFでは閉じた状態を見せない。
-      </div>
-    </div>
-
-    <!-- FLOW 2 -->
-    <div class="g-flow">
-      <div class="g-flow-head">
-        <span class="flow-num">FLOW 2</span>
-        リンク系（テキスト／ボタン／カード／関連／DL）の選び分け
-        <span class="flow-tags">7-1 / 7-2 / 7-3 / 7-4 / 7-5 / 7-6 / 7-9 / 7-10</span>
-      </div>
-      <div class="g-flow-q">Q. 何を、どこへ、どの強さで誘導するか</div>
-
-      <div class="g-flow-row">
-        <div class="g-flow-when">主要な遷移先／PDF媒体／<br>方針一覧。最強誘導。</div>
-        <div class="g-flow-preview"><div class="g-flow-preview-inner">
-          <div class="dem-link-btn-grid">
-            <div class="dem-link-btn is-primary"><div><div class="dem-link-btn-title">統合報告書 2024</div><div class="dem-link-btn-desc">最新版PDF（16MB）</div></div><div class="dem-link-btn-arrow">›</div></div>
-            <div class="dem-link-btn"><div><div class="dem-link-btn-title">サステナビリティ方針</div><div class="dem-link-btn-desc">グループ全社方針</div></div><div class="dem-link-btn-arrow">›</div></div>
-          </div>
-        </div></div>
-        <div class="g-flow-choice">
-          <span class="mod-id">7-10</span><span class="mod-name">説明文付きリンクボタン（汎用統一）</span>
-          <span class="mod-class">.link-btn / .link-btn-grid</span>
-          <span class="mod-reason">外枠2px強調=<code>.is-primary</code>／grid内全幅=<code>.is-full</code> の2バリアントで主要遷移／PDF／方針一覧を吸収。</span>
-        </div>
-      </div>
-
-      <div class="g-flow-row">
-        <div class="g-flow-when">テーマに関する<br>関連参考の一覧（横並び複数）。</div>
-        <div class="g-flow-preview"><div class="g-flow-preview-inner">
-          <div class="dem-graybg"><span class="dem-graybg-label">関連リンク</span><div style="font-size:9px; line-height:1.7;">→ 環境マネジメント体制　　→ ガバナンス体制　　→ マテリアリティ評価</div></div>
-        </div></div>
-        <div class="g-flow-choice">
-          <span class="mod-id">7-4</span><span class="mod-name">関連リンク</span>
-          <span class="mod-class">.theme-related</span>
-          <span class="mod-reason">薄グレーbg＋全周ボーダー＋「関連リンク」ラベル。ページ下部に集約配置する慣例。</span>
-        </div>
-      </div>
-
-      <div class="g-flow-row">
-        <div class="g-flow-when">本文中で1件だけ参照する<br>規程・ページ。</div>
-        <div class="g-flow-preview"><div class="g-flow-preview-inner">
-          <a class="dem-textlink">コニカミノルタグループ行動憲章</a>
-        </div></div>
-        <div class="g-flow-choice">
-          <span class="mod-id">7-1</span><span class="mod-name">テキストリンク</span>
-          <span class="mod-class">.policy-link</span>
-          <span class="mod-reason">本文段落と地続きに溶け込むインラインリンク。誘導の強さは最弱で、流れを止めない。</span>
-        </div>
-      </div>
-
-      <div class="g-flow-row">
-        <div class="g-flow-when">取り組み・施策をサムネ＋<br>見出し＋要約で誘導したい。</div>
-        <div class="g-flow-preview"><div class="g-flow-preview-inner" style="display:flex; justify-content:center;">
-          <div class="dem-card" style="max-width:200px;"><div class="dem-card-img"><span class="dem-card-cat">脱炭素</span><span>[PH]</span></div><div class="dem-card-body"><div class="dem-card-title"><span>製品の脱炭素化</span><span class="dem-card-arrow">›</span></div><div class="dem-card-sum">商業・産業用印刷機の主力製品でCO2削減を実現。</div></div></div>
-        </div></div>
-        <div class="g-flow-choice">
-          <span class="mod-id">7-3</span><span class="mod-name">取り組みカード</span>
-          <span class="mod-class">.activity-card</span>
-          <span class="mod-reason">画像PH＋カテゴリタグ＋H4タイトル＋要約。L3=2列、L2インデックス=3列がデフォルト。タグはジャンル別に書く（一律「取り組み」NG）。</span>
-        </div>
-      </div>
-
-      <div class="g-flow-row">
-        <div class="g-flow-when">環境／社会／ガバナンスの<br>横断インデックス。</div>
-        <div class="g-flow-preview"><div class="g-flow-preview-inner">
-          <div class="dem-list-stack"><div class="dem-list-stack-row"><div class="dem-list-stack-head">環境</div><div class="dem-list-stack-chips"><div class="dem-l3-chip">気候変動</div><div class="dem-l3-chip">資源循環</div><div class="dem-l3-chip">水資源</div></div></div><div class="dem-list-stack-row"><div class="dem-list-stack-head">社会</div><div class="dem-list-stack-chips"><div class="dem-l3-chip">DE&amp;I</div><div class="dem-l3-chip">健康経営</div><div class="dem-l3-chip">人権</div></div></div></div>
-        </div></div>
-        <div class="g-flow-choice">
-          <span class="mod-id">7-5</span><span class="mod-name">横断インデックスリンク</span>
-          <span class="mod-class">.esg-link-stack</span>
-          <span class="mod-reason">E/S/G 3カテゴリの全L3を横並びチップで網羅表示。L2インデックスの主要モジュール。</span>
-        </div>
-      </div>
-
-      <div class="g-flow-row">
-        <div class="g-flow-when">ESGデータ一式（PDF／Excel）<br>のダウンロード導線。</div>
-        <div class="g-flow-preview"><div class="g-flow-preview-inner">
-          <div class="dem-qa"><div class="dem-qa-icon">PDF</div><div class="dem-qa-body"><div class="dem-qa-title">サステナビリティレポート</div><div class="dem-qa-meta">最新版（16.0MB）</div></div><span style="font-size:12px;">›</span></div>
-        </div></div>
-        <div class="g-flow-choice">
-          <span class="mod-id">7-6</span><span class="mod-name">資料DLカード（PDF/Excel）</span>
-          <span class="mod-class">.qa-card</span>
-          <span class="mod-reason">ファイル形式アイコン＋タイトル＋容量メタ。199 ESGデータの最下部に集約配置。</span>
-        </div>
-      </div>
-
-      <div class="g-flow-row">
-        <div class="g-flow-when">個別記事（ニュース／<br>トピックス）の縦リスト。</div>
-        <div class="g-flow-preview"><div class="g-flow-preview-inner">
-          <div style="width:100%;"><div class="dem-news-row"><span class="date">2025/03/15</span><span class="title">CDP 2024 気候変動「Aリスト」に選定されました</span></div><div class="dem-news-row"><span class="date">2025/03/01</span><span class="title">健康経営優良法人2025（ホワイト500）に認定</span></div><div class="dem-news-row"><span class="date">2025/02/20</span><span class="title">サステナビリティレポート2024を公開しました</span></div></div>
-        </div></div>
-        <div class="g-flow-choice">
-          <span class="mod-id">7-9</span><span class="mod-name">ニュース・トピックスリスト</span>
-          <span class="mod-class">.topics-list / .news-row</span>
-          <span class="mod-reason">時系列の更新情報。1行=1記事、4行以上を表示。年度フィルタチップ（12-3）と組合せ可。</span>
-        </div>
-      </div>
-
-      <div class="g-flow-meta">
-        <strong>視覚的優先度：</strong>7-10 <code>.is-primary</code>（外枠強調） &gt; 7-3 カード &gt; 7-10 通常 &gt; 7-4 関連リンク &gt; 7-1 テキストリンク。同一セクション内で強弱を意識的に使い分ける（全部を強調＝全部が並と同じ）。
-      </div>
-    </div>
-
-    <!-- FLOW 3 -->
-    <div class="g-flow">
-      <div class="g-flow-head">
-        <span class="flow-num">FLOW 3</span>
-        強調エリア × 補足エリア の選び分け
-        <span class="flow-tags">6-1 / 6-2 / 4-3</span>
-      </div>
-      <div class="g-flow-q">Q. 引き上げるのか・引き下げるのか</div>
-
-      <div class="g-flow-row">
-        <div class="g-flow-when">ページの結論／KPI宣言／<br>重要トピックを引き上げる。</div>
-        <div class="g-flow-preview"><div class="g-flow-preview-inner">
-          <div class="dem-callout"><span class="dem-callout-tag">CARBON MINUS 2025</span><div class="dem-callout-body">2025年度には自社製品ライフサイクル全体の排出量を2005年度比で61％削減を目標とし、800千トンを社会のCO2削減効果として生み出します。</div></div>
-        </div></div>
-        <div class="g-flow-choice">
-          <span class="mod-id">6-1</span><span class="mod-name">POINTタグ強調エリア</span>
-          <span class="mod-class">.callout-box</span>
-          <span class="mod-reason">タグ文言はページに応じて変える（POINT / MATERIALITY KPI / CARBON MINUS 2025 等）。1ページに3個以上置かない。</span>
-        </div>
-      </div>
-
-      <div class="g-flow-row">
-        <div class="g-flow-when">用語の補足／前提条件／<br>凡例的な箇条を引き下げる。</div>
-        <div class="g-flow-preview"><div class="g-flow-preview-inner">
-          <div class="dem-graybg"><span class="dem-graybg-label">JCIメッセージへの賛同</span><div>・2024年11月：1.5℃目標と整合する2035年目標を求めるメッセージ</div></div>
-        </div></div>
-        <div class="g-flow-choice">
-          <span class="mod-id">6-2</span><span class="mod-name">薄グレー補足エリア</span>
-          <span class="mod-class">.sub-list / .term-note</span>
-          <span class="mod-reason">本文と区別された補助情報。用語注釈・前提条件・凡例リストに使う。</span>
-        </div>
-      </div>
-
-      <div class="g-flow-row">
-        <div class="g-flow-when">本文末尾の単発注釈<br>（※印など）。</div>
-        <div class="g-flow-preview"><div class="g-flow-preview-inner">
-          <div class="dem-note">※ 数値は四捨五入のため合計が合わない場合があります。第三者保証取得済。</div>
-        </div></div>
-        <div class="g-flow-choice">
-          <span class="mod-id">4-3</span><span class="mod-name">注釈・補足</span>
-          <span class="mod-class">注釈用 inline style</span>
-          <span class="mod-reason">小さい灰色テキスト。表・KPIの直下や本文末尾に1〜2行で配置。</span>
-        </div>
-      </div>
-
-      <div class="g-flow-meta">
-        <strong>1ページに6-1を3個以上置かない：</strong>強調は強調でなくなる。重要度を吟味して1〜2個に絞る。
-      </div>
-    </div>
-
-    <!-- FLOW 4 -->
-    <div class="g-flow">
-      <div class="g-flow-head">
-        <span class="flow-num">FLOW 4</span>
-        並列情報の見せ方（リスト × テーブル × カード）
-        <span class="flow-tags">11-1〜11-4 / 10-1〜10-5 / 3-2〜3-4 / 7-3</span>
-      </div>
-      <div class="g-flow-q">Q. 文章で並べるか・行列で開示するか・カード化するか</div>
-
-      <div class="g-flow-row">
-        <div class="g-flow-when">箇条書きで短文を<br>並列列挙する。</div>
-        <div class="g-flow-preview"><div class="g-flow-preview-inner">
-          <ul class="dem-ul-basic"><li>GRIスタンダード対照</li><li>SDGs対応マッピング</li><li>TCFD提言準拠の開示</li></ul>
-        </div></div>
-        <div class="g-flow-choice">
-          <span class="mod-id">11-1</span><span class="mod-name">シンプル箇条書き（標準ブレット）</span>
-          <span class="mod-class">ul（標準disc）</span>
-          <span class="mod-reason">最も基本。見出し＋説明文の二段は <code>&lt;li&gt;&lt;strong&gt;見出し&lt;/strong&gt;&lt;span&gt;説明&lt;/span&gt;&lt;/li&gt;</code>。</span>
-        </div>
-      </div>
-
-      <div class="g-flow-row">
-        <div class="g-flow-when">手順・優先順位を伴う<br>リスト。</div>
-        <div class="g-flow-preview"><div class="g-flow-preview-inner">
-          <ol class="dem-ol"><li>気候変動シナリオ分析の対象事業分野の特定</li><li>重要な気候関連リスクおよび機会の特定</li><li>科学的シナリオの検討</li></ol>
-        </div></div>
-        <div class="g-flow-choice">
-          <span class="mod-id">11-2</span><span class="mod-name">番号付きリスト</span>
-          <span class="mod-class">ol</span>
-          <span class="mod-reason">順序が意味を持つときに使う。順序が無関係なら 11-1 を選ぶ。</span>
-        </div>
-      </div>
-
-      <div class="g-flow-row">
-        <div class="g-flow-when">同列要素を区切り線付きで<br>整然と並べる。</div>
-        <div class="g-flow-preview"><div class="g-flow-preview-inner">
-          <ul class="dem-ul-dot"><li>GRIスタンダード</li><li>SDGs</li><li>TCFD提言</li></ul>
-        </div></div>
-        <div class="g-flow-choice">
-          <span class="mod-id">11-3</span><span class="mod-name">区切り線付き「・」リスト</span>
-          <span class="mod-class">.process-list</span>
-          <span class="mod-reason">破線区切りで縦に整然と。同一カテゴリの並列要素や、簡素な構成リストに最適。</span>
-        </div>
-      </div>
-
-      <div class="g-flow-row">
-        <div class="g-flow-when">国際規範・規格名など<br>「対象群」を強調列挙。</div>
-        <div class="g-flow-preview"><div class="g-flow-preview-inner">
-          <ul class="dem-ul-norm"><li>世界人権宣言</li><li>国連グローバル・コンパクト10原則</li><li>ILO中核的労働基準</li></ul>
-        </div></div>
-        <div class="g-flow-choice">
-          <span class="mod-id">11-4</span><span class="mod-name">背景色付きリスト</span>
-          <span class="mod-class">.norm-list</span>
-          <span class="mod-reason">背景色＋◆マーカーで「対象群」を視覚的にひとかたまり化。意味のある対象群でなければ使わない（装飾目的不可）。</span>
-        </div>
-      </div>
-
-      <div class="g-flow-row">
-        <div class="g-flow-when">年度推移・実績・目標を<br>行列で比較開示する。</div>
-        <div class="g-flow-preview"><div class="g-flow-preview-inner">
-          <table class="dem-tbl"><thead><tr><th style="width:60px;">区分</th><th>2022</th><th>2023</th><th>2024</th><th class="target">2025</th><th class="target">2030</th></tr></thead><tbody><tr><th>LC合計</th><td class="num">851</td><td class="num">748</td><td class="num">784</td><td class="target">800</td><td class="target">620</td></tr><tr><th>Scope1</th><td class="num">151</td><td class="num">148</td><td class="num">148</td><td class="target">—</td><td class="target">170</td></tr><tr><th>Scope2</th><td class="num">151</td><td class="num">139</td><td class="num">123</td><td class="target">—</td><td class="target">—</td></tr></tbody></table>
-        </div></div>
-        <div class="g-flow-choice">
-          <span class="mod-id">10-2</span><span class="mod-name">KPI 進捗表（多列）</span>
-          <span class="mod-class">.ghg-table</span>
-          <span class="mod-reason">年度推移・実績・目標を1枚で開示。3行以上の表データがある場合に採用。少なければ11リスト or 6-1強調。</span>
-        </div>
-      </div>
-
-      <div class="g-flow-row">
-        <div class="g-flow-when">マテリアリティと関連課題<br>など、行列の対応関係を示す。</div>
-        <div class="g-flow-preview"><div class="g-flow-preview-inner">
-          <table class="dem-tbl"><thead><tr><th style="width:80px;">マテリアリティ</th><th>関連課題</th></tr></thead><tbody><tr><th rowspan="2">働きがい向上</th><td>働き方改革</td></tr><tr><td>個が輝く組織</td></tr><tr><th>人間性尊重</th><td>人権の尊重</td></tr></tbody></table>
-        </div></div>
-        <div class="g-flow-choice">
-          <span class="mod-id">10-3</span><span class="mod-name">マトリクス表（行列入替）</span>
-          <span class="mod-class">.measure-table</span>
-          <span class="mod-reason">行のrowspanで親項目をまとめ、子項目を縦に列挙。マテリアリティ⇔取り組み関連付け等で使う。</span>
-        </div>
-      </div>
-
-      <div class="g-flow-row">
-        <div class="g-flow-when">図解＋見出し＋要約の<br>リッチ並列カード。</div>
-        <div class="g-flow-preview"><div class="g-flow-preview-inner" style="display:flex; justify-content:center;">
-          <div class="dem-card" style="max-width:200px;"><div class="dem-card-img"><span class="dem-card-cat">再エネ</span><span>[PH]</span></div><div class="dem-card-body"><div class="dem-card-title"><span>自社拠点再エネ導入</span><span class="dem-card-arrow">›</span></div><div class="dem-card-sum">RE100加盟、2030年100%目標へ。</div></div></div>
-        </div></div>
-        <div class="g-flow-choice">
-          <span class="mod-id">7-3</span><span class="mod-name">取り組みカード</span>
-          <span class="mod-class">.activity-card</span>
-          <span class="mod-reason">サムネ画像＋見出し＋要約で並列見せ。FLOW 2でも同じモジュールが登場。並列見せか単体誘導かで使い分け。</span>
-        </div>
-      </div>
-
-      <div class="g-flow-row">
-        <div class="g-flow-when">画像／グラフを<br>等幅で並べる。</div>
-        <div class="g-flow-preview"><div class="g-flow-preview-inner">
-          <div style="width:100%;"><div class="dem-img-grid col-3"><div class="dem-img-ph"><span>[PH]</span></div><div class="dem-img-ph"><span>[PH]</span></div><div class="dem-img-ph"><span>[PH]</span></div></div><div class="dem-img-cap">図：CO2削減量推移／RE100進捗</div></div>
-        </div></div>
-        <div class="g-flow-choice">
-          <span class="mod-id">3-2 / 3-3 / 3-4</span><span class="mod-name">カラムグリッド（2/3/4列）</span>
-          <span class="mod-class">.wf-grid.col-N</span>
-          <span class="mod-reason">2列=対比向き／3列=バランス／4列=小要素（ロゴ・バッジ）。L3取り組みカードは2列、L2インデックスは3列がデフォルト。</span>
-        </div>
-      </div>
-
-      <div class="g-flow-meta">
-        <strong>列数の選び方：</strong>2列＝対比向き／3列＝バランス／4列＝小要素の整列。L3テーマページの取り組みカードは <strong>2列</strong>、L2インデックスは <strong>3列</strong> がデフォルト。
-      </div>
-    </div>
-
-    <!-- FLOW 5 -->
-    <div class="g-flow">
-      <div class="g-flow-head">
-        <span class="flow-num">FLOW 5</span>
-        見出しレベル（H2〜H5）の選び分け
+        <span class="flow-num">FLOW</span>
+        H2 ／ H3 ／ H4 ／ H5 の使い分け
         <span class="flow-tags">2-1 / 2-2 / 2-3 / 2-4</span>
       </div>
-      <div class="g-flow-q">Q. ページ内の情報階層をどう刻むか</div>
+      <div class="g-flow-q">並べ順：階層レベル（上位→下位）</div>
+      <div class="g-flow-axis"><strong>基準軸：</strong>ページ内の情報階層が深くなるほど装飾が弱くなる（H2＝最強の装飾、H5＝装飾なし）。</div>
 
       <div class="g-flow-row">
-        <div class="g-flow-when">大セクションの区切り<br>（ページ内で2〜5個）。</div>
+        <div class="g-flow-when"><span class="g-flow-rank">1</span>大セクションの区切り。<br>ページ内で2〜5個。</div>
         <div class="g-flow-preview"><div class="g-flow-preview-inner">
           <div class="dem-h2">基本的な考え方</div>
         </div></div>
         <div class="g-flow-choice">
           <span class="mod-id">2-1</span><span class="mod-name">H2 グラデアンダーライン</span>
           <span class="mod-class">.wf-section-title</span>
-          <span class="mod-reason">24px太字＋グラデ下線。番号マーカー併用可。ページの骨格を刻む最上位見出し。</span>
+          <span class="mod-reason">24px太字＋グラデ下線。ページの骨格を刻む最上位見出し。番号マーカーと併用可。</span>
         </div>
       </div>
 
       <div class="g-flow-row">
-        <div class="g-flow-when">H2配下の<br>サブセクション。</div>
+        <div class="g-flow-when"><span class="g-flow-rank">2</span>H2配下の<br>サブセクション。</div>
         <div class="g-flow-preview"><div class="g-flow-preview-inner">
           <div class="dem-h3">マテリアリティの位置づけ</div>
         </div></div>
@@ -756,19 +412,19 @@ body {
       </div>
 
       <div class="g-flow-row">
-        <div class="g-flow-when">カード内タイトル／<br>小見出し。</div>
+        <div class="g-flow-when"><span class="g-flow-rank">3</span>カード内タイトル／<br>並列項目の小見出し。</div>
         <div class="g-flow-preview"><div class="g-flow-preview-inner">
           <div class="dem-h4">経済価値</div>
         </div></div>
         <div class="g-flow-choice">
           <span class="mod-id">2-3</span><span class="mod-name">H4 ◾プレフィックス</span>
           <span class="mod-class">.wf-card-title.has-mark</span>
-          <span class="mod-reason">14px太字＋左に◾アイコン。並列項目（ありたい姿／KPI等）の見出しに最適。</span>
+          <span class="mod-reason">14px太字＋左に◾アイコン。「ありたい姿」「KPI」等の並列項目見出しに最適。</span>
         </div>
       </div>
 
       <div class="g-flow-row">
-        <div class="g-flow-when">テキスト塊の中の<br>装飾なし見出し。</div>
+        <div class="g-flow-when"><span class="g-flow-rank">4</span>テキスト塊の中の<br>装飾なし見出し。</div>
         <div class="g-flow-preview"><div class="g-flow-preview-inner">
           <div class="dem-h5">グリーンプロダクツ活動</div>
         </div></div>
@@ -780,218 +436,264 @@ body {
       </div>
 
       <div class="g-flow-meta">
-        <strong>飛ばさない：</strong>H2の次にH4を置かない（必ずH3を経由する）。アコーディオン化は H3／H4配下に限定（H2はそのまま見出しとして残す）。
+        <strong>飛ばさない：</strong>H2の次にH4を置かない（必ずH3を経由する）。アコーディオン化はH3／H4配下に限定し、H2はそのまま見出しとして残す。
       </div>
     </div>
   </section>
 
-  <!-- ② 採用基準 -->
+  <!-- ② アコーディオン / モーダル / 直接表示 -->
   <section class="g-section" id="sec-2">
     <span class="g-section-num">2</span>
-    <div class="g-section-eyebrow">Part 2 — Adoption Criteria</div>
-    <h2 class="g-section-title">採用基準：使う条件 / 使わない条件（WHEN / WHEN NOT）</h2>
+    <div class="g-section-eyebrow">Criterion 2 — Accordion / Modal / Direct</div>
+    <h2 class="g-section-title">アコーディオン／モーダル／直接表示の選び分け</h2>
     <p class="g-section-desc">
-      よく使われる5モジュールの採用条件と非採用条件を1枚にまとめる。クライアント説明・自己レビュー両用。プレビューはモジュール一覧と同一描画。
+      情報を <strong>「畳む」か「出す」か「浮かせる」か</strong> の3択。情報量と必読度で判断する。
     </p>
 
-    <!-- 8-4 アコーディオン -->
-    <div class="g-wn-card">
-      <div class="g-wn-head">
-        <span class="mod-no">8-4 / 8-1</span>
-        <span class="mod-name">アコーディオン</span>
-        <span class="mod-class">.wf-acc-h3 / .wf-acc-h2</span>
+    <div class="g-flow">
+      <div class="g-flow-head">
+        <span class="flow-num">FLOW</span>
+        畳む（アコーディオン）／浮かせる（モーダル）／そのまま（直接表示）
+        <span class="flow-tags">8-1 / 8-4 / 9-1 / 9-2 / 直接表示</span>
       </div>
-      <div class="g-wn-preview">
-        <div class="g-wn-preview-col">
-          <div class="g-wn-preview-state">CLOSED</div>
-          <div class="dem-acc"><div class="dem-acc-summary">取締役会での承認事項</div></div>
+      <div class="g-flow-q">並べ順：情報量の多さ（多い→少ない）</div>
+      <div class="g-flow-axis"><strong>基準軸：</strong>情報量が多く、選択的に読ませたいほど「畳む」。少なく必読／補足だけなら「出す」か「浮かせる」。</div>
+
+      <div class="g-flow-row">
+        <div class="g-flow-when"><span class="g-flow-rank">1</span>大セクション全体を畳む。<br>マテリアリティ各項目の展開等。</div>
+        <div class="g-flow-preview"><div class="g-flow-preview-inner">
+          <div class="dem-acc h2-style is-open"><div class="dem-acc-summary">情報開示体系</div><div class="dem-acc-body">本文コンテンツが展開表示されます。</div></div>
+        </div></div>
+        <div class="g-flow-choice">
+          <span class="mod-id">8-1</span><span class="mod-name">通常アコーディオン（H2）</span>
+          <span class="mod-class">.wf-acc-h2</span>
+          <span class="mod-reason">H2レベルのアコーディオン。タグ付き（<code>.process-step</code>）／番号付きの派生は8-2／8-3。</span>
         </div>
-        <div class="g-wn-preview-col">
-          <div class="g-wn-preview-state">OPEN（デフォルト）</div>
+      </div>
+
+      <div class="g-flow-row">
+        <div class="g-flow-when"><span class="g-flow-rank">2</span>同列で並ぶ3項目以上の長文セクション。<br>全員に必読でなくよい場合。</div>
+        <div class="g-flow-preview"><div class="g-flow-preview-inner">
           <div class="dem-acc is-open"><div class="dem-acc-summary">取締役会での承認事項</div><div class="dem-acc-body">2008年：長期環境目標 / 2020年：5マテリアリティ...</div></div>
+        </div></div>
+        <div class="g-flow-choice">
+          <span class="mod-id">8-4</span><span class="mod-name">通常アコーディオン（H3以下）</span>
+          <span class="mod-class">.wf-acc-h3</span>
+          <span class="mod-reason">H3配下の長文を畳む基本モジュール。H4配下は <code>.wf-acc-h4</code> を使う。</span>
         </div>
       </div>
-      <div class="g-wn-grid">
-        <div class="g-wn-cell when">
-          <div class="g-wn-label">WHEN — こんな時に使う</div>
-          <ul>
-            <li>H3配下に同列項目が3つ以上（TCFD開示4要素／DE&I 3テーマ）</li>
-            <li>各項目が3段落以上の長文セクション</li>
-            <li>すべてを必読としなくてよい（選択的に読ませたい）</li>
-            <li>ページ構造をコンパクトに見せたい</li>
-          </ul>
-        </div>
-        <div class="g-wn-cell whennot">
-          <div class="g-wn-label">WHEN NOT — 使わない場面</div>
-          <ul>
-            <li>項目が1〜2個しかない（直接表示で十分）</li>
-            <li>ページの主目的そのものを表す内容（畳むと意図が消える）</li>
-            <li>既存原文が短いリード文＋数パラグラフのみ（盛らない）</li>
-            <li>用語1個だけの補足 → モーダル（9-2）に</li>
-          </ul>
+
+      <div class="g-flow-row">
+        <div class="g-flow-when"><span class="g-flow-rank">3</span>本文中の画像を<br>拡大して見せたい。</div>
+        <div class="g-flow-preview"><div class="g-flow-preview-inner">
+          <div class="dem-zoom"><div class="dem-zoom-frame"><div class="dem-zoom-head"><span>図：価値創造プロセス</span><span>×</span></div><div class="dem-zoom-img"><span>[ 拡大画像 ]</span></div></div></div>
+        </div></div>
+        <div class="g-flow-choice">
+          <span class="mod-id">9-1</span><span class="mod-name">画像拡大モーダル</span>
+          <span class="mod-class">.img-zoom-modal</span>
+          <span class="mod-reason">単独画像PHにのみ「+」拡大ボタン（3-6）を併用。カード内画像（<code>.activity-card-img</code>）には付けない。</span>
         </div>
       </div>
-      <div class="g-wn-foot">
-        <span><strong>代替：</strong>用語=9-2モーダル／並列見せ=7-3カード／単発本文=直接表示</span>
-        <span><strong>初期状態：</strong><code>&lt;details open&gt;</code> 必須</span>
-        <span><strong>階層：</strong>H3直下=.wf-acc-h3 / H4直下=.wf-acc-h4</span>
+
+      <div class="g-flow-row">
+        <div class="g-flow-when"><span class="g-flow-rank">4</span>ページ流れを止めずに<br>「用語・略語」だけ補足する。</div>
+        <div class="g-flow-preview"><div class="g-flow-preview-inner">
+          <div style="width:100%;"><span class="dem-term-trigger"><span class="dem-term-mark">?</span>SBT</span><div class="dem-term-modal"><div class="dem-term-modal-title">SBT（Science Based Targets）</div><div class="dem-term-modal-body">パリ協定整合の科学的根拠に基づく削減目標。当社2018年認定取得。</div></div></div>
+        </div></div>
+        <div class="g-flow-choice">
+          <span class="mod-id">9-2</span><span class="mod-name">注釈モーダル（用語ヘルプ）</span>
+          <span class="mod-class">.term-trigger / .term-modal</span>
+          <span class="mod-reason">本文インライン埋込はせず、ブロック下部の <code>.term-note</code> に集約配置する。</span>
+        </div>
+      </div>
+
+      <div class="g-flow-row">
+        <div class="g-flow-when"><span class="g-flow-rank">5</span>項目が1〜2個しかない／<br>ページの主目的そのもの。</div>
+        <div class="g-flow-preview"><div class="g-flow-preview-inner">
+          <div class="dem-normal"><span class="dem-dummy">（文章はダミーです）</span>コニカミノルタは、マテリアリティを軸に事業を通じて社会課題の解決に貢献します。</div>
+        </div></div>
+        <div class="g-flow-choice">
+          <span class="mod-id">—</span><span class="mod-name">直接表示（畳まない）</span>
+          <span class="mod-class">通常テキスト / 4-2</span>
+          <span class="mod-reason">アコーディオン化は冗長。畳むと意図が消えるためそのまま見せる。</span>
+        </div>
       </div>
     </div>
+  </section>
 
-    <!-- 6-1 POINT強調 -->
-    <div class="g-wn-card">
-      <div class="g-wn-head">
-        <span class="mod-no">6-1</span>
-        <span class="mod-name">POINTタグ強調エリア</span>
-        <span class="mod-class">.callout-box</span>
-      </div>
-      <div class="g-wn-preview">
-        <div class="g-wn-preview-col" style="flex: 1;">
-          <div class="g-wn-preview-state">プレビュー</div>
-          <div class="dem-callout"><span class="dem-callout-tag">CARBON MINUS 2025</span><div class="dem-callout-body">2025年度には自社製品ライフサイクル全体の排出量を2005年度比で61％削減を目標とし、800千トンを社会のCO2削減効果として生み出します。</div></div>
-        </div>
-      </div>
-      <div class="g-wn-grid">
-        <div class="g-wn-cell when">
-          <div class="g-wn-label">WHEN — こんな時に使う</div>
-          <ul>
-            <li>そのページの結論・宣言・主要KPIを引き上げる</li>
-            <li>マテリアリティの中核トピックを示す（DE&I宣言・CARBON MINUS 2025）</li>
-            <li>ページ冒頭で「このページで言いたい1つ」を明示</li>
-          </ul>
-        </div>
-        <div class="g-wn-cell whennot">
-          <div class="g-wn-label">WHEN NOT — 使わない場面</div>
-          <ul>
-            <li>1ページに3個以上置く（強調が機能しなくなる）</li>
-            <li>注釈・補足レベルの情報（6-2を使う）</li>
-            <li>既存原文に該当する強調文が存在しない（盛らない）</li>
-          </ul>
-        </div>
-      </div>
-      <div class="g-wn-foot">
-        <span><strong>タグ文言：</strong>ページごとに内容を表す英字短文に（POINT / MATERIALITY KPI / CARBON MINUS 2025 等）</span>
-        <span><strong>NGスタイル：</strong>左縦棒型／オーバーレイアイコン型は廃止</span>
-      </div>
-    </div>
+  <!-- ③ リンクモジュール -->
+  <section class="g-section" id="sec-3">
+    <span class="g-section-num">3</span>
+    <div class="g-section-eyebrow">Criterion 3 — Link Modules</div>
+    <h2 class="g-section-title">リンクモジュールの選び分け：誘導の強さ順</h2>
+    <p class="g-section-desc">
+      リンク系は <strong>「視覚的な誘導の強さ」</strong> を単一基準として上位→下位の順に並べる。同一セクション内で全部を強調すると全部が並列に見えるため、強弱を意識して使い分ける。
+    </p>
 
-    <!-- 7-3 取り組みカード -->
-    <div class="g-wn-card">
-      <div class="g-wn-head">
-        <span class="mod-no">7-3</span>
-        <span class="mod-name">取り組みカード（活動カード）</span>
-        <span class="mod-class">.activity-card</span>
+    <div class="g-flow">
+      <div class="g-flow-head">
+        <span class="flow-num">FLOW</span>
+        リンク7モジュール ／ 誘導の強さ順
+        <span class="flow-tags">7-10 / 7-3 / 7-6 / 7-5 / 7-9 / 7-4 / 7-1</span>
       </div>
-      <div class="g-wn-preview">
-        <div class="g-wn-preview-col">
-          <div class="g-wn-preview-state">プレビュー</div>
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; width:100%;">
-            <div class="dem-card"><div class="dem-card-img"><span class="dem-card-cat">脱炭素</span><span>[PH]</span></div><div class="dem-card-body"><div class="dem-card-title"><span>製品の脱炭素化</span><span class="dem-card-arrow">›</span></div><div class="dem-card-sum">商業・産業用印刷機の主力製品でCO2削減を実現。</div></div></div>
-            <div class="dem-card"><div class="dem-card-img"><span class="dem-card-cat">再エネ</span><span>[PH]</span></div><div class="dem-card-body"><div class="dem-card-title"><span>自社拠点再エネ導入</span><span class="dem-card-arrow">›</span></div><div class="dem-card-sum">RE100加盟、2030年100%目標へ。</div></div></div>
+      <div class="g-flow-q">並べ順：視覚的な誘導の強さ（強い→弱い）</div>
+      <div class="g-flow-axis"><strong>基準軸：</strong>外枠の太さ・面積・サムネ有無で決まる誘導の強さ。強いものほどページ上での「主要遷移先」の役割を担う。</div>
+
+      <div class="g-flow-row">
+        <div class="g-flow-when"><span class="g-flow-rank">1</span>主要な遷移先／<br>PDF媒体／方針一覧。</div>
+        <div class="g-flow-preview"><div class="g-flow-preview-inner">
+          <div class="dem-link-btn-grid">
+            <div class="dem-link-btn is-primary"><div><div class="dem-link-btn-title">統合報告書 2024</div><div class="dem-link-btn-desc">最新版PDF（16MB）</div></div><div class="dem-link-btn-arrow">›</div></div>
+            <div class="dem-link-btn"><div><div class="dem-link-btn-title">サステナビリティ方針</div><div class="dem-link-btn-desc">グループ全社方針</div></div><div class="dem-link-btn-arrow">›</div></div>
           </div>
+        </div></div>
+        <div class="g-flow-choice">
+          <span class="mod-id">7-10</span><span class="mod-name">説明文付きリンクボタン（汎用統一）</span>
+          <span class="mod-class">.link-btn / .link-btn-grid</span>
+          <span class="mod-reason">外枠2px強調=<code>.is-primary</code>／grid内全幅=<code>.is-full</code> の2バリアントで主要遷移／PDF／方針一覧を吸収。最強の誘導モジュール。</span>
         </div>
       </div>
-      <div class="g-wn-grid">
-        <div class="g-wn-cell when">
-          <div class="g-wn-label">WHEN — こんな時に使う</div>
-          <ul>
-            <li>取り組み／施策／事例をサムネ＋カテゴリ＋要約で誘導</li>
-            <li>L3テーマページ内の代表事例の一覧（2列）</li>
-            <li>L2インデックスから子テーマへの導線（3列）</li>
-          </ul>
-        </div>
-        <div class="g-wn-cell whennot">
-          <div class="g-wn-label">WHEN NOT — 使わない場面</div>
-          <ul>
-            <li>画像／要約のいずれも揃わない（リンクボタン 7-10 に）</li>
-            <li>遷移先がPDFのみ（7-10 link-btn に）</li>
-            <li>カード内画像に「+」拡大ボタンを付ける（NG）</li>
-          </ul>
+
+      <div class="g-flow-row">
+        <div class="g-flow-when"><span class="g-flow-rank">2</span>取り組み・施策を<br>サムネ＋見出し＋要約で誘導。</div>
+        <div class="g-flow-preview"><div class="g-flow-preview-inner" style="display:flex; justify-content:center;">
+          <div class="dem-card" style="max-width:200px;"><div class="dem-card-img"><span class="dem-card-cat">脱炭素</span><span>[PH]</span></div><div class="dem-card-body"><div class="dem-card-title"><span>製品の脱炭素化</span><span class="dem-card-arrow">›</span></div><div class="dem-card-sum">商業・産業用印刷機の主力製品でCO2削減を実現。</div></div></div>
+        </div></div>
+        <div class="g-flow-choice">
+          <span class="mod-id">7-3</span><span class="mod-name">取り組みカード</span>
+          <span class="mod-class">.activity-card</span>
+          <span class="mod-reason">画像PH＋カテゴリタグ＋H4タイトル＋要約。L3=2列、L2インデックス=3列がデフォルト。タグはジャンル別に書く（一律「取り組み」NG）。</span>
         </div>
       </div>
-      <div class="g-wn-foot">
-        <span><strong>カテゴリタグ：</strong>ジャンル別に書く（「取り組み」一律はNG）</span>
-        <span><strong>列数：</strong>004=3列 / 024・025・124・131・148=2列</span>
+
+      <div class="g-flow-row">
+        <div class="g-flow-when"><span class="g-flow-rank">3</span>ESGデータ一式<br>（PDF/Excel）のDL導線。</div>
+        <div class="g-flow-preview"><div class="g-flow-preview-inner">
+          <div class="dem-qa"><div class="dem-qa-icon">PDF</div><div class="dem-qa-body"><div class="dem-qa-title">サステナビリティレポート</div><div class="dem-qa-meta">最新版（16.0MB）</div></div><span style="font-size:12px;">›</span></div>
+        </div></div>
+        <div class="g-flow-choice">
+          <span class="mod-id">7-6</span><span class="mod-name">資料DLカード（PDF/Excel）</span>
+          <span class="mod-class">.qa-card</span>
+          <span class="mod-reason">ファイル形式アイコン＋タイトル＋容量メタ。199 ESGデータの最下部に集約配置。DL用途に特化。</span>
+        </div>
+      </div>
+
+      <div class="g-flow-row">
+        <div class="g-flow-when"><span class="g-flow-rank">4</span>環境／社会／ガバナンスの<br>横断インデックス。</div>
+        <div class="g-flow-preview"><div class="g-flow-preview-inner">
+          <div class="dem-list-stack"><div class="dem-list-stack-row"><div class="dem-list-stack-head">環境</div><div class="dem-list-stack-chips"><div class="dem-l3-chip">気候変動</div><div class="dem-l3-chip">資源循環</div><div class="dem-l3-chip">水資源</div></div></div><div class="dem-list-stack-row"><div class="dem-list-stack-head">社会</div><div class="dem-list-stack-chips"><div class="dem-l3-chip">DE&amp;I</div><div class="dem-l3-chip">健康経営</div><div class="dem-l3-chip">人権</div></div></div></div>
+        </div></div>
+        <div class="g-flow-choice">
+          <span class="mod-id">7-5</span><span class="mod-name">横断インデックスリンク</span>
+          <span class="mod-class">.esg-link-stack</span>
+          <span class="mod-reason">E/S/G 3カテゴリの全L3を横並びチップで網羅表示。L2インデックスの主要モジュール（網羅型）。</span>
+        </div>
+      </div>
+
+      <div class="g-flow-row">
+        <div class="g-flow-when"><span class="g-flow-rank">5</span>個別記事（ニュース／<br>トピックス）の縦リスト。</div>
+        <div class="g-flow-preview"><div class="g-flow-preview-inner">
+          <div style="width:100%;"><div class="dem-news-row"><span class="date">2025/03/15</span><span class="title">CDP 2024 気候変動「Aリスト」に選定されました</span></div><div class="dem-news-row"><span class="date">2025/03/01</span><span class="title">健康経営優良法人2025（ホワイト500）に認定</span></div><div class="dem-news-row"><span class="date">2025/02/20</span><span class="title">サステナビリティレポート2024を公開</span></div></div>
+        </div></div>
+        <div class="g-flow-choice">
+          <span class="mod-id">7-9</span><span class="mod-name">ニュース・トピックスリスト</span>
+          <span class="mod-class">.topics-list / .news-row</span>
+          <span class="mod-reason">時系列の更新情報。1行=1記事、4行以上を表示。年度フィルタチップ（12-3）と組合せ可。</span>
+        </div>
+      </div>
+
+      <div class="g-flow-row">
+        <div class="g-flow-when"><span class="g-flow-rank">6</span>テーマに関する<br>関連参考の一覧（横並び複数）。</div>
+        <div class="g-flow-preview"><div class="g-flow-preview-inner">
+          <div class="dem-graybg"><span class="dem-graybg-label">関連リンク</span><div style="font-size:9px; line-height:1.7;">→ 環境マネジメント体制　　→ ガバナンス体制　　→ マテリアリティ評価</div></div>
+        </div></div>
+        <div class="g-flow-choice">
+          <span class="mod-id">7-4</span><span class="mod-name">関連リンク</span>
+          <span class="mod-class">.theme-related</span>
+          <span class="mod-reason">薄グレーbg＋全周ボーダー＋「関連リンク」ラベル。ページ下部に集約配置する慣例。弱誘導。</span>
+        </div>
+      </div>
+
+      <div class="g-flow-row">
+        <div class="g-flow-when"><span class="g-flow-rank">7</span>本文中で1件だけ参照する<br>規程・ページ。</div>
+        <div class="g-flow-preview"><div class="g-flow-preview-inner">
+          <a class="dem-textlink">コニカミノルタグループ行動憲章</a>
+        </div></div>
+        <div class="g-flow-choice">
+          <span class="mod-id">7-1</span><span class="mod-name">テキストリンク</span>
+          <span class="mod-class">.policy-link</span>
+          <span class="mod-reason">本文段落と地続きに溶け込むインラインリンク。誘導の強さは最弱で、流れを止めない。</span>
+        </div>
+      </div>
+
+      <div class="g-flow-meta">
+        <strong>使い分けの目安：</strong>同一セクション内で <strong>強い誘導は1〜2個まで</strong>。全部を強調すると全部が並と同じに見える。L3テーマページの「主役遷移」は1〜2個に絞り、それ以外は中〜弱誘導でまとめる。
       </div>
     </div>
+  </section>
 
-    <!-- 10-2 KPI表 -->
-    <div class="g-wn-card">
-      <div class="g-wn-head">
-        <span class="mod-no">10-2</span>
-        <span class="mod-name">KPI 進捗表（多列）</span>
-        <span class="mod-class">.ghg-table</span>
-      </div>
-      <div class="g-wn-preview">
-        <div class="g-wn-preview-col" style="flex: 1;">
-          <div class="g-wn-preview-state">プレビュー</div>
-          <table class="dem-tbl"><thead><tr><th style="width:80px;">区分</th><th>2022</th><th>2023</th><th>2024</th><th class="target">2025目標</th><th class="target">2030目標</th></tr></thead><tbody><tr><th>LC合計</th><td class="num">851</td><td class="num">748</td><td class="num">784</td><td class="target">800</td><td class="target">620</td></tr><tr><th>Scope1</th><td class="num">151</td><td class="num">148</td><td class="num">148</td><td class="target">—</td><td class="target">170</td></tr><tr><th>Scope2</th><td class="num">151</td><td class="num">139</td><td class="num">123</td><td class="target">—</td><td class="target">—</td></tr><tr><th>Scope3</th><td class="num">548</td><td class="num">462</td><td class="num">513</td><td class="target">—</td><td class="target">450</td></tr></tbody></table>
-        </div>
-      </div>
-      <div class="g-wn-grid">
-        <div class="g-wn-cell when">
-          <div class="g-wn-label">WHEN — こんな時に使う</div>
-          <ul>
-            <li>年度推移・実績・目標を行列で比較</li>
-            <li>環境・社会データの定量開示</li>
-            <li>3行以上のデータがある</li>
-          </ul>
-        </div>
-        <div class="g-wn-cell whennot">
-          <div class="g-wn-label">WHEN NOT — 使わない場面</div>
-          <ul>
-            <li>行列で比較する必要がない（文章で済む）</li>
-            <li>規格対照（GRI/SASB）は10-4を使う</li>
-            <li>シナリオ分析（バッジ要）は10-5を使う</li>
-            <li>少行数（1〜2行）→ 11リスト or 6-1強調に</li>
-          </ul>
-        </div>
-      </div>
-      <div class="g-wn-foot">
-        <span><strong>最小行数：</strong>3行以上（catalog v3.1ルール）</span>
-        <span><strong>注釈：</strong>表下に <code>.term-note</code> で凡例・注釈</span>
-      </div>
-    </div>
+  <!-- ④ 強調モジュール -->
+  <section class="g-section" id="sec-4">
+    <span class="g-section-num">4</span>
+    <div class="g-section-eyebrow">Criterion 4 — Emphasis Modules</div>
+    <h2 class="g-section-title">強調モジュールの選び分け：引き上げるか、引き下げるか</h2>
+    <p class="g-section-desc">
+      ページ内の重要度に応じて、本文より <strong>「引き上げる（強調）」</strong> か <strong>「引き下げる（補足）」</strong> か。3モジュールしかないが、混同すると視覚階層が崩れる。
+    </p>
 
-    <!-- 11-4 背景色付きリスト -->
-    <div class="g-wn-card">
-      <div class="g-wn-head">
-        <span class="mod-no">11-4</span>
-        <span class="mod-name">背景色付きリスト</span>
-        <span class="mod-class">.norm-list</span>
+    <div class="g-flow">
+      <div class="g-flow-head">
+        <span class="flow-num">FLOW</span>
+        強調 ／ 補足 ／ 注釈 の使い分け
+        <span class="flow-tags">6-1 / 6-2 / 4-3</span>
       </div>
-      <div class="g-wn-preview">
-        <div class="g-wn-preview-col" style="flex: 1;">
-          <div class="g-wn-preview-state">プレビュー</div>
-          <ul class="dem-ul-norm"><li>世界人権宣言</li><li>国連グローバル・コンパクト10原則</li><li>ILO中核的労働基準</li><li>OECD多国籍企業行動指針</li></ul>
+      <div class="g-flow-q">並べ順：本文に対する強調度（強い→弱い）</div>
+      <div class="g-flow-axis"><strong>基準軸：</strong>本文との視覚的距離。強調＝本文より目立たせる／補足＝本文より引き下げる／注釈＝最も控えめ。</div>
+
+      <div class="g-flow-row">
+        <div class="g-flow-when"><span class="g-flow-rank">1</span>ページの結論／KPI宣言／<br>重要トピックを引き上げる。</div>
+        <div class="g-flow-preview"><div class="g-flow-preview-inner">
+          <div class="dem-callout"><span class="dem-callout-tag">CARBON MINUS 2025</span><div class="dem-callout-body">2025年度には自社製品ライフサイクル全体の排出量を2005年度比で61％削減を目標とし、800千トンを社会のCO2削減効果として生み出します。</div></div>
+        </div></div>
+        <div class="g-flow-choice">
+          <span class="mod-id">6-1</span><span class="mod-name">POINTタグ強調エリア</span>
+          <span class="mod-class">.callout-box</span>
+          <span class="mod-reason">タグ文言はページに応じて変える（POINT / MATERIALITY KPI / CARBON MINUS 2025 等）。<strong>1ページに3個以上置かない</strong>（強調が機能しなくなる）。</span>
         </div>
       </div>
-      <div class="g-wn-grid">
-        <div class="g-wn-cell when">
-          <div class="g-wn-label">WHEN — こんな時に使う</div>
-          <ul>
-            <li>国際規範・規格名・受賞名など「対象群」を強調列挙</li>
-            <li>箇条として並列しつつ、本文との境界を視覚的に切りたい</li>
-          </ul>
-        </div>
-        <div class="g-wn-cell whennot">
-          <div class="g-wn-label">WHEN NOT — 使わない場面</div>
-          <ul>
-            <li>通常の箇条書き（11-1 を使う）</li>
-            <li>順序が重要なリスト（11-2 番号付き）</li>
-            <li>装飾的に背景色を付けたいだけ（意味のある「対象群」でなければ使わない）</li>
-          </ul>
+
+      <div class="g-flow-row">
+        <div class="g-flow-when"><span class="g-flow-rank">2</span>用語の補足／前提条件／<br>凡例的な箇条を引き下げる。</div>
+        <div class="g-flow-preview"><div class="g-flow-preview-inner">
+          <div class="dem-graybg"><span class="dem-graybg-label">JCIメッセージへの賛同</span><div>・2024年11月：1.5℃目標と整合する2035年目標を求めるメッセージ</div></div>
+        </div></div>
+        <div class="g-flow-choice">
+          <span class="mod-id">6-2</span><span class="mod-name">薄グレー補足エリア</span>
+          <span class="mod-class">.sub-list / .term-note</span>
+          <span class="mod-reason">本文と区別された補助情報。用語注釈・前提条件・凡例リストに使う。グレー背景で「本文より一段下」を視覚化。</span>
         </div>
       </div>
-      <div class="g-wn-foot">
-        <span><strong>背景色：</strong><code>var(--c-bg-sub)</code>（#F2F2F2）固定</span>
-        <span><strong>マーカー：</strong>◆ 1色のみ（多色化しない）</span>
+
+      <div class="g-flow-row">
+        <div class="g-flow-when"><span class="g-flow-rank">3</span>本文末尾の単発注釈<br>（※印など）。</div>
+        <div class="g-flow-preview"><div class="g-flow-preview-inner">
+          <div class="dem-note">※ 数値は四捨五入のため合計が合わない場合があります。第三者保証取得済。</div>
+        </div></div>
+        <div class="g-flow-choice">
+          <span class="mod-id">4-3</span><span class="mod-name">注釈・補足</span>
+          <span class="mod-class">注釈用 inline style</span>
+          <span class="mod-reason">小さい灰色テキスト。表・KPIの直下や本文末尾に1〜2行で配置。最も控えめな補足。</span>
+        </div>
+      </div>
+
+      <div class="g-flow-meta">
+        <strong>使い分けの目安：</strong>強調（6-1）は <strong>1ページに1〜2個</strong> まで／補足（6-2）はそのページの脇情報／注釈（4-3）は1行で済む但し書き。3つの装飾が同じセクション内に並ぶ場合は順番に「結論→補足→注釈」と並べる。
       </div>
     </div>
   </section>
 
   <footer class="g-footer">
-    <div>KMサステナビリティWF — モジュール選定ガイド v2.0 ／ 2026.05.13 ／ 13カテゴリ・47モジュール対応</div>
+    <div>KMサステナビリティWF — モジュール選定ガイド v3.0 ／ 2026.05.13 ／ 4基準（見出し／アコーディオン・モーダル・直接表示／リンク／強調）</div>
     <div>
       <a href="module-catalog-v2.html">モジュール一覧 v3.6.5 →</a>
       <a href="index.html" style="margin-left:16px;">← Hub</a>
