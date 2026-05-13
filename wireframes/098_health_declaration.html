@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>健康宣言 — KM サステナビリティ WF v1.2</title>
+<title>健康宣言 — KM サステナビリティ WF v2.0</title>
 <style>
 /* ============================================================
    KM SUSTAINABILITY WF — SHARED CSS v5.0（白黒）
@@ -50,9 +50,9 @@ body {
 .wf-page-indicator .pi-layer { background: #444; color: #888; font-size: 9px; padding: 1px 8px; border-radius: 2px; }
 
 /* HEADER */
-/* ヘッダー：KM公式デザイン画像版（全ページ共通） */
 .wf-header-img { background: var(--c-white); border-bottom: 1px solid var(--c-border); line-height: 0; }
 .wf-header-img-asset { display: block; width: 100%; height: auto; }
+
 /* BREADCRUMB */
 .wf-breadcrumb { background: var(--c-white); border-bottom: 1px solid var(--c-border-s); padding: 10px var(--pad-h); font-size: 12px; color: var(--c-text-s); display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
 .wf-breadcrumb span.sep { color: var(--c-border); }
@@ -65,175 +65,71 @@ body {
 .wf-section.pad-sm { padding-top: var(--pad-section-sm); padding-bottom: var(--pad-section-sm); }
 .wf-section-marker { position: absolute; top: 12px; left: 8px; width: 22px; height: 22px; background: #222; color: #fff; border-radius: 50%; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
 
-/* TYPOGRAPHY */
-.wf-page-title { font-size: 26px; font-weight: 700; color: var(--c-text-h); line-height: 1.3; margin-bottom: 6px; letter-spacing: 0.01em; }
+/* TYPOGRAPHY（共通モジュール 2-1〜2-3） */
+.wf-page-title { font-size: 26px; font-weight: 700; color: var(--c-text-h); line-height: 1.3; letter-spacing: 0.01em; }
 .wf-section-title { font-size: 22px; font-weight: 700; color: var(--c-text-h); line-height: 1.5; margin-bottom: 24px; letter-spacing: 0.02em; }
-.wf-section-title.center { text-align: center; margin-bottom: 28px; }
 .wf-sub-title { font-size: 15px; font-weight: 700; color: var(--c-text-h); line-height: 1.4; margin-bottom: 12px; padding-left: 14px; border-left: 4px solid var(--c-black); }
+.wf-card-title { font-size: 14px; font-weight: 700; color: var(--c-text-h); margin-bottom: 10px; line-height: 1.4; display: flex; align-items: center; gap: 6px; margin-top: 20px; }
+.wf-card-title.has-mark::before { content: '◾'; color: var(--c-text-h); font-size: 12px; flex-shrink: 0; }
 
-/* L4ページタイトル（共通モジュール 1-4：wf-page-title-area） */
+/* L4ページタイトル（共通モジュール 1-5：シンプル・親リンク無し） */
 .wf-page-title-area { background: var(--c-white); padding: 28px var(--pad-h) 22px; border-bottom: 1px solid var(--c-border-s); }
-.wf-page-parent-cat { font-size: 12px; color: var(--c-text-s); margin-top: 10px; letter-spacing: 0.02em; line-height: 1.5; }
-.wf-page-parent-cat a { color: var(--c-text-h); font-weight: 700; text-decoration: none; border-bottom: 1px dashed var(--c-text-h); cursor: default; padding-bottom: 1px; }
-.wf-page-parent-cat a:hover { border-bottom-style: solid; background: var(--c-bg-sub); }
 
-/* TEXT LINE PH */
-.wf-textlines { display: flex; flex-direction: column; gap: 8px; }
-.wf-line { height: 10px; background: var(--c-ph-line); border-radius: 3px; }
-.wf-line.w-full { width: 100%; } .wf-line.w-90 { width: 90%; } .wf-line.w-75 { width: 75%; } .wf-line.w-60 { width: 60%; }
+/* TEXT（共通モジュール 4-2 通常テキスト） */
+.wf-p { font-size: 13px; color: var(--c-text); line-height: 1.95; margin-bottom: 14px; }
+.wf-p:last-child { margin-bottom: 0; }
+.wf-section-desc { font-size: 13px; color: var(--c-text); line-height: 1.95; margin-bottom: 24px; }
 
-/* BUTTON / LINK */
-.wf-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; font-size: 12px; font-weight: 600; padding: 11px 28px; cursor: default; letter-spacing: 0.03em; border: 1.5px solid var(--c-black); white-space: nowrap; }
-.wf-btn.primary { background: var(--c-black); color: var(--c-white); }
-.wf-btn.outline { background: var(--c-white); color: var(--c-black); }
-.wf-btn-group { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
-.wf-link { font-size: 12px; color: var(--c-text-s); display: inline-flex; align-items: center; gap: 4px; cursor: default; }
-.wf-link::before { content: '\2192\00a0'; font-size: 11px; }
-.wf-link-dl { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--c-text-h); font-weight: 600; padding: 8px 14px; border: 1px solid var(--c-border); background: var(--c-white); }
-.wf-link-dl-icon { width: 16px; height: 16px; background: var(--c-ph); border: 1px solid var(--c-border); font-size: 7px; color: var(--c-text-xs); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+/* CALLOUT-BOX（共通モジュール 6-1 POINTタグ強調エリア） */
+.callout-box { background: var(--c-white); border: 1px solid var(--c-border); padding: 18px 24px 22px; margin: 16px 0 24px; }
+.callout-box-tag { display: inline-block; background: var(--c-bg-sub); color: var(--c-text-h); font-size: 10px; font-weight: 700; letter-spacing: 0.1em; padding: 5px 14px; margin-bottom: 14px; }
+.callout-box-body { font-size: 13px; color: var(--c-text); line-height: 1.95; }
+.callout-box-body strong { color: var(--c-text-h); font-weight: 700; }
+.callout-box-body .lead { display: block; font-size: 16px; font-weight: 700; color: var(--c-text-h); margin-bottom: 10px; letter-spacing: 0.04em; }
 
-/* CARD GRID（関連リンク用） */
-.wf-grid { display: grid; gap: 16px; }
-.wf-grid.col-3 { grid-template-columns: repeat(3, 1fr); }
-.wf-card { background: var(--c-white); border: 1px solid var(--c-border); padding: 16px 18px; }
-.wf-card-title { font-size: 13px; font-weight: 700; color: var(--c-text-h); line-height: 1.4; margin-bottom: 8px; }
-.wf-card-desc { font-size: 11px; color: var(--c-text-s); line-height: 1.7; margin-bottom: 10px; }
+/* 番号付きリスト（共通モジュール 11-2） */
+.wf-ol { list-style: none; padding: 0; margin: 4px 0 8px; counter-reset: item; }
+.wf-ol li { display: grid; grid-template-columns: 28px 1fr; gap: 4px; padding: 4px 0; font-size: 13px; line-height: 1.9; color: var(--c-text); }
+.wf-ol li::before { content: counter(item) '．'; counter-increment: item; font-weight: 700; color: var(--c-text-h); }
+
+/* 署名（右揃えテキスト・装飾なし） */
+.wf-signoff { text-align: right; margin-top: 28px; font-size: 13px; color: var(--c-text); line-height: 1.9; }
+.wf-signoff strong { font-size: 15px; font-weight: 700; color: var(--c-text-h); }
 
 /* FIRSTVIEW LINE */
 .wf-firstview-line { position: relative; height: 0; }
 .wf-firstview-line::before { content: ''; position: absolute; left: 0; right: 0; top: 720px; border-top: 1px dashed #C8A000; opacity: 0.5; }
 
-/* ============================================================
-   SEGMENT J — POLICY (使用：J8 署名ブロック・右揃え)
-============================================================ */
-/* J8 署名ブロック — デフォルト右揃え。中央寄せ本文と組合せて文書末尾に配置 */
-.wf-signature { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; padding-top: 24px; margin-top: 28px; border-top: 1px solid var(--c-border-s); }
-.wf-signature.no-rule { padding-top: 0; margin-top: 24px; border-top: none; }
-.wf-signature-date { font-size: 12px; color: var(--c-text); letter-spacing: 0.1em; }
-.wf-signature-company { font-size: 13px; color: var(--c-text); }
-.wf-signature-role { font-size: 13px; color: var(--c-text); }
-.wf-signature-name { font-size: 15px; font-weight: 700; color: var(--c-text-h); display: inline-flex; align-items: center; gap: 12px; margin-top: 2px; }
-
-/* ============================================================
-   SEGMENT K — DECLARATION VISUALS（白黒）
-============================================================ */
-/* K1 強調エリア（中心理念バナー）— 黒背景・白文字・複数行対応 */
-.wf-emphasis { padding: 36px 40px; background: var(--c-black); color: var(--c-white); text-align: center; }
-.wf-emphasis-lead { font-size: 18px; font-weight: 700; line-height: 1.6; letter-spacing: 0.06em; margin-bottom: 12px; }
-.wf-emphasis-body { font-size: 14px; font-weight: 500; line-height: 1.9; letter-spacing: 0.04em; opacity: 0.95; }
-
-/* K3 2×2 マトリクス（白黒）— 列見出し付き */
-.wf-matrix-headed { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 20px; }
-.wf-matrix-col-head { font-size: 13px; font-weight: 700; color: var(--c-text-h); padding-bottom: 10px; border-bottom: 2px solid var(--c-black); text-align: center; letter-spacing: 0.04em; }
-.wf-matrix-cell { background: var(--c-white); border: 1px solid var(--c-border); overflow: hidden; }
-.wf-matrix-cell-head { padding: 12px 16px; background: var(--c-black); color: var(--c-white); font-size: 13px; font-weight: 700; line-height: 1.5; text-align: center; letter-spacing: 0.04em; }
-.wf-matrix-cell-body { padding: 16px 18px; font-size: 12px; line-height: 1.9; color: var(--c-text); }
-.wf-matrix-cell-list { list-style: none; padding: 0; margin: 0; }
-.wf-matrix-cell-list li { display: grid; grid-template-columns: 24px 1fr; gap: 4px; padding: 4px 0; }
-.wf-matrix-cell-list li::before { content: counter(item) '．'; counter-increment: item; font-weight: 700; color: var(--c-text-h); }
-.wf-matrix-cell-list { counter-reset: item; }
-
-/* FOOTER */
-/* サステナビリティサイトフッター（アコーディオン式・全ページ共通） */
+/* FOOTER（共通モジュール 13-4／13-5） */
 .sus-footer { background: #2A2A2A; color: #ddd; border-top: 1px solid #444; }
-.sus-footer-toggle {
-  display: flex; align-items: center; gap: 12px;
-  width: 100%; padding: 14px var(--pad-h);
-  background: #1A1A1A; border: none; border-bottom: 1px solid #333;
-  color: #fff; font-size: 13px; font-weight: 700;
-  cursor: pointer; text-align: left; letter-spacing: 0.02em;
-  font-family: inherit;
-}
+.sus-footer-toggle { display: flex; align-items: center; gap: 12px; width: 100%; padding: 14px var(--pad-h); background: #1A1A1A; border: none; border-bottom: 1px solid #333; color: #fff; font-size: 13px; font-weight: 700; cursor: pointer; text-align: left; letter-spacing: 0.02em; font-family: inherit; }
 .sus-footer-toggle:hover { background: #222; }
-.sus-footer-toggle-icon {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 14px; height: 14px; font-size: 10px; color: #fff;
-  transition: transform 0.2s ease;
-}
+.sus-footer-toggle-icon { display: inline-flex; align-items: center; justify-content: center; width: 14px; height: 14px; font-size: 10px; color: #fff; transition: transform 0.2s ease; }
 .sus-footer[data-open="false"] .sus-footer-toggle-icon { transform: rotate(-90deg); }
-.sus-footer-content {
-  padding: 32px var(--pad-h) 36px;
-  background: #2A2A2A;
-}
+.sus-footer-content { padding: 32px var(--pad-h) 36px; background: #2A2A2A; }
 .sus-footer[data-open="false"] .sus-footer-content { display: none; }
-.sus-footer-grid {
-  display: grid; grid-template-columns: repeat(5, 1fr); gap: 28px;
-}
-.sus-footer-col-title {
-  font-size: 13px; font-weight: 700; color: #fff;
-  padding-bottom: 10px; margin-bottom: 12px;
-  border-bottom: 1px solid #555;
-  letter-spacing: 0.02em;
-}
-.sus-footer-link {
-  display: block; font-size: 12px; color: #fff;
-  font-weight: 600; padding: 6px 0 4px; line-height: 1.5;
-  cursor: default;
-}
-.sus-footer-sublink {
-  display: block; font-size: 11px; color: #aaa;
-  font-weight: 400; padding: 2px 0 2px 12px; line-height: 1.6;
-  cursor: default;
-}
+.sus-footer-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 28px; }
+.sus-footer-col-title { font-size: 13px; font-weight: 700; color: #fff; padding-bottom: 10px; margin-bottom: 12px; border-bottom: 1px solid #555; letter-spacing: 0.02em; }
+.sus-footer-link { display: block; font-size: 12px; color: #fff; font-weight: 600; padding: 6px 0 4px; line-height: 1.5; cursor: default; }
 
-/* コーポレート全体フッター（公式デザイン準拠） */
 .wf-footer { background: #F0EFEC; color: #444; border-top: 1px solid #D8D7D3; }
 .wf-footer-main { padding: 36px var(--pad-h) 28px; }
 .wf-footer-section { margin-bottom: 22px; }
 .wf-footer-section:last-of-type { margin-bottom: 26px; }
-.wf-footer-section-title {
-  font-size: 13px; font-weight: 700; color: #1B2233;
-  border-left: 4px solid #3D4F7B;
-  padding-left: 10px;
-  margin-bottom: 12px;
-  line-height: 1.4;
-}
-.wf-footer-links {
-  display: flex; flex-wrap: wrap; row-gap: 8px; column-gap: 26px;
-  padding-left: 14px;
-}
-.wf-footer-link {
-  font-size: 12px; color: #4A4A4A; cursor: default;
-  white-space: nowrap; line-height: 1.6;
-}
+.wf-footer-section-title { font-size: 13px; font-weight: 700; color: #1B2233; border-left: 4px solid #3D4F7B; padding-left: 10px; margin-bottom: 12px; line-height: 1.4; }
+.wf-footer-links { display: flex; flex-wrap: wrap; row-gap: 8px; column-gap: 26px; padding-left: 14px; }
+.wf-footer-link { font-size: 12px; color: #4A4A4A; cursor: default; white-space: nowrap; line-height: 1.6; }
 .wf-footer-link::after { content: ' ›'; color: #888; padding-left: 4px; }
-.wf-footer-utils {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 8px 0 4px 14px;
-  margin-top: 6px;
-}
-.wf-footer-sns {
-  font-size: 12px; color: #4A4A4A;
-  display: inline-flex; align-items: center; gap: 8px;
-  cursor: default;
-}
-.wf-footer-icon-plus {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 16px; height: 16px;
-  border: 1px solid #999; color: #555;
-  font-size: 11px; line-height: 1;
-}
-.wf-footer-region {
-  display: inline-flex; align-items: center; gap: 10px;
-  padding: 10px 22px;
-  border: 1px solid #999; background: var(--c-white);
-  font-size: 12px; color: #2A2A2A; cursor: default;
-}
-.wf-footer-region-globe {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 16px; height: 16px;
-  border: 1px solid #555; border-radius: 50%;
-  font-size: 9px; line-height: 1;
-}
-.wf-footer-bottom {
-  background: #2D3447; color: #D8D8D8;
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 14px var(--pad-h);
-  font-size: 11px; letter-spacing: 0.02em;
-}
+.wf-footer-utils { display: flex; align-items: center; justify-content: space-between; padding: 8px 0 4px 14px; margin-top: 6px; }
+.wf-footer-sns { font-size: 12px; color: #4A4A4A; display: inline-flex; align-items: center; gap: 8px; cursor: default; }
+.wf-footer-icon-plus { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border: 1px solid #999; color: #555; font-size: 11px; line-height: 1; }
+.wf-footer-region { display: inline-flex; align-items: center; gap: 10px; padding: 10px 22px; border: 1px solid #999; background: var(--c-white); font-size: 12px; color: #2A2A2A; cursor: default; }
+.wf-footer-region-globe { display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border: 1px solid #555; border-radius: 50%; font-size: 9px; line-height: 1; }
+.wf-footer-bottom { background: #2D3447; color: #D8D8D8; display: flex; justify-content: space-between; align-items: center; padding: 14px var(--pad-h); font-size: 11px; letter-spacing: 0.02em; }
 .wf-footer-bottom-links { display: inline-flex; align-items: center; gap: 14px; }
 .wf-footer-bottom-links .sep { color: #777; }
 .wf-footer-bottom-link { color: #D8D8D8; cursor: default; }
+
 /* ANNOTATION PANEL */
 .wf-annotation { background: var(--c-ann-bg); border-left: 3px solid var(--c-ann-bdr); padding: 16px; position: sticky; top: 0; max-height: 100vh; overflow-y: auto; }
 .wf-annotation h3 { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: #888; border-bottom: 1px solid var(--c-ann-bdr); padding-bottom: 8px; margin-bottom: 14px; }
@@ -244,17 +140,6 @@ body {
 .ann-row { font-size: 10px; color: #555; line-height: 1.5; margin-bottom: 5px; padding-left: 4px; border-left: 2px solid #E0D090; }
 .ann-row .ann-row-label { font-weight: 700; color: #888; display: block; font-size: 9px; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.05em; }
 .ann-body { font-size: 10px; color: #555; line-height: 1.6; margin-top: 6px; }
-
-/* ============================================================
-   PAGE-LOCAL — 健康宣言ページ用
-============================================================ */
-/* 中央寄せ宣言本文ブロック */
-.declaration-body { max-width: 760px; margin: 0 auto; }
-.declaration-body p { font-size: 13px; color: var(--c-text); line-height: 2.0; text-align: center; margin-bottom: 14px; }
-.declaration-body p:last-of-type { margin-bottom: 0; }
-
-/* マトリクスセクションのキャプション */
-.matrix-caption { font-size: 12px; color: var(--c-text-s); line-height: 1.7; margin-bottom: 28px; max-width: 800px; }
 </style>
 </head>
 <body>
@@ -265,10 +150,10 @@ body {
     <strong>KONICA MINOLTA</strong>
     <span class="meta-badge">SUSTAINABILITY WF</span>
     <span class="meta-badge">P098 / 健康宣言</span>
-    <span class="meta-badge">v1.2</span>
+    <span class="meta-badge">v2.0</span>
     <span class="meta-badge">SHARED CSS v5.0 (B&amp;W)</span>
   </div>
-  <div style="font-size:10px; color:#666;">2026.04</div>
+  <div style="font-size:10px; color:#666;">2026.05</div>
 </div>
 
 <!-- ============================================================ -->
@@ -298,111 +183,86 @@ body {
     </nav>
 
     <!-- ============================================================
-         ページタイトル（共通モジュール 1-4：L4 wf-page-title-area＋親リンク）
+         ページタイトル（共通モジュール 1-5：シンプル・親リンクなし）
     ============================================================ -->
     <div class="wf-page-title-area">
       <h1 class="wf-page-title">健康宣言</h1>
-      <div class="wf-page-parent-cat">
-        【<a href="131_health_management.html">健康経営</a>】に関する宣言文書
-      </div>
     </div>
 
     <!-- ============================================================
-         A｜宣言本文（中央寄せH2＋中央寄せ本文＋J8右揃え署名）
+         A｜宣言本文 ＋ 署名（H2[2-1] ＋ 通常テキスト[4-2] ＋ 右揃え署名）
     ============================================================ -->
     <section class="wf-section bg-white">
       <span class="wf-section-marker">A</span>
 
-      <h2 class="wf-section-title center">『いきいきと働くことができる職場（会社）を目指して』</h2>
+      <h2 class="wf-section-title">『いきいきと働くことができる職場（会社）を目指して』</h2>
 
-      <div class="declaration-body">
-        <p>コニカミノルタグループは、「従業員の健康がすべての基盤」であるとの認識の下、健康第一の風土醸成を通じて健全な経営を推進し、豊かな社会の実現に貢献することを宣言します。</p>
-        <p>従業員ひとりひとりの心と身体の健康こそが財産であると認識し、安全で快適な職場（会社）の実現を図ります。</p>
-        <p>従業員の皆さんも、健康がご自身、家族そして会社の基盤であることを理解し、自律的な健康維持増進活動を心掛けるとともに、健康第一の企業風土の醸成に積極的に参加して下さい。</p>
+      <p class="wf-p">コニカミノルタグループは、「従業員の健康がすべての基盤」であるとの認識の下、健康第一の風土醸成を通じて健全な経営を推進し、豊かな社会の実現に貢献することを宣言します。</p>
+      <p class="wf-p">従業員ひとりひとりの心と身体の健康こそが財産であると認識し、安全で快適な職場（会社）の実現を図ります。</p>
+      <p class="wf-p">従業員の皆さんも、健康がご自身、家族そして会社の基盤であることを理解し、自律的な健康維持増進活動を心掛けるとともに、健康第一の企業風土の醸成に積極的に参加して下さい。</p>
 
-        <!-- J8 署名ブロック（右揃え） -->
-        <div class="wf-signature">
-          <div class="wf-signature-date">２０２２年４月</div>
-          <div class="wf-signature-company">コニカミノルタ株式会社</div>
-          <div class="wf-signature-role">代表執行役社長 兼 CEO</div>
-          <div class="wf-signature-name">大幸 利充</div>
-        </div>
+      <div class="wf-signoff">
+        ２０２２年４月<br>
+        コニカミノルタ株式会社<br>
+        代表執行役社長 兼 CEO<br>
+        <strong>大幸 利充</strong>
       </div>
     </section>
 
     <!-- ============================================================
-         B｜中心理念（強調モジュール — K1：黒背景バナー）
-    ============================================================ -->
-    <section class="wf-section bg-white pad-sm" style="padding-left:0; padding-right:0;">
-      <span class="wf-section-marker" style="left:16px;">B</span>
-      <div style="padding: 0 var(--pad-h);">
-        <div class="wf-emphasis">
-          <div class="wf-emphasis-lead">「健康がすべての基盤」</div>
-          <div class="wf-emphasis-body">
-            健康第一の風土の醸成を通して健全な経営を推進し<br>
-            豊かな社会の実現に寄与するために
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         C｜健康第一の風土を醸成するための取り組み（4ブロック）
+         B｜中心理念（共通モジュール 6-1：POINTタグ強調エリア .callout-box）
     ============================================================ -->
     <section class="wf-section bg-sub">
-      <span class="wf-section-marker">C</span>
-      <h2 class="wf-section-title center">健康第一の風土を醸成するための取り組み</h2>
-      <p class="matrix-caption" style="text-align:center; margin-left:auto; margin-right:auto;">
-        会社が「基本姿勢」として枠組みを提供し、従業員一人ひとりが「意識行動」で応えることで、健康経営は実現します。
-      </p>
+      <span class="wf-section-marker">B</span>
+      <h2 class="wf-section-title">中心理念</h2>
 
-      <div class="wf-matrix-headed">
-        <!-- 列見出し -->
-        <div class="wf-matrix-col-head">【健康第一の風土を醸成するための　会社の基本姿勢】</div>
-        <div class="wf-matrix-col-head">【健康第一の風土を醸成するための　従業員の意識行動】</div>
-
-        <!-- 1段目：左 会社①／右 従業員① -->
-        <div class="wf-matrix-cell">
-          <div class="wf-matrix-cell-head">健康を尊ぶ労働環境の提供</div>
-          <div class="wf-matrix-cell-body">
-            <ol class="wf-matrix-cell-list">
-              <li>健康を維持する労働条件の提供と適材適所を推進します。</li>
-              <li>労働災害や健康障害につながるようなリスクを未然に洗い出し（リスクアセスメント）、その低減を図ります。</li>
-              <li>グループ全体に一貫した安全衛生管理体制を構築します。</li>
-            </ol>
-          </div>
-        </div>
-        <div class="wf-matrix-cell">
-          <div class="wf-matrix-cell-head">自律的な健康維持・増進活動</div>
-          <div class="wf-matrix-cell-body">
-            <ol class="wf-matrix-cell-list">
-              <li>健康な心と身体を支えるライフスタイルの実践を心掛けて下さい。</li>
-              <li>健康診断を必ず受診するとともに、結果を活用し、ご自身の健康の維持・増進に努めて下さい。</li>
-            </ol>
-          </div>
-        </div>
-
-        <!-- 2段目：左 会社②／右 従業員② -->
-        <div class="wf-matrix-cell">
-          <div class="wf-matrix-cell-head">予防を重視した積極的な衛生管理施策の実施</div>
-          <div class="wf-matrix-cell-body">
-            <ol class="wf-matrix-cell-list">
-              <li>業務に関連した疾患の予防と快適職場づくりを推進します。</li>
-              <li>心と身体の健康づくり対策を講じます。</li>
-              <li>自律的な健康増進活動を支援します。</li>
-            </ol>
-          </div>
-        </div>
-        <div class="wf-matrix-cell">
-          <div class="wf-matrix-cell-head">健康第一の企業風土醸成への参画</div>
-          <div class="wf-matrix-cell-body">
-            <ol class="wf-matrix-cell-list">
-              <li>個人ならびに組織を通した健康づくりに積極的に参加して下さい。</li>
-              <li>自分だけでなく、周囲の人の健康に対する関心と気遣いを心掛けて下さい。</li>
-            </ol>
-          </div>
+      <div class="callout-box">
+        <span class="callout-box-tag">CREDO</span>
+        <div class="callout-box-body">
+          <span class="lead">「健康がすべての基盤」</span>
+          健康第一の風土の醸成を通して健全な経営を推進し、豊かな社会の実現に寄与するために
         </div>
       </div>
+    </section>
+
+    <!-- ============================================================
+         C｜健康第一の風土を醸成するための取り組み
+            （H2[2-1] ＋ H3[2-2] ＋ H4[2-3] ＋ 番号付きリスト[11-2]）
+    ============================================================ -->
+    <section class="wf-section bg-white">
+      <span class="wf-section-marker">C</span>
+      <h2 class="wf-section-title">健康第一の風土を醸成するための取り組み</h2>
+      <p class="wf-section-desc">会社が「基本姿勢」として枠組みを提供し、従業員一人ひとりが「意識行動」で応えることで、健康経営は実現します。</p>
+
+      <h3 class="wf-sub-title" style="margin-top:8px;">健康第一の風土を醸成するための　会社の基本姿勢</h3>
+
+      <h4 class="wf-card-title has-mark">健康を尊ぶ労働環境の提供</h4>
+      <ol class="wf-ol">
+        <li>健康を維持する労働条件の提供と適材適所を推進します。</li>
+        <li>労働災害や健康障害につながるようなリスクを未然に洗い出し（リスクアセスメント）、その低減を図ります。</li>
+        <li>グループ全体に一貫した安全衛生管理体制を構築します。</li>
+      </ol>
+
+      <h4 class="wf-card-title has-mark">予防を重視した積極的な衛生管理施策の実施</h4>
+      <ol class="wf-ol">
+        <li>業務に関連した疾患の予防と快適職場づくりを推進します。</li>
+        <li>心と身体の健康づくり対策を講じます。</li>
+        <li>自律的な健康増進活動を支援します。</li>
+      </ol>
+
+      <h3 class="wf-sub-title" style="margin-top:36px;">健康第一の風土を醸成するための　従業員の意識行動</h3>
+
+      <h4 class="wf-card-title has-mark">自律的な健康維持・増進活動</h4>
+      <ol class="wf-ol">
+        <li>健康な心と身体を支えるライフスタイルの実践を心掛けて下さい。</li>
+        <li>健康診断を必ず受診するとともに、結果を活用し、ご自身の健康の維持・増進に努めて下さい。</li>
+      </ol>
+
+      <h4 class="wf-card-title has-mark">健康第一の企業風土醸成への参画</h4>
+      <ol class="wf-ol">
+        <li>個人ならびに組織を通した健康づくりに積極的に参加して下さい。</li>
+        <li>自分だけでなく、周囲の人の健康に対する関心と気遣いを心掛けて下さい。</li>
+      </ol>
     </section>
 
     <!-- サステナビリティサイトフッター（アコーディオン式・サイトマップ） -->
@@ -530,84 +390,47 @@ body {
        アノテーションパネル
   ============================================================ -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — 健康宣言（v1.2）</h3>
+    <h3>設計ポイント — 健康宣言（v2.0）</h3>
 
     <div class="ann-item">
       <span class="ann-num">H1</span>
-      <span class="ann-head">L4標準ヒーロー（1-4 wf-page-title-area）：親カテゴリへの戻り導線つき</span>
-      <div class="ann-row">
-        <span class="ann-row-label">ターゲット</span>
-        機関投資家（メイン）：階層構造を把握しながら健康宣言にアクセス。<br>
-        第三者評価機関（メイン）：URL／パンくず／H1から文書性質を即判別。
-      </div>
-      <div class="ann-row">
-        <span class="ann-row-label">行動変容定義との対応</span>
-        他のL4ページ（025）と同一の `.wf-page-title-area` ＋ `.wf-page-parent-cat` パターン。親カテゴリ「健康経営」（131）への破線下線リンクを併設。
-      </div>
+      <span class="ann-head">L4シンプルヒーロー（共通モジュール 1-5：.wf-page-title）</span>
       <p class="ann-body">
-        モジュール：1-4 第4階層ヒーロー（共通カタログv3.5準拠）。L3 131_health_management.html への戻り導線を明示。
+        親リンクなしの最もシンプルなページタイトル。1ページ単独で読める文書性のため、上層への戻り導線はパンくずに集約。
       </p>
     </div>
 
     <div class="ann-item">
       <span class="ann-num">A</span>
-      <span class="ann-head">中央寄せ宣言本文：原本PDFのレイアウトを忠実に再現</span>
-      <div class="ann-row">
-        <span class="ann-row-label">ターゲット</span>
-        機関投資家／求職者（メイン）：CEOからの宣言文として読了することで企業姿勢を把握。
-      </div>
-      <div class="ann-row">
-        <span class="ann-row-label">行動変容定義との対応</span>
-        原本PDFの構造（中央配置のサブタイトル『いきいきと…』＋本文＋右下署名）を踏襲。本文は一字一句の改変なく踏襲。テキストは中央寄せで宣言文書の権威性・公式感を演出。
-      </div>
+      <span class="ann-head">宣言本文＋署名：規定モジュールのH2＋通常テキスト＋右揃え署名で再構成</span>
       <p class="ann-body">
-        モジュール：A2（中央寄せH2）＋ J8 署名ブロック（右揃え・既定）。原本のレイアウト構造をHTML化しても破壊せず保持する。
+        モジュール：2-1 H2（.wf-section-title）＋ 4-2 通常テキスト（.wf-p）＋ 右揃え署名。原本PDFの文言は完全踏襲。
       </p>
     </div>
 
     <div class="ann-item">
       <span class="ann-num">B</span>
-      <span class="ann-head">中心理念バナー（K1強調モジュール）：宣言の哲学を一目で</span>
-      <div class="ann-row">
-        <span class="ann-row-label">ターゲット</span>
-        機関投資家／第三者評価機関（メイン）：健康経営における「中心思想」を抽出可能なフレーズとして取得。
-      </div>
-      <div class="ann-row">
-        <span class="ann-row-label">行動変容定義との対応</span>
-        原本PDFで濃色帯として強調されている「健康がすべての基盤／健康第一の風土の醸成を通して…」をK1モジュール（黒背景バナー）で再現。本文Aと取り組みCの橋渡しとして機能。
-      </div>
+      <span class="ann-head">中心理念：6-1 .callout-box（POINTタグ強調エリア）に置換</span>
       <p class="ann-body">
-        モジュール：K1 強調エリア（白黒）。本文と取り組みの間に挟むことで、両者を貫く理念を視覚的に明示。
+        モジュール：6-1 POINTタグ強調エリア（.callout-box / CREDOタグ）。ユニークな黒背景バナー（旧.wf-emphasis）を廃し、024等で使う規定モジュールに統一。
       </p>
     </div>
 
     <div class="ann-item">
       <span class="ann-num">C</span>
-      <span class="ann-head">2×2マトリクス（K3）：会社×従業員の役割分担を均質UIで提示</span>
-      <div class="ann-row">
-        <span class="ann-row-label">ターゲット</span>
-        機関投資家（メイン）：健康経営における「経営側の枠組み」と「従業員側の主体的行動」の両軸が成立しているかを確認。<br>
-        ビジネスパーソン／求職者（サブ）：会社の取り組みと自分が期待される行動を一目で把握。
-      </div>
-      <div class="ann-row">
-        <span class="ann-row-label">行動変容定義との対応</span>
-        原本PDFの4ブロック構造（会社の基本姿勢×2／従業員の意識行動×2）を、4セルとも同一UI（黒見出しバー＋白本文＋連番リスト）で構成。文言は原本完全踏襲。
-      </div>
+      <span class="ann-head">取り組み4ブロック：H3[2-2] ＋ H4[2-3] ＋ 番号付きリスト[11-2] で再構成</span>
       <p class="ann-body">
-        モジュール：K3 マトリクス（白黒）＋ 列見出し（会社／従業員）。4ブロックの均質性を保つことで、対称構造の理念をUIでも体現。
+        モジュール：2-2 H3（.wf-sub-title）＋ 2-3 H4（.wf-card-title.has-mark）＋ 11-2 番号付きリスト（.wf-ol）。「会社の基本姿勢」「従業員の意識行動」をH3区分け、各カテゴリ内のテーマ毎にH4＋番号リストで提示。原本の4ブロック構造を見出し階層で表現。
       </p>
     </div>
 
     <div class="ann-item">
       <span class="ann-num">!</span>
-      <span class="ann-head">UI/UX設計サマリー（vs 現行PDF）</span>
+      <span class="ann-head">v2.0 変更サマリー</span>
       <p class="ann-body">
-        ① <strong>白黒トンマナ厳守</strong>：サイト全体の方針に整合<br>
-        ② <strong>本文一字一句踏襲</strong>：原本PDFの全テキストをHTML化、改変なし<br>
-        ③ <strong>標準H1で階層整合</strong>：他第4階層ページと同一UI<br>
-        ④ <strong>中央寄せ＋右揃え署名</strong>：宣言文書の伝統的レイアウトを踏襲<br>
-        ⑤ <strong>K1強調モジュール</strong>：原本の「中心理念帯」を黒背景バナーで再現<br>
-        ⑥ <strong>K3均質マトリクス</strong>：4ブロックを同一UIで提示し対称性を担保
+        ① ユニークモジュール（.wf-emphasis／.wf-matrix-*／.wf-signature／.declaration-body）を全廃し、規定モジュール（1-5／2-1〜2-3／4-2／6-1／11-2）で再構成<br>
+        ② タイトル下の親カテゴリリンク（.wf-page-parent-cat）を削除<br>
+        ③ 本文・署名の文言は一字一句改変なし
       </p>
     </div>
 
