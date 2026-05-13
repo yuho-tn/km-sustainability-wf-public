@@ -298,15 +298,6 @@ body {
 .ann-row .ann-row-label { font-weight: 700; color: #888; display: block; font-size: 9px; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.05em; }
 .ann-body { font-size: 10px; color: #555; line-height: 1.6; margin-top: 6px; }
 
-.wf-firstview-line { position: relative; height: 0; border: none; margin: 0; padding: 0; z-index: 1500; }
-.wf-firstview-line::before { content: ''; position: absolute; left: -100px; right: -160px; top: 0; border-top: 2px dashed #E74C3C; z-index: 1500; }
-.wf-firstview-line::after {
-  content: 'FIRST VIEW LINE — 1280×800 ここまでがスクロールなしで表示';
-  position: absolute; right: 0; top: -18px; font-size: 10px; font-weight: 700;
-  color: #E74C3C; background: rgba(255,255,255,0.92); padding: 2px 10px;
-  letter-spacing: 0.03em; white-space: nowrap; z-index: 1501;
-}
-
 /* ============================================================
    PAGE-LOCAL: TOPページ専用
 ============================================================ */
@@ -545,7 +536,6 @@ body {
   <div class="wf-page">
 
     <!-- ファーストビュー境界線 -->
-    <div class="wf-firstview-line"></div>
 
     <div class="wf-page-indicator">
       <span>サステナビリティ TOP / URL: /about/csr/</span>
@@ -922,65 +912,73 @@ body {
 
     <div class="ann-item">
       <span class="ann-num">1</span>
-      <span class="ann-head">ヒーロー：全幅画像PH＋テキストオーバーレイ（モジュール①ヒーロー 1-1 TOP用 .top-hero）</span>
+      <span class="ann-head">ヒーロー</span>
       <p class="ann-body">
-        TOPだけに使う最大幅のキービジュアル枠。タイトル・サブコピー・リード文を画像の上に重ねて、ファーストビューを1ブロックに圧縮。下層用ヒーローは使わず、サイト入口としての存在感だけに専念させる。
+        <b>狙い：</b>ページ最上部で「サステナビリティ」という大テーマを一目で伝える。<br>
+        <b>採用UI：</b>画像にタイトル・コピー・リード文を重ねる全幅ヒーロー枠。
       </p>
     </div>
 
     <div class="ann-item">
       <span class="ann-num">2</span>
-      <span class="ann-head">サステナビリティ戦略：見出し横リンク＋トピックボックス（⑦リンク 7-2 ＋ ⑥強調 6-3）</span>
+      <span class="ann-head">サステナビリティ戦略</span>
       <p class="ann-body">
-        同名ページへの動線はボタンを置かず、H2の右にテキストリンク（.section-head-link）で軽く処理。中長期戦略の説明は本文2段で済ませ、補足のKPI話はトピックボックス（.callout-box）1個に格納。導線・本文・補足の3要素を最小限の縦量で並べる。
+        <b>狙い：</b>中長期戦略の概要をTOP上で読みきれる量に抑え、続きは詳細ページへ自然に誘導する。<br>
+        <b>採用UI：</b>「詳細を見る」を別ボタンにせず見出し横のテキストリンクで処理。補足のKPI話はトピックボックス1個だけに収納。
       </p>
     </div>
 
     <div class="ann-item">
       <span class="ann-num">3</span>
-      <span class="ann-head">サステナビリティマネジメント：見出し横リンク＋単一ボタン（⑦リンク 7-2 ＋ ボタン .wf-btn）</span>
+      <span class="ann-head">サステナビリティマネジメント</span>
       <p class="ann-body">
-        概要文で完結させ、別ページ遷移は「ステークホルダーエンゲージメント」1つのみに絞る。カード・リスト等を置かずに導線数を1本化することで、トップから下層への枝分かれを増やしすぎない構成。
+        <b>狙い：</b>概要を本セクションで完結させ、TOPから増えすぎる選択肢を減らす。<br>
+        <b>採用UI：</b>カード・リストは置かず、別ページ導線は「ステークホルダーエンゲージメント」のリンク1本のみに絞る。
       </p>
     </div>
 
     <div class="ann-item">
       <span class="ann-num">4</span>
-      <span class="ann-head">資料・データ（QUICK ACCESS）：DL2枚カード（⑦リンク 7-9 ファイルDLカード）</span>
+      <span class="ann-head">資料・データ（QUICK ACCESS）</span>
       <p class="ann-body">
-        PDF（レポート）／Excel（ESGデータ）の主要DLだけを2カードで横並び。背景はグレー（bg-sub）にしてQUICK ACCESSであることを区切りで示し、長いリンクリストを置かずに「すぐ取れる2点」に絞る。
+        <b>狙い：</b>需要の高いPDFレポート／Excelデータに最短で辿り着けるようにする。<br>
+        <b>採用UI：</b>背景色を切り替えたクイックアクセス帯に、DLカード2枚だけを横並びで配置。長いリンク一覧から探させない。
       </p>
     </div>
 
     <div class="ann-item">
       <span class="ann-num">5</span>
-      <span class="ann-head">ESGの取り組み：写真＋レターバッジ3カード（⑤画像＋テキスト 5-5 ロゴ縦型カード派生）</span>
+      <span class="ann-head">ESGの取り組み</span>
       <p class="ann-body">
-        環境／社会／ガバナンスの3カテゴリ入口を写真カード3枚で並列化。画像左上にE/S/Gのレターバッジを重ねることで、テキスト見出しを大きくせずにカテゴリ識別を成立させる。下層リンク群はここに集約せず、各インデックスに送る役割に専念。
+        <b>狙い：</b>環境／社会／ガバナンスの大カテゴリ入口を、文章ではなく直感で選べるようにする。<br>
+        <b>採用UI：</b>写真＋カテゴリ記号（E/S/G）の3カードで並列表示。下層リンク群はここに並べず、各インデックスに送る役割だけに専念。
       </p>
     </div>
 
     <div class="ann-item">
       <span class="ann-num">6</span>
-      <span class="ann-head">社外からの評価：見出し横リンク＋ロゴグリッド（⑦リンク 7-2 ＋ ⑤画像＋テキスト 5-4 ロゴ横並び）</span>
+      <span class="ann-head">社外からの評価</span>
       <p class="ann-body">
-        評価実績は説明文を置かず、ロゴPH4点（FTSE4Good／MSCI／ISS ESG／CDP）の横並びで視覚的に証拠提示。詳細は見出し横リンクから別ページへ。文章量を抑え、ファクト訴求のみで成立させる。
+        <b>狙い：</b>評価実績は説明文よりロゴで見せた方が信頼が伝わる。<br>
+        <b>採用UI：</b>代表的なロゴ4点だけのロゴグリッド構成。詳細は見出し横のテキストリンクから別ページに送り、TOP上の情報量を抑制。
       </p>
     </div>
 
     <div class="ann-item">
       <span class="ann-num">7</span>
-      <span class="ann-head">トピックス：見出し横リンク＋日付タイトル5行＋EVENTカード（⑪リスト ＋ ⑥強調 6-8 EVENTカード）</span>
+      <span class="ann-head">トピックス</span>
       <p class="ann-body">
-        最新ニュースは日付＋タイトルの2列リストを5件だけ表示し、一覧ページへは見出し横リンクで送る。年次インベスターデイ等の特定イベントだけは枠線つきEVENTカードで1点抜き出し、新着情報＋重点告知を縦に短くまとめる。
+        <b>狙い：</b>新着情報を最新5件で素早く見せつつ、重点告知は1点だけ目立たせる。<br>
+        <b>採用UI：</b>日付＋タイトルだけの行リスト5件＋年次イベント用のEVENTカード1枚。横並びカードを並べずに縦短くまとめる。
       </p>
     </div>
 
     <div class="ann-item">
       <span class="ann-num">8</span>
-      <span class="ann-head">関連情報・関連リンク：2列リンクリスト（⑦リンク 7-1 関連リンクボックス）</span>
+      <span class="ann-head">関連情報・関連リンク</span>
       <p class="ann-body">
-        ページ末尾の落穂拾い導線を「報告・データ／方針・基準」の2列に整理。各列3件程度のテキストリンクのみで、追加のカード化や説明文は付けず、リファレンス系へ確実に飛ばすためだけの最小ブロックとして配置。
+        <b>狙い：</b>ページ最下部で「読み終わった後の追加導線」を最小限に配置。<br>
+        <b>採用UI：</b>「報告・データ／方針・基準」の2分類に整理したテキストリンクの2列リスト。カード化や説明文は付けず、リファレンス系へ確実に飛ばすだけの役割。
       </p>
     </div>
 
