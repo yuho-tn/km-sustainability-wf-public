@@ -261,7 +261,7 @@ body {
 .dem-it-text { font-size: 8px; color: var(--c-text); line-height: 1.6; }
 .dem-logo-row {
   display: grid; gap: 6px; align-items: center; width: 100%;
-  grid-template-columns: 70px 1fr;
+  grid-template-columns: 1fr 70px;
 }
 .dem-logo-row .dem-logo-ph {
   aspect-ratio: 1/1; background: #fff; border: 1px solid var(--c-border);
@@ -286,16 +286,6 @@ body {
   padding-bottom: 1px;
 }
 .dem-graph-link-row span::before { content: '› '; font-weight: 700; }
-
-.dem-logo-vert {
-  display: flex; flex-direction: column; gap: 4px;
-  padding: 6px; border: 1px solid var(--c-border); background: #fff;
-}
-.dem-logo-vert .dem-logo-ph { aspect-ratio: 4/3; }
-.dem-logo-vert .dem-it-title { text-align: center; font-size: 8px; }
-.dem-logo-vert-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; width: 100%;
-}
 
 /* ⑥ 強調エリア */
 .dem-callout {
@@ -692,7 +682,7 @@ body {
 
   <div class="cat-hero">
     <h1>モジュール一覧（v3.6）</h1>
-    <p>本catalogのみで全16ページが再構成可能なモジュール体系。<strong>13カテゴリ</strong>・全モジュールにつき「実物プレビュー（開閉両状態を含む）／適用ページ／利用シーン」を一覧化。<strong>v3.6（2026.05.13）：⑤画像＋テキストを新設</strong>。5-1 画像左+テキスト右／5-2 反転（画像右）／5-3 ロゴ+テキスト（縦積み）／5-4 グラフ画像+右下テキストリンク／5-5 ロゴ縦型カード の5モジュール。これに伴い旧⑤〜⑫を⑥〜⑬に繰り下げ。v3.5：⑬ナビゲーションを刷新（13-3 ヘッダー画像版／13-4 サステナビリティサイトフッター／13-5 コーポレート全体フッター）。v3.4：7-11 説明文付きリンクボタンを汎用共通モジュール化。v3.1：プレビュー左上揃え／7-5 横断インデックス全L3／7-7 ESGフォトカード／7-8 EVENT実物UI／7-10 説明文付きリンクカード／⑩表3行以上／⑪背景色付きリスト／⑫セクション番号マーカー削除。</p>
+    <p>本catalogのみで全16ページが再構成可能なモジュール体系。<strong>13カテゴリ</strong>・全モジュールにつき「実物プレビュー（開閉両状態を含む）／適用ページ／利用シーン」を一覧化。<strong>v3.6.1（2026.05.13）：⑤画像＋テキストを刷新</strong>。5-1 画像左+テキスト右／5-2 反転（画像右）／5-3 テキスト+ロゴ（ロゴ右配置・縦積み）／5-4 グラフ画像+右下テキストリンク の4モジュール（旧 5-5 ロゴ縦型カードは削除）。主な利用想定ページ：<a href="https://www.konicaminolta.jp/about/csr/environment/communication/products.html" target="_blank" rel="noopener">製品の環境コミュニケーション</a>。v3.5：⑬ナビゲーションを刷新（13-3 ヘッダー画像版／13-4 サステナビリティサイトフッター／13-5 コーポレート全体フッター）。v3.4：7-11 説明文付きリンクボタンを汎用共通モジュール化。v3.1：プレビュー左上揃え／7-5 横断インデックス全L3／7-7 ESGフォトカード／7-8 EVENT実物UI／7-10 説明文付きリンクカード／⑩表3行以上／⑪背景色付きリスト／⑫セクション番号マーカー削除。</p>
   </div>
 
   <nav class="cat-toc">
@@ -938,7 +928,7 @@ body {
   <section class="cat-section" id="sec-5">
     <span class="cat-section-num">5</span>
     <h2 class="cat-section-title">画像＋テキスト</h2>
-    <p class="cat-section-desc">画像と本文を組み合わせるブロック。1点の写真・図版＋解説の2カラム横並び、複数ロゴ＋説明の並列、複数の認証マークを横断的に並べるグリッドなど。環境ラベル一覧・イニシアチブ参画ページ・パートナー紹介で多用。</p>
+    <p class="cat-section-desc">画像と本文を組み合わせるブロック。1点の写真・図版＋解説の2カラム横並び、テキスト＋ロゴ（右配置）の縦積み列挙、グラフ画像＋詳細画面リンクなど。環境ラベル一覧・イニシアチブ参画ページ・<a href="https://www.konicaminolta.jp/about/csr/environment/communication/products.html" target="_blank" rel="noopener">製品の環境コミュニケーション</a>等で多用。</p>
 
     <div class="cat-mod">
       <div class="cat-mod-id"><span class="cat-mod-id-num">5-1</span><span class="cat-mod-id-name">画像左 + テキスト右（2カラム）</span><span class="cat-mod-id-class">.img-text-row</span></div>
@@ -961,15 +951,15 @@ body {
     </div>
 
     <div class="cat-mod">
-      <div class="cat-mod-id"><span class="cat-mod-id-num">5-3</span><span class="cat-mod-id-name">ロゴ + テキスト（コンパクト・縦積み可）</span><span class="cat-mod-id-class">.logo-text-block / .logo-text-stack</span></div>
+      <div class="cat-mod-id"><span class="cat-mod-id-num">5-3</span><span class="cat-mod-id-name">テキスト + ロゴ（ロゴ右配置・縦積み可）</span><span class="cat-mod-id-class">.logo-text-block / .logo-text-stack</span></div>
       <div class="cat-mod-preview"><div class="dem-logo-stack">
-        <div class="dem-logo-row"><div class="dem-logo-ph">[ ロゴ ]</div><div class="dem-it-body"><div class="dem-it-title">国連グローバル・コンパクト</div><div class="dem-it-text">10原則を支持し、グローバル・コンパクト・ネットワーク・ジャパンに参加。</div></div></div>
-        <div class="dem-logo-row"><div class="dem-logo-ph">[ ロゴ ]</div><div class="dem-it-body"><div class="dem-it-title">RE100</div><div class="dem-it-text">事業活動で消費する電力の100%を再生可能エネルギーで賄う国際イニシアチブに加盟。</div></div></div>
+        <div class="dem-logo-row"><div class="dem-it-body"><div class="dem-it-title">環境ラベル制度の対応</div><div class="dem-it-text">国内外の環境ラベル制度に対応した製品を提供しています。各種認証を取得し、お客様に環境配慮型製品をお届けします。</div></div><div class="dem-logo-ph">[ ロゴ ]</div></div>
+        <div class="dem-logo-row"><div class="dem-it-body"><div class="dem-it-title">国際エネルギースター</div><div class="dem-it-text">省エネルギー性能に優れた製品を認定する国際的な環境ラベル制度。対象機種で認証取得済。</div></div><div class="dem-logo-ph">[ ロゴ ]</div></div>
       </div></div>
       <div class="cat-mod-meta">
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">内容</span><span class="cat-mod-meta-body">左に小さめロゴ（70-100px 正方形）、右に見出し＋数行の説明。複数団体を縦に積む列挙レイアウト。</span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">225 イニシアチブ・社外評価</span><span class="page-chip">222 ガイドライン対照表</span></span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">シーン</span><span class="cat-mod-meta-body">参画イニシアチブ／外部認証団体／パートナー紹介。1テーマで5〜20件並べる場面。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">内容</span><span class="cat-mod-meta-body">左に見出し＋数行の説明、右に小さめロゴ（70-100px 正方形）。複数項目を縦に積む列挙レイアウト。ロゴが右側にあることで本文の流れを妨げず、視線の終点としてロゴを位置付け。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">製品の環境コミュニケーション</span><span class="page-chip">225 イニシアチブ・社外評価</span><span class="page-chip">222 ガイドライン対照表</span></span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">シーン</span><span class="cat-mod-meta-body">環境ラベル一覧／参画イニシアチブ／外部認証団体／パートナー紹介。1テーマで5〜20件並べる場面。主な利用ページ：<a href="https://www.konicaminolta.jp/about/csr/environment/communication/products.html" target="_blank" rel="noopener">製品の環境コミュニケーション</a>。</span></div>
       </div>
     </div>
 
@@ -983,20 +973,6 @@ body {
         <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">内容</span><span class="cat-mod-meta-body">グラフ画像（16:9）の下、右寄せに下線つきテキストリンク「› ◯◯へ」。プレビュー画像はサマリ表示、リンク先で対話的グラフ操作画面（フィルタ／年度切替／ドリルダウン）へ遷移。</span></div>
         <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">199 ESGデータ</span><span class="page-chip">024 気候変動</span><span class="page-chip">035 TCFD</span><span class="page-chip">131 健康経営</span></span></div>
         <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">シーン</span><span class="cat-mod-meta-body">本文中にグラフのプレビューだけを置き、詳細データや年次切替などの操作はリンク先のインタラクティブ画面に分離。本文の流れを止めずに「もっと詳しく見たい」ニーズに対応。</span></div>
-      </div>
-    </div>
-
-    <div class="cat-mod">
-      <div class="cat-mod-id"><span class="cat-mod-id-num">5-5</span><span class="cat-mod-id-name">ロゴ縦型カード（ロゴ上＋説明下・グリッド）</span><span class="cat-mod-id-class">.logo-vert / .logo-vert-grid</span></div>
-      <div class="cat-mod-preview"><div class="dem-logo-vert-grid">
-        <div class="dem-logo-vert"><div class="dem-logo-ph">[ ロゴ ]</div><div class="dem-it-title">ブルーエンジェル</div><div class="dem-it-text">ドイツ環境ラベル制度。MFP・プリンタで取得。</div></div>
-        <div class="dem-logo-vert"><div class="dem-logo-ph">[ ロゴ ]</div><div class="dem-it-title">国際エネルギースター</div><div class="dem-it-text">省エネ性能の国際認証。対象機種で取得済。</div></div>
-        <div class="dem-logo-vert"><div class="dem-logo-ph">[ ロゴ ]</div><div class="dem-it-title">エコマーク</div><div class="dem-it-text">日本環境協会の環境ラベル制度。</div></div>
-      </div></div>
-      <div class="cat-mod-meta">
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">内容</span><span class="cat-mod-meta-body">ロゴを上、見出し＋短文説明を下に配置した縦型カード。複数を 2-3 列グリッドで列挙。</span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">環境ラベル・認証等</span><span class="page-chip">225 イニシアチブ</span></span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">シーン</span><span class="cat-mod-meta-body">環境ラベル一覧／認証マーク一覧／受賞一覧。視覚的アイデンティティが重要な場面でロゴを目立たせる。</span></div>
       </div>
     </div>
   </section>
