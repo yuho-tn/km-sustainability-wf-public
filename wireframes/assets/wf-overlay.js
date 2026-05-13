@@ -316,7 +316,7 @@
     .wf-footer-link,
     .wf-footer-bottom-link,
     .sus-footer-link,
-    .related-link-list li {
+    .related-link-list li .rl-text {
       cursor: pointer !important;
       transition: color .15s ease;
     }
@@ -332,7 +332,7 @@
     .wf-footer-link:hover,
     .wf-footer-bottom-link:hover,
     .sus-footer-link:hover,
-    .related-link-list li:hover {
+    .related-link-list li .rl-text:hover {
       color: #1a1a1a !important;
       text-decoration: underline;
       text-underline-offset: 3px;
