@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>KMサステナビリティWF — モジュール一覧 v3.6</title>
+<title>KMサステナビリティWF — モジュール一覧 v3.6.5</title>
 
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -424,11 +424,11 @@ body {
 .dem-news-row .title { color: var(--c-text-h); }
 
 .dem-link-btn-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; width: 100%; }
-.dem-link-btn { display: grid; grid-template-columns: 1fr 14px; align-items: center; gap: 8px; padding: 7px 10px; background: #fff; border: 1px solid var(--c-border); }
+.dem-link-btn { display: grid; grid-template-columns: 1fr 14px; align-items: center; gap: 8px; padding: 9px 10px; background: #fff; border: 1px solid var(--c-border); min-height: 56px; }
 .dem-link-btn.is-primary { border: 2px solid var(--c-text-h); }
 .dem-link-btn.is-full { grid-column: 1 / -1; }
-.dem-link-btn-title { font-size: 10px; font-weight: 700; color: var(--c-text-h); line-height: 1.3; }
-.dem-link-btn-desc { font-size: 8px; color: var(--c-text-s); line-height: 1.5; margin-top: 1px; }
+.dem-link-btn-title { font-size: 10px; font-weight: 700; color: var(--c-text-h); line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.dem-link-btn-desc { font-size: 8px; color: var(--c-text-s); line-height: 1.5; margin-top: 2px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .dem-link-btn-arrow { font-size: 10px; color: var(--c-text-s); text-align: right; line-height: 1; }
 
 .dem-qa {
@@ -632,7 +632,7 @@ body {
 <div class="cat-meta-bar">
   <div>
     <strong>KMサステナビリティWF</strong>
-    <span class="badge">モジュール一覧 v3.6</span>
+    <span class="badge">モジュール一覧 v3.6.5</span>
     <span class="badge">2026.05</span>
   </div>
   <div style="font-size:10px; color:#888;">12カテゴリで全16ページを構成</div>
@@ -641,8 +641,8 @@ body {
 <div class="cat-page">
 
   <div class="cat-hero">
-    <h1>モジュール一覧（v3.6）</h1>
-    <p>本catalogのみで全16ページが再構成可能なモジュール体系。<strong>13カテゴリ</strong>・全モジュールにつき「実物プレビュー（開閉両状態を含む）／適用ページ／利用シーン」を一覧化。<strong>v3.6.1（2026.05.13）：⑤画像＋テキストを刷新</strong>。5-1 画像左+テキスト右／5-2 反転（画像右）／5-3 テキスト+ロゴ（ロゴ右配置・縦積み）／5-4 グラフ画像+右下テキストリンク の4モジュール（旧 5-5 ロゴ縦型カードは削除）。主な利用想定ページ：<a href="https://www.konicaminolta.jp/about/csr/environment/communication/products.html" target="_blank" rel="noopener">製品の環境コミュニケーション</a>。v3.6.4：⑪リストに <strong>11-1 シンプル箇条書き（標準ブレット）</strong>を新設（096編集方針表内のガイドライン列挙等で利用）。旧 11-1〜11-3 は 11-2〜11-4 に繰り下げ。v3.6.3：7-10 説明文付きリンクカード（黒帯ヘッダ型）と 7-11 説明文付きリンクボタンを<strong>7-10 説明文付きリンクボタン（汎用統一）</strong>に統合。`.is-primary`（外枠2px強調）／`.is-full`（全幅）の2バリアントで主要遷移／PDF媒体／方針一覧を全て吸収。096 アーカイブWFも同モジュールに揃えて更新。v3.6.2：⑬から 13-5 コーポレート全体フッターを削除（不要モジュール整理）。v3.5：⑬ナビゲーションを刷新（13-3 ヘッダー画像版／13-4 サステナビリティサイトフッター）。v3.1：プレビュー左上揃え／7-5 横断インデックス全L3／7-7 ESGフォトカード／7-8 EVENT実物UI／⑩表3行以上／⑪背景色付きリスト／⑫セクション番号マーカー削除。</p>
+    <h1>モジュール一覧（v3.6.5）</h1>
+    <p>本catalogのみで全16ページが再構成可能なモジュール体系。<strong>13カテゴリ</strong>・全モジュールにつき「実物プレビュー（開閉両状態を含む）／適用ページ／利用シーン」を一覧化。<strong>v3.6.5（2026.05.13）：⑦-10 説明文付きリンクボタンを全ボタン同サイズ設計に</strong>。<strong>min-height: 88px</strong>＋<strong>line-clamp: 2</strong>（タイトル／説明文）で、文言長に依らず常に同じ高さで並ぶ。説明文は約20文字以内が目安。097 方針一覧 v2.7 で適用。v3.6.4：⑪リストに <strong>11-1 シンプル箇条書き（標準ブレット）</strong>を新設（096編集方針表内のガイドライン列挙等で利用）。旧 11-1〜11-3 は 11-2〜11-4 に繰り下げ。v3.6.3：7-10 説明文付きリンクカード（黒帯ヘッダ型）と 7-11 説明文付きリンクボタンを<strong>7-10 説明文付きリンクボタン（汎用統一）</strong>に統合。`.is-primary`（外枠2px強調）／`.is-full`（全幅）の2バリアントで主要遷移／PDF媒体／方針一覧を全て吸収。096 アーカイブWFも同モジュールに揃えて更新。v3.6.2：⑬から 13-5 コーポレート全体フッターを削除（不要モジュール整理）。v3.6.1：⑤画像＋テキストを刷新。5-1 画像左+テキスト右／5-2 反転／5-3 テキスト+ロゴ／5-4 グラフ画像+右下テキストリンク。主な利用想定ページ：<a href="https://www.konicaminolta.jp/about/csr/environment/communication/products.html" target="_blank" rel="noopener">製品の環境コミュニケーション</a>。v3.5：⑬ナビゲーション刷新。v3.1：プレビュー左上揃え／⑩表3行以上／⑫セクション番号マーカー削除。</p>
   </div>
 
   <nav class="cat-toc">
@@ -1070,7 +1070,7 @@ body {
         <div class="dem-link-btn"><div><div class="dem-link-btn-title">コニカミノルタ環境方針</div><div class="dem-link-btn-desc">気候変動・資源循環・化学物質管理など、環境課題への取り組み方針。</div></div><span class="dem-link-btn-arrow">›</span></div>
       </div></div>
       <div class="cat-mod-meta">
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">内容</span><span class="cat-mod-meta-body">独立した枠付きボタン（タイトル14px太字＋説明文11px薄色＋右端「›」矢印）を<strong>2カラムgrid（gap:12px）</strong>で並列配置。説明文は複数行可。バリアント：<strong>.is-primary</strong>（外枠2px黒で強調）／<strong>.is-full</strong>（grid内で1行占有・全幅）。PDF媒体はタイトルに「（PDF・容量）」を併記、外部遷移は説明文末でその旨を示す。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">内容</span><span class="cat-mod-meta-body">独立した枠付きボタン（タイトル14px太字＋説明文11px薄色＋右端「›」矢印）を<strong>2カラムgrid（gap:12px）</strong>で並列配置。<strong>v3.6.5：全ボタン同サイズ設計</strong>に統一。<strong>min-height: 88px</strong>で最低高さを揃え、タイトル／説明文ともに<strong>line-clamp: 2</strong>で最大2行に打ち切り。説明文は<strong>約20文字以内</strong>を目安に整理する（長い場合は要約）。バリアント：<strong>.is-primary</strong>（外枠2px黒で強調）／<strong>.is-full</strong>（grid内で1行占有・全幅）。PDF媒体はタイトルに「（PDF・容量）」を併記、外部遷移は説明文末でその旨を示す。</span></div>
         <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">096 アーカイブ</span><span class="page-chip">097 方針一覧</span></span></div>
         <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">シーン</span><span class="cat-mod-meta-body">方針一覧／規約一覧／関連媒体集約／PDFアーカイブ／統合報告書・ESGデータ等の主要遷移など、説明文付きの遷移リンクを並べる場面の<strong>共通モジュール</strong>。媒体種別を問わず統一UIで提示。</span></div>
       </div>
@@ -1382,7 +1382,7 @@ body {
 
   <!-- Footer note -->
   <div style="background:#1F1F1F; color:#BBB; padding:24px 60px; font-size:11px; line-height:1.85;">
-    <strong style="color:#fff;">KMサステナビリティWF モジュール一覧 v3.6</strong> ｜ 全16ページの共通モジュール体系（2026.05.13）<br>
+    <strong style="color:#fff;">KMサステナビリティWF モジュール一覧 v3.6.5</strong> ｜ 全16ページの共通モジュール体系（2026.05.13）<br>
     12カテゴリ・コンパクト一覧型。モジュール追加・改修時は本ファイルを更新し、利用ページ欄を最新化してください。
   </div>
 
