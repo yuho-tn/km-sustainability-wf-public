@@ -27,17 +27,8 @@
     .wf-popover-head {
       background: #1a1a1a; color: #fff;
       padding: 10px 14px;
-      display: flex; align-items: center; justify-content: space-between; gap: 10px;
     }
     .wf-popover-title { font-size: 12px; font-weight: 700; line-height: 1.4; }
-    .wf-popover-close {
-      width: 20px; height: 20px;
-      background: #fff; color: #1a1a1a;
-      font-size: 12px; font-weight: 700;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      border: none; padding: 0; cursor: pointer; flex-shrink: 0;
-    }
     .wf-popover-body { padding: 12px 14px; font-size: 11px; color: #333; line-height: 1.85; }
     .wf-popover-body p { margin: 0 0 6px; }
     .wf-popover-body p:last-child { margin-bottom: 0; }
@@ -115,7 +106,6 @@
     el.innerHTML =
       '<div class="wf-popover-head">' +
       '<span class="wf-popover-title">' + title + '</span>' +
-      '<button type="button" class="wf-popover-close" aria-label="閉じる">×</button>' +
       '</div>' +
       '<div class="wf-popover-body">' + body + '</div>';
     return el;
@@ -159,10 +149,6 @@
     popover.addEventListener('mouseleave', () => {
       if (pinned) return;
       hideTimer = setTimeout(hidePopover, 150);
-    });
-    popover.querySelector('.wf-popover-close').addEventListener('click', (e) => {
-      e.stopPropagation();
-      hidePopover();
     });
   }
 
@@ -283,5 +269,45 @@
     e.preventDefault();
     e.stopPropagation();
     openLightbox(btn);
+  });
+
+  // ===== アコーディオン開閉（共通） =====
+  // <details>系（.wf-acc-h3 / .disclaimer-toggle 等）はネイティブで開閉できるためここでは扱わない。
+  // div系の以下パターンを扱う:
+  //   .wf-accordion        — head クリックで .is-open をトグル（既定: 閉）
+  //   .result-block        — head クリックで .is-collapsed をトグル（既定: 開）
+  //   .process-step        — head クリックで .is-collapsed をトグル（既定: 開）
+  const ACCORDIONS = [
+    { head: '.wf-accordion-head', wrapper: '.wf-accordion', cls: 'is-open',
+      icon: '.wf-accordion-icon', iconOpen: '−', iconClosed: '＋' },
+    { head: '.result-block-head', wrapper: '.result-block', cls: 'is-collapsed', invert: true },
+    { head: '.process-step-head', wrapper: '.process-step', cls: 'is-collapsed', invert: true }
+  ];
+
+  // 開閉可能であることを示すカーソル
+  const accCursor = document.createElement('style');
+  accCursor.textContent =
+    '.wf-accordion-head, .result-block-head, .process-step-head { cursor: pointer !important; }';
+  document.head.appendChild(accCursor);
+
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('a, button, .img-zoom-btn, .term-trigger')) return;
+    for (const cfg of ACCORDIONS) {
+      const head = e.target.closest(cfg.head);
+      if (!head) continue;
+      const wrapper = head.closest(cfg.wrapper);
+      if (!wrapper) continue;
+      wrapper.classList.toggle(cfg.cls);
+      if (cfg.icon) {
+        const icon = head.querySelector(cfg.icon);
+        if (icon) {
+          const open = cfg.invert
+            ? !wrapper.classList.contains(cfg.cls)
+            : wrapper.classList.contains(cfg.cls);
+          icon.textContent = open ? cfg.iconOpen : cfg.iconClosed;
+        }
+      }
+      return;
+    }
   });
 })();
