@@ -218,6 +218,169 @@
       color: #000;
       border-color: #1a1a1a;
     }
+
+    /* ===== カード型クリッカブル：浮き上がり＋影＋ボーダー濃色 ===== */
+    .event-card,
+    .qa-card,
+    .social-tile,
+    .data-card,
+    .esg-data-card,
+    .gov-intro-card,
+    .risk-opp-card,
+    .gp-graph-card,
+    .gp-result-card,
+    .link-btn,
+    .theme-block,
+    .detail-modal-btn,
+    .pc-item,
+    .concept-item,
+    .related-block,
+    .ann-item {
+      cursor: pointer !important;
+      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+    }
+    .event-card:hover,
+    .qa-card:hover,
+    .social-tile:hover,
+    .data-card:hover,
+    .esg-data-card:hover,
+    .gov-intro-card:hover,
+    .risk-opp-card:hover,
+    .gp-graph-card:hover,
+    .gp-result-card:hover,
+    .link-btn:hover,
+    .theme-block:hover,
+    .detail-modal-btn:hover,
+    .pc-item:hover,
+    .concept-item:hover,
+    .related-block:hover,
+    .ann-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.10);
+      border-color: #1a1a1a;
+    }
+
+    /* カード内の矢印アクセント（カードホバーで右にスライド） */
+    .social-tile .social-tile-arrow,
+    .link-btn .link-btn-arrow,
+    .qa-card .qa-action,
+    .esg-photo-card .card-link-arrow,
+    .event-card .card-link-arrow,
+    .data-card .card-link-arrow {
+      transition: transform .15s ease;
+    }
+    .social-tile:hover .social-tile-arrow,
+    .link-btn:hover .link-btn-arrow,
+    .qa-card:hover .qa-action,
+    .esg-photo-card:hover .card-link-arrow,
+    .event-card:hover .card-link-arrow,
+    .data-card:hover .card-link-arrow {
+      transform: translateX(3px);
+    }
+
+    /* ===== 行型クリッカブル：背景ハイライト ===== */
+    .topics-row,
+    .backnumber-row,
+    .csr-row,
+    .materiality-row,
+    .mat-row,
+    .scope-row,
+    .theme-graph-row,
+    .policy-link-row,
+    .case-row,
+    .year-activity-row,
+    .text-link-row,
+    .strat-row,
+    .esg-link-row,
+    .ann-row,
+    .h3-head-row {
+      cursor: pointer !important;
+      transition: background .15s ease;
+    }
+    .topics-row:hover,
+    .backnumber-row:hover,
+    .csr-row:hover,
+    .materiality-row:hover,
+    .mat-row:hover,
+    .scope-row:hover,
+    .theme-graph-row:hover,
+    .policy-link-row:hover,
+    .case-row:hover,
+    .year-activity-row:hover,
+    .text-link-row:hover,
+    .strat-row:hover,
+    .esg-link-row:hover,
+    .ann-row:hover,
+    .h3-head-row:hover {
+      background: #f5f5f5;
+    }
+
+    /* ===== テキストリンク：色濃く＋下線 ===== */
+    .text-link,
+    .policy-link,
+    .detail-link,
+    .risk-detail-link,
+    .ts-graph-context-link,
+    .backnumber-link,
+    .theme-block-link,
+    .ref-link,
+    .report-group-head-link,
+    .wf-footer-link,
+    .wf-footer-bottom-link,
+    .sus-footer-link {
+      cursor: pointer !important;
+      transition: color .15s ease;
+    }
+    .text-link:hover,
+    .policy-link:hover,
+    .detail-link:hover,
+    .risk-detail-link:hover,
+    .ts-graph-context-link:hover,
+    .backnumber-link:hover,
+    .theme-block-link:hover,
+    .ref-link:hover,
+    .report-group-head-link:hover,
+    .wf-footer-link:hover,
+    .wf-footer-bottom-link:hover,
+    .sus-footer-link:hover {
+      color: #1a1a1a !important;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* ===== ページャ／フィルタ：黒反転 or 枠強調 ===== */
+    .news-page-btn {
+      cursor: pointer !important;
+      transition: background .15s ease, color .15s ease, border-color .15s ease;
+    }
+    .news-page-btn:hover {
+      background: #1a1a1a; color: #fff; border-color: #1a1a1a;
+    }
+    .year-chip,
+    .chip,
+    .scope-tag {
+      cursor: pointer !important;
+      transition: background .15s ease, color .15s ease, border-color .15s ease;
+    }
+    .year-chip:hover,
+    .chip:hover,
+    .scope-tag:hover {
+      border-color: #1a1a1a;
+      color: #1a1a1a;
+    }
+
+    /* ===== climate アンカーナビ（035） ===== */
+    .climate-anchor-item {
+      cursor: pointer !important;
+      transition: color .15s ease, border-color .15s ease, background .15s ease;
+    }
+    .climate-anchor-item:hover {
+      color: #1a1a1a;
+      border-color: #1a1a1a;
+    }
+
+    /* ===== トピックボックス（callout-box）— クリック型でない場合は除外 ===== */
+    /* callout-box は情報枠なので hover 演出を入れない（必要なら個別対応） */
   `;
   document.head.appendChild(style);
 

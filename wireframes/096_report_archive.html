@@ -1291,61 +1291,55 @@ body {
 .pc-item-dl.pdf,
 .pc-item-dl.data,
 .pc-item-dl.web { background: #555; }
-/* レポートグループカード（他ページと共通モジュール：report-group） */
-.report-group-grid {
+/* 説明文付きリンクボタン（共通モジュール 7-10） — タイトル＋説明文＋›矢印の独立ボタン */
+.link-btn-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  align-items: stretch;
-}
-.report-group {
-  background: var(--c-white);
-  border: 1px solid var(--c-border);
-  display: flex;
-  flex-direction: column;
-}
-.report-group-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 18px;
-  background: #3A3A3A;
-  color: #fff;
   gap: 12px;
 }
-.report-group-title {
+.link-btn {
+  display: grid;
+  grid-template-columns: 1fr 24px;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 20px;
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  cursor: default;
+}
+.link-btn.is-primary { border: 2px solid var(--c-text-h); }
+.link-btn.is-full { grid-column: 1 / -1; }
+.link-btn:hover {
+  border-color: var(--c-text-h);
+  background: #FAFAFA;
+}
+.link-btn-body { min-width: 0; }
+.link-btn-title {
   font-size: 14px;
   font-weight: 700;
-  line-height: 1.3;
-  letter-spacing: 0.01em;
+  color: var(--c-text-h);
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  margin-bottom: 2px;
 }
-.report-group-head-link {
+.link-btn-desc {
   font-size: 11px;
-  color: #fff;
-  border: 1px solid #fff;
-  padding: 4px 12px;
-  white-space: nowrap;
-  text-decoration: none;
-  letter-spacing: 0.03em;
-}
-.report-group-head-link::after { content: ' →'; }
-.report-group-body {
-  padding: 16px 18px 18px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-.report-group-desc {
-  font-size: 12px;
   color: var(--c-text-s);
-  line-height: 1.7;
+  line-height: 1.6;
 }
-.report-group-meta {
+.link-btn-meta {
   font-size: 11px;
   color: var(--c-text-xs);
-  margin-top: 8px;
+  margin-top: 6px;
   line-height: 1.5;
 }
+.link-btn-arrow {
+  font-size: 14px;
+  color: var(--c-text-s);
+  text-align: right;
+  line-height: 1;
+}
+.link-btn:hover .link-btn-arrow { color: var(--c-text-h); }
 /* 凡例 */
 .pc-legend {
   display: flex;
@@ -1792,46 +1786,34 @@ body {
       </div>
 
       <!-- 最新：サステナビリティレポート2025（PDF） — 体系図で示した本サイトのアーカイブ／最もDLを促す媒体 -->
-      <div class="report-group-grid" style="grid-template-columns:1fr; margin-top:20px; margin-bottom:12px;">
-        <div class="report-group" style="border:2px solid var(--c-text-h);">
-          <div class="report-group-head">
-            <div class="report-group-title">サステナビリティレポート 2025（PDF）<span style="font-size:11px; font-weight:400; color:#CCC; margin-left:10px;">本サイトのPDFアーカイブ</span></div>
-            <a class="report-group-head-link">PDFダウンロード（16.0MB）</a>
-          </div>
-          <div class="report-group-body">
-            <p class="report-group-desc">
-              コニカミノルタのサステナビリティ報告はコニカミノルタサステナビリティウェブサイト（本サイト）にて行っています。<br>
-              環境・社会を含めたサステナビリティに関する2024年度の実績や取り組み状況について、本サイトにて公開しました（2025年10月）。本サイトの2025年10月時点の情報は「サステナビリティレポート2025」としてPDF化して公開します。<br>
-              なお、本サイトは、2025年10月以降も随時更新しています。
+      <div class="link-btn-grid" style="margin-top:20px; margin-bottom:12px;">
+        <div class="link-btn is-primary is-full">
+          <div class="link-btn-body">
+            <div class="link-btn-title">サステナビリティレポート 2025（PDF・16.0MB）</div>
+            <p class="link-btn-desc">
+              コニカミノルタのサステナビリティ報告はコニカミノルタサステナビリティウェブサイト（本サイト）にて行っています。環境・社会を含めたサステナビリティに関する2024年度の実績や取り組み状況について、本サイトにて公開しました（2025年10月）。本サイトの2025年10月時点の情報は「サステナビリティレポート2025」としてPDF化して公開します。なお、本サイトは、2025年10月以降も随時更新しています。
             </p>
-            <p class="report-group-meta">対象期間：2024年4月〜2025年3月（2024年度）｜発行：2025年10月｜16.0MB</p>
+            <p class="link-btn-meta">対象期間：2024年4月〜2025年3月（2024年度）｜発行：2025年10月｜本サイトのPDFアーカイブ</p>
           </div>
+          <span class="link-btn-arrow">›</span>
         </div>
       </div>
 
       <!-- 関連媒体への導線（統合報告書・ESGデータ） -->
-      <div class="report-group-grid">
-        <div class="report-group">
-          <div class="report-group-head">
-            <div class="report-group-title">統合報告書</div>
-            <a class="report-group-head-link">ページを開く</a>
+      <div class="link-btn-grid">
+        <div class="link-btn">
+          <div class="link-btn-body">
+            <div class="link-btn-title">統合報告書</div>
+            <p class="link-btn-desc">経営戦略・財務・非財務を統合的に報告する統合報告書（IRサイト内）へ遷移します。</p>
           </div>
-          <div class="report-group-body">
-            <p class="report-group-desc">
-              経営戦略・財務・非財務を統合的に報告する統合報告書（IRサイト内）へ遷移します。
-            </p>
-          </div>
+          <span class="link-btn-arrow">›</span>
         </div>
-        <div class="report-group">
-          <div class="report-group-head">
-            <div class="report-group-title">ESGデータ</div>
-            <a class="report-group-head-link">ページを開く</a>
+        <div class="link-btn">
+          <div class="link-btn-body">
+            <div class="link-btn-title">ESGデータ</div>
+            <p class="link-btn-desc">ESGに関する定量データの閲覧・一括ダウンロード（XLSX）が可能なデータ集ページです。</p>
           </div>
-          <div class="report-group-body">
-            <p class="report-group-desc">
-              ESGに関する定量データの閲覧・一括ダウンロード（XLSX）が可能なデータ集ページです。
-            </p>
-          </div>
+          <span class="link-btn-arrow">›</span>
         </div>
       </div>
 
@@ -2028,17 +2010,15 @@ body {
         当社に関する各種資料は、コーポレートサイトの「資料ダウンロード」ページから一覧で閲覧・ダウンロードいただけます。
       </p>
 
-      <div class="report-group-grid" style="grid-template-columns:1fr;">
-        <div class="report-group">
-          <div class="report-group-head">
-            <div class="report-group-title">会社資料一覧</div>
-            <a class="report-group-head-link">ページを開く</a>
-          </div>
-          <div class="report-group-body">
-            <p class="report-group-desc">
+      <div class="link-btn-grid">
+        <div class="link-btn is-full">
+          <div class="link-btn-body">
+            <div class="link-btn-title">会社資料一覧</div>
+            <p class="link-btn-desc">
               （文章はダミーです）統合報告書／株主通信／有価証券報告書／コーポレートガバナンス報告書／知的財産報告書／テクノロジーレポートなど、当社の各種コーポレート資料をダウンロードいただけるページに遷移します。
             </p>
           </div>
+          <span class="link-btn-arrow">›</span>
         </div>
       </div>
 

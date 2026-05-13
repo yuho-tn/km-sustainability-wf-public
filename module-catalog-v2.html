@@ -419,32 +419,14 @@ body {
 .dem-esg-photo-title { font-size: 11px; font-weight: 700; color: var(--c-text-h); margin-bottom: 3px; }
 .dem-esg-photo-desc { font-size: 8px; color: var(--c-text); line-height: 1.55; }
 
-/* レポートグループカード（096：黒帯ヘッダ + DLボタン + 本文） */
-.dem-report-group {
-  background: #fff; border: 1px solid var(--c-border); width: 100%;
-  display: flex; flex-direction: column;
-}
-.dem-report-group-head {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 7px 10px; background: #3A3A3A; color: #fff; gap: 8px;
-}
-.dem-report-group-title { font-size: 10px; font-weight: 700; line-height: 1.3; }
-.dem-report-group-title small { font-size: 7px; font-weight: 400; color: #CCC; margin-left: 6px; }
-.dem-report-group-head-link {
-  font-size: 8px; color: #fff; border: 1px solid #fff;
-  padding: 2px 8px; white-space: nowrap; letter-spacing: 0.03em;
-}
-.dem-report-group-head-link::after { content: ' →'; }
-.dem-report-group-body { padding: 8px 10px 9px; }
-.dem-report-group-desc { font-size: 9px; color: var(--c-text-s); line-height: 1.6; }
-.dem-report-group-meta { font-size: 8px; color: var(--c-text-xs); margin-top: 4px; line-height: 1.5; }
-
 .dem-news-row { display: grid; grid-template-columns: 70px 1fr; padding: 6px 0; border-bottom: 1px solid var(--c-border-s); font-size: 9px; width: 100%; }
 .dem-news-row .date { color: var(--c-text-s); letter-spacing: 0.04em; }
 .dem-news-row .title { color: var(--c-text-h); }
 
 .dem-link-btn-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; width: 100%; }
 .dem-link-btn { display: grid; grid-template-columns: 1fr 14px; align-items: center; gap: 8px; padding: 7px 10px; background: #fff; border: 1px solid var(--c-border); }
+.dem-link-btn.is-primary { border: 2px solid var(--c-text-h); }
+.dem-link-btn.is-full { grid-column: 1 / -1; }
 .dem-link-btn-title { font-size: 10px; font-weight: 700; color: var(--c-text-h); line-height: 1.3; }
 .dem-link-btn-desc { font-size: 8px; color: var(--c-text-s); line-height: 1.5; margin-top: 1px; }
 .dem-link-btn-arrow { font-size: 10px; color: var(--c-text-s); text-align: right; line-height: 1; }
@@ -656,7 +638,7 @@ body {
 
   <div class="cat-hero">
     <h1>モジュール一覧（v3.6）</h1>
-    <p>本catalogのみで全16ページが再構成可能なモジュール体系。<strong>13カテゴリ</strong>・全モジュールにつき「実物プレビュー（開閉両状態を含む）／適用ページ／利用シーン」を一覧化。<strong>v3.6.1（2026.05.13）：⑤画像＋テキストを刷新</strong>。5-1 画像左+テキスト右／5-2 反転（画像右）／5-3 テキスト+ロゴ（ロゴ右配置・縦積み）／5-4 グラフ画像+右下テキストリンク の4モジュール（旧 5-5 ロゴ縦型カードは削除）。主な利用想定ページ：<a href="https://www.konicaminolta.jp/about/csr/environment/communication/products.html" target="_blank" rel="noopener">製品の環境コミュニケーション</a>。v3.6.2：⑬から 13-5 コーポレート全体フッターを削除（不要モジュール整理）。v3.5：⑬ナビゲーションを刷新（13-3 ヘッダー画像版／13-4 サステナビリティサイトフッター）。v3.4：7-11 説明文付きリンクボタンを汎用共通モジュール化。v3.1：プレビュー左上揃え／7-5 横断インデックス全L3／7-7 ESGフォトカード／7-8 EVENT実物UI／7-10 説明文付きリンクカード／⑩表3行以上／⑪背景色付きリスト／⑫セクション番号マーカー削除。</p>
+    <p>本catalogのみで全16ページが再構成可能なモジュール体系。<strong>13カテゴリ</strong>・全モジュールにつき「実物プレビュー（開閉両状態を含む）／適用ページ／利用シーン」を一覧化。<strong>v3.6.1（2026.05.13）：⑤画像＋テキストを刷新</strong>。5-1 画像左+テキスト右／5-2 反転（画像右）／5-3 テキスト+ロゴ（ロゴ右配置・縦積み）／5-4 グラフ画像+右下テキストリンク の4モジュール（旧 5-5 ロゴ縦型カードは削除）。主な利用想定ページ：<a href="https://www.konicaminolta.jp/about/csr/environment/communication/products.html" target="_blank" rel="noopener">製品の環境コミュニケーション</a>。v3.6.3：7-10 説明文付きリンクカード（黒帯ヘッダ型）と 7-11 説明文付きリンクボタンを<strong>7-10 説明文付きリンクボタン（汎用統一）</strong>に統合。`.is-primary`（外枠2px強調）／`.is-full`（全幅）の2バリアントで主要遷移／PDF媒体／方針一覧を全て吸収。096 アーカイブWFも同モジュールに揃えて更新。v3.6.2：⑬から 13-5 コーポレート全体フッターを削除（不要モジュール整理）。v3.5：⑬ナビゲーションを刷新（13-3 ヘッダー画像版／13-4 サステナビリティサイトフッター）。v3.1：プレビュー左上揃え／7-5 横断インデックス全L3／7-7 ESGフォトカード／7-8 EVENT実物UI／⑩表3行以上／⑪背景色付きリスト／⑫セクション番号マーカー削除。</p>
   </div>
 
   <nav class="cat-toc">
@@ -982,7 +964,7 @@ body {
   <section class="cat-section" id="sec-7">
     <span class="cat-section-num">7</span>
     <h2 class="cat-section-title">リンク</h2>
-    <p class="cat-section-desc">遷移系の表現バリエーション。テキスト／ボタン／カード／関連リンク／横断インデックス／PDF DL／ESG3フォト／EVENT／ニュース行／説明文付きリンクカード／説明文付きリンクボタン の11タイプ。</p>
+    <p class="cat-section-desc">遷移系の表現バリエーション。テキスト／ボタン／カード／関連リンク／横断インデックス／PDF DL／ESG3フォト／EVENT／ニュース行／説明文付きリンクボタン（汎用統一） の10タイプ。</p>
 
     <div class="cat-mod">
       <div class="cat-mod-id"><span class="cat-mod-id-num">7-1</span><span class="cat-mod-id-name">テキストリンク（policy-link）</span><span class="cat-mod-id-class">.policy-link</span></div>
@@ -1075,22 +1057,18 @@ body {
     </div>
 
     <div class="cat-mod">
-      <div class="cat-mod-id"><span class="cat-mod-id-num">7-10</span><span class="cat-mod-id-name">説明文付きリンクカード</span><span class="cat-mod-id-class">.report-group</span></div>
-      <div class="cat-mod-preview"><div class="dem-report-group"><div class="dem-report-group-head"><div class="dem-report-group-title">サステナビリティレポート 2025（PDF）<small>本サイトのPDFアーカイブ</small></div><a class="dem-report-group-head-link">PDFダウンロード（16.0MB）</a></div><div class="dem-report-group-body"><div class="dem-report-group-desc">コニカミノルタのサステナビリティ報告は本サイトにて行っています。2025年10月時点の情報を「サステナビリティレポート2025」としてPDF化して公開します。</div><div class="dem-report-group-meta">対象期間：2024年4月〜2025年3月｜発行：2025年10月｜16.0MB</div></div></div></div>
+      <div class="cat-mod-id"><span class="cat-mod-id-num">7-10</span><span class="cat-mod-id-name">説明文付きリンクボタン（汎用統一）</span><span class="cat-mod-id-class">.link-btn / .link-btn-grid（.is-primary / .is-full）</span></div>
+      <div class="cat-mod-preview"><div class="dem-link-btn-grid">
+        <div class="dem-link-btn is-primary is-full"><div><div class="dem-link-btn-title">サステナビリティレポート 2025（PDF・16.0MB）</div><div class="dem-link-btn-desc">本サイトの2025年10月時点情報をPDF化したアーカイブ版。対象期間：2024年4月〜2025年3月。</div></div><span class="dem-link-btn-arrow">›</span></div>
+        <div class="dem-link-btn"><div><div class="dem-link-btn-title">統合報告書</div><div class="dem-link-btn-desc">経営戦略・財務・非財務を統合的に報告（IRサイト内）。</div></div><span class="dem-link-btn-arrow">›</span></div>
+        <div class="dem-link-btn"><div><div class="dem-link-btn-title">ESGデータ</div><div class="dem-link-btn-desc">ESG定量データの閲覧・一括ダウンロード（XLSX）が可能なデータ集ページ。</div></div><span class="dem-link-btn-arrow">›</span></div>
+        <div class="dem-link-btn"><div><div class="dem-link-btn-title">コニカミノルタグループ行動憲章</div><div class="dem-link-btn-desc">グループ全社員が共有する、社会的責任を果たすための行動の基本方針。</div></div><span class="dem-link-btn-arrow">›</span></div>
+        <div class="dem-link-btn"><div><div class="dem-link-btn-title">コニカミノルタ環境方針</div><div class="dem-link-btn-desc">気候変動・資源循環・化学物質管理など、環境課題への取り組み方針。</div></div><span class="dem-link-btn-arrow">›</span></div>
+      </div></div>
       <div class="cat-mod-meta">
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">内容</span><span class="cat-mod-meta-body">黒帯ヘッダ（タイトル＋小サブテキスト＋枠線ボタン）＋本文（説明文＋メタ情報）。重要度を上げる場合は枠線を太く（外枠2px黒）して強調可。</span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">096 アーカイブ（サステナビリティサイトについて）</span></span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">シーン</span><span class="cat-mod-meta-body">PDF/データ媒体の主要遷移カード。説明文と遷移ボタンをセットで提示したい場合（統合報告書／ESGデータ／PDFアーカイブ等）。2カラム並列も可。</span></div>
-      </div>
-    </div>
-
-    <div class="cat-mod">
-      <div class="cat-mod-id"><span class="cat-mod-id-num">7-11</span><span class="cat-mod-id-name">説明文付きリンクボタン</span><span class="cat-mod-id-class">.link-btn / .link-btn-grid</span></div>
-      <div class="cat-mod-preview"><div class="dem-link-btn-grid"><div class="dem-link-btn"><div><div class="dem-link-btn-title">コニカミノルタグループ行動憲章</div><div class="dem-link-btn-desc">グループ全社員が共有する、社会的責任を果たすための行動の基本方針。</div></div><span class="dem-link-btn-arrow">›</span></div><div class="dem-link-btn"><div><div class="dem-link-btn-title">コニカミノルタ環境方針</div><div class="dem-link-btn-desc">気候変動・資源循環・化学物質管理など、環境課題への取り組み方針。</div></div><span class="dem-link-btn-arrow">›</span></div><div class="dem-link-btn"><div><div class="dem-link-btn-title">ダイバーシティ経営宣言</div><div class="dem-link-btn-desc">多様な人材が活躍できる経営の実現に向けた宣言文。</div></div><span class="dem-link-btn-arrow">›</span></div><div class="dem-link-btn"><div><div class="dem-link-btn-title">コニカミノルタグループ人権方針</div><div class="dem-link-btn-desc">国際規範に基づき、グループ全体で取り組む人権尊重の基本方針。</div></div><span class="dem-link-btn-arrow">›</span></div><div class="dem-link-btn"><div><div class="dem-link-btn-title">コニカミノルタ品質方針</div><div class="dem-link-btn-desc">お客様の期待に応える製品・サービス品質を実現する基本方針。</div></div><span class="dem-link-btn-arrow">›</span></div></div></div>
-      <div class="cat-mod-meta">
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">内容</span><span class="cat-mod-meta-body">独立した枠付きボタン（タイトル14px太字＋説明文1行11px薄色＋右端「›」矢印）を<strong>2カラムgrid（gap:12px）</strong>で並列配置。各ボタンは独立したborder/paddingを持ち、単独要素は左カラムに配置されて右側は完全余白（枠なし）。</span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">097 方針一覧</span></span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">シーン</span><span class="cat-mod-meta-body">方針一覧／規約一覧／関連リンク集約など、説明文付きの遷移リンクを多数並べる汎用モジュール。カテゴリヘッダ単位で複数grid設置可。すべてページ遷移前提（媒体区別なし）。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">内容</span><span class="cat-mod-meta-body">独立した枠付きボタン（タイトル14px太字＋説明文11px薄色＋右端「›」矢印）を<strong>2カラムgrid（gap:12px）</strong>で並列配置。説明文は複数行可。バリアント：<strong>.is-primary</strong>（外枠2px黒で強調）／<strong>.is-full</strong>（grid内で1行占有・全幅）。PDF媒体はタイトルに「（PDF・容量）」を併記、外部遷移は説明文末でその旨を示す。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">096 アーカイブ</span><span class="page-chip">097 方針一覧</span></span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">シーン</span><span class="cat-mod-meta-body">方針一覧／規約一覧／関連媒体集約／PDFアーカイブ／統合報告書・ESGデータ等の主要遷移など、説明文付きの遷移リンクを並べる場面の<strong>共通モジュール</strong>。媒体種別を問わず統一UIで提示。</span></div>
       </div>
     </div>
   </section>
