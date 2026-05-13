@@ -91,6 +91,133 @@
       font-size: 12px; color: #555;
       margin: 14px 0 0; line-height: 1.7;
     }
+
+    /* ===== リンク/カード ホバー演出（全WF共通） ===== */
+
+    /* テキストリンク */
+    .wf-link {
+      cursor: pointer !important;
+      transition: color .15s ease;
+      position: relative;
+    }
+    .wf-link::before { transition: transform .15s ease; }
+    .wf-link:hover {
+      color: #1a1a1a !important;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .wf-link:hover::before { transform: translateX(3px); }
+
+    .wf-link-more {
+      cursor: pointer !important;
+      transition: color .15s ease;
+    }
+    .wf-link-more:hover {
+      color: #1a1a1a !important;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* セクション見出し横リンク */
+    .section-head-link {
+      cursor: pointer !important;
+    }
+
+    /* ボタン型リンク */
+    .wf-btn {
+      cursor: pointer !important;
+      transition: background .15s ease, border-color .15s ease,
+                  transform .15s ease, box-shadow .15s ease;
+    }
+    .wf-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+    .wf-btn-page {
+      cursor: pointer !important;
+      transition: background .15s ease, border-color .15s ease, color .15s ease;
+    }
+    .wf-btn-page:hover {
+      background: #1a1a1a; color: #fff; border-color: #1a1a1a;
+    }
+
+    /* 取り組みカード（activity-card） */
+    .activity-card {
+      cursor: pointer !important;
+      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+    }
+    .activity-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.10);
+      border-color: #1a1a1a;
+    }
+    .activity-card .card-link-arrow { transition: transform .15s ease; }
+    .activity-card:hover .card-link-arrow { transform: translateX(3px); }
+
+    /* レポートカード / ニュース行 / 方針行 */
+    .report-group {
+      cursor: pointer !important;
+      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+    }
+    .report-group:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      border-color: #1a1a1a;
+    }
+
+    .news-row {
+      cursor: pointer !important;
+      transition: background .15s ease;
+    }
+    .news-row:hover { background: #f5f5f5; }
+
+    .policy-row {
+      cursor: pointer !important;
+      transition: background .15s ease, border-color .15s ease;
+    }
+    .policy-row:hover { background: #f5f5f5; }
+
+    /* サブリスト linked バリアント */
+    .sub-list.linked li,
+    .sub-list-linked li {
+      cursor: pointer;
+      transition: color .15s ease;
+    }
+    .sub-list.linked li:hover,
+    .sub-list-linked li:hover {
+      color: #1a1a1a;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* 横断インデックス／カテゴリカード */
+    .esg-photo-card,
+    .index-card,
+    .l3-card,
+    .anchor-tile {
+      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+    }
+    .esg-photo-card:hover,
+    .index-card:hover,
+    .l3-card:hover,
+    .anchor-tile:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.10);
+      border-color: #1a1a1a;
+      cursor: pointer;
+    }
+
+    /* アンカーナビ右コンパクト */
+    .wf-anchor-nav-item,
+    .wf-anchor-link {
+      transition: color .15s ease, border-color .15s ease;
+      cursor: pointer;
+    }
+    .wf-anchor-nav-item:hover,
+    .wf-anchor-link:hover {
+      color: #000;
+      border-color: #1a1a1a;
+    }
   `;
   document.head.appendChild(style);
 
