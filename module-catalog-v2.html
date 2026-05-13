@@ -423,14 +423,6 @@ body {
 .dem-news-row .date { color: var(--c-text-s); letter-spacing: 0.04em; }
 .dem-news-row .title { color: var(--c-text-h); }
 
-.dem-link-btn-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; width: 100%; }
-.dem-link-btn { display: grid; grid-template-columns: 1fr 14px; align-items: center; gap: 8px; padding: 9px 10px; background: #fff; border: 1px solid var(--c-border); min-height: 56px; }
-.dem-link-btn.is-primary { border: 2px solid var(--c-text-h); }
-.dem-link-btn.is-full { grid-column: 1 / -1; }
-.dem-link-btn-title { font-size: 10px; font-weight: 700; color: var(--c-text-h); line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-.dem-link-btn-desc { font-size: 8px; color: var(--c-text-s); line-height: 1.5; margin-top: 2px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-.dem-link-btn-arrow { font-size: 10px; color: var(--c-text-s); text-align: right; line-height: 1; }
-
 .dem-qa {
   background: #fff; border: 1px solid var(--c-border);
   padding: 6px 10px; display: flex; align-items: center; gap: 8px; width: 100%;
@@ -625,47 +617,9 @@ body {
 .dem-tag-year span { font-size: 9px; padding: 3px 8px; border: 1px solid var(--c-border); }
 .dem-tag-year .active { background: var(--c-text-h); color: #fff; border-color: var(--c-text-h); font-weight: 700; }
 
-/* ============== v3.7.1 追加モジュール ============== */
+/* ============== v3.7.2 拡張モジュール ============== */
 
-/* 2-5 グループラベル（大分類セパレーター） */
-.dem-grouplbl {
-  display: flex; align-items: baseline; gap: 8px; width: 100%;
-  padding: 4px 0 4px 10px; border-left: 3px solid var(--c-text-h);
-}
-.dem-grouplbl-tag { font-size: 11px; font-weight: 700; color: var(--c-text-h); letter-spacing: 0.04em; }
-.dem-grouplbl-desc { font-size: 8px; color: var(--c-text-s); }
-.dem-grouplbl-count {
-  font-size: 8px; color: var(--c-text-s);
-  background: #fff; border: 1px solid var(--c-border);
-  padding: 1px 6px; margin-left: auto; letter-spacing: 0.04em;
-}
-
-/* 5-5 テーマ補足＋グラフ画像 2カラム */
-.dem-theme-graph-row {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
-  width: 100%; align-items: start;
-}
-.dem-theme-graph-left { display: flex; flex-direction: column; gap: 3px; }
-.dem-theme-graph-lbl {
-  font-size: 7px; font-weight: 700; color: var(--c-text-xs);
-  letter-spacing: 0.1em; text-transform: uppercase;
-}
-.dem-theme-graph-desc { font-size: 9px; color: var(--c-text); line-height: 1.7; }
-
-/* 6-3 宣言・ステートメントボックス */
-.dem-statement {
-  background: #fff; border-top: 2px solid var(--c-text-h);
-  border-bottom: 2px solid var(--c-text-h);
-  padding: 12px 14px; width: 100%; text-align: center;
-}
-.dem-statement-lead {
-  font-size: 13px; font-weight: 700; color: var(--c-text-h);
-  letter-spacing: 0.04em; margin-bottom: 6px;
-}
-.dem-statement-text { font-size: 9px; color: var(--c-text); line-height: 1.7; }
-.dem-statement-meta { font-size: 8px; color: var(--c-text-s); margin-top: 6px; }
-
-/* 7-11 L2 テーマ別リンクブロック */
+/* 7-10 L2 テーマ別リンクブロック */
 .dem-theme-block {
   background: #fff; border: 1px solid var(--c-border);
   padding: 10px 12px; width: 100%;
@@ -685,7 +639,7 @@ body {
 .dem-theme-block-link::before { content: '› '; font-weight: 700; }
 .dem-theme-block-body { font-size: 8px; color: var(--c-text); line-height: 1.6; }
 
-/* 7-12 タイル型リンクグリッド（005b 別案） */
+/* 7-11 タイル型リンクグリッド（005b 別案） */
 .dem-tile-grid {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
   border-top: 1px solid var(--c-border); border-left: 1px solid var(--c-border);
@@ -731,41 +685,7 @@ body {
   font-size: 9px; font-weight: 700;
 }
 
-/* 7-13 ESGデータ大型DLカード */
-.dem-data-card {
-  background: #fff; border: 1px solid var(--c-border);
-  display: flex; flex-direction: column; width: 100%;
-}
-.dem-data-card-head {
-  background: var(--c-text-h); color: #fff;
-  padding: 6px 10px; font-size: 10px; font-weight: 700; letter-spacing: 0.02em;
-}
-.dem-data-card-head.social { background: #555; }
-.dem-data-card-dl {
-  display: grid; grid-template-columns: 36px 1fr 16px;
-  align-items: center; gap: 8px; padding: 6px 10px;
-  border-bottom: 1px solid var(--c-border-s);
-}
-.dem-data-card-dl-icon {
-  background: var(--c-bg-sub); border: 1px solid var(--c-border);
-  padding: 4px 0; text-align: center;
-  font-size: 7px; font-weight: 700; color: var(--c-text-s);
-}
-.dem-data-card-dl-title { font-size: 9px; font-weight: 700; color: var(--c-text-h); }
-.dem-data-card-dl-meta { font-size: 7px; color: var(--c-text-xs); margin-top: 1px; }
-.dem-data-card-idx { padding: 6px 10px; }
-.dem-data-card-idx-title {
-  font-size: 7px; font-weight: 700; color: var(--c-text-xs);
-  letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px;
-}
-.dem-data-card-idx-list {
-  list-style: none; padding: 0;
-  font-size: 7.5px; color: var(--c-text); line-height: 1.5;
-}
-.dem-data-card-idx-list li { padding: 1px 0 1px 8px; position: relative; }
-.dem-data-card-idx-list li::before { content: '・'; position: absolute; left: 0; font-weight: 700; }
-
-/* 7-14 バックナンバー年別リスト */
+/* 7-12 バックナンバー年別リスト */
 .dem-bn-list { width: 100%; border: 1px solid var(--c-border); background: #fff; }
 .dem-bn-row {
   display: grid; grid-template-columns: 60px 1fr;
@@ -880,35 +800,6 @@ body {
 }
 .dem-pagination .nav { width: 24px; font-weight: 700; }
 
-/* 13-8 タブUI */
-.dem-tabs {
-  width: 100%;
-  background: #fff; border: 1px solid var(--c-border);
-}
-.dem-tabs-row {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  border-bottom: 1px solid var(--c-border);
-}
-.dem-tab {
-  padding: 5px 0; text-align: center;
-  font-size: 8px; font-weight: 600; color: var(--c-text-s);
-  border-right: 1px solid var(--c-border-s);
-  position: relative;
-}
-.dem-tab:last-child { border-right: none; }
-.dem-tab.active {
-  background: var(--c-text-h); color: #fff; font-weight: 700;
-}
-.dem-tab.active::after {
-  content: ''; position: absolute; left: 0; right: 0; bottom: -1px;
-  height: 2px; background: var(--c-text-h);
-}
-.dem-tabs-body {
-  padding: 6px 8px; font-size: 8px;
-  color: var(--c-text); line-height: 1.55;
-  min-height: 30px;
-}
-
 </style>
 </head>
 <body>
@@ -916,7 +807,7 @@ body {
 <div class="cat-meta-bar">
   <div>
     <strong>KMサステナビリティWF</strong>
-    <span class="badge">モジュール一覧 v3.7.1</span>
+    <span class="badge">モジュール一覧 v3.7.2</span>
     <span class="badge">2026.05</span>
   </div>
   <div style="font-size:10px; color:#888;">13カテゴリで全20ページを構成</div>
@@ -1050,18 +941,6 @@ body {
       </div>
     </div>
 
-    <div class="cat-mod">
-      <div class="cat-mod-id"><span class="cat-mod-id-num">2-5</span><span class="cat-mod-id-name">グループラベル（大分類セパレーター）</span><span class="cat-mod-id-class">.group-label / .social-group-label</span></div>
-      <div class="cat-mod-preview"><div style="width:100%; display:flex; flex-direction:column; gap:6px;">
-        <div class="dem-grouplbl"><span class="dem-grouplbl-tag">人と組織</span><span class="dem-grouplbl-desc">人的資本・育成・組織風土・DE&amp;I・健康経営・労働安全衛生・労働慣行</span><span class="dem-grouplbl-count">7テーマ</span></div>
-        <div class="dem-grouplbl"><span class="dem-grouplbl-tag">社会・お客様</span><span class="dem-grouplbl-desc">人権／SCM／顧客責任・品質／AI／社会貢献</span><span class="dem-grouplbl-count">5テーマ</span></div>
-      </div></div>
-      <div class="cat-mod-meta">
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">内容</span><span class="cat-mod-meta-body">太字タグ＋説明＋右寄せ件数バッジ。左に黒縦棒で大分類セパレーターとして機能。H2／H3とは別系統の「大分類スコープラベル」。</span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">005 社会Index</span><span class="page-chip">005b タイル版</span></span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">シーン</span><span class="cat-mod-meta-body">L2インデックスで「人と組織」「社会・お客様」など、テーマ群を意味的にグルーピングする際の見出し。</span></div>
-      </div>
-    </div>
   </section>
 
   <!-- ③ 画像 -->
@@ -1232,21 +1111,6 @@ body {
       </div>
     </div>
 
-    <div class="cat-mod">
-      <div class="cat-mod-id"><span class="cat-mod-id-num">5-5</span><span class="cat-mod-id-name">テーマ補足 + グラフ画像（テーマ別2カラム）</span><span class="cat-mod-id-class">.theme-graph-row / .theme-graph-left</span></div>
-      <div class="cat-mod-preview"><div class="dem-theme-graph-row">
-        <div class="dem-theme-graph-left">
-          <div class="dem-theme-graph-lbl">主要KPI</div>
-          <div class="dem-theme-graph-desc"><span class="dem-dummy">（文章はダミーです）</span>気候変動課題に対し、自社拠点のCO2排出量削減（Scope1,2）と製品ライフサイクル全体（Scope3）の両面で目標を設定。2030年70%削減・2050年カーボンマイナス達成を目指す。</div>
-        </div>
-        <div class="dem-img-ph" style="aspect-ratio:16/9;"><span>[ KPIグラフ PH ]</span></div>
-      </div></div>
-      <div class="cat-mod-meta">
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">内容</span><span class="cat-mod-meta-body">左テキスト（小見出しラベル＋本文）＋右にグラフPH（16:9）の2カラム1:1。L2インデックスでテーマ毎に「補足説明＋当該KPIグラフ」を1セットで提示するモジュール。</span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">004 環境Index</span><span class="page-chip">005 社会Index</span></span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">シーン</span><span class="cat-mod-meta-body">L2インデックス内 `.theme-block` の本文部分。テーマ毎の中核KPIをワンルックで示す並列表現。グラフ非掲載テーマでは省略可。</span></div>
-      </div>
-    </div>
   </section>
 
   <!-- ⑥ 強調エリア -->
@@ -1275,26 +1139,13 @@ body {
       </div>
     </div>
 
-    <div class="cat-mod">
-      <div class="cat-mod-id"><span class="cat-mod-id-num">6-3</span><span class="cat-mod-id-name">宣言・ステートメントボックス</span><span class="cat-mod-id-class">.health-statement / .dei-statement / .quality-policy-motto</span></div>
-      <div class="cat-mod-preview"><div class="dem-statement">
-        <div class="dem-statement-lead">いきいきと働くことができる職場（会社）を目指して</div>
-        <div class="dem-statement-text"><span class="dem-dummy">（文章はダミーです）</span>社員一人ひとりがいきいきと働き、その健やかさを通じて事業の持続的成長を実現する。</div>
-        <div class="dem-statement-meta">2014年制定 ／ 健康宣言</div>
-      </div></div>
-      <div class="cat-mod-meta">
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">内容</span><span class="cat-mod-meta-body">白bg＋上下太黒罫線＋中央寄せの宣言文ボックス。タグライン（大）＋本文（中）＋メタ（小）の3層構造。引用クォートや左縦棒は使わず、上下罫線で「公式宣言」感を強める。</span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">131 健康経営</span><span class="page-chip">098 健康宣言</span><span class="page-chip">124 DE&amp;I 宣言</span><span class="page-chip">148 品質方針モットー</span></span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">シーン</span><span class="cat-mod-meta-body">公式宣言・スローガン・基本方針の冒頭等、特定の一文を儀礼的に提示したい場面。本文より独立したブロックとして配置。</span></div>
-      </div>
-    </div>
   </section>
 
   <!-- ⑦ リンク -->
   <section class="cat-section" id="sec-7">
     <span class="cat-section-num">7</span>
     <h2 class="cat-section-title">リンク</h2>
-    <p class="cat-section-desc">遷移系の表現バリエーション。テキスト／ボタン／カード／関連リンク／横断インデックス／PDF DL／ESG3フォト／EVENT／ニュース行／説明文付きリンクボタン（汎用統一）／L2テーマブロック／タイル型グリッド／ESGデータDLカード／バックナンバー年別リスト の14タイプ。</p>
+    <p class="cat-section-desc">遷移系の表現バリエーション。テキスト／ボタン／カード／関連リンク／横断インデックス／PDF DL／ESG3フォト／EVENT／ニュース行／L2テーマブロック／タイル型グリッド／バックナンバー年別リスト の12タイプ。</p>
 
     <div class="cat-mod">
       <div class="cat-mod-id"><span class="cat-mod-id-num">7-1</span><span class="cat-mod-id-name">テキストリンク（policy-link）</span><span class="cat-mod-id-class">.policy-link</span></div>
@@ -1387,23 +1238,7 @@ body {
     </div>
 
     <div class="cat-mod">
-      <div class="cat-mod-id"><span class="cat-mod-id-num">7-10</span><span class="cat-mod-id-name">説明文付きリンクボタン（汎用統一）</span><span class="cat-mod-id-class">.link-btn / .link-btn-grid（.is-primary / .is-full）</span></div>
-      <div class="cat-mod-preview"><div class="dem-link-btn-grid">
-        <div class="dem-link-btn is-primary is-full"><div><div class="dem-link-btn-title">サステナビリティレポート 2025（PDF・16.0MB）</div><div class="dem-link-btn-desc">本サイトの2025年10月時点情報をPDF化したアーカイブ版。対象期間：2024年4月〜2025年3月。</div></div><span class="dem-link-btn-arrow">›</span></div>
-        <div class="dem-link-btn"><div><div class="dem-link-btn-title">統合報告書</div><div class="dem-link-btn-desc">経営戦略・財務・非財務を統合的に報告（IRサイト内）。</div></div><span class="dem-link-btn-arrow">›</span></div>
-        <div class="dem-link-btn"><div><div class="dem-link-btn-title">ESGデータ</div><div class="dem-link-btn-desc">ESG定量データの閲覧・一括ダウンロード（XLSX）が可能なデータ集ページ。</div></div><span class="dem-link-btn-arrow">›</span></div>
-        <div class="dem-link-btn"><div><div class="dem-link-btn-title">コニカミノルタグループ行動憲章</div><div class="dem-link-btn-desc">グループ全社員が共有する、社会的責任を果たすための行動の基本方針。</div></div><span class="dem-link-btn-arrow">›</span></div>
-        <div class="dem-link-btn"><div><div class="dem-link-btn-title">コニカミノルタ環境方針</div><div class="dem-link-btn-desc">気候変動・資源循環・化学物質管理など、環境課題への取り組み方針。</div></div><span class="dem-link-btn-arrow">›</span></div>
-      </div></div>
-      <div class="cat-mod-meta">
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">内容</span><span class="cat-mod-meta-body">独立した枠付きボタン（タイトル太字＋説明文薄色＋右端「›」矢印）を<strong>2カラムgrid</strong>で並列配置。<strong>v3.6.5：全ボタン同サイズ設計</strong>に統一。最低高さを揃え、タイトル／説明文ともに最大2行に打ち切り。説明文は<strong>約20文字以内</strong>を目安に整理する（長い場合は要約）。バリアント：<strong>.is-primary</strong>（外枠強調）／<strong>.is-full</strong>（grid内で1行占有・全幅）。PDF媒体はタイトルに「（PDF・容量）」を併記、外部遷移は説明文末でその旨を示す。</span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">096 アーカイブ</span><span class="page-chip">097 方針一覧</span></span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">シーン</span><span class="cat-mod-meta-body">方針一覧／規約一覧／関連媒体集約／PDFアーカイブ／統合報告書・ESGデータ等の主要遷移など、説明文付きの遷移リンクを並べる場面の<strong>共通モジュール</strong>。媒体種別を問わず統一UIで提示。</span></div>
-      </div>
-    </div>
-
-    <div class="cat-mod">
-      <div class="cat-mod-id"><span class="cat-mod-id-num">7-11</span><span class="cat-mod-id-name">L2 テーマ別リンクブロック</span><span class="cat-mod-id-class">.theme-block / .theme-block-head / .theme-block-link</span></div>
+      <div class="cat-mod-id"><span class="cat-mod-id-num">7-10</span><span class="cat-mod-id-name">L2 テーマ別リンクブロック</span><span class="cat-mod-id-class">.theme-block / .theme-block-head / .theme-block-link</span></div>
       <div class="cat-mod-preview"><div style="width:100%; display:flex; flex-direction:column; gap:6px;">
         <div class="dem-theme-block">
           <div class="dem-theme-block-head"><h3>気候変動</h3><span class="dem-theme-block-link">詳細を見る</span></div>
@@ -1415,14 +1250,14 @@ body {
         </div>
       </div></div>
       <div class="cat-mod-meta">
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">内容</span><span class="cat-mod-meta-body">白bg＋全周ボーダーのテーマブロック。ヘッダ部にH3テーマ名＋右端に「› 詳細を見る」テキストリンク（黒下線）。本文部に補足説明、内部で `.theme-anchors`（12-4 #チップ）／`.theme-graph-row`（5-5）／`.kpi-graph-grid`（3-3）等と組み合わせ可。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">内容</span><span class="cat-mod-meta-body">白bg＋全周ボーダーのテーマブロック。ヘッダ部にH3テーマ名＋右端に「› 詳細を見る」テキストリンク（黒下線）。本文部に補足説明、内部で `.theme-anchors`（12-4 #チップ）／`.kpi-graph-grid`（3-3）等と組み合わせ可。</span></div>
         <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">004 環境Index</span><span class="page-chip">005 社会Index</span></span></div>
         <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">シーン</span><span class="cat-mod-meta-body">L2インデックスのテーマ並列レイアウト。各テーマ毎に「概要＋関連アンカー＋詳細遷移」を1ブロックで完結。L3への主要導線。</span></div>
       </div>
     </div>
 
     <div class="cat-mod">
-      <div class="cat-mod-id"><span class="cat-mod-id-num">7-12</span><span class="cat-mod-id-name">タイル型リンクグリッド（番号付き12タイル）</span><span class="cat-mod-id-class">.social-tile-grid / .social-tile</span></div>
+      <div class="cat-mod-id"><span class="cat-mod-id-num">7-11</span><span class="cat-mod-id-name">タイル型リンクグリッド（番号付き12タイル）</span><span class="cat-mod-id-class">.social-tile-grid / .social-tile</span></div>
       <div class="cat-mod-preview"><div class="dem-tile-grid">
         <div class="dem-tile">
           <span class="dem-tile-num">01</span>
@@ -1449,33 +1284,12 @@ body {
       <div class="cat-mod-meta">
         <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">内容</span><span class="cat-mod-meta-body">3列×4段の12タイル等を等幅でフラット配置。各タイルは番号(01-12)＋H3テーマ名＋概要2-3行＋#アンカーチップ群＋右下黒丸›アロー。タイル上端の色帯（人と組織=黒／社会・お客様=グレー）でグループを視覚的に差別化（`.is-group-a` / `.is-group-b`）。</span></div>
         <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">005b 社会Index タイル別案</span></span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">シーン</span><span class="cat-mod-meta-body">L2インデックスのフラットなテーマ一覧。`.theme-block`（7-11）よりも視覚的に並列性を強調したい場合の代替案。タイル全体クリックでL3トップへ／#アンカーチップは個別見出しジャンプ。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">シーン</span><span class="cat-mod-meta-body">L2インデックスのフラットなテーマ一覧。`.theme-block`（7-10）よりも視覚的に並列性を強調したい場合の代替案。タイル全体クリックでL3トップへ／#アンカーチップは個別見出しジャンプ。</span></div>
       </div>
     </div>
 
     <div class="cat-mod">
-      <div class="cat-mod-id"><span class="cat-mod-id-num">7-13</span><span class="cat-mod-id-name">ESGデータ大型DLカード</span><span class="cat-mod-id-class">.esg-data-card / .esg-data-card-dl / .esg-data-card-index</span></div>
-      <div class="cat-mod-preview"><div class="dem-data-card">
-        <div class="dem-data-card-head">環境データ</div>
-        <div class="dem-data-card-dl">
-          <div class="dem-data-card-dl-icon">XLSX</div>
-          <div><div class="dem-data-card-dl-title">環境データ集 2025</div><div class="dem-data-card-dl-meta">2025年度版 ／ 全項目</div></div>
-          <span style="font-size:11px;">›</span>
-        </div>
-        <div class="dem-data-card-idx">
-          <div class="dem-data-card-idx-title">収録項目</div>
-          <ul class="dem-data-card-idx-list"><li>GHG排出量（Scope1,2,3）</li><li>エネルギー使用量</li><li>水使用量・排水量</li><li>廃棄物発生量・リサイクル率</li></ul>
-        </div>
-      </div></div>
-      <div class="cat-mod-meta">
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">内容</span><span class="cat-mod-meta-body">カテゴリ別の大型データDLカード。黒帯ヘッダ（環境＝黒／社会＝中グレー／ガバナンス＝薄グレーで色分け）＋XLSXダウンロード行＋収録項目目次の3層構造。1カテゴリ1カードで横並び配置（3列）。</span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">199 ESGデータ</span><span class="page-chip">095 ESGデータ（旧）</span></span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">シーン</span><span class="cat-mod-meta-body">ESGデータ集ページの中核。一括DLとカテゴリ別の収録内容把握を1カードで完結。`.qa-card`（7-6）の上位版・大型バージョン。</span></div>
-      </div>
-    </div>
-
-    <div class="cat-mod">
-      <div class="cat-mod-id"><span class="cat-mod-id-num">7-14</span><span class="cat-mod-id-name">バックナンバー年別リスト</span><span class="cat-mod-id-class">.backnumber-list / .backnumber-row</span></div>
+      <div class="cat-mod-id"><span class="cat-mod-id-num">7-12</span><span class="cat-mod-id-name">バックナンバー年別リスト</span><span class="cat-mod-id-class">.backnumber-list / .backnumber-row</span></div>
       <div class="cat-mod-preview"><div class="dem-bn-list">
         <div class="dem-bn-row">
           <span class="dem-bn-year">2024年</span>
@@ -1501,7 +1315,7 @@ body {
       <div class="cat-mod-meta">
         <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">内容</span><span class="cat-mod-meta-body">全周ボーダー＋年度ラベル（左）と当該年DL媒体チップ群（右）の2列リスト。各DL項目はファイル種別バッジ（PDF／XLSX等）を末尾に付与。新→旧の降順で並べる。</span></div>
         <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">096 アーカイブ</span></span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">シーン</span><span class="cat-mod-meta-body">過去版レポートのバックナンバー一覧。最新版は 7-10（説明文付きリンクボタン）で上部に大きく配置し、過去版を本リストで簡潔に集約する役割分担。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">シーン</span><span class="cat-mod-meta-body">過去版レポートのバックナンバー一覧。最新版はページ上部に大きく配置し、過去版を本リストで簡潔に集約する役割分担。</span></div>
       </div>
     </div>
   </section>
@@ -1694,7 +1508,7 @@ body {
     </div>
 
     <div class="cat-mod">
-      <div class="cat-mod-id"><span class="cat-mod-id-num">11-3</span><span class="cat-mod-id-name">区切り線付き「・」リスト</span><span class="cat-mod-id-class">.process-list / .esg-data-card-index-list</span></div>
+      <div class="cat-mod-id"><span class="cat-mod-id-num">11-3</span><span class="cat-mod-id-name">区切り線付き「・」リスト</span><span class="cat-mod-id-class">.process-list</span></div>
       <div class="cat-mod-preview"><ul class="dem-ul-dot" style="width:100%;"><li>GRIスタンダード</li><li>SDGs</li><li>TCFD提言</li></ul></div>
       <div class="cat-mod-meta">
         <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">内容</span><span class="cat-mod-meta-body">破線区切り＋「・」マーカー。フレームワーク・規格・データ収録項目。</span></div>
@@ -1786,7 +1600,7 @@ body {
   <section class="cat-section" id="sec-13" style="border-bottom:none;">
     <span class="cat-section-num">13</span>
     <h2 class="cat-section-title">ナビゲーション</h2>
-    <p class="cat-section-desc">ページ構造を構成する固定UI要素（ヘッダー／パンくず／アンカーナビ／フッター）と、ページ内回遊・絞り込み・ページ送り（番号付きアンカー集／年度フィルタ／ページネーション／タブUI）。ヘッダー＆フッターは2026.05に公式デザイン版へ刷新。</p>
+    <p class="cat-section-desc">ページ構造を構成する固定UI要素（ヘッダー／パンくず／アンカーナビ／フッター）と、ページ内回遊・絞り込み・ページ送り（番号付きアンカー集／年度フィルタ／ページネーション）。ヘッダー＆フッターは2026.05に公式デザイン版へ刷新。</p>
 
     <div class="cat-mod">
       <div class="cat-mod-id"><span class="cat-mod-id-num">13-1</span><span class="cat-mod-id-name">パンくず</span><span class="cat-mod-id-class">.wf-breadcrumb</span></div>
@@ -1896,28 +1710,12 @@ body {
       </div>
     </div>
 
-    <div class="cat-mod">
-      <div class="cat-mod-id"><span class="cat-mod-id-num">13-8</span><span class="cat-mod-id-name">タブUI（ea-tabs）</span><span class="cat-mod-id-class">.ea-tabs / .ea-tab / .ea-tab-panel</span></div>
-      <div class="cat-mod-preview"><div class="dem-tabs">
-        <div class="dem-tabs-row">
-          <div class="dem-tab active">気候変動</div>
-          <div class="dem-tab">資源循環</div>
-          <div class="dem-tab">生物多様性</div>
-        </div>
-        <div class="dem-tabs-body"><span class="dem-dummy">（文章はダミーです）</span>選択タブの内容パネル。タブ切替で本文のみ差し替え、ページ遷移は伴わない。</div>
-      </div></div>
-      <div class="cat-mod-meta">
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">内容</span><span class="cat-mod-meta-body">タブ行＋本文パネルのセット。アクティブタブは黒背景＋白文字、非アクティブはグレー文字。タブ切替で本文部のみ差し替える操作系UI。</span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">019 グリーンプロダクツ</span></span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">シーン</span><span class="cat-mod-meta-body">同一カテゴリ内の複数テーマを切替表示。スクロールせず狭い領域で複数情報を提示したい場合。ページ遷移を伴わない「ローカル切替」用途に限定。</span></div>
-      </div>
-    </div>
   </section>
 
   <!-- Footer note -->
   <div style="background:#1F1F1F; color:#BBB; padding:24px 60px; font-size:11px; line-height:1.85;">
-    <strong style="color:#fff;">KMサステナビリティWF モジュール一覧 v3.7.1</strong> ｜ 全20ページの共通モジュール体系（2026.05.13）<br>
-    13カテゴリ・コンパクト一覧型。<strong style="color:#fff;">v3.7.1 更新</strong>：モジュール説明文から px 等の具体的な数値定義を削除し、用途・構成・装飾の意図ベースで記述に統一（WFはサイズ指定をデザイン段階に委ねる方針）。<strong style="color:#fff;">v3.7.0 追加</strong>：2-5 グループラベル／5-5 テーマ補足+グラフ2カラム／6-3 宣言ボックス／7-11 L2テーマブロック／7-12 タイル型リンクグリッド（005b別案）／7-13 ESGデータDLカード／7-14 バックナンバー年別リスト／11-5 番号付き理念リスト／12-4 #アンカーチップ／13-5 番号付きアンカーチップ集／13-6 年度フィルタブロック／13-7 ページネーション／13-8 タブUI。モジュール追加・改修時は本ファイルを更新し、利用ページ欄を最新化してください。
+    <strong style="color:#fff;">KMサステナビリティWF モジュール一覧 v3.7.2</strong> ｜ 全20ページの共通モジュール体系（2026.05.13）<br>
+    13カテゴリ・コンパクト一覧型。<strong style="color:#fff;">v3.7.2 整理</strong>：古いWFベースで誤って残っていた 2-5 グループラベル／5-5 テーマ補足+グラフ2カラム／6-3 宣言ボックス／7-10 説明文付きリンクボタン／7-13 ESGデータDLカード／13-8 タブUI の6モジュールを削除。⑦リンクは番号繰り下げ（旧7-11→7-10／旧7-12→7-11／旧7-14→7-12）。⑥強調エリアは2タイプに整理。<strong style="color:#fff;">v3.7.1 更新</strong>：モジュール説明文から px 等の具体的な数値定義を削除し、用途・構成・装飾の意図ベースで記述に統一。モジュール追加・改修時は本ファイルを更新し、利用ページ欄を最新化してください。
   </div>
 
 </div><!-- /cat-page -->
