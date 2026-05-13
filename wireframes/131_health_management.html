@@ -1382,14 +1382,27 @@ body {
 
   <!-- アノテーション -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — 健康経営 v2.1（#131）</h3>
+    <h3>設計ポイント — 健康経営 v2.5（#131）</h3>
 
     <div class="ann-item">
       <span class="ann-num">★</span>
-      <span class="ann-head">v2.1 変更（FB3点反映）</span>
+      <span class="ann-head">v2.5 変更（取り組み集約レイアウト）</span>
       <p class="ann-body">
-        ① 健康宣言ボックスをトピックス風UIに変更：背景グレー（bg-sub）＋細い罫線で囲い、装飾クォートを削除。リード文と本文・署名はシンプルに区切り線で分離<br>
-        ② H4アコーディオンの境界を明確化：全体を1px罫線で囲い、見出し帯にbg-sub＋左3px縦棒、＋/−を丸枠アイコン化（閉＝白丸＋黒文字／開＝黒丸＋白文字）。本文padding確保でブロック範囲を明示<br>
+        D「取り組み」セクションを 4枚カードUI → H3アコーディオン4本に変更し、原稿「26S220_健康経営_取り組み.docx」の本文・テーブル・グラフをすべて本ページに集約。<br>
+        ・D-1 健康リスク保有者の最少化（フィジカル面／メンタル面の小見出し付き／対応状況・がん検診テーブル＋4グラフPH）<br>
+        ・D-2 従業員の健康度の「見える化」による健康増進活動（4つの生活習慣／あすけん・ヤクルト連携／構内禁煙／首肩痛・腰痛ICT／WFun改善）<br>
+        ・D-3 過重労働対策（産業医健診基準＋就業状況テーブル）<br>
+        ・D-4 女性の健康支援（婦人科検診環境整備／FEMTECH試験導入）<br>
+        全アコは <code>&lt;details open&gt;</code> で初期展開。L4遷移ではなく1ページ内集約に方針変更。
+      </p>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">v2.1</span>
+      <span class="ann-head">v2.1 変更（参考）</span>
+      <p class="ann-body">
+        ① 健康宣言ボックスをトピックス風UIに変更：背景グレー（bg-sub）＋細い罫線で囲い、装飾クォートを削除<br>
+        ② H4アコーディオンの境界を明確化：全体を1px罫線で囲い、見出し帯にbg-sub＋左3px縦棒<br>
         ③ 取り組みカードから「サブテーマ：〜」メタ表記を削除
       </p>
     </div>
@@ -1433,9 +1446,13 @@ body {
 
     <div class="ann-item">
       <span class="ann-num">D</span>
-      <span class="ann-head">取り組み — L4遷移カード4枚</span>
+      <span class="ann-head">取り組み — H3アコーディオン4本（v2.5）</span>
       <p class="ann-body">
-        2列×2行のactivity-card：①健康リスク保有者の最少化（フィジカル/メンタル）／②過重労働対策（産業医健診/就業状況）／③健康度の見える化（食事・運動/疾病リスク/禁煙/プレゼンティーズム改善）／③女性の健康支援（婦人科検診/FEMTECH）。各カードに サブテーマメタを併記。L4個別ページは次フェーズで制作。
+        原稿26S220_取り組み.docxの内容を本ページに集約。<br>
+        ・D-1 健康リスク保有者の最少化：フィジカル面（最も健康リスクの高い層・入院費／対応状況テーブル／がん検診6部位×6年度テーブル／特定保健指導グラフPH）＋メンタル面（ストレスチェック／復職準備勤務制度／メンタル休務日数グラフPH）<br>
+        ・D-2 健康度の「見える化」：4つの生活習慣（運動・睡眠・食事・喫煙）／生活習慣改善意識グラフ／生活習慣3項目グラフ／将来疾病リスクウェブサイト／構内全面禁煙／首肩痛・腰痛ICTプログラム／WFunグラフ<br>
+        ・D-3 過重労働対策：単月80h／3カ月60h／45h希望者の産業医健診基準＋就業状況テーブル（5項目）<br>
+        ・D-4 女性の健康支援：乳がん・子宮頸がん受診率グラフ／FEMTECH試験導入（月経・更年期プログラム効果検証）
       </p>
     </div>
 
@@ -1444,8 +1461,9 @@ body {
       <span class="ann-head">主要モジュール</span>
       <p class="ann-body">
         共通: ヘッダー／lnav／パンくず／フッター／H2/H3/H4/H5／wf-btn／img-zoom-btn＋modal preview／コンパクトアンカーナビ<br>
-        新規: health-statement v2.0（上下罫線＋クォート／左縦棒なし）／chart-ph（POS-Hグラフ）／strategy-map-ph<br>
-        流用: kpi-block＋kpi-table（DE&I）／wf-acc-h4（148_quality v2.3／会社姿勢×従業員意識行動）／gov-structure-fig／activity-card（024/124同形式）
+        H3アコ: <code>.wf-acc-h3</code>（グレー帯見出し＋黒丸トグル／035 TCFD共通仕様）<br>
+        新規: health-statement v2.0（上下罫線＋クォート／左縦棒なし）／chart-ph（POS-Hグラフ等）／strategy-map-ph<br>
+        流用: kpi-block＋kpi-table（DE&I）／wf-acc-h4（148_quality v2.3／会社姿勢×従業員意識行動）／gov-structure-fig
       </p>
     </div>
   </aside>
@@ -1455,4 +1473,3 @@ body {
 <script src="assets/wf-overlay.js"></script>
 </body>
 </html>
-}
