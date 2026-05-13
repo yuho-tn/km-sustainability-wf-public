@@ -219,7 +219,9 @@
       border-color: #1a1a1a;
     }
 
-    /* ===== カード型クリッカブル：浮き上がり＋影＋ボーダー濃色 ===== */
+    /* ===== カード型クリッカブル：浮き上がり＋影＋ボーダー濃色 =====
+       注: 装飾/コンテンツ枠（theme-block, related-block, ann-item, pc-item, concept-item,
+           gp-graph-card, gp-result-card 等）は対象外。明確に遷移CTA／DLボタン／タイル型のみ。 */
     .event-card,
     .qa-card,
     .social-tile,
@@ -227,15 +229,8 @@
     .esg-data-card,
     .gov-intro-card,
     .risk-opp-card,
-    .gp-graph-card,
-    .gp-result-card,
     .link-btn,
-    .theme-block,
-    .detail-modal-btn,
-    .pc-item,
-    .concept-item,
-    .related-block,
-    .ann-item {
+    .detail-modal-btn {
       cursor: pointer !important;
       transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
     }
@@ -246,15 +241,8 @@
     .esg-data-card:hover,
     .gov-intro-card:hover,
     .risk-opp-card:hover,
-    .gp-graph-card:hover,
-    .gp-result-card:hover,
     .link-btn:hover,
-    .theme-block:hover,
-    .detail-modal-btn:hover,
-    .pc-item:hover,
-    .concept-item:hover,
-    .related-block:hover,
-    .ann-item:hover {
+    .detail-modal-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 18px rgba(0,0,0,0.10);
       border-color: #1a1a1a;
@@ -327,7 +315,8 @@
     .report-group-head-link,
     .wf-footer-link,
     .wf-footer-bottom-link,
-    .sus-footer-link {
+    .sus-footer-link,
+    .related-link-list li {
       cursor: pointer !important;
       transition: color .15s ease;
     }
@@ -342,7 +331,8 @@
     .report-group-head-link:hover,
     .wf-footer-link:hover,
     .wf-footer-bottom-link:hover,
-    .sus-footer-link:hover {
+    .sus-footer-link:hover,
+    .related-link-list li:hover {
       color: #1a1a1a !important;
       text-decoration: underline;
       text-underline-offset: 3px;
