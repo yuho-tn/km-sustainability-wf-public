@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L3階層テンプレート区分の考え方 ― コニカミノルタ サステナビリティサイト</title>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --c-bg:        #F5F6F8;
+  --c-white:     #FFFFFF;
+  --c-ink:       #0F172A;
+  --c-text:      #1E293B;
+  --c-text-s:    #475569;
+  --c-text-xs:   #64748B;
+  --c-border:    #E2E8F0;
+  --c-border-s:  #EEF0F3;
+  --c-accent:    #0033A0;
+  --c-accent-s:  #E8EEFA;
+  --c-accent-d:  #002170;
+  --c-warn:      #D97706;
+  --c-warn-bg:   #FEF3C7;
+  --c-ok:        #059669;
+  --c-ok-bg:     #D1FAE5;
+  --c-ng:        #DC2626;
+  --c-ng-bg:     #FEE2E2;
+  --c-gray-bg:   #F1F3F6;
+  --c-ph:        #E5E7EB;
+  --c-t1:        #0033A0; /* 基本 */
+  --c-t1-bg:     #E8EEFA;
+  --c-t2:        #059669; /* 統合 */
+  --c-t2-bg:     #D1FAE5;
+  --c-t4:        #7C3AED; /* 情報開示 */
+  --c-t4-bg:     #EDE9FE;
+  --c-t5:        #0891B2; /* データ/レポート */
+  --c-t5-bg:     #CFFAFE;
+  --c-t6:        #64748B; /* その他 */
+  --c-t6-bg:     #E2E8F0;
+  --radius:      12px;
+  --radius-s:    8px;
+  --shadow:      0 1px 3px rgba(15, 23, 42, 0.04), 0 8px 24px rgba(15, 23, 42, 0.05);
+  --shadow-lg:   0 2px 6px rgba(15, 23, 42, 0.06), 0 24px 48px rgba(15, 23, 42, 0.08);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--c-text);
+  background: var(--c-bg);
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 0.01em;
+}
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ============================================================
+   HERO
+============================================================ */
+.hero {
+  background: linear-gradient(135deg, #0033A0 0%, #001a52 100%);
+  color: #fff;
+  padding: 96px 0 112px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -200px; right: -200px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -150px; left: -150px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.hero-inner { position: relative; z-index: 1; }
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.85);
+  padding: 8px 16px;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 999px;
+  margin-bottom: 28px;
+  text-transform: uppercase;
+}
+.hero-eyebrow .dot { width: 6px; height: 6px; background: #fff; border-radius: 50%; }
+.hero h1 {
+  font-size: 44px;
+  line-height: 1.35;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 24px;
+}
+.hero h1 .accent { color: #8FB4FF; }
+.hero-lead {
+  font-size: 16px;
+  line-height: 1.9;
+  color: rgba(255,255,255,0.85);
+  max-width: 760px;
+}
+.hero-meta {
+  display: flex;
+  gap: 40px;
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+.hero-meta-item .label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.6);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.hero-meta-item .value {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* ============================================================
+   INDEX NAV
+============================================================ */
+.index-nav {
+  background: var(--c-white);
+  border-bottom: 1px solid var(--c-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 0 rgba(15,23,42,0.03);
+}
+.index-nav-inner {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  padding: 14px 0;
+}
+.index-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c-text-s);
+  padding: 8px 14px;
+  border-radius: 999px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.15s;
+}
+.index-nav a:hover { background: var(--c-gray-bg); color: var(--c-ink); }
+.index-nav a .num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px; height: 20px;
+  background: var(--c-gray-bg);
+  color: var(--c-text-s);
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 700;
+}
+.index-nav a:hover .num { background: var(--c-accent); color: #fff; }
+
+/* ============================================================
+   SECTION
+============================================================ */
+section {
+  padding: 96px 0;
+  position: relative;
+}
+section.alt { background: var(--c-white); }
+
+.section-head { margin-bottom: 56px; }
+.section-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; height: 40px;
+  background: var(--c-accent);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  margin-bottom: 20px;
+}
+.section-title {
+  font-size: 30px;
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--c-ink);
+  margin-bottom: 16px;
+}
+.section-lead {
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--c-text-s);
+  max-width: 820px;
+}
+
+/* ============================================================
+   POLICY — 前提と方針
+============================================================ */
+.policy-hero {
+  background: linear-gradient(135deg, var(--c-white) 0%, #FAFBFD 100%);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: 40px 36px;
+  box-shadow: var(--shadow-lg);
+  margin-bottom: 28px;
+}
+.policy-hero-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--c-warn-bg);
+  color: var(--c-warn);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 6px 14px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+.policy-hero h3 {
+  font-size: 22px;
+  line-height: 1.55;
+  font-weight: 700;
+  color: var(--c-ink);
+  margin-bottom: 14px;
+}
+.policy-hero p {
+  font-size: 14.5px;
+  line-height: 1.9;
+  color: var(--c-text);
+  max-width: 880px;
+}
+.policy-hero p + p { margin-top: 12px; }
+.policy-hero strong { color: var(--c-accent); font-weight: 700; }
+
+.principle-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 24px;
+}
+.principle-card {
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-s);
+  padding: 22px 22px 20px;
+}
+.principle-card-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px; height: 26px;
+  background: var(--c-accent-s);
+  color: var(--c-accent);
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  margin-bottom: 12px;
+}
+.principle-card h4 {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--c-ink);
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+.principle-card p {
+  font-size: 12.5px;
+  line-height: 1.75;
+  color: var(--c-text-s);
+}
+
+/* ============================================================
+   TEMPLATE OVERVIEW — 5テンプレート一覧表
+============================================================ */
+.tpl-overview {
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.tpl-overview-row {
+  display: grid;
+  grid-template-columns: 220px 1fr 1.1fr 0.9fr;
+  border-top: 1px solid var(--c-border-s);
+}
+.tpl-overview-row:first-child { border-top: 0; }
+.tpl-overview-row.header {
+  background: var(--c-ink);
+  color: #fff;
+}
+.tpl-overview-row.header > div {
+  padding: 18px 22px;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+}
+.tpl-overview-row.header > div + div { border-left: 1px solid rgba(255,255,255,0.12); }
+.tpl-overview-row > div {
+  padding: 22px 22px;
+  font-size: 13px;
+  line-height: 1.75;
+  border-left: 1px solid var(--c-border-s);
+}
+.tpl-overview-row > div:first-child { border-left: 0; }
+.tpl-overview-row .col-tpl {
+  background: var(--c-gray-bg);
+}
+.tpl-overview-row .tpl-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.tpl-overview-row .tpl-tag .num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px; height: 18px;
+  background: rgba(255,255,255,0.5);
+  border-radius: 50%;
+  font-size: 11px;
+}
+.tpl-overview-row .tpl-tag.t1 { background: var(--c-t1-bg); color: var(--c-t1); }
+.tpl-overview-row .tpl-tag.t2 { background: var(--c-t2-bg); color: var(--c-t2); }
+.tpl-overview-row .tpl-tag.t4 { background: var(--c-t4-bg); color: var(--c-t4); }
+.tpl-overview-row .tpl-tag.t5 { background: var(--c-t5-bg); color: var(--c-t5); }
+.tpl-overview-row .tpl-tag.t6 { background: var(--c-t6-bg); color: var(--c-t6); }
+.tpl-overview-row .tpl-name {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--c-ink);
+  line-height: 1.5;
+}
+
+/* ============================================================
+   TEMPLATE DETAIL CARDS — 詳細カード
+============================================================ */
+.tpl-detail {
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+}
+.tpl-detail-head {
+  padding: 28px 32px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid var(--c-border-s);
+}
+.tpl-detail.t1 .tpl-detail-head { background: linear-gradient(135deg, var(--c-t1-bg) 0%, rgba(232,238,250,0.4) 100%); }
+.tpl-detail.t2 .tpl-detail-head { background: linear-gradient(135deg, var(--c-t2-bg) 0%, rgba(209,250,229,0.4) 100%); }
+.tpl-detail.t4 .tpl-detail-head { background: linear-gradient(135deg, var(--c-t4-bg) 0%, rgba(237,233,254,0.4) 100%); }
+.tpl-detail.t5 .tpl-detail-head { background: linear-gradient(135deg, var(--c-t5-bg) 0%, rgba(207,250,254,0.4) 100%); }
+.tpl-detail.t6 .tpl-detail-head { background: linear-gradient(135deg, var(--c-t6-bg) 0%, rgba(226,232,240,0.4) 100%); }
+.tpl-detail-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px; height: 56px;
+  border-radius: var(--radius-s);
+  font-size: 22px;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+}
+.tpl-detail.t1 .tpl-detail-badge { background: var(--c-t1); }
+.tpl-detail.t2 .tpl-detail-badge { background: var(--c-t2); }
+.tpl-detail.t4 .tpl-detail-badge { background: var(--c-t4); }
+.tpl-detail.t5 .tpl-detail-badge { background: var(--c-t5); }
+.tpl-detail.t6 .tpl-detail-badge { background: var(--c-t6); }
+.tpl-detail-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--c-ink);
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+.tpl-detail-sub {
+  font-size: 12.5px;
+  color: var(--c-text-s);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.tpl-detail-id {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  color: var(--c-text-xs);
+  text-transform: uppercase;
+  padding: 6px 12px;
+  background: var(--c-white);
+  border-radius: 4px;
+  border: 1px solid var(--c-border);
+}
+
+.tpl-detail-body {
+  padding: 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+.tpl-detail-block h4 {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--c-text-xs);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.tpl-detail-block h4::before {
+  content: '';
+  width: 3px;
+  height: 14px;
+  background: var(--c-accent);
+  border-radius: 2px;
+}
+.tpl-detail.t1 .tpl-detail-block h4::before { background: var(--c-t1); }
+.tpl-detail.t2 .tpl-detail-block h4::before { background: var(--c-t2); }
+.tpl-detail.t4 .tpl-detail-block h4::before { background: var(--c-t4); }
+.tpl-detail.t5 .tpl-detail-block h4::before { background: var(--c-t5); }
+.tpl-detail.t6 .tpl-detail-block h4::before { background: var(--c-t6); }
+.tpl-detail-block p {
+  font-size: 13.5px;
+  line-height: 1.85;
+  color: var(--c-text);
+}
+.tpl-detail-block ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.tpl-detail-block ul li {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--c-text);
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding-left: 0;
+}
+.tpl-detail-block ul li::before {
+  content: '';
+  flex-shrink: 0;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  margin-top: 9px;
+}
+.tpl-detail.t1 .tpl-detail-block ul li::before { background: var(--c-t1); }
+.tpl-detail.t2 .tpl-detail-block ul li::before { background: var(--c-t2); }
+.tpl-detail.t4 .tpl-detail-block ul li::before { background: var(--c-t4); }
+.tpl-detail.t5 .tpl-detail-block ul li::before { background: var(--c-t5); }
+.tpl-detail.t6 .tpl-detail-block ul li::before { background: var(--c-t6); }
+
+.tpl-detail-pages {
+  padding: 18px 32px 28px;
+  border-top: 1px solid var(--c-border-s);
+  background: #FAFBFD;
+}
+.tpl-detail-pages h4 {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--c-text-xs);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.tpl-detail-pages .pages-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.tpl-detail-pages .page-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--c-text);
+}
+.tpl-detail-pages .page-chip .pid {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--c-text-xs);
+  font-family: 'Inter', sans-serif;
+}
+
+/* ============================================================
+   DECISION FLOW — ①②④の見分け方
+============================================================ */
+.flow-wrap {
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: 40px;
+  box-shadow: var(--shadow);
+}
+.flow-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--c-accent);
+  text-align: center;
+  margin-bottom: 32px;
+  text-transform: uppercase;
+}
+.flow-step {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 20px;
+  align-items: flex-start;
+  position: relative;
+  padding-bottom: 24px;
+}
+.flow-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 31px;
+  top: 56px;
+  bottom: 0;
+  width: 2px;
+  background: var(--c-border);
+}
+.flow-step-num {
+  width: 64px; height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--c-ink);
+  color: #fff;
+  border-radius: var(--radius-s);
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+}
+.flow-step-body {
+  background: var(--c-gray-bg);
+  border-radius: var(--radius-s);
+  padding: 20px 24px;
+}
+.flow-step-q {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--c-ink);
+  margin-bottom: 14px;
+}
+.flow-branches {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.flow-branch {
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-s);
+  padding: 16px 18px;
+}
+.flow-branch.yes { border-left: 4px solid var(--c-ok); }
+.flow-branch.no { border-left: 4px solid var(--c-text-xs); }
+.flow-branch-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+.flow-branch.yes .flow-branch-label { background: var(--c-ok-bg); color: var(--c-ok); }
+.flow-branch.no .flow-branch-label { background: var(--c-gray-bg); color: var(--c-text-s); }
+.flow-branch-result {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--c-ink);
+  line-height: 1.55;
+  margin-bottom: 4px;
+}
+.flow-branch-detail {
+  font-size: 11.5px;
+  color: var(--c-text-s);
+  line-height: 1.65;
+}
+.flow-branch .tpl-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.flow-branch .tpl-pill.t1 { background: var(--c-t1-bg); color: var(--c-t1); }
+.flow-branch .tpl-pill.t2 { background: var(--c-t2-bg); color: var(--c-t2); }
+.flow-branch .tpl-pill.t4 { background: var(--c-t4-bg); color: var(--c-t4); }
+.flow-branch .tpl-pill.t5 { background: var(--c-t5-bg); color: var(--c-t5); }
+.flow-branch .tpl-pill.t6 { background: var(--c-t6-bg); color: var(--c-t6); }
+
+/* ============================================================
+   COMPARISON — 紛らわしい3つの比較
+============================================================ */
+.compare-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.compare-card {
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: 26px 24px;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+.compare-card.t1 { border-top: 4px solid var(--c-t1); }
+.compare-card.t2 { border-top: 4px solid var(--c-t2); }
+.compare-card.t4 { border-top: 4px solid var(--c-t4); }
+.compare-card-id {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-text-xs);
+  margin-bottom: 6px;
+}
+.compare-card-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--c-ink);
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+.compare-row {
+  padding: 12px 0;
+  border-top: 1px dashed var(--c-border-s);
+}
+.compare-row:first-of-type { border-top: 1px solid var(--c-border); padding-top: 14px; }
+.compare-row-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-text-xs);
+  margin-bottom: 4px;
+}
+.compare-row-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c-text);
+  line-height: 1.65;
+}
+.compare-card.t1 .compare-row-label::before { color: var(--c-t1); }
+.compare-card.t2 .compare-row-label::before { color: var(--c-t2); }
+.compare-card.t4 .compare-row-label::before { color: var(--c-t4); }
+
+/* ============================================================
+   FAQ FOOTNOTE
+============================================================ */
+.fn {
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  margin-top: 32px;
+}
+.fn-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--c-accent);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.fn h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--c-ink);
+  margin-bottom: 10px;
+  line-height: 1.55;
+}
+.fn p {
+  font-size: 13px;
+  line-height: 1.85;
+  color: var(--c-text-s);
+}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+.wf-footer {
+  background: var(--c-ink);
+  color: rgba(255,255,255,0.6);
+  padding: 40px 0;
+  text-align: center;
+  font-size: 12px;
+}
+.wf-footer a { color: #8FB4FF; text-decoration: none; }
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+@media (max-width: 980px) {
+  .principle-grid,
+  .compare-grid { grid-template-columns: 1fr; }
+  .tpl-overview-row,
+  .tpl-overview-row.header { grid-template-columns: 1fr; }
+  .tpl-overview-row > div { border-left: 0; border-top: 1px solid var(--c-border-s); }
+  .tpl-detail-body { grid-template-columns: 1fr; }
+  .flow-branches { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 32px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-eyebrow"><span class="dot"></span>TEMPLATE CLASSIFICATION GUIDE</div>
+    <h1>L3階層テンプレート区分の<span class="accent">考え方</span></h1>
+    <p class="hero-lead">第3階層のページを5つのテンプレートに分類している、その判定軸と各テンプレートの性質をご説明します。テンプレートは「コンテンツの傾向」を捉えるためのカテゴリであり、固定のレイアウトを当て込むものではない、という前提を最初に共有させてください。</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <div class="label">For</div>
+        <div class="value">コニカミノルタ サステナビリティサイト</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="label">Scope</div>
+        <div class="value">L3階層／18ページバッチ</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="label">Issued</div>
+        <div class="value">2026-05-13</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDEX NAV -->
+<div class="index-nav">
+  <div class="wrap">
+    <div class="index-nav-inner">
+      <a href="#sec-premise"><span class="num">0</span>大前提</a>
+      <a href="#sec-overview"><span class="num">1</span>5テンプレート一覧</a>
+      <a href="#sec-detail"><span class="num">2</span>各テンプレート詳細</a>
+      <a href="#sec-flow"><span class="num">3</span>判定フロー</a>
+      <a href="#sec-compare"><span class="num">4</span>①②④の見分け</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     SECTION 0 — 大前提
+============================================================ -->
+<section id="sec-premise" class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">0</div>
+      <h2 class="section-title">大前提：テンプレートは「コンテンツの傾向」のラベル</h2>
+      <p class="section-lead">本資料の説明に入る前に、テンプレートという言葉の使い方を揃えさせてください。当方が言うテンプレートは、レイアウトの型紙ではなく、コンテンツの性質を分類するラベルです。</p>
+    </div>
+
+    <div class="policy-hero">
+      <div class="policy-hero-label">⚠ 共通理解</div>
+      <h3>テンプレートを「ページにそのまま当て込む」のではなく、<br>各ページに必要なモジュール群を選定するための<strong>方向付け</strong>として使っています。</h3>
+      <p>サイト全体で50ページ規模になるため、すべてのページを白紙から個別設計するのは現実的ではありません。一方で、すべてを同一フォーマットに押し込むとコンテンツの性質に合わない箇所が出ます。そこで「コンテンツの傾向が近いページ群」を5つにまとめ、各群ごとに必要となるモジュール郡を予め見立てておく ── というのがテンプレートの役割です。</p>
+      <p>つまりテンプレートは <strong>「このページではどのモジュール郡が中心になりそうか」を当たりをつける軸</strong> であって、最終的な構成は1ページずつ規定モジュールから組み替えて作っていきます。</p>
+    </div>
+
+    <div class="principle-grid">
+      <div class="principle-card">
+        <div class="principle-card-num">1</div>
+        <h4>テンプレートは「型紙」ではない</h4>
+        <p>同じテンプレートを当てたページでも、必要なモジュールは1ページずつ違います。骨格は参考にしつつ、個別に組み替えます。</p>
+      </div>
+      <div class="principle-card">
+        <div class="principle-card-num">2</div>
+        <h4>モジュールは module-catalog で全件規定済み</h4>
+        <p>13カテゴリの規定モジュール（v3.6.4）から都度選んで構成します。テンプレートはモジュール選定の出発点になります。</p>
+      </div>
+      <div class="principle-card">
+        <div class="principle-card-num">3</div>
+        <h4>分類軸は「下位ページの扱い」と「情報密度」</h4>
+        <p>下位ページが独立／集約／開示要件、リンク主導／特殊UI ── これら性質の違いで5区分に分けています。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 1 — 5テンプレート一覧表
+============================================================ -->
+<section id="sec-overview">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">1</div>
+      <h2 class="section-title">5つのテンプレート区分 ― 一覧</h2>
+      <p class="section-lead">テンプレートは番号①②④⑤⑥の5区分（③は欠番）。それぞれの判定軸（どんなコンテンツ性質ならこのテンプレートか）と中心モジュールを一覧化しました。</p>
+    </div>
+
+    <div class="tpl-overview">
+      <div class="tpl-overview-row header">
+        <div>テンプレート</div>
+        <div>判定軸（コンテンツの性質）</div>
+        <div>典型的なページ構造</div>
+        <div>中心モジュール</div>
+      </div>
+
+      <div class="tpl-overview-row">
+        <div class="col-tpl">
+          <div class="tpl-tag t1"><span class="num">①</span>基本FMT</div>
+          <div class="tpl-name">考え方／KPI／実績／取り組み</div>
+        </div>
+        <div>下位（第4階層）に <strong>取り組みごとの個別ページが存在</strong> し、それを親ページ（L3）から呼び出す構造のページ。</div>
+        <div>考え方 → KPI → 実績 → 取り組み（カードUIで一覧）→ 下位ページへ遷移</div>
+        <div>
+          <span class="cell-tag">取り組みカード</span>
+          <span class="cell-tag">KPI表</span>
+          <span class="cell-tag">実績グラフ</span>
+        </div>
+      </div>
+
+      <div class="tpl-overview-row">
+        <div class="col-tpl">
+          <div class="tpl-tag t2"><span class="num">②</span>統合FMT</div>
+          <div class="tpl-name">L3配下を集約</div>
+        </div>
+        <div>元々第4階層に <strong>分かれていたページを廃止し、第3階層に集約</strong> する構造。下位ページを持たず、L3内で完結。</div>
+        <div>テーマ別アコーディオン（旧L4の内容を畳んで内包）</div>
+        <div>
+          <span class="cell-tag">H3アコーディオン</span>
+          <span class="cell-tag">タグ付きアコーディオン</span>
+        </div>
+      </div>
+
+      <div class="tpl-overview-row">
+        <div class="col-tpl">
+          <div class="tpl-tag t4"><span class="num">④</span>情報開示</div>
+          <div class="tpl-name">TCFD等の開示要件型</div>
+        </div>
+        <div>開示要件（TCFD等）に沿って <strong>情報・図版・リンクが大量に並ぶ</strong> ページ。構造というより情報密度で区別。</div>
+        <div>開示項目別の見出し→図版・表・参照リンクの繰り返し</div>
+        <div>
+          <span class="cell-tag">図版＋テキスト</span>
+          <span class="cell-tag">データ表</span>
+          <span class="cell-tag">関連リンク</span>
+        </div>
+      </div>
+
+      <div class="tpl-overview-row">
+        <div class="col-tpl">
+          <div class="tpl-tag t5"><span class="num">⑤</span>データ／レポート</div>
+          <div class="tpl-name">リンク・PDF主導</div>
+        </div>
+        <div>外部資料・PDF・年次レポート等への <strong>リンクが主役</strong> のページ。リンクモジュールの設計が中心課題。</div>
+        <div>カテゴリ別リンク一覧（年次／種別／媒体）</div>
+        <div>
+          <span class="cell-tag">説明文付きリンクボタン</span>
+          <span class="cell-tag">アーカイブ一覧</span>
+        </div>
+      </div>
+
+      <div class="tpl-overview-row">
+        <div class="col-tpl">
+          <div class="tpl-tag t6"><span class="num">⑥</span>その他</div>
+          <div class="tpl-name">特殊モジュール適用</div>
+        </div>
+        <div>①〜⑤に当てはまらず、ページ固有の <strong>特殊UI／特殊モジュール</strong> が必要なページ。</div>
+        <div>ページ固有の構成（一覧UI、ニュース、対照表など）</div>
+        <div>
+          <span class="cell-tag">ニュース一覧</span>
+          <span class="cell-tag">対照表</span>
+          <span class="cell-tag">その他特殊UI</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="fn">
+      <div class="fn-label">📝 NOTE</div>
+      <h4>③は欠番です</h4>
+      <p>初期整理時に③として想定していた区分は、結果的に①または②に吸収されたため、最終的に①②④⑤⑥の5区分で運用しています。番号の連番崩れはこの経緯によるものです。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 2 — 各テンプレートの詳細
+============================================================ -->
+<section id="sec-detail" class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">2</div>
+      <h2 class="section-title">各テンプレートの詳細</h2>
+      <p class="section-lead">テンプレートごとに「どういうコンテンツ性質ならこれを当てるか」「典型的なページ構成」「該当ページ例（現時点の想定）」をまとめました。</p>
+    </div>
+
+    <!-- ① 基本FMT -->
+    <div class="tpl-detail t1">
+      <div class="tpl-detail-head">
+        <div class="tpl-detail-badge">①</div>
+        <div>
+          <div class="tpl-detail-name">基本FMT</div>
+          <div class="tpl-detail-sub">考え方 ／ KPI ／ 実績 ／ 取り組み（カードUI＋下位ページ遷移）</div>
+        </div>
+        <div class="tpl-detail-id">L3_①</div>
+      </div>
+      <div class="tpl-detail-body">
+        <div class="tpl-detail-block">
+          <h4>判定軸 ─ どんな性質ならこのテンプレート？</h4>
+          <p>マテリアリティ／重点取り組み領域のように、<strong>L3（親）の下に「取り組み」が複数枝分かれしていて、それぞれが個別ページ（L4）として独立している</strong>ページ群が対象です。L3は配下の取り組みへの入口（ハブ）となります。</p>
+        </div>
+        <div class="tpl-detail-block">
+          <h4>典型的なページ構成</h4>
+          <ul>
+            <li>FV → 考え方（マテリアリティ／方針）</li>
+            <li>目標・KPI（数値目標）</li>
+            <li>実績（進捗グラフ、年次データ）</li>
+            <li>取り組み（カードUIで一覧 → 各L4ページへ遷移）</li>
+            <li>右側コンパクトアンカーナビ</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tpl-detail-pages">
+        <h4>該当ページ例（18ページバッチ内・現時点の想定）</h4>
+        <div class="pages-list">
+          <span class="page-chip"><span class="pid">#024</span>気候変動</span>
+          <span class="page-chip"><span class="pid">#124</span>DE&amp;I</span>
+          <span class="page-chip"><span class="pid">#131</span>健康経営</span>
+          <span class="page-chip"><span class="pid">#148</span>顧客責任・品質</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ② 統合FMT -->
+    <div class="tpl-detail t2">
+      <div class="tpl-detail-head">
+        <div class="tpl-detail-badge">②</div>
+        <div>
+          <div class="tpl-detail-name">統合FMT</div>
+          <div class="tpl-detail-sub">L3配下の旧L4ページをアコーディオン集約</div>
+        </div>
+        <div class="tpl-detail-id">L3_②</div>
+      </div>
+      <div class="tpl-detail-body">
+        <div class="tpl-detail-block">
+          <h4>判定軸 ─ どんな性質ならこのテンプレート？</h4>
+          <p>現サイトでは第4階層に独立ページを持っていたが、<strong>ページ集約戦略によりL3に統合する</strong>ことを決めたページ群が対象です。L3内で必要な情報が完結するため、下位ページへの遷移は発生しません。アコーディオン単位で旧L4の中身を畳み込みます。</p>
+        </div>
+        <div class="tpl-detail-block">
+          <h4>典型的なページ構成</h4>
+          <ul>
+            <li>FV → 考え方／方針</li>
+            <li>テーマ別アコーディオン（旧L4の内容を1テーマ＝1アコーディオンで内包）</li>
+            <li>必要に応じてKPI・データ表を内包</li>
+            <li>関連リンク</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tpl-detail-pages">
+        <h4>該当ページ例（18ページバッチ内・現時点の想定）</h4>
+        <div class="pages-list">
+          <span class="page-chip"><span class="pid">#140</span>人権</span>
+          <span class="page-chip"><span class="pid">#225</span>イニシアティブ＋社外評価</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ④ 情報開示 -->
+    <div class="tpl-detail t4">
+      <div class="tpl-detail-head">
+        <div class="tpl-detail-badge">④</div>
+        <div>
+          <div class="tpl-detail-name">情報開示</div>
+          <div class="tpl-detail-sub">TCFD等／図版・表・参照リンクの密度が高い</div>
+        </div>
+        <div class="tpl-detail-id">L3_④</div>
+      </div>
+      <div class="tpl-detail-body">
+        <div class="tpl-detail-block">
+          <h4>判定軸 ─ どんな性質ならこのテンプレート？</h4>
+          <p>TCFD・人的資本など、<strong>外部開示フレームワークに沿った項目立てが必要で、図版・データ表・参照リンクが大量に並ぶ</strong>ページ群が対象です。①や②と違って「構造」ではなく「<strong>情報密度・図版量</strong>」で区分しており、開示要件にひも付くモジュール郡（図版＋テキスト、データ表、関連リンク等）を厚めに用意する必要があります。</p>
+        </div>
+        <div class="tpl-detail-block">
+          <h4>典型的なページ構成</h4>
+          <ul>
+            <li>FV → 開示の位置づけ</li>
+            <li>開示項目別の章立て（ガバナンス／戦略／リスク管理／指標と目標 等）</li>
+            <li>各章で図版・データ表・参照リンクが連続</li>
+            <li>右側コンパクトアンカーナビ（必須）</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tpl-detail-pages">
+        <h4>該当ページ例（18ページバッチ内・現時点の想定）</h4>
+        <div class="pages-list">
+          <span class="page-chip"><span class="pid">#031/035</span>TCFD開示</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑤ データ／レポート -->
+    <div class="tpl-detail t5">
+      <div class="tpl-detail-head">
+        <div class="tpl-detail-badge">⑤</div>
+        <div>
+          <div class="tpl-detail-name">データ／レポート</div>
+          <div class="tpl-detail-sub">外部資料／PDF／年次レポートへのリンク主導</div>
+        </div>
+        <div class="tpl-detail-id">L3_⑤</div>
+      </div>
+      <div class="tpl-detail-body">
+        <div class="tpl-detail-block">
+          <h4>判定軸 ─ どんな性質ならこのテンプレート？</h4>
+          <p>本文よりも <strong>外部資料・PDF・年次レポートへのリンクが本体</strong> のページ群が対象です。リンクの分類軸（年次／種別／媒体）を整理する必要があり、リンクモジュール（説明文付きリンクボタン等）の設計が中心課題になります。</p>
+        </div>
+        <div class="tpl-detail-block">
+          <h4>典型的なページ構成</h4>
+          <ul>
+            <li>FV（シンプル）</li>
+            <li>カテゴリ別リンク一覧</li>
+            <li>必要に応じてデータ表／ガイドライン対照表</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tpl-detail-pages">
+        <h4>該当ページ例（18ページバッチ内・現時点の想定）</h4>
+        <div class="pages-list">
+          <span class="page-chip"><span class="pid">#199</span>ESGデータ</span>
+          <span class="page-chip"><span class="pid">#222</span>ガイドライン対照表</span>
+          <span class="page-chip"><span class="pid">#230</span>サステナビリティサイトアーカイブ</span>
+          <span class="page-chip"><span class="pid">#232</span>方針一覧</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑥ その他 -->
+    <div class="tpl-detail t6">
+      <div class="tpl-detail-head">
+        <div class="tpl-detail-badge">⑥</div>
+        <div>
+          <div class="tpl-detail-name">その他</div>
+          <div class="tpl-detail-sub">ページ固有の特殊UI／特殊モジュール適用</div>
+        </div>
+        <div class="tpl-detail-id">L3_⑥</div>
+      </div>
+      <div class="tpl-detail-body">
+        <div class="tpl-detail-block">
+          <h4>判定軸 ─ どんな性質ならこのテンプレート？</h4>
+          <p>①〜⑤のいずれにも該当せず、<strong>そのページ固有のUI要件</strong>を持つページが対象です。ニュース一覧、トピックス一覧など、汎用テンプレートに当てはめにくい構成のページが入ります。</p>
+        </div>
+        <div class="tpl-detail-block">
+          <h4>典型的なページ構成</h4>
+          <ul>
+            <li>ページ固有のUI要件に応じてモジュールを選定</li>
+            <li>必要に応じて新規モジュールを規定</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tpl-detail-pages">
+        <h4>該当ページ例（18ページバッチ内・現時点の想定）</h4>
+        <div class="pages-list">
+          <span class="page-chip"><span class="pid">#231</span>トピックス一覧</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 3 — 判定フロー
+============================================================ -->
+<section id="sec-flow">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">3</div>
+      <h2 class="section-title">判定フロー ― どのテンプレートを当てるか</h2>
+      <p class="section-lead">ページを前にしたとき、次の順で問いを立てていくと自然に5区分のどれかに収まる、という判定フローです。</p>
+    </div>
+
+    <div class="flow-wrap">
+      <div class="flow-title">─ DECISION FLOW ─</div>
+
+      <div class="flow-step">
+        <div class="flow-step-num">Q1</div>
+        <div class="flow-step-body">
+          <div class="flow-step-q">そのページの「主役コンテンツ」は何か？ ─ 本文か／リンクか／特殊UIか</div>
+          <div class="flow-branches">
+            <div class="flow-branch yes">
+              <div class="flow-branch-label">主役は<strong>リンク</strong></div>
+              <div class="tpl-pill t5"><span>⑤</span>データ／レポート</div>
+              <div class="flow-branch-detail">PDF・年次レポート・外部資料へのリンクが本文より多いページ。</div>
+            </div>
+            <div class="flow-branch no">
+              <div class="flow-branch-label">主役は<strong>特殊UI</strong></div>
+              <div class="tpl-pill t6"><span>⑥</span>その他</div>
+              <div class="flow-branch-detail">一覧UI／ニュース／対照表など、汎用テンプレに収まらない構成。</div>
+            </div>
+          </div>
+          <div style="margin-top:14px; font-size:12.5px; color: var(--c-text-s);">↓ 主役がコンテンツ本体なら次へ</div>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-step-num">Q2</div>
+        <div class="flow-step-body">
+          <div class="flow-step-q">そのページは「外部開示フレーム（TCFD等）に沿った情報量・図版量」が中心か？</div>
+          <div class="flow-branches">
+            <div class="flow-branch yes">
+              <div class="flow-branch-label">YES</div>
+              <div class="tpl-pill t4"><span>④</span>情報開示</div>
+              <div class="flow-branch-detail">図版・データ表・参照リンクが密に並ぶ。開示要件由来の章立て構造を持つ。</div>
+            </div>
+            <div class="flow-branch no">
+              <div class="flow-branch-label">NO</div>
+              <div class="flow-branch-detail">通常のテーマページ。次のQ3で①／②を分ける。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-step-num">Q3</div>
+        <div class="flow-step-body">
+          <div class="flow-step-q">L3配下に「取り組み」の独立した個別ページ（L4）を持つか？</div>
+          <div class="flow-branches">
+            <div class="flow-branch yes">
+              <div class="flow-branch-label">YES（L4を持つ）</div>
+              <div class="tpl-pill t1"><span>①</span>基本FMT</div>
+              <div class="flow-branch-detail">L3は親ハブとして機能し、取り組みカードUIで下位ページへ遷移させる。考え方→KPI→実績→取り組みの定番フロー。</div>
+            </div>
+            <div class="flow-branch no">
+              <div class="flow-branch-label">NO（L3に集約）</div>
+              <div class="tpl-pill t2"><span>②</span>統合FMT</div>
+              <div class="flow-branch-detail">旧L4の中身をL3内のアコーディオンに畳み込む。L3で情報が完結し、下位ページへの遷移はない。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SECTION 4 — ①②④の見分け
+============================================================ -->
+<section id="sec-compare" class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-num">4</div>
+      <h2 class="section-title">よく似た3つ ─ ①基本FMT／②統合FMT／④情報開示 の見分け方</h2>
+      <p class="section-lead">ご質問いただいた「①と②と④の区別がつかない」という点について、3軸で比較表にしました。<strong>下位ページの扱い</strong>と<strong>情報の出所</strong>が分かれ目です。</p>
+    </div>
+
+    <div class="compare-grid">
+      <div class="compare-card t1">
+        <div class="compare-card-id">L3_①</div>
+        <div class="compare-card-name">基本FMT</div>
+        <div class="compare-row">
+          <div class="compare-row-label">下位ページ（L4）の扱い</div>
+          <div class="compare-row-value">独立して存在し、L3から遷移</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-row-label">情報の出所</div>
+          <div class="compare-row-value">自社の方針・取り組み</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-row-label">L3ページの役割</div>
+          <div class="compare-row-value">親ハブ（取り組み一覧）</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-row-label">中心UI</div>
+          <div class="compare-row-value">取り組みカード（カードUI）</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-row-label">情報密度</div>
+          <div class="compare-row-value">標準</div>
+        </div>
+      </div>
+
+      <div class="compare-card t2">
+        <div class="compare-card-id">L3_②</div>
+        <div class="compare-card-name">統合FMT</div>
+        <div class="compare-row">
+          <div class="compare-row-label">下位ページ（L4）の扱い</div>
+          <div class="compare-row-value">廃止／L3内に集約</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-row-label">情報の出所</div>
+          <div class="compare-row-value">自社の方針・取り組み</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-row-label">L3ページの役割</div>
+          <div class="compare-row-value">情報の集約・完結ページ</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-row-label">中心UI</div>
+          <div class="compare-row-value">アコーディオン（旧L4を内包）</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-row-label">情報密度</div>
+          <div class="compare-row-value">標準〜やや高</div>
+        </div>
+      </div>
+
+      <div class="compare-card t4">
+        <div class="compare-card-id">L3_④</div>
+        <div class="compare-card-name">情報開示</div>
+        <div class="compare-row">
+          <div class="compare-row-label">下位ページ（L4）の扱い</div>
+          <div class="compare-row-value">無し（L3単体で完結）</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-row-label">情報の出所</div>
+          <div class="compare-row-value">外部開示フレーム（TCFD等）</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-row-label">L3ページの役割</div>
+          <div class="compare-row-value">開示要件を満たす情報提示</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-row-label">中心UI</div>
+          <div class="compare-row-value">図版＋テキスト／データ表／参照リンク</div>
+        </div>
+        <div class="compare-row">
+          <div class="compare-row-label">情報密度</div>
+          <div class="compare-row-value">高（図版・リンク多）</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fn">
+      <div class="fn-label">💡 ポイント</div>
+      <h4>①と②は「下位ページの扱い」で割れる／②と④は「情報の出所と密度」で割れる</h4>
+      <p>① と ② はどちらも自社の取り組み情報を扱う点で似ていますが、<strong>下位ページ（L4）を残して遷移させるか／L3内に集約するか</strong>で割れます。<br>② と ④ はどちらもL3内で情報が完結する点で似ていますが、<strong>情報の出所（自社の取り組み vs. 外部開示フレーム）</strong>と<strong>情報密度</strong>で割れます。④はTCFD等の章立てに沿って図版・データが大量に並ぶ点が決定的に違います。</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="wf-footer">
+  <div class="wrap">
+    <p>コニカミノルタ サステナビリティサイト ／ L3階層テンプレート区分の考え方 ／ 2026-05-13</p>
+    <p style="margin-top:8px;"><a href="index.html">← ハブに戻る</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
