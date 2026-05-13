@@ -480,13 +480,16 @@ body {
   padding-left: 20px; margin: 0 0 14px;
 }
 .wf-acc-h3-body ul li { margin-bottom: 4px; }
-.wf-acc-h3-body .wf-h5-title {
-  font-size: 13px; font-weight: 700; color: var(--c-text-h);
-  margin-top: 26px; margin-bottom: 10px;
-  padding-bottom: 6px; border-bottom: 1px solid var(--c-border-s);
-  line-height: 1.5;
+/* アコ本文内の見出しモジュール（catalog 2-2/2-3/2-4 準拠） */
+.wf-acc-h3-body .wf-sub-title {
+  font-size: 15px; margin-top: 28px; margin-bottom: 12px;
 }
-.wf-acc-h3-body .wf-h5-title:first-child { margin-top: 0; }
+.wf-acc-h3-body > .wf-sub-title:first-child,
+.wf-acc-h3-body > p + .wf-sub-title:first-of-type { margin-top: 0; }
+.wf-acc-h3-body .wf-sub-title:first-child { margin-top: 0; }
+.wf-acc-h3-body .wf-card-title { margin-top: 20px; margin-bottom: 10px; }
+.wf-acc-h3-body .wf-sub-title + .wf-card-title { margin-top: 14px; }
+.wf-acc-h3-body .wf-h5-title { margin-top: 16px; margin-bottom: 6px; }
 .wf-acc-h3-body .wf-img-ph { margin: 14px 0 16px; }
 .wf-acc-h3-body .wf-img-row { margin: 14px 0 16px; }
 .wf-acc-h3-body .wf-note { margin: -4px 0 14px; }

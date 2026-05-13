@@ -394,13 +394,19 @@ body {
 .wf-acc-h3[open] .wf-acc-h3-summary::after { content: '−'; }
 .wf-acc-h3-body {
   background: var(--c-white);
-  padding: 16px 0 4px;
+  padding: 18px 22px 20px;
+  border-top: 1px solid var(--c-border-s);
 }
 .wf-acc-h3-body > p {
   font-size: 13px; color: var(--c-text); line-height: 1.95;
   margin-bottom: 14px;
 }
 .wf-acc-h3-body > p:last-child { margin-bottom: 0; }
+.wf-acc-h3-body > *:last-child { margin-bottom: 0; }
+/* H3アコ body内の最初の見出し／要素は上マージンを詰める */
+.wf-acc-h3-body > .wf-card-title:first-child,
+.wf-acc-h3-body > .wf-h5-title:first-child,
+.wf-acc-h3-body > p:first-child { margin-top: 0; }
 
 /* H4アコーディオン（148_quality v2.3準拠：上部横ライン＋白背景） */
 .wf-acc-h4 {

@@ -957,7 +957,7 @@ body {
         </section>
 
         <!-- ============================================================
-             C. 戦略・目標・実績（v2.6：取り組み内包）
+             C. 戦略・目標・実績（v2.9：取り組みはDセクションに切り出し）
         ============================================================ -->
         <section class="wf-section bg-sub" id="kpi">
           <span class="wf-section-marker">C</span>
@@ -1623,14 +1623,24 @@ body {
 
   <!-- アノテーション -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — 顧客責任・品質 v2.8（#148）</h3>
+    <h3>設計ポイント — 顧客責任・品質 v2.9（#148）</h3>
 
     <div class="ann-item">
       <span class="ann-num">★</span>
-      <span class="ann-head">v2.8 主要変更</span>
+      <span class="ann-head">v2.9 主要変更</span>
       <p class="ann-body">
-        ・取り組みアコーディオン（H3）配下のH4を全てアコ化解除し静的ブロック（`.wf-acc-h4-static`）に変更：上部黒2pxライン＋見出し＋本文をそのまま表示（クリックで展開する操作は不要）<br>
-        ・各H3アコ（5テーマ）を開けば、配下の全H4取り組みが一覧で読める運用に
+        ・「取り組み」を独立H2セクション（#activities／marker D）に切り出し（旧Cセクション末尾から分離）<br>
+        ・H3アコ配下のH4を全て共通モジュール `.wf-acc-h4`（折りたたみ式・上部黒2pxライン）に統一（v2.8の静的ブロック`.wf-acc-h4-static`は撤去）<br>
+        ・1つ目のH3アコーディオン「コンプライアンス／品質不正」を初期展開状態（`&lt;details open&gt;`）に設定<br>
+        ・右コンパクトアンカーナビに「取り組み」リンクを追加（4項目構成）
+      </p>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">v2.8</span>
+      <span class="ann-head">v2.8 主要変更（履歴）</span>
+      <p class="ann-body">
+        ・取り組みアコーディオン（H3）配下のH4を全てアコ化解除し静的ブロック（`.wf-acc-h4-static`）に変更：上部黒2pxライン＋見出し＋本文をそのまま表示（v2.9で共通モジュール`.wf-acc-h4`に再変更）
       </p>
     </div>
 
