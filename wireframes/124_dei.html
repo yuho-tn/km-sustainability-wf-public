@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DE&I — KM サステナビリティ WF v3.6 (#124)</title>
+<title>DE&I — KM サステナビリティ WF v3.7 (#124)</title>
 <style>
 /* ============================================================
    KM SUSTAINABILITY WF — SHARED CSS（TCFD v3.3 ベース継承 / DE&I追加）
@@ -425,48 +425,72 @@ body {
 }
 
 /* ============================================================
-   v3.6：取り組みアコーディオン（148準拠 H4アコ）
-   - H3 = .wf-sub-title（左4px黒縦棒）／プレーン見出し
-   - H4 = .wf-acc-h4（上部黒2pxライン＋白bg＋＋／−トグル）
+   v3.7：取り組みアコーディオン（035 TCFD .wf-acc-h3 共通モジュール準拠）
+   - H3見出し（.wf-sub-title）配下の各取り組みを .wf-acc-h3 で展開
+   - 白bg外枠1px＋グレー帯見出し＋黒丸＋／−トグル
 ============================================================ */
-.wf-acc-h4 {
-  margin-top: 18px;
-  margin-bottom: 4px;
-  border-top: 2px solid var(--c-text-h);
+.wf-acc-h3 {
+  margin-top: 14px; margin-bottom: 14px;
+  border: 1px solid var(--c-border);
   background: var(--c-white);
 }
-.wf-acc-h4:first-child { margin-top: 0; }
-.wf-acc-h4-summary {
+.wf-acc-h3:first-of-type, .wf-sub-title + .wf-acc-h3 { margin-top: 14px; }
+.wf-acc-h3 + .wf-acc-h3 { margin-top: 10px; }
+.wf-acc-h3-summary {
   list-style: none;
   cursor: default;
-  font-size: 14px; font-weight: 700; color: var(--c-text-h);
-  padding: 12px 40px 12px 0;
+  padding: 14px 60px 14px 22px;
+  font-size: 14px; font-weight: 700;
+  color: var(--c-text-h);
+  background: var(--c-border);
+  display: flex; align-items: center; gap: 12px;
   letter-spacing: -0.01em;
-  line-height: 1.5;
   position: relative;
+  line-height: 1.5;
 }
-.wf-acc-h4-summary::-webkit-details-marker { display: none; }
-.wf-acc-h4-summary::marker { content: ''; }
-.wf-acc-h4-summary::after {
+.wf-acc-h3-summary:hover { background: #D5D5D5; }
+.wf-acc-h3-summary::-webkit-details-marker { display: none; }
+.wf-acc-h3-summary::marker { content: ''; }
+.wf-acc-h3-summary::after {
   content: '＋';
   position: absolute;
-  right: 4px; top: 50%; transform: translateY(-50%);
-  font-family: 'Helvetica Neue', sans-serif;
-  font-size: 16px; color: var(--c-text-h);
-  font-weight: 300; line-height: 1;
+  right: 16px; top: 50%; transform: translateY(-50%);
+  width: 28px; height: 28px;
+  background: var(--c-text-h); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  font-size: 14px; font-weight: 700;
+  line-height: 1;
 }
-.wf-acc-h4[open] .wf-acc-h4-summary::after { content: '−'; font-size: 20px; }
-.wf-acc-h4-body {
-  padding: 4px 18px 22px;
+.wf-acc-h3[open] .wf-acc-h3-summary::after { content: '−'; }
+.wf-acc-h3-body {
+  padding: 24px 28px 28px;
   background: var(--c-white);
+  border-top: 1px solid var(--c-border-s);
 }
-.wf-acc-h4-body > p {
-  font-size: 12px; color: var(--c-text); line-height: 1.95;
-  margin-bottom: 12px;
+.wf-acc-h3-body > *:first-child { margin-top: 0; }
+.wf-acc-h3-body > *:last-child { margin-bottom: 0; }
+.wf-acc-h3-body p {
+  font-size: 13px; color: var(--c-text); line-height: 1.95;
+  margin-bottom: 14px;
 }
-.wf-acc-h4-body > p:last-child { margin-bottom: 0; }
-.wf-acc-h4-body .wf-h5-title { margin-top: 18px; }
-.wf-acc-h4-body .wf-h5-title:first-child { margin-top: 6px; }
+.wf-acc-h3-body p:last-child { margin-bottom: 0; }
+.wf-acc-h3-body ul {
+  font-size: 13px; color: var(--c-text); line-height: 1.95;
+  padding-left: 20px; margin: 0 0 14px;
+}
+.wf-acc-h3-body ul li { margin-bottom: 4px; }
+.wf-acc-h3-body .wf-h5-title {
+  font-size: 13px; font-weight: 700; color: var(--c-text-h);
+  margin-top: 26px; margin-bottom: 10px;
+  padding-bottom: 6px; border-bottom: 1px solid var(--c-border-s);
+  line-height: 1.5;
+}
+.wf-acc-h3-body .wf-h5-title:first-child { margin-top: 0; }
+.wf-acc-h3-body .wf-img-ph { margin: 14px 0 16px; }
+.wf-acc-h3-body .wf-img-row { margin: 14px 0 16px; }
+.wf-acc-h3-body .wf-note { margin: -4px 0 14px; }
+.wf-acc-h3-body .wf-btn { margin-top: 4px; }
 
 /* 注釈テキスト */
 .wf-note { font-size: 11px; color: var(--c-text-s); line-height: 1.8; margin: 6px 0 12px; }
@@ -700,12 +724,12 @@ body {
   <div>
     <strong>KONICA MINOLTA サステナビリティ</strong>
     <span class="meta-badge">DE&I</span>
-    <span class="meta-badge">WF v3.6</span>
+    <span class="meta-badge">WF v3.7</span>
     <span class="meta-badge">#124</span>
     <span class="meta-badge">L3</span>
-    <span class="meta-badge" style="background:#7a4a00; color:#fff;">取り組みカード→H3＋H4アコ化（26S150原稿マージ）</span>
+    <span class="meta-badge" style="background:#7a4a00; color:#fff;">アコUIを035 TCFD共通モジュール（.wf-acc-h3）に統一・余白調整</span>
   </div>
-  <div style="font-size:10px; color:#666;">2026.05 / FB反映：取り組みを「多様な人財が活躍できる風土づくり」「女性活躍推進」H3＋ WLB/障がい者雇用/組織風土/ネットワーク・啓発活動 H4アコでマージ</div>
+  <div style="font-size:10px; color:#666;">2026.05 / FB反映：H4アコ→035共通モジュール準拠の.wf-acc-h3（グレー帯＋黒丸トグル）に差し替え、アコ内padding/見出し余白を再調整</div>
 </div>
 
 <div class="wf-canvas">
@@ -1093,9 +1117,9 @@ body {
           <h3 class="wf-sub-title">多様な人財が活躍できる風土づくり</h3>
 
           <!-- H4アコ：ワークライフバランス -->
-          <details class="wf-acc-h4" open>
-            <summary class="wf-acc-h4-summary">ワークライフバランス</summary>
-            <div class="wf-acc-h4-body">
+          <details class="wf-acc-h3" open>
+            <summary class="wf-acc-h3-summary">ワークライフバランス</summary>
+            <div class="wf-acc-h3-body">
 
               <h5 class="wf-h5-title">ワーク・ライフ・マネジメントの促進</h5>
               <p>コニカミノルタ（株）の仕事と生活の両立支援は、女性従業員の出産・育児を理由とした離職を防止するために1990年代から整備を始めました。現在では、男性従業員の育児参画促進や仕事と介護の両立支援も充実させていくとともに、従業員一人ひとりの異なる状況により柔軟に対応ができるよう制度改定や環境づくりに取り組んでいます。</p>
@@ -1151,9 +1175,9 @@ body {
           </details>
 
           <!-- H4アコ：障がい者雇用 -->
-          <details class="wf-acc-h4" open>
-            <summary class="wf-acc-h4-summary">障がい者雇用</summary>
-            <div class="wf-acc-h4-body">
+          <details class="wf-acc-h3" open>
+            <summary class="wf-acc-h3-summary">障がい者雇用</summary>
+            <div class="wf-acc-h3-body">
 
               <h5 class="wf-h5-title">特例子会社「コニカミノルタウイズユー株式会社」にて障がい者雇用を促進</h5>
               <p>コニカミノルタは、障がいのある方々の雇用を通じてその自立を支援することを目的として、2013年9月に特例子会社「コニカミノルタウイズユー株式会社」を設立しました。</p>
@@ -1176,9 +1200,9 @@ body {
           </details>
 
           <!-- H4アコ：個が輝き、知を結集する組織風土 -->
-          <details class="wf-acc-h4" open>
-            <summary class="wf-acc-h4-summary">個が輝き、知を結集する組織風土</summary>
-            <div class="wf-acc-h4-body">
+          <details class="wf-acc-h3" open>
+            <summary class="wf-acc-h3-summary">個が輝き、知を結集する組織風土</summary>
+            <div class="wf-acc-h3-body">
 
               <h5 class="wf-h5-title">コニカミノルタのアプローチ</h5>
               <p><strong>背景と課題認識</strong><br>
@@ -1237,9 +1261,9 @@ body {
           </details>
 
           <!-- H4アコ：ネットワーク活動、啓発活動 -->
-          <details class="wf-acc-h4" open>
-            <summary class="wf-acc-h4-summary">ネットワーク活動、啓発活動</summary>
-            <div class="wf-acc-h4-body">
+          <details class="wf-acc-h3" open>
+            <summary class="wf-acc-h3-summary">ネットワーク活動、啓発活動</summary>
+            <div class="wf-acc-h3-body">
 
               <h5 class="wf-h5-title">互いに助け合うネットワークづくり</h5>
               <p>コニカミノルタでは、組織を超えたネットワーキングを促進しています。社内育児コミュニティや、キャリアについて考えるワークショップといった有志による取り組みは、女性活躍の促進にもつながっています。</p>
@@ -1268,9 +1292,9 @@ body {
           <h3 class="wf-sub-title">女性活躍推進</h3>
 
           <!-- H4アコ：女性のキャリア形成支援 -->
-          <details class="wf-acc-h4" open>
-            <summary class="wf-acc-h4-summary">女性のキャリア形成支援</summary>
-            <div class="wf-acc-h4-body">
+          <details class="wf-acc-h3" open>
+            <summary class="wf-acc-h3-summary">女性のキャリア形成支援</summary>
+            <div class="wf-acc-h3-body">
 
               <p>コニカミノルタ（株）では、2010年度から女性エグゼンプト比率を一つの指標として、女性が活躍できる組織風土醸成、教育研修の実施、制度面の拡充を積極的に行ってきました。</p>
               <p>また、2017年度以降は、DEIを経営戦略に位置づけ、各事業部門責任者は自ら女性リーダーをつくり出すという強い意志のもとで、個々の育成計画に直接関わり、女性リーダーのパイプライン強化に注力しています。こうした取り組みに加えて、女性が経営上位層で影響力を発揮できるよう、女性ハイポテンシャル人財の特定と計画的な育成を推進しています。</p>
@@ -1299,9 +1323,9 @@ body {
           </details>
 
           <!-- H4アコ：グループ会社の取り組み -->
-          <details class="wf-acc-h4" open>
-            <summary class="wf-acc-h4-summary">グループ会社の取り組み</summary>
-            <div class="wf-acc-h4-body">
+          <details class="wf-acc-h3" open>
+            <summary class="wf-acc-h3-summary">グループ会社の取り組み</summary>
+            <div class="wf-acc-h3-body">
 
               <h5 class="wf-h5-title">グローバルにおける女性リーダーの育成</h5>
               <p>コニカミノルタ（株）では、「意思決定の場における多様性の確保と公平性の更なる強化」の観点から、グローバルで活躍する女性のなかから次世代リーダーを選抜・育成する「Women 2 Leadプログラム」を2023年度から展開しています。2024年度は、グループ会社からさまざまなバックグラウンドを持つ11名の次世代女性リーダー候補をプログラム２期生として選抜し、欧州トップレベルの育成機関と協働したアセスメントやリーダーとしての心構えや知見を植え付ける教育を実施しました。このプログラムは、2025年度第３期の準備も進めており、相互の学びの持続につながるアルムナイ形成も進めました。</p>
@@ -1485,7 +1509,7 @@ body {
 
   <!-- アノテーション -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — DE&I v3.6（#124）</h3>
+    <h3>設計ポイント — DE&I v3.7（#124）</h3>
 
     <div class="ann-item">
       <span class="ann-num">★</span>
@@ -1495,7 +1519,8 @@ body {
         ・原稿「26S150_DE&I_取り組み.docx」の本文をそのまま反映（既存サイト原文厳守）<br>
         ・H3: 多様な人財が活躍できる風土づくり ／ H3: 女性活躍推進 の2構造に整理<br>
         ・H4アコ4件（前者）＋H4アコ2件（後者）＝計6アコ<br>
-        ・新規CSS: .wf-acc-h4 ／ .wf-img-ph ／ .wf-img-row ／ .wf-note
+        ・アコーディオンUI: 035 TCFD準拠 .wf-acc-h3（白bg外枠＋グレー帯＋黒丸＋／−トグル）<br>
+        ・新規CSS: .wf-img-ph ／ .wf-img-row ／ .wf-note ／アコ内padding 24px28px28px
       </p>
     </div>
 
@@ -1543,7 +1568,7 @@ body {
       <span class="ann-head">主要モジュール</span>
       <p class="ann-body">
         共通: ヘッダー／lnav／パンくず／フッター／H2/H3/H4/H5／theme-related／img-zoom-btn／wf-btn<br>
-        新規（v3.6）: wf-acc-h4（148準拠 H4アコ）／wf-img-ph（単独画像PH）／wf-img-row（写真ギャラリー）／wf-note（注釈テキスト）<br>
+        新規（v3.7）: wf-acc-h3（035 TCFD共通モジュール準拠）／wf-img-ph（単独画像PH）／wf-img-row（写真ギャラリー）／wf-note（注釈テキスト）<br>
         既存: dei-statement／vision-table／measure-table／kpi-block＋kpi-table／year-activity／gov-structure-fig
       </p>
     </div>
