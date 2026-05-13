@@ -230,7 +230,8 @@
     .gov-intro-card,
     .risk-opp-card,
     .link-btn,
-    .detail-modal-btn {
+    .detail-modal-btn,
+    .case-card-mat {
       cursor: pointer !important;
       transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
     }
@@ -242,7 +243,8 @@
     .gov-intro-card:hover,
     .risk-opp-card:hover,
     .link-btn:hover,
-    .detail-modal-btn:hover {
+    .detail-modal-btn:hover,
+    .case-card-mat:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 18px rgba(0,0,0,0.10);
       border-color: #1a1a1a;
@@ -367,6 +369,38 @@
     .climate-anchor-item:hover {
       color: #1a1a1a;
       border-color: #1a1a1a;
+    }
+
+    /* ===== タブUI（019 ea-tab／非アクティブのみ） ===== */
+    .ea-tab {
+      cursor: pointer !important;
+      transition: background .15s ease, color .15s ease;
+    }
+    .ea-tab:not(.is-active):hover {
+      background: #ECECEC;
+      color: #1a1a1a;
+    }
+
+    /* ===== 関連リンクリスト（li 行全体をホバー可に） ===== */
+    .related-link-list li {
+      cursor: pointer !important;
+      transition: background .15s ease;
+    }
+    .related-link-list li:hover { background: #f5f5f5; }
+
+    /* ===== ページナビ：戻る／前後リンク ===== */
+    .wf-page-nav-back,
+    .wf-page-nav-prev,
+    .wf-page-nav-next {
+      cursor: pointer !important;
+      transition: color .15s ease;
+    }
+    .wf-page-nav-back:hover,
+    .wf-page-nav-prev:hover,
+    .wf-page-nav-next:hover {
+      color: #1a1a1a !important;
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
 
     /* ===== トピックボックス（callout-box）— クリック型でない場合は除外 ===== */
