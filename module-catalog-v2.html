@@ -585,32 +585,6 @@ body {
 .dem-header-img-lnav { display: flex; gap: 8px; font-size: 7px; color: #ccc; padding-top: 4px; }
 .dem-header-img-lnav .is-cur { color: #fff; font-weight: 700; }
 
-.dem-corp-footer {
-  background: #F0EFEC; border: 1px solid var(--c-border);
-  padding: 8px 10px 6px; width: 100%;
-  display: flex; flex-direction: column; gap: 6px;
-}
-.dem-corp-footer-sec { display: flex; flex-direction: column; gap: 3px; }
-.dem-corp-footer-sec-title {
-  font-size: 8px; font-weight: 700; color: #1B2233;
-  border-left: 3px solid #3D4F7B; padding-left: 5px; line-height: 1.2;
-}
-.dem-corp-footer-links { display: flex; flex-wrap: wrap; gap: 2px 8px; padding-left: 8px; font-size: 7px; color: #555; }
-.dem-corp-footer-links span::after { content: '›'; color: #999; padding-left: 2px; }
-.dem-corp-footer-utils {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 4px 0 0 8px; font-size: 7px; color: #555;
-}
-.dem-corp-footer-region {
-  border: 1px solid #999; background: #fff; padding: 3px 6px;
-  font-size: 7px; color: #222;
-}
-.dem-corp-footer-bottom {
-  background: #2D3447; color: #ddd;
-  display: flex; justify-content: space-between;
-  padding: 4px 8px; font-size: 6px;
-  margin: 4px -10px -6px;
-}
 
 .dem-footer-closed {
   background: #1F1F1F; color: #BBB; padding: 10px 16px; width: 100%;
@@ -682,7 +656,7 @@ body {
 
   <div class="cat-hero">
     <h1>モジュール一覧（v3.6）</h1>
-    <p>本catalogのみで全16ページが再構成可能なモジュール体系。<strong>13カテゴリ</strong>・全モジュールにつき「実物プレビュー（開閉両状態を含む）／適用ページ／利用シーン」を一覧化。<strong>v3.6.1（2026.05.13）：⑤画像＋テキストを刷新</strong>。5-1 画像左+テキスト右／5-2 反転（画像右）／5-3 テキスト+ロゴ（ロゴ右配置・縦積み）／5-4 グラフ画像+右下テキストリンク の4モジュール（旧 5-5 ロゴ縦型カードは削除）。主な利用想定ページ：<a href="https://www.konicaminolta.jp/about/csr/environment/communication/products.html" target="_blank" rel="noopener">製品の環境コミュニケーション</a>。v3.5：⑬ナビゲーションを刷新（13-3 ヘッダー画像版／13-4 サステナビリティサイトフッター／13-5 コーポレート全体フッター）。v3.4：7-11 説明文付きリンクボタンを汎用共通モジュール化。v3.1：プレビュー左上揃え／7-5 横断インデックス全L3／7-7 ESGフォトカード／7-8 EVENT実物UI／7-10 説明文付きリンクカード／⑩表3行以上／⑪背景色付きリスト／⑫セクション番号マーカー削除。</p>
+    <p>本catalogのみで全16ページが再構成可能なモジュール体系。<strong>13カテゴリ</strong>・全モジュールにつき「実物プレビュー（開閉両状態を含む）／適用ページ／利用シーン」を一覧化。<strong>v3.6.1（2026.05.13）：⑤画像＋テキストを刷新</strong>。5-1 画像左+テキスト右／5-2 反転（画像右）／5-3 テキスト+ロゴ（ロゴ右配置・縦積み）／5-4 グラフ画像+右下テキストリンク の4モジュール（旧 5-5 ロゴ縦型カードは削除）。主な利用想定ページ：<a href="https://www.konicaminolta.jp/about/csr/environment/communication/products.html" target="_blank" rel="noopener">製品の環境コミュニケーション</a>。v3.6.2：⑬から 13-5 コーポレート全体フッターを削除（不要モジュール整理）。v3.5：⑬ナビゲーションを刷新（13-3 ヘッダー画像版／13-4 サステナビリティサイトフッター）。v3.4：7-11 説明文付きリンクボタンを汎用共通モジュール化。v3.1：プレビュー左上揃え／7-5 横断インデックス全L3／7-7 ESGフォトカード／7-8 EVENT実物UI／7-10 説明文付きリンクカード／⑩表3行以上／⑪背景色付きリスト／⑫セクション番号マーカー削除。</p>
   </div>
 
   <nav class="cat-toc">
@@ -1403,34 +1377,7 @@ body {
         <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">内容</span><span class="cat-mod-meta-body">暗色背景の5列サイトマップ。「▼ サステナビリティ サイトマップ」トグルバーをクリックで開閉（既定：OPEN／data-open="true"）。サントリーサステナビリティサイト型のUI構造。</span></div>
         <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">列構成</span><span class="cat-mod-meta-body">①サステナビリティ（戦略／マネジメント／ソーシャルイノベ）／②環境（11項目）／③社会（12項目）／④ガバナンス（3項目）／⑥報告・データ（7項目）。L4サブ階層は廃止し全項目フラット表示。</span></div>
         <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">全WF（共通）</span></span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">シーン</span><span class="cat-mod-meta-body">コーポレート全体フッター（13-5）の直上に配置。サステナビリティ配下ページ間の横断ナビとして機能。</span></div>
-      </div>
-    </div>
-
-    <div class="cat-mod">
-      <div class="cat-mod-id"><span class="cat-mod-id-num">13-5</span><span class="cat-mod-id-name">コーポレート全体フッター（公式デザイン準拠）</span><span class="cat-mod-id-class">.wf-footer / .wf-footer-section / .wf-footer-bottom</span></div>
-      <div class="cat-mod-preview"><div class="dem-corp-footer">
-        <div class="dem-corp-footer-sec">
-          <div class="dem-corp-footer-sec-title">企業情報</div>
-          <div class="dem-corp-footer-links"><span>企業情報トップ</span><span>Newsroom</span><span>株主・投資家情報</span><span>サステナビリティ</span><span>テクノロジー</span><span>採用情報</span></div>
-        </div>
-        <div class="dem-corp-footer-sec">
-          <div class="dem-corp-footer-sec-title">事業領域</div>
-          <div class="dem-corp-footer-links"><span>ビジネスソリューション</span><span>プロダクションプリント</span><span>ヘルスケア</span><span>センシング</span><span>材料・コンポーネント</span><span>画像IoT・FORXAI</span><span>テキスタイル</span><span>プラネタリウム</span><span>イノベーション</span></div>
-        </div>
-        <div class="dem-corp-footer-utils">
-          <span>ソーシャルメディア オフィシャル ＋</span>
-          <span class="dem-corp-footer-region">⊕ Countries/Regions ＋</span>
-        </div>
-        <div class="dem-corp-footer-bottom">
-          <span>サイトのご利用について｜個人情報保護方針｜サイトマップ</span>
-          <span>©2011-2025 Konica Minolta, Inc.</span>
-        </div>
-      </div></div>
-      <div class="cat-mod-meta">
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">内容</span><span class="cat-mod-meta-body">薄ベージュグレー背景（#F0EFEC）の上段（企業情報＋事業領域＋SNS／Countries）と、紺色ダークバー（#2D3447）下段（利用規約3点＋著作権）の2段構成。各セクション見出しは紺の縦バーつき。</span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">全WF（共通）</span></span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">シーン</span><span class="cat-mod-meta-body">ページ最下部。サステナビリティサイトフッター（13-4）の直下に配置し、コニカミノルタ全社共通の遷移導線を提供。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">シーン</span><span class="cat-mod-meta-body">ページ最下部に配置。サステナビリティ配下ページ間の横断ナビとして機能。</span></div>
       </div>
     </div>
   </section>
