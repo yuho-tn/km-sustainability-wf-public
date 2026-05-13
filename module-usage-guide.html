@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>KMサステナビリティWF — モジュール選定ガイド v1.0</title>
+
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --c-white: #FFFFFF; --c-bg: #F7F7F7; --c-bg-sub: #F2F2F2;
+  --c-border: #E0E0E0; --c-border-s: #E8E8E8;
+  --c-text-h: #111; --c-text: #333; --c-text-s: #666; --c-text-xs: #999;
+  --c-accent: #FFE600;
+  --c-ng: #C62828; --c-ng-bg: #FBEAEA;
+  --c-ok: #1B5E20; --c-ok-bg: #E8F1E9;
+  --pad-h: 60px;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  font-size: 13px; line-height: 1.7; color: var(--c-text); background: var(--c-bg);
+}
+
+/* META BAR */
+.g-meta-bar {
+  background: #111; color: #ccc; font-size: 11px; padding: 10px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 100; letter-spacing: 0.04em;
+}
+.g-meta-bar strong { color: #fff; font-size: 13px; }
+.g-meta-bar .badge { background: #333; color: #aaa; font-size: 10px; padding: 2px 8px; margin-left: 8px; border-radius: 2px; }
+.g-meta-bar a { color: #fff; text-decoration: none; font-size: 11px; opacity: 0.85; }
+.g-meta-bar a:hover { opacity: 1; text-decoration: underline; }
+
+.g-page { max-width: 1280px; margin: 0 auto; background: #fff; min-height: 100vh; box-shadow: 0 2px 20px rgba(0,0,0,0.10); }
+
+/* HERO */
+.g-hero { background: #1F1F1F; color: #fff; padding: 40px var(--pad-h); }
+.g-hero-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.16em; color: var(--c-accent); margin-bottom: 12px; text-transform: uppercase; }
+.g-hero h1 { font-size: 26px; font-weight: 700; letter-spacing: 0.02em; margin-bottom: 12px; line-height: 1.4; }
+.g-hero-lead { font-size: 13px; color: #DDD; line-height: 1.85; max-width: 820px; margin-bottom: 18px; }
+.g-hero-link {
+  display: inline-block;
+  font-size: 11px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 6px 14px;
+  color: #fff; text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: background 0.15s;
+}
+.g-hero-link:hover { background: rgba(255,255,255,0.2); }
+.g-hero-link::after { content: ' ›'; opacity: 0.6; }
+
+/* TOC */
+.g-toc { background: var(--c-bg-sub); padding: 18px var(--pad-h); border-bottom: 1px solid var(--c-border); position: sticky; top: 32px; z-index: 50; }
+.g-toc-title { font-size: 10px; font-weight: 700; color: var(--c-text-xs); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+.g-toc ul { list-style: none; display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px 14px; }
+.g-toc li { font-size: 11px; }
+.g-toc a {
+  color: var(--c-text-h); text-decoration: none;
+  display: inline-block; padding: 4px 8px;
+  border-radius: 2px; transition: background 0.15s;
+}
+.g-toc a:hover { background: var(--c-border); }
+
+/* SECTION */
+.g-section {
+  padding: 40px var(--pad-h) 44px;
+  border-bottom: 4px solid var(--c-border);
+  position: relative;
+}
+.g-section-num {
+  position: absolute; top: 42px; left: 22px;
+  width: 26px; height: 26px;
+  background: #111; color: #fff; border-radius: 50%;
+  font-size: 11px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+.g-section-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; color: var(--c-text-s); margin-bottom: 6px; text-transform: uppercase; }
+.g-section-title {
+  font-size: 22px; font-weight: 700; color: var(--c-text-h);
+  margin-bottom: 8px; padding-bottom: 12px;
+  border-bottom: 1px solid var(--c-border);
+  position: relative;
+  line-height: 1.4;
+}
+.g-section-title::after {
+  content: ''; position: absolute; left: 0; bottom: -1px;
+  width: 120px; height: 3px;
+  background: linear-gradient(90deg, #111, #444 40%, #888 70%, transparent);
+}
+.g-section-desc { font-size: 12px; color: var(--c-text-s); margin-bottom: 22px; line-height: 1.85; }
+
+.g-subhead {
+  font-size: 13px; font-weight: 700; color: var(--c-text-h);
+  margin: 26px 0 10px; padding-left: 10px;
+  border-left: 3px solid var(--c-text-h);
+}
+.g-subhead-desc { font-size: 11px; color: var(--c-text-s); margin: -6px 0 14px; padding-left: 13px; line-height: 1.7; }
+
+/* AXIS TABLE （視点1） */
+.g-axis-table {
+  width: 100%; border-collapse: collapse;
+  border: 1px solid var(--c-border);
+  font-size: 12px; margin-bottom: 18px;
+}
+.g-axis-table th, .g-axis-table td {
+  border: 1px solid var(--c-border);
+  padding: 12px 14px;
+  vertical-align: top;
+  text-align: left;
+  line-height: 1.7;
+}
+.g-axis-table thead th {
+  background: var(--c-text-h); color: #fff;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.05em;
+}
+.g-axis-table tbody th {
+  background: var(--c-bg-sub);
+  font-weight: 700; color: var(--c-text-h);
+  width: 140px;
+  font-size: 11px;
+}
+.g-axis-table tbody td { background: #fff; }
+.g-axis-table tbody td:nth-child(2) { width: 280px; font-size: 11px; color: var(--c-text-s); }
+.g-axis-table .pill {
+  display: inline-block; background: var(--c-bg-sub); color: var(--c-text-h);
+  font-size: 10px; font-weight: 700; padding: 2px 7px;
+  margin: 0 4px 4px 0; letter-spacing: 0.03em;
+  border: 1px solid var(--c-border);
+}
+.g-axis-table .pill.arrow { background: var(--c-text-h); color: #fff; border-color: var(--c-text-h); }
+
+/* DECISION FLOW （視点2） */
+.g-flow {
+  background: #fff;
+  border: 1px solid var(--c-border);
+  margin-bottom: 22px;
+}
+.g-flow-head {
+  background: var(--c-text-h); color: #fff;
+  padding: 12px 18px;
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 0.02em;
+  display: flex; align-items: center; gap: 10px;
+}
+.g-flow-head .flow-num {
+  background: var(--c-accent); color: var(--c-text-h);
+  font-size: 10px; font-weight: 700;
+  padding: 2px 8px; letter-spacing: 0.06em;
+}
+.g-flow-head .flow-tags { font-size: 10px; color: #BBB; font-weight: 400; margin-left: auto; letter-spacing: 0.04em; }
+.g-flow-body { padding: 16px 20px 20px; }
+.g-flow-q {
+  font-size: 11px; color: var(--c-text-s);
+  margin-bottom: 10px;
+  font-weight: 700; letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.g-flow-table {
+  width: 100%; border-collapse: collapse;
+  font-size: 12px;
+}
+.g-flow-table th, .g-flow-table td {
+  border: 1px solid var(--c-border);
+  padding: 10px 14px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.7;
+}
+.g-flow-table thead th {
+  background: var(--c-bg-sub); color: var(--c-text-h);
+  font-size: 10px; font-weight: 700; letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.g-flow-table th:first-child, .g-flow-table td:first-child { width: 46%; }
+.g-flow-table td code {
+  background: var(--c-bg-sub); border: 1px solid var(--c-border);
+  font-family: 'SF Mono', 'Menlo', monospace;
+  font-size: 10px; padding: 1px 6px;
+  color: var(--c-text-h);
+}
+.g-flow-table td strong { color: var(--c-text-h); }
+.g-flow-meta {
+  margin-top: 14px; padding: 10px 14px;
+  background: var(--c-bg-sub); border-left: 3px solid var(--c-text-h);
+  font-size: 11px; color: var(--c-text); line-height: 1.75;
+}
+.g-flow-meta strong { color: var(--c-text-h); }
+
+/* WHEN / WHEN-NOT CARDS （視点3） */
+.g-wn-card {
+  background: #fff;
+  border: 1px solid var(--c-border);
+  margin-bottom: 18px;
+}
+.g-wn-head {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 18px;
+  background: var(--c-bg-sub);
+  border-bottom: 1px solid var(--c-border);
+}
+.g-wn-head .mod-no {
+  background: var(--c-text-h); color: #fff;
+  font-size: 10px; font-weight: 700; padding: 2px 8px;
+  letter-spacing: 0.05em;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+.g-wn-head .mod-name { font-size: 13px; font-weight: 700; color: var(--c-text-h); }
+.g-wn-head .mod-class { font-family: 'SF Mono', 'Menlo', monospace; font-size: 10px; color: var(--c-text-s); margin-left: auto; }
+.g-wn-grid { display: grid; grid-template-columns: 1fr 1fr; }
+.g-wn-cell { padding: 14px 18px; border-right: 1px solid var(--c-border); }
+.g-wn-cell:last-child { border-right: none; }
+.g-wn-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; margin-bottom: 8px;
+}
+.g-wn-cell.when .g-wn-label { color: var(--c-ok); }
+.g-wn-cell.whennot .g-wn-label { color: var(--c-ng); }
+.g-wn-cell.when { background: var(--c-ok-bg); }
+.g-wn-cell.whennot { background: var(--c-ng-bg); }
+.g-wn-cell ul { list-style: none; padding: 0; }
+.g-wn-cell li {
+  font-size: 12px; line-height: 1.7; padding: 3px 0 3px 16px;
+  position: relative;
+}
+.g-wn-cell.when li::before { content: '✓'; position: absolute; left: 0; color: var(--c-ok); font-weight: 700; }
+.g-wn-cell.whennot li::before { content: '×'; position: absolute; left: 0; color: var(--c-ng); font-weight: 700; }
+.g-wn-foot {
+  padding: 10px 18px;
+  background: #FAFAFA;
+  border-top: 1px solid var(--c-border);
+  font-size: 11px; color: var(--c-text-s);
+  display: flex; gap: 24px; flex-wrap: wrap;
+}
+.g-wn-foot span { display: inline-block; }
+.g-wn-foot strong { color: var(--c-text-h); font-weight: 700; margin-right: 4px; }
+
+/* TEMPLATE BLOCK （視点4） */
+.g-tpl {
+  background: #fff;
+  border: 1px solid var(--c-border);
+  margin-bottom: 18px;
+}
+.g-tpl-head {
+  padding: 14px 18px;
+  background: var(--c-bg-sub);
+  border-bottom: 1px solid var(--c-border);
+  display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+}
+.g-tpl-tier {
+  background: var(--c-text-h); color: #fff;
+  font-size: 10px; font-weight: 700; padding: 2px 8px;
+  letter-spacing: 0.06em;
+}
+.g-tpl-name { font-size: 14px; font-weight: 700; color: var(--c-text-h); }
+.g-tpl-pages { font-size: 11px; color: var(--c-text-s); margin-left: auto; }
+.g-tpl-body { padding: 18px 18px 4px; }
+.g-tpl-flow {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-bottom: 14px;
+}
+.g-tpl-step {
+  background: #fff;
+  border: 1px solid var(--c-border);
+  padding: 8px 12px;
+  font-size: 11px;
+  line-height: 1.4;
+  position: relative;
+  min-width: 130px;
+}
+.g-tpl-step + .g-tpl-step::before {
+  content: '→';
+  position: absolute; left: -16px; top: 50%; transform: translateY(-50%);
+  color: var(--c-text-xs); font-size: 14px;
+}
+.g-tpl-step strong {
+  display: block; color: var(--c-text-h); font-size: 11px; font-weight: 700;
+  margin-bottom: 2px;
+}
+.g-tpl-step span {
+  display: block; font-size: 10px; color: var(--c-text-s);
+}
+.g-tpl-note {
+  font-size: 11px; color: var(--c-text); line-height: 1.85;
+  margin-bottom: 14px;
+}
+.g-tpl-note strong { color: var(--c-text-h); }
+
+/* RULES BLOCK （視点5） */
+.g-rule-list {
+  background: #fff;
+  border: 1px solid var(--c-border);
+  margin-bottom: 18px;
+}
+.g-rule-item {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  border-bottom: 1px solid var(--c-border);
+}
+.g-rule-item:last-child { border-bottom: none; }
+.g-rule-key {
+  background: var(--c-bg-sub);
+  padding: 12px 16px;
+  font-size: 12px; font-weight: 700; color: var(--c-text-h);
+  border-right: 1px solid var(--c-border);
+  line-height: 1.5;
+}
+.g-rule-val {
+  padding: 12px 18px;
+  font-size: 12px; color: var(--c-text); line-height: 1.85;
+}
+.g-rule-val strong { color: var(--c-text-h); }
+.g-rule-val code { background: var(--c-bg-sub); border: 1px solid var(--c-border); padding: 1px 6px; font-family: 'SF Mono', monospace; font-size: 10px; }
+
+/* ANTI-PATTERN BLOCK （視点6） */
+.g-anti-card {
+  background: var(--c-ng-bg);
+  border: 1px solid #F2C9C9;
+  padding: 14px 18px;
+  margin-bottom: 12px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  align-items: start;
+}
+.g-anti-bad, .g-anti-good { font-size: 12px; line-height: 1.75; }
+.g-anti-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; margin-bottom: 6px;
+  display: inline-block;
+  padding: 2px 8px;
+}
+.g-anti-bad .g-anti-label { background: var(--c-ng); color: #fff; }
+.g-anti-good .g-anti-label { background: var(--c-ok); color: #fff; }
+.g-anti-bad p, .g-anti-good p { color: var(--c-text); }
+
+/* FOOTER */
+.g-footer {
+  padding: 24px var(--pad-h);
+  background: var(--c-bg-sub);
+  font-size: 11px; color: var(--c-text-s);
+  letter-spacing: 0.04em;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+}
+.g-footer a { color: var(--c-text-h); text-decoration: none; font-weight: 700; }
+.g-footer a:hover { text-decoration: underline; }
+
+@media (max-width: 1024px) {
+  .g-toc ul { grid-template-columns: repeat(3, 1fr); }
+  .g-wn-grid { grid-template-columns: 1fr; }
+  .g-anti-card { grid-template-columns: 1fr; }
+  .g-rule-item { grid-template-columns: 1fr; }
+  .g-rule-key { border-right: none; border-bottom: 1px solid var(--c-border); }
+  .g-axis-table tbody th { width: auto; }
+  .g-axis-table tbody td:nth-child(2) { width: auto; }
+}
+</style>
+</head>
+<body>
+
+<div class="g-meta-bar">
+  <div>
+    <strong>KMサステナビリティWF</strong>
+    <span class="badge">モジュール選定ガイド v1.0</span>
+    <span class="badge">2026.05</span>
+  </div>
+  <div>
+    <a href="module-catalog-v2.html">→ モジュール一覧 v3.6.5</a>
+
+    <a href="index.html">← Hub</a>
+  </div>
+</div>
+
+<div class="g-page">
+
+  <div class="g-hero">
+    <div class="g-hero-eyebrow">Module Usage Guide</div>
+    <h1>モジュール選定ガイド — どのモジュールを、どの場面で、なぜ使うのか</h1>
+    <p class="g-hero-lead">
+      モジュール一覧（v3.6.5）に収録した <strong>13カテゴリ・全47モジュール</strong> を、実際にWFを組む際の「選び方ロジック」で再整理した資料。<br>
+      「どの場面で<strong>アコーディオン</strong>を使うのか」「<strong>リンクボタン／カード／テキストリンク</strong>のどれを選ぶのか」「<strong>L3テーマページ</strong>の標準構成は？」といった、実装フェーズで頻出する判断を <strong>6つの視点</strong> で言語化している。
+      モジュール一覧（カタログ）は<em>検索のため</em>、本ガイドは<em>判断のため</em>の資料として併用する。
+    </p>
+    <a class="g-hero-link" href="module-catalog-v2.html">モジュール一覧 v3.6.5（カタログ）を開く</a>
+  </div>
+
+  <nav class="g-toc">
+    <div class="g-toc-title">Contents</div>
+    <ul>
+      <li><a href="#sec-1">① 判断軸マップ</a></li>
+      <li><a href="#sec-2">② 類似モジュールの選び分け</a></li>
+      <li><a href="#sec-3">③ 採用基準（WHEN／WHEN NOT）</a></li>
+      <li><a href="#sec-4">④ ページタイプ別 標準構成</a></li>
+      <li><a href="#sec-5">⑤ 横断ルール</a></li>
+      <li><a href="#sec-6">⑥ アンチパターン集</a></li>
+    </ul>
+  </nav>
+
+  <!-- ① 判断軸マップ -->
+  <section class="g-section" id="sec-1">
+    <span class="g-section-num">1</span>
+    <div class="g-section-eyebrow">VIEWPOINT 1 — Decision Axes</div>
+    <h2 class="g-section-title">判断軸マップ：5つの軸でモジュールを選ぶ</h2>
+    <p class="g-section-desc">
+      モジュール一覧から「何を選ぶか」を直接決めず、まず以下の5軸で要件を分解する。軸ごとに対応するモジュール群が決まるため、選択肢を一気に絞り込める。
+    </p>
+
+    <table class="g-axis-table">
+      <thead>
+        <tr>
+          <th style="width: 140px;">判断軸</th>
+          <th style="width: 280px;">問い</th>
+          <th>分岐先モジュール</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>情報量</th>
+          <td>1〜2行で済む情報か / 段落単位か / 長文セクションか</td>
+          <td>
+            <span class="pill">1〜2行</span><span class="pill arrow">11リスト／4テキスト</span>
+            <span class="pill">段落</span><span class="pill arrow">4テキスト／5画像＋テキスト</span>
+            <span class="pill">長文</span><span class="pill arrow">8アコーディオン</span>
+          </td>
+        </tr>
+        <tr>
+          <th>階層（ページ）</th>
+          <td>そのページはL1（TOP）／L2（インデックス）／L3（テーマ）／L4（個別取り組み）のどれか</td>
+          <td>
+            <span class="pill">L1</span><span class="pill arrow">1-1 TOPヒーロー</span>
+            <span class="pill">L2</span><span class="pill arrow">1-2 第2階層ヒーロー</span>
+            <span class="pill">L3</span><span class="pill arrow">1-3 第3階層ヒーロー</span>
+            <span class="pill">L4</span><span class="pill arrow">1-4 第4階層ヒーロー</span>
+          </td>
+        </tr>
+        <tr>
+          <th>読み方</th>
+          <td>全員に必読 / 選択的に読む / 参照のみ（用語補足等）</td>
+          <td>
+            <span class="pill">必読</span><span class="pill arrow">直接表示</span>
+            <span class="pill">選択的</span><span class="pill arrow">8アコーディオン</span>
+            <span class="pill">参照</span><span class="pill arrow">9-2 用語モーダル</span>
+          </td>
+        </tr>
+        <tr>
+          <th>役割</th>
+          <td>伝える（強調）／読ませる（本文）／辿らせる（リンク）／開示する（表）／補足する（注釈）</td>
+          <td>
+            <span class="pill">伝える</span><span class="pill arrow">6強調エリア</span>
+            <span class="pill">読ませる</span><span class="pill arrow">4テキスト</span>
+            <span class="pill">辿らせる</span><span class="pill arrow">7リンク</span>
+            <span class="pill">開示する</span><span class="pill arrow">10テーブル</span>
+            <span class="pill">補足する</span><span class="pill arrow">4-3注釈／6-2補足</span>
+          </td>
+        </tr>
+        <tr>
+          <th>構造関係</th>
+          <td>同列で並ぶか（並列）／親子関係か（階層）／時系列か／対比か</td>
+          <td>
+            <span class="pill">並列</span><span class="pill arrow">3カラム／7-3カード</span>
+            <span class="pill">階層</span><span class="pill arrow">8アコーディオン</span>
+            <span class="pill">時系列</span><span class="pill arrow">10-2 KPI表</span>
+            <span class="pill">対比</span><span class="pill arrow">10-3 マトリクス表</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="g-section-desc" style="margin-top:14px;">
+      <strong>使い方：</strong>5軸のうち最も支配的な軸（多くの場合は「役割」または「情報量」）から選び始め、残りの軸で絞り込む。たとえば「KPIを見せたい・長文・対比あり」→ 役割＝開示／構造＝対比 → <strong>10-3 マトリクス表</strong>に決定する、という流れ。
+    </p>
+  </section>
+
+  <!-- ② 類似モジュールの選び分け -->
+  <section class="g-section" id="sec-2">
+    <span class="g-section-num">2</span>
+    <div class="g-section-eyebrow">VIEWPOINT 2 — Differentiation</div>
+    <h2 class="g-section-title">類似モジュールの選び分け：迷いやすいペア／トリオの判定フロー</h2>
+    <p class="g-section-desc">
+      役割が近く判断に悩むモジュール群について、「どんな条件のときに、どれを選ぶか」を判定表で明示する。クライアントからの「なぜこれにしたのか」に即答できる定型回答ストック。
+    </p>
+
+    <!-- フロー1：アコーディオン vs モーダル vs 直接表示 -->
+    <div class="g-flow">
+      <div class="g-flow-head">
+        <span class="flow-num">FLOW 1</span>
+        アコーディオン × モーダル × 直接表示
+        <span class="flow-tags">8-1〜8-6 / 9-1〜9-2 / 直接表示</span>
+      </div>
+      <div class="g-flow-body">
+        <div class="g-flow-q">Q. 情報を畳むか・出すか・浮かせるか</div>
+        <table class="g-flow-table">
+          <thead><tr><th>状況</th><th>選ぶモジュール</th></tr></thead>
+          <tbody>
+            <tr><td>同列で並ぶ3項目以上の長文セクション（全員には必読でない）</td><td><strong>8 アコーディオン</strong>（H3配下は <code>.wf-acc-h3</code>／H4配下は <code>.wf-acc-h4</code>）</td></tr>
+            <tr><td>ページ全体の主目的そのもの／必ず読ませたい内容</td><td><strong>直接表示</strong>（畳むと意図が消える）</td></tr>
+            <tr><td>ページ流れを止めずに「用語・略語」だけ補足したい</td><td><strong>9-2 注釈モーダル</strong>（<code>.term-trigger</code>）</td></tr>
+            <tr><td>本文中の画像を拡大して見せたい</td><td><strong>9-1 画像拡大モーダル</strong>（<code>.img-zoom-modal</code>）</td></tr>
+            <tr><td>項目が1〜2個しかない</td><td><strong>直接表示</strong>（アコーディオン化は冗長）</td></tr>
+          </tbody>
+        </table>
+        <div class="g-flow-meta">
+          <strong>共通ルール：</strong>アコーディオンは必ず <code>&lt;details open&gt;</code> で初期展開。閉じた状態で訪問させない。
+        </div>
+      </div>
+    </div>
+
+    <!-- フロー2：リンク系 -->
+    <div class="g-flow">
+      <div class="g-flow-head">
+        <span class="flow-num">FLOW 2</span>
+        リンク系（テキスト／ボタン／カード／関連／DL）の選び分け
+        <span class="flow-tags">7-1 / 7-2 / 7-3 / 7-4 / 7-6 / 7-10</span>
+      </div>
+      <div class="g-flow-body">
+        <div class="g-flow-q">Q. 何を、どこへ、どの強さで誘導するか</div>
+        <table class="g-flow-table">
+          <thead><tr><th>状況</th><th>選ぶモジュール</th></tr></thead>
+          <tbody>
+            <tr><td>主要な遷移先（次のテーマページ等）／PDF媒体トップ／方針一覧</td><td><strong>7-10 説明文付きリンクボタン</strong>（<code>.link-btn</code>。主要遷移は<code>.is-primary</code>、grid内全幅は<code>.is-full</code>）</td></tr>
+            <tr><td>テーマに関する関連参考の一覧（横並び複数）</td><td><strong>7-4 関連リンク</strong>（<code>.theme-related</code>）</td></tr>
+            <tr><td>本文中で1件だけ参照する規程・ページ</td><td><strong>7-1 テキストリンク</strong>（<code>.policy-link</code>）</td></tr>
+            <tr><td>取り組み・施策をサムネ＋見出し＋要約で誘導</td><td><strong>7-3 取り組みカード</strong>（<code>.activity-card</code>）</td></tr>
+            <tr><td>環境／社会／ガバナンスの横断インデックス</td><td><strong>7-5 横断インデックスリンク</strong>（<code>.esg-link-stack</code>）</td></tr>
+            <tr><td>ESGデータ一式（PDF／Excel）のDL</td><td><strong>7-6 資料DLカード</strong>（<code>.qa-card</code>）</td></tr>
+            <tr><td>個別記事（ニュース／トピックス）の縦リスト</td><td><strong>7-9 ニュース・トピックスリスト</strong>（<code>.topics-list</code>）</td></tr>
+          </tbody>
+        </table>
+        <div class="g-flow-meta">
+          <strong>視覚的優先度：</strong>7-10 is-primary（外枠強調）&gt; 7-3 カード &gt; 7-10 通常 &gt; 7-4 関連リンク &gt; 7-1 テキストリンク。同一セクション内では強弱を意識的に使い分ける（全部を強調＝全部が並のと同じ）。
+        </div>
+      </div>
+    </div>
+
+    <!-- フロー3：強調 vs 補足 -->
+    <div class="g-flow">
+      <div class="g-flow-head">
+        <span class="flow-num">FLOW 3</span>
+        強調エリア × 補足エリア の選び分け
+        <span class="flow-tags">6-1 / 6-2 / 4-3</span>
+      </div>
+      <div class="g-flow-body">
+        <div class="g-flow-q">Q. 引き上げるのか・引き下げるのか</div>
+        <table class="g-flow-table">
+          <thead><tr><th>状況</th><th>選ぶモジュール</th></tr></thead>
+          <tbody>
+            <tr><td>そのページの結論／KPI宣言／重要トピック</td><td><strong>6-1 POINTタグ強調エリア</strong>（<code>.callout-box</code>）。タグ文言はページに応じて変える（CARBON MINUS 2025 / MATERIALITY KPI 等）</td></tr>
+            <tr><td>用語の補足／前提条件／凡例的な箇条</td><td><strong>6-2 薄グレー補足エリア</strong>（<code>.sub-list</code> / <code>.term-note</code>）</td></tr>
+            <tr><td>本文末尾の単発注釈（※印など）</td><td><strong>4-3 注釈・補足</strong>（インライン）</td></tr>
+          </tbody>
+        </table>
+        <div class="g-flow-meta">
+          <strong>1ページに6-1を3個以上置かない：</strong>強調は強調でなくなる。重要度を吟味して1〜2個に絞る。
+        </div>
+      </div>
+    </div>
+
+    <!-- フロー4：リスト vs テーブル vs カード -->
+    <div class="g-flow">
+      <div class="g-flow-head">
+        <span class="flow-num">FLOW 4</span>
+        並列情報の見せ方（リスト × テーブル × カード）
+        <span class="flow-tags">11-1〜11-4 / 10-1〜10-5 / 3-2〜3-4 / 7-3</span>
+      </div>
+      <div class="g-flow-body">
+        <div class="g-flow-q">Q. 文章で並べるか・行列で開示するか・カード化するか</div>
+        <table class="g-flow-table">
+          <thead><tr><th>状況</th><th>選ぶモジュール</th></tr></thead>
+          <tbody>
+            <tr><td>箇条書きで短文を並列列挙</td><td><strong>11-1 シンプル箇条書き</strong>（標準disc）。見出し＋説明文の二段なら <code>&lt;li&gt;&lt;strong&gt;見出し&lt;/strong&gt;&lt;span&gt;説明&lt;/span&gt;&lt;/li&gt;</code></td></tr>
+            <tr><td>手順・優先順位を伴うリスト</td><td><strong>11-2 番号付きリスト</strong></td></tr>
+            <tr><td>同列要素を区切り線付きで整然と</td><td><strong>11-3 区切り線付き「・」リスト</strong></td></tr>
+            <tr><td>国際規範・規格名など「対象群」を強調</td><td><strong>11-4 背景色付きリスト</strong>（<code>.norm-list</code>）</td></tr>
+            <tr><td>行列で数値や属性を比較開示</td><td><strong>10-1〜10-5 テーブル</strong>（KPI推移は10-2、対照は10-3、規格対照は10-4）</td></tr>
+            <tr><td>図解＋見出し＋要約のリッチ並列</td><td><strong>3-2〜3-4 カラムグリッド</strong>または <strong>7-3 取り組みカード</strong></td></tr>
+          </tbody>
+        </table>
+        <div class="g-flow-meta">
+          <strong>列数の選び方：</strong>2列＝対比向き／3列＝バランス／4列＝小要素の整列（ロゴ・バッジ等）。L3テーマページの取り組みカードは <strong>2列</strong>、L2インデックスは <strong>3列</strong> がデフォルト。
+        </div>
+      </div>
+    </div>
+
+    <!-- フロー5：見出しレベル -->
+    <div class="g-flow">
+      <div class="g-flow-head">
+        <span class="flow-num">FLOW 5</span>
+        見出しレベル（H2〜H5）の選び分け
+        <span class="flow-tags">2-1〜2-4</span>
+      </div>
+      <div class="g-flow-body">
+        <div class="g-flow-q">Q. ページ内の情報階層をどう刻むか</div>
+        <table class="g-flow-table">
+          <thead><tr><th>役割</th><th>モジュール</th></tr></thead>
+          <tbody>
+            <tr><td>大セクションの区切り（ページ内で2〜5個）</td><td><strong>2-1 H2 グラデアンダーライン</strong>（<code>.wf-section-title</code>）</td></tr>
+            <tr><td>H2配下のサブセクション</td><td><strong>2-2 H3 左縦棒</strong>（<code>.wf-sub-title</code>）</td></tr>
+            <tr><td>カード内タイトル／小見出し</td><td><strong>2-3 H4 ◾プレフィックス</strong>（<code>.wf-card-title.has-mark</code>）</td></tr>
+            <tr><td>テキスト塊の中の見出し（装飾なし）</td><td><strong>2-4 H5 太字のみ</strong>（<code>.wf-h5-title</code>）</td></tr>
+          </tbody>
+        </table>
+        <div class="g-flow-meta">
+          <strong>飛ばさない：</strong>H2の次に H4 を置かない（H3を経由する）。アコーディオン化は H3／H4配下に限定。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ③ 採用基準 -->
+  <section class="g-section" id="sec-3">
+    <span class="g-section-num">3</span>
+    <div class="g-section-eyebrow">VIEWPOINT 3 — Adoption Criteria</div>
+    <h2 class="g-section-title">採用基準：使う条件 / 使わない条件（WHEN / WHEN NOT）</h2>
+    <p class="g-section-desc">
+      よく使われるモジュールについて、採用条件と非採用条件を1枚にまとめる。クライアント説明・自己レビュー両方で使えるチェック資料。本ガイドv1.0では特に判断要件の多い <strong>8アコーディオン／6-1強調／7-3カード／10-2 KPI表／11-4背景色付きリスト</strong> を収録。
+    </p>
+
+    <!-- 8 アコーディオン -->
+    <div class="g-wn-card">
+      <div class="g-wn-head">
+        <span class="mod-no">8-4 / 8-1</span>
+        <span class="mod-name">アコーディオン</span>
+        <span class="mod-class">.wf-acc-h3 / .wf-acc-h2</span>
+      </div>
+      <div class="g-wn-grid">
+        <div class="g-wn-cell when">
+          <div class="g-wn-label">WHEN — こんな時に使う</div>
+          <ul>
+            <li>H3配下に同列項目が3つ以上ある（例：TCFDの開示4要素／DE&Iの3テーマ）</li>
+            <li>各項目が3段落以上の長文セクションになる</li>
+            <li>すべてを必読としなくてよい（選択的に読ませたい）</li>
+            <li>ページ内の構造をコンパクトに見せたい</li>
+          </ul>
+        </div>
+        <div class="g-wn-cell whennot">
+          <div class="g-wn-label">WHEN NOT — 使わない場面</div>
+          <ul>
+            <li>項目が1〜2個しかない（直接表示で十分）</li>
+            <li>ページの主目的そのものを表す内容（畳むと意図が消える）</li>
+            <li>既存原文が「短いリード文＋数パラグラフ」しかない（盛らない）</li>
+            <li>用語1個だけの補足 → モーダル（9-2）に</li>
+          </ul>
+        </div>
+      </div>
+      <div class="g-wn-foot">
+        <span><strong>代替：</strong>用語=9-2モーダル／並列見せ=7-3カード／単発本文=直接表示</span>
+        <span><strong>初期状態：</strong><code>&lt;details open&gt;</code> 必須</span>
+        <span><strong>階層：</strong>H3直下=.wf-acc-h3 / H4直下=.wf-acc-h4</span>
+      </div>
+    </div>
+
+    <!-- 6-1 POINTタグ強調 -->
+    <div class="g-wn-card">
+      <div class="g-wn-head">
+        <span class="mod-no">6-1</span>
+        <span class="mod-name">POINTタグ強調エリア</span>
+        <span class="mod-class">.callout-box</span>
+      </div>
+      <div class="g-wn-grid">
+        <div class="g-wn-cell when">
+          <div class="g-wn-label">WHEN — こんな時に使う</div>
+          <ul>
+            <li>そのページの結論・宣言・主要KPIを引き上げる</li>
+            <li>マテリアリティの中核トピックを示す（DE&I宣言、CARBON MINUS 2025）</li>
+            <li>ページ冒頭で「このページで言いたい1つ」を明示</li>
+          </ul>
+        </div>
+        <div class="g-wn-cell whennot">
+          <div class="g-wn-label">WHEN NOT — 使わない場面</div>
+          <ul>
+            <li>1ページに3個以上置く（強調が機能しなくなる）</li>
+            <li>注釈・補足レベルの情報（6-2を使う）</li>
+            <li>既存原文に該当する強調文が存在しない（盛らない）</li>
+          </ul>
+        </div>
+      </div>
+      <div class="g-wn-foot">
+        <span><strong>タグ文言：</strong>ページごとに内容を表す英字短文に（POINT / MATERIALITY KPI / CARBON MINUS 2025 等）</span>
+        <span><strong>NGスタイル：</strong>左縦棒型／オーバーレイアイコン型は廃止</span>
+      </div>
+    </div>
+
+    <!-- 7-3 取り組みカード -->
+    <div class="g-wn-card">
+      <div class="g-wn-head">
+        <span class="mod-no">7-3</span>
+        <span class="mod-name">取り組みカード（活動カード）</span>
+        <span class="mod-class">.activity-card</span>
+      </div>
+      <div class="g-wn-grid">
+        <div class="g-wn-cell when">
+          <div class="g-wn-label">WHEN — こんな時に使う</div>
+          <ul>
+            <li>取り組み／施策／事例をサムネ＋カテゴリ＋要約で誘導</li>
+            <li>L3テーマページ内の代表事例の一覧（2列）</li>
+            <li>L2インデックスから子テーマへの導線（3列）</li>
+          </ul>
+        </div>
+        <div class="g-wn-cell whennot">
+          <div class="g-wn-label">WHEN NOT — 使わない場面</div>
+          <ul>
+            <li>画像／要約のいずれも揃わない（リンクボタンに）</li>
+            <li>遷移先がPDFのみ（7-10 link-btn に）</li>
+            <li>カード内画像に「+」拡大ボタンを付ける（NG）</li>
+          </ul>
+        </div>
+      </div>
+      <div class="g-wn-foot">
+        <span><strong>カテゴリタグ：</strong>ジャンル別に書く（「取り組み」一律はNG）</span>
+        <span><strong>列数：</strong>004=3列 / 024・025・124・131・148=2列</span>
+      </div>
+    </div>
+
+    <!-- 10-2 KPI表 -->
+    <div class="g-wn-card">
+      <div class="g-wn-head">
+        <span class="mod-no">10-2</span>
+        <span class="mod-name">KPI 進捗表（多列）</span>
+        <span class="mod-class">.ghg-table</span>
+      </div>
+      <div class="g-wn-grid">
+        <div class="g-wn-cell when">
+          <div class="g-wn-label">WHEN — こんな時に使う</div>
+          <ul>
+            <li>年度推移・実績・目標を行列で比較</li>
+            <li>環境・社会データの定量開示</li>
+            <li>3行以上のデータがある（少ない場合は11リスト or 6-1強調）</li>
+          </ul>
+        </div>
+        <div class="g-wn-cell whennot">
+          <div class="g-wn-label">WHEN NOT — 使わない場面</div>
+          <ul>
+            <li>行列で比較する必要がない（文章で済む）</li>
+            <li>規格対照（GRI/SASB）は10-4を使う</li>
+            <li>シナリオ分析（バッジ要）は10-5を使う</li>
+          </ul>
+        </div>
+      </div>
+      <div class="g-wn-foot">
+        <span><strong>最小行数：</strong>3行以上（catalog v3.1ルール）</span>
+        <span><strong>注釈：</strong>表下に <code>.term-note</code> で凡例・注釈</span>
+      </div>
+    </div>
+
+    <!-- 11-4 背景色付きリスト -->
+    <div class="g-wn-card">
+      <div class="g-wn-head">
+        <span class="mod-no">11-4</span>
+        <span class="mod-name">背景色付きリスト</span>
+        <span class="mod-class">.norm-list</span>
+      </div>
+      <div class="g-wn-grid">
+        <div class="g-wn-cell when">
+          <div class="g-wn-label">WHEN — こんな時に使う</div>
+          <ul>
+            <li>国際規範・規格名・受賞名など「対象群」を強調列挙</li>
+            <li>箇条として並列しつつ、本文との境界を視覚的に切りたい</li>
+          </ul>
+        </div>
+        <div class="g-wn-cell whennot">
+          <div class="g-wn-label">WHEN NOT — 使わない場面</div>
+          <ul>
+            <li>通常の箇条書き（11-1 を使う）</li>
+            <li>順序が重要なリスト（11-2 番号付き）</li>
+            <li>装飾的に背景色を付けたいだけ（意味のある「対象群」でなければ使わない）</li>
+          </ul>
+        </div>
+      </div>
+      <div class="g-wn-foot">
+        <span><strong>背景色：</strong><code>var(--c-bg-sub)</code>（#F2F2F2）固定</span>
+        <span><strong>マーカー：</strong>◆ 1色のみ（多色化しない）</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ④ ページタイプ別 標準構成 -->
+  <section class="g-section" id="sec-4">
+    <span class="g-section-num">4</span>
+    <div class="g-section-eyebrow">VIEWPOINT 4 — Page Templates</div>
+    <h2 class="g-section-title">ページタイプ別 標準構成：そのまま使える組合せパターン</h2>
+    <p class="g-section-desc">
+      L1〜L4の階層×ページ性質ごとに、「上から順にどのモジュールを並べるか」のテンプレートを示す。クライアントが新ページを企画した際の出発点として使える。
+    </p>
+
+    <!-- Tpl 1: L2インデックス -->
+    <div class="g-tpl">
+      <div class="g-tpl-head">
+        <span class="g-tpl-tier">L2</span>
+        <span class="g-tpl-name">インデックスページ型</span>
+        <span class="g-tpl-pages">適用：004 環境 / 005 社会</span>
+      </div>
+      <div class="g-tpl-body">
+        <div class="g-tpl-flow">
+          <div class="g-tpl-step"><strong>1-2</strong><span>第2階層ヒーロー</span></div>
+          <div class="g-tpl-step"><strong>2-1 + 4-2</strong><span>H2＋導入文</span></div>
+          <div class="g-tpl-step"><strong>7-5</strong><span>横断インデックスリンク</span></div>
+          <div class="g-tpl-step"><strong>7-3（3列）</strong><span>取り組みカード一覧</span></div>
+          <div class="g-tpl-step"><strong>7-4</strong><span>関連リンク</span></div>
+        </div>
+        <p class="g-tpl-note">L2は <strong>「テーマ全体を俯瞰させる」</strong> ことが役割。詳細は配下L3に譲り、ここでは横並びの誘導に徹する。カードは3列で網羅性を演出。</p>
+      </div>
+    </div>
+
+    <!-- Tpl 2: L3テーマ詳細 -->
+    <div class="g-tpl">
+      <div class="g-tpl-head">
+        <span class="g-tpl-tier">L3</span>
+        <span class="g-tpl-name">テーマ詳細型</span>
+        <span class="g-tpl-pages">適用：024 気候変動 / 124 DE&I / 131 健康経営 / 148 顧客責任・品質</span>
+      </div>
+      <div class="g-tpl-body">
+        <div class="g-tpl-flow">
+          <div class="g-tpl-step"><strong>1-3</strong><span>第3階層ヒーロー</span></div>
+          <div class="g-tpl-step"><strong>13-2</strong><span>右アンカーナビ</span></div>
+          <div class="g-tpl-step"><strong>6-1</strong><span>POINTタグ強調</span></div>
+          <div class="g-tpl-step"><strong>2-1 + 8-4</strong><span>H2＋アコーディオン群</span></div>
+          <div class="g-tpl-step"><strong>7-3（2列）</strong><span>取り組みカード</span></div>
+          <div class="g-tpl-step"><strong>7-4</strong><span>関連リンク</span></div>
+        </div>
+        <p class="g-tpl-note">L3は <strong>「テーマの本文・取り組み・関連先」</strong> の3層構成。長文セクションはアコーディオンに、代表事例はカード2列、外部・関連は最下部にまとめる。アンカーナビで縦長ページのナビゲーション性を確保。</p>
+      </div>
+    </div>
+
+    <!-- Tpl 3: 開示データ型 -->
+    <div class="g-tpl">
+      <div class="g-tpl-head">
+        <span class="g-tpl-tier">L3</span>
+        <span class="g-tpl-name">開示・データ型</span>
+        <span class="g-tpl-pages">適用：035 TCFD / 199 ESGデータ / 222 ガイドライン対照表 / 225 イニシアティブ＋社外評価</span>
+      </div>
+      <div class="g-tpl-body">
+        <div class="g-tpl-flow">
+          <div class="g-tpl-step"><strong>1-5</strong><span>シンプルヒーロー</span></div>
+          <div class="g-tpl-step"><strong>13-2</strong><span>右アンカーナビ（任意）</span></div>
+          <div class="g-tpl-step"><strong>2-1</strong><span>H2セクション</span></div>
+          <div class="g-tpl-step"><strong>10-2 / 10-4 / 10-5</strong><span>各種テーブル</span></div>
+          <div class="g-tpl-step"><strong>7-6</strong><span>資料DLカード</span></div>
+        </div>
+        <p class="g-tpl-note">開示型は <strong>「テーブル中心・装飾は最小限」</strong>。POINTタグ強調（6-1）は使わず、データの可読性に振り切る。199 ESGデータは catalog v3.0 ルールでアンカーナビ非設置（凍結事項）。</p>
+      </div>
+    </div>
+
+    <!-- Tpl 4: ポリシー・規程型 -->
+    <div class="g-tpl">
+      <div class="g-tpl-head">
+        <span class="g-tpl-tier">L3</span>
+        <span class="g-tpl-name">ポリシー・規程型</span>
+        <span class="g-tpl-pages">適用：232 方針一覧（097）</span>
+      </div>
+      <div class="g-tpl-body">
+        <div class="g-tpl-flow">
+          <div class="g-tpl-step"><strong>1-5</strong><span>シンプルヒーロー</span></div>
+          <div class="g-tpl-step"><strong>2-1</strong><span>H2（規程カテゴリ別）</span></div>
+          <div class="g-tpl-step"><strong>7-10 .is-full</strong><span>説明文付きリンクボタン × N</span></div>
+        </div>
+        <p class="g-tpl-note">規程一覧は <strong>「各規程に等しい重み」</strong>。カード化やアコーディオンは使わず、7-10 を <code>.is-full</code> で grid 全幅配置するだけで成立。容量・形式メタを <code>.link-btn-meta</code> で併記。</p>
+      </div>
+    </div>
+
+    <!-- Tpl 5: アーカイブ型 -->
+    <div class="g-tpl">
+      <div class="g-tpl-head">
+        <span class="g-tpl-tier">L3</span>
+        <span class="g-tpl-name">アーカイブ型</span>
+        <span class="g-tpl-pages">適用：230 サステナビリティサイトアーカイブ（096）</span>
+      </div>
+      <div class="g-tpl-body">
+        <div class="g-tpl-flow">
+          <div class="g-tpl-step"><strong>1-5</strong><span>シンプルヒーロー</span></div>
+          <div class="g-tpl-step"><strong>12-3</strong><span>年度フィルタチップ（任意）</span></div>
+          <div class="g-tpl-step"><strong>7-10</strong><span>説明文付きリンクボタン（PDF容量メタ付き）</span></div>
+        </div>
+        <p class="g-tpl-note">過去PDFの並列。タイトルに <strong>容量併記</strong>、<code>.link-btn-meta</code> で発行年・形式を表示。<code>.report-group</code> 系は廃止し、7-10 に統一。</p>
+      </div>
+    </div>
+
+    <!-- Tpl 6: ニュース一覧型 -->
+    <div class="g-tpl">
+      <div class="g-tpl-head">
+        <span class="g-tpl-tier">L3</span>
+        <span class="g-tpl-name">ニュース・一覧型</span>
+        <span class="g-tpl-pages">適用：231 トピックス一覧（105）</span>
+      </div>
+      <div class="g-tpl-body">
+        <div class="g-tpl-flow">
+          <div class="g-tpl-step"><strong>1-5</strong><span>シンプルヒーロー</span></div>
+          <div class="g-tpl-step"><strong>12-3</strong><span>年度フィルタチップ</span></div>
+          <div class="g-tpl-step"><strong>7-9</strong><span>ニュース・トピックスリスト</span></div>
+        </div>
+        <p class="g-tpl-note">時系列の更新情報。1行＝1記事。<strong>4行以上を表示</strong>（catalog v3.1 ルール）。アンカーナビは非設置（凍結事項）。</p>
+      </div>
+    </div>
+
+    <!-- Tpl 7: L4個別取り組み -->
+    <div class="g-tpl">
+      <div class="g-tpl-head">
+        <span class="g-tpl-tier">L4</span>
+        <span class="g-tpl-name">個別取り組み型</span>
+        <span class="g-tpl-pages">適用：025 再エネ / 098 健康宣言 / 099 労働安全衛生方針</span>
+      </div>
+      <div class="g-tpl-body">
+        <div class="g-tpl-flow">
+          <div class="g-tpl-step"><strong>1-4</strong><span>第4階層ヒーロー</span></div>
+          <div class="g-tpl-step"><strong>13-2</strong><span>右アンカーナビ</span></div>
+          <div class="g-tpl-step"><strong>5-1 / 5-2</strong><span>画像＋テキスト</span></div>
+          <div class="g-tpl-step"><strong>6-1 + 11系</strong><span>強調＋リスト</span></div>
+          <div class="g-tpl-step"><strong>7-4</strong><span>関連リンク</span></div>
+        </div>
+        <p class="g-tpl-note">L4は <strong>「単一施策の説明」</strong>。L3より具体的な画像PH・図表が増える。1-4ヒーローはパンくず＋親リンクで「どこから来たか」を明示する。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑤ 横断ルール -->
+  <section class="g-section" id="sec-5">
+    <span class="g-section-num">5</span>
+    <div class="g-section-eyebrow">VIEWPOINT 5 — Cross-cutting Rules</div>
+    <h2 class="g-section-title">横断ルール：モジュール単独に紐づかない全体規律</h2>
+    <p class="g-section-desc">
+      カタログには載っていないが、全モジュール／全ページに適用される共通ルール。実装フェーズで意図がズレないよう、ここで明文化する。
+    </p>
+
+    <div class="g-rule-list">
+      <div class="g-rule-item">
+        <div class="g-rule-key">既存原文厳守</div>
+        <div class="g-rule-val">
+          既存サイトに対応原文・画像が存在するモジュールのみ採用する。WF段階で <strong>架空の補足カード化／KPI展開／案内文</strong> を加えない。情報量が少ないページはそれ自体がKMの開示判断の結果であり、勝手に盛らない。ダミー本文プレフィックス「（文章はダミーです）」は付けてよいが、本文内容は既存原文を保持。
+        </div>
+      </div>
+      <div class="g-rule-item">
+        <div class="g-rule-key">画像「+」拡大ボタン</div>
+        <div class="g-rule-val">
+          <strong>単独画像PH</strong>（グラフ／体制図／模式図／キービジュアル／写真ギャラリー等）にのみ付与する。<strong>カード内画像</strong>（<code>.activity-card-img</code> 等）には <strong>絶対に付けない</strong>。
+        </div>
+      </div>
+      <div class="g-rule-item">
+        <div class="g-rule-key">アコーディオン初期状態</div>
+        <div class="g-rule-val">
+          すべて <code>&lt;details open&gt;</code> で <strong>初期展開</strong>。WFでは閉じた状態を見せない。階層に応じて <code>.wf-acc-h3</code>（H3配下：グレー帯）／<code>.wf-acc-h4</code>（H4配下：上部横ライン＋白）を使い分け。
+        </div>
+      </div>
+      <div class="g-rule-item">
+        <div class="g-rule-key">ボタンリンク（7-2 / 7-10）の色</div>
+        <div class="g-rule-val">
+          <strong>白背景＋黒文字＋黒ボーダー</strong>のみ。黒背景ボタンは廃止。<code>.is-primary</code> は外枠を2pxに強調するバリアントで、色反転ではない。
+        </div>
+      </div>
+      <div class="g-rule-item">
+        <div class="g-rule-key">トピックエリア（6-1）の形式</div>
+        <div class="g-rule-val">
+          <strong>左上タグ＋全周ボーダー</strong>型で統一。左縦棒型／オーバーレイアイコン型は廃止。タグ文言はページ内容を表す英字短文に（POINT / MATERIALITY KPI / CARBON MINUS 2025 等）。
+        </div>
+      </div>
+      <div class="g-rule-item">
+        <div class="g-rule-key">アンカーナビ（13-2）の設置可否</div>
+        <div class="g-rule-val">
+          L3／L4の縦長ページに設置可。ただし <strong>199 ESGデータ／096 アーカイブ／105 ニュース一覧</strong> はユーザー判断で <strong>凍結（非設置）</strong>。一覧系・短尺ページはナビ不要との判断。
+        </div>
+      </div>
+      <div class="g-rule-item">
+        <div class="g-rule-key">取り組みカード（7-3）のタグ</div>
+        <div class="g-rule-val">
+          カテゴリタグは <strong>ジャンル別に具体記載</strong>（例：「省エネ」「再エネ」「事業所」）。「取り組み」など一律タグはNG。
+        </div>
+      </div>
+      <div class="g-rule-item">
+        <div class="g-rule-key">テーブル最小行数</div>
+        <div class="g-rule-val">
+          データ表は <strong>3行以上</strong>を表示（catalog v3.1 ルール）。ニュース行は <strong>4行以上</strong>。少なすぎる表は11リストへの置換を検討。
+        </div>
+      </div>
+      <div class="g-rule-item">
+        <div class="g-rule-key">用語モーダル（9-2）の配置</div>
+        <div class="g-rule-val">
+          <code>.term-trigger</code>（？マーク丸＋用語名）を <strong>ブロック下部の <code>.term-note</code></strong> に配置。本文インライン埋込は避ける。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑥ アンチパターン集 -->
+  <section class="g-section" id="sec-6">
+    <span class="g-section-num">6</span>
+    <div class="g-section-eyebrow">VIEWPOINT 6 — Anti-patterns</div>
+    <h2 class="g-section-title">アンチパターン集：やってはいけない組合せ・差し戻し履歴</h2>
+    <p class="g-section-desc">
+      過去に作って差し戻された／意図的に廃止した構成。クライアントから「これは？」と聞かれた時の即答ストック。
+    </p>
+
+    <div class="g-anti-card">
+      <div class="g-anti-bad">
+        <span class="g-anti-label">NG</span>
+        <p><strong>左縦棒型 callout-box</strong>（旧 <code>.callout-box</code> の <code>border-left: 3px solid</code>）</p>
+        <p style="margin-top:6px; color: var(--c-text-s);">H3 <code>.wf-sub-title</code> の左4px縦棒と方向が重複し、視覚的に区別がつかない。</p>
+      </div>
+      <div class="g-anti-good">
+        <span class="g-anti-label">OK</span>
+        <p><strong>左上タグ＋全周ボーダー型</strong>（現行 .callout-box）</p>
+        <p style="margin-top:6px; color: var(--c-text-s);">タグで「ここがトピック」を即認識でき、H3との方向重複もない。</p>
+      </div>
+    </div>
+
+    <div class="g-anti-card">
+      <div class="g-anti-bad">
+        <span class="g-anti-label">NG</span>
+        <p><strong>アコーディオン内のH3アコーディオン入れ子</strong></p>
+        <p style="margin-top:6px; color: var(--c-text-s);">階層関係が崩れ、ユーザーが構造を見失う。H3配下の長文はH4見出し＋直接表示に。</p>
+      </div>
+      <div class="g-anti-good">
+        <span class="g-anti-label">OK</span>
+        <p><strong>H3アコーディオン内にH4直接見出し</strong></p>
+        <p style="margin-top:6px; color: var(--c-text-s);">またはH3直接表示＋H4アコーディオン（<code>.wf-acc-h4</code>）。</p>
+      </div>
+    </div>
+
+    <div class="g-anti-card">
+      <div class="g-anti-bad">
+        <span class="g-anti-label">NG</span>
+        <p><strong>取り組みカードに「取り組み」一律タグ</strong></p>
+        <p style="margin-top:6px; color: var(--c-text-s);">カテゴリが識別できず、カードの並列価値が消える。</p>
+      </div>
+      <div class="g-anti-good">
+        <span class="g-anti-label">OK</span>
+        <p><strong>ジャンル別の具体タグ</strong>（「省エネ」「再エネ」「事業所」等）</p>
+        <p style="margin-top:6px; color: var(--c-text-s);">カテゴリで識別でき、ユーザーが選んで読める。</p>
+      </div>
+    </div>
+
+    <div class="g-anti-card">
+      <div class="g-anti-bad">
+        <span class="g-anti-label">NG</span>
+        <p><strong>カード内画像への「+」拡大ボタン</strong></p>
+        <p style="margin-top:6px; color: var(--c-text-s);">カード遷移と画像拡大が干渉。クリック誤認の元。</p>
+      </div>
+      <div class="g-anti-good">
+        <span class="g-anti-label">OK</span>
+        <p><strong>単独画像PHにのみ「+」を付ける</strong></p>
+        <p style="margin-top:6px; color: var(--c-text-s);">グラフ・体制図・模式図などの単独画像のみ拡大可。</p>
+      </div>
+    </div>
+
+    <div class="g-anti-card">
+      <div class="g-anti-bad">
+        <span class="g-anti-label">NG</span>
+        <p><strong>既存原文に無いカード展開</strong>（リスク管理を2カラムカードで「排出規制／低炭素技術／…」展開等）</p>
+        <p style="margin-top:6px; color: var(--c-text-s);">WFで盛ると、実装フェーズで「正しい原稿」が判断できなくなる。</p>
+      </div>
+      <div class="g-anti-good">
+        <span class="g-anti-label">OK</span>
+        <p><strong>既存原文どおりのテキスト1行＋ダミープレフィックス</strong></p>
+        <p style="margin-top:6px; color: var(--c-text-s);">「（文章はダミーです）」＋既存原文。情報量はそのまま保持。</p>
+      </div>
+    </div>
+
+    <div class="g-anti-card">
+      <div class="g-anti-bad">
+        <span class="g-anti-label">NG</span>
+        <p><strong>ボタンを黒背景＋白文字で配置</strong>（旧スタイル）</p>
+        <p style="margin-top:6px; color: var(--c-text-s);">ヒーロー・タグ・トグル等の黒要素と干渉し、視覚階層が崩れる。</p>
+      </div>
+      <div class="g-anti-good">
+        <span class="g-anti-label">OK</span>
+        <p><strong>白背景＋黒文字＋黒ボーダー</strong>（現行 <code>.wf-btn</code> / <code>.link-btn</code>）</p>
+        <p style="margin-top:6px; color: var(--c-text-s);">主要遷移を強調したい場合は <code>.is-primary</code>（外枠2px）で。</p>
+      </div>
+    </div>
+
+    <div class="g-anti-card">
+      <div class="g-anti-bad">
+        <span class="g-anti-label">NG</span>
+        <p><strong>POINTタグ強調（6-1）を1ページに3個以上</strong></p>
+        <p style="margin-top:6px; color: var(--c-text-s);">強調が連続すると「強調」として機能しなくなる。全部重要＝全部並、と同じ。</p>
+      </div>
+      <div class="g-anti-good">
+        <span class="g-anti-label">OK</span>
+        <p><strong>1ページに1〜2個まで、ページの結論／KPIに限定</strong></p>
+        <p style="margin-top:6px; color: var(--c-text-s);">補足レベルは6-2薄グレー、注釈は4-3を使う。</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="g-footer">
+    <div>KMサステナビリティWF — モジュール選定ガイド v1.0 ／ 2026.05.13 ／ 13カテゴリ・47モジュール対応</div>
+    <div>
+      <a href="module-catalog-v2.html">モジュール一覧 v3.6.5 →</a>
+
+      <a href="index.html">← Hub</a>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>
