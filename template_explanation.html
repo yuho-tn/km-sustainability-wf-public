@@ -31,12 +31,12 @@
   --c-t1-bg:     #E8EEFA;
   --c-t2:        #059669; /* 統合 */
   --c-t2-bg:     #D1FAE5;
-  --c-t4:        #7C3AED; /* 情報開示 */
-  --c-t4-bg:     #EDE9FE;
-  --c-t5:        #0891B2; /* データ/レポート */
-  --c-t5-bg:     #CFFAFE;
-  --c-t6:        #64748B; /* その他 */
-  --c-t6-bg:     #E2E8F0;
+  --c-t3:        #7C3AED; /* 情報開示 */
+  --c-t3-bg:     #EDE9FE;
+  --c-t4:        #0891B2; /* データ/レポート */
+  --c-t4-bg:     #CFFAFE;
+  --c-t5:        #64748B; /* その他 */
+  --c-t5-bg:     #E2E8F0;
   --radius:      12px;
   --radius-s:    8px;
   --shadow:      0 1px 3px rgba(15, 23, 42, 0.04), 0 8px 24px rgba(15, 23, 42, 0.05);
@@ -358,14 +358,27 @@ section.alt { background: var(--c-white); }
 }
 .tpl-overview-row .tpl-tag.t1 { background: var(--c-t1-bg); color: var(--c-t1); }
 .tpl-overview-row .tpl-tag.t2 { background: var(--c-t2-bg); color: var(--c-t2); }
+.tpl-overview-row .tpl-tag.t3 { background: var(--c-t3-bg); color: var(--c-t3); }
 .tpl-overview-row .tpl-tag.t4 { background: var(--c-t4-bg); color: var(--c-t4); }
 .tpl-overview-row .tpl-tag.t5 { background: var(--c-t5-bg); color: var(--c-t5); }
-.tpl-overview-row .tpl-tag.t6 { background: var(--c-t6-bg); color: var(--c-t6); }
 .tpl-overview-row .tpl-name {
   font-size: 14.5px;
   font-weight: 700;
   color: var(--c-ink);
   line-height: 1.5;
+}
+.cell-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--c-text-s);
+  margin-right: 6px;
+  margin-bottom: 6px;
 }
 
 /* ============================================================
@@ -389,9 +402,9 @@ section.alt { background: var(--c-white); }
 }
 .tpl-detail.t1 .tpl-detail-head { background: linear-gradient(135deg, var(--c-t1-bg) 0%, rgba(232,238,250,0.4) 100%); }
 .tpl-detail.t2 .tpl-detail-head { background: linear-gradient(135deg, var(--c-t2-bg) 0%, rgba(209,250,229,0.4) 100%); }
-.tpl-detail.t4 .tpl-detail-head { background: linear-gradient(135deg, var(--c-t4-bg) 0%, rgba(237,233,254,0.4) 100%); }
-.tpl-detail.t5 .tpl-detail-head { background: linear-gradient(135deg, var(--c-t5-bg) 0%, rgba(207,250,254,0.4) 100%); }
-.tpl-detail.t6 .tpl-detail-head { background: linear-gradient(135deg, var(--c-t6-bg) 0%, rgba(226,232,240,0.4) 100%); }
+.tpl-detail.t3 .tpl-detail-head { background: linear-gradient(135deg, var(--c-t3-bg) 0%, rgba(237,233,254,0.4) 100%); }
+.tpl-detail.t4 .tpl-detail-head { background: linear-gradient(135deg, var(--c-t4-bg) 0%, rgba(207,250,254,0.4) 100%); }
+.tpl-detail.t5 .tpl-detail-head { background: linear-gradient(135deg, var(--c-t5-bg) 0%, rgba(226,232,240,0.4) 100%); }
 .tpl-detail-badge {
   display: inline-flex;
   align-items: center;
@@ -405,9 +418,9 @@ section.alt { background: var(--c-white); }
 }
 .tpl-detail.t1 .tpl-detail-badge { background: var(--c-t1); }
 .tpl-detail.t2 .tpl-detail-badge { background: var(--c-t2); }
+.tpl-detail.t3 .tpl-detail-badge { background: var(--c-t3); }
 .tpl-detail.t4 .tpl-detail-badge { background: var(--c-t4); }
 .tpl-detail.t5 .tpl-detail-badge { background: var(--c-t5); }
-.tpl-detail.t6 .tpl-detail-badge { background: var(--c-t6); }
 .tpl-detail-name {
   font-size: 22px;
   font-weight: 700;
@@ -459,9 +472,9 @@ section.alt { background: var(--c-white); }
 }
 .tpl-detail.t1 .tpl-detail-block h4::before { background: var(--c-t1); }
 .tpl-detail.t2 .tpl-detail-block h4::before { background: var(--c-t2); }
+.tpl-detail.t3 .tpl-detail-block h4::before { background: var(--c-t3); }
 .tpl-detail.t4 .tpl-detail-block h4::before { background: var(--c-t4); }
 .tpl-detail.t5 .tpl-detail-block h4::before { background: var(--c-t5); }
-.tpl-detail.t6 .tpl-detail-block h4::before { background: var(--c-t6); }
 .tpl-detail-block p {
   font-size: 13.5px;
   line-height: 1.85;
@@ -491,9 +504,9 @@ section.alt { background: var(--c-white); }
 }
 .tpl-detail.t1 .tpl-detail-block ul li::before { background: var(--c-t1); }
 .tpl-detail.t2 .tpl-detail-block ul li::before { background: var(--c-t2); }
+.tpl-detail.t3 .tpl-detail-block ul li::before { background: var(--c-t3); }
 .tpl-detail.t4 .tpl-detail-block ul li::before { background: var(--c-t4); }
 .tpl-detail.t5 .tpl-detail-block ul li::before { background: var(--c-t5); }
-.tpl-detail.t6 .tpl-detail-block ul li::before { background: var(--c-t6); }
 
 .tpl-detail-pages {
   padding: 18px 32px 28px;
@@ -533,7 +546,7 @@ section.alt { background: var(--c-white); }
 }
 
 /* ============================================================
-   DECISION FLOW — ①②④の見分け方
+   DECISION FLOW — ①②③の見分け方
 ============================================================ */
 .flow-wrap {
   background: var(--c-white);
@@ -643,9 +656,9 @@ section.alt { background: var(--c-white); }
 }
 .flow-branch .tpl-pill.t1 { background: var(--c-t1-bg); color: var(--c-t1); }
 .flow-branch .tpl-pill.t2 { background: var(--c-t2-bg); color: var(--c-t2); }
+.flow-branch .tpl-pill.t3 { background: var(--c-t3-bg); color: var(--c-t3); }
 .flow-branch .tpl-pill.t4 { background: var(--c-t4-bg); color: var(--c-t4); }
 .flow-branch .tpl-pill.t5 { background: var(--c-t5-bg); color: var(--c-t5); }
-.flow-branch .tpl-pill.t6 { background: var(--c-t6-bg); color: var(--c-t6); }
 
 /* ============================================================
    COMPARISON — 紛らわしい3つの比較
@@ -665,7 +678,7 @@ section.alt { background: var(--c-white); }
 }
 .compare-card.t1 { border-top: 4px solid var(--c-t1); }
 .compare-card.t2 { border-top: 4px solid var(--c-t2); }
-.compare-card.t4 { border-top: 4px solid var(--c-t4); }
+.compare-card.t3 { border-top: 4px solid var(--c-t3); }
 .compare-card-id {
   font-size: 10px;
   font-weight: 700;
@@ -700,9 +713,6 @@ section.alt { background: var(--c-white); }
   color: var(--c-text);
   line-height: 1.65;
 }
-.compare-card.t1 .compare-row-label::before { color: var(--c-t1); }
-.compare-card.t2 .compare-row-label::before { color: var(--c-t2); }
-.compare-card.t4 .compare-row-label::before { color: var(--c-t4); }
 
 /* ============================================================
    FAQ FOOTNOTE
@@ -798,7 +808,7 @@ section.alt { background: var(--c-white); }
       <a href="#sec-overview"><span class="num">1</span>5テンプレート一覧</a>
       <a href="#sec-detail"><span class="num">2</span>各テンプレート詳細</a>
       <a href="#sec-flow"><span class="num">3</span>判定フロー</a>
-      <a href="#sec-compare"><span class="num">4</span>①②④の見分け</a>
+      <a href="#sec-compare"><span class="num">4</span>①②③の見分け</a>
     </div>
   </div>
 </div>
@@ -849,7 +859,7 @@ section.alt { background: var(--c-white); }
     <div class="section-head">
       <div class="section-num">1</div>
       <h2 class="section-title">5つのテンプレート区分 ― 一覧</h2>
-      <p class="section-lead">テンプレートは番号①②④⑤⑥の5区分（③は欠番）。それぞれの判定軸（どんなコンテンツ性質ならこのテンプレートか）と中心モジュールを一覧化しました。</p>
+      <p class="section-lead">テンプレートは番号①〜⑤の5区分。それぞれの判定軸（どんなコンテンツ性質ならこのテンプレートか）と中心モジュールを一覧化しました。</p>
     </div>
 
     <div class="tpl-overview">
@@ -889,7 +899,7 @@ section.alt { background: var(--c-white); }
 
       <div class="tpl-overview-row">
         <div class="col-tpl">
-          <div class="tpl-tag t4"><span class="num">④</span>情報開示</div>
+          <div class="tpl-tag t3"><span class="num">③</span>情報開示</div>
           <div class="tpl-name">TCFD等の開示要件型</div>
         </div>
         <div>開示要件（TCFD等）に沿って <strong>情報・図版・リンクが大量に並ぶ</strong> ページ。構造というより情報密度で区別。</div>
@@ -903,7 +913,7 @@ section.alt { background: var(--c-white); }
 
       <div class="tpl-overview-row">
         <div class="col-tpl">
-          <div class="tpl-tag t5"><span class="num">⑤</span>データ／レポート</div>
+          <div class="tpl-tag t4"><span class="num">④</span>データ／レポート</div>
           <div class="tpl-name">リンク・PDF主導</div>
         </div>
         <div>外部資料・PDF・年次レポート等への <strong>リンクが主役</strong> のページ。リンクモジュールの設計が中心課題。</div>
@@ -916,10 +926,10 @@ section.alt { background: var(--c-white); }
 
       <div class="tpl-overview-row">
         <div class="col-tpl">
-          <div class="tpl-tag t6"><span class="num">⑥</span>その他</div>
+          <div class="tpl-tag t5"><span class="num">⑤</span>その他</div>
           <div class="tpl-name">特殊モジュール適用</div>
         </div>
-        <div>①〜⑤に当てはまらず、ページ固有の <strong>特殊UI／特殊モジュール</strong> が必要なページ。</div>
+        <div>①〜④に当てはまらず、ページ固有の <strong>特殊UI／特殊モジュール</strong> が必要なページ。</div>
         <div>ページ固有の構成（一覧UI、ニュース、対照表など）</div>
         <div>
           <span class="cell-tag">ニュース一覧</span>
@@ -927,12 +937,6 @@ section.alt { background: var(--c-white); }
           <span class="cell-tag">その他特殊UI</span>
         </div>
       </div>
-    </div>
-
-    <div class="fn">
-      <div class="fn-label">📝 NOTE</div>
-      <h4>③は欠番です</h4>
-      <p>初期整理時に③として想定していた区分は、結果的に①または②に吸収されたため、最終的に①②④⑤⑥の5区分で運用しています。番号の連番崩れはこの経緯によるものです。</p>
     </div>
   </div>
 </section>
@@ -1019,15 +1023,15 @@ section.alt { background: var(--c-white); }
       </div>
     </div>
 
-    <!-- ④ 情報開示 -->
-    <div class="tpl-detail t4">
+    <!-- ③ 情報開示 -->
+    <div class="tpl-detail t3">
       <div class="tpl-detail-head">
-        <div class="tpl-detail-badge">④</div>
+        <div class="tpl-detail-badge">③</div>
         <div>
           <div class="tpl-detail-name">情報開示</div>
           <div class="tpl-detail-sub">TCFD等／図版・表・参照リンクの密度が高い</div>
         </div>
-        <div class="tpl-detail-id">L3_④</div>
+        <div class="tpl-detail-id">L3_③</div>
       </div>
       <div class="tpl-detail-body">
         <div class="tpl-detail-block">
@@ -1052,15 +1056,15 @@ section.alt { background: var(--c-white); }
       </div>
     </div>
 
-    <!-- ⑤ データ／レポート -->
-    <div class="tpl-detail t5">
+    <!-- ④ データ／レポート -->
+    <div class="tpl-detail t4">
       <div class="tpl-detail-head">
-        <div class="tpl-detail-badge">⑤</div>
+        <div class="tpl-detail-badge">④</div>
         <div>
           <div class="tpl-detail-name">データ／レポート</div>
           <div class="tpl-detail-sub">外部資料／PDF／年次レポートへのリンク主導</div>
         </div>
-        <div class="tpl-detail-id">L3_⑤</div>
+        <div class="tpl-detail-id">L3_④</div>
       </div>
       <div class="tpl-detail-body">
         <div class="tpl-detail-block">
@@ -1077,7 +1081,7 @@ section.alt { background: var(--c-white); }
         </div>
       </div>
       <div class="tpl-detail-pages">
-        <h4>該当ページ例（18ページバッチ内・現時点の想定）</h4>
+        <h4>該当ページ例(18ページバッチ内・現時点の想定）</h4>
         <div class="pages-list">
           <span class="page-chip"><span class="pid">#199</span>ESGデータ</span>
           <span class="page-chip"><span class="pid">#222</span>ガイドライン対照表</span>
@@ -1087,20 +1091,20 @@ section.alt { background: var(--c-white); }
       </div>
     </div>
 
-    <!-- ⑥ その他 -->
-    <div class="tpl-detail t6">
+    <!-- ⑤ その他 -->
+    <div class="tpl-detail t5">
       <div class="tpl-detail-head">
-        <div class="tpl-detail-badge">⑥</div>
+        <div class="tpl-detail-badge">⑤</div>
         <div>
           <div class="tpl-detail-name">その他</div>
           <div class="tpl-detail-sub">ページ固有の特殊UI／特殊モジュール適用</div>
         </div>
-        <div class="tpl-detail-id">L3_⑥</div>
+        <div class="tpl-detail-id">L3_⑤</div>
       </div>
       <div class="tpl-detail-body">
         <div class="tpl-detail-block">
           <h4>判定軸 ─ どんな性質ならこのテンプレート？</h4>
-          <p>①〜⑤のいずれにも該当せず、<strong>そのページ固有のUI要件</strong>を持つページが対象です。ニュース一覧、トピックス一覧など、汎用テンプレートに当てはめにくい構成のページが入ります。</p>
+          <p>①〜④のいずれにも該当せず、<strong>そのページ固有のUI要件</strong>を持つページが対象です。ニュース一覧、トピックス一覧など、汎用テンプレートに当てはめにくい構成のページが入ります。</p>
         </div>
         <div class="tpl-detail-block">
           <h4>典型的なページ構成</h4>
@@ -1141,12 +1145,12 @@ section.alt { background: var(--c-white); }
           <div class="flow-branches">
             <div class="flow-branch yes">
               <div class="flow-branch-label">主役は<strong>リンク</strong></div>
-              <div class="tpl-pill t5"><span>⑤</span>データ／レポート</div>
+              <div class="tpl-pill t4"><span>④</span>データ／レポート</div>
               <div class="flow-branch-detail">PDF・年次レポート・外部資料へのリンクが本文より多いページ。</div>
             </div>
             <div class="flow-branch no">
               <div class="flow-branch-label">主役は<strong>特殊UI</strong></div>
-              <div class="tpl-pill t6"><span>⑥</span>その他</div>
+              <div class="tpl-pill t5"><span>⑤</span>その他</div>
               <div class="flow-branch-detail">一覧UI／ニュース／対照表など、汎用テンプレに収まらない構成。</div>
             </div>
           </div>
@@ -1161,7 +1165,7 @@ section.alt { background: var(--c-white); }
           <div class="flow-branches">
             <div class="flow-branch yes">
               <div class="flow-branch-label">YES</div>
-              <div class="tpl-pill t4"><span>④</span>情報開示</div>
+              <div class="tpl-pill t3"><span>③</span>情報開示</div>
               <div class="flow-branch-detail">図版・データ表・参照リンクが密に並ぶ。開示要件由来の章立て構造を持つ。</div>
             </div>
             <div class="flow-branch no">
@@ -1195,14 +1199,14 @@ section.alt { background: var(--c-white); }
 </section>
 
 <!-- ============================================================
-     SECTION 4 — ①②④の見分け
+     SECTION 4 — ①②③の見分け
 ============================================================ -->
 <section id="sec-compare" class="alt">
   <div class="wrap">
     <div class="section-head">
       <div class="section-num">4</div>
-      <h2 class="section-title">よく似た3つ ─ ①基本FMT／②統合FMT／④情報開示 の見分け方</h2>
-      <p class="section-lead">ご質問いただいた「①と②と④の区別がつかない」という点について、3軸で比較表にしました。<strong>下位ページの扱い</strong>と<strong>情報の出所</strong>が分かれ目です。</p>
+      <h2 class="section-title">よく似た3つ ─ ①基本FMT／②統合FMT／③情報開示 の見分け方</h2>
+      <p class="section-lead">ご質問いただいた「①と②と③の区別がつかない」という点について、3軸で比較表にしました。<strong>下位ページの扱い</strong>と<strong>情報の出所</strong>が分かれ目です。</p>
     </div>
 
     <div class="compare-grid">
@@ -1256,8 +1260,8 @@ section.alt { background: var(--c-white); }
         </div>
       </div>
 
-      <div class="compare-card t4">
-        <div class="compare-card-id">L3_④</div>
+      <div class="compare-card t3">
+        <div class="compare-card-id">L3_③</div>
         <div class="compare-card-name">情報開示</div>
         <div class="compare-row">
           <div class="compare-row-label">下位ページ（L4）の扱い</div>
@@ -1284,8 +1288,8 @@ section.alt { background: var(--c-white); }
 
     <div class="fn">
       <div class="fn-label">💡 ポイント</div>
-      <h4>①と②は「下位ページの扱い」で割れる／②と④は「情報の出所と密度」で割れる</h4>
-      <p>① と ② はどちらも自社の取り組み情報を扱う点で似ていますが、<strong>下位ページ（L4）を残して遷移させるか／L3内に集約するか</strong>で割れます。<br>② と ④ はどちらもL3内で情報が完結する点で似ていますが、<strong>情報の出所（自社の取り組み vs. 外部開示フレーム）</strong>と<strong>情報密度</strong>で割れます。④はTCFD等の章立てに沿って図版・データが大量に並ぶ点が決定的に違います。</p>
+      <h4>①と②は「下位ページの扱い」で割れる／②と③は「情報の出所と密度」で割れる</h4>
+      <p>① と ② はどちらも自社の取り組み情報を扱う点で似ていますが、<strong>下位ページ（L4）を残して遷移させるか／L3内に集約するか</strong>で割れます。<br>② と ③ はどちらもL3内で情報が完結する点で似ていますが、<strong>情報の出所（自社の取り組み vs. 外部開示フレーム）</strong>と<strong>情報密度</strong>で割れます。③はTCFD等の章立てに沿って図版・データが大量に並ぶ点が決定的に違います。</p>
     </div>
   </div>
 </section>
