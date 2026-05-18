@@ -560,18 +560,9 @@ body {
 
 /* TOP専用 見出しモジュール
    ・下層（仮想）ページの「グラデ下線見出し（.wf-section-title）」とは別系統
-   ・英字は日本語と上下に並べず、大きな白抜きアウトラインの装飾モチーフとして
-     タイトル背面にあしらう（エディトリアル型）。連番なし */
-.top-rich-head { position: relative; margin-bottom: 26px; padding-top: 30px; overflow: hidden; }
-.trh-eyebrow {
-  position: absolute; top: -4px; left: -2px;
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-  font-size: 50px; font-weight: 800; line-height: 1;
-  text-transform: uppercase; letter-spacing: 0;
-  color: transparent; -webkit-text-stroke: 1px var(--c-ph-line);
-  white-space: nowrap; pointer-events: none; user-select: none; z-index: 0;
-}
-.trh-main { position: relative; z-index: 1; }
+   ・英字ラベルは廃止。短い実線アクセント＋日本語タイトル＋補足サブのみ。連番なし */
+.top-rich-head { margin-bottom: 26px; }
+.trh-main { display: block; }
 .trh-title {
   font-size: 28px; font-weight: 700; color: var(--c-text-h);
   line-height: 1.3; letter-spacing: -0.015em;
@@ -639,7 +630,7 @@ body {
 }
 
 /* 資料・データ：コンパクトなクイックアクセスUI（添付準拠）
-   左ラベル＋青の縦アクセント／右に「タイトル＋補足＋外部リンクアイコン＋下線」を横並び */
+   左ラベル＋黒の縦アクセント／右に「タイトル＋補足＋下層リンク矢印＋下線」を横並び */
 .quick-access {
   display: grid; grid-template-columns: auto 1fr;
   align-items: stretch; gap: 36px;
@@ -648,7 +639,7 @@ body {
   display: flex; align-items: center;
   font-size: 13px; font-weight: 700; letter-spacing: 0.16em;
   color: var(--c-text-h); text-transform: uppercase;
-  border-right: 3px solid #1A56DB;
+  border-right: 3px solid var(--c-text-h);
   padding-right: 36px; white-space: nowrap;
 }
 .qa-items {
@@ -666,19 +657,10 @@ body {
 }
 .qa-item-meta { font-size: 11px; color: var(--c-text-s); margin-top: 4px; }
 .qa-item-icon {
-  flex: 0 0 auto; width: 18px; height: 18px;
-  position: relative; color: var(--c-text-h);
+  flex: 0 0 auto; color: var(--c-text-h);
+  font-size: 18px; font-weight: 700; line-height: 1;
 }
-.qa-item-icon::before {
-  content: ''; position: absolute; left: 0; bottom: 0;
-  width: 13px; height: 13px;
-  border: 1.5px solid currentColor; border-top-color: transparent;
-  border-right-color: transparent;
-}
-.qa-item-icon::after {
-  content: '↗'; position: absolute; right: -1px; top: -3px;
-  font-size: 14px; font-weight: 700; line-height: 1;
-}
+.qa-item-icon::after { content: '›'; }
 </style>
 </head>
 
@@ -705,14 +687,9 @@ body {
       <span class="wf-section-marker" style="top:18px; left:14px; background:#fff; color:#222;">1</span>
       <h1 class="top-hero-title">サステナビリティ</h1>
       <p class="top-hero-copy">新しい価値の創造を通した社会課題の解決</p>
+      <p class="top-hero-lead">コニカミノルタは、イメージングの力を中核に、お客様・社会とともに新たな価値を創造し続けることで、社会の実現と企業価値の向上を目指します。</p>
       <div class="top-hero-imgnote">[ ヒーロービジュアル PH｜全幅画像（風景・自然系）]</div>
     </section>
-    <!-- #11 既定案：リード文を画像下の白帯へ切り出し（圧縮ヒーローでも可読性確保） -->
-    <div class="top-hero-band">
-      <p class="top-hero-band-lead">
-        コニカミノルタは、イメージングの力を中核に、お客様・社会とともに新たな価値を創造し続けることで、社会の実現と企業価値の向上を目指します。
-      </p>
-    </div>
 
     <!-- ============================================================
          ② サステナビリティ戦略（H2横リンク）
@@ -721,7 +698,6 @@ body {
       <span class="wf-section-marker">2</span>
       <div class="top-rich-head">
         <div class="trh-main">
-          <span class="trh-eyebrow">Strategy</span>
           <h2 class="trh-title">サステナビリティ戦略<span class="trh-sub">価値創造ストーリーに基づく中長期の方向性</span></h2>
         </div>
       </div>
@@ -767,7 +743,6 @@ body {
       <span class="wf-section-marker">3</span>
       <div class="top-rich-head">
         <div class="trh-main">
-          <span class="trh-eyebrow">Sustainability</span>
           <h2 class="trh-title">サステナビリティの取り組み<span class="trh-sub">環境・社会・ガバナンスの取り組みと進捗</span></h2>
         </div>
       </div>
@@ -829,7 +804,6 @@ body {
       <span class="wf-section-marker">4</span>
       <div class="top-rich-head">
         <div class="trh-main">
-          <span class="trh-eyebrow">Management</span>
           <h2 class="trh-title">サステナビリティマネジメント<span class="trh-sub">推進体制とステークホルダーエンゲージメント</span></h2>
         </div>
       </div>
@@ -853,7 +827,6 @@ body {
       <span class="wf-section-marker">5</span>
       <div class="top-rich-head">
         <div class="trh-main">
-          <span class="trh-eyebrow">Evaluation &amp; Initiatives</span>
           <h2 class="trh-title">社外からの評価とイニシアチブへの参画<span class="trh-sub">外部評価・参画イニシアティブ</span></h2>
         </div>
       </div>
@@ -919,7 +892,6 @@ body {
       <span class="wf-section-marker">7</span>
       <div class="top-rich-head">
         <div class="trh-main">
-          <span class="trh-eyebrow">Topics</span>
           <h2 class="trh-title">トピックス<span class="trh-sub">サステナビリティ関連の新着情報</span></h2>
         </div>
       </div>
@@ -1127,8 +1099,8 @@ body {
         <b>#6：</b>見出しを「ESGの取り組みと進捗」→「サステナビリティの取り組み」に改称。<br>
         <b>#7：</b>トピックス一覧リンクを一覧下部（右寄せ）に移設。<br>
         <b>#8：</b>社外評価ロゴはデフォルト4点表示のまま、左右＜＞で4点ずつ送る固定4点カルーセルに変更。<br>
-        <b>#11：</b>ヒーロー高を圧縮、リード文は直下白帯へ。<br>
-        <b>#12：</b>TOP専用見出しモジュール（連番なし・上部アクセント＋英字＋大型タイトル）を新設し主要セクションへ適用。グラデ下線は下層見出し専用。戦略の旧キャッチコピーは削除し本文3行構成へ。<br>
+        <b>#11：</b>ヒーロー高を圧縮。リード文（コニカミノルタは…）はヒーロービジュアル内に配置。<br>
+        <b>#12：</b>TOP専用見出しモジュール（連番なし・英字ラベル廃止・短い実線アクセント＋日本語タイトル＋補足サブ）を主要セクションへ適用。グラデ下線は下層見出し専用。戦略の旧キャッチコピーは削除し本文3行構成へ。<br>
         <b>#13：</b>見出し一体の「詳細を見る」を全廃し末尾の明示CTAへ。
       </p>
     </div>
@@ -1138,7 +1110,7 @@ body {
       <span class="ann-head">TOP専用 見出しモジュール（#12 / その他FB）</span>
       <p class="ann-body">
         <b>狙い：</b>下層（仮想）ページの「グラデ下線見出し」とは別系統にし、TOPを「面の入口」として見せる。<br>
-        <b>採用UI：</b>`.top-rich-head`＝連番なし。英字は日本語と上下に並べず、大きな白抜きアウトラインの装飾モチーフとしてタイトル背面にあしらう。短い実線アクセント＋28pxタイトル＋補足サブ。グラデ下線は下層見出し専用とし、TOPには使わない。
+        <b>採用UI：</b>`.top-rich-head`＝連番なし・英字ラベルなし。短い実線アクセント＋28px日本語タイトル＋補足サブのみのシンプル構成。グラデ下線は下層見出し専用とし、TOPには使わない。
       </p>
     </div>
 
@@ -1146,7 +1118,7 @@ body {
       <span class="ann-num">1</span>
       <span class="ann-head">ヒーロー（#11）</span>
       <p class="ann-body">
-        圧縮した画像上はタイトル＋メインコピーのみ。リード文は直下白帯（`.top-hero-band`）へ。代替案＝全要素オーバーレイはデザイン工程で選択。
+        ヒーロービジュアル内にタイトル＋メインコピー＋リード文（コニカミノルタは…）を配置。圧縮ヒーローでも訴求文をビジュアル上で見せる。
       </p>
     </div>
 
