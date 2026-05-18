@@ -342,12 +342,15 @@ body {
 .wf-acc-h3[open] .wf-acc-h3-summary::after { content: '−'; }
 /* catalog 7-5：タグ派生（薄グレー bg・border なし・summary 内 左配置） */
 .wf-acc-tag {
-  display: inline-block;
+  /* #38：国名（タグ）幅が可変だとタイトル行頭が不揃いになる指摘に対応。
+     幅を固定し中央寄せにして、全アコーディオンのタイトル開始位置を揃える */
+  display: inline-flex; align-items: center; justify-content: center;
   background: var(--c-bg-sub); color: var(--c-text-h);
   font-size: 10px; font-weight: 700;
   letter-spacing: 0.06em;
-  padding: 3px 10px;
-  flex-shrink: 0; white-space: nowrap;
+  padding: 3px 8px;
+  flex: 0 0 96px; width: 96px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 /* タイトルラッパ（catalog 7-5 / 035 TCFD 準拠：タグの後ろで残りスペースを埋める） */
 .wf-acc-text { flex: 1; min-width: 0; }
@@ -358,7 +361,8 @@ body {
 }
 .wf-acc-h3-body > *:last-child { margin-bottom: 0; }
 .wf-acc-h3-body p {
-  font-size: 13px; color: var(--c-text); line-height: 1.95;
+  /* #37：本文がリンクより目立つように。本文をやや濃く・行間広めで主役化 */
+  font-size: 13.5px; color: var(--c-text-h); line-height: 2;
   margin-bottom: 14px;
 }
 .wf-acc-h3-body p:last-child { margin-bottom: 0; }
@@ -377,10 +381,11 @@ body {
    関連リンク（共通モジュール .theme-related：薄グレーbg＋全周border）
 ============================================================ */
 .theme-related {
-  background: var(--c-bg-sub);
-  border: 1px solid var(--c-border);
-  padding: 14px 18px;
-  margin-top: 14px;
+  /* #37：関連リンクを本文より控えめに（箱の主張を弱め、本文を優位に） */
+  background: transparent;
+  border: none; border-top: 1px dashed var(--c-border);
+  padding: 10px 0 0;
+  margin-top: 16px;
   display: flex; flex-wrap: wrap;
   column-gap: 18px; row-gap: 6px;
   align-items: center;
@@ -567,9 +572,7 @@ body {
     <!-- ページタイトル（L3共通：wf-page-title-area） -->
     <div class="wf-page-title-area">
       <h1 class="wf-page-title">社会貢献活動</h1>
-      <div class="wf-page-parent-cat">
-        【<a href="005_social_index.html">社会</a>】に関する取り組み
-      </div>
+      <!-- #31：「【社会】に関する取り組み」表現＋L2導線はL3では不要（L2導線はヘッダーで対応）→削除 -->
     </div>
 
     <!-- メイン＋右コンパクトアンカーナビ（共通：wf-layout-with-anchornav） -->
@@ -593,10 +596,6 @@ body {
             <strong>環境</strong> — バリューチェーン全体での負荷低減<br>
             <strong>学術・研究・教育</strong> — 次世代への理工系教育支援
           </p>
-          <p class="wf-section-desc">
-            2024年度は、国内で約31百万円相当の金銭的または物品による支援を実施しました。
-          </p>
-
           <!-- catalog 3-1：ページ上 大型画像PH（全幅・16:8・キービジュアル） -->
           <div class="large-figure-ph">
             <span class="large-figure-ph-label">
@@ -605,6 +604,12 @@ body {
             </span>
             <span class="img-zoom-btn" aria-label="拡大"></span>
           </div>
+
+          <!-- #32：「◯◯円相当の支援」記述を本セクション最下部の別パラグラフへ移動（原文そのまま）。
+               ※各カテゴリー上部の画像は現アコーディオン版では元々無し（キービジュアルのみ）＝指摘に既に適合 -->
+          <p class="wf-section-desc" style="margin-top:20px; padding-top:14px; border-top:1px solid var(--c-border); color:var(--c-text-s);">
+            2024年度は、国内で約31百万円相当の金銭的または物品による支援を実施しました。
+          </p>
         </section>
 
 
@@ -1265,7 +1270,32 @@ body {
 
   <!-- アノテーション -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — 社会貢献活動 v4.1（catalog v3.1 規定準拠）</h3>
+    <h3>設計ポイント — 社会貢献活動（0513 Figma反映版）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">—</span>
+      <span class="ann-head">0513レビュー反映サマリ</span>
+      <p class="ann-body">
+        <b>#31：</b>「【社会】に関する取り組み」表現＋L2導線をL3から削除（L2導線はヘッダーで対応）。<br>
+        <b>#32：</b>「約31百万円相当の支援」記述を基本的な考え方の最下部・別パラグラフへ移動（原文そのまま）。各カテゴリー上部画像は現アコーディオン版では元々無く指摘に既に適合。<br>
+        <b>#37：</b>本文をやや濃く・行間広めに、関連リンク箱を罫線のみに弱め、本文がリンクより目立つ主従関係に。<br>
+        <b>#38：</b>国名タグ幅を固定（中央寄せ）し、全アコーディオンのタイトル行頭を揃えた。
+      </p>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">!</span>
+      <span class="ann-head">要判断・保留中（構造の前提相違）</span>
+      <p class="ann-body">
+        <b>重要：</b>0513 Figmaがレビューした社会貢献活動は<strong>カード型レイアウト</strong>だが、本ローカルWFは既に<strong>アコーディオン型 v4.1（catalog v3.1準拠）</strong>へ刷新済で構造が異なる。下記はカード型前提の指摘のため、どちらの版を正とするか（カード版に戻す／アコ版を維持しFigmaを更新）の確定後に対応：<br>
+        <b>#33：</b>エリア（国/地域）記載なしでも成立するレイアウト<br>
+        <b>#34：</b>画像1枚＋長文テキストの回り込みパターン<br>
+        <b>#35：</b>1カテゴリー2事案パターン<br>
+        <b>#36：</b>基金紹介（上部=説明／左=ロゴリンク）の関係性配置<br>
+        <b>#39：</b>画像1枚／2取り組み等の複数バリエーション提示<br>
+        <b>#40（D）：</b>画像＋印の意味＝単独画像PHの拡大ボタン仕様。Figma返信で解決（WF変更不要）。
+      </p>
+    </div>
 
     <div class="ann-item">
       <span class="ann-num">v4.1</span>

@@ -874,6 +874,31 @@ body {
 .ann-head { font-size: 11px; font-weight: 700; color: #222; display: block; margin-bottom: 6px; line-height: 1.4; }
 .ann-body { font-size: 10px; color: #555; line-height: 1.6; margin-top: 6px; }
 
+/* 0513 Figma #26：ESGデータ参照ガイド（catalog 7-13 / .esg-link-guide）
+   単なる「ESGデータ」リンクでは3種Excel・環境シート分割の中身が伝わらない指摘への対応 */
+.esg-link-guide {
+  background: var(--c-white); border: 1px solid var(--c-border);
+  padding: 18px 22px 20px; margin-top: 24px;
+}
+.esg-link-guide-title { font-size: 14px; font-weight: 700; color: var(--c-text-h); margin-bottom: 4px; }
+.esg-link-guide-lead { font-size: 12px; color: var(--c-text-s); margin-bottom: 14px; line-height: 1.8; }
+.esg-link-guide-item {
+  display: flex; gap: 12px; align-items: baseline;
+  padding: 8px 0; border-top: 1px dashed var(--c-border);
+}
+.esg-link-guide-badge {
+  flex: 0 0 56px; text-align: center; font-size: 10px; font-weight: 700;
+  color: var(--c-text-h); border: 1px solid var(--c-text-s); padding: 2px 0;
+  letter-spacing: 0.06em;
+}
+.esg-link-guide-text { font-size: 12px; color: var(--c-text); line-height: 1.7; }
+.esg-link-guide-text strong { color: var(--c-text-h); }
+.esg-link-guide-text .note { color: var(--c-text-xs); font-size: 11px; }
+.esg-link-guide-cta {
+  margin-top: 12px; font-size: 12px; font-weight: 600; color: var(--c-text-h);
+}
+.esg-link-guide-cta::before { content: '→ '; }
+
 </style>
 </head>
 <body>
@@ -956,9 +981,10 @@ body {
         </div>
       </div>
 
-      <!-- ボタンリンク：コニカミノルタの長期環境ヴィジョン -->
+      <!-- #20：環境ビジョン説明は本ページに集約のため「長期環境ヴィジョン」リンクを廃し、
+           代わりに「削減貢献量算定方法」リンクをこちらにも配置（※要Figmaピン確認） -->
       <div style="margin-top:24px;">
-        <a class="wf-btn">コニカミノルタの長期環境ヴィジョン</a>
+        <a class="wf-btn">削減貢献量算定方法</a>
       </div>
     </section>
 
@@ -973,13 +999,7 @@ body {
         （文章はダミーです）コニカミノルタでは、「気候変動への対応」の評価指標として、社会・環境価値および経済価値の双方を取り入れ、短期・中期・長期において定量的な目標を設定しています。エコビジョン2050目標の達成や「カーボンマイナス」の実現に向けて、中期計画において各部門が年度別に削減目標と計画を立て、主体的に施策を実行しています。
       </p>
 
-      <!-- カーボンマイナス2025トピック（共通モジュール .callout-box 適用） -->
-      <div class="callout-box">
-        <span class="callout-box-tag">CARBON MINUS 2025</span>
-        <div class="callout-box-body">
-          2025年度には自社製品のライフサイクル全体における排出量を<strong>2005年度比で61％の削減</strong>を目標とし、同時にその排出量と同量にあたる<strong>800千トンをお客様や調達先、社会のCO<sub>2</sub>排出削減効果として生み出します</strong>。これによって2025年度に「カーボンマイナス」の実現を目指します。
-        </div>
-      </div>
+      <!-- #22：カーボンマイナス解説（CARBON MINUS 2025 callout-box）を削除（「ここにカーボンマイナスの解説は入らない予定」） -->
 
       <!-- 主要KPI（H3） -->
       <h3 class="wf-sub-title" style="margin-top:36px;">主要KPI</h3>
@@ -1008,6 +1028,11 @@ body {
         </div>
       </div>
 
+      <!-- #21：当該リンクをKPI①「削減貢献量を増加させる」の近傍へ移動 -->
+      <div style="margin-top:20px;">
+        <a class="wf-btn">削減貢献量算定方法</a>
+      </div>
+
       <!-- KPI② -->
       <div class="kpi-h3-block">
         <div class="kpi-h3-block-head">
@@ -1029,10 +1054,7 @@ body {
         </div>
       </div>
 
-      <!-- ボタンリンク：削減貢献量算定方法 -->
-      <div style="margin-top:24px;">
-        <a class="wf-btn">削減貢献量算定方法</a>
-      </div>
+      <!-- #21：旧位置（KPI②の後）の「削減貢献量算定方法」リンクはKPI①直後へ移動済 -->
     </section>
 
     <!-- ============================================================
@@ -1071,9 +1093,11 @@ body {
                 <p class="result-block-graph-cap">グラフ2：グリーンプロダクツの売上高（E-046）</p>
               </div>
             </div>
-            <!-- 用語注釈：クリックでモーダル展開 -->
-            <div class="term-note">
-              <span class="term-trigger" data-modal="modal-greenproducts" data-term-title="グリーンプロダクツ" data-term-body="<p>（文章はダミーです）コニカミノルタが定める独自の環境配慮型製品の認定制度。原材料調達／製造／使用／廃棄までのライフサイクル全体でCO<sub>2</sub>削減・省資源・有害物質削減を達成した製品を「グリーンプロダクツ」として認定しています。</p><p>主にスコープ4（社会のCO<sub>2</sub>削減貢献量）算定の対象となる主力製品群です。</p>"><span class="term-trigger-mark">?</span>グリーンプロダクツ</span>
+            <!-- #19：用語モーダル説明を廃し「関連リンク程度」に簡素化。
+                 ※「グリーン◯◯」表記の最終的な置換語はKM原稿確定待ち（グリーンウォッシュ対策・要判断） -->
+            <div class="theme-related" style="margin-top:14px;">
+              <span class="theme-related-label">関連リンク</span>
+              <span class="wf-link">グリーンプロダクツ認定制度<span class="placeholder" style="font-size:11px;color:var(--c-text-xs);">（名称はKM確定原稿待ち）</span></span>
             </div>
           </div>
         </div>
@@ -1126,11 +1150,30 @@ body {
 
       </div><!-- /result-accordion -->
 
-      <!-- 関連リンク：TCFD / ESGデータ -->
+      <!-- 関連リンク：TCFD -->
       <div class="theme-related" style="margin-top:24px;">
         <span class="theme-related-label">関連リンク</span>
         <span class="wf-link">TCFD</span>
-        <span class="wf-link">ESGデータ</span>
+      </div>
+
+      <!-- #26：単なる「ESGデータ」リンクを catalog 7-13「ESGデータ参照ガイド」に置換。
+           3種Excel・環境シート分割の中身（何が／どこを見るか）を遷移前に提示 -->
+      <div class="esg-link-guide">
+        <div class="esg-link-guide-title">ESGデータについて</div>
+        <p class="esg-link-guide-lead">下記3種のExcelに全定量データを収録しています。リンク先で目的のデータをご確認いただけます。</p>
+        <div class="esg-link-guide-item">
+          <span class="esg-link-guide-badge">XLSX</span>
+          <span class="esg-link-guide-text"><strong>環境データ集</strong> — GHG排出量／エネルギー／水資源／化学物質 ほか<span class="note">（シート分割：大気・水・廃棄物 等）</span></span>
+        </div>
+        <div class="esg-link-guide-item">
+          <span class="esg-link-guide-badge">XLSX</span>
+          <span class="esg-link-guide-text"><strong>社会データ集</strong> — 従業員／ダイバーシティ／人材育成／労働安全 ほか</span>
+        </div>
+        <div class="esg-link-guide-item">
+          <span class="esg-link-guide-badge">XLSX</span>
+          <span class="esg-link-guide-text"><strong>ガバナンスデータ集</strong> — コーポレートガバナンス／コンプライアンス／税務 ほか</span>
+        </div>
+        <div class="esg-link-guide-cta">ESGデータ一覧へ</div>
       </div>
 
     </section>
@@ -1354,7 +1397,30 @@ body {
 
   <!-- アノテーション -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — 気候変動 v1.0（#024 旧#028）</h3>
+    <h3>設計ポイント — 気候変動（#024 / 0513 Figma反映版）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">—</span>
+      <span class="ann-head">0513レビュー反映サマリ</span>
+      <p class="ann-body">
+        <b>#19：</b>「グリーンプロダクツ」用語モーダル説明を廃し関連リンク程度に簡素化。<br>
+        <b>#20：</b>セクションAの「長期環境ヴィジョン」リンクを廃し「削減貢献量算定方法」リンクへ差し替え（環境ビジョン説明は本ページに集約）。<br>
+        <b>#21：</b>「削減貢献量算定方法」リンクをKPI①「削減貢献量を増加させる」直後へ移動。<br>
+        <b>#22：</b>「CARBON MINUS 2025」カーボンマイナス解説 callout-box を削除。<br>
+        <b>#26：</b>素の「ESGデータ」リンクを catalog 7-13「ESGデータ参照ガイド」に置換（3種Excel・環境シート分割の中身を遷移前に提示）。
+      </p>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">!</span>
+      <span class="ann-head">要確認・保留中</span>
+      <p class="ann-body">
+        <b>#25（保留）：</b>「L3はここに掲載不要（サイト全体で統一）」は対象ブロックがFigmaピン依存のため、誤削除回避の観点から本WFでは未反映。ピン位置の特定後に着手。<br>
+        <b>#19補足：</b>「グリーン◯◯」表記の最終置換語はKM確定原稿待ち（グリーンウォッシュ対策・要判断）。WFは暫定表記＋待ち注記。<br>
+        <b>#20補足：</b>差し替えはFigmaピン位置の確認が前提（要確認）。<br>
+        <b>#18（B）：</b>主要KPIを図のみで示すか表も併記するか（KM作法整合）は回答待ち。
+      </p>
+    </div>
 
     <div class="ann-item">
       <span class="ann-num">A</span>

@@ -289,6 +289,19 @@ body {
 /* ロゴなしの行（業界団体対処／表彰のいくつか） */
 .csr-row.no-logo .csr-logo-strip { display: none; }
 
+/* #41/#45：ロゴをアコーディオン見出し（summary）にも表示。
+   開かなくても一覧でロゴが見えるよう、タイトル横にコンパクト版を配置（JSで移設） */
+.csr-row-summary .csr-logo-strip.in-summary {
+  margin: 0 44px 0 0; gap: 6px; flex: 0 0 auto;
+}
+.csr-row-summary .csr-logo-strip.in-summary .csr-logo {
+  width: 60px; height: 32px;
+}
+.csr-row-summary .csr-logo-strip.in-summary .csr-logo-label {
+  font-size: 7px; padding: 1px 3px; border: none; background: rgba(255,255,255,0.9);
+}
+.csr-row.no-logo .csr-row-summary .csr-logo-strip.in-summary { display: none; }
+
 /* 注釈（小文字） */
 .note-small {
   font-size: 10px; color: var(--c-text-xs);
@@ -376,19 +389,22 @@ body {
 /* ============================================================
    ディスクレイマー（最小限・折りたたみ式）
 ============================================================ */
+/* #47：ディスクレイマーは「記載してあればよい」もの。さらに控えめなレイアウトに弱める
+   （区切り線を撤去・トリガ文字を一段小さく淡色・余白圧縮） */
 .disclaimer-toggle {
-  margin-top: 8px;
-  padding-top: 8px;
-  border-top: 1px dashed var(--c-border);
+  margin-top: 6px;
+  padding-top: 0;
+  border-top: none;
 }
 .disclaimer-toggle summary {
   list-style: none;
   display: inline-block;
-  font-size: 10px;
+  font-size: 9px;
   color: var(--c-text-xs);
+  opacity: 0.75;
   cursor: default;
-  padding: 2px 0;
-  letter-spacing: 0.05em;
+  padding: 1px 0;
+  letter-spacing: 0.04em;
 }
 .disclaimer-toggle summary::-webkit-details-marker { display: none; }
 .disclaimer-toggle summary::marker { content: ''; }
@@ -401,13 +417,14 @@ body {
 }
 .disclaimer-toggle[open] summary::before { content: '− '; }
 .disclaimer-toggle p {
-  font-size: 10px;
+  font-size: 9px;
   color: var(--c-text-xs);
-  line-height: 1.7;
-  margin-top: 6px;
-  padding: 8px 10px;
-  background: var(--c-bg-sub);
-  border-left: 2px solid var(--c-border);
+  line-height: 1.6;
+  margin-top: 4px;
+  padding: 0;
+  background: none;
+  border-left: none;
+  opacity: 0.8;
 }
 
 /* フッター */
@@ -1051,7 +1068,9 @@ body {
           <p class="wf-section-desc">
             コニカミノルタ（株）は現在、以下のESG指数の構成銘柄に選定されています。GPIFが採用する6つのESG指数すべてに選定されています。
           </p>
-          <div class="text-link-row" style="margin-bottom:18px;"><a class="text-link">ニュースリリース</a></div>
+          <!-- #43：単に「ニュースリリース」だと一覧へ飛ぶ誤認を招くため、対象リリースの具体タイトルを明記。
+               ※サステナビリティTOPへ移設するかは要判断のため現位置のまま -->
+          <div class="text-link-row" style="margin-bottom:18px;"><a class="text-link">ニュースリリース：GPIFが採用する6つのESG指数すべてに選定されました</a></div>
 
           <!-- FTSE Russell（3ロゴ） -->
           <details class="csr-row" open>
@@ -1421,7 +1440,26 @@ body {
 
   <!-- アノテーション -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — イニシアティブ＋社外評価 v2.1（#225）</h3>
+    <h3>設計ポイント — イニシアティブ＋社外評価（0513 Figma反映版）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">—</span>
+      <span class="ann-head">0513レビュー反映サマリ</span>
+      <p class="ann-body">
+        <b>#41/#45：</b>アコーディオンを開かなくてもロゴが一覧で見えるよう、各 .csr-row のロゴストリップをコンパクト化して見出し（タイトル横）へ移設。共通モジュールのためイニシアティブ／社外評価の両側に一括適用（JSで実装）。<br>
+        <b>#43：</b>GPIF文脈の「ニュースリリース」を「ニュースリリース：GPIFが採用する6つのESG指数すべてに選定されました」と具体タイトル化（一覧へ飛ぶ誤認防止）。※TOPへ移設するかは#40で要判断のため現位置維持。<br>
+        <b>#47：</b>ディスクレイマーを更に控えめに（区切り線撤去・トリガ9px淡色・背景箱や左罫を除去）。「記載してあればよい」水準に。
+      </p>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">!</span>
+      <span class="ann-head">要判断・保留中</span>
+      <p class="ann-body">
+        <b>#39（B）：</b>小見出し（例「誰一人取り残さない世界の実現に向けて」）の表題は村上氏が「違和感が多いので変えましょう」と変更確定だが、新文言は原稿スロット①作成待ちのため現行表記のまま。<br>
+        <b>#41補足（B寄り）：</b>「社外評価をどこに記載するか／小見出し」は今後の検討（村上氏）。本対応はロゴ可視化のみで構成自体は現状維持。
+      </p>
+    </div>
 
     <div class="ann-item">
       <span class="ann-num">★</span>
@@ -1487,6 +1525,19 @@ body {
 </div>
 
 <script src="assets/wf-overlay.js"></script>
+<script>
+/* #41/#45：イニシアティブ／社外評価とも、アコーディオンを開かなくても
+   一覧でロゴが見えるよう、各 .csr-row のロゴストリップを見出し(summary)へ移設。
+   共通モジュール .csr-row に一括適用（社外評価側も同一モジュールのため同時充足） */
+document.querySelectorAll('.csr-row').forEach(function (row) {
+  var sum = row.querySelector(':scope > .csr-row-summary');
+  var strip = row.querySelector('.csr-row-content .csr-logo-strip');
+  if (sum && strip) {
+    strip.classList.add('in-summary');
+    sum.appendChild(strip);
+  }
+});
+</script>
 </body>
 </html>
 }

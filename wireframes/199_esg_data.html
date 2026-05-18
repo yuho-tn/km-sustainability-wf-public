@@ -1763,6 +1763,26 @@ body {
   text-align: left;
 }
 
+/* 0513 Figma #26：ESGデータ参照ガイド（catalog 7-13 / .esg-link-guide）
+   導入部に「3種Excel・環境はシート分割」の全体像を要約提示（詳細は下の区分別カードが担う） */
+.esg-link-guide {
+  background: var(--c-white); border: 1px solid var(--c-border);
+  padding: 16px 20px 18px; margin: 4px 0 24px;
+}
+.esg-link-guide-title { font-size: 14px; font-weight: 700; color: var(--c-text-h); margin-bottom: 4px; }
+.esg-link-guide-lead { font-size: 12px; color: var(--c-text-s); margin-bottom: 12px; line-height: 1.8; }
+.esg-link-guide-item {
+  display: flex; gap: 12px; align-items: baseline;
+  padding: 7px 0; border-top: 1px dashed var(--c-border);
+}
+.esg-link-guide-badge {
+  flex: 0 0 56px; text-align: center; font-size: 10px; font-weight: 700;
+  color: var(--c-text-h); border: 1px solid var(--c-text-s); padding: 2px 0; letter-spacing: 0.06em;
+}
+.esg-link-guide-text { font-size: 12px; color: var(--c-text); line-height: 1.7; }
+.esg-link-guide-text strong { color: var(--c-text-h); }
+.esg-link-guide-text .note { color: var(--c-text-xs); font-size: 11px; }
+
 </style>
 </head>
 
@@ -1819,6 +1839,24 @@ body {
       <p class="wf-section-desc">
         コニカミノルタグループのESGデータを「環境データ」「社会データ」「ガバナンスデータ」の3つに区分しています。各区分のエクセルファイルから全項目の定量データをダウンロードいただけます。
       </p>
+
+      <!-- #26：導入部にESGデータ参照ガイド（catalog 7-13）。3種Excel・環境はシート分割の全体像を要約。詳細インデックスは下の区分別カードが担う -->
+      <div class="esg-link-guide">
+        <div class="esg-link-guide-title">ESGデータの構成</div>
+        <p class="esg-link-guide-lead">下記3種のExcelに全定量データを収録しています。目的の区分から該当ファイルをご確認ください。</p>
+        <div class="esg-link-guide-item">
+          <span class="esg-link-guide-badge">XLSX</span>
+          <span class="esg-link-guide-text"><strong>環境データ集</strong> — GHG排出量／エネルギー／水資源／化学物質 ほか<span class="note">（シート分割：大気・水・廃棄物 等）</span></span>
+        </div>
+        <div class="esg-link-guide-item">
+          <span class="esg-link-guide-badge">XLSX</span>
+          <span class="esg-link-guide-text"><strong>社会データ集</strong> — 従業員／ダイバーシティ／人材育成／労働安全 ほか</span>
+        </div>
+        <div class="esg-link-guide-item">
+          <span class="esg-link-guide-badge">XLSX</span>
+          <span class="esg-link-guide-text"><strong>ガバナンスデータ集</strong> — コーポレートガバナンス／コンプライアンス／税務 ほか</span>
+        </div>
+      </div>
 
       <div class="esg-data-grid">
 

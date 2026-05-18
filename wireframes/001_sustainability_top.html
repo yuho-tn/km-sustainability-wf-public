@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>サステナビリティ TOP — KM サステナビリティ WF v2.1</title>
+<title>サステナビリティ TOP — KM サステナビリティ WF v2.2</title>
 <style>
 /* ============================================================
    KM SUSTAINABILITY WF — SHARED CSS v3.0
@@ -498,6 +498,143 @@ body {
 }
 .img-zoom-btn::before { content: "+"; }
 .img-zoom-btn:hover { background: #2a2a2a; }
+
+/* ============================================================
+   0513 Figmaレビュー反映（#1/#7/#11/#12/#13）
+============================================================ */
+
+/* #11 ヒーロー：カンプ準拠でヒーロー高を圧縮。タイトル＋メインコピーのみ画像上、
+   リード文は直下の白帯へ切り出し（既定案＝可読性優先）。代替案＝全要素を画像上（アノテ参照） */
+.top-hero { padding: 56px var(--pad-h) 60px; min-height: 280px; }
+.top-hero-band {
+  background: var(--c-white);
+  border-bottom: 1px solid var(--c-border-s);
+  padding: 22px var(--pad-h) 26px;
+}
+.top-hero-band-lead {
+  font-size: 14px; line-height: 2; color: var(--c-text);
+  max-width: 760px;
+}
+
+/* #12 TOP/インデックス系の見出しあしらい（L3センテンス系と差別化）
+   英字アイブロウ＋大型タイトル＋太いアクセント下線で「面の入口」を明示 */
+.top-sec-eyebrow {
+  display: block; font-size: 10px; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--c-text-xs); margin-bottom: 8px;
+}
+.wf-section-title.is-top { font-size: 28px; letter-spacing: -0.02em; }
+.section-head-row .wf-section-title.is-top { font-size: 28px; }
+.wf-section-title.is-top::after { width: 200px; height: 4px; }
+.section-head-row.is-top::after { width: 200px; height: 4px; }
+
+/* #12 キャッチコピーとダミー本文を判別可能に
+   .lead-copy＝確定方向のキャッチ（左罫＋太字大）／.dummy-text＝ダミー明示 */
+.lead-copy {
+  font-size: 18px; font-weight: 700; color: var(--c-text-h);
+  line-height: 1.65; margin-bottom: 14px;
+  padding-left: 14px; border-left: 3px solid var(--c-text-h);
+}
+.dummy-text { font-size: 13px; color: var(--c-text-s); line-height: 1.95; }
+.dummy-text::before {
+  content: '（文章はダミーです）';
+  color: var(--c-text-xs); font-size: 11px; margin-right: 6px;
+}
+
+/* #13 下層導線ボタン：見出しと一体の「詳細を見る」を廃し、
+   本文を読んだ末尾に行き先が分かる文言の明示ボタンを配置 */
+.sec-cta { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 16px; }
+
+/* #7 トピックス一覧リンクを一覧の下部（右寄せ）に配置（KM他サイト準拠） */
+.list-bottom-link {
+  display: flex; justify-content: flex-end;
+  border-top: 1px solid var(--c-border);
+  padding-top: 14px; margin-bottom: 24px;
+}
+.list-bottom-link .wf-btn { min-width: 0; }
+
+/* ============================================================
+   0513 第2次反映（#2 並べ替え / #4 概念図 / #6 改称 / #8 動的ロゴ
+   ＋ TOP専用リッチ見出しモジュール）
+============================================================ */
+
+/* TOP専用リッチ見出し（他ページには展開しない上位導入見出し） */
+.top-rich-head {
+  display: grid; grid-template-columns: auto 1fr;
+  align-items: end; gap: 22px;
+  margin-bottom: 28px; padding-bottom: 16px;
+  border-bottom: 1px solid var(--c-border); position: relative;
+}
+.top-rich-head::after {
+  content: ''; position: absolute; left: 0; bottom: -2px;
+  width: 220px; height: 4px;
+  background: linear-gradient(90deg, #111 0%, #444 45%, #999 75%, transparent 100%);
+}
+.trh-index {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 56px; font-weight: 700; line-height: 0.8;
+  color: var(--c-bg-sub); letter-spacing: -0.02em;
+  -webkit-text-stroke: 1px var(--c-ph-line);
+}
+.trh-main { display: flex; flex-direction: column; gap: 6px; }
+.trh-eyebrow {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.24em;
+  text-transform: uppercase; color: var(--c-text-s);
+}
+.trh-title {
+  font-size: 30px; font-weight: 700; color: var(--c-text-h);
+  line-height: 1.25; letter-spacing: -0.02em;
+}
+.trh-title .trh-sub {
+  display: block; font-size: 13px; font-weight: 600;
+  color: var(--c-text-s); letter-spacing: 0.02em; margin-top: 8px;
+}
+
+/* #4 戦略：本文（左）＋概念図PH（右）の2カラム */
+.strategy-cols {
+  display: grid; grid-template-columns: 1fr 380px; gap: 40px;
+  align-items: start;
+}
+.strategy-body {
+  font-size: 13px; color: var(--c-text); line-height: 2.05;
+  margin-bottom: 8px;
+}
+.strategy-col-figure { display: flex; flex-direction: column; }
+.strategy-figure {
+  background: var(--c-ph); border: 1px solid var(--c-border);
+  aspect-ratio: 4 / 3;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: var(--c-text-xs); letter-spacing: 0.06em;
+  text-align: center; padding: 16px; position: relative;
+}
+.strategy-figure-cap {
+  font-size: 11px; color: var(--c-text-s); margin-top: 10px;
+  line-height: 1.6;
+}
+
+/* #8 社外評価：左右＜＞で動的スクロールするロゴカルーセル */
+.logo-carousel { position: relative; margin: 24px 0 10px; }
+.logo-carousel-track {
+  display: flex; gap: 14px; overflow-x: auto;
+  scroll-behavior: smooth; padding: 2px; scrollbar-width: none;
+}
+.logo-carousel-track::-webkit-scrollbar { display: none; }
+.logo-carousel-track .eval-logo { flex: 0 0 200px; margin: 0; }
+.lc-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 36px; height: 36px; z-index: 4;
+  background: var(--c-white); border: 1px solid var(--c-text-h);
+  color: var(--c-text-h); font-size: 18px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-family: inherit; line-height: 1;
+}
+.lc-arrow:hover { background: var(--c-text-h); color: #fff; }
+.lc-arrow.prev { left: -16px; }
+.lc-arrow.next { right: -16px; }
+.lc-hint {
+  font-size: 11px; color: var(--c-text-xs);
+  text-align: right; margin-bottom: 20px;
+}
 </style>
 </head>
 
@@ -524,89 +661,77 @@ body {
       <span class="wf-section-marker" style="top:18px; left:14px; background:#fff; color:#222;">1</span>
       <h1 class="top-hero-title">サステナビリティ</h1>
       <p class="top-hero-copy">新しい価値の創造を通した社会課題の解決</p>
-      <p class="top-hero-lead">
-        コニカミノルタは、イメージングの力を中核に、お客様・社会とともに新たな価値を創造し続けることで、社会の実現と企業価値の向上を目指します。
-      </p>
       <div class="top-hero-imgnote">[ ヒーロービジュアル PH｜全幅画像（風景・自然系）]</div>
     </section>
+    <!-- #11 既定案：リード文を画像下の白帯へ切り出し（圧縮ヒーローでも可読性確保） -->
+    <div class="top-hero-band">
+      <p class="top-hero-band-lead">
+        コニカミノルタは、イメージングの力を中核に、お客様・社会とともに新たな価値を創造し続けることで、社会の実現と企業価値の向上を目指します。
+      </p>
+    </div>
 
     <!-- ============================================================
          ② サステナビリティ戦略（H2横リンク）
     ============================================================ -->
     <section class="wf-section bg-white">
       <span class="wf-section-marker">2</span>
-      <div class="section-head-row">
-        <h2 class="wf-section-title">サステナビリティ戦略</h2>
-        <a class="section-head-link">詳細を見る</a>
-      </div>
-      <p class="wf-section-desc" style="font-weight:700; color:var(--c-text-h); margin-bottom:8px;">
-        マテリアリティの特定と価値創造ストーリーに基づき、<br>
-        事業成長と社会課題解決の両立を目指す中長期戦略
-      </p>
-      <p class="wf-section-desc">
-        テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト（価値創造ストーリーと中長期目標の概要）
-      </p>
-
-      <div class="callout-box">
-        <span class="callout-box-tag">MATERIALITY KPI</span>
-        <div class="callout-box-body">
-          各マテリアリティには定量的なKPIを設定し、進捗を定期的にモニタリングしています。<br>
-          目標値と実績データの詳細は下層ページでご確認いただけます。
+      <div class="top-rich-head">
+        <span class="trh-index">02</span>
+        <div class="trh-main">
+          <span class="trh-eyebrow">Strategy</span>
+          <h2 class="trh-title">サステナビリティ戦略<span class="trh-sub">価値創造ストーリーに基づく中長期の方向性</span></h2>
         </div>
       </div>
-    </section>
 
-    <!-- ============================================================
-         ③ サステナビリティマネジメント（リンク1つのみ）
-    ============================================================ -->
-    <section class="wf-section bg-white pad-sm">
-      <span class="wf-section-marker">3</span>
-      <div class="section-head-row">
-        <h2 class="wf-section-title">サステナビリティマネジメント</h2>
-        <a class="section-head-link">詳細を見る</a>
-      </div>
-      <p class="wf-section-desc">
-        サステナビリティマネジメントの<br>
-        考え方、推進体制、ステークホルダーとのエンゲージメントについて紹介します。<br>
-        本テキスト入ります。本テキスト入ります。本テキスト入ります。本テキスト入ります。本テキスト入ります。本テキスト入ります。本テキスト入ります。本テキスト入ります。本テキスト入ります。本テキスト入ります。
-      </p>
+      <div class="strategy-cols">
+        <div class="strategy-col-text">
+          <!-- その他FB：旧キャッチコピー（マテリアリティの特定と…）は削除し本文3行構成へ -->
+          <p class="strategy-body">
+            （文章はダミーです）テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。<br>
+            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。<br>
+            テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
+          </p>
 
-      <a class="wf-btn">ステークホルダーエンゲージメント</a>
-    </section>
-
-    <!-- ============================================================
-         ④ 資料・データ（QUICK ACCESS）
-    ============================================================ -->
-    <section class="wf-section bg-sub">
-      <span class="wf-section-marker">4</span>
-      <h2 class="wf-section-title">資料・データ</h2>
-
-      <div class="quickaccess-grid" style="margin-top:18px;">
-        <div class="qa-card">
-          <div class="qa-icon">PDF</div>
-          <div class="qa-body">
-            <div class="qa-title">サステナビリティレポート（PDF：16.0MB）</div>
-            <div class="qa-meta">最新版ダウンロード</div>
+          <div class="callout-box">
+            <span class="callout-box-tag">MATERIALITY KPI</span>
+            <div class="callout-box-body">
+              各マテリアリティには定量的なKPIを設定し、進捗を定期的にモニタリングしています。<br>
+              目標値と実績データの詳細は下層ページでご確認いただけます。
+            </div>
           </div>
-          <div class="qa-action">›</div>
-        </div>
-        <div class="qa-card">
-          <div class="qa-icon">XLS</div>
-          <div class="qa-body">
-            <div class="qa-title">ESGデータ（Excel：119KB）</div>
-            <div class="qa-meta">KPI・指標一覧</div>
+
+          <div class="sec-cta">
+            <a class="wf-btn">サステナビリティ戦略の詳細を見る</a>
           </div>
-          <div class="qa-action">›</div>
+        </div>
+
+        <!-- #4：戦略の概要を一目で伝える「概念図」を右カラムに配置 -->
+        <div class="strategy-col-figure">
+          <div class="strategy-figure">
+            [ サステナビリティ戦略 概念図 PH ]
+            <span class="img-zoom-btn"></span>
+          </div>
+          <div class="strategy-figure-cap">※「サステナビリティ戦略」ページで作成する概念図を本TOPにも掲出（基本コンセプトを先に提示し各トピックへ誘導）</div>
         </div>
       </div>
     </section>
 
     <!-- ============================================================
-         ⑤ ESGの取り組み
+         ③ サステナビリティの取り組み
+         ※#1：戦略の直後／#6：「ESGの取り組みと進捗」→「サステナビリティの取り組み」に改称
     ============================================================ -->
     <section class="wf-section bg-white">
-      <span class="wf-section-marker">5</span>
-      <h2 class="wf-section-title">ESGの取り組み</h2>
+      <span class="wf-section-marker">3</span>
+      <div class="top-rich-head">
+        <span class="trh-index">03</span>
+        <div class="trh-main">
+          <span class="trh-eyebrow">Sustainability</span>
+          <h2 class="trh-title">サステナビリティの取り組み<span class="trh-sub">環境・社会・ガバナンスの取り組みと進捗</span></h2>
+        </div>
+      </div>
+      <p class="wf-section-desc">
+        環境（E）・社会（S）・ガバナンス（G）の各テーマについて、取り組みに加え、KPI・目標・実績などの進捗を各ページでご確認いただけます。
+      </p>
 
       <div class="esg-photo-grid">
 
@@ -656,34 +781,109 @@ body {
     </section>
 
     <!-- ============================================================
-         ⑥ 社外からの評価とイニシアチブへの参画（H2横リンク）
+         ④ サステナビリティマネジメント　※#1：取り組みの後ろへ配置
     ============================================================ -->
-    <section class="wf-section bg-white">
-      <span class="wf-section-marker">6</span>
-      <div class="section-head-row">
-        <h2 class="wf-section-title">社外からの評価とイニシアチブへの参画</h2>
-        <a class="section-head-link">詳細を見る</a>
+    <section class="wf-section bg-white pad-sm">
+      <span class="wf-section-marker">4</span>
+      <div class="top-rich-head">
+        <span class="trh-index">04</span>
+        <div class="trh-main">
+          <span class="trh-eyebrow">Management</span>
+          <h2 class="trh-title">サステナビリティマネジメント<span class="trh-sub">推進体制とステークホルダーエンゲージメント</span></h2>
+        </div>
       </div>
-      <p class="wf-section-desc">
-        国内外の格付機関等によるサステナビリティの外部評価を紹介します。
+      <p class="dummy-text">
+        サステナビリティマネジメントの考え方、推進体制、ステークホルダーとのエンゲージメントについて紹介します。本テキスト入ります。本テキスト入ります。本テキスト入ります。本テキスト入ります。本テキスト入ります。本テキスト入ります。本テキスト入ります。本テキスト入ります。本テキスト入ります。本テキスト入ります。
       </p>
 
-      <div class="eval-logo-grid">
-        <div class="eval-logo">[ FTSE4Good Index ]</div>
-        <div class="eval-logo">[ MSCI Selection Indexes 2025 ]</div>
-        <div class="eval-logo">[ ISS ESG Corporate Rating Prime ]</div>
-        <div class="eval-logo">[ CDP A List 2025 ]</div>
+      <!-- #13：見出し一体の「詳細を見る」を廃し、行き先が分かる末尾CTAへ。
+           主導線＝マネジメント詳細／副導線＝ステークホルダーエンゲージメント -->
+      <div class="sec-cta">
+        <a class="wf-btn">サステナビリティマネジメントの詳細を見る</a>
+        <a class="wf-link">ステークホルダーエンゲージメント</a>
       </div>
     </section>
 
     <!-- ============================================================
-         ⑦ トピックス（H2横リンク）
+         ⑤ 社外からの評価とイニシアチブへの参画
+         ※#2：「資料・データ」を後段へ移したことに伴い、社外評価をこの位置へ
+    ============================================================ -->
+    <section class="wf-section bg-white">
+      <span class="wf-section-marker">5</span>
+      <div class="top-rich-head">
+        <span class="trh-index">05</span>
+        <div class="trh-main">
+          <span class="trh-eyebrow">Evaluation &amp; Initiatives</span>
+          <h2 class="trh-title">社外からの評価とイニシアチブへの参画<span class="trh-sub">外部評価・参画イニシアティブ</span></h2>
+        </div>
+      </div>
+      <p class="wf-section-desc">
+        国内外の格付機関等によるサステナビリティの外部評価、および参画しているイニシアティブを紹介します。
+      </p>
+
+      <!-- #8：固定4点 → 左右＜＞で動的にスクロールできるロゴカルーセルに変更 -->
+      <div class="logo-carousel">
+        <button class="lc-arrow prev" type="button" aria-label="前へ" onclick="this.parentElement.querySelector('.logo-carousel-track').scrollBy({left:-440,behavior:'smooth'})">‹</button>
+        <div class="logo-carousel-track">
+          <div class="eval-logo">[ FTSE4Good Index ]</div>
+          <div class="eval-logo">[ MSCI Selection Indexes 2025 ]</div>
+          <div class="eval-logo">[ ISS ESG Corporate Rating Prime ]</div>
+          <div class="eval-logo">[ CDP A List 2025 ]</div>
+          <div class="eval-logo">[ DJSI（S&amp;P Global） ]</div>
+          <div class="eval-logo">[ EcoVadis ]</div>
+          <div class="eval-logo">[ RE100 ]</div>
+          <div class="eval-logo">[ SBT 認定 ]</div>
+          <div class="eval-logo">[ TCFD 賛同 ]</div>
+          <div class="eval-logo">[ 国連グローバル・コンパクト ]</div>
+        </div>
+        <button class="lc-arrow next" type="button" aria-label="次へ" onclick="this.parentElement.querySelector('.logo-carousel-track').scrollBy({left:440,behavior:'smooth'})">›</button>
+      </div>
+      <div class="lc-hint">← 受けた評価・参画イニシアティブのロゴが順に流れる動的表示（固定4点ではなく可変）</div>
+
+      <div class="sec-cta">
+        <a class="wf-btn">社外からの評価とイニシアチブの詳細を見る</a>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ⑥ 資料・データ（QUICK ACCESS）
+         ※#2：村上氏「唐突。トピックスの前で」確定 → トピックスの直前へ移動
+    ============================================================ -->
+    <section class="wf-section bg-sub">
+      <span class="wf-section-marker">6</span>
+      <h2 class="wf-section-title">資料・データ</h2>
+
+      <div class="quickaccess-grid" style="margin-top:18px;">
+        <div class="qa-card">
+          <div class="qa-icon">PDF</div>
+          <div class="qa-body">
+            <div class="qa-title">サステナビリティレポート（PDF：16.0MB）</div>
+            <div class="qa-meta">最新版ダウンロード</div>
+          </div>
+          <div class="qa-action">›</div>
+        </div>
+        <div class="qa-card">
+          <div class="qa-icon">XLS</div>
+          <div class="qa-body">
+            <div class="qa-title">ESGデータ（Excel：119KB）</div>
+            <div class="qa-meta">KPI・指標一覧</div>
+          </div>
+          <div class="qa-action">›</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ⑦ トピックス
     ============================================================ -->
     <section class="wf-section bg-white">
       <span class="wf-section-marker">7</span>
-      <div class="section-head-row">
-        <h2 class="wf-section-title">トピックス</h2>
-        <a class="section-head-link">詳細を見る</a>
+      <div class="top-rich-head">
+        <span class="trh-index">07</span>
+        <div class="trh-main">
+          <span class="trh-eyebrow">Topics</span>
+          <h2 class="trh-title">トピックス<span class="trh-sub">サステナビリティ関連の新着情報</span></h2>
+        </div>
       </div>
 
       <div class="topics-list">
@@ -707,6 +907,11 @@ body {
           <div class="topics-date">2025/01/28</div>
           <div class="topics-title">人的資本経営への取り組みに関するお知らせ <span class="placeholder">（確定テキスト待ち）</span></div>
         </div>
+      </div>
+
+      <!-- #7：一覧へのリンクを一覧の下部（右寄せ）に配置（KM他サイト準拠） -->
+      <div class="list-bottom-link">
+        <a class="wf-btn">トピックス一覧を見る</a>
       </div>
 
       <div class="event-card">
@@ -872,68 +1077,86 @@ body {
        アノテーションパネル
   ============================================================ -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — サステナビリティTOP</h3>
+    <h3>設計ポイント — サステナビリティTOP（0513 Figma反映版 / 第2次）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">—</span>
+      <span class="ann-head">0513レビュー反映サマリ（第2次）</span>
+      <p class="ann-body">
+        <b>#1：</b>セクション順を「戦略 → サステナビリティの取り組み → マネジメント」に整流。<br>
+        <b>#2：</b>「資料・データ」を社外評価の後・トピックスの直前へ移動（村上氏「唐突。トピックスの前で」確定）。<br>
+        <b>#4：</b>戦略セクション右カラムに「サステナビリティ戦略 概念図PH」を追加。<br>
+        <b>#6：</b>見出しを「ESGの取り組みと進捗」→「サステナビリティの取り組み」に改称。<br>
+        <b>#7：</b>トピックス一覧リンクを一覧下部（右寄せ）に移設。<br>
+        <b>#8：</b>社外評価ロゴを固定4点→左右＜＞で動的スクロールするカルーセルに変更。<br>
+        <b>#11：</b>ヒーロー高を圧縮、リード文は直下白帯へ。<br>
+        <b>#12：</b>TOP専用リッチ見出しモジュールを新設し主要セクションへ適用。戦略の旧キャッチコピーは削除し本文3行構成へ。<br>
+        <b>#13：</b>見出し一体の「詳細を見る」を全廃し末尾の明示CTAへ。
+      </p>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">★</span>
+      <span class="ann-head">TOP専用リッチ見出し（#12 / その他FB）</span>
+      <p class="ann-body">
+        <b>狙い：</b>L3センテンス系の見出しと差別化し、TOPを「面の入口」として強く見せる。<br>
+        <b>採用UI：</b>`.top-rich-head`＝大型連番インデックス＋英字アイブロウ＋30pxタイトル＋補足サブ＋太いグラデアクセント。他ページには展開しないTOP限定モジュール。
+      </p>
+    </div>
 
     <div class="ann-item">
       <span class="ann-num">1</span>
-      <span class="ann-head">ヒーロー</span>
+      <span class="ann-head">ヒーロー（#11）</span>
       <p class="ann-body">
-        <b>狙い：</b>ページ最上部で「サステナビリティ」という大テーマを一目で伝える。<br>
-        <b>採用UI：</b>画像にタイトル・コピー・リード文を重ねる全幅ヒーロー枠。
+        圧縮した画像上はタイトル＋メインコピーのみ。リード文は直下白帯（`.top-hero-band`）へ。代替案＝全要素オーバーレイはデザイン工程で選択。
       </p>
     </div>
 
     <div class="ann-item">
       <span class="ann-num">2</span>
-      <span class="ann-head">サステナビリティ戦略</span>
+      <span class="ann-head">サステナビリティ戦略（#4/#12/その他FB）</span>
       <p class="ann-body">
-        <b>狙い：</b>中長期戦略の概要をTOP上で読みきれる量に抑え、続きは詳細ページへ自然に誘導する。<br>
-        <b>採用UI：</b>「詳細を見る」を別ボタンにせず見出し横のテキストリンクで処理。補足のKPI話はトピックボックス1個だけに収納。
+        リッチ見出し＋本文3行構成（旧「マテリアリティの特定と価値創造ストーリー…」キャッチは削除）。右カラムに概念図PHを配置（#4）。末尾に「戦略の詳細を見る」CTA。
       </p>
     </div>
 
     <div class="ann-item">
       <span class="ann-num">3</span>
-      <span class="ann-head">サステナビリティマネジメント</span>
+      <span class="ann-head">サステナビリティの取り組み（#1/#6）</span>
       <p class="ann-body">
-        <b>狙い：</b>概要を本セクションで完結させ、TOPから増えすぎる選択肢を減らす。<br>
-        <b>採用UI：</b>カード・リストは置かず、別ページ導線は「ステークホルダーエンゲージメント」のリンク1本のみに絞る。
+        戦略の直後に配置。見出しを「ESGの取り組みと進捗」→「サステナビリティの取り組み」に改称（#6）。E/S/G 3カードと進捗の所在補足。
       </p>
     </div>
 
     <div class="ann-item">
       <span class="ann-num">4</span>
-      <span class="ann-head">資料・データ（QUICK ACCESS）</span>
+      <span class="ann-head">サステナビリティマネジメント（#13）</span>
       <p class="ann-body">
-        <b>狙い：</b>需要の高いPDFレポート／Excelデータに最短で辿り着けるようにする。<br>
-        <b>採用UI：</b>背景色を切り替えたクイックアクセス帯に、DLカード2枚だけを横並びで配置。長いリンク一覧から探させない。
+        本文末に主導線＝詳細ボタン＋副導線＝ステークホルダーエンゲージメントの2段で重要度を明確化。
       </p>
     </div>
 
     <div class="ann-item">
       <span class="ann-num">5</span>
-      <span class="ann-head">ESGの取り組み</span>
+      <span class="ann-head">社外からの評価とイニシアチブ（#2/#8）</span>
       <p class="ann-body">
-        <b>狙い：</b>環境／社会／ガバナンスの大カテゴリ入口を、文章ではなく直感で選べるようにする。<br>
-        <b>採用UI：</b>写真＋カテゴリ記号（E/S/G）の3カードで並列表示。下層リンク群はここに並べず、各インデックスに送る役割だけに専念。
+        資料・データの前へ移動（#2）。ロゴは固定4点をやめ、左右＜＞で動的スクロールするカルーセル（受けた評価・参画イニシアティブが順に流れる可変表示）に変更（#8）。
       </p>
     </div>
 
     <div class="ann-item">
       <span class="ann-num">6</span>
-      <span class="ann-head">社外からの評価</span>
+      <span class="ann-head">資料・データ（#2）</span>
       <p class="ann-body">
-        <b>狙い：</b>評価実績は説明文よりロゴで見せた方が信頼が伝わる。<br>
-        <b>採用UI：</b>代表的なロゴ4点だけのロゴグリッド構成。詳細は見出し横のテキストリンクから別ページに送り、TOP上の情報量を抑制。
+        村上氏「唐突。トピックスの前で」確定を受け、社外評価の後・トピックスの直前へ移動。需要の高いPDF／Excelに最短で到達。
       </p>
     </div>
 
     <div class="ann-item">
       <span class="ann-num">7</span>
-      <span class="ann-head">トピックス</span>
+      <span class="ann-head">トピックス（#7）</span>
       <p class="ann-body">
-        <b>狙い：</b>新着情報を最新5件で素早く見せつつ、重点告知は1点だけ目立たせる。<br>
-        <b>採用UI：</b>日付＋タイトルだけの行リスト5件＋年次イベント用のEVENTカード1枚。横並びカードを並べずに縦短くまとめる。
+        新着5件の行リスト。一覧リンクは見出し横ではなくリスト下部の右寄せボタンに移設。年次告知はEVENTカード1枚。
       </p>
     </div>
 
@@ -941,8 +1164,7 @@ body {
       <span class="ann-num">8</span>
       <span class="ann-head">関連情報・関連リンク</span>
       <p class="ann-body">
-        <b>狙い：</b>ページ最下部で「読み終わった後の追加導線」を最小限に配置。<br>
-        <b>採用UI：</b>「報告・データ／方針・基準」の2分類に整理したテキストリンクの2列リスト。カード化や説明文は付けず、リファレンス系へ確実に飛ばすだけの役割。
+        最下部に「報告・データ／方針・基準」2分類のテキストリンク2列。読了後の追加導線を最小限に。
       </p>
     </div>
 
