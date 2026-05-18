@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>環境 インデックス — KM サステナビリティ WF v5.2 (#004)</title>
+<title>環境 インデックス — KM サステナビリティ WF v5.3 (#004)</title>
 <style>
 /* ============================================================
    KM SUSTAINABILITY WF — SHARED CSS v3.0
@@ -207,31 +207,24 @@ body {
 }
 
 /* セクション見出し（h2） */
-/* H2 — TOP/インデックス系 共通リッチ見出し（下層センテンス系のグラデ下線とは別系統）
-   上部ソリッドアクセント＋大型タイトル。連番・英字ラベルなし */
-.wf-section-title {
-  font-size: 26px;
-  font-weight: 700;
-  color: var(--c-text-h);
-  margin-bottom: 26px;
-  padding-top: 20px;
-  line-height: 1.3;
-  letter-spacing: -0.015em;
-  position: relative;
+/* H2 — TOP（001）と完全に同一のリッチ見出しモジュール（.top-rich-head/.trh-*）
+   下層センテンス系のグラデ下線とは別系統。短い実線アクセント＋28pxタイトル＋補足サブ */
+.top-rich-head { margin-bottom: 26px; }
+.trh-main { display: block; }
+.trh-title {
+  font-size: 28px; font-weight: 700; color: var(--c-text-h);
+  line-height: 1.3; letter-spacing: -0.015em;
 }
-.wf-section-title::before {
-  content: ''; position: absolute; left: 0; top: 0;
-  width: 44px; height: 4px; background: var(--c-text-h);
+.trh-title::before {
+  content: ''; display: inline-block; vertical-align: middle;
+  width: 28px; height: 3px; background: var(--c-text-h);
+  margin-right: 12px; transform: translateY(-3px);
 }
-.wf-section-title .rh-sub {
+.trh-title .trh-sub {
   display: block; font-size: 13px; font-weight: 600;
   color: var(--c-text-s); letter-spacing: 0.02em; margin-top: 10px;
+  padding-left: 40px;
 }
-.wf-section-title.center {
-  text-align: center;
-  margin-bottom: 12px;
-}
-.wf-section-title.center::before { left: 50%; transform: translateX(-50%); }
 
 /* H2横リンク廃止 → セクション下部のボタンリンクへ */
 .sec-bottom-cta { margin-top: 28px; display: flex; }
@@ -259,6 +252,8 @@ body {
 
 /* H3 — リファインモジュール（◇ダイヤモンドマーカー＋細ハイライン）
    下層の単純な左縦棒よりデザイン性を高めたインデックス系H3 */
+/* H3 — H2の実線アクセントと同じ言語で、スケール/位置を変えて差別化。
+   タイトル直下に短いソリッドアンダーラインを置くリファインモジュール（◇は廃止） */
 .wf-sub-title {
   font-size: 17px;
   font-weight: 700;
@@ -266,19 +261,12 @@ body {
   line-height: 1.5;
   letter-spacing: -0.01em;
   margin-bottom: 18px;
-  padding-bottom: 10px;
+  padding-bottom: 12px;
   position: relative;
-  display: flex; align-items: center; gap: 12px;
-}
-.wf-sub-title::before {
-  content: ''; width: 9px; height: 9px;
-  background: var(--c-text-h); transform: rotate(45deg);
-  flex: 0 0 auto;
 }
 .wf-sub-title::after {
-  content: ''; position: absolute; left: 0; right: 0; bottom: 0;
-  height: 1px;
-  background: linear-gradient(90deg, var(--c-text-h) 0%, var(--c-border) 60%, transparent 100%);
+  content: ''; position: absolute; left: 0; bottom: 0;
+  width: 28px; height: 2px; background: var(--c-text-h);
 }
 
 /* （旧）H3横リンク行は廃止。リンクは直後の .sec-bottom-cta ボタンへ移設 */
@@ -1641,7 +1629,11 @@ body {
     ============================================================ -->
     <section class="wf-section bg-white">
       <span class="wf-section-marker">A</span>
-      <h2 class="wf-section-title">基本的な考え方</h2>
+      <div class="top-rich-head">
+        <div class="trh-main">
+          <h2 class="trh-title">基本的な考え方<span class="trh-sub">環境方針・環境戦略・環境経営の全体像</span></h2>
+        </div>
+      </div>
       <p class="wf-section-desc" style="margin-bottom:32px;">
         コニカミノルタは、マテリアリティ（重要課題）の見直しにおいて「気候変動への対応」「有限な資源の有効利用」を特定し、環境経営を事業成長の中核に位置づけています。
       </p>
@@ -1651,7 +1643,7 @@ body {
       <p style="font-size:13px; color:var(--c-text); line-height:1.9;">
         （文章はダミーです）環境方針と環境戦略の概要を紹介します。コニカミノルタは長期環境ビジョン「Eco Vision 2050」のもと、自社のCO2排出量実質ゼロ達成に加え、お客様や調達先での排出削減への貢献を掲げています。マテリアリティで特定した「気候変動への対応」「有限な資源の有効利用」を軸に、事業成長と環境価値創出の両立を推進し、長期環境ビジョン・環境方針・マテリアリティ特定プロセスを統合した環境経営の全体像を示します。
       </p>
-      <div class="sec-bottom-cta" style="margin-top:18px; margin-bottom:32px;"><a class="wf-btn outline">環境戦略の詳細ページへ</a></div>
+      <div class="sec-bottom-cta" style="margin-top:18px; margin-bottom:32px;"><a class="wf-btn outline">環境戦略</a></div>
 
       <!-- ── H3②: 環境経営 ── -->
       <h3 class="wf-sub-title">環境経営</h3>
@@ -1668,7 +1660,11 @@ body {
     ============================================================ -->
     <section class="wf-section bg-sub">
       <span class="wf-section-marker">B</span>
-      <h2 class="wf-section-title">戦略・目標・実績</h2>
+      <div class="top-rich-head">
+        <div class="trh-main">
+          <h2 class="trh-title">戦略・目標・実績<span class="trh-sub">5領域の戦略と代表的なKPIの進捗</span></h2>
+        </div>
+      </div>
       <p class="wf-section-desc">気候変動・資源循環・化学物質汚染防止・水資源・生物多様性の5領域について、戦略と代表的なKPIの進捗を紹介します。</p>
 
       <!-- #153：エリア内の目次（ページ内ジャンプ）で導線を補強 -->
@@ -1681,7 +1677,7 @@ body {
         <a href="#env-bio">生物多様性</a>
       </div>
       <!-- #143：リンク遷移である旨を明示（モーダルではない） -->
-      <p class="link-behavior-note">各テーマの「○○の詳細ページへ」は、対応する下層（L4）ページへ<strong>画面遷移</strong>します（モーダル表示ではありません）。遷移先が分かるよう、行き先を明示したボタン文言に統一しています。</p>
+      <p class="link-behavior-note">各テーマ末尾のボタン（テーマ名を表示）は、対応する下層（L4）ページへ<strong>画面遷移</strong>します（モーダル表示ではありません）。遷移先が分かるよう、ボタン文言をテーマ名に統一しています。</p>
 
       <!-- ── 気候変動（theme-block：H3＋側面リンク／KPI3つ） ── -->
       <div class="theme-block" id="env-climate">
@@ -1715,13 +1711,13 @@ body {
               <span class="theme-topic-label">TOPICS</span>
               <h4 class="theme-topic-title">TCFD開示</h4>
             </div>
-            <a class="section-head-link">TCFD開示の詳細ページへ</a>
+            <a class="section-head-link">TCFD開示</a>
           </div>
           <p class="theme-topic-desc">
             気候変動が事業に及ぼす財務的影響を把握し、ステークホルダーへの透明性ある開示を行うため、TCFD（気候関連財務情報開示タスクフォース）提言に沿った情報開示を実施しています。「ガバナンス」「戦略」「リスク管理」「指標と目標」の4項目で、気候関連リスクと機会の特定・評価・管理プロセス、シナリオ分析の結果、Scope1〜3排出量およびSBT認定済の削減目標などを統合的に開示しています。
           </p>
         </div>
-        <div class="theme-cta"><a class="theme-block-link">気候変動の詳細ページへ</a></div>
+        <div class="theme-cta"><a class="theme-block-link">気候変動</a></div>
       </div>
 
       <!-- ── 資源循環（theme-block：H3＋側面リンク／KPI2つ） ── -->
@@ -1744,7 +1740,7 @@ body {
             <div class="kpi-graph-cell-caption">図：コスト削減効果の推移（FY22-24実績）</div>
           </div>
         </div>
-        <div class="theme-cta"><a class="theme-block-link">資源循環の詳細ページへ</a></div>
+        <div class="theme-cta"><a class="theme-block-link">資源循環</a></div>
       </div>
 
       <!-- ── 化学物質・汚染防止 ──　※#123（矢口氏）：上から「化学物質・汚染防止／水資源／生物多様性」の順に並べ替え（反映済） -->
@@ -1755,7 +1751,7 @@ body {
         <p style="font-size:13px; color:var(--c-text); line-height:1.9;">
           製品・事業活動における化学物質管理と汚染防止の取り組みを推進。REACH規則やRoHS指令等のグローバル規制動向を踏まえた管理体制を構築しています。
         </p>
-        <div class="theme-cta"><a class="theme-block-link">化学物質・汚染防止の詳細ページへ</a></div>
+        <div class="theme-cta"><a class="theme-block-link">化学物質・汚染防止</a></div>
       </div>
 
       <!-- ── 水資源（TNFDトピックス＋関連リンク内包） ── -->
@@ -1774,7 +1770,7 @@ body {
               <span class="theme-topic-label">TOPICS</span>
               <h4 class="theme-topic-title">TNFD開示</h4>
             </div>
-            <a class="section-head-link">TNFD開示の詳細ページへ</a>
+            <a class="section-head-link">TNFD開示</a>
           </div>
           <p class="theme-topic-desc">
             自然資本・生物多様性に関する依存・影響・リスク・機会を、TNFD（自然関連財務情報開示タスクフォース）提言に沿って開示しています。LEAPアプローチ（Locate／Evaluate／Assess／Prepare）に基づき、事業活動と自然との関係性を「ガバナンス」「戦略」「リスクと影響の管理」「指標と目標」の4項目で開示し、自然関連の機会・リスクと事業戦略の整合を図ります。
@@ -1787,7 +1783,7 @@ body {
           <span class="wf-link">環境技術</span>
           <span class="wf-link">ESGデータ</span>
         </div>
-        <div class="theme-cta"><a class="theme-block-link">水資源の詳細ページへ</a></div>
+        <div class="theme-cta"><a class="theme-block-link">水資源</a></div>
       </div>
 
       <!-- ── 生物多様性 ──　※#123（矢口氏）：並べ替えにより最後尾へ（反映済） -->
@@ -1798,7 +1794,7 @@ body {
         <p style="font-size:13px; color:var(--c-text); line-height:1.9;">
           事業活動と生態系の関係を踏まえた保全活動を推進。事業所周辺の生態系調査・緑地保全活動を展開しています。
         </p>
-        <div class="theme-cta"><a class="theme-block-link">生物多様性の詳細ページへ</a></div>
+        <div class="theme-cta"><a class="theme-block-link">生物多様性</a></div>
       </div>
     </section>
 
@@ -1812,7 +1808,11 @@ body {
     ============================================================ -->
     <section class="wf-section bg-white">
       <span class="wf-section-marker">D</span>
-      <h2 class="wf-section-title">体制</h2>
+      <div class="top-rich-head">
+        <div class="trh-main">
+          <h2 class="trh-title">体制<span class="trh-sub">環境マネジメント体制</span></h2>
+        </div>
+      </div>
 
       <h3 class="wf-sub-title">環境マネジメント</h3>
 
@@ -1828,7 +1828,7 @@ body {
           <span class="img-zoom-btn"></span></div>
         </div>
       </div>
-      <div class="sec-bottom-cta"><a class="wf-btn outline">環境マネジメントの詳細ページへ</a></div>
+      <div class="sec-bottom-cta"><a class="wf-btn outline">環境マネジメント</a></div>
     </section>
 
     <!-- ============================================================
@@ -1836,14 +1836,18 @@ body {
     ============================================================ -->
     <section class="wf-section bg-sub">
       <span class="wf-section-marker">E</span>
-      <h2 class="wf-section-title">コニカミノルタの環境課題解決を推進する活動</h2>
+      <div class="top-rich-head">
+        <div class="trh-main">
+          <h2 class="trh-title">コニカミノルタの環境課題解決を推進する活動<span class="trh-sub">バリューチェーン全体の環境活動の全体像</span></h2>
+        </div>
+      </div>
       <p class="wf-section-desc">バリューチェーン全体を通じた環境活動の全体像をご紹介します。</p>
 
       <!-- 全体像：模式図 -->
       <div class="wf-img h-240">
         <div class="wf-img-label">環境課題解決を推進する活動 模式図<br>（調達→生産→物流→販売→使用→回収のバリューチェーン全体像）<br>※ビジネスパートナーにも分かりやすい構成</div>
       <span class="img-zoom-btn"></span></div>
-      <div class="sec-bottom-cta"><a class="wf-btn outline">環境課題解決を推進する活動の詳細ページへ</a></div>
+      <div class="sec-bottom-cta"><a class="wf-btn outline">環境課題解決を推進する活動</a></div>
     </section>
 
     <!-- ============================================================
@@ -1856,7 +1860,11 @@ body {
     ============================================================ -->
     <section class="wf-section bg-sub">
       <span class="wf-section-marker">G</span>
-      <h2 class="wf-section-title">取り組み</h2>
+      <div class="top-rich-head">
+        <div class="trh-main">
+          <h2 class="trh-title">取り組み<span class="trh-sub">脱炭素・資源循環・生物多様性の代表事例</span></h2>
+        </div>
+      </div>
       <p class="wf-section-desc">脱炭素、資源循環、生物多様性の各領域で、代表的な取り組み事例をご紹介します。</p>
 
       <div class="wf-grid col-3 gap-24 mb-16">
@@ -1928,11 +1936,15 @@ body {
     ============================================================ -->
     <section class="wf-section bg-white">
       <span class="wf-section-marker">H</span>
-      <h2 class="wf-section-title">環境ラベル認証など</h2>
+      <div class="top-rich-head">
+        <div class="trh-main">
+          <h2 class="trh-title">環境ラベル認証など<span class="trh-sub">主要な環境ラベル・第三者認証</span></h2>
+        </div>
+      </div>
       <p class="wf-section-desc">
         （文章はダミーです）コニカミノルタの製品は、エコマーク、ブルーエンジェル、ENERGY STARなど、国内外の主要な環境ラベルや認証を取得しています。これらの認証は、製品のライフサイクル全体を通じた環境負荷低減への取り組みが第三者機関により評価された結果です。各国・地域ごとの環境配慮基準に適合した製品開発・製造を進め、お客様が安心して選択できる環境配慮製品ラインアップを継続的に拡充しています。
       </p>
-      <div class="sec-bottom-cta"><a class="wf-btn outline">環境ラベル認証などの詳細ページへ</a></div>
+      <div class="sec-bottom-cta"><a class="wf-btn outline">環境ラベル認証など</a></div>
     </section>
 
     <!-- ============================================================
@@ -2078,7 +2090,7 @@ body {
       </div>
       <div class="ann-row">
         <span class="ann-row-label">#143 桐原氏（対応済）</span>
-        各テーマ／トピックの導線を「○○の詳細ページへ」と行き先明示に統一し、リンク遷移（モーダルではない）である旨の注記を追加してユーザーの混乱を回避。
+        各テーマ／トピックの導線をテーマ名表示のボタンに統一し、リンク遷移（モーダルではない）である旨の注記を追加してユーザーの混乱を回避。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">#146 桐原氏（対応済）</span>
@@ -2227,12 +2239,16 @@ body {
         H2見出し横のページリンクを全廃し、各セクション末尾の<strong>ボタンリンク（.sec-bottom-cta / .wf-btn.outline）</strong>へ移設。H3横リンク（環境戦略・環境マネジメント）も同様に下部ボタンへ統一。
       </div>
       <div class="ann-row">
-        <span class="ann-row-label">リッチH2見出し（TOP同型）</span>
-        下層センテンス系のグラデ下線見出しと別系統に。<strong>上部ソリッドアクセント＋大型タイトル</strong>のTOP/インデックス共通リッチ見出し（.wf-section-title）へ刷新。連番・英字ラベルなし。
+        <span class="ann-row-label">リッチH2見出し（TOP完全同型）</span>
+        TOP（001）の <code>.top-rich-head/.trh-title</code> モジュールを<strong>そのまま採用</strong>（短い実線アクセント＋28pxタイトル＋補足サブ）。各H2にサブを付与。下層のグラデ下線見出しとは別系統。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">H3リファインモジュール</span>
-        左4px縦棒 → <strong>◇ダイヤモンドマーカー＋グラデ細ハイライン</strong>のデザイン性を高めたH3（.wf-sub-title）へ。
+        ◇マーカーは廃止。H2と同じ実線アクセント言語で、<strong>タイトル直下の短いソリッドアンダーライン（28×2px）</strong>に。全体になじみつつスケール/位置で差別化。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">ボタン文言</span>
+        「○○の詳細ページへ」→ <strong>遷移先名のみ</strong>に短縮（テーマ名／セクション名）。TOPのボタン文言ルールと統一。
       </div>
     </div>
 
