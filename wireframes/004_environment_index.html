@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>環境 インデックス — KM サステナビリティ WF v5.1 (#004)</title>
+<title>環境 インデックス — KM サステナビリティ WF v5.2 (#004)</title>
 <style>
 /* ============================================================
    KM SUSTAINABILITY WF — SHARED CSS v3.0
@@ -207,47 +207,38 @@ body {
 }
 
 /* セクション見出し（h2） */
-/* H2 — グラデ下線つき（v1.2） */
+/* H2 — TOP/インデックス系 共通リッチ見出し（下層センテンス系のグラデ下線とは別系統）
+   上部ソリッドアクセント＋大型タイトル。連番・英字ラベルなし */
 .wf-section-title {
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 700;
   color: var(--c-text-h);
-  margin-bottom: 28px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--c-border);
+  margin-bottom: 26px;
+  padding-top: 20px;
   line-height: 1.3;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
   position: relative;
 }
-.wf-section-title::after {
-  content: ''; position: absolute; left: 0; bottom: -1px;
-  width: 140px; height: 3px;
-  background: linear-gradient(90deg, #111 0%, #444 40%, #888 70%, transparent 100%);
+.wf-section-title::before {
+  content: ''; position: absolute; left: 0; top: 0;
+  width: 44px; height: 4px; background: var(--c-text-h);
+}
+.wf-section-title .rh-sub {
+  display: block; font-size: 13px; font-weight: 600;
+  color: var(--c-text-s); letter-spacing: 0.02em; margin-top: 10px;
 }
 .wf-section-title.center {
   text-align: center;
   margin-bottom: 12px;
 }
+.wf-section-title.center::before { left: 50%; transform: translateX(-50%); }
 
-/* H2 + 横リンク（同名ページ遷移ルール／v1.2） */
-.section-head-row {
-  display: flex; justify-content: space-between; align-items: baseline;
-  gap: 24px;
-  margin-bottom: 28px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--c-border);
-  position: relative;
-  flex-wrap: wrap;
-}
-.section-head-row::after {
-  content: ''; position: absolute; left: 0; bottom: -1px;
-  width: 140px; height: 3px;
-  background: linear-gradient(90deg, #111 0%, #444 40%, #888 70%, transparent 100%);
-}
-.section-head-row .wf-section-title {
-  margin-bottom: 0; padding-bottom: 0; border-bottom: none;
-}
-.section-head-row .wf-section-title::after { display: none; }
+/* H2横リンク廃止 → セクション下部のボタンリンクへ */
+.sec-bottom-cta { margin-top: 28px; display: flex; }
+.sec-bottom-cta .wf-btn { cursor: default; }
+.sec-bottom-cta .wf-btn::before { content: '› '; font-weight: 700; margin-right: 2px; }
+
+/* （旧）H2横リンク行は廃止。リンクはセクション下部の .sec-bottom-cta ボタンへ移設 */
 .section-head-link {
   font-size: 12px; font-weight: 600; color: var(--c-text-h);
   white-space: nowrap; cursor: default; letter-spacing: 0.03em;
@@ -266,24 +257,32 @@ body {
 }
 .wf-section-desc.center { text-align: center; }
 
-/* H3 — 左縦棒付き（v1.2 共通ルール） */
+/* H3 — リファインモジュール（◇ダイヤモンドマーカー＋細ハイライン）
+   下層の単純な左縦棒よりデザイン性を高めたインデックス系H3 */
 .wf-sub-title {
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 700;
   color: var(--c-text-h);
-  margin-bottom: 16px;
   line-height: 1.5;
-  padding-left: 14px;
-  border-left: 4px solid var(--c-text-h);
   letter-spacing: -0.01em;
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+  position: relative;
+  display: flex; align-items: center; gap: 12px;
+}
+.wf-sub-title::before {
+  content: ''; width: 9px; height: 9px;
+  background: var(--c-text-h); transform: rotate(45deg);
+  flex: 0 0 auto;
+}
+.wf-sub-title::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, var(--c-text-h) 0%, var(--c-border) 60%, transparent 100%);
 }
 
-/* H3 + 横リンク（H2横リンクと同型・サイズだけ縮小） */
-.h3-head-row {
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 20px; margin-bottom: 16px; flex-wrap: wrap;
-}
-.h3-head-row .wf-sub-title { margin-bottom: 0; }
+/* （旧）H3横リンク行は廃止。リンクは直後の .sec-bottom-cta ボタンへ移設 */
+.h3-head-row { display: block; margin-bottom: 16px; }
 
 /* H4 — ◾プレフィックス付き小見出し（v1.2 共通ルール） */
 .wf-card-title {
@@ -1647,14 +1646,12 @@ body {
         コニカミノルタは、マテリアリティ（重要課題）の見直しにおいて「気候変動への対応」「有限な資源の有効利用」を特定し、環境経営を事業成長の中核に位置づけています。
       </p>
 
-      <!-- ── H3①: コニカミノルタの環境戦略（見出し横にページリンク） ── -->
-      <div class="h3-head-row">
-        <h3 class="wf-sub-title">コニカミノルタの環境戦略</h3>
-        <a class="section-head-link">環境戦略の詳細ページへ</a>
-      </div>
-      <p style="font-size:13px; color:var(--c-text); line-height:1.9; margin-bottom:32px;">
+      <!-- ── H3①: コニカミノルタの環境戦略（リンクは下部ボタンへ移設） ── -->
+      <h3 class="wf-sub-title">コニカミノルタの環境戦略</h3>
+      <p style="font-size:13px; color:var(--c-text); line-height:1.9;">
         （文章はダミーです）環境方針と環境戦略の概要を紹介します。コニカミノルタは長期環境ビジョン「Eco Vision 2050」のもと、自社のCO2排出量実質ゼロ達成に加え、お客様や調達先での排出削減への貢献を掲げています。マテリアリティで特定した「気候変動への対応」「有限な資源の有効利用」を軸に、事業成長と環境価値創出の両立を推進し、長期環境ビジョン・環境方針・マテリアリティ特定プロセスを統合した環境経営の全体像を示します。
       </p>
+      <div class="sec-bottom-cta" style="margin-top:18px; margin-bottom:32px;"><a class="wf-btn outline">環境戦略の詳細ページへ</a></div>
 
       <!-- ── H3②: 環境経営 ── -->
       <h3 class="wf-sub-title">環境経営</h3>
@@ -1817,10 +1814,7 @@ body {
       <span class="wf-section-marker">D</span>
       <h2 class="wf-section-title">体制</h2>
 
-      <div class="h3-head-row">
-        <h3 class="wf-sub-title">環境マネジメント</h3>
-        <a class="section-head-link">環境マネジメントの詳細ページへ</a>
-      </div>
+      <h3 class="wf-sub-title">環境マネジメント</h3>
 
       <div class="wf-grid col-2 gap-32">
         <div>
@@ -1834,6 +1828,7 @@ body {
           <span class="img-zoom-btn"></span></div>
         </div>
       </div>
+      <div class="sec-bottom-cta"><a class="wf-btn outline">環境マネジメントの詳細ページへ</a></div>
     </section>
 
     <!-- ============================================================
@@ -1841,16 +1836,14 @@ body {
     ============================================================ -->
     <section class="wf-section bg-sub">
       <span class="wf-section-marker">E</span>
-      <div class="section-head-row">
-        <h2 class="wf-section-title">コニカミノルタの環境課題解決を推進する活動</h2>
-        <a class="section-head-link">環境課題解決を推進する活動の詳細ページへ</a>
-      </div>
+      <h2 class="wf-section-title">コニカミノルタの環境課題解決を推進する活動</h2>
       <p class="wf-section-desc">バリューチェーン全体を通じた環境活動の全体像をご紹介します。</p>
 
       <!-- 全体像：模式図 -->
       <div class="wf-img h-240">
         <div class="wf-img-label">環境課題解決を推進する活動 模式図<br>（調達→生産→物流→販売→使用→回収のバリューチェーン全体像）<br>※ビジネスパートナーにも分かりやすい構成</div>
       <span class="img-zoom-btn"></span></div>
+      <div class="sec-bottom-cta"><a class="wf-btn outline">環境課題解決を推進する活動の詳細ページへ</a></div>
     </section>
 
     <!-- ============================================================
@@ -1935,39 +1928,17 @@ body {
     ============================================================ -->
     <section class="wf-section bg-white">
       <span class="wf-section-marker">H</span>
-      <div class="section-head-row">
-        <h2 class="wf-section-title">環境ラベル認証など</h2>
-        <a class="section-head-link">環境ラベル認証などの詳細ページへ</a>
-      </div>
+      <h2 class="wf-section-title">環境ラベル認証など</h2>
       <p class="wf-section-desc">
         （文章はダミーです）コニカミノルタの製品は、エコマーク、ブルーエンジェル、ENERGY STARなど、国内外の主要な環境ラベルや認証を取得しています。これらの認証は、製品のライフサイクル全体を通じた環境負荷低減への取り組みが第三者機関により評価された結果です。各国・地域ごとの環境配慮基準に適合した製品開発・製造を進め、お客様が安心して選択できる環境配慮製品ラインアップを継続的に拡充しています。
       </p>
+      <div class="sec-bottom-cta"><a class="wf-btn outline">環境ラベル認証などの詳細ページへ</a></div>
     </section>
 
     <!-- ============================================================
-         セクション I：サステナビリティ関連リンク
-         環境・社会・ガバナンスのヘッダーをリンク化
-         第3階層（中項目）＋第4階層（小項目）の階層構造UIを実装
+         セクション I：他インデックスへの回遊 — エリアごと削除（クライアントFB）
+         フッターのサステナビリティ サイトマップに集約するため本セクションは廃止
     ============================================================ -->
-    <section class="wf-section bg-white" style="padding-top:40px; padding-bottom:40px;">
-      <span class="wf-section-marker">I</span>
-      <h2 class="wf-section-title" style="font-size:18px;">他インデックスへの回遊</h2>
-      <p class="wf-section-desc" style="margin-bottom:8px;">環境／社会／ガバナンスの3インデックス間を移動するための導線です。</p>
-      <!-- #146（桐原氏）：フッターのサイトマップとの重複を解消。役割を分離 -->
-      <p class="link-behavior-note">※ 全ページ・全項目を網羅する一覧は<strong>フッターの「サステナビリティ サイトマップ」</strong>に集約しています。本ブロックは重複を避け、<strong>3インデックス間の相互回遊</strong>のみに役割を限定しています（全インデックスページ＝環境／社会／ガバナンスに共通設置）。</p>
-
-      <div class="esg-link-stack">
-        <div class="esg-link-row is-current">
-          <div class="esg-link-head">環境 インデックス（現在のページ）</div>
-        </div>
-        <div class="esg-link-row">
-          <div class="esg-link-head">社会 インデックスへ</div>
-        </div>
-        <div class="esg-link-row">
-          <div class="esg-link-head">ガバナンス インデックスへ</div>
-        </div>
-      </div>
-    </section>
 
     <!-- サステナビリティサイトフッター（アコーディオン式・サイトマップ） -->
     <div class="sus-footer" data-open="true">
@@ -2199,18 +2170,18 @@ body {
     <!-- D -->
     <div class="ann-item">
       <span class="ann-num">D</span>
-      <span class="ann-head">体制：環境マネジメント（v4.2 横リンク化）</span>
+      <span class="ann-head">体制：環境マネジメント</span>
       <p class="ann-body">
-        H3「環境マネジメント」を h3-head-row で見出し横リンク化。「イニシアティブへの参画」ボタンは削除（クライアント指示反映）。
+        H3「環境マネジメント」はリファインH3（◇マーカー）。ページリンクは見出し横ではなくセクション末尾の下部ボタンへ移設。「イニシアティブへの参画」ボタンは削除（クライアント指示反映）。
       </p>
     </div>
 
     <!-- E -->
     <div class="ann-item">
       <span class="ann-num">E</span>
-      <span class="ann-head">環境課題解決を推進する活動（v4.2 横リンク化）</span>
+      <span class="ann-head">環境課題解決を推進する活動</span>
       <p class="ann-body">
-        section-head-row でH2見出し横にページリンク配置。下部の「長期環境ビジョン内の活動ページへ」ボタンは削除。
+        リッチH2見出し＋模式図。ページリンクはセクション末尾の下部ボタンへ移設（H2横リンクは廃止）。
       </p>
     </div>
 
@@ -2243,13 +2214,25 @@ body {
       </div>
     </div>
 
-    <!-- I -->
+    <!-- 第2次FB（追加対応） -->
     <div class="ann-item">
-      <span class="ann-num">I</span>
-      <span class="ann-head">他インデックスへの回遊（#146反映）</span>
+      <span class="ann-num">★2</span>
+      <span class="ann-head">第2次FB反映（見出し刷新・リンク整理）</span>
       <div class="ann-row">
-        <span class="ann-row-label">変更内容</span>
-        桐原氏#146（フッターサイトマップと重複）を反映。全L3チップの列挙を廃し、環境／社会／ガバナンス3インデックスの相互回遊リンクのみに役割を限定。全項目を網羅する一覧はフッターの「サステナビリティ サイトマップ」に集約する旨を注記し、役割を明確に分離。全インデックスページ共通設置。
+        <span class="ann-row-label">他インデックスへの回遊：削除</span>
+        セクションIを<strong>エリアごと削除</strong>。全ページ・全項目の網羅はフッターの「サステナビリティ サイトマップ」に一本化（#146の役割分離をさらに徹底）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">H2横リンク → 下部ボタン</span>
+        H2見出し横のページリンクを全廃し、各セクション末尾の<strong>ボタンリンク（.sec-bottom-cta / .wf-btn.outline）</strong>へ移設。H3横リンク（環境戦略・環境マネジメント）も同様に下部ボタンへ統一。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">リッチH2見出し（TOP同型）</span>
+        下層センテンス系のグラデ下線見出しと別系統に。<strong>上部ソリッドアクセント＋大型タイトル</strong>のTOP/インデックス共通リッチ見出し（.wf-section-title）へ刷新。連番・英字ラベルなし。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">H3リファインモジュール</span>
+        左4px縦棒 → <strong>◇ダイヤモンドマーカー＋グラデ細ハイライン</strong>のデザイン性を高めたH3（.wf-sub-title）へ。
       </div>
     </div>
 
