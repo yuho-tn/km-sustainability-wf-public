@@ -558,43 +558,38 @@ body {
    ＋ TOP専用リッチ見出しモジュール）
 ============================================================ */
 
-/* TOP専用リッチ見出し（他ページには展開しない上位導入見出し） */
-.top-rich-head {
-  display: grid; grid-template-columns: auto 1fr;
-  align-items: end; gap: 22px;
-  margin-bottom: 28px; padding-bottom: 16px;
-  border-bottom: 1px solid var(--c-border); position: relative;
+/* TOP専用 見出しモジュール
+   ・下層（仮想）ページの「グラデ下線見出し（.wf-section-title）」とは別系統
+   ・連番ナンバーは廃止
+   ・上部ソリッドアクセント＋英字ラベル＋大型タイトル＋補足サブのエディトリアル型 */
+.top-rich-head { margin-bottom: 26px; }
+.top-rich-head::before {
+  content: ''; display: block;
+  width: 44px; height: 4px; background: var(--c-text-h);
+  margin-bottom: 16px;
 }
-.top-rich-head::after {
-  content: ''; position: absolute; left: 0; bottom: -2px;
-  width: 220px; height: 4px;
-  background: linear-gradient(90deg, #111 0%, #444 45%, #999 75%, transparent 100%);
-}
-.trh-index {
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-  font-size: 56px; font-weight: 700; line-height: 0.8;
-  color: var(--c-bg-sub); letter-spacing: -0.02em;
-  -webkit-text-stroke: 1px var(--c-ph-line);
-}
-.trh-main { display: flex; flex-direction: column; gap: 6px; }
+.trh-main { display: block; }
 .trh-eyebrow {
-  font-size: 11px; font-weight: 700; letter-spacing: 0.24em;
+  display: block;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.22em;
   text-transform: uppercase; color: var(--c-text-s);
+  margin-bottom: 8px;
 }
 .trh-title {
-  font-size: 30px; font-weight: 700; color: var(--c-text-h);
-  line-height: 1.25; letter-spacing: -0.02em;
+  font-size: 28px; font-weight: 700; color: var(--c-text-h);
+  line-height: 1.3; letter-spacing: -0.015em;
 }
 .trh-title .trh-sub {
   display: block; font-size: 13px; font-weight: 600;
-  color: var(--c-text-s); letter-spacing: 0.02em; margin-top: 8px;
+  color: var(--c-text-s); letter-spacing: 0.02em; margin-top: 10px;
 }
 
-/* #4 戦略：本文（左）＋概念図PH（右）の2カラム */
+/* #4 戦略：本文（左）＋概念図PH（右）の2カラム ※元のサイズ感へ戻す */
 .strategy-cols {
-  display: grid; grid-template-columns: 1fr 380px; gap: 40px;
+  display: grid; grid-template-columns: 1fr 300px; gap: 32px;
   align-items: start;
 }
+.strategy-col-text { min-width: 0; }
 .strategy-body {
   font-size: 13px; color: var(--c-text); line-height: 2.05;
   margin-bottom: 8px;
@@ -612,14 +607,18 @@ body {
   line-height: 1.6;
 }
 
-/* #8 社外評価：左右＜＞で動的スクロールするロゴカルーセル */
-.logo-carousel { position: relative; margin: 24px 0 10px; }
+/* #8 社外評価：デフォルトは4点表示。固定4点のまま＜＞で4点ずつ送るカルーセル */
+.logo-carousel { position: relative; margin: 22px 0 10px; }
 .logo-carousel-track {
   display: flex; gap: 14px; overflow-x: auto;
-  scroll-behavior: smooth; padding: 2px; scrollbar-width: none;
+  scroll-behavior: smooth; scrollbar-width: none;
+  scroll-snap-type: x mandatory;
 }
 .logo-carousel-track::-webkit-scrollbar { display: none; }
-.logo-carousel-track .eval-logo { flex: 0 0 200px; margin: 0; }
+.logo-carousel-track .eval-logo {
+  flex: 0 0 calc((100% - 42px) / 4); margin: 0;
+  scroll-snap-align: start;
+}
 .lc-arrow {
   position: absolute; top: 50%; transform: translateY(-50%);
   width: 36px; height: 36px; z-index: 4;
@@ -629,8 +628,8 @@ body {
   cursor: pointer; font-family: inherit; line-height: 1;
 }
 .lc-arrow:hover { background: var(--c-text-h); color: #fff; }
-.lc-arrow.prev { left: -16px; }
-.lc-arrow.next { right: -16px; }
+.lc-arrow.prev { left: -14px; }
+.lc-arrow.next { right: -14px; }
 .lc-hint {
   font-size: 11px; color: var(--c-text-xs);
   text-align: right; margin-bottom: 20px;
@@ -676,7 +675,6 @@ body {
     <section class="wf-section bg-white">
       <span class="wf-section-marker">2</span>
       <div class="top-rich-head">
-        <span class="trh-index">02</span>
         <div class="trh-main">
           <span class="trh-eyebrow">Strategy</span>
           <h2 class="trh-title">サステナビリティ戦略<span class="trh-sub">価値創造ストーリーに基づく中長期の方向性</span></h2>
@@ -723,7 +721,6 @@ body {
     <section class="wf-section bg-white">
       <span class="wf-section-marker">3</span>
       <div class="top-rich-head">
-        <span class="trh-index">03</span>
         <div class="trh-main">
           <span class="trh-eyebrow">Sustainability</span>
           <h2 class="trh-title">サステナビリティの取り組み<span class="trh-sub">環境・社会・ガバナンスの取り組みと進捗</span></h2>
@@ -786,7 +783,6 @@ body {
     <section class="wf-section bg-white pad-sm">
       <span class="wf-section-marker">4</span>
       <div class="top-rich-head">
-        <span class="trh-index">04</span>
         <div class="trh-main">
           <span class="trh-eyebrow">Management</span>
           <h2 class="trh-title">サステナビリティマネジメント<span class="trh-sub">推進体制とステークホルダーエンゲージメント</span></h2>
@@ -811,7 +807,6 @@ body {
     <section class="wf-section bg-white">
       <span class="wf-section-marker">5</span>
       <div class="top-rich-head">
-        <span class="trh-index">05</span>
         <div class="trh-main">
           <span class="trh-eyebrow">Evaluation &amp; Initiatives</span>
           <h2 class="trh-title">社外からの評価とイニシアチブへの参画<span class="trh-sub">外部評価・参画イニシアティブ</span></h2>
@@ -823,7 +818,7 @@ body {
 
       <!-- #8：固定4点 → 左右＜＞で動的にスクロールできるロゴカルーセルに変更 -->
       <div class="logo-carousel">
-        <button class="lc-arrow prev" type="button" aria-label="前へ" onclick="this.parentElement.querySelector('.logo-carousel-track').scrollBy({left:-440,behavior:'smooth'})">‹</button>
+        <button class="lc-arrow prev" type="button" aria-label="前へ" onclick="var t=this.parentElement.querySelector('.logo-carousel-track');t.scrollBy({left:-t.clientWidth,behavior:'smooth'})">‹</button>
         <div class="logo-carousel-track">
           <div class="eval-logo">[ FTSE4Good Index ]</div>
           <div class="eval-logo">[ MSCI Selection Indexes 2025 ]</div>
@@ -836,9 +831,9 @@ body {
           <div class="eval-logo">[ TCFD 賛同 ]</div>
           <div class="eval-logo">[ 国連グローバル・コンパクト ]</div>
         </div>
-        <button class="lc-arrow next" type="button" aria-label="次へ" onclick="this.parentElement.querySelector('.logo-carousel-track').scrollBy({left:440,behavior:'smooth'})">›</button>
+        <button class="lc-arrow next" type="button" aria-label="次へ" onclick="var t=this.parentElement.querySelector('.logo-carousel-track');t.scrollBy({left:t.clientWidth,behavior:'smooth'})">›</button>
       </div>
-      <div class="lc-hint">← 受けた評価・参画イニシアティブのロゴが順に流れる動的表示（固定4点ではなく可変）</div>
+      <div class="lc-hint">デフォルトは4点表示。固定4点のまま ＜ ＞ で4点ずつ切り替えるカルーセル</div>
 
       <div class="sec-cta">
         <a class="wf-btn">社外からの評価とイニシアチブの詳細を見る</a>
@@ -879,7 +874,6 @@ body {
     <section class="wf-section bg-white">
       <span class="wf-section-marker">7</span>
       <div class="top-rich-head">
-        <span class="trh-index">07</span>
         <div class="trh-main">
           <span class="trh-eyebrow">Topics</span>
           <h2 class="trh-title">トピックス<span class="trh-sub">サステナビリティ関連の新着情報</span></h2>
@@ -1088,19 +1082,19 @@ body {
         <b>#4：</b>戦略セクション右カラムに「サステナビリティ戦略 概念図PH」を追加。<br>
         <b>#6：</b>見出しを「ESGの取り組みと進捗」→「サステナビリティの取り組み」に改称。<br>
         <b>#7：</b>トピックス一覧リンクを一覧下部（右寄せ）に移設。<br>
-        <b>#8：</b>社外評価ロゴを固定4点→左右＜＞で動的スクロールするカルーセルに変更。<br>
+        <b>#8：</b>社外評価ロゴはデフォルト4点表示のまま、左右＜＞で4点ずつ送る固定4点カルーセルに変更。<br>
         <b>#11：</b>ヒーロー高を圧縮、リード文は直下白帯へ。<br>
-        <b>#12：</b>TOP専用リッチ見出しモジュールを新設し主要セクションへ適用。戦略の旧キャッチコピーは削除し本文3行構成へ。<br>
+        <b>#12：</b>TOP専用見出しモジュール（連番なし・上部アクセント＋英字＋大型タイトル）を新設し主要セクションへ適用。グラデ下線は下層見出し専用。戦略の旧キャッチコピーは削除し本文3行構成へ。<br>
         <b>#13：</b>見出し一体の「詳細を見る」を全廃し末尾の明示CTAへ。
       </p>
     </div>
 
     <div class="ann-item">
       <span class="ann-num">★</span>
-      <span class="ann-head">TOP専用リッチ見出し（#12 / その他FB）</span>
+      <span class="ann-head">TOP専用 見出しモジュール（#12 / その他FB）</span>
       <p class="ann-body">
-        <b>狙い：</b>L3センテンス系の見出しと差別化し、TOPを「面の入口」として強く見せる。<br>
-        <b>採用UI：</b>`.top-rich-head`＝大型連番インデックス＋英字アイブロウ＋30pxタイトル＋補足サブ＋太いグラデアクセント。他ページには展開しないTOP限定モジュール。
+        <b>狙い：</b>下層（仮想）ページの「グラデ下線見出し」とは別系統にし、TOPを「面の入口」として見せる。<br>
+        <b>採用UI：</b>`.top-rich-head`＝連番なし／上部ソリッドアクセントバー＋英字ラベル＋28pxタイトル＋補足サブのエディトリアル型。グラデ下線は下層見出し専用とし、TOPには使わない。
       </p>
     </div>
 
@@ -1140,7 +1134,7 @@ body {
       <span class="ann-num">5</span>
       <span class="ann-head">社外からの評価とイニシアチブ（#2/#8）</span>
       <p class="ann-body">
-        資料・データの前へ移動（#2）。ロゴは固定4点をやめ、左右＜＞で動的スクロールするカルーセル（受けた評価・参画イニシアティブが順に流れる可変表示）に変更（#8）。
+        資料・データの前へ移動（#2）。ロゴはデフォルト4点表示の固定4点を保ちつつ、左右＜＞で4点ずつ送るカルーセルに変更（#8）。
       </p>
     </div>
 
