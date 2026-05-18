@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>環境 インデックス — KM サステナビリティ WF v5.0 (#004)</title>
+<title>環境 インデックス — KM サステナビリティ WF v5.1 (#004)</title>
 <style>
 /* ============================================================
    KM SUSTAINABILITY WF — SHARED CSS v3.0
@@ -1330,11 +1330,47 @@ body {
 .theme-block-link:hover { border-bottom-color: var(--c-text-h); }
 .theme-block-link::before { content: '› '; font-weight: 700; }
 
+/* #153 セクション内アンカー目次（5領域へのページ内ジャンプ） */
+.theme-toc {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin: 4px 0 28px; padding: 14px 16px;
+  background: var(--c-white); border: 1px solid var(--c-border);
+}
+.theme-toc-label {
+  font-size: 11px; font-weight: 700; color: var(--c-text-s);
+  letter-spacing: 0.08em; align-self: center; margin-right: 6px;
+}
+.theme-toc a {
+  font-size: 12px; font-weight: 600; color: var(--c-text-h);
+  padding: 6px 14px; border: 1px solid var(--c-text-h);
+  background: var(--c-white); text-decoration: none; cursor: pointer;
+}
+.theme-toc a::before { content: '↓ '; font-weight: 700; }
+.theme-toc a:hover { background: var(--c-text-h); color: #fff; }
+
+/* #153 各テーマ末尾の遷移CTA（情報量に依らず導線を均一配置・下層ページへ遷移） */
+.theme-cta {
+  margin-top: 18px; padding-top: 14px;
+  border-top: 1px solid var(--c-border);
+  display: flex; justify-content: flex-end;
+}
+.theme-cta .theme-block-link {
+  border: 1px solid var(--c-text-h); padding: 9px 18px;
+}
+.theme-cta .theme-block-link:hover { background: var(--c-text-h); color: #fff; }
+
+/* #143 リンク遷移である旨の注記 */
+.link-behavior-note {
+  font-size: 12px; color: var(--c-text-s);
+  background: var(--c-bg-sub); border-left: 3px solid var(--c-text-h);
+  padding: 10px 14px; margin: 0 0 24px;
+}
+
 /* グラフ画像PH（行動変容定義でグラフ記載のあるテーマに使用） */
 .kpi-graph-ph {
   background: var(--c-ph);
   border: 1px solid var(--c-ph-line);
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 9;
   position: relative;
   display: flex; align-items: center; justify-content: center;
   overflow: hidden;
@@ -1614,7 +1650,7 @@ body {
       <!-- ── H3①: コニカミノルタの環境戦略（見出し横にページリンク） ── -->
       <div class="h3-head-row">
         <h3 class="wf-sub-title">コニカミノルタの環境戦略</h3>
-        <a class="section-head-link">詳細を見る</a>
+        <a class="section-head-link">環境戦略の詳細ページへ</a>
       </div>
       <p style="font-size:13px; color:var(--c-text); line-height:1.9; margin-bottom:32px;">
         （文章はダミーです）環境方針と環境戦略の概要を紹介します。コニカミノルタは長期環境ビジョン「Eco Vision 2050」のもと、自社のCO2排出量実質ゼロ達成に加え、お客様や調達先での排出削減への貢献を掲げています。マテリアリティで特定した「気候変動への対応」「有限な資源の有効利用」を軸に、事業成長と環境価値創出の両立を推進し、長期環境ビジョン・環境方針・マテリアリティ特定プロセスを統合した環境経営の全体像を示します。
@@ -1636,13 +1672,24 @@ body {
     <section class="wf-section bg-sub">
       <span class="wf-section-marker">B</span>
       <h2 class="wf-section-title">戦略・目標・実績</h2>
-      <p class="wf-section-desc">気候変動・資源循環・生物多様性・化学物質汚染防止・水資源の5領域について、戦略と代表的なKPIの進捗を紹介します。</p>
+      <p class="wf-section-desc">気候変動・資源循環・化学物質汚染防止・水資源・生物多様性の5領域について、戦略と代表的なKPIの進捗を紹介します。</p>
+
+      <!-- #153：エリア内の目次（ページ内ジャンプ）で導線を補強 -->
+      <div class="theme-toc">
+        <span class="theme-toc-label">このエリアの目次</span>
+        <a href="#env-climate">気候変動</a>
+        <a href="#env-resource">資源循環</a>
+        <a href="#env-chemical">化学物質・汚染防止</a>
+        <a href="#env-water">水資源</a>
+        <a href="#env-bio">生物多様性</a>
+      </div>
+      <!-- #143：リンク遷移である旨を明示（モーダルではない） -->
+      <p class="link-behavior-note">各テーマの「○○の詳細ページへ」は、対応する下層（L4）ページへ<strong>画面遷移</strong>します（モーダル表示ではありません）。遷移先が分かるよう、行き先を明示したボタン文言に統一しています。</p>
 
       <!-- ── 気候変動（theme-block：H3＋側面リンク／KPI3つ） ── -->
-      <div class="theme-block">
+      <div class="theme-block" id="env-climate">
         <div class="theme-block-head">
           <h3>気候変動</h3>
-          <a class="theme-block-link">詳細を見る</a>
         </div>
         <h4 class="wf-card-title">戦略</h4>
         <p style="font-size:13px; color:var(--c-text); line-height:1.9; margin-bottom:16px;">
@@ -1671,19 +1718,19 @@ body {
               <span class="theme-topic-label">TOPICS</span>
               <h4 class="theme-topic-title">TCFD開示</h4>
             </div>
-            <a class="section-head-link">詳細を見る</a>
+            <a class="section-head-link">TCFD開示の詳細ページへ</a>
           </div>
           <p class="theme-topic-desc">
             気候変動が事業に及ぼす財務的影響を把握し、ステークホルダーへの透明性ある開示を行うため、TCFD（気候関連財務情報開示タスクフォース）提言に沿った情報開示を実施しています。「ガバナンス」「戦略」「リスク管理」「指標と目標」の4項目で、気候関連リスクと機会の特定・評価・管理プロセス、シナリオ分析の結果、Scope1〜3排出量およびSBT認定済の削減目標などを統合的に開示しています。
           </p>
         </div>
+        <div class="theme-cta"><a class="theme-block-link">気候変動の詳細ページへ</a></div>
       </div>
 
       <!-- ── 資源循環（theme-block：H3＋側面リンク／KPI2つ） ── -->
-      <div class="theme-block">
+      <div class="theme-block" id="env-resource">
         <div class="theme-block-head">
           <h3>資源循環</h3>
-          <a class="theme-block-link">詳細を見る</a>
         </div>
         <h4 class="wf-card-title">戦略</h4>
         <p style="font-size:13px; color:var(--c-text); line-height:1.9; margin-bottom:16px;">
@@ -1700,24 +1747,24 @@ body {
             <div class="kpi-graph-cell-caption">図：コスト削減効果の推移（FY22-24実績）</div>
           </div>
         </div>
+        <div class="theme-cta"><a class="theme-block-link">資源循環の詳細ページへ</a></div>
       </div>
 
-      <!-- ── 化学物質・汚染防止 ──　※#14：上から「化学物質・汚染防止／水資源／生物多様性」に並べ替え -->
-      <div class="theme-block">
+      <!-- ── 化学物質・汚染防止 ──　※#123（矢口氏）：上から「化学物質・汚染防止／水資源／生物多様性」の順に並べ替え（反映済） -->
+      <div class="theme-block" id="env-chemical">
         <div class="theme-block-head">
           <h3>化学物質・汚染防止</h3>
-          <a class="theme-block-link">詳細を見る</a>
         </div>
         <p style="font-size:13px; color:var(--c-text); line-height:1.9;">
           製品・事業活動における化学物質管理と汚染防止の取り組みを推進。REACH規則やRoHS指令等のグローバル規制動向を踏まえた管理体制を構築しています。
         </p>
+        <div class="theme-cta"><a class="theme-block-link">化学物質・汚染防止の詳細ページへ</a></div>
       </div>
 
       <!-- ── 水資源（TNFDトピックス＋関連リンク内包） ── -->
-      <div class="theme-block">
+      <div class="theme-block" id="env-water">
         <div class="theme-block-head">
           <h3>水資源</h3>
-          <a class="theme-block-link">詳細を見る</a>
         </div>
         <p style="font-size:13px; color:var(--c-text); line-height:1.9;">
           水リスク評価に基づく水使用量の削減と水質保全活動を実施。WRI Aqueductによる評価を活用し、水ストレスの高い地域の拠点を重点的に管理しています。
@@ -1730,7 +1777,7 @@ body {
               <span class="theme-topic-label">TOPICS</span>
               <h4 class="theme-topic-title">TNFD開示</h4>
             </div>
-            <a class="section-head-link">詳細を見る</a>
+            <a class="section-head-link">TNFD開示の詳細ページへ</a>
           </div>
           <p class="theme-topic-desc">
             自然資本・生物多様性に関する依存・影響・リスク・機会を、TNFD（自然関連財務情報開示タスクフォース）提言に沿って開示しています。LEAPアプローチ（Locate／Evaluate／Assess／Prepare）に基づき、事業活動と自然との関係性を「ガバナンス」「戦略」「リスクと影響の管理」「指標と目標」の4項目で開示し、自然関連の機会・リスクと事業戦略の整合を図ります。
@@ -1743,17 +1790,18 @@ body {
           <span class="wf-link">環境技術</span>
           <span class="wf-link">ESGデータ</span>
         </div>
+        <div class="theme-cta"><a class="theme-block-link">水資源の詳細ページへ</a></div>
       </div>
 
-      <!-- ── 生物多様性 ──　※#14：並べ替えにより最後尾へ -->
-      <div class="theme-block">
+      <!-- ── 生物多様性 ──　※#123（矢口氏）：並べ替えにより最後尾へ（反映済） -->
+      <div class="theme-block" id="env-bio">
         <div class="theme-block-head">
           <h3>生物多様性</h3>
-          <a class="theme-block-link">詳細を見る</a>
         </div>
         <p style="font-size:13px; color:var(--c-text); line-height:1.9;">
           事業活動と生態系の関係を踏まえた保全活動を推進。事業所周辺の生態系調査・緑地保全活動を展開しています。
         </p>
+        <div class="theme-cta"><a class="theme-block-link">生物多様性の詳細ページへ</a></div>
       </div>
     </section>
 
@@ -1771,7 +1819,7 @@ body {
 
       <div class="h3-head-row">
         <h3 class="wf-sub-title">環境マネジメント</h3>
-        <a class="section-head-link">詳細を見る</a>
+        <a class="section-head-link">環境マネジメントの詳細ページへ</a>
       </div>
 
       <div class="wf-grid col-2 gap-32">
@@ -1795,7 +1843,7 @@ body {
       <span class="wf-section-marker">E</span>
       <div class="section-head-row">
         <h2 class="wf-section-title">コニカミノルタの環境課題解決を推進する活動</h2>
-        <a class="section-head-link">詳細を見る</a>
+        <a class="section-head-link">環境課題解決を推進する活動の詳細ページへ</a>
       </div>
       <p class="wf-section-desc">バリューチェーン全体を通じた環境活動の全体像をご紹介します。</p>
 
@@ -1889,7 +1937,7 @@ body {
       <span class="wf-section-marker">H</span>
       <div class="section-head-row">
         <h2 class="wf-section-title">環境ラベル認証など</h2>
-        <a class="section-head-link">詳細を見る</a>
+        <a class="section-head-link">環境ラベル認証などの詳細ページへ</a>
       </div>
       <p class="wf-section-desc">
         （文章はダミーです）コニカミノルタの製品は、エコマーク、ブルーエンジェル、ENERGY STARなど、国内外の主要な環境ラベルや認証を取得しています。これらの認証は、製品のライフサイクル全体を通じた環境負荷低減への取り組みが第三者機関により評価された結果です。各国・地域ごとの環境配慮基準に適合した製品開発・製造を進め、お客様が安心して選択できる環境配慮製品ラインアップを継続的に拡充しています。
@@ -1903,57 +1951,20 @@ body {
     ============================================================ -->
     <section class="wf-section bg-white" style="padding-top:40px; padding-bottom:40px;">
       <span class="wf-section-marker">I</span>
-      <h2 class="wf-section-title" style="font-size:18px;">サステナビリティ 関連リンク</h2>
-      <p class="wf-section-desc" style="margin-bottom:24px;">環境・社会・ガバナンス各インデックスページで紹介する主要ページへのリンクです。</p>
+      <h2 class="wf-section-title" style="font-size:18px;">他インデックスへの回遊</h2>
+      <p class="wf-section-desc" style="margin-bottom:8px;">環境／社会／ガバナンスの3インデックス間を移動するための導線です。</p>
+      <!-- #146（桐原氏）：フッターのサイトマップとの重複を解消。役割を分離 -->
+      <p class="link-behavior-note">※ 全ページ・全項目を網羅する一覧は<strong>フッターの「サステナビリティ サイトマップ」</strong>に集約しています。本ブロックは重複を避け、<strong>3インデックス間の相互回遊</strong>のみに役割を限定しています（全インデックスページ＝環境／社会／ガバナンスに共通設置）。</p>
 
       <div class="esg-link-stack">
-        <!-- 環境（現在ページ） -->
         <div class="esg-link-row is-current">
-          <div class="esg-link-head">環境 インデックスへ</div>
-          <div class="esg-link-chips">
-            <div class="esg-l3">コニカミノルタの環境戦略</div>
-            <div class="esg-l3">気候変動</div>
-            <div class="esg-l3">資源循環</div>
-            <div class="esg-l3">化学物質・汚染防止</div>
-            <div class="esg-l3">水資源</div>
-            <div class="esg-l3">生物多様性</div>
-            <div class="esg-l3">環境マネジメント</div>
-            <div class="esg-l3">環境技術</div>
-            <div class="esg-l3">環境ラベル認証など</div>
-          </div>
+          <div class="esg-link-head">環境 インデックス（現在のページ）</div>
         </div>
-
-        <!-- 社会（社会Index #005 のH3見出しと同期） -->
         <div class="esg-link-row">
           <div class="esg-link-head">社会 インデックスへ</div>
-          <div class="esg-link-chips">
-            <div class="esg-l3">人的資本戦略</div>
-            <div class="esg-l3">人財育成</div>
-            <div class="esg-l3">企業文化・組織風土</div>
-            <div class="esg-l3">DE&amp;I</div>
-            <div class="esg-l3">健康経営</div>
-            <div class="esg-l3">労働安全衛生</div>
-            <div class="esg-l3">労働慣行</div>
-            <div class="esg-l3">人権</div>
-            <div class="esg-l3">ステークホルダーエンゲージメント</div>
-            <div class="esg-l3">サプライチェーンマネジメント</div>
-            <div class="esg-l3">顧客責任・品質</div>
-            <div class="esg-l3">社会貢献活動</div>
-            <div class="esg-l3">AIの利活用</div>
-          </div>
         </div>
-
-        <!-- ガバナンス -->
         <div class="esg-link-row">
           <div class="esg-link-head">ガバナンス インデックスへ</div>
-          <div class="esg-link-chips">
-            <div class="esg-l3">コーポレートガバナンス</div>
-            <div class="esg-l3">コンプライアンス</div>
-            <div class="esg-l3">リスクマネジメント</div>
-            <div class="esg-l3">情報セキュリティ</div>
-            <div class="esg-l3">税務方針</div>
-            <div class="esg-l3">AIガバナンス</div>
-          </div>
         </div>
       </div>
     </section>
@@ -2081,7 +2092,32 @@ body {
 
   <!-- アノテーションパネル -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — 環境 インデックス v4.2（旧 #015 → #004）</h3>
+    <h3>設計ポイント — 環境 インデックス v5.1（旧 #015 → #004 / 0513FB反映）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">0513</span>
+      <span class="ann-head">0513 FB反映（環境インデックス）</span>
+      <div class="ann-row">
+        <span class="ann-row-label">#123 矢口氏（対応済）</span>
+        テキスト3領域の並び順を「化学物質・汚染防止／水資源／生物多様性」に整理（戦略・目標・実績エリア）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#124 矢口氏（対応不要）</span>
+        TCFD/TNFDの位置・見せ方は「すごくいい」「OK」と肯定。現状維持。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#143 桐原氏（対応済）</span>
+        各テーマ／トピックの導線を「○○の詳細ページへ」と行き先明示に統一し、リンク遷移（モーダルではない）である旨の注記を追加してユーザーの混乱を回避。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#146 桐原氏（対応済）</span>
+        フッターサイトマップとの重複を解消。セクションIを全L3チップ列挙→「3インデックス間の相互回遊」のみに役割を限定し、全項目一覧はフッターに集約する旨を明記。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#153 池田氏（対応済）</span>
+        導線の弱さ／情報量差によるスクロールのリズムの悪さに対し、(1)エリア内目次（ページ内ジャンプ）を追加 (2)各テーマ末尾に均一位置の遷移CTAを配置し導線を補強・リズムを均一化 (3)KPIグラフPHの縦横比を16:9に固定し高さのサイズ感を制御。参考：elematec business/#fields。
+      </div>
+    </div>
 
     <!-- ★ -->
     <div class="ann-item">
@@ -2132,12 +2168,13 @@ body {
         独立していた「情報開示フレームワーク — TOPICS」エリアを削除し、TCFD = 気候変動内のtheme-topic／TNFD = 水資源内のtheme-topicとして再配置。
       </div>
       <div class="ann-row">
-        <span class="ann-row-label">5領域順序（最終）</span>
+        <span class="ann-row-label">5領域順序（#123反映・最終）</span>
         ① 気候変動（KPI3＋TCFDトピック）<br>
         ② 資源循環（KPI2）<br>
-        ③ 生物多様性<br>
-        ④ 化学物質・汚染防止<br>
-        ⑤ 水資源（TNFDトピック＋環境技術／ESGデータ関連リンク）
+        ③ 化学物質・汚染防止<br>
+        ④ 水資源（TNFDトピック＋環境技術／ESGデータ関連リンク）<br>
+        ⑤ 生物多様性<br>
+        ※矢口氏#123「化学物質・汚染防止／水資源／生物多様性」の順を反映。各テーマは末尾に均一CTA（#153）。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">theme-topic 設計</span>
@@ -2209,10 +2246,10 @@ body {
     <!-- I -->
     <div class="ann-item">
       <span class="ann-num">I</span>
-      <span class="ann-head">サステナビリティ関連リンク：階層構造UI</span>
+      <span class="ann-head">他インデックスへの回遊（#146反映）</span>
       <div class="ann-row">
         <span class="ann-row-label">変更内容</span>
-        「環境・社会・ガバナンス」のヘッダーをクリック可能なリンクに変更（各インデックスページへ遷移）。リンク一覧を第3階層（→中項目）＋第4階層（– 小項目、左罫線でインデント表示）の階層構造で表現。コンパクトかつ情報構造が一目で分かるUI設計。
+        桐原氏#146（フッターサイトマップと重複）を反映。全L3チップの列挙を廃し、環境／社会／ガバナンス3インデックスの相互回遊リンクのみに役割を限定。全項目を網羅する一覧はフッターの「サステナビリティ サイトマップ」に集約する旨を注記し、役割を明確に分離。全インデックスページ共通設置。
       </div>
     </div>
 
