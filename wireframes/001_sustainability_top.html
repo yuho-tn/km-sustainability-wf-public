@@ -560,28 +560,31 @@ body {
 
 /* TOP専用 見出しモジュール
    ・下層（仮想）ページの「グラデ下線見出し（.wf-section-title）」とは別系統
-   ・連番ナンバーは廃止
-   ・上部ソリッドアクセント＋英字ラベル＋大型タイトル＋補足サブのエディトリアル型 */
-.top-rich-head { margin-bottom: 26px; }
-.top-rich-head::before {
-  content: ''; display: block;
-  width: 44px; height: 4px; background: var(--c-text-h);
-  margin-bottom: 16px;
-}
-.trh-main { display: block; }
+   ・英字は日本語と上下に並べず、大きな白抜きアウトラインの装飾モチーフとして
+     タイトル背面にあしらう（エディトリアル型）。連番なし */
+.top-rich-head { position: relative; margin-bottom: 26px; padding-top: 30px; overflow: hidden; }
 .trh-eyebrow {
-  display: block;
-  font-size: 11px; font-weight: 700; letter-spacing: 0.22em;
-  text-transform: uppercase; color: var(--c-text-s);
-  margin-bottom: 8px;
+  position: absolute; top: -4px; left: -2px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 50px; font-weight: 800; line-height: 1;
+  text-transform: uppercase; letter-spacing: 0;
+  color: transparent; -webkit-text-stroke: 1px var(--c-ph-line);
+  white-space: nowrap; pointer-events: none; user-select: none; z-index: 0;
 }
+.trh-main { position: relative; z-index: 1; }
 .trh-title {
   font-size: 28px; font-weight: 700; color: var(--c-text-h);
   line-height: 1.3; letter-spacing: -0.015em;
 }
+.trh-title::before {
+  content: ''; display: inline-block; vertical-align: middle;
+  width: 28px; height: 3px; background: var(--c-text-h);
+  margin-right: 12px; transform: translateY(-3px);
+}
 .trh-title .trh-sub {
   display: block; font-size: 13px; font-weight: 600;
   color: var(--c-text-s); letter-spacing: 0.02em; margin-top: 10px;
+  padding-left: 40px;
 }
 
 /* #4 戦略：本文（左）＋概念図PH（右）の2カラム ※元のサイズ感へ戻す */
@@ -633,6 +636,48 @@ body {
 .lc-hint {
   font-size: 11px; color: var(--c-text-xs);
   text-align: right; margin-bottom: 20px;
+}
+
+/* 資料・データ：コンパクトなクイックアクセスUI（添付準拠）
+   左ラベル＋青の縦アクセント／右に「タイトル＋補足＋外部リンクアイコン＋下線」を横並び */
+.quick-access {
+  display: grid; grid-template-columns: auto 1fr;
+  align-items: stretch; gap: 36px;
+}
+.qa-label {
+  display: flex; align-items: center;
+  font-size: 13px; font-weight: 700; letter-spacing: 0.16em;
+  color: var(--c-text-h); text-transform: uppercase;
+  border-right: 3px solid #1A56DB;
+  padding-right: 36px; white-space: nowrap;
+}
+.qa-items {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 56px;
+}
+.qa-item {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 16px; padding: 6px 2px 12px;
+  border-bottom: 1px solid var(--c-text-h);
+  cursor: default;
+}
+.qa-item-title {
+  font-size: 14px; font-weight: 700; color: var(--c-text-h);
+  line-height: 1.4;
+}
+.qa-item-meta { font-size: 11px; color: var(--c-text-s); margin-top: 4px; }
+.qa-item-icon {
+  flex: 0 0 auto; width: 18px; height: 18px;
+  position: relative; color: var(--c-text-h);
+}
+.qa-item-icon::before {
+  content: ''; position: absolute; left: 0; bottom: 0;
+  width: 13px; height: 13px;
+  border: 1.5px solid currentColor; border-top-color: transparent;
+  border-right-color: transparent;
+}
+.qa-item-icon::after {
+  content: '↗'; position: absolute; right: -1px; top: -3px;
+  font-size: 14px; font-weight: 700; line-height: 1;
 }
 </style>
 </head>
@@ -699,7 +744,7 @@ body {
           </div>
 
           <div class="sec-cta">
-            <a class="wf-btn">サステナビリティ戦略の詳細を見る</a>
+            <a class="wf-btn">サステナビリティ戦略</a>
           </div>
         </div>
 
@@ -795,8 +840,8 @@ body {
       <!-- #13：見出し一体の「詳細を見る」を廃し、行き先が分かる末尾CTAへ。
            主導線＝マネジメント詳細／副導線＝ステークホルダーエンゲージメント -->
       <div class="sec-cta">
-        <a class="wf-btn">サステナビリティマネジメントの詳細を見る</a>
-        <a class="wf-link">ステークホルダーエンゲージメント</a>
+        <a class="wf-btn primary">サステナビリティマネジメント</a>
+        <a class="wf-btn">ステークホルダーエンゲージメント</a>
       </div>
     </section>
 
@@ -836,7 +881,7 @@ body {
       <div class="lc-hint">デフォルトは4点表示。固定4点のまま ＜ ＞ で4点ずつ切り替えるカルーセル</div>
 
       <div class="sec-cta">
-        <a class="wf-btn">社外からの評価とイニシアチブの詳細を見る</a>
+        <a class="wf-btn">社外からの評価とイニシアチブ</a>
       </div>
     </section>
 
@@ -844,26 +889,25 @@ body {
          ⑥ 資料・データ（QUICK ACCESS）
          ※#2：村上氏「唐突。トピックスの前で」確定 → トピックスの直前へ移動
     ============================================================ -->
-    <section class="wf-section bg-sub">
+    <section class="wf-section bg-white pad-sm">
       <span class="wf-section-marker">6</span>
-      <h2 class="wf-section-title">資料・データ</h2>
-
-      <div class="quickaccess-grid" style="margin-top:18px;">
-        <div class="qa-card">
-          <div class="qa-icon">PDF</div>
-          <div class="qa-body">
-            <div class="qa-title">サステナビリティレポート（PDF：16.0MB）</div>
-            <div class="qa-meta">最新版ダウンロード</div>
-          </div>
-          <div class="qa-action">›</div>
-        </div>
-        <div class="qa-card">
-          <div class="qa-icon">XLS</div>
-          <div class="qa-body">
-            <div class="qa-title">ESGデータ（Excel：119KB）</div>
-            <div class="qa-meta">KPI・指標一覧</div>
-          </div>
-          <div class="qa-action">›</div>
+      <div class="quick-access">
+        <div class="qa-label">QUICK ACCESS</div>
+        <div class="qa-items">
+          <a class="qa-item">
+            <div class="qa-item-main">
+              <div class="qa-item-title">サステナビリティレポート（PDF：16.0MB）</div>
+              <div class="qa-item-meta">最新版ダウンロード</div>
+            </div>
+            <span class="qa-item-icon"></span>
+          </a>
+          <a class="qa-item">
+            <div class="qa-item-main">
+              <div class="qa-item-title">ESGデータ（Excel：119KB）</div>
+              <div class="qa-item-meta">KPI・指標一覧</div>
+            </div>
+            <span class="qa-item-icon"></span>
+          </a>
         </div>
       </div>
     </section>
@@ -1094,7 +1138,7 @@ body {
       <span class="ann-head">TOP専用 見出しモジュール（#12 / その他FB）</span>
       <p class="ann-body">
         <b>狙い：</b>下層（仮想）ページの「グラデ下線見出し」とは別系統にし、TOPを「面の入口」として見せる。<br>
-        <b>採用UI：</b>`.top-rich-head`＝連番なし／上部ソリッドアクセントバー＋英字ラベル＋28pxタイトル＋補足サブのエディトリアル型。グラデ下線は下層見出し専用とし、TOPには使わない。
+        <b>採用UI：</b>`.top-rich-head`＝連番なし。英字は日本語と上下に並べず、大きな白抜きアウトラインの装飾モチーフとしてタイトル背面にあしらう。短い実線アクセント＋28pxタイトル＋補足サブ。グラデ下線は下層見出し専用とし、TOPには使わない。
       </p>
     </div>
 
@@ -1110,7 +1154,7 @@ body {
       <span class="ann-num">2</span>
       <span class="ann-head">サステナビリティ戦略（#4/#12/その他FB）</span>
       <p class="ann-body">
-        リッチ見出し＋本文3行構成（旧「マテリアリティの特定と価値創造ストーリー…」キャッチは削除）。右カラムに概念図PHを配置（#4）。末尾に「戦略の詳細を見る」CTA。
+        TOP見出し（英字モチーフ）＋本文3行構成（旧「マテリアリティの特定と価値創造ストーリー…」キャッチは削除）。右カラムに概念図PHを配置（#4）。末尾CTAは「サステナビリティ戦略」（「の詳細を見る」は廃止）。
       </p>
     </div>
 
@@ -1126,7 +1170,7 @@ body {
       <span class="ann-num">4</span>
       <span class="ann-head">サステナビリティマネジメント（#13）</span>
       <p class="ann-body">
-        本文末に主導線＝詳細ボタン＋副導線＝ステークホルダーエンゲージメントの2段で重要度を明確化。
+        本文末に主導線＝「サステナビリティマネジメント」プライマリボタン（黒塗り）＋副導線＝「ステークホルダーエンゲージメント」サブボタン（白）の2段で重要度を明確化。ボタン文言の「の詳細を見る」は全廃。
       </p>
     </div>
 
@@ -1142,7 +1186,7 @@ body {
       <span class="ann-num">6</span>
       <span class="ann-head">資料・データ（#2）</span>
       <p class="ann-body">
-        村上氏「唐突。トピックスの前で」確定を受け、社外評価の後・トピックスの直前へ移動。需要の高いPDF／Excelに最短で到達。
+        村上氏「唐突。トピックスの前で」確定を受け、社外評価の後・トピックスの直前へ移動。UIは大きなカードをやめ、左ラベル「QUICK ACCESS」＋青の縦アクセント／右に「タイトル＋補足＋外部リンクアイコン＋下線」を横並びにしたコンパクトなクイックアクセスへ刷新。
       </p>
     </div>
 
