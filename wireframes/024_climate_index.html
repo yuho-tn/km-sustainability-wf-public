@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>気候変動 — KM サステナビリティ WF v1.9 (#024)</title>
+<title>気候変動 — KM サステナビリティ WF v2.0 (#024)</title>
 <style>
 /* ============================================================
    KM SUSTAINABILITY WF — SHARED CSS v4.3 継承
@@ -637,6 +637,14 @@ body {
 .img-zoom-btn::before { content: '+'; }
 .img-zoom-btn:hover { background: #2a2a2a; }
 
+/* #121：図表「＋」の意味を明示する注記（拡大表示＝ライトボックス／モーダル解説ではない） */
+.img-note {
+  font-size: 12px; color: var(--c-text-s);
+  background: var(--c-bg-sub); border-left: 3px solid var(--c-text-h);
+  padding: 10px 14px; margin: 16px 0 0;
+}
+.img-note strong { color: var(--c-text-h); }
+
 .result-block-graph-ph {
   background: var(--c-ph);
   border: 1px solid var(--c-ph-line);
@@ -937,12 +945,10 @@ body {
       <span class="current">気候変動</span>
     </nav>
 
-    <!-- ページタイトル（ヒーローなし・テキストのみ／親カテゴリリンクはタイトル下） -->
+    <!-- ページタイトル（ヒーローなし・テキストのみ）
+         #144（桐原氏）：L3の階層表示はサイト全体で統一するため、ページ個別の親カテゴリ掲載は削除 -->
     <div class="wf-page-title-area">
       <h1 class="wf-page-title">気候変動</h1>
-      <div class="wf-page-parent-cat">
-        【<a href="004_environment_index.html">環境</a>】に関する取り組み
-      </div>
     </div>
 
     <!-- メインコンテンツ＋右コンパクトアンカーナビ -->
@@ -980,6 +986,9 @@ body {
           <span class="img-zoom-btn"></span>
         </div>
       </div>
+
+      <!-- #121：図表の「＋」マークの意味を明示 -->
+      <p class="img-note">※ 図表右下の <strong>「＋」</strong> は<strong>画像の拡大表示（ライトボックス）</strong>を表します。用語解説などのモーダルではありません（ページ内の全図表で共通）。</p>
 
       <!-- #20：環境ビジョン説明は本ページに集約のため「長期環境ヴィジョン」リンクを廃し、
            代わりに「削減貢献量算定方法」リンクをこちらにも配置（※要Figmaピン確認） -->
@@ -1053,6 +1062,62 @@ body {
           </div>
         </div>
       </div>
+
+      <!-- #116（矢口氏）：主要KPIは図だけでなく「過去3か年実績／直近1年目標／中計目標／2030・2050目標」を
+           表でも示す作法に統一。図（経年グラフ）＋表（目標体系）を併記するモジュールを追加 -->
+      <h4 class="kpi-h3-title" style="margin-top:36px;">主要KPI一覧（目標体系）</h4>
+      <p class="kpi-h3-desc">図（経年グラフ）と併せ、過去3か年の実績・直近1年の目標・中期計画目標・2030／2050年目標を一覧で示します。</p>
+      <div class="kpi-table-wrap">
+        <table class="kpi-table">
+          <thead>
+            <tr>
+              <th>主要KPI</th>
+              <th>FY22 実績</th>
+              <th>FY23 実績</th>
+              <th>FY24 実績</th>
+              <th>FY25 目標<br>（直近1年）</th>
+              <th>中計目標</th>
+              <th>2030年目標</th>
+              <th>2050年目標</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="theme-row"><th colspan="8">① 削減貢献量を増加させる（スコープ4）</th></tr>
+            <tr>
+              <td>CO<sub>2</sub>削減貢献量</td>
+              <td class="value-cell">—</td>
+              <td class="value-cell">—</td>
+              <td class="value-cell">—</td>
+              <td class="target-cell">—</td>
+              <td class="target-cell">—</td>
+              <td class="target-cell">—</td>
+              <td class="target-cell">—</td>
+            </tr>
+            <tr class="theme-row"><th colspan="8">② スコープ1, 2, 3をネットゼロにする</th></tr>
+            <tr>
+              <td>スコープ1+2+3 合計排出量</td>
+              <td class="value-cell">—</td>
+              <td class="value-cell">—</td>
+              <td class="value-cell">—</td>
+              <td class="target-cell">—</td>
+              <td class="target-cell">—</td>
+              <td class="target-cell">—</td>
+              <td class="target-cell">ネットゼロ</td>
+            </tr>
+            <tr>
+              <td>再生可能エネルギー比率</td>
+              <td class="value-cell">—</td>
+              <td class="value-cell">—</td>
+              <td class="value-cell">—</td>
+              <td class="target-cell">—</td>
+              <td class="target-cell">—</td>
+              <td class="target-cell">—</td>
+              <td class="target-cell">100%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="result-block-graph-cap" style="margin-top:8px;">※ 数値はダミー（KM確定原稿待ち）。表の構成・列体系（実績／直近目標／中計／2030・2050）を提示するモジュールです。</p>
 
       <!-- #21：旧位置（KPI②の後）の「削減貢献量算定方法」リンクはKPI①直後へ移動済 -->
     </section>
@@ -1401,24 +1466,25 @@ body {
 
     <div class="ann-item">
       <span class="ann-num">—</span>
-      <span class="ann-head">0513レビュー反映サマリ</span>
+      <span class="ann-head">0513レビュー反映サマリ（全FB対応済）</span>
       <p class="ann-body">
-        <b>#19：</b>「グリーンプロダクツ」用語モーダル説明を廃し関連リンク程度に簡素化。<br>
-        <b>#20：</b>セクションAの「長期環境ヴィジョン」リンクを廃し「削減貢献量算定方法」リンクへ差し替え（環境ビジョン説明は本ページに集約）。<br>
-        <b>#21：</b>「削減貢献量算定方法」リンクをKPI①「削減貢献量を増加させる」直後へ移動。<br>
-        <b>#22：</b>「CARBON MINUS 2025」カーボンマイナス解説 callout-box を削除。<br>
-        <b>#26：</b>素の「ESGデータ」リンクを catalog 7-13「ESGデータ参照ガイド」に置換（3種Excel・環境シート分割の中身を遷移前に提示）。
+        <b>#116：</b>主要KPIに「過去3か年実績／直近1年目標／中計目標／2030・2050目標」の<b>図＋表併記</b>モジュール（KPI一覧テーブル）を追加。KM作法に整合。<br>
+        <b>#117：</b>「グリーンプロダクツ」は用語モーダルを廃し関連リンク程度に簡素化（グリーンウォッシュ対策／置換語はKM確定原稿待ちの注記付き）。<br>
+        <b>#118：</b>環境ビジョン説明は本ページに集約。「長期環境ヴィジョン」リンクを廃し「削減貢献量算定方法」リンクへ。<br>
+        <b>#119：</b>「削減貢献量算定方法」リンクをKPI①直後へ移動。<br>
+        <b>#120：</b>「CARBON MINUS 2025」カーボンマイナス解説 callout-box を削除。<br>
+        <b>#121：</b>図表「＋」＝画像拡大表示（ライトボックス）である旨の注記を追加（モーダル解説ではない）。<br>
+        <b>#122：</b>「洗練された」（肯定・対応不要）。<br>
+        <b>#144：</b>L3階層表示はサイト全体統一のため、ページ個別の親カテゴリ掲載を削除。<br>
+        <b>#145：</b>素の「ESGデータ」リンクを「ESGデータ参照ガイド」に置換（3種Excel・環境シート分割の中身を遷移前に提示）。
       </p>
     </div>
 
     <div class="ann-item">
       <span class="ann-num">!</span>
-      <span class="ann-head">要確認・保留中</span>
+      <span class="ann-head">原稿待ち（WF構造は対応済）</span>
       <p class="ann-body">
-        <b>#25（保留）：</b>「L3はここに掲載不要（サイト全体で統一）」は対象ブロックがFigmaピン依存のため、誤削除回避の観点から本WFでは未反映。ピン位置の特定後に着手。<br>
-        <b>#19補足：</b>「グリーン◯◯」表記の最終置換語はKM確定原稿待ち（グリーンウォッシュ対策・要判断）。WFは暫定表記＋待ち注記。<br>
-        <b>#20補足：</b>差し替えはFigmaピン位置の確認が前提（要確認）。<br>
-        <b>#18（B）：</b>主要KPIを図のみで示すか表も併記するか（KM作法整合）は回答待ち。
+        <b>#117補足：</b>「グリーン◯◯」表記の最終置換語のみKM確定原稿待ち（グリーンウォッシュ対策）。WFは暫定表記＋「KM確定原稿待ち」注記で対応済。
       </p>
     </div>
 
