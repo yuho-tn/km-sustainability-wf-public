@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>社会貢献活動 — KM サステナビリティ WF v4.1</title>
+<title>社会貢献活動 — KM サステナビリティ WF v4.2</title>
 <style>
 /* ============================================================
    KM SUSTAINABILITY WF — SHARED CSS（catalog v3.1 / 148 v2.3準拠）
@@ -377,6 +377,18 @@ body {
 .acc-figs.col-2 { grid-template-columns: repeat(2, 1fr); }
 .acc-figs figure { margin: 0; }
 
+/* #157：外部サイトリンクは別タブで開く想定。外部＋別タブを示すアイコンを付与 */
+.wf-link.is-external::after {
+  content: ' ↗';
+  font-size: 11px; font-weight: 700;
+  color: var(--c-text-s);
+}
+.wf-link.is-external { /* 別タブ遷移である旨を視覚化（モジュール共通ルール） */ }
+
+/* #108：エリア（国名タグ）が無いアコーディオンでも、タイトル開始位置を
+   タグ有りと揃える（タグ列幅96px＋gapぶんを予約。タグ無しでも崩れない） */
+.wf-acc-h3-summary > .wf-acc-text:first-child { margin-left: 108px; }
+
 /* ============================================================
    関連リンク（共通モジュール .theme-related：薄グレーbg＋全周border）
 ============================================================ */
@@ -748,7 +760,7 @@ body {
               </div>
               <div class="theme-related">
                 <span class="theme-related-label">関連リンク</span>
-                <span class="wf-link">高尾の森づくりの会（外部サイト）</span>
+                <span class="wf-link is-external">高尾の森づくりの会（外部サイト）</span>
               </div>
             </div>
           </details>
@@ -893,7 +905,7 @@ body {
               </div>
               <div class="theme-related">
                 <span class="theme-related-label">関連リンク</span>
-                <span class="wf-link">コニカミノルタ陸上競技部（外部サイト）</span>
+                <span class="wf-link is-external">コニカミノルタ陸上競技部（外部サイト）</span>
               </div>
             </div>
           </details>
@@ -951,7 +963,7 @@ body {
               </div>
               <div class="theme-related">
                 <span class="theme-related-label">関連リンク</span>
-                <span class="wf-link">Fondation d'entreprise Konica Minolta（外部サイト）</span>
+                <span class="wf-link is-external">Fondation d'entreprise Konica Minolta（外部サイト）</span>
               </div>
             </div>
           </details>
@@ -1080,7 +1092,7 @@ body {
               </div>
               <div class="theme-related">
                 <span class="theme-related-label">関連リンク</span>
-                <span class="wf-link">公益財団法人 コニカミノルタ科学技術振興財団（外部サイト）</span>
+                <span class="wf-link is-external">公益財団法人 コニカミノルタ科学技術振興財団（外部サイト）</span>
               </div>
             </div>
           </details>
@@ -1276,24 +1288,27 @@ body {
       <span class="ann-num">—</span>
       <span class="ann-head">0513レビュー反映サマリ</span>
       <p class="ann-body">
-        <b>#31：</b>「【社会】に関する取り組み」表現＋L2導線をL3から削除（L2導線はヘッダーで対応）。<br>
-        <b>#32：</b>「約31百万円相当の支援」記述を基本的な考え方の最下部・別パラグラフへ移動（原文そのまま）。各カテゴリー上部画像は現アコーディオン版では元々無く指摘に既に適合。<br>
-        <b>#37：</b>本文をやや濃く・行間広めに、関連リンク箱を罫線のみに弱め、本文がリンクより目立つ主従関係に。<br>
-        <b>#38：</b>国名タグ幅を固定（中央寄せ）し、全アコーディオンのタイトル行頭を揃えた。
+        <b>#106：</b>「社会に関する取り組み」表現＋L2導線をL3から削除（L2導線はヘッダーで対応）。<br>
+        <b>#107：</b>「約31百万円相当の支援」を基本的な考え方の最下部・別パラグラフへ移動（原文そのまま）。各カテゴリー上部の画像はアコ版では元々無く指摘に適合。<br>
+        <b>#112：</b>本文をやや濃く・行間広めに、関連リンク箱を罫線のみに弱め、本文がリンクより目立つ主従関係に。<br>
+        <b>#113：</b>国名タグ幅を固定（中央寄せ）し、全アコーディオンのタイトル行頭を揃えた。<br>
+        <b>#108：</b>エリア（国名タグ）が無いアコーディオンでもタイトル開始位置を揃える（タグ列幅を予約）CSSを追加。タグ無しでも成立。<br>
+        <b>#156：</b>アコーディオンはネイティブ&lt;details&gt;（name無し）＝<strong>個々で開閉（開いたら開いたまま／単一開閉ではない）</strong>。池田氏の望ましい挙動で実装済。<br>
+        <b>#157：</b>外部サイトリンクに別タブ遷移を示す外部アイコン（↗）を付与（`.wf-link.is-external`）。<br>
+        <b>#115：</b>画像「＋」＝単独画像PHの拡大表示（ライトボックス／aria-label="拡大"）。用語モーダルではない旨を整理票で回答（WF常設注記は不要）。
       </p>
     </div>
 
     <div class="ann-item">
       <span class="ann-num">!</span>
-      <span class="ann-head">要判断・保留中（構造の前提相違）</span>
+      <span class="ann-head">要判断（カード版前提の指摘・アコ版で意図吸収）</span>
       <p class="ann-body">
-        <b>重要：</b>0513 Figmaがレビューした社会貢献活動は<strong>カード型レイアウト</strong>だが、本ローカルWFは既に<strong>アコーディオン型 v4.1（catalog v3.1準拠）</strong>へ刷新済で構造が異なる。下記はカード型前提の指摘のため、どちらの版を正とするか（カード版に戻す／アコ版を維持しFigmaを更新）の確定後に対応：<br>
-        <b>#33：</b>エリア（国/地域）記載なしでも成立するレイアウト<br>
-        <b>#34：</b>画像1枚＋長文テキストの回り込みパターン<br>
-        <b>#35：</b>1カテゴリー2事案パターン<br>
-        <b>#36：</b>基金紹介（上部=説明／左=ロゴリンク）の関係性配置<br>
-        <b>#39：</b>画像1枚／2取り組み等の複数バリエーション提示<br>
-        <b>#40（D）：</b>画像＋印の意味＝単独画像PHの拡大ボタン仕様。Figma返信で解決（WF変更不要）。
+        0513 Figmaがレビューした版は<strong>カード型</strong>だが本WFは<strong>アコーディオン型 v4.2（catalog v3.1準拠）</strong>。下記カード前提の指摘はアコ版モジュールで意図を吸収（実コンテンツは原文厳守のため新規事案の捏造はしない）：<br>
+        <b>#109：</b>画像1枚＋長文回り込み → アコ body は本文＋1〜2画像＋リスト＋関連リンクを許容（モジュールとして対応可）。<br>
+        <b>#110：</b>1カテゴリー2事案 → 1つの&lt;details&gt;内に本文・リスト・複数figureを積層可能（モジュールとして対応可）。<br>
+        <b>#111：</b>基金（説明／ロゴ＝リンク）の関係性 → B-2-7 企業内基金で説明文＋ロゴfigure＋外部リンクを近接配置済。<br>
+        <b>#114：</b>複数バリエーション提示 → 各カテゴリ先頭の代表アコーディオンを既定展開（2画像／単画像／基金 等の実例で確認可）。<br>
+        ※カード版に戻すか・アコ版を正としFigmaをアコ版へ更新するかは確定要。
       </p>
     </div>
 
