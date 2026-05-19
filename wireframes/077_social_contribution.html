@@ -393,10 +393,20 @@ body {
 }
 
 /* アコーディオン内 画像ブロック */
-.acc-figs { display: grid; gap: 14px; margin-bottom: 14px; }
-/* FB：画像が2点でもUIは1カラムサイズで表示（横分割せず縦積み・1カラム幅） */
-.acc-figs.col-2 { grid-template-columns: 1fr; }
+/* 画像レイアウト（原稿準拠）：原稿の写真はおおむね正方形寄り。
+   ・常に2カラムのグリッドを基準にし、画像は1カラム幅（≒左半分）に収める
+   ・2点の場合は横に2点並べる（左右2カラム）
+   ・1点の場合は左カラムのみに配置（右半分は余白） */
+.acc-figs {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 14px; margin-bottom: 14px; align-items: start;
+}
 .acc-figs figure { margin: 0; }
+.acc-figs.col-2 { grid-template-columns: repeat(2, 1fr); }
+.acc-figs:not(.col-2) figure { grid-column: 1 / 2; }
+/* 固定高さを廃し、1カラム幅内で正方形寄り（4:3）に */
+.acc-figs .wf-img.h-160,
+.acc-figs .wf-img.h-200 { height: auto; aspect-ratio: 4 / 3; width: 100%; }
 
 /* #157：外部サイトリンクは別タブで開く想定。外部＋別タブを示すアイコンを付与 */
 .wf-link.is-external::after {

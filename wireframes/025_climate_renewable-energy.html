@@ -39,7 +39,9 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
 .wf-meta-bar .meta-badge { background: #333; color: #aaa; font-size: 10px; padding: 2px 8px; border-radius: 2px; margin-left: 8px; }
 
 .wf-canvas { max-width: var(--page-w); margin: 0 auto; display: grid; grid-template-columns: 1fr 280px; align-items: start; }
-.wf-page { background: var(--c-white); box-shadow: 0 2px 20px rgba(0,0,0,0.10); min-height: 100vh; position: relative; overflow-x: hidden; }
+/* overflow-x:clip = 背景帯の食い出しはクリップしつつ、スクロールコンテナを
+   生成しないため目次の position:sticky 追従を阻害しない（hiddenはNG） */
+.wf-page { background: var(--c-white); box-shadow: 0 2px 20px rgba(0,0,0,0.10); min-height: 100vh; position: relative; overflow-x: clip; }
 
 /* ヘッダー：KM公式デザイン画像版（全ページ共通） */
 .wf-header-img { background: var(--c-white); border-bottom: 1px solid var(--c-border); line-height: 0; }
@@ -492,7 +494,7 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
     <span class="meta-badge">L4</span>
     <span class="meta-badge" style="background:#7a4a00; color:#fff;">旧 #029 リネーム</span>
   </div>
-  <div style="font-size:10px; color:#666;">2026.05.19 / 池田FB反映：背景帯をページ全幅へ貫通（ぶつ切り・左右余白差を解消）／目次を白カード化＝1段上のエレベーション</div>
+  <div style="font-size:10px; color:#666;">2026.05.19 / 池田FB反映：背景帯をページ全幅へ貫通（ぶつ切り・左右余白差を解消）／目次を白カード化＝1段上のエレベーション／目次sticky追従を修正（overflow-x:clip）</div>
 </div>
 
 <div class="wf-canvas">
