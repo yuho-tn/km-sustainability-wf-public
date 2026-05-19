@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>社会貢献活動 — KM サステナビリティ WF v4.2</title>
+<title>社会貢献活動 — KM サステナビリティ WF v4.3</title>
 <style>
 /* ============================================================
    KM SUSTAINABILITY WF — SHARED CSS（catalog v3.1 / 148 v2.3準拠）
@@ -352,8 +352,10 @@ body {
   flex: 0 0 96px; width: 96px;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-/* タイトルラッパ（catalog 7-5 / 035 TCFD 準拠：タグの後ろで残りスペースを埋める） */
-.wf-acc-text { flex: 1; min-width: 0; }
+/* タイトルラッパ：タイトルが先、国名タグは右側（FB：タグは右配置）。
+   全アコーディオンの行頭は左端で自然に揃う（エリア記載なしでも成立＝#108） */
+.wf-acc-text { flex: 1; min-width: 0; order: 0; }
+.wf-acc-tag { order: 1; margin-left: 12px; }
 .wf-acc-h3-body {
   background: var(--c-white);
   padding: 18px 22px;
@@ -372,6 +374,24 @@ body {
 }
 .wf-acc-h3-body ul li { margin-bottom: 4px; }
 
+/* 原稿準拠：基本的な考え方の箇条書き／注記／アコ内サブ見出し（2事案など） */
+.wf-list {
+  font-size: 13px; color: var(--c-text); line-height: 1.95;
+  padding-left: 20px; margin: 0 0 18px;
+}
+.wf-list li { margin-bottom: 8px; }
+.wf-list li strong { color: var(--c-text-h); }
+.wf-note {
+  font-size: 12px; color: var(--c-text-s); line-height: 1.85;
+  background: var(--c-bg-sub); padding: 10px 14px;
+  margin-bottom: 14px;
+}
+.wf-acc-h4 {
+  font-size: 13px; font-weight: 700; color: var(--c-text-h);
+  line-height: 1.5; margin: 6px 0 12px;
+  padding-left: 12px; border-left: 3px solid var(--c-text-h);
+}
+
 /* アコーディオン内 画像ブロック */
 .acc-figs { display: grid; gap: 14px; margin-bottom: 14px; }
 .acc-figs.col-2 { grid-template-columns: repeat(2, 1fr); }
@@ -385,9 +405,8 @@ body {
 }
 .wf-link.is-external { /* 別タブ遷移である旨を視覚化（モジュール共通ルール） */ }
 
-/* #108：エリア（国名タグ）が無いアコーディオンでも、タイトル開始位置を
-   タグ有りと揃える（タグ列幅96px＋gapぶんを予約。タグ無しでも崩れない） */
-.wf-acc-h3-summary > .wf-acc-text:first-child { margin-left: 108px; }
+/* #108：国名タグを右配置にしたため、タグの有無に関わらずタイトル行頭は
+   summary 左端（padding-left:22px）で自然に揃う。タグなしでも成立。 */
 
 /* ============================================================
    関連リンク（共通モジュール .theme-related：薄グレーbg＋全周border）
@@ -592,74 +611,47 @@ body {
       <div class="wf-anchornav-main">
 
         <!-- ============================================================
-             A. 基本的な考え方
+             A. 基本的な考え方（原稿 26S490 準拠）
         ============================================================ -->
         <section class="wf-section bg-white" id="sec-policy">
           <span class="wf-section-marker">A</span>
           <h2 class="wf-section-title">基本的な考え方</h2>
 
-          <h3 class="wf-sub-title">コニカミノルタのフィロソフィーと社会貢献</h3>
-          <p class="wf-section-desc">
-            コニカミノルタは、「企業市民」として事業活動を通じて培ってきた技術やノウハウを活かし、社会課題の解決に取り組んでいます。経営ビジョン「Imaging to the People」のもと、現場の業務変革を支援し、生きがいと幸せを感じることのできる社会の実現に向けて、持続可能な社会への貢献を目指しています。
-          </p>
-          <p class="wf-section-desc">
-            3つの注力分野を軸にグローバルで活動を展開しています。<br>
-            <strong>健康・医学</strong> — 早期発見とQOL向上<br>
-            <strong>環境</strong> — バリューチェーン全体での負荷低減<br>
-            <strong>学術・研究・教育</strong> — 次世代への理工系教育支援
-          </p>
-          <!-- catalog 3-1：ページ上 大型画像PH（全幅・16:8・キービジュアル） -->
-          <div class="large-figure-ph">
-            <span class="large-figure-ph-label">
-              <strong>キービジュアル：社会貢献活動メインビジュアル PH</strong>
-              世界中の笑顔のために — 3つの注力分野（健康・医学／環境／学術・研究・教育）を象徴するイメージ
-            </span>
-            <span class="img-zoom-btn" aria-label="拡大"></span>
-          </div>
+          <h3 class="wf-sub-title">コニカミノルタグループ 社会貢献活動基本方針</h3>
+          <p class="wf-section-desc">コニカミノルタは、「企業市民」として社会から支持され、必要とされる存在となるために、事業を活かして貢献できる社会的な課題にグループワイドで取り組むとともに、それぞれの地域社会の課題に応える活動を継続的に行い、持続可能な社会の実現に貢献します。</p>
 
-          <!-- #32：「◯◯円相当の支援」記述を本セクション最下部の別パラグラフへ移動（原文そのまま）。
-               ※各カテゴリー上部の画像は現アコーディオン版では元々無し（キービジュアルのみ）＝指摘に既に適合 -->
-          <p class="wf-section-desc" style="margin-top:20px; padding-top:14px; border-top:1px solid var(--c-border); color:var(--c-text-s);">
-            2024年度は、国内で約31百万円相当の金銭的または物品による支援を実施しました。
-          </p>
+          <h3 class="wf-sub-title">コニカミノルタの注力する社会貢献分野</h3>
+          <p class="wf-section-desc">コニカミノルタは、10年後の社会課題を想定し、その解決に向けて当社が提供すべき社会価値を明確化し、事業活動と社会課題解決がより連携した取り組みの実現を目指して、優先的に取り組むべきマテリアリティ（重要課題）を特定しています。コニカミノルタは経営戦略と親和性が高い下記の分野を社会貢献の注力分野としています。</p>
+          <ul class="wf-list">
+            <li><strong>健康・医学</strong> — 一人ひとりの健康で質の高い生活の実現に貢献し、よりよく生きる社会の実現のため、病気の早期発見や、QOL（Quality of Life:生活の質）の向上のために自社技術を活用し、高齢化社会や働く女性の健康に貢献しています。</li>
+            <li><strong>環境</strong> — 製造メーカーとして、コニカミノルタはバリューチェーン全体を通して、製造者としての責任範囲のみならず、地域社会や社外のパートナーシップを通じて社会全体での環境負荷低減に努めます。</li>
+            <li><strong>学術・研究・教育</strong> — デジタル化社会の発展を担う次世代の若者への理工系教育に貢献しています。さらに、学会や公益財団法人コニカミノルタ科学技術振興財団を通して広く技術の進歩に貢献しています。</li>
+          </ul>
+          <p class="wf-section-desc">コニカミノルタは上記の分野において事業や強みを活かした社会貢献活動を行うことで、持続可能な開発目標（SDGs）達成へ貢献していきたいと考えています。</p>
+
+          <h3 class="wf-sub-title">コニカミノルタのフィロソフィーと社会貢献</h3>
+          <p class="wf-section-desc">企業が“Sustainable（持続可能）”であるためには、成長を続けながら、社会が抱える課題の解決に貢献すること、つまり、企業と社会の両方に価値を生み出すことが求められます。2015年9月に国連で採択された「持続可能な開発目標（SDGs）」で挙げられているような、さまざまな社会課題に対する企業の取り組みへの期待は一層高まっています。当社は、2020年度に、10年後を見据えた長期の経営ビジョンを策定し、その考えを「Imaging to the People」という言葉に込めました。社会課題の解決に向けて中長期的な価値創出の方向性を明確にし、2030年に目指す姿からのバックキャスティングにより、コニカミノルタは、社会の一員として、社会から必要とされる存在になるために、ビジネスの場のみならず、社会課題解決の場においても新たな価値の創造を目指していきます。</p>
         </section>
 
-
         <!-- ============================================================
-             B. 取り組み（H3×3カテゴリ／全19件アコーディオン）
+             B. 取り組み（原稿 26S490 準拠／3カテゴリ・全アコーディオン展開）
         ============================================================ -->
         <section class="wf-section bg-white" id="sec-activities">
           <span class="wf-section-marker">B</span>
           <h2 class="wf-section-title">取り組み</h2>
 
-          <!-- ============================================================
-               B-1. 地球環境問題
-          ============================================================ -->
           <h3 class="wf-sub-title" id="sub-environment">地球環境問題</h3>
-
-          <!-- B-1-1：環境戦略（展開状態） -->
+          <p class="wf-section-desc"><strong>環境活動を通した貢献</strong><br>コニカミノルタは地球温暖化防止や資源循環、生物多様性の保全に向けて注力していきます。チャリティ企画への協賛や環境保護活動への参加など、当社の事業活動を通じて培った環境技術やノウハウを活用し、環境課題解決に取り組んでいます。</p>
           <details class="wf-acc-h3" open>
             <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-tag">日本</span>
               <span class="wf-acc-text">コニカミノルタの環境戦略と社会貢献</span>
+              <span class="wf-acc-tag">日本</span>
             </summary>
             <div class="wf-acc-h3-body">
-              <p>
-                地球環境保全は、人類共通の最重要課題です。コニカミノルタは、長年にわたって培ってきた環境経営のノウハウをさまざまなステークホルダーに展開しています。企業、地方自治体、アカデミアに向けた環境セミナー・講演会の実施、お客様企業の環境負荷低減を支援するグリーンマーケティング活動、取引先を支援するカーボンニュートラルパートナー活動などを推進しています。
-              </p>
+              <p>地球環境保全は、人類共通の課題です。コニカミノルタは、チャリティや社員によるボランティア活動だけではなく、コニカミノルタが培った環境経営ノウハウをお客様やお取引先といったステークホルダーに広め、それぞれのステークホルダーの活動が拡大することで、環境負荷低減の加速化に貢献することを目指しています。 コニカミノルタは、環境経営やノウハウについて、セミナーや講演会の形で、企業だけでなく、地方自治体やアカデミアに対しても実施しています。 さらに、お客様をはじめとする企業の皆様に、環境経営の実践に役立つ当社のノウハウやツールなどを共有・提供し、お客様企業での環境負荷低減を支援するグリーンマーケティング活動を展開しています。この活動をきっかけに企業間の関係強化につながり、ビジネス面においても製品・サービスの取引に結びついています。また、お取引先に対しても環境負荷低減とコスト削減を支援するカーボンニュートラルパートナー活動を進めています。 コニカミノルタは、自社の活動範囲にとどまらず、お客様、お取引先、地域社会といったさまざまなステークホルダーとともに環境負荷低減を進めることで、社会全体の環境負荷低減に貢献しています。</p>
               <div class="acc-figs col-2">
-                <figure>
-                  <div class="wf-img h-160">
-                    <div class="wf-img-label">環境セミナー<br>開催風景</div>
-                  </div>
-                  <figcaption class="wf-img-caption">環境経営ノウハウを企業・自治体・アカデミアに展開</figcaption>
-                </figure>
-                <figure>
-                  <div class="wf-img h-160">
-                    <div class="wf-img-label">顧客工場での<br>省エネ診断実施</div>
-                  </div>
-                  <figcaption class="wf-img-caption">お客様の工場・オフィスを訪問し省エネルギー診断を実施</figcaption>
-                </figure>
+                <figure><div class="wf-img h-160"><div class="wf-img-label">コニカミノルタによる環境セミナーの様子</div></div><figcaption class="wf-img-caption">コニカミノルタによる環境セミナーの様子</figcaption></figure>
+                <figure><div class="wf-img h-160"><div class="wf-img-label">お客様工場での省エネ診断</div></div><figcaption class="wf-img-caption">お客様工場での省エネ診断</figcaption></figure>
               </div>
               <div class="theme-related">
                 <span class="theme-related-label">関連リンク</span>
@@ -670,458 +662,238 @@ body {
               </div>
             </div>
           </details>
-
-          <!-- B-1-2：養蜂 -->
-          <details class="wf-acc-h3">
+          <details class="wf-acc-h3" open>
             <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-tag">フランス</span>
               <span class="wf-acc-text">生物多様性保全のため養蜂を実施</span>
+              <span class="wf-acc-tag">フランス</span>
             </summary>
             <div class="wf-acc-h3-body">
-              <p>
-                コニカミノルタビジネスソリューションズ（フランス）社では、パリのビル屋上を緑化し、ミツバチの巣箱を設置して養蜂を実施しています。周辺地域の果樹・野菜・花などの受粉に役立てるとともに、採取した蜂蜜を瓶詰めにして従業員向けに販売し、売上をチャリティー基金に寄付しています。
-              </p>
               <div class="acc-figs">
-                <figure>
-                  <div class="wf-img h-200">
-                    <div class="wf-img-label">パリ ビル屋上<br>養蜂風景</div>
-                  </div>
-                  <figcaption class="wf-img-caption">パリのビル屋上で養蜂を実施</figcaption>
-                </figure>
+                <figure><div class="wf-img h-200"><div class="wf-img-label">屋上での養蜂の様子</div></div><figcaption class="wf-img-caption">屋上での養蜂の様子</figcaption></figure>
               </div>
+              <p>コニカミノルタビジネスソリューションズ（フランス）社では、パリにある会社のビルの屋上を緑化し、ミツバチの巣箱を設置して養蜂を行っています。フランスにはミツバチを大切にする伝統があり、人口密度の高い都会で養蜂することにも理解があります。周辺地域のさまざまな果樹、野菜、花などの植物の受粉に、この巣箱で育ったミツバチが役立っています。また、採取した蜂蜜を瓶詰にして従業員向けに販売し、得られた売上をチャリティー基金（コニカミノルタビジネスソリューションズ（フランス）社が立ち上げた基金。毎年障がいのある人々が文化芸術、スポーツ振興を行うための基金）に寄付する取り組みを通じて、従業員の生物多様性保全意識の向上と、地域社会への貢献を図っています。</p>
             </div>
           </details>
-
-          <!-- B-1-3：アーバー・デイ財団 -->
-          <details class="wf-acc-h3">
+          <details class="wf-acc-h3" open>
             <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-tag">米国</span>
               <span class="wf-acc-text">アーバー・デイ財団と共に世界的な森林再生活動に貢献</span>
+              <span class="wf-acc-tag">米国</span>
             </summary>
             <div class="wf-acc-h3-body">
-              <p>
-                コニカミノルタビジネスソリューションズ（USA）社は、従業員に非営利団体ボランティアへの参加機会を提供。MEVO（Mahwah Environmental Volunteers Organization）を支援し、アーバー・デイ財団と協力して、最近森林火災が発生した地域に20,000本以上の木を植樹しています。
-              </p>
+              <p>コニカミノルタビジネスソリューションズ（USA）社は、従業員に非営利団体とのボランティア活動に参加の機会を提供することで、持続可能性への意識を高めています。過去数年にわたり、非営利団体であるMahwah Environmental Volunteers Organization (MEVO)をボランティア活動と寄付協賛金を通じて支援してきました。ボランティアは、地元の環境や持続可能なガーデニング、農業について学びながら、農作物の植え付けや収穫を手伝います。またアーバー・デイ財団と協力して、これまで最近森林火災が発生した地域に20,000本以上の木を植樹し、世界的な森林再生活動に貢献しています。</p>
               <div class="acc-figs col-2">
-                <figure>
-                  <div class="wf-img h-160">
-                    <div class="wf-img-label">MEVO<br>ボランティア風景</div>
-                  </div>
-                  <figcaption class="wf-img-caption">農作物の植え付け・収穫作業に従業員が参加</figcaption>
-                </figure>
-                <figure>
-                  <div class="wf-img h-160">
-                    <div class="wf-img-label">NY/NJ Trail Conference<br>参加風景</div>
-                  </div>
-                  <figcaption class="wf-img-caption">New York/New Jersey Trail Conferenceでのトレイル整備</figcaption>
-                </figure>
+                <figure><div class="wf-img h-160"><div class="wf-img-label">New York/ New Jersey Trail Conference参加の様子</div></div><figcaption class="wf-img-caption">New York/ New Jersey Trail Conference参加の様子</figcaption></figure>
+                <figure><div class="wf-img h-160"><div class="wf-img-label">Mahwah Environmental Volunteers Organization (MEVO)に参加する社員の様子</div></div><figcaption class="wf-img-caption">Mahwah Environmental Volunteers Organization (MEVO)に参加する社員の様子</figcaption></figure>
               </div>
             </div>
           </details>
-
-          <!-- B-1-4：環境保全（豪州） -->
-          <details class="wf-acc-h3">
+          <details class="wf-acc-h3" open>
             <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-tag">オーストラリア</span>
               <span class="wf-acc-text">環境保全活動を支援</span>
+              <span class="wf-acc-tag">オーストラリア</span>
             </summary>
             <div class="wf-acc-h3-body">
-              <p>
-                コニカミノルタビジネスソリューションズオーストラリア社は、地域のボランティア団体を長年にわたり支援。2017年度には、環境保全週間（ランドケア・ウィーク）に25名の従業員が参加し、低木林地の雑草除去や植樹作業を行いました。
-              </p>
-              <div class="acc-figs">
-                <figure>
-                  <div class="wf-img h-200">
-                    <div class="wf-img-label">環境保全<br>ボランティア活動</div>
-                  </div>
-                  <figcaption class="wf-img-caption">ランドケア・ウィークでの植樹活動</figcaption>
-                </figure>
-              </div>
+              <p>コニカミノルタビジネスソリューションズオーストラリア社は長年にわたり、環境保全活動を行う地域のボランティア団体を支援し、従業員のボランティア派遣や寄付などを行っています。2017年度は、その活動の一環として25名の従業員が環境保全週間（ランドケア・ウィーク）に低木林地の雑草の除去や植樹を行いました。</p>
             </div>
           </details>
-
-          <!-- B-1-5：森林保護（日本） -->
-          <details class="wf-acc-h3">
+          <details class="wf-acc-h3" open>
             <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-tag">日本</span>
               <span class="wf-acc-text">森林保護活動に協力</span>
+              <span class="wf-acc-tag">日本</span>
             </summary>
             <div class="wf-acc-h3-body">
-              <p>
-                「高尾の森づくりの会」は東京都西部・裏高尾の国有林で間伐・植樹・下草刈りなどを通じて、針葉樹と広葉樹が混交した豊かな森の復元を目指しています。コニカミノルタは法人会員として参加し、従業員も毎月ボランティアとして森づくりに携わっています。デジタル印刷システムを用いて同会の季刊会報を制作・提供しています。
-              </p>
-              <div class="acc-figs">
-                <figure>
-                  <div class="wf-img h-200">
-                    <div class="wf-img-label">高尾の森<br>間伐・植樹作業</div>
-                  </div>
-                  <figcaption class="wf-img-caption">裏高尾国有林での森づくり活動</figcaption>
-                </figure>
-              </div>
+              <p>コニカミノルタでは、さまざまな森林保護活動に参加、協力しています。「高尾の森づくりの会」は、東京都西部に位置する裏高尾の国有林において、生来の植生を考慮しつつ、間伐、植樹、下草刈りなどの作業を通して、針葉樹と広葉樹が混交した豊かな森の復元を目指しています。この会に法人会員として参加し、従業員もメンバーの一員として、毎月森づくりに汗を流しています。</p>
+              <p>また、コニカミノルタのデジタル印刷システムを用いて、同会の季刊の会報を制作し、提供しています。その他、世界の各地で環境保全活動のためにボランティア社員の派遣、サイト周辺清掃活動、団体の支援を行っています。</p>
               <div class="theme-related">
                 <span class="theme-related-label">関連リンク</span>
                 <span class="wf-link is-external">高尾の森づくりの会（外部サイト）</span>
               </div>
             </div>
           </details>
-
-          <!-- B-1-6：国立森林局（カテゴリ最終） -->
-          <details class="wf-acc-h3 is-last-in-group">
+          <details class="wf-acc-h3 is-last-in-group" open>
             <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-tag">フランス</span>
               <span class="wf-acc-text">フランス国立森林局との提携</span>
+              <span class="wf-acc-tag">フランス</span>
             </summary>
             <div class="wf-acc-h3-body">
-              <p>
-                コニカミノルタビジネスソリューションズ（フランス）社は、生態系を支える取り組みを強化するため、フランスの生物多様性を担う主要機関であるフランス国立森林局（ONF）とパートナーシップを構築しています。
-              </p>
+              <p>コニカミノルタビジネスソリューションズ（フランス）社では、生態系を支える取り組みを強化するため、フランスの生物多様性を担う主要機関の一つである国立森林局（ONF）とパートナーシップを構築しています。</p>
             </div>
           </details>
 
-
-          <!-- ============================================================
-               B-2. ウェルビーイング・地域社会
-          ============================================================ -->
           <h3 class="wf-sub-title" id="sub-wellbeing">ウェルビーイング・地域社会</h3>
-
-          <!-- B-2-1：介護DX（展開状態） -->
           <details class="wf-acc-h3" open>
             <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-tag">日本</span>
               <span class="wf-acc-text">介護現場のDX化による社会課題解決の支援</span>
             </summary>
             <div class="wf-acc-h3-body">
-              <p>
-                日本の超高齢化社会において、介護スタッフの人手不足（2040年に約57万人不足と推計）に対応するため、2016年からICT活用のケアサポートソリューション「HitomeQ」を展開。画像センシング技術を活用した行動分析センサーとスマートフォンを軸に、業務効率化とケア品質向上を実現しています。2024年度までにセミナーで累計7,100名以上が受講。2019年から介護福祉士養成専門学校内に「コニカミノルタICT介護実習室」を開設し、次世代の介護人材育成にも貢献しています。
-              </p>
-              <div class="acc-figs col-2">
-                <figure>
-                  <div class="wf-img h-160">
-                    <div class="wf-img-label">コニカミノルタ<br>ICT介護実習室</div>
-                  </div>
-                  <figcaption class="wf-img-caption">介護福祉士養成専門学校での実習の様子</figcaption>
-                </figure>
-                <figure>
-                  <div class="wf-img h-160">
-                    <div class="wf-img-label">HitomeQ<br>導入施設</div>
-                  </div>
-                  <figcaption class="wf-img-caption">ICT活用ケアサポートソリューション</figcaption>
-                </figure>
+              <p>日本は、超高齢化社会を迎えようとしており、厚生労働省によると2040年には、介護スタッフが約57万人不足すると推計される一方、国の介護保険の費用は増加し続けています。日本政府は、費用抑制の方策として、介護予防に力点を置く「自立支援介護」を推進するため、科学的介護に大きく舵を切りましたが、介護施設の多くは、IT化、ITリテラシーが必ずしも進んでいません。</p>
+              <p>コニカミノルタは、2016年からICTを軸として、介護ワークフローを変革するケアサポートソリューションを事業化し、すべての人たちが、きらめきときめく世界をともにつくりたいという想いを“HitomeQ”というブランドに込めて、高齢者のQOL向上を支えるサービスを展開しています。「HitomeQケアサポート」※によって、ともに現場を見つめ、新しい介護現場へとみちびくことを目指しています。</p>
+              <p class="wf-note">※ 「HitomeQ ケアサポート」は、独自の画像センシング技術を活かした行動分析センサーとスマートフォンを軸に、ケア品質の向上と業務効率化するサービス。単なるシステムの提供だけではなく、業務診断による課題の特定から、システムの導入支援、ICTを活用する組織の構築までを行い、導入後もデータを活用した介護オペレーションを支援します。</p>
+              <p>コニカミノルタは、科学的介護に必要な介護現場のDX化を支援するため、介護関係者を対象に、無料のセミナーを定期的に開催し、科学的介護や制度の解説、DX化の実例を示しながらわかりやすく説明するなど、ITと介護現場をつなげる活動を行っています。2018年度から自社セミナーを開始。2020年度からはウェブセミナーを導入したことで大幅に参加者も増え、2024年度までに累計で7,100名以上の方々が受講されました。</p>
+              <p>また、2019年からは介護福祉士を養成する専門学校内に「コニカミノルタICT介護実習室」を同学校と共同で開設し、ICT介護の講義を開始しており、コニカミノルタ社員もこの実習講義に協力しています。</p>
+              <div class="acc-figs">
+                <figure><div class="wf-img h-200"><div class="wf-img-label">コニカミノルタICT介護実習室</div></div><figcaption class="wf-img-caption">コニカミノルタICT介護実習室</figcaption></figure>
               </div>
             </div>
           </details>
-
-          <!-- B-2-2：新生児黄疸 -->
-          <details class="wf-acc-h3">
+          <details class="wf-acc-h3" open>
             <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-tag">ミャンマー / 米国</span>
               <span class="wf-acc-text">新生児の病的黄疸（核黄疸）の早期発見・治療支援</span>
             </summary>
             <div class="wf-acc-h3-body">
-              <p>
-                コニカミノルタは1980年に世界初の経皮式黄疸計を開発。ミャンマー（2017-2019年）ではヤンゴン小児病院で「核黄疸撲滅プロジェクト」に参加し、測定機器の貸し出しとメンテナンスを実施。米国では2020年にUCSFベニオフ小児病院の新生児遠隔医療プログラムに黄疸計12台を提供しています。
-              </p>
+              <p>病的黄疸（核黄疸）は、出生早期に新生児の体内で黄疸の原因物質であるビリルビンの体内濃度が一定の値を超えることで、脳のはたらきなどに異常をきたし脳性まひの原因になります。過去には日本でも脳性麻痺の3大原因の一つとされていましたが、測定機器（経皮黄疸計）を用いた早期の発見・治療をするシステムにより激減しました。しかし、世界にはノウハウやリソース不足などの理由から、厳密な黄疸管理ができず、有効な早期発見システムが構築できていない地域があります。</p>
+              <h4 class="wf-acc-h4">新生児の死亡率低減に向けた「核黄疸撲滅プロジェクト」に協力（ミャンマー）</h4>
+              <p>コニカミノルタは、2017年から2019年にかけてミャンマーで実施された、厚生労働省が国立国際医療研究センターを実施主体として委託している医療技術等国際展開推進事業である「核黄疸撲滅プロジェクト」に参加し、必要な測定機器の貸し出しやメンテナンス、データ解析などを行いました。</p>
+              <p>コニカミノルタは、1980年に世界で初めて経皮式の黄疸計を開発し、日本での核黄疸撲滅に貢献してきました。本プロジェクトを一つのモデルケースとして、今後もアジアでの黄疸管理の普及に貢献していきます。</p>
               <div class="acc-figs col-2">
-                <figure>
-                  <div class="wf-img h-160">
-                    <div class="wf-img-label">Yangon Children Hospital<br>式典（2019年12月）</div>
-                  </div>
-                  <figcaption class="wf-img-caption">ミャンマー・ヤンゴン小児病院での式典</figcaption>
-                </figure>
-                <figure>
-                  <div class="wf-img h-160">
-                    <div class="wf-img-label">経皮黄疸計<br>JM-105 測定風景</div>
-                  </div>
-                  <figcaption class="wf-img-caption">経皮式黄疸計による新生児の測定</figcaption>
-                </figure>
+                <figure><div class="wf-img h-160"><div class="wf-img-label">2019年12月27日にYangon Children Hospitalで開催された経皮黄疸計寄附記念式典</div></div><figcaption class="wf-img-caption">2019年12月27日にYangon Children Hospitalで開催された経皮黄疸計寄附記念式典</figcaption></figure>
+                <figure><div class="wf-img h-160"><div class="wf-img-label">経皮黄疸計（JM-105）を使って赤ちゃんを測定する様子</div></div><figcaption class="wf-img-caption">経皮黄疸計（JM-105）を使って赤ちゃんを測定する様子</figcaption></figure>
               </div>
+              <h4 class="wf-acc-h4">「UCSF新生児遠隔医療プログラム」に黄疸計を提供（米国）</h4>
+              <p>米国のUCSFベニオフ小児病院（UCSF Benioff Children's Hospitals）では、2020年に「UCSF新生児遠隔医療プログラム」の一環として、黄疸合併症のリスクが高い生後1週間の新生児に対して、親による在宅黄疸モニタリングの臨床試験を行い、実用化に向けたデータ収集と分析を実施しました。このとき使用する黄疸計１２台をコニカミノルタが提供して支援しています。</p>
             </div>
           </details>
-
-          <!-- B-2-3：乳がん早期発見 -->
-          <details class="wf-acc-h3">
+          <details class="wf-acc-h3" open>
             <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-tag">グローバル</span>
               <span class="wf-acc-text">乳がんの早期発見推進の取り組み</span>
             </summary>
             <div class="wf-acc-h3-body">
-              <p>
-                乳房X線撮影装置（デジタルマンモグラフィ）と乳房用超音波診断装置を提供し、乳がんの早期発見に貢献。「ピンクリボン運動」の支援を通じ、乳がんに対する正しい知識の普及と検診受診率向上を推進しています。
-              </p>
               <div class="acc-figs">
-                <figure>
-                  <div class="wf-img h-200">
-                    <div class="wf-img-label">ピンクリボン運動</div>
-                  </div>
-                  <figcaption class="wf-img-caption">ピンクリボン運動を通じた啓発活動</figcaption>
-                </figure>
+                <figure><div class="wf-img h-200"><div class="wf-img-label">コニカミノルタのピンクリボン運動マーク</div></div><figcaption class="wf-img-caption">コニカミノルタのピンクリボン運動マーク</figcaption></figure>
               </div>
+              <p>コニカミノルタ（株）は、乳がんの早期発見に役立つ乳房X線撮影装置（デジタルマンモグラフィ）や乳房用超音波診断装置を提供しています。この事業に関連して、乳がん早期発見の重要性を訴える「ピンクリボン運動」を支援しています。</p>
               <div class="theme-related">
                 <span class="theme-related-label">関連リンク</span>
                 <span class="wf-link">コニカミノルタのピンクリボン運動</span>
-                <span class="wf-link">一人ひとりにとって乳がん検診をより良いものに（ニュースリリース 2021.10.08）</span>
+                <span class="wf-link">一人ひとりにとって乳がん検診をより良いものに（ニュースリリース）</span>
               </div>
             </div>
           </details>
-
-          <!-- B-2-4：がん患者支援 -->
-          <details class="wf-acc-h3">
+          <details class="wf-acc-h3" open>
             <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-tag">北米 / 豪州 / 欧州 / アジア</span>
               <span class="wf-acc-text">各地でがん患者支援団体を支援</span>
             </summary>
             <div class="wf-acc-h3-body">
-              <p>
-                北米ではスーザン・G・コーメン乳がん基金などを支援。オーストラリアではBreast Cancer Network of Australiaを支援。英国ではチャリティーランに社員が参加するなど、カナダ、マレーシアを含む世界各国でがん関連の支援団体を通じた貢献活動を展開しています。
-              </p>
-              <div class="acc-figs">
-                <figure>
-                  <div class="wf-img h-200">
-                    <div class="wf-img-label">がん患者支援活動</div>
-                  </div>
-                  <figcaption class="wf-img-caption">各国でのがん患者支援活動の様子</figcaption>
-                </figure>
-              </div>
+              <p>コニカミノルタグループは、各地で乳がん患者や家族を支援する団体を支援しています。北米では、コニカミノルタヘルスケアアメリカズ社が「スーザン・G・コーメン乳がん基金」をはじめとした団体を支援しています。豪州では、コニカミノルタビジネスソリューションズ（オーストラリア）社が、Breast Cancer Network of Australiaを支援しています。また、英国では、コニカミノルタビジネスソリューションズ（イギリス）社の社員が、Alma Zois- Panhellenic Association of Women With Breast Cancerが主催するチャリティーランに参加するなど、それぞれ、寄付金や、自社の情報機器製品や消耗品の寄付、チャリティイベントや募金活動への社員のボランティア参加などの支援を行っています。また、コニカミノルタは世界各国において、乳がんに限らずさまざまながんに関係する、カナダ、アメリカ、オーストラリア、マレーシアなどの団体の支援を行っています。</p>
             </div>
           </details>
-
-          <!-- B-2-5：スポーツ振興 -->
-          <details class="wf-acc-h3">
+          <details class="wf-acc-h3" open>
             <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-tag">日本</span>
               <span class="wf-acc-text">地域のスポーツにおける社会貢献</span>
             </summary>
             <div class="wf-acc-h3-body">
-              <p>
-                コニカミノルタ陸上競技部が「ジョギング教室」を開催し、地域社会との交流を促進。スポーツを通じた健康増進と地域コミュニティの活性化に貢献しています。
-              </p>
               <div class="acc-figs">
-                <figure>
-                  <div class="wf-img h-200">
-                    <div class="wf-img-label">ジョギング教室風景</div>
-                  </div>
-                  <figcaption class="wf-img-caption">コニカミノルタ陸上競技部によるジョギング教室</figcaption>
-                </figure>
+                <figure><div class="wf-img h-200"><div class="wf-img-label">ジョギング教室</div></div><figcaption class="wf-img-caption">ジョギング教室</figcaption></figure>
               </div>
+              <p>コニカミノルタは、「コニカミノルタ陸上競技部」が長年培ってきた走りのノウハウや走る喜びを「ジョギング教室」といった独自の取り組みを通して、ビギナーや本格的なランナーに至るまで、地域社会の皆様との交流を促進し、スポーツ振興の貢献に取り組んでいます。</p>
               <div class="theme-related">
                 <span class="theme-related-label">関連リンク</span>
                 <span class="wf-link is-external">コニカミノルタ陸上競技部（外部サイト）</span>
               </div>
             </div>
           </details>
-
-          <!-- B-2-6：救いの泉 -->
-          <details class="wf-acc-h3">
-            <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-tag">日本</span>
-              <span class="wf-acc-text">防災水資源「救いの泉」を地域に提供</span>
-            </summary>
-            <div class="wf-acc-h3-body">
-              <p>
-                コニカミノルタ（株）は2014年度に東京都日野市・日野市立病院と災害時協力協定を締結。東京サイト日野の井戸に自家発電装置を設置し、「救いの泉」として整備しました。停電時も地域住民への水供給が可能な体制を整備しています。2021年度に東京都八王子市への対象拡大を実施しています。
-              </p>
-              <div class="acc-figs">
-                <figure>
-                  <div class="wf-img h-200">
-                    <div class="wf-img-label">災害時協力<br>協定締結式</div>
-                  </div>
-                  <figcaption class="wf-img-caption">東京都日野市との災害時協力協定締結</figcaption>
-                </figure>
-              </div>
-            </div>
-          </details>
-
-          <!-- B-2-7：企業内基金（展開状態・カテゴリ最終） -->
-          <details class="wf-acc-h3 is-last-in-group" open>
-            <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-tag">フランス</span>
-              <span class="wf-acc-text">ハンディキャップを持つ人々を支援する企業内基金を設立</span>
-            </summary>
-            <div class="wf-acc-h3-body">
-              <p>
-                コニカミノルタビジネスソリューションズ（フランス）社は、障がいを持つ人々がスポーツ、娯楽、文化、教育や仕事などに参加しやすい環境を作ることを目指し、企業内基金「Fondation d'entreprise」を設立しました。
-              </p>
-              <ul>
-                <li>パリのケ・ブランリ美術館での視覚障がい者向け三次元モデル制作支援</li>
-                <li>シャモニー渓谷の車いす用小道建設支援</li>
-                <li>大西洋岸での車いす海水浴設備建設協力</li>
-                <li>パラスポーツ用品寄付、介助犬購入養成など</li>
-              </ul>
-              <div class="acc-figs col-2">
-                <figure>
-                  <div class="wf-img h-160">
-                    <div class="wf-img-label">Fondation<br>d'entreprise</div>
-                  </div>
-                  <figcaption class="wf-img-caption">企業内基金のロゴ</figcaption>
-                </figure>
-                <figure>
-                  <div class="wf-img h-160">
-                    <div class="wf-img-label">障がい者支援<br>活動風景</div>
-                  </div>
-                  <figcaption class="wf-img-caption">障がい者の社会参加を支援する活動</figcaption>
-                </figure>
-              </div>
-              <div class="theme-related">
-                <span class="theme-related-label">関連リンク</span>
-                <span class="wf-link is-external">Fondation d'entreprise Konica Minolta（外部サイト）</span>
-              </div>
-            </div>
-          </details>
-
-
-          <!-- ============================================================
-               B-3. 次世代人財育成
-          ============================================================ -->
-          <h3 class="wf-sub-title" id="sub-talent">次世代人財育成</h3>
-
-          <!-- B-3-1：名称変更（新規枠／追加予定） -->
-          <details class="wf-acc-h3">
-            <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-tag">グローバル</span>
-              <span class="wf-acc-text">「産業知能系」の新価値創出マテリアリティと連動した名称へ変更</span>
-            </summary>
-            <div class="wf-acc-h3-body">
-              <p>
-                ※追加予定。「産業知能系」の新価値創出マテリアリティと連動した名称変更に関する内容をここに記載します。
-              </p>
-            </div>
-          </details>
-
-          <!-- B-3-2：IoT人財育成 -->
-          <details class="wf-acc-h3">
-            <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-tag">日本</span>
-              <span class="wf-acc-text">将来のIoT人財育成への貢献</span>
-            </summary>
-            <div class="wf-acc-h3-body">
-              <p>
-                2017年から2021年まで、毎回約30名程度の大学院生・学部生・短大生・専門学校生を選抜し、ハッカソンやアイデアソンを開催。AIや画像IoT技術などの最新テクノロジーを駆使した課題解決型のイノベーター育成に取り組んでいます。当社画像IoT技術者がメンターとして参加しています。
-              </p>
-              <div class="acc-figs">
-                <figure>
-                  <div class="wf-img h-200">
-                    <div class="wf-img-label">2021年度<br>ハッカソン参加者</div>
-                  </div>
-                  <figcaption class="wf-img-caption">ハッカソン・アイデアソンの開催風景</figcaption>
-                </figure>
-              </div>
-            </div>
-          </details>
-
-          <!-- B-3-3：若者キャリア形成 -->
-          <details class="wf-acc-h3">
-            <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-tag">インド</span>
-              <span class="wf-acc-text">若者のキャリア形成を支援</span>
-            </summary>
-            <div class="wf-acc-h3-body">
-              <p>
-                コニカミノルタビジネスソリューションズインド社が、現地の職業訓練機関と提携し、2016年から貧困層の若者を対象としたスキル開発プログラムを実施。参加者は2カ月間で英語、電子工学、機械の基礎トレーニングと複合機のサービストレーニングを受講しています。
-              </p>
-            </div>
-          </details>
-
-          <!-- B-3-4：女性IT支援 -->
-          <details class="wf-acc-h3">
-            <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-tag">チェコ / ドイツ</span>
-              <span class="wf-acc-text">IT業界における女性のキャリア形成を支援</span>
-            </summary>
-            <div class="wf-acc-h3-body">
-              <p>
-                NGO団体「Impact Hub」および「Czechitas」と協働で、女性を対象にITナレッジのキャパシティビルディングを実施。IT業界での就職・転職・起業を目指す女性へのワークショップ協賛、資金提供、社内IT専門家の派遣を行い、女性のIT業界におけるキャリア形成と業界のダイバーシティ促進を目指しています。
-              </p>
-              <div class="acc-figs">
-                <figure>
-                  <div class="wf-img h-200">
-                    <div class="wf-img-label">ワークショップ風景</div>
-                  </div>
-                  <figcaption class="wf-img-caption">女性向けITキャパシティビルディングの様子</figcaption>
-                </figure>
-              </div>
-            </div>
-          </details>
-
-          <!-- B-3-5：就学支援（展開状態） -->
           <details class="wf-acc-h3" open>
             <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-tag">北米 / 中国</span>
+              <span class="wf-acc-text">防災水資源「救いの泉」を地域に提供</span>
+              <span class="wf-acc-tag">日本</span>
+            </summary>
+            <div class="wf-acc-h3-body">
+              <div class="acc-figs">
+                <figure><div class="wf-img h-200"><div class="wf-img-label">災害時協力協定の締結式</div></div><figcaption class="wf-img-caption">災害時協力協定の締結式</figcaption></figure>
+              </div>
+              <p>コニカミノルタ（株）は、2014年度、東京都日野市および日野市立病院と災害時協力協定を締結し、災害時に医療施設が必要とする大量の透析水・治療水や、地域住民の飲用・生活用水を供給できるよう、東京サイト日野に保有する井戸に停電時においても稼働できるよう自家発電装置を設置し、防災水資源「救いの泉」として整備しました。2021年度には対象範囲を東京都八王子市にも拡大し、市内の災害拠点病院や水道局などとの連携により、地域の安全・安心に貢献していきます。</p>
+            </div>
+          </details>
+          <details class="wf-acc-h3 is-last-in-group" open>
+            <summary class="wf-acc-h3-summary">
+              <span class="wf-acc-text">ハンディキャップを持つ人々を支援する企業内基金を設立</span>
+              <span class="wf-acc-tag">フランス</span>
+            </summary>
+            <div class="wf-acc-h3-body">
+              <div class="acc-figs"><figure><div class="wf-img h-160"><div class="wf-img-label">Fondation d&#39;entreprise（基金ロゴ）</div></div><figcaption class="wf-img-caption">企業内基金「Fondation d&#39;entreprise」ロゴ（リンク先）</figcaption></figure></div>
+              <p>コニカミノルタの複合機は、障がいの有無に関わらずすべての人が簡単に使えることを目指す、ユニバーサルデザインの視点を取り入れて、設計されています。</p>
+              <p>情報機器販売会社であるコニカミノルタビジネスソリューションズフランス社は、この考え方をさらに広げて、障がいを持つ人々がスポーツ、娯楽、文化、教育や仕事などに参加しやすい環境を作ることを目指し、公共の場所のバリアフリー化などを目的とした企業内基金を設立しました。従業員の提案から始まったこの活動は、今や会社全体に広がっており、従業員一人ひとりが寄付などの形で参加しています。</p>
+              <p>NPOや文化施設・文化的な催事の実行組織に協力し、地元レベルから全国規模のプロジェクトまで幅広い活動に対して、資金を提供しています。例えば、パリのケ・ブランリ美術館では、視覚障がいの方が館内の様子を理解するための三次元モデル制作を支援。また、シャモニー渓谷に車いす用の小道を作ったり、大西洋岸の浜に車いすの方が海水浴に利用できる設備を作ったりする国立森林公社の活動に協力しました。そのほか、レジャー施設の整備・改修をはじめ、障がい者のためのパラスポーツ用品の寄付、レジャーボートの乗降口の改修、介助犬の購入・養成、自閉症の子供向けの学習器具の寄付など、さまざまな活動を実施しています。</p>
+              <div class="theme-related">
+                <span class="theme-related-label">関連リンク</span>
+                <span class="wf-link is-external">Fondation d&#39;entreprise（外部サイト）</span>
+              </div>
+            </div>
+          </details>
+
+          <h3 class="wf-sub-title" id="sub-talent">次世代人財育成</h3>
+          <details class="wf-acc-h3" open>
+            <summary class="wf-acc-h3-summary">
+              <span class="wf-acc-text">若者のキャリア形成を支援</span>
+              <span class="wf-acc-tag">インド</span>
+            </summary>
+            <div class="wf-acc-h3-body">
+              <p>コニカミノルタビジネスソリューションズインド社は、現地の職業訓練機関と提携し、2016年から貧困層の若者を対象としたスキル開発プログラムを実施しています。</p>
+              <p>プログラムの参加者は、2カ月間で英語や電子工学、機械といった幅広い科目の基礎トレーニング、複合機のサービストレーニングを受講することができます。</p>
+              <p>この活動により、近年インドで課題となっている新卒学生の就職難に直面する若者を支援しています。</p>
+            </div>
+          </details>
+          <details class="wf-acc-h3" open>
+            <summary class="wf-acc-h3-summary">
+              <span class="wf-acc-text">IT業界における女性のキャリア形成を支援</span>
+              <span class="wf-acc-tag">チェコ・ドイツ</span>
+            </summary>
+            <div class="wf-acc-h3-body">
+              <div class="acc-figs">
+                <figure><div class="wf-img h-200"><div class="wf-img-label">ワークショップの様子</div></div><figcaption class="wf-img-caption">ワークショップの様子</figcaption></figure>
+              </div>
+              <p>コニカミノルタは、チェコとドイツで、女性を対象にITナレッジのキャパシティビルディングを行い、IT業界における女性のキャリア形成をサポートするプロジェクトを、NGO団体「Impact Hub」や「Czechitas」と協働で実施しています。IT業界での就職・転職・起業を目指す女性たちのITナレッジや起業ノウハウを高めるワークショップに協賛し、資金提供や社内のIT専門家の派遣を行っています。女性のIT業界におけるキャリア形成の推進と、この業界のダイバーシティの促進を目指しています。</p>
+            </div>
+          </details>
+          <details class="wf-acc-h3" open>
+            <summary class="wf-acc-h3-summary">
               <span class="wf-acc-text">子どもたちの就学支援</span>
             </summary>
             <div class="wf-acc-h3-body">
-              <p>
-                <strong>北米：</strong>コニカミノルタビジネスソリューションズ（U.S.A.）社が「Books2BETTER」（低収入家庭の就学前児童へ本を寄付）と「Back to School」（学用品寄付）プログラムに参加。
-              </p>
-              <p>
-                <strong>中国：</strong>中国青少年基金会の「希望プロジェクト」（1989年開始）に参画し、校舎・設備の建築・改修費用を支援。コニカミノルタオプト（大連）社は6月1日の中国の子どもの日に学校訪問し支援金・文房具を贈呈。コニカミノルタオプティカルプロダクト（上海）社は農民工の子弟向けに地域小学校への支援を実施しています。
-              </p>
-              <div class="acc-figs col-2">
-                <figure>
-                  <div class="wf-img h-160">
-                    <div class="wf-img-label">就学支援<br>活動風景</div>
-                  </div>
-                  <figcaption class="wf-img-caption">子どもたちへの教育支援の様子</figcaption>
-                </figure>
-                <figure>
-                  <div class="wf-img h-160">
-                    <div class="wf-img-label">卒業旅行で<br>同社を訪問</div>
-                  </div>
-                  <figcaption class="wf-img-caption">卒業旅行で同社を訪れた子どもたち</figcaption>
-                </figure>
+              <div class="acc-figs">
+                <figure><div class="wf-img h-200"><div class="wf-img-label">卒業旅行で同社を訪れた子どもたち</div></div><figcaption class="wf-img-caption">卒業旅行で同社を訪れた子どもたち</figcaption></figure>
               </div>
+              <p>コニカミノルタは、次世代教育が未来の世界に不可欠であると考えています。そのため、様々な教育支援活動を行っています。</p>
+              <p>北米では、コニカミノルタビジネスソリューションズ（U.S.A.）社は、子供たちのために本を贈る「Books2BETTER」や、学用品を贈る「Back to School」プログラムに継続的に参加しています。</p>
+              <p>「Books2BETTER」プログラムでは、全米の従業員に参加を呼びかけ、低収入の家庭の就学前の子どもたちのために本を集め、学校・図書館・NPOなどに寄付しています。</p>
+              <p>アジアでは、中国青少年基金会が1989年から進めている子どもたちの就学支援運動「希望プロジェクト」に参画し、これまで校舎や設備の建築・改修費用の支援を行った他、継続的にさまざまな支援を行っています。コニカミノルタオプト（大連）社は、毎年中国の子どもの日（6月1日）に学校を訪問し、支援金や文房具を贈呈しています。</p>
+              <p>光学レンズなどの生産会社であるコニカミノルタオプティカルプロダクト（上海）社は、農民工の子弟の学習環境向上のため、地域の小学校への支援を行っています。</p>
             </div>
           </details>
-
-          <!-- B-3-6：科学技術振興財団 -->
-          <details class="wf-acc-h3">
+          <details class="wf-acc-h3" open>
             <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-tag">日本</span>
               <span class="wf-acc-text">公益財団法人コニカミノルタ科学技術振興財団</span>
+              <span class="wf-acc-tag">日本</span>
             </summary>
             <div class="wf-acc-h3-body">
-              <p>
-                コニカ創立者の杉浦仙之助の遺志により、昭和41年に設立された「橘保善会」を基とし、平成5年より財団としての活動を開始。科学技術（特に光と画像の領域）の研究に対する援助・支援を行い、科学技術の振興、学術の発展及び文化の向上に寄与しています。コニカミノルタは趣意に賛同し、寄付等により協力しています。
-              </p>
-              <div class="acc-figs">
-                <figure>
-                  <div class="wf-img h-200">
-                    <div class="wf-img-label">科学技術振興財団</div>
-                  </div>
-                  <figcaption class="wf-img-caption">研究助成・支援活動</figcaption>
-                </figure>
-              </div>
+              <p>公益財団法人コニカミノルタ科学技術振興財団は、コニカ創立者のひとりである杉浦仙之助の遺志により、写真科学の研究を助成し、もって学術の振興および文化の向上に寄与することを目的として、昭和41年に設立された「橘保善会」を基としています。平成5年より財団としてその活動を受け継ぎ、現在は公益財団法人として、科学技術の振興、学術の発展及び文化の向上に寄与することを目的に、科学技術（特に光と画像の領域）の研究に対する援助・支援を行っています。コニカミノルタは、その趣意に賛同し、財団事業の継続と発展のため寄付等により協力しています。</p>
               <div class="theme-related">
                 <span class="theme-related-label">関連リンク</span>
-                <span class="wf-link is-external">公益財団法人 コニカミノルタ科学技術振興財団（外部サイト）</span>
+                <span class="wf-link is-external">公益財団法人 コニカミノルタ科学技術振興財団ウェブサイト（外部サイト）</span>
               </div>
             </div>
           </details>
-
-          <!-- B-3-7：プラネタリウム（カテゴリ最終） -->
-          <details class="wf-acc-h3 is-last-in-group">
+          <details class="wf-acc-h3 is-last-in-group" open>
             <summary class="wf-acc-h3-summary">
-              <span class="wf-acc-tag">グローバル</span>
               <span class="wf-acc-text">プラネタリウムを通した地域貢献</span>
             </summary>
             <div class="wf-acc-h3-body">
-              <p>
-                プラネタリウムは、科学や天文学に対する知的好奇心を育てるとともに、宇宙を知り地球や人間について考えるきっかけともなります。小学校の授業に対応した番組を提供し、季節の星座や星・月の動きをテーマとした学習投影を実施しています。
-              </p>
-              <div class="acc-figs">
-                <figure>
-                  <div class="wf-img h-200">
-                    <div class="wf-img-label">プラネタリウム<br>学習投影</div>
-                  </div>
-                  <figcaption class="wf-img-caption">小学校向け学習投影の様子</figcaption>
-                </figure>
-              </div>
+              <p>プラネタリウムは、科学や天文学に対する知的好奇心を育てるとともに、宇宙を知り地球や人間について考えるきっかけともなります。コニカミノルタは、プラネタリウム施設において、小学校の授業で取り扱われる題材を取り上げた番組を提供するなど子どもたちの教育に役立つ取り組みを行っています。学習投影では季節の星座、星や月の動きをテーマとしています。</p>
               <div class="theme-related">
                 <span class="theme-related-label">関連リンク</span>
-                <span class="wf-link">プラネタリウム製品 > コンテンツ情報 > 幼児・学習番組</span>
+                <span class="wf-link">プラネタリウム製品 ＞ コンテンツ情報 ＞ 幼児・学習番組</span>
               </div>
             </div>
           </details>
+        </section>
 
+        <!-- ============================================================
+             B-末. コニカミノルタの社会貢献活動実績（原稿準拠・別パラグラフ）
+        ============================================================ -->
+        <section class="wf-section bg-white" id="sec-achievements">
+          <span class="wf-section-marker">実績</span>
+          <h2 class="wf-section-title">コニカミノルタの社会貢献活動実績</h2>
+          <p class="wf-section-desc">2024年度（2025年3月期）において、コニカミノルタは国内で約31百万円相当の金銭的または物品による支援を行いました。</p>
         </section>
 
 
@@ -1154,6 +926,7 @@ body {
         <a class="wf-anchor-nav-item is-sub" href="#sub-environment">地球環境問題</a>
         <a class="wf-anchor-nav-item is-sub" href="#sub-wellbeing">ウェルビーイング・地域社会</a>
         <a class="wf-anchor-nav-item is-sub" href="#sub-talent">次世代人財育成</a>
+        <a class="wf-anchor-nav-item" href="#sec-achievements">社会貢献活動実績</a>
         <a class="wf-anchor-nav-item" href="#sec-related">関連情報</a>
       </nav>
 
@@ -1282,7 +1055,16 @@ body {
 
   <!-- アノテーション -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — 社会貢献活動（0513 Figma反映版）</h3>
+    <h3>設計ポイント — 社会貢献活動（原稿26S490準拠 / 0513 Figma反映 v4.3）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">★</span>
+      <span class="ann-head">原稿（26S490_社会貢献活動）完全準拠で再構成</span>
+      <p class="ann-body">
+        支給原稿 <code>原稿内容/26S490_社会貢献活動.docx</code> の構成・本文・見出し・画像キャプション・関連リンク名を<strong>原文そのまま</strong>反映。基本的な考え方（基本方針／注力分野3領域／フィロソフィー）＋取り組み3カテゴリ（地球環境問題6件／ウェルビーイング・地域社会7件／次世代人財育成5件）＋社会貢献活動実績。<br>
+        <b>表示要件：</b>全アコーディオンを<strong>展開状態（open）</strong>で表示／国名タグは<strong>タイトル右側</strong>に配置／外部サイトリンクは<strong>別タブ遷移を示す ↗</strong> を付与。
+      </p>
+    </div>
 
     <div class="ann-item">
       <span class="ann-num">—</span>
