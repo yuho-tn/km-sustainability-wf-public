@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>イニシアティブへの参画＋社外からの評価 — KM サステナビリティ WF v2.2 (#225)</title>
+<title>イニシアティブへの参画＋社外からの評価 — KM サステナビリティ WF v2.3 (#225)</title>
 <style>
 /* ============================================================
    KM SUSTAINABILITY WF — SHARED CSS（140 人権 v1.3 ベース継承）
@@ -241,19 +241,26 @@ body {
   letter-spacing: -0.01em;
   flex: 1;
 }
+/* v2.3／#46：ロゴを左カラム・本文を右に回り込み（カラム化でレイアウトの
+   無駄＝1ロゴ行の縦余白を削減。桐原/池田FB） */
 .csr-row-content {
   padding: 18px 26px 22px;
   background: var(--c-white);
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
 }
 
-/* ロゴストリップ：固定140×80、左寄せ＋gap10。1〜n個でも均等に並ぶ */
+/* ロゴストリップ：左カラム（最大256px・2列まで折返し） */
 .csr-logo-strip {
+  flex: 0 0 auto;
   display: flex; flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 16px;
+  gap: 8px;
+  max-width: 256px;
+  align-content: flex-start;
 }
 .csr-logo {
-  width: 140px; height: 80px;
+  width: 120px; height: 64px;
   flex: 0 0 auto;
   background: var(--c-ph);
   border: 1px solid var(--c-ph-line);
@@ -277,8 +284,9 @@ body {
   line-height: 1.3;
 }
 
-/* 本文ブロック */
+/* 本文ブロック：右カラムで回り込み */
 .csr-row-body {
+  flex: 1; min-width: 0;
   display: flex; flex-direction: column; gap: 10px;
 }
 .csr-row-desc {
@@ -294,15 +302,17 @@ body {
 /* #41/#45：ロゴをアコーディオン見出し（summary）にも表示。
    開かなくても一覧でロゴが見えるよう、タイトル横にコンパクト版を配置（JSで移設） */
 .csr-row-summary .csr-logo-strip.in-summary {
-  margin: 0 44px 0 0; gap: 6px; flex: 0 0 auto;
+  margin: 0 44px 0 0; gap: 6px; flex: 0 0 auto; max-width: none;
 }
 .csr-row-summary .csr-logo-strip.in-summary .csr-logo {
-  width: 60px; height: 32px;
+  width: 84px; height: 38px;
 }
 .csr-row-summary .csr-logo-strip.in-summary .csr-logo-label {
-  font-size: 7px; padding: 1px 3px; border: none; background: rgba(255,255,255,0.9);
+  font-size: 8px; padding: 1px 4px; border: none; background: rgba(255,255,255,0.9);
 }
 .csr-row.no-logo .csr-row-summary .csr-logo-strip.in-summary { display: none; }
+/* 開いた行は左カラムにフルロゴが出るため、見出しの縮小ロゴは隠して二重表示を回避 */
+.csr-row[open] .csr-row-summary .csr-logo-strip.in-summary { display: none; }
 
 /* 注釈（小文字） */
 .note-small {
@@ -548,12 +558,12 @@ body {
   <div>
     <strong>KONICA MINOLTA サステナビリティ</strong>
     <span class="meta-badge">イニシアティブ＋社外評価</span>
-    <span class="meta-badge">WF v2.2</span>
+    <span class="meta-badge">WF v2.3</span>
     <span class="meta-badge">#225</span>
     <span class="meta-badge">L3</span>
-    <span class="meta-badge" style="background:#7a4a00; color:#fff;">v2.1：右側tag/date削除／全30ブロックを&lt;details open&gt;でアコーディオン化（デフォルト開）</span>
+    <span class="meta-badge" style="background:#7a4a00; color:#fff;">v2.3：ロゴ左カラム＋本文回り込み（無駄削減）／見出しロゴは複製・拡大（桐原/池田FB）</span>
   </div>
-  <div style="font-size:10px; color:#666;">2026.05 / v2.0→v2.1：FB2点反映</div>
+  <div style="font-size:10px; color:#666;">2026.05.19 / v2.3：#46カラム化・ロゴサイズ調整。#42小見出し=原稿①待ち／#44社外評価構成=今後検討で保留</div>
 </div>
 
 <div class="wf-canvas">
@@ -1442,11 +1452,21 @@ body {
 
   <!-- アノテーション -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — イニシアティブ＋社外評価（0513 Figma反映版）</h3>
+    <h3>設計ポイント — イニシアティブ＋社外評価（v2.3）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">v2.3</span>
+      <span class="ann-head">#46：カラム化でレイアウトの無駄を削減（桐原5/15＋池田5/17）</span>
+      <p class="ann-body">
+        従来＝ロゴストリップを本文の上に横並び（1ロゴ行で縦の余白が間延び）。<br>
+        変更＝<b>ロゴを左カラム・本文を右に回り込み</b>（.csr-row-content を2カラムflex化）。1ロゴ行の無駄な縦余白を解消。<br>
+        ロゴサイズのバランス調整（桐原「フォントに比べ小さい」）：見出し内の縮小ロゴを 60×32→<b>84×38</b>・ラベル 7px→8px に拡大。見出しロゴは<b>複製</b>方式に変更し、閉じた状態の一覧可視化（村上#41/#45）と開いた状態の左カラム表示を両立（開いた行は見出し縮小ロゴを非表示にして二重表示を回避）。
+      </p>
+    </div>
 
     <div class="ann-item">
       <span class="ann-num">—</span>
-      <span class="ann-head">0513レビュー反映サマリ</span>
+      <span class="ann-head">0513レビュー反映サマリ（前ラウンド）</span>
       <p class="ann-body">
         <b>#41/#45：</b>アコーディオンを開かなくてもロゴが一覧で見えるよう、各 .csr-row のロゴストリップをコンパクト化して見出し（タイトル横）へ移設。共通モジュールのためイニシアティブ／社外評価の両側に一括適用（JSで実装）。<br>
         <b>#43：</b>GPIF文脈の「ニュースリリース」を「ニュースリリース：GPIFが採用する6つのESG指数すべてに選定されました」と具体タイトル化（一覧へ飛ぶ誤認防止）。※TOPへ移設するかは#40で要判断のため現位置維持。<br>
@@ -1535,8 +1555,11 @@ document.querySelectorAll('.csr-row').forEach(function (row) {
   var sum = row.querySelector(':scope > .csr-row-summary');
   var strip = row.querySelector('.csr-row-content .csr-logo-strip');
   if (sum && strip) {
-    strip.classList.add('in-summary');
-    sum.appendChild(strip);
+    /* v2.3：移設→複製。本文側は左カラムにフルロゴを残し、見出しには
+       縮小ロゴを複製（閉じた状態でも一覧でロゴが見える＝村上FB） */
+    var clone = strip.cloneNode(true);
+    clone.classList.add('in-summary');
+    sum.appendChild(clone);
   }
 });
 </script>
