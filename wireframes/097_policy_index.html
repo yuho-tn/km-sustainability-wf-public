@@ -501,18 +501,22 @@ body {
      上限320pxで間延びしない（WF幅=2〜3列／デザイン幅=4〜5列）
    - 単独項目セクション(A)も巨大空白ボックスにならず左寄せの1カードのみ
    - 村上FB＋原文厳守：当方補記の概要文(.link-btn-desc)を全廃しタイトルのみに */
+/* v2.8.3：全ボタンを縦横とも完全統一
+   - 全セクション共通の 3カラム固定グリッド（列幅=1fr で全ボタン同一横幅）
+   - .link-btn は固定高さ（height:64px）で全ボタン同一縦幅
+   - タイトルは2行で line-clamp し、長文でも高さが膨らまない */
 .link-btn-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 320px));
-  gap: 10px;
-  justify-content: start;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
 }
 .link-btn {
   display: grid;
-  grid-template-columns: 1fr 20px;
+  grid-template-columns: 1fr 18px;
   align-items: center;
-  gap: 12px;
-  padding: 14px 16px;
+  gap: 10px;
+  height: 64px;
+  padding: 10px 14px;
   background: var(--c-white);
   border: 1px solid var(--c-border);
   cursor: default;
@@ -523,35 +527,23 @@ body {
 }
 .link-btn-body { min-width: 0; }
 .link-btn-title {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   color: var(--c-text-h);
-  line-height: 1.45;
+  line-height: 1.4;
   letter-spacing: -0.01em;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .link-btn-arrow {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--c-text-s);
   text-align: right;
   line-height: 1;
 }
 .link-btn:hover .link-btn-arrow { color: var(--c-text-h); }
-
-/* v2.8.2：項目数の多いセクション（社会／ガバナンス）用 3カラム・コンパクト版 */
-.link-btn-grid.col-3 {
-  grid-template-columns: repeat(3, 1fr);
-}
-.link-btn-grid.col-3 .link-btn {
-  gap: 8px;
-  padding: 10px 12px;
-}
-.link-btn-grid.col-3 .link-btn-title {
-  font-size: 12px;
-  line-height: 1.4;
-}
-.link-btn-grid.col-3 .link-btn-arrow {
-  font-size: 13px;
-}
 
 /* セクション間スペース調整（v2.8.1：見出し毎の区切りラインを削除） */
 .policy-section { padding-top: 36px; padding-bottom: 36px; border-bottom: none; }
@@ -569,7 +561,7 @@ body {
     <span class="meta-badge">WF v2.8</span>
     <span class="meta-badge">#097</span>
   </div>
-  <div style="font-size:10px; color:#666;">2026.05.19 / 池田FB：横幅間延び対策（auto-fillコンパクト密配置）／村上FB＋原文厳守：補記の概要文を全廃しタイトルのみに／見出し毎の区切りラインを削除</div>
+  <div style="font-size:10px; color:#666;">2026.05.19 / 池田FB：横幅間延び対策（auto-fillコンパクト密配置）／補記概要文を全廃／区切りライン削除／全ボタンを縦横統一（3カラム固定・height64px）</div>
 </div>
 
 <!-- ============================================================ -->
