@@ -537,6 +537,22 @@ body {
 }
 .link-btn:hover .link-btn-arrow { color: var(--c-text-h); }
 
+/* v2.8.2：項目数の多いセクション（社会／ガバナンス）用 3カラム・コンパクト版 */
+.link-btn-grid.col-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+.link-btn-grid.col-3 .link-btn {
+  gap: 8px;
+  padding: 10px 12px;
+}
+.link-btn-grid.col-3 .link-btn-title {
+  font-size: 12px;
+  line-height: 1.4;
+}
+.link-btn-grid.col-3 .link-btn-arrow {
+  font-size: 13px;
+}
+
 /* セクション間スペース調整（v2.8.1：見出し毎の区切りラインを削除） */
 .policy-section { padding-top: 36px; padding-bottom: 36px; border-bottom: none; }
 
@@ -636,7 +652,7 @@ body {
 
       <h2 class="wf-section-title">社会</h2>
 
-      <div class="link-btn-grid">
+      <div class="link-btn-grid col-3">
         <div class="link-btn">
           <div class="link-btn-body">
             <div class="link-btn-title">コニカミノルタグループ ダイバーシティ経営宣言</div>
@@ -703,7 +719,7 @@ body {
 
       <h2 class="wf-section-title">ガバナンス</h2>
 
-      <div class="link-btn-grid">
+      <div class="link-btn-grid col-3">
         <div class="link-btn">
           <div class="link-btn-body">
             <div class="link-btn-title">コーポレートガバナンス基本方針</div>
