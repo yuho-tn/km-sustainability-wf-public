@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>イニシアティブへの参画＋社外からの評価 — KM サステナビリティ WF v2.3 (#225)</title>
+<title>イニシアティブへの参画＋社外からの評価 — KM サステナビリティ WF v2.4 (#225)</title>
 <style>
 /* ============================================================
    KM SUSTAINABILITY WF — SHARED CSS（140 人権 v1.3 ベース継承）
@@ -241,26 +241,28 @@ body {
   letter-spacing: -0.01em;
   flex: 1;
 }
-/* v2.3／#46：ロゴを左カラム・本文を右に回り込み（カラム化でレイアウトの
-   無駄＝1ロゴ行の縦余白を削減。桐原/池田FB） */
+/* v2.4：ロゴ挿入レイアウト仕様（KM指示）
+   ・ロゴ1〜2個 → 本文を左・ロゴは右側に「同一幅で1カラム縦積み」（既定）
+   ・ロゴ3個以上／写真系 → 本文を上に全幅・ロゴは横幅全面の3〜4カラムグリッド（.logos-grid） */
 .csr-row-content {
   padding: 18px 26px 22px;
   background: var(--c-white);
   display: flex;
   align-items: flex-start;
-  gap: 24px;
+  gap: 28px;
 }
+.csr-row-body { order: 1; }
 
-/* ロゴストリップ：左カラム（最大256px・2列まで折返し） */
+/* ロゴ1〜2個：右側に固定幅の画像スペース・同一幅で縦1カラム */
 .csr-logo-strip {
-  flex: 0 0 auto;
-  display: flex; flex-wrap: wrap;
-  gap: 8px;
-  max-width: 256px;
-  align-content: flex-start;
+  order: 2;
+  flex: 0 0 208px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .csr-logo {
-  width: 120px; height: 64px;
+  width: 208px; height: 100px;
   flex: 0 0 auto;
   background: var(--c-ph);
   border: 1px solid var(--c-ph-line);
@@ -284,11 +286,21 @@ body {
   line-height: 1.3;
 }
 
-/* 本文ブロック：右カラムで回り込み */
+/* 本文ブロック（左カラム） */
 .csr-row-body {
   flex: 1; min-width: 0;
   display: flex; flex-direction: column; gap: 10px;
 }
+
+/* ロゴ3個以上／写真系：本文を上に全幅・ロゴは横幅全面の3〜4カラムグリッド */
+.csr-row-content.logos-grid { flex-direction: column; gap: 16px; }
+.csr-row-content.logos-grid .csr-logo-strip {
+  order: 2;
+  flex: none; width: 100%;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+}
+.csr-row-content.logos-grid.logos-4 .csr-logo-strip { grid-template-columns: repeat(4, 1fr); }
+.csr-row-content.logos-grid .csr-logo { width: 100%; height: 92px; }
 .csr-row-desc {
   font-size: 13px; color: var(--c-text);
   line-height: 1.95;
@@ -303,6 +315,7 @@ body {
    開かなくても一覧でロゴが見えるよう、タイトル横にコンパクト版を配置（JSで移設） */
 .csr-row-summary .csr-logo-strip.in-summary {
   margin: 0 44px 0 0; gap: 6px; flex: 0 0 auto; max-width: none;
+  flex-direction: row; flex-wrap: wrap;
 }
 .csr-row-summary .csr-logo-strip.in-summary .csr-logo {
   width: 84px; height: 38px;
@@ -558,12 +571,12 @@ body {
   <div>
     <strong>KONICA MINOLTA サステナビリティ</strong>
     <span class="meta-badge">イニシアティブ＋社外評価</span>
-    <span class="meta-badge">WF v2.3</span>
+    <span class="meta-badge">WF v2.4</span>
     <span class="meta-badge">#225</span>
     <span class="meta-badge">L3</span>
-    <span class="meta-badge" style="background:#7a4a00; color:#fff;">v2.3：ロゴ左カラム＋本文回り込み（無駄削減）／見出しロゴは複製・拡大（桐原/池田FB）</span>
+    <span class="meta-badge" style="background:#7a4a00; color:#fff;">v2.4：ロゴ1〜2個=右側1カラム縦積み／3個以上=横全面3〜4カラムグリッド（KM指示）／既存ページ原文精査済</span>
   </div>
-  <div style="font-size:10px; color:#666;">2026.05.19 / v2.3：#46カラム化・ロゴサイズ調整。#42小見出し=原稿①待ち／#44社外評価構成=今後検討で保留</div>
+  <div style="font-size:10px; color:#666;">2026.05.19 / v2.4：ロゴ挿入レイアウト仕様変更＋既存ページ照合（MSCI ESG=AAA/2026年3月へ修正）。#42小見出し=原稿①待ち／#44=今後検討</div>
 </div>
 
 <div class="wf-canvas">
@@ -1036,11 +1049,11 @@ body {
             </summary>
             <div class="csr-row-content">
               <div class="csr-logo-strip">
-              <div class="csr-logo"><span class="csr-logo-label">[ MSCI ESG Ratings AA ]</span></div>
+              <div class="csr-logo"><span class="csr-logo-label">[ MSCI ESG Ratings AAA ]</span></div>
             </div>
             <div class="csr-row-body">
               <p class="csr-row-desc">
-                コニカミノルタ（株）は、米国のMSCI社による「MSCI ESG Ratings」にて「AA」の格付けを獲得しました。（2025年2月）
+                コニカミノルタ（株）は、米国のMSCI社による「MSCI ESG Ratings」にて「AAA」の格付けを獲得しました。（2026年3月）
               </p>
               <div class="csr-row-links">
                 <div class="text-link-row"><a class="text-link">MSCI ESG Ratings</a></div>
@@ -1452,7 +1465,16 @@ body {
 
   <!-- アノテーション -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — イニシアティブ＋社外評価（v2.3）</h3>
+    <h3>設計ポイント — イニシアティブ＋社外評価（v2.4）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">v2.4</span>
+      <span class="ann-head">ロゴ挿入レイアウト仕様（KM指示）＋既存ページ原文精査</span>
+      <p class="ann-body">
+        <b>レイアウト仕様：</b>ロゴ <b>1〜2個</b>＝本文を左・ロゴは<b>右側に同一幅で1カラム縦積み</b>（208px固定幅）／ロゴ <b>3個以上・写真系</b>＝本文を上に全幅・ロゴは<b>横幅全面の3カラム（4個以上は4カラム）グリッド</b>。JSがロゴ数を判定し .logos-grid / .logos-4 を付与。<br>
+        <b>原文精査（initiative.html／evaluation.html 全項目照合）：</b>イニシアティブ17項目・社外評価/表彰の本文・順序・セクション構成は既存ページと一致。<b>要修正1件＝MSCI ESG Ratings「AA（2025年2月）」→ライブ「AAA（2026年3月）」へ修正</b>（ロゴ表記もAAA）。最終月はKM確認の余地あり。
+      </p>
+    </div>
 
     <div class="ann-item">
       <span class="ann-num">v2.3</span>
@@ -1553,10 +1575,19 @@ body {
    共通モジュール .csr-row に一括適用（社外評価側も同一モジュールのため同時充足） */
 document.querySelectorAll('.csr-row').forEach(function (row) {
   var sum = row.querySelector(':scope > .csr-row-summary');
+  var content = row.querySelector('.csr-row-content');
   var strip = row.querySelector('.csr-row-content .csr-logo-strip');
+  if (content && strip) {
+    /* v2.4：ロゴ数で挿入レイアウトを切替。
+       1〜2個＝本文左・ロゴ右1カラム縦積み（既定）／
+       3個以上＝本文全幅＋ロゴ横全面グリッド（3個=3カラム・4個以上=4カラム） */
+    var n = strip.querySelectorAll('.csr-logo').length;
+    if (n >= 3) {
+      content.classList.add('logos-grid', n >= 4 ? 'logos-4' : 'logos-3');
+    }
+  }
   if (sum && strip) {
-    /* v2.3：移設→複製。本文側は左カラムにフルロゴを残し、見出しには
-       縮小ロゴを複製（閉じた状態でも一覧でロゴが見える＝村上FB） */
+    /* 見出しには縮小ロゴを複製（閉じた一覧でも可視＝村上FB） */
     var clone = strip.cloneNode(true);
     clone.classList.add('in-summary');
     sum.appendChild(clone);
