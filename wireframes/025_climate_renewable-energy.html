@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>自社拠点での再生可能エネルギー導入 — KM サステナビリティ WF v2.3 (#025)</title>
+<title>自社拠点での再生可能エネルギー導入 — KM サステナビリティ WF v2.4 (#025)</title>
 <style>
 /* ============================================================
    KM SUSTAINABILITY WF — SHARED CSS v4.3 継承
@@ -39,7 +39,7 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
 .wf-meta-bar .meta-badge { background: #333; color: #aaa; font-size: 10px; padding: 2px 8px; border-radius: 2px; margin-left: 8px; }
 
 .wf-canvas { max-width: var(--page-w); margin: 0 auto; display: grid; grid-template-columns: 1fr 280px; align-items: start; }
-.wf-page { background: var(--c-white); box-shadow: 0 2px 20px rgba(0,0,0,0.10); min-height: 100vh; }
+.wf-page { background: var(--c-white); box-shadow: 0 2px 20px rgba(0,0,0,0.10); min-height: 100vh; position: relative; overflow-x: hidden; }
 
 /* ヘッダー：KM公式デザイン画像版（全ページ共通） */
 .wf-header-img { background: var(--c-white); border-bottom: 1px solid var(--c-border); line-height: 0; }
@@ -86,21 +86,26 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
   letter-spacing: 0.1em; font-weight: 600;
 }
 
-/* 2カラム本文＋コンパクトアンカーナビ */
+/* 2カラム本文＋コンパクトアンカーナビ
+   v2.4：背景帯を .wf-page 全幅へ貫通（ぶつ切り/左右余白差を解消）。
+   目次は白カード＋シャドウで本文より1段上のエレベーションに浮かせる。 */
 .wf-layout-with-anchornav {
-  display: grid; grid-template-columns: 1fr 100px;
-  gap: 16px;
-  padding: 0 var(--pad-h) 0 0;
+  display: grid; grid-template-columns: 1fr 160px;
+  gap: 0;
+  padding: 0 var(--pad-h) 0 0;     /* 右ガター（ページ右端の余白） */
+  position: relative;
 }
 .wf-anchornav-main { min-width: 0; }
 .wf-anchor-nav {
-  position: sticky; top: 60px;
-  padding: 14px 0 14px 12px;
-  border-left: 2px solid var(--c-text-h);
-  background: transparent;
-  font-size: 11px;
+  position: sticky; top: 76px;
   align-self: start;
   margin-top: 28px;
+  z-index: 3;                       /* 全幅背景帯より上に重ねる */
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.07);   /* 1段上のエレベーション */
+  padding: 16px 16px 18px;
+  font-size: 11px;
 }
 .wf-anchor-nav-title {
   font-size: 9px; font-weight: 700;
@@ -111,11 +116,9 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
 .wf-anchor-nav-item {
   display: block;
   font-size: 11px; color: var(--c-text-s);
-  padding: 5px 0; line-height: 1.4;
+  padding: 5px 0 5px 10px; line-height: 1.4;
   cursor: default;
   border-left: 2px solid transparent;
-  margin-left: -14px;
-  padding-left: 12px;
 }
 .wf-anchor-nav-item:hover { color: var(--c-text-h); }
 .wf-anchor-nav-item.is-current {
@@ -123,7 +126,14 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
   border-left-color: var(--c-text-h);
 }
 
-.wf-section { padding: var(--pad-section) 0 var(--pad-section); border-bottom: 1px solid var(--c-border-s); position: relative; padding-left: var(--pad-h); padding-right: 32px; }
+/* 背景帯を .wf-page 全幅へ貫通させる（右側は目次カラム＋右ガターまで回り込み）。
+   本文テキストは目次カードと衝突しないよう右側に余白を確保。 */
+.wf-section {
+  padding: var(--pad-section) calc(160px + var(--pad-h) + 28px) var(--pad-section) var(--pad-h);
+  margin-right: calc(-160px - var(--pad-h));
+  border-bottom: 1px solid var(--c-border-s);
+  position: relative;
+}
 .wf-section.bg-sub { background: var(--c-bg-sub); }
 .wf-section.bg-white { background: var(--c-white); }
 .wf-section-marker { position: absolute; top: 12px; left: 8px; width: 22px; height: 22px; background: #222; color: #fff; border-radius: 50%; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
@@ -477,12 +487,12 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
   <div>
     <strong>KONICA MINOLTA サステナビリティ</strong>
     <span class="meta-badge">自社拠点での再生可能エネルギー導入</span>
-    <span class="meta-badge">WF v2.3</span>
+    <span class="meta-badge">WF v2.4</span>
     <span class="meta-badge">#025</span>
     <span class="meta-badge">L4</span>
     <span class="meta-badge" style="background:#7a4a00; color:#fff;">旧 #029 リネーム</span>
   </div>
-  <div style="font-size:10px; color:#666;">2026.05 / parent-link-bar削除→タイトル下に親カテゴリリンク／アンカーナビコンパクト化</div>
+  <div style="font-size:10px; color:#666;">2026.05.19 / 池田FB反映：背景帯をページ全幅へ貫通（ぶつ切り・左右余白差を解消）／目次を白カード化＝1段上のエレベーション</div>
 </div>
 
 <div class="wf-canvas">
@@ -869,6 +879,15 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
         ① 上部に L4→L3 戻り導線（「気候変動 ページへ戻る」）<br>
         ② 同 L3 配下の取り組み（自社拠点再エネ／製品ソリューション／生産／販売／物流／適応）への横断タグ群。<br>
         現在ページは黒背景タグでハイライト。
+      </p>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">v2.4</span>
+      <span class="ann-head">背景帯の全幅貫通＋目次カード化（池田FB 5/17）</span>
+      <p class="ann-body">
+        背景色のぶつ切り・左右余白差の指摘に対応。bg-sub/bg-white の背景帯を本文カラム内で断ち切らず <strong>.wf-page 全幅</strong>（目次エリア・右ガターまで）へ貫通。目次は白背景＋シャドウで <strong>1段上のエレベーション</strong> に浮かせ、グレー/白いずれの帯の上でも見え方を一定に。<br>
+        背景色の適用ルール：<strong>L3・L4ページは原稿が長く視認性配慮のため、H2見出しのエリアブロック毎に交互に背景色を配置</strong>（本ページもこのルールに準拠）。
       </p>
     </div>
 
