@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>社会貢献活動 — KM サステナビリティ WF v4.3</title>
+<title>社会貢献活動 — KM サステナビリティ WF v4.4</title>
 <style>
 /* ============================================================
    KM SUSTAINABILITY WF — SHARED CSS（catalog v3.1 / 148 v2.3準拠）
@@ -394,7 +394,8 @@ body {
 
 /* アコーディオン内 画像ブロック */
 .acc-figs { display: grid; gap: 14px; margin-bottom: 14px; }
-.acc-figs.col-2 { grid-template-columns: repeat(2, 1fr); }
+/* FB：画像が2点でもUIは1カラムサイズで表示（横分割せず縦積み・1カラム幅） */
+.acc-figs.col-2 { grid-template-columns: 1fr; }
 .acc-figs figure { margin: 0; }
 
 /* #157：外部サイトリンクは別タブで開く想定。外部＋別タブを示すアイコンを付与 */
@@ -897,37 +898,19 @@ body {
         </section>
 
 
-        <!-- ============================================================
-             C. 関連情報（共通モジュール .theme-related）
-        ============================================================ -->
-        <section class="wf-section bg-sub" id="sec-related">
-          <span class="wf-section-marker">C</span>
-          <h2 class="wf-section-title">関連情報</h2>
-          <div class="theme-related" style="margin-top:0;">
-            <span class="theme-related-label">関連リンク</span>
-            <span class="wf-link">目標と実績</span>
-            <span class="wf-link">方針一覧</span>
-            <span class="wf-link">ESGデータ</span>
-            <span class="wf-link">第三者保証</span>
-            <span class="wf-link">レポートアーカイブ</span>
-            <span class="wf-link">ガイドライン対照表</span>
-            <span class="wf-link">報告方針</span>
-            <span class="wf-link">お問い合わせ</span>
-          </div>
-        </section>
+        <!-- C. 関連情報セクションは不要のため削除（クライアントFB） -->
 
       </div><!-- /wf-anchornav-main -->
 
       <!-- 右コンパクトアンカーナビ（共通モジュール） -->
       <nav class="wf-anchor-nav">
-        <div class="wf-anchor-nav-title">INDEX</div>
+        <div class="wf-anchor-nav-title">目次</div>
         <a class="wf-anchor-nav-item is-current" href="#sec-policy">基本的な考え方</a>
         <a class="wf-anchor-nav-item" href="#sec-activities">取り組み</a>
         <a class="wf-anchor-nav-item is-sub" href="#sub-environment">地球環境問題</a>
         <a class="wf-anchor-nav-item is-sub" href="#sub-wellbeing">ウェルビーイング・地域社会</a>
         <a class="wf-anchor-nav-item is-sub" href="#sub-talent">次世代人財育成</a>
         <a class="wf-anchor-nav-item" href="#sec-achievements">社会貢献活動実績</a>
-        <a class="wf-anchor-nav-item" href="#sec-related">関連情報</a>
       </nav>
 
     </div><!-- /wf-layout-with-anchornav -->
