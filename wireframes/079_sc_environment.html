@@ -88,6 +88,8 @@ body {
   background: var(--c-white);
   box-shadow: 0 2px 20px rgba(0,0,0,0.10);
   min-height: 100vh;
+  position: relative;
+  overflow-x: clip;
 }
 .wf-content-wrap {
   max-width: var(--content-w);
@@ -993,15 +995,23 @@ body {
 ============================================================ */
 .wf-layout-with-anchornav {
   display: grid;
-  grid-template-columns: 1fr 100px;
+  grid-template-columns: 1fr 160px;
+  gap: 0;
+  padding-right: var(--pad-h);
   align-items: start;
+  position: relative;
 }
 .wf-anchornav-main { min-width: 0; }
 .wf-anchor-nav {
-  position: sticky;
-  top: 40px;
-  padding: 20px 0 20px 16px;
-  border-left: 1px solid var(--c-border-s);
+  position: sticky; top: 76px;
+  align-self: start;
+  margin-top: 28px;
+  z-index: 3;
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+  padding: 16px 16px 18px;
+  font-size: 11px;
 }
 .wf-anchor-nav-title {
   font-size: 12px;
@@ -1013,10 +1023,11 @@ body {
   display: block;
   font-size: 11px;
   color: var(--c-text-s);
-  padding: 5px 0;
+  padding: 5px 0 5px 10px;
   cursor: default;
   line-height: 1.4;
   text-decoration: none;
+  border-left: 2px solid transparent;
 }
 .wf-anchor-nav-item.is-current {
   color: var(--c-text-h);

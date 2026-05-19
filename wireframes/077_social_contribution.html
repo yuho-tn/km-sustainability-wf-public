@@ -67,10 +67,13 @@ body {
   display: grid; grid-template-columns: 1fr 280px;
   align-items: start;
 }
+/* v2.4：overflow-x:clip で背景帯の負margin食い出しをクリップ（sticky追従は維持） */
 .wf-page {
   background: var(--c-white);
   box-shadow: 0 2px 20px rgba(0,0,0,0.10);
   min-height: 100vh;
+  position: relative;
+  overflow-x: clip;
 }
 
 /* ============================================================

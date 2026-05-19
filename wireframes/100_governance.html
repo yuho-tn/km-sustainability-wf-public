@@ -62,6 +62,8 @@ body {
   background: var(--c-white);
   box-shadow: 0 2px 20px rgba(0,0,0,0.10);
   min-height: 100vh;
+  position: relative;
+  overflow-x: clip;
 }
 
 /* HEADER */
@@ -89,6 +91,8 @@ body {
 
 /* SECTION */
 .wf-section { padding: var(--pad-section) var(--pad-h); border-bottom: 1px solid var(--c-border-s); position: relative; }
+/* v2.4：アンカーナビ内セクションの背景帯をページ全幅へ貫通 */
+.wf-anchornav-main .wf-section { padding-right: calc(160px + var(--pad-h) + 28px); margin-right: calc(-160px - var(--pad-h)); }
 .wf-section.bg-sub { background: var(--c-bg-sub); }
 .wf-section.bg-white { background: var(--c-white); }
 .wf-section.pad-sm { padding-top: var(--pad-section-sm); padding-bottom: var(--pad-section-sm); }
@@ -107,18 +111,24 @@ body {
 .wf-link::before { content: '→ '; font-size: 11px; }
 
 /* LAYOUT WITH ANCHOR NAV */
-.wf-layout-with-anchornav { display: grid; grid-template-columns: 1fr 100px; align-items: start; }
+.wf-layout-with-anchornav { display: grid; grid-template-columns: 1fr 160px; gap: 0; padding-right: var(--pad-h); align-items: start; position: relative; }
 .wf-anchornav-main { min-width: 0; }
 .wf-anchor-nav {
-  position: sticky; top: 40px;
-  padding: 20px 16px 20px 16px;
-  border-left: 1px solid var(--c-border-s);
-  margin-right: 12px;
+  position: sticky; top: 76px;
+  align-self: start;
+  margin-top: 28px;
+  z-index: 3;
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+  padding: 16px 16px 18px;
+  font-size: 11px;
 }
 .wf-anchor-nav-title { font-size: 12px; font-weight: 700; color: var(--c-text-h); margin-bottom: 12px; }
 .wf-anchor-nav-item {
   display: block; font-size: 11px; color: var(--c-text-s);
-  padding: 5px 0; cursor: default; line-height: 1.4; text-decoration: none;
+  padding: 5px 0 5px 10px; cursor: default; line-height: 1.4; text-decoration: none;
+  border-left: 2px solid transparent;
 }
 .wf-anchor-nav-item.is-current { color: var(--c-text-h); font-weight: 700; }
 
