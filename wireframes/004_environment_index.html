@@ -33,8 +33,11 @@
   --c-ann-bdr:  #C8A000;
 
   /* レイアウト */
+  /* 0521：設計参考 KM_PC_L3_W1100px（全体1280px / コンテンツ880px）に揃えるため
+     wf-canvas を 1560px（= wf-page 1280px + annotation 280px）に拡張。
+     コンテンツ幅は wf-page内で L pad 100 + content ≈892 + R pad 288(=anchor 160 + gap 28 + pad 100) = 1280 */
   --content-w:  1080px;    /* コンテンツ最大幅 */
-  --page-w:     1280px;    /* ページ最大幅（標準）*/
+  --page-w:     1560px;    /* wf-canvas 全幅（wf-page 1280px + annotation 280px） */
   --pad-section: 52px;     /* セクション上下パディング（標準） */
   --pad-section-sm: 32px;  /* セクション上下パディング（コンパクト） */
   --pad-h: 100px;          /* コンテンツ左右パディング */
@@ -1072,8 +1075,9 @@ body {
    第3〜4階層の長文ページで使用
 ============================================================ */
 /* 0520MTG/E2,E4：L2に右コンパクトアンカーナビを採用（H2 + H3 掲載）
-   0521：他ページ（077等）と揃える — 160pxナビ・カードUI（白fill+ボーダー+シャドウ）
-   L2は背景色一律白のため wf-section の bg-sub 帯は使わない（H2交互背景は L3/L4 のみ） */
+   0521：077と完全に揃える — 160pxナビ・カードUI
+   L2は背景色一律白のため wf-section の bg-sub 帯は使わない（H2交互背景は L3/L4 のみ）
+   wf-page 1280px内：100(L pad) + content + 288(R pad= 160 anchor + 28 gap + 100 pad) = 1280, content ≈ 892px */
 .wf-layout-with-anchornav {
   display: grid; grid-template-columns: 1fr 160px;
   gap: 0;
@@ -1081,6 +1085,10 @@ body {
   position: relative;
 }
 .wf-anchornav-main { min-width: 0; }
+.wf-anchornav-main .wf-section {
+  padding: var(--pad-section) calc(160px + var(--pad-h) + 28px) var(--pad-section) var(--pad-h);
+  margin-right: calc(-160px - var(--pad-h));
+}
 .wf-anchor-nav {
   position: sticky; top: 76px;
   align-self: start; margin-top: 28px;
@@ -1859,7 +1867,7 @@ body {
       </div>
       <p class="wf-section-desc">脱炭素、資源循環、生物多様性の各領域で、代表的な取り組み事例をご紹介します。</p>
 
-      <div class="wf-grid col-3 gap-24 mb-16">
+      <div class="wf-grid col-3 gap-32 mb-16">
         <div class="activity-card">
           <div class="activity-card-img">
             <span class="activity-card-cat">脱炭素</span>
@@ -2109,6 +2117,10 @@ body {
         <span class="ann-row-label">UI調整（0521）</span>
         関連リンク（.theme-related）の背景・ボーダーを廃止し、本文より目立たないトーンに調整（11px・色 var(--c-text-s)）。<br>
         <b>L2背景ルール：</b>L2は背景色を一律白に統一（bg-sub帯廃止）。H2レベルの交互背景＋アンカーナビ含む全幅ベタ塗りは L3/L4 のみ適用。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">寸法整合（0521）</span>
+        設計参考 KM_PC_L3_W1100px の「全体 1280px / コンテンツ 880px」に揃えるため、wf-canvas を 1560px へ拡張（wf-page 1280px + annotation 280px）。コンテンツ幅 ≈ 892px（100 + 880 + 28 gap + 160 anchor + 100 R pad = 1280）。取り組み（G）カードは gap-32 に拡張し窮屈さを解消。
       </div>
     </div>
 
