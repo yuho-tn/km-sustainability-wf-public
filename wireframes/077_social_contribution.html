@@ -28,7 +28,8 @@
   --c-ann-bg:   #FFFBF0;
   --c-ann-bdr:  #C8A000;
   --content-w:  1080px;
-  --page-w:     1280px;
+  /* 0521：設計参考 KM_PC_L3_W1100px（全体1280 / コンテンツ880）に揃える */
+  --page-w:     1560px;
   --pad-section: 52px;
   --pad-section-sm: 32px;
   --pad-h: 100px;
@@ -392,10 +393,11 @@ body {
 }
 .wf-list li { margin-bottom: 8px; }
 .wf-list li strong { color: var(--c-text-h); }
+/* 0520MTG/S1：本文より目立たない控えめな注記スタイル（灰背景・パディング廃止） */
 .wf-note {
-  font-size: 12px; color: var(--c-text-s); line-height: 1.85;
-  background: var(--c-bg-sub); padding: 10px 14px;
-  margin-bottom: 14px;
+  font-size: 11px; color: var(--c-text-s); line-height: 1.75;
+  background: transparent; padding: 0;
+  margin: 6px 0 14px;
 }
 .wf-acc-h4 {
   font-size: 13px; font-weight: 700; color: var(--c-text-h);
@@ -431,25 +433,18 @@ body {
    summary 左端（padding-left:22px）で自然に揃う。タグなしでも成立。 */
 
 /* ============================================================
-   関連リンク（共通モジュール .theme-related：薄グレーbg＋全周border）
+   関連リンク（共通モジュール .theme-related）
+   0520MTG/S5：「関連リンク」ラベル廃止／本文より目立たないトーン
 ============================================================ */
 .theme-related {
-  /* #37：関連リンクを本文より控えめに（箱の主張を弱め、本文を優位に） */
-  background: transparent;
-  border: none; border-top: 1px dashed var(--c-border);
-  padding: 10px 0 0;
-  margin-top: 16px;
+  background: transparent; border: none;
+  padding: 6px 0 0; margin-top: 10px;
   display: flex; flex-wrap: wrap;
-  column-gap: 18px; row-gap: 6px;
-  align-items: center;
+  column-gap: 14px; row-gap: 4px;
+  align-items: baseline;
 }
-.theme-related-label {
-  flex-basis: 100%;
-  font-size: 10px; font-weight: 700; color: var(--c-text-xs);
-  letter-spacing: 0.1em; text-transform: uppercase;
-  padding-bottom: 8px; margin-bottom: 4px;
-  border-bottom: 1px dashed var(--c-border);
-}
+.theme-related .wf-link { font-size: 11px; color: var(--c-text-s); }
+.theme-related .wf-link:hover { color: var(--c-text-h); }
 
 /* ============================================================
    FOOTER
@@ -660,7 +655,6 @@ body {
                 <figure><div class="wf-img h-160"><div class="wf-img-label">お客様工場での省エネ診断</div></div><figcaption class="wf-img-caption">お客様工場での省エネ診断</figcaption></figure>
               </div>
               <div class="theme-related">
-                <span class="theme-related-label">関連リンク</span>
                 <span class="wf-link">コニカミノルタの環境方針</span>
                 <span class="wf-link">エコビジョン2050</span>
                 <span class="wf-link">グリーンマーケティング活動</span>
@@ -711,7 +705,6 @@ body {
               <p>コニカミノルタでは、さまざまな森林保護活動に参加、協力しています。「高尾の森づくりの会」は、東京都西部に位置する裏高尾の国有林において、生来の植生を考慮しつつ、間伐、植樹、下草刈りなどの作業を通して、針葉樹と広葉樹が混交した豊かな森の復元を目指しています。この会に法人会員として参加し、従業員もメンバーの一員として、毎月森づくりに汗を流しています。</p>
               <p>また、コニカミノルタのデジタル印刷システムを用いて、同会の季刊の会報を制作し、提供しています。その他、世界の各地で環境保全活動のためにボランティア社員の派遣、サイト周辺清掃活動、団体の支援を行っています。</p>
               <div class="theme-related">
-                <span class="theme-related-label">関連リンク</span>
                 <span class="wf-link is-external">高尾の森づくりの会（外部サイト）</span>
               </div>
             </div>
@@ -769,7 +762,6 @@ body {
               </div>
               <p>コニカミノルタ（株）は、乳がんの早期発見に役立つ乳房X線撮影装置（デジタルマンモグラフィ）や乳房用超音波診断装置を提供しています。この事業に関連して、乳がん早期発見の重要性を訴える「ピンクリボン運動」を支援しています。</p>
               <div class="theme-related">
-                <span class="theme-related-label">関連リンク</span>
                 <span class="wf-link">コニカミノルタのピンクリボン運動</span>
                 <span class="wf-link">一人ひとりにとって乳がん検診をより良いものに（ニュースリリース）</span>
               </div>
@@ -793,7 +785,6 @@ body {
               </div>
               <p>コニカミノルタは、「コニカミノルタ陸上競技部」が長年培ってきた走りのノウハウや走る喜びを「ジョギング教室」といった独自の取り組みを通して、ビギナーや本格的なランナーに至るまで、地域社会の皆様との交流を促進し、スポーツ振興の貢献に取り組んでいます。</p>
               <div class="theme-related">
-                <span class="theme-related-label">関連リンク</span>
                 <span class="wf-link is-external">コニカミノルタ陸上競技部（外部サイト）</span>
               </div>
             </div>
@@ -821,7 +812,6 @@ body {
               <p>情報機器販売会社であるコニカミノルタビジネスソリューションズフランス社は、この考え方をさらに広げて、障がいを持つ人々がスポーツ、娯楽、文化、教育や仕事などに参加しやすい環境を作ることを目指し、公共の場所のバリアフリー化などを目的とした企業内基金を設立しました。従業員の提案から始まったこの活動は、今や会社全体に広がっており、従業員一人ひとりが寄付などの形で参加しています。</p>
               <p>NPOや文化施設・文化的な催事の実行組織に協力し、地元レベルから全国規模のプロジェクトまで幅広い活動に対して、資金を提供しています。例えば、パリのケ・ブランリ美術館では、視覚障がいの方が館内の様子を理解するための三次元モデル制作を支援。また、シャモニー渓谷に車いす用の小道を作ったり、大西洋岸の浜に車いすの方が海水浴に利用できる設備を作ったりする国立森林公社の活動に協力しました。そのほか、レジャー施設の整備・改修をはじめ、障がい者のためのパラスポーツ用品の寄付、レジャーボートの乗降口の改修、介助犬の購入・養成、自閉症の子供向けの学習器具の寄付など、さまざまな活動を実施しています。</p>
               <div class="theme-related">
-                <span class="theme-related-label">関連リンク</span>
                 <span class="wf-link is-external">Fondation d&#39;entreprise（外部サイト）</span>
               </div>
             </div>
@@ -874,7 +864,6 @@ body {
             <div class="wf-acc-h3-body">
               <p>公益財団法人コニカミノルタ科学技術振興財団は、コニカ創立者のひとりである杉浦仙之助の遺志により、写真科学の研究を助成し、もって学術の振興および文化の向上に寄与することを目的として、昭和41年に設立された「橘保善会」を基としています。平成5年より財団としてその活動を受け継ぎ、現在は公益財団法人として、科学技術の振興、学術の発展及び文化の向上に寄与することを目的に、科学技術（特に光と画像の領域）の研究に対する援助・支援を行っています。コニカミノルタは、その趣意に賛同し、財団事業の継続と発展のため寄付等により協力しています。</p>
               <div class="theme-related">
-                <span class="theme-related-label">関連リンク</span>
                 <span class="wf-link is-external">公益財団法人 コニカミノルタ科学技術振興財団ウェブサイト（外部サイト）</span>
               </div>
             </div>
@@ -886,7 +875,6 @@ body {
             <div class="wf-acc-h3-body">
               <p>プラネタリウムは、科学や天文学に対する知的好奇心を育てるとともに、宇宙を知り地球や人間について考えるきっかけともなります。コニカミノルタは、プラネタリウム施設において、小学校の授業で取り扱われる題材を取り上げた番組を提供するなど子どもたちの教育に役立つ取り組みを行っています。学習投影では季節の星座、星や月の動きをテーマとしています。</p>
               <div class="theme-related">
-                <span class="theme-related-label">関連リンク</span>
                 <span class="wf-link">プラネタリウム製品 ＞ コンテンツ情報 ＞ 幼児・学習番組</span>
               </div>
             </div>
@@ -1043,7 +1031,34 @@ body {
 
   <!-- アノテーション -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — 社会貢献活動（原稿26S490準拠 / 0513 Figma反映 v4.3）</h3>
+    <h3>設計ポイント — 社会貢献活動（#077 / 0520 MTG / 0519 Figma反映）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">0520</span>
+      <span class="ann-head">0520 MTG / 0519 Figma反映</span>
+      <div class="ann-row">
+        <span class="ann-row-label">S1 桐原（対応済）</span>
+        wf-note の灰色背景を廃止し、本文より目立たない控えめな注記スタイル（11px / var(--c-text-s) / 背景透過）に変更。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">S5 丹野・MTG（対応済）</span>
+        全 .theme-related から「関連リンク」ラベルを削除（7箇所）。本文内で自然に誘導する形に統一。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">S7/S8/S9 MTG（対応済の再確認）</span>
+        L2導線（上部）廃止・タグ右配置・1カテゴリ2事案対応はいずれも 0513/0517 で既対応のため現状維持。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">寸法整合</span>
+        設計参考 KM_PC_L3_W1100px（全体1280 / コンテンツ880）に揃えるため wf-canvas を 1560px へ拡張（wf-page 1280px / コンテンツ ~892px）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">B区分（要判断・保留）</span>
+        S2/S3/S4：画像+テキスト回り込み・画像数別レイアウトルール・横並びワンブロックは catalog 影響大のため次フェーズへ持ち越し。<br>
+        S6：外部サイトリンク → 内部遷移の置換は Figmaピン特定後に対応。<br>
+        S12/S13：+ボタン社会貢献廃止／アコ基本閉じる は 0517 で対応済（WF表示は確認用に open のまま）。
+      </div>
+    </div>
 
     <div class="ann-item">
       <span class="ann-num">★</span>
