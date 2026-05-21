@@ -1083,42 +1083,39 @@ body {
 }
 .wf-anchornav-main { min-width: 0; }
 .wf-anchornav-main .wf-section { padding-right: 0; margin-right: 0; }
+/* 0521：デザイン参考 KM_PC_L3_W1100px の追従メニュー_R に準拠
+   外枠 184px、白fill、ボーダー/シャドウなし、24px 内左 padding、フォント細・行高低め */
 .wf-anchor-nav {
   position: sticky; top: 76px;
   align-self: start;
   margin-top: 28px;
   z-index: 3;
   background: var(--c-white);
-  border: 1px solid var(--c-border);
-  box-shadow: 0 4px 14px rgba(0,0,0,0.07);
-  padding: 16px 16px 18px;
-  font-size: 11px;
+  padding: 0 24px 0 24px;
+  font-size: 12px;
 }
 .wf-anchor-nav-title {
-  font-size: 9px; font-weight: 700;
-  color: var(--c-text-xs);
-  letter-spacing: 0.1em; text-transform: uppercase;
-  margin-bottom: 8px;
+  font-size: 12px; font-weight: 400;
+  color: #767676;  /* 設計参考の rgb(118,118,118) */
+  margin-bottom: 12px;
 }
 .wf-anchor-nav-item {
   display: block;
-  font-size: 11px; color: var(--c-text-s);
-  padding: 5px 0 5px 10px; line-height: 1.4;
+  font-size: 12px; color: var(--c-text);
+  padding: 4px 0; line-height: 1.5;
   cursor: default;
-  border-left: 2px solid transparent;
   text-decoration: none;
 }
 .wf-anchor-nav-item:hover { color: var(--c-text-h); }
 .wf-anchor-nav-item.is-current {
   color: var(--c-text-h);
   font-weight: 700;
-  border-left-color: var(--c-text-h);
 }
 /* H3レベルのサブ項目（E4：H2/H3併載） */
 .wf-anchor-nav-sub {
   display: block;
-  font-size: 10px; color: var(--c-text-xs);
-  padding: 3px 0 3px 22px; line-height: 1.3;
+  font-size: 11px; color: var(--c-text-s);
+  padding: 3px 0 3px 12px; line-height: 1.4;
   cursor: default;
   text-decoration: none;
 }
@@ -1305,19 +1302,7 @@ body {
   padding: 24px 28px;
   margin-bottom: 16px;
 }
-/* 0520MTG/E1 + 0521：TNFD等の横断開示物 — TCFDと同じ theme-topic モジュールで配置
-   theme-block 配下ではなくセクション直下の独立 topic として「横断」を示すバッジを付与 */
-.theme-topic.theme-topic-cross {
-  margin-top: 28px;
-  border-left: 4px solid var(--c-text-h);
-}
-.theme-topic-cross-tag {
-  display: inline-block;
-  font-size: 10px; color: var(--c-text-s);
-  background: var(--c-white); border: 1px solid var(--c-border);
-  padding: 2px 8px; border-radius: 12px;
-  white-space: nowrap;
-}
+/* 0521：TNFDはTCFDと完全に同じ theme-topic モジュールで配置（特殊スタイルなし） */
 .theme-block-head {
   display: flex; align-items: baseline; justify-content: space-between;
   gap: 20px;
@@ -1454,19 +1439,20 @@ body {
   font-size: 12px; color: var(--c-text); line-height: 1.9;
 }
 
-/* テーマブロック内 — 関連リンク横並び */
+/* 0521：関連リンクは本文より目立たないトーン（背景・ボーダー廃止、フォント細・色淡） */
 .theme-related {
-  background: var(--c-bg-sub);
-  border: 1px solid var(--c-border);
-  padding: 12px 20px;
-  margin-top: 12px;
-  display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+  background: transparent;
+  border: none;
+  padding: 6px 0 0;
+  margin-top: 10px;
+  display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
 }
 .theme-related-label {
-  font-size: 11px; font-weight: 700; color: var(--c-text-h);
-  letter-spacing: 0.04em;
+  font-size: 11px; font-weight: 400; color: var(--c-text-s);
+  letter-spacing: 0.02em;
 }
-.theme-related .wf-link { font-size: 12px; }
+.theme-related .wf-link { font-size: 11px; color: var(--c-text-s); }
+.theme-related .wf-link:hover { color: var(--c-text-h); }
 
 /* TCFD/TNFD 差別化モジュール（トピックス風・コンパクト） */
 .disclosure-wrap {
@@ -1795,15 +1781,14 @@ body {
         <div class="theme-cta"><a class="theme-block-link">生物多様性</a></div>
       </div>
 
-      <!-- ── TNFD開示（横断開示物） ──
-           ※0520MTG/E1：水資源配下から切り出し、生物多様性後段に配置（資源・化学物質・水資源・生物多様性を横断する開示物として）
-           ※0521：TCFDと同じ theme-topic モジュールを採用（独立 theme-block ではなく topic 扱い） -->
-      <div class="theme-topic theme-topic-cross" id="env-tnfd">
+      <!-- ── TNFD開示 ──
+           ※0520MTG/E1：水資源配下から切り出し、生物多様性後段に配置（横断開示物）
+           ※0521：TCFDと完全に同じ theme-topic モジュールを採用（特殊スタイルなし） -->
+      <div class="theme-topic" id="env-tnfd">
         <div class="theme-topic-head">
           <div class="theme-topic-head-left">
             <span class="theme-topic-label">TOPICS</span>
             <h4 class="theme-topic-title">TNFD開示</h4>
-            <span class="theme-topic-cross-tag">資源・化学物質・水資源・生物多様性を横断</span>
           </div>
           <a class="section-head-link">TNFD開示</a>
         </div>
@@ -2118,15 +2103,19 @@ body {
       <span class="ann-head">0520 MTG / 0519 Figma反映</span>
       <div class="ann-row">
         <span class="ann-row-label">E1 矢口氏（対応済）</span>
-        TNFDは「水資源」配下から切り出し、生物多様性の直後に配置。TCFD開示と同じ theme-topic モジュールを採用し、左ボーダー＋「横断」バッジで資源・化学物質・水資源・生物多様性を横断する開示物であることを示す。
+        TNFDは「水資源」配下から切り出し、生物多様性の直後に配置。TCFD開示と完全に同じ theme-topic モジュールで実装（横断バッジ・特殊スタイルは廃止）。横断的開示物であることはセクション内の配置位置で表現。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">E2/E4 丹野（対応済）</span>
-        L2にも右コンパクトアンカーナビ（H2＋H3併載）を採用。設計参考 KM_PC_L3_W1100px に合わせて wf-page を 1100px へ拡張、content 880px + gap 60px + anchor 184px のグリッドで実装。H3はインデント表示のサブアイテム（.wf-anchor-nav-sub）として併載。
+        L2にも右コンパクトアンカーナビ（H2＋H3併載）を採用。設計参考 KM_PC_L3_W1100px に準拠：wf-page を 1100px へ拡張、anchor 184px / gap 60px / 右pad 56px、ナビUIは白fill＋ボーダー/シャドウなしのフラットスタイル、24px内左padding。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">E3 丹野（対応済）</span>
-        セクションB内の「このエリアの目次」（theme-toc）は右アンカーナビと役割重複のため削除。また、各テーマCTAボタンの遷移挙動を説明する link-behavior-note も不要のため削除。
+        セクションB内の「このエリアの目次」（theme-toc）は右アンカーナビと役割重複のため削除。各テーマCTAボタンの link-behavior-note も削除。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">UI調整（0521）</span>
+        関連リンク（.theme-related）の背景・ボーダーを廃止し、本文より目立たないトーンに調整（フォント11px・色 var(--c-text-s)）。
       </div>
     </div>
 
