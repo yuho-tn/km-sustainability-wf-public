@@ -27,7 +27,9 @@
   --c-ann-bg:   #FFFBF0;
   --c-ann-bdr:  #C8A000;
   --content-w:  1080px;
-  --page-w:     1280px;
+  /* 0521：設計参考 KM_PC_L3_W1100px（全体1280 / コンテンツ880）に揃えるため、
+     wf-canvas を 1560px（wf-page 1280 + annotation 280）へ拡張 */
+  --page-w:     1560px;
   --pad-section: 64px;
   --pad-section-sm: 40px;
   --pad-h: 100px;
@@ -436,6 +438,13 @@ body {
 }
 .term-note-label::before { content: '※ '; }
 
+/* 0520MTG/C4：ツールチップ廃止、用語説明を本文より小さめの注記として記載 */
+.term-note-small {
+  font-size: 11px; color: var(--c-text-s);
+  line-height: 1.7;
+  margin-top: 10px;
+}
+
 .term-trigger {
   display: inline-flex; align-items: center; gap: 8px;
   font-size: 11px; font-weight: 600; color: var(--c-text-h);
@@ -758,13 +767,15 @@ body {
 .theme-topic-title { font-size: 14px; font-weight: 700; color: var(--c-text-h); }
 .theme-topic-desc { font-size: 11px; color: var(--c-text); line-height: 1.85; }
 
-/* 関連リンク横並び */
+/* 0521：関連リンクは本文より目立たないトーン（背景・ボーダー廃止、フォント細・色淡） */
 .theme-related {
-  background: var(--c-bg-sub); border: 1px solid var(--c-border);
-  padding: 12px 18px; margin-top: 16px;
-  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  background: transparent; border: none;
+  padding: 6px 0 0; margin-top: 10px;
+  display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
 }
-.theme-related-label { font-size: 11px; font-weight: 700; color: var(--c-text-h); letter-spacing: 0.04em; }
+.theme-related-label { font-size: 11px; font-weight: 400; color: var(--c-text-s); letter-spacing: 0.02em; }
+.theme-related .wf-link { font-size: 11px; color: var(--c-text-s); }
+.theme-related .wf-link:hover { color: var(--c-text-h); }
 
 /* フッター */
 /* サステナビリティサイトフッター（アコーディオン式・全ページ共通） */
@@ -1156,10 +1167,8 @@ body {
                 <p class="result-block-graph-cap">グラフ：CO<sub>2</sub>削減量（生産拠点の省エネ／再エネ）（E-046）</p>
               </div>
             </div>
-            <!-- 用語注釈：クリックでモーダル展開 -->
-            <div class="term-note">
-              <span class="term-trigger" data-modal="modal-greenfactory" data-term-title="グリーンファクトリー" data-term-body="<p>（文章はダミーです）コニカミノルタの自社生産拠点における環境負荷低減認定制度。省エネルギー・再生可能エネルギー導入・廃棄物削減・水使用量削減等の基準達成サイトを認定しています。</p><p>スコープ1・2の削減施策の中核として、主要生産サイトに導入・運用しています。</p>"><span class="term-trigger-mark">?</span>グリーンファクトリー</span>
-            </div>
+            <!-- 0520MTG/C1+C4：ツールチップ廃止、小フォント注記化 -->
+            <p class="term-note-small">※ コニカミノルタの自社生産拠点における環境負荷低減認定制度。省エネルギー・再生可能エネルギー導入・廃棄物削減・水使用量削減等の基準達成サイトを認定（スコープ1・2の削減施策の中核）。</p>
           </div>
         </div>
 
@@ -1179,10 +1188,8 @@ body {
                 <p class="result-block-graph-cap">グラフ：調達先におけるCO<sub>2</sub>削減量（E-003 / E-046）</p>
               </div>
             </div>
-            <!-- 用語注釈：クリックでモーダル展開 -->
-            <div class="term-note">
-              <span class="term-trigger" data-modal="modal-cnpartner" data-term-title="CNパートナー活動" data-term-body="<p>（文章はダミーです）「CN」は Carbon Neutral の略。お取引先様と協働でCO<sub>2</sub>排出量削減を進める活動です。コニカミノルタが自社で培った省エネルギー診断・改善ノウハウを取引先様に提供し、サプライチェーン全体（スコープ3カテゴリ1）の削減を目指します。</p>"><span class="term-trigger-mark">?</span>CNパートナー活動</span>
-            </div>
+            <!-- 0520MTG/C2+C4：ツールチップ廃止、小フォント注記化 -->
+            <p class="term-note-small">※ 「CN」は Carbon Neutral の略。お取引先様と協働でCO<sub>2</sub>排出量削減を進める活動。コニカミノルタが自社で培った省エネルギー診断・改善ノウハウを取引先様に提供し、サプライチェーン全体（スコープ3カテゴリ1）の削減を目指します。</p>
           </div>
         </div>
 
@@ -1435,7 +1442,32 @@ body {
 
   <!-- アノテーション -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — 気候変動（#024 / 0513 Figma反映版）</h3>
+    <h3>設計ポイント — 気候変動（#024 / 0520 MTG / 0519 Figma反映版）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">0520</span>
+      <span class="ann-head">0520 MTG / 0519 Figma反映</span>
+      <div class="ann-row">
+        <span class="ann-row-label">C1 矢口（対応済）</span>
+        グリーンファクトリーの用語モーダル（term-trigger）を廃止し、TCFD/グリーンプロダクツと同じく本文小フォント注記化（.term-note-small）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">C2 矢口（対応済）</span>
+        CNパートナー活動の用語モーダルも同様に廃止し、本文小フォント注記化。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">C3 矢口（対応不要）</span>
+        TCFD配置は回遊性のため現状維持（Figmaで返信→D化予定）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">C4 丹野（対応済）</span>
+        ツールチップ／モーダル展開を全廃し、用語説明はすべて11px の本文注記スタイル（.term-note-small）に統一。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">寸法整合</span>
+        設計参考 KM_PC_L3_W1100px（全体1280 / コンテンツ880）に揃えるため wf-canvas を 1560px へ拡張（wf-page 1280px / コンテンツ ~892px）。L3背景ルール：H2セクション毎にbg-white/bg-subを交互配置し、wf-section の負margin-rightでアンカーナビ含む全幅ベタ塗りを実現。
+      </div>
+    </div>
 
     <div class="ann-item">
       <span class="ann-num">—</span>
