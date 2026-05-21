@@ -887,30 +887,19 @@ body {
 .ann-head { font-size: 11px; font-weight: 700; color: #222; display: block; margin-bottom: 6px; line-height: 1.4; }
 .ann-body { font-size: 10px; color: #555; line-height: 1.6; margin-top: 6px; }
 
-/* 0513 Figma #26：ESGデータ参照ガイド（catalog 7-13 / .esg-link-guide）
-   単なる「ESGデータ」リンクでは3種Excel・環境シート分割の中身が伝わらない指摘への対応 */
-.esg-link-guide {
-  background: var(--c-white); border: 1px solid var(--c-border);
-  padding: 12px 16px 13px; margin-top: 20px;
+/* 0520MTG：ESGデータリンクを簡潔なインラインUIに刷新（旧 .esg-link-guide の要素過多解消） */
+.esg-data-link {
+  margin-top: 16px;
+  font-size: 11px; color: var(--c-text-s);
+  display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+  line-height: 1.6;
 }
-.esg-link-guide-title { font-size: 12px; font-weight: 700; color: var(--c-text-h); margin-bottom: 1px; }
-.esg-link-guide-lead { font-size: 11px; color: var(--c-text-s); margin-bottom: 7px; line-height: 1.5; }
-.esg-link-guide-item {
-  display: flex; gap: 8px; align-items: baseline;
-  padding: 4px 0; border-top: 1px dashed var(--c-border);
+.esg-data-link-label {
+  font-weight: 700; color: var(--c-text-h);
 }
-.esg-link-guide-badge {
-  flex: 0 0 40px; text-align: center; font-size: 9px; font-weight: 700;
-  color: var(--c-text-h); border: 1px solid var(--c-text-s); padding: 1px 0;
-  letter-spacing: 0.04em;
-}
-.esg-link-guide-text { font-size: 11px; color: var(--c-text); line-height: 1.5; }
-.esg-link-guide-text strong { color: var(--c-text-h); }
-.esg-link-guide-text .note { color: var(--c-text-xs); font-size: 10px; }
-.esg-link-guide-cta {
-  margin-top: 7px; font-size: 11px; font-weight: 600; color: var(--c-text-h);
-}
-.esg-link-guide-cta::before { content: '→ '; }
+.esg-data-link-sep { color: var(--c-border); }
+.esg-data-link .wf-link { font-size: 11px; color: var(--c-text-s); }
+.esg-data-link .wf-link:hover { color: var(--c-text-h); }
 
 </style>
 </head>
@@ -1201,25 +1190,14 @@ body {
         <span class="wf-link">TCFD</span>
       </div>
 
-      <!-- #26：単なる「ESGデータ」リンクを catalog 7-13「ESGデータ参照ガイド」に置換。
-           3種Excel・環境シート分割の中身（何が／どこを見るか）を遷移前に提示 -->
-      <div class="esg-link-guide">
-        <div class="esg-link-guide-title">ESGデータについて</div>
-        <p class="esg-link-guide-lead">下記3種のExcelに全定量データを収録しています。リンク先で目的のデータをご確認いただけます。</p>
-        <div class="esg-link-guide-item">
-          <span class="esg-link-guide-badge">XLSX</span>
-          <span class="esg-link-guide-text"><strong>環境データ集</strong> — GHG排出量／エネルギー／水資源／化学物質 ほか<span class="note">（シート分割：大気・水・廃棄物 等）</span></span>
-        </div>
-        <div class="esg-link-guide-item">
-          <span class="esg-link-guide-badge">XLSX</span>
-          <span class="esg-link-guide-text"><strong>社会データ集</strong> — 従業員／ダイバーシティ／人材育成／労働安全 ほか</span>
-        </div>
-        <div class="esg-link-guide-item">
-          <span class="esg-link-guide-badge">XLSX</span>
-          <span class="esg-link-guide-text"><strong>ガバナンスデータ集</strong> — コーポレートガバナンス／コンプライアンス／税務 ほか</span>
-        </div>
-        <div class="esg-link-guide-cta">ESGデータ一覧へ</div>
-      </div>
+      <!-- 0520MTG：ESGデータリンクは要素過多のため簡潔なUIに刷新。
+           本文よりやや小ぶり・関連リンク同等のトーンで「環境データ集」のみ明示し、全体は ESGデータ一覧 で集約 -->
+      <p class="esg-data-link">
+        <span class="esg-data-link-label">ESGデータ</span>
+        <span class="wf-link">環境データ集（XLSX）</span>
+        <span class="esg-data-link-sep">/</span>
+        <span class="wf-link">ESGデータ一覧</span>
+      </p>
 
     </section>
 
@@ -1235,7 +1213,7 @@ body {
         （文章はダミーです）削減貢献量に資するソリューションを中心に、サプライチェーン（生産／販売／物流など）の各段階でラベル別に取り組みを整理して紹介します。各カードをクリックすると個別ページに遷移します。
       </p>
 
-      <div class="wf-grid col-2 gap-24">
+      <div class="wf-grid col-3 gap-24">
 
         <div class="activity-card">
           <div class="activity-card-img">
@@ -1466,6 +1444,10 @@ body {
       <div class="ann-row">
         <span class="ann-row-label">寸法整合</span>
         設計参考 KM_PC_L3_W1100px（全体1280 / コンテンツ880）に揃えるため wf-canvas を 1560px へ拡張（wf-page 1280px / コンテンツ ~892px）。L3背景ルール：H2セクション毎にbg-white/bg-subを交互配置し、wf-section の負margin-rightでアンカーナビ含む全幅ベタ塗りを実現。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">UI調整（0521）</span>
+        取り組み（D）セクションを col-2 → <b>col-3</b> に変更（6カードを2列×3行→3列×2行）。ESGデータリンクは要素過多のため、3種Excelガイド（.esg-link-guide）を廃止し、関連リンク同等のインライン1行UI（.esg-data-link）に簡潔化。
       </div>
     </div>
 
