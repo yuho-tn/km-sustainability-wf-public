@@ -437,6 +437,13 @@ body {
   content: ''; display: block; clear: both;
 }
 
+/* 0521：has-side-imageを使わず、画像を上部に横2カラムで並べたいケース */
+.wf-acc-h3-body:not(.has-side-image) .acc-figs.col-2.is-horizontal,
+.wf-acc-h3-body:not(.has-side-image) .acc-figs.col-2 {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
 /* #157：外部サイトリンクは別タブで開く想定。外部＋別タブを示すアイコンを付与 */
 .wf-link.is-external::after {
   content: ' ↗';
@@ -659,7 +666,12 @@ body {
 
           <h3 class="wf-sub-title" id="sub-environment">地球環境問題</h3>
           <p class="wf-section-desc"><strong>環境活動を通した貢献</strong><br>コニカミノルタは地球温暖化防止や資源循環、生物多様性の保全に向けて注力していきます。チャリティ企画への協賛や環境保護活動への参加など、当社の事業活動を通じて培った環境技術やノウハウを活用し、環境課題解決に取り組んでいます。</p>
-          <details class="wf-acc-h3" open><div class="wf-acc-h3-body has-side-image">
+          <details class="wf-acc-h3" open>
+            <summary class="wf-acc-h3-summary">
+              <span class="wf-acc-text">コニカミノルタの環境戦略と社会貢献</span>
+              <span class="wf-acc-tag">日本</span>
+            </summary>
+            <div class="wf-acc-h3-body has-side-image">
               <div class="acc-figs col-2">
                 <figure><div class="wf-img h-160"><div class="wf-img-label">コニカミノルタによる環境セミナーの様子</div></div><figcaption class="wf-img-caption">コニカミノルタによる環境セミナーの様子</figcaption></figure>
                 <figure><div class="wf-img h-160"><div class="wf-img-label">お客様工場での省エネ診断</div></div><figcaption class="wf-img-caption">お客様工場での省エネ診断</figcaption></figure>
@@ -685,8 +697,13 @@ body {
               <p>コニカミノルタビジネスソリューションズ（フランス）社では、パリにある会社のビルの屋上を緑化し、ミツバチの巣箱を設置して養蜂を行っています。フランスにはミツバチを大切にする伝統があり、人口密度の高い都会で養蜂することにも理解があります。周辺地域のさまざまな果樹、野菜、花などの植物の受粉に、この巣箱で育ったミツバチが役立っています。また、採取した蜂蜜を瓶詰にして従業員向けに販売し、得られた売上をチャリティー基金（コニカミノルタビジネスソリューションズ（フランス）社が立ち上げた基金。毎年障がいのある人々が文化芸術、スポーツ振興を行うための基金）に寄付する取り組みを通じて、従業員の生物多様性保全意識の向上と、地域社会への貢献を図っています。</p>
             </div>
           </details>
-          <details class="wf-acc-h3" open><div class="wf-acc-h3-body has-side-image">
-              <div class="acc-figs col-2">
+          <details class="wf-acc-h3" open>
+            <summary class="wf-acc-h3-summary">
+              <span class="wf-acc-text">アーバー・デイ財団と共に世界的な森林再生活動に貢献</span>
+              <span class="wf-acc-tag">米国</span>
+            </summary>
+            <div class="wf-acc-h3-body">
+              <div class="acc-figs col-2 is-horizontal">
                 <figure><div class="wf-img h-160"><div class="wf-img-label">New York/ New Jersey Trail Conference参加の様子</div></div><figcaption class="wf-img-caption">New York/ New Jersey Trail Conference参加の様子</figcaption></figure>
                 <figure><div class="wf-img h-160"><div class="wf-img-label">Mahwah Environmental Volunteers Organization (MEVO)に参加する社員の様子</div></div><figcaption class="wf-img-caption">Mahwah Environmental Volunteers Organization (MEVO)に参加する社員の様子</figcaption></figure>
               </div>
@@ -726,7 +743,12 @@ body {
           </details>
 
           <h3 class="wf-sub-title" id="sub-wellbeing">ウェルビーイング・地域社会</h3>
-          <details class="wf-acc-h3" open><div class="wf-acc-h3-body has-side-image">
+          <details class="wf-acc-h3" open>
+            <summary class="wf-acc-h3-summary">
+              <span class="wf-acc-text">介護現場のDX化による社会課題解決の支援</span>
+              <span class="wf-acc-tag">日本</span>
+            </summary>
+            <div class="wf-acc-h3-body has-side-image">
               <div class="acc-figs">
                 <figure><div class="wf-img h-200"><div class="wf-img-label">コニカミノルタICT介護実習室</div></div><figcaption class="wf-img-caption">コニカミノルタICT介護実習室</figcaption></figure>
               </div>
@@ -737,7 +759,12 @@ body {
               <p>また、2019年からは介護福祉士を養成する専門学校内に「コニカミノルタICT介護実習室」を同学校と共同で開設し、ICT介護の講義を開始しており、コニカミノルタ社員もこの実習講義に協力しています。</p>
             </div>
           </details>
-          <details class="wf-acc-h3" open><div class="wf-acc-h3-body has-side-image">
+          <details class="wf-acc-h3" open>
+            <summary class="wf-acc-h3-summary">
+              <span class="wf-acc-text">新生児の病的黄疸（核黄疸）の早期発見・治療支援</span>
+              <span class="wf-acc-tag">ミャンマー / 米国</span>
+            </summary>
+            <div class="wf-acc-h3-body has-side-image">
               <div class="acc-figs col-2">
                 <figure><div class="wf-img h-160"><div class="wf-img-label">2019年12月27日にYangon Children Hospitalで開催された経皮黄疸計寄附記念式典</div></div><figcaption class="wf-img-caption">2019年12月27日にYangon Children Hospitalで開催された経皮黄疸計寄附記念式典</figcaption></figure>
                 <figure><div class="wf-img h-160"><div class="wf-img-label">経皮黄疸計（JM-105）を使って赤ちゃんを測定する様子</div></div><figcaption class="wf-img-caption">経皮黄疸計（JM-105）を使って赤ちゃんを測定する様子</figcaption></figure>
