@@ -370,21 +370,21 @@ body {
 .wf-acc-tag { order: 1; margin-left: 12px; }
 .wf-acc-h3-body {
   background: var(--c-white);
-  padding: 18px 22px;
+  padding: 14px 22px 16px;
   border-top: 1px solid var(--c-border-s);
 }
 .wf-acc-h3-body > *:last-child { margin-bottom: 0; }
 .wf-acc-h3-body p {
   /* #37：本文がリンクより目立つように。本文をやや濃く・行間広めで主役化 */
-  font-size: 13.5px; color: var(--c-text-h); line-height: 2;
-  margin-bottom: 14px;
+  font-size: 13.5px; color: var(--c-text-h); line-height: 1.85;
+  margin-bottom: 10px;
 }
 .wf-acc-h3-body p:last-child { margin-bottom: 0; }
 .wf-acc-h3-body ul {
-  font-size: 12px; color: var(--c-text); line-height: 1.85;
-  padding-left: 20px; margin-bottom: 14px;
+  font-size: 12px; color: var(--c-text); line-height: 1.75;
+  padding-left: 20px; margin-bottom: 10px;
 }
-.wf-acc-h3-body ul li { margin-bottom: 4px; }
+.wf-acc-h3-body ul li { margin-bottom: 3px; }
 
 /* 原稿準拠：基本的な考え方の箇条書き／注記／アコ内サブ見出し（2事案など） */
 .wf-list {
@@ -406,41 +406,35 @@ body {
 }
 
 /* アコーディオン内 画像ブロック
-   v5（0521）：
-   ・単一画像かつコンパクトな場合は「画像左＋テキスト右」横並びレイアウト（.has-side-image）
-   ・2画像以上（.col-2）または大きい画像の場合は、従来通りテキストと画像を上下に並べる */
+   v6（0521）：
+   ・1〜2画像のコンパクトレイアウト＝画像左に縦積み・テキストが右へ回り込み、
+     画像下に余白ができる場合はテキストが全幅で下に流れる（float方式）
+   ・画像なしのアコは縦並びのまま */
 .acc-figs {
-  display: grid; grid-template-columns: repeat(2, 1fr);
-  gap: 14px; margin-bottom: 14px; align-items: start;
+  display: block;            /* デフォルトはブロック（floatで横並びを実現） */
+  margin-bottom: 12px;
 }
-.acc-figs figure { margin: 0; }
-.acc-figs.col-2 { grid-template-columns: repeat(2, 1fr); }
-.acc-figs:not(.col-2) figure { grid-column: 1 / 2; }
-/* 固定高さを廃し、1カラム幅内で正方形寄り（4:3）に */
+.acc-figs figure { margin: 0 0 10px; }
+.acc-figs figure:last-child { margin-bottom: 0; }
 .acc-figs .wf-img.h-160,
 .acc-figs .wf-img.h-200 { height: auto; aspect-ratio: 4 / 3; width: 100%; }
 
-/* 0521：単一画像 × コンパクト用「画像左＋テキスト右」レイアウト */
-.wf-acc-h3-body.has-side-image {
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: 20px;
-  align-items: start;
+/* 0521：1〜2画像コンパクト用「画像左に縦積み＋テキスト右に回り込み」レイアウト
+   テキストが画像高さを超えたら自然に画像下の全幅エリアへ流れ込む */
+.wf-acc-h3-body.has-side-image .acc-figs {
+  float: left;
+  width: 220px;
+  margin: 0 18px 12px 0;
 }
-.wf-acc-h3-body.has-side-image > .acc-figs {
-  grid-column: 1;
-  grid-row: 1 / span 99;
+.wf-acc-h3-body.has-side-image .acc-figs figure {
+  width: 100%; margin-bottom: 8px;
+}
+.wf-acc-h3-body.has-side-image .acc-figs figure:last-child {
   margin-bottom: 0;
-  display: block;
 }
-.wf-acc-h3-body.has-side-image > .acc-figs figure {
-  width: 100%;
-}
-.wf-acc-h3-body.has-side-image > .acc-figs .wf-img {
-  aspect-ratio: 4 / 3; width: 100%; height: auto;
-}
-.wf-acc-h3-body.has-side-image > *:not(.acc-figs) {
-  grid-column: 2;
+/* float 解除：本文ブロックの末尾で clearfix */
+.wf-acc-h3-body.has-side-image::after {
+  content: ''; display: block; clear: both;
 }
 
 /* #157：外部サイトリンクは別タブで開く想定。外部＋別タブを示すアイコンを付与 */
@@ -670,7 +664,7 @@ body {
               <span class="wf-acc-text">コニカミノルタの環境戦略と社会貢献</span>
               <span class="wf-acc-tag">日本</span>
             </summary>
-            <div class="wf-acc-h3-body">
+            <div class="wf-acc-h3-body has-side-image">
               <p>地球環境保全は、人類共通の課題です。コニカミノルタは、チャリティや社員によるボランティア活動だけではなく、コニカミノルタが培った環境経営ノウハウをお客様やお取引先といったステークホルダーに広め、それぞれのステークホルダーの活動が拡大することで、環境負荷低減の加速化に貢献することを目指しています。 コニカミノルタは、環境経営やノウハウについて、セミナーや講演会の形で、企業だけでなく、地方自治体やアカデミアに対しても実施しています。 さらに、お客様をはじめとする企業の皆様に、環境経営の実践に役立つ当社のノウハウやツールなどを共有・提供し、お客様企業での環境負荷低減を支援するグリーンマーケティング活動を展開しています。この活動をきっかけに企業間の関係強化につながり、ビジネス面においても製品・サービスの取引に結びついています。また、お取引先に対しても環境負荷低減とコスト削減を支援するカーボンニュートラルパートナー活動を進めています。 コニカミノルタは、自社の活動範囲にとどまらず、お客様、お取引先、地域社会といったさまざまなステークホルダーとともに環境負荷低減を進めることで、社会全体の環境負荷低減に貢献しています。</p>
               <div class="acc-figs col-2">
                 <figure><div class="wf-img h-160"><div class="wf-img-label">コニカミノルタによる環境セミナーの様子</div></div><figcaption class="wf-img-caption">コニカミノルタによる環境セミナーの様子</figcaption></figure>
@@ -701,7 +695,7 @@ body {
               <span class="wf-acc-text">アーバー・デイ財団と共に世界的な森林再生活動に貢献</span>
               <span class="wf-acc-tag">米国</span>
             </summary>
-            <div class="wf-acc-h3-body">
+            <div class="wf-acc-h3-body has-side-image">
               <p>コニカミノルタビジネスソリューションズ（USA）社は、従業員に非営利団体とのボランティア活動に参加の機会を提供することで、持続可能性への意識を高めています。過去数年にわたり、非営利団体であるMahwah Environmental Volunteers Organization (MEVO)をボランティア活動と寄付協賛金を通じて支援してきました。ボランティアは、地元の環境や持続可能なガーデニング、農業について学びながら、農作物の植え付けや収穫を手伝います。またアーバー・デイ財団と協力して、これまで最近森林火災が発生した地域に20,000本以上の木を植樹し、世界的な森林再生活動に貢献しています。</p>
               <div class="acc-figs col-2">
                 <figure><div class="wf-img h-160"><div class="wf-img-label">New York/ New Jersey Trail Conference参加の様子</div></div><figcaption class="wf-img-caption">New York/ New Jersey Trail Conference参加の様子</figcaption></figure>
@@ -761,7 +755,7 @@ body {
             <summary class="wf-acc-h3-summary">
               <span class="wf-acc-text">新生児の病的黄疸（核黄疸）の早期発見・治療支援</span>
             </summary>
-            <div class="wf-acc-h3-body">
+            <div class="wf-acc-h3-body has-side-image">
               <p>病的黄疸（核黄疸）は、出生早期に新生児の体内で黄疸の原因物質であるビリルビンの体内濃度が一定の値を超えることで、脳のはたらきなどに異常をきたし脳性まひの原因になります。過去には日本でも脳性麻痺の3大原因の一つとされていましたが、測定機器（経皮黄疸計）を用いた早期の発見・治療をするシステムにより激減しました。しかし、世界にはノウハウやリソース不足などの理由から、厳密な黄疸管理ができず、有効な早期発見システムが構築できていない地域があります。</p>
               <h4 class="wf-acc-h4">新生児の死亡率低減に向けた「核黄疸撲滅プロジェクト」に協力（ミャンマー）</h4>
               <p>コニカミノルタは、2017年から2019年にかけてミャンマーで実施された、厚生労働省が国立国際医療研究センターを実施主体として委託している医療技術等国際展開推進事業である「核黄疸撲滅プロジェクト」に参加し、必要な測定機器の貸し出しやメンテナンス、データ解析などを行いました。</p>
@@ -1075,8 +1069,16 @@ body {
         設計参考 KM_PC_L3_W1100px（全体1280 / コンテンツ880）に揃えるため wf-canvas を 1560px へ拡張（wf-page 1280px / コンテンツ ~892px）。
       </div>
       <div class="ann-row">
+        <span class="ann-row-label">S2 桐原（対応済）</span>
+        画像とテキストの回り込みパターンを実装：1〜2画像のアコは <b>float方式</b>（画像左に縦積み 220px / テキスト右に回り込み）。テキストが画像高さを超えたら自然に画像下の全幅エリアへ流れ込む。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">UI調整（0521）</span>
+        アコ body のpadding（18→14/16px）・p行間（2→1.85）・margin-bottom（14→10px）を圧縮し余白を整理。
+      </div>
+      <div class="ann-row">
         <span class="ann-row-label">B区分（要判断・保留）</span>
-        S2/S3/S4：画像+テキスト回り込み・画像数別レイアウトルール・横並びワンブロックは catalog 影響大のため次フェーズへ持ち越し。<br>
+        S3/S4：画像+テキスト+リンク横並びワンブロック・画像位置の使い分けルールは次フェーズへ持ち越し。<br>
         S6：外部サイトリンク → 内部遷移の置換は Figmaピン特定後に対応。<br>
         S12/S13：+ボタン社会貢献廃止／アコ基本閉じる は 0517 で対応済（WF表示は確認用に open のまま）。
       </div>
