@@ -242,6 +242,10 @@ body {
   color: var(--c-text-h); font-weight: 700;
   border-left-color: var(--c-text-h);
 }
+/* H3レベルのサブ項目（H2/H3併載） */
+.wf-anchor-nav-item.is-sub {
+  font-size: 10px; padding-left: 22px; color: var(--c-text-xs);
+}
 
 /* L3用ヒーロー（B4：第3階層）— 廃止：使用しない */
 .wf-hero-l3 {
@@ -887,19 +891,11 @@ body {
 .ann-head { font-size: 11px; font-weight: 700; color: #222; display: block; margin-bottom: 6px; line-height: 1.4; }
 .ann-body { font-size: 10px; color: #555; line-height: 1.6; margin-top: 6px; }
 
-/* 0520MTG：ESGデータリンクを簡潔なインラインUIに刷新（旧 .esg-link-guide の要素過多解消） */
-.esg-data-link {
-  margin-top: 16px;
-  font-size: 11px; color: var(--c-text-s);
-  display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
-  line-height: 1.6;
+/* 0521：関連リンク内のサブ説明（中身の内訳表示用、例：ESGデータ：環境/社会/ガバナンス） */
+.theme-related .rl-sub {
+  font-size: 10px; color: var(--c-text-xs);
+  margin-left: 2px;
 }
-.esg-data-link-label {
-  font-weight: 700; color: var(--c-text-h);
-}
-.esg-data-link-sep { color: var(--c-border); }
-.esg-data-link .wf-link { font-size: 11px; color: var(--c-text-s); }
-.esg-data-link .wf-link:hover { color: var(--c-text-h); }
 
 </style>
 </head>
@@ -984,7 +980,7 @@ body {
       <!-- #22：カーボンマイナス解説（CARBON MINUS 2025 callout-box）を削除（「ここにカーボンマイナスの解説は入らない予定」） -->
 
       <!-- 主要KPI（H3） -->
-      <h3 class="wf-sub-title" style="margin-top:36px;">主要KPI</h3>
+      <h3 class="wf-sub-title" style="margin-top:36px;" id="strategy-kpi">主要KPI</h3>
       <p class="wf-section-desc" style="margin-bottom:18px;">
         （文章はダミーです）2030年に目指す姿に向けて、2つの主要KPIを設定しています。マテリアリティのアップデート内容と、計画の進捗（時系列比較と今後の見込み）について、それぞれ経年グラフで進捗を確認できます。
       </p>
@@ -1112,7 +1108,7 @@ body {
       <div class="result-accordion">
 
         <!-- ① お客様の業務プロセス変革（スコープ4） -->
-        <div class="result-block">
+        <div class="result-block" id="results-customer">
           <div class="result-block-head">
             <h3>① お客様の業務プロセス変革</h3>
             <span class="result-block-toggle"></span>
@@ -1141,7 +1137,7 @@ body {
         </div>
 
         <!-- ② 自社拠点・自社製品・サービス、取引先 -->
-        <div class="result-block">
+        <div class="result-block" id="results-internal">
           <div class="result-block-head">
             <h3>② 自社拠点、自社製品・サービス、取引先</h3>
             <span class="result-block-toggle"></span>
@@ -1162,7 +1158,7 @@ body {
         </div>
 
         <!-- ③ お取引先様（CNパートナー活動） -->
-        <div class="result-block">
+        <div class="result-block" id="results-supplier">
           <div class="result-block-head">
             <h3>③ お取引先様</h3>
             <span class="result-block-toggle"></span>
@@ -1184,20 +1180,13 @@ body {
 
       </div><!-- /result-accordion -->
 
-      <!-- 関連リンク：TCFD -->
+      <!-- 0520MTG：関連リンクに TCFD と ESGデータを並列配置。
+           ESGデータは「中身が少し分かる」よう内訳（環境/社会/ガバナンス）を併記 -->
       <div class="theme-related" style="margin-top:24px;">
         <span class="theme-related-label">関連リンク</span>
         <span class="wf-link">TCFD</span>
+        <span class="wf-link">ESGデータ<span class="rl-sub">：環境データ、社会データ、ガバナンスデータ</span></span>
       </div>
-
-      <!-- 0520MTG：ESGデータリンクは要素過多のため簡潔なUIに刷新。
-           本文よりやや小ぶり・関連リンク同等のトーンで「環境データ集」のみ明示し、全体は ESGデータ一覧 で集約 -->
-      <p class="esg-data-link">
-        <span class="esg-data-link-label">ESGデータ</span>
-        <span class="wf-link">環境データ集（XLSX）</span>
-        <span class="esg-data-link-sep">/</span>
-        <span class="wf-link">ESGデータ一覧</span>
-      </p>
 
     </section>
 
@@ -1291,7 +1280,11 @@ body {
         <div class="wf-anchor-nav-title">目次</div>
         <a class="wf-anchor-nav-item is-current" href="#basic">基本的な考え方</a>
         <a class="wf-anchor-nav-item" href="#strategy">戦略と目標</a>
+        <a class="wf-anchor-nav-item is-sub" href="#strategy-kpi">主要KPI</a>
         <a class="wf-anchor-nav-item" href="#results">実績データ</a>
+        <a class="wf-anchor-nav-item is-sub" href="#results-customer">① お客様の業務プロセス変革</a>
+        <a class="wf-anchor-nav-item is-sub" href="#results-internal">② 自社拠点、自社製品・サービス、取引先</a>
+        <a class="wf-anchor-nav-item is-sub" href="#results-supplier">③ お取引先様</a>
         <a class="wf-anchor-nav-item" href="#activities">取り組み</a>
       </nav>
 
@@ -1447,7 +1440,9 @@ body {
       </div>
       <div class="ann-row">
         <span class="ann-row-label">UI調整（0521）</span>
-        取り組み（D）セクションを col-2 → <b>col-3</b> に変更（6カードを2列×3行→3列×2行）。ESGデータリンクは要素過多のため、3種Excelガイド（.esg-link-guide）を廃止し、関連リンク同等のインライン1行UI（.esg-data-link）に簡潔化。
+        取り組み（D）セクションを col-2 → <b>col-3</b> に変更（6カードを2列×3行→3列×2行）。<br>
+        <b>ESGデータ：</b>独立UI（.esg-link-guide / .esg-data-link）は廃止。関連リンクの中に「ESGデータ：環境データ、社会データ、ガバナンスデータ」と中身が分かる形で1リンクとして統合。<br>
+        <b>アンカーナビ：</b>H2に加えH3（主要KPI／①②③ の result-block）も `.is-sub` で併載。H3には id を付与（strategy-kpi / results-customer / results-internal / results-supplier）。
       </div>
     </div>
 
