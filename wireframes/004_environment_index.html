@@ -1071,37 +1071,56 @@ body {
    LAYOUT WITH ANCHOR NAV（右アンカーナビ付きレイアウト）
    第3〜4階層の長文ページで使用
 ============================================================ */
+/* 0520MTG/E2,E4：L2に右コンパクトアンカーナビを採用（H2 + H3 掲載） */
 .wf-layout-with-anchornav {
-  display: grid;
-  grid-template-columns: 1fr 140px;
-  align-items: start;
+  display: grid; grid-template-columns: 1fr 160px;
+  gap: 0;
+  padding-right: var(--pad-h);
+  position: relative;
 }
 .wf-anchornav-main { min-width: 0; }
+.wf-anchornav-main .wf-section { padding-right: calc(160px + var(--pad-h) + 28px); margin-right: calc(-160px - var(--pad-h)); }
 .wf-anchor-nav {
-  position: sticky;
-  top: 40px;
-  padding: 20px 0 20px 16px;
-  border-left: 1px solid var(--c-border-s);
+  position: sticky; top: 76px;
+  align-self: start;
+  margin-top: 28px;
+  z-index: 3;
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+  padding: 16px 16px 18px;
+  font-size: 11px;
 }
 .wf-anchor-nav-title {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--c-text-h);
-  margin-bottom: 12px;
+  font-size: 9px; font-weight: 700;
+  color: var(--c-text-xs);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 8px;
 }
 .wf-anchor-nav-item {
   display: block;
-  font-size: 11px;
-  color: var(--c-text-s);
-  padding: 5px 0;
+  font-size: 11px; color: var(--c-text-s);
+  padding: 5px 0 5px 10px; line-height: 1.4;
   cursor: default;
-  line-height: 1.4;
+  border-left: 2px solid transparent;
   text-decoration: none;
 }
+.wf-anchor-nav-item:hover { color: var(--c-text-h); }
 .wf-anchor-nav-item.is-current {
   color: var(--c-text-h);
   font-weight: 700;
+  border-left-color: var(--c-text-h);
 }
+/* H3レベルのサブ項目（E4：H2/H3併載） */
+.wf-anchor-nav-sub {
+  display: block;
+  font-size: 10px; color: var(--c-text-xs);
+  padding: 3px 0 3px 22px; line-height: 1.3;
+  cursor: default;
+  text-decoration: none;
+}
+.wf-anchor-nav-sub:hover { color: var(--c-text-h); }
+.wf-anchor-nav-sub.is-current { color: var(--c-text-h); font-weight: 600; }
 
 /* アコーディオンヘッド：タイトル左＋タグ右 */
 .wf-accordion-head-left {
@@ -1282,6 +1301,19 @@ body {
   border-top: 4px solid var(--c-text-h);
   padding: 24px 28px;
   margin-bottom: 16px;
+}
+/* 0520MTG/E1：横断的開示物（TNFD等）の独立ブロック — 視覚的に他テーマと差別化 */
+.theme-block.theme-block-cross {
+  background: #FAFAFA;
+  border-top: 4px dashed var(--c-text-h);
+  border-left: 4px solid var(--c-text-h);
+  margin-top: 28px;
+}
+.theme-block-tag {
+  font-size: 11px; color: var(--c-text-s);
+  background: var(--c-white); border: 1px solid var(--c-border);
+  padding: 2px 10px; border-radius: 12px;
+  white-space: nowrap;
 }
 .theme-block-head {
   display: flex; align-items: baseline; justify-content: space-between;
@@ -1604,11 +1636,15 @@ body {
       <div class="wf-img-label">キービジュアル画像（全幅）<br>環境イメージ（自然・テクノロジー・工場緑化等）</div>
     </div>
 
+    <!-- 0520MTG/E2,E4：メインコンテンツ＋右コンパクトアンカーナビ -->
+    <div class="wf-layout-with-anchornav">
+      <div class="wf-anchornav-main">
+
     <!-- ============================================================
          セクション A：導入 — 基本的な考え方・方針
          テキスト導入 ＋ 長期環境ビジョン・環境方針への誘導リンク
     ============================================================ -->
-    <section class="wf-section bg-white">
+    <section class="wf-section bg-white" id="env-basic">
       <span class="wf-section-marker">A</span>
       <div class="top-rich-head">
         <div class="trh-main">
@@ -1639,7 +1675,7 @@ body {
          化学物質・水資源・生物多様性はテキスト+リンク。
          TCFD/TNFDは差別化したUIモジュール。
     ============================================================ -->
-    <section class="wf-section bg-sub">
+    <section class="wf-section bg-sub" id="env-strategy">
       <span class="wf-section-marker">B</span>
       <div class="top-rich-head">
         <div class="trh-main">
@@ -1648,15 +1684,7 @@ body {
       </div>
       <p class="wf-section-desc">気候変動・資源循環・化学物質汚染防止・水資源・生物多様性の5領域について、戦略と代表的なKPIの進捗を紹介します。</p>
 
-      <!-- #153：エリア内の目次（ページ内ジャンプ）で導線を補強 -->
-      <div class="theme-toc">
-        <span class="theme-toc-label">このエリアの目次</span>
-        <a href="#env-climate">気候変動</a>
-        <a href="#env-resource">資源循環</a>
-        <a href="#env-chemical">化学物質・汚染防止</a>
-        <a href="#env-water">水資源</a>
-        <a href="#env-bio">生物多様性</a>
-      </div>
+      <!-- 0520MTG/E3：右コンパクトアンカーナビと役割が重複するため theme-toc は削除 -->
       <!-- #143：リンク遷移である旨を明示（モーダルではない） -->
       <p class="link-behavior-note">各テーマ末尾のボタン（テーマ名を表示）は、対応する下層（L4）ページへ<strong>画面遷移</strong>します（モーダル表示ではありません）。遷移先が分かるよう、ボタン文言をテーマ名に統一しています。</p>
 
@@ -1735,7 +1763,7 @@ body {
         <div class="theme-cta"><a class="theme-block-link">化学物質・汚染防止</a></div>
       </div>
 
-      <!-- ── 水資源（TNFDトピックス＋関連リンク内包） ── -->
+      <!-- ── 水資源 ──　※0520MTG/E1：TNFDは横断開示物のため切り出し、生物多様性後段の独立ブロックへ移動 -->
       <div class="theme-block" id="env-water">
         <div class="theme-block-head">
           <h3>水資源</h3>
@@ -1743,20 +1771,6 @@ body {
         <p style="font-size:13px; color:var(--c-text); line-height:1.9;">
           水リスク評価に基づく水使用量の削減と水質保全活動を実施。WRI Aqueductによる評価を活用し、水ストレスの高い地域の拠点を重点的に管理しています。
         </p>
-
-        <!-- TNFD（トピックス扱い） -->
-        <div class="theme-topic">
-          <div class="theme-topic-head">
-            <div class="theme-topic-head-left">
-              <span class="theme-topic-label">TOPICS</span>
-              <h4 class="theme-topic-title">TNFD開示</h4>
-            </div>
-            <a class="section-head-link">TNFD開示</a>
-          </div>
-          <p class="theme-topic-desc">
-            自然資本・生物多様性に関する依存・影響・リスク・機会を、TNFD（自然関連財務情報開示タスクフォース）提言に沿って開示しています。LEAPアプローチ（Locate／Evaluate／Assess／Prepare）に基づき、事業活動と自然との関係性を「ガバナンス」「戦略」「リスクと影響の管理」「指標と目標」の4項目で開示し、自然関連の機会・リスクと事業戦略の整合を図ります。
-          </p>
-        </div>
 
         <!-- 関連リンク（環境技術・ESGデータ） -->
         <div class="theme-related">
@@ -1777,6 +1791,18 @@ body {
         </p>
         <div class="theme-cta"><a class="theme-block-link">生物多様性</a></div>
       </div>
+
+      <!-- ── TNFD開示 ──　※0520MTG/E1：資源・化学物質・汚染防止・水資源・生物多様性の横断開示物として独立配置 -->
+      <div class="theme-block theme-block-cross" id="env-tnfd">
+        <div class="theme-block-head">
+          <h3>TNFD開示</h3>
+          <span class="theme-block-tag">資源・化学物質・水資源・生物多様性を横断する開示</span>
+        </div>
+        <p style="font-size:13px; color:var(--c-text); line-height:1.9;">
+          自然資本・生物多様性に関する依存・影響・リスク・機会を、TNFD（自然関連財務情報開示タスクフォース）提言に沿って開示しています。LEAPアプローチ（Locate／Evaluate／Assess／Prepare）に基づき、事業活動と自然との関係性を「ガバナンス」「戦略」「リスクと影響の管理」「指標と目標」の4項目で開示し、自然関連の機会・リスクと事業戦略の整合を図ります。
+        </p>
+        <div class="theme-cta"><a class="theme-block-link">TNFD開示</a></div>
+      </div>
     </section>
 
     <!-- ============================================================
@@ -1787,7 +1813,7 @@ body {
     <!-- ============================================================
          セクション D：体制 — 環境マネジメント
     ============================================================ -->
-    <section class="wf-section bg-white">
+    <section class="wf-section bg-white" id="env-management">
       <span class="wf-section-marker">D</span>
       <div class="top-rich-head">
         <div class="trh-main">
@@ -1815,7 +1841,7 @@ body {
     <!-- ============================================================
          セクション E：環境課題解決を推進する活動
     ============================================================ -->
-    <section class="wf-section bg-sub">
+    <section class="wf-section bg-sub" id="env-activities-overview">
       <span class="wf-section-marker">E</span>
       <div class="top-rich-head">
         <div class="trh-main">
@@ -1839,7 +1865,7 @@ body {
     <!-- ============================================================
          セクション G：代表的な取り組み（現状構成維持）
     ============================================================ -->
-    <section class="wf-section bg-sub">
+    <section class="wf-section bg-sub" id="env-activities">
       <span class="wf-section-marker">G</span>
       <div class="top-rich-head">
         <div class="trh-main">
@@ -1915,7 +1941,7 @@ body {
     <!-- ============================================================
          セクション H：環境ラベル認証など
     ============================================================ -->
-    <section class="wf-section bg-white">
+    <section class="wf-section bg-white" id="env-labels">
       <span class="wf-section-marker">H</span>
       <div class="top-rich-head">
         <div class="trh-main">
@@ -1927,6 +1953,27 @@ body {
       </p>
       <div class="sec-bottom-cta"><a class="wf-btn outline">環境ラベル認証など</a></div>
     </section>
+
+      </div><!-- /wf-anchornav-main -->
+
+      <!-- 右コンパクトアンカーナビ（0520MTG/E2,E4：H2 + H3 掲載） -->
+      <nav class="wf-anchor-nav">
+        <div class="wf-anchor-nav-title">目次</div>
+        <a class="wf-anchor-nav-item is-current" href="#env-basic">基本的な考え方</a>
+        <a class="wf-anchor-nav-item" href="#env-strategy">戦略・目標・実績</a>
+          <a class="wf-anchor-nav-sub" href="#env-climate">気候変動</a>
+          <a class="wf-anchor-nav-sub" href="#env-resource">資源循環</a>
+          <a class="wf-anchor-nav-sub" href="#env-chemical">化学物質・汚染防止</a>
+          <a class="wf-anchor-nav-sub" href="#env-water">水資源</a>
+          <a class="wf-anchor-nav-sub" href="#env-bio">生物多様性</a>
+          <a class="wf-anchor-nav-sub" href="#env-tnfd">TNFD開示</a>
+        <a class="wf-anchor-nav-item" href="#env-management">体制</a>
+        <a class="wf-anchor-nav-item" href="#env-activities-overview">推進する活動</a>
+        <a class="wf-anchor-nav-item" href="#env-activities">取り組み</a>
+        <a class="wf-anchor-nav-item" href="#env-labels">環境ラベル認証</a>
+      </nav>
+
+    </div><!-- /wf-layout-with-anchornav -->
 
     <!-- ============================================================
          セクション I：他インデックスへの回遊 — エリアごと削除（クライアントFB）
@@ -2056,7 +2103,24 @@ body {
 
   <!-- アノテーションパネル -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — 環境 インデックス v5.1（旧 #015 → #004 / 0513FB反映）</h3>
+    <h3>設計ポイント — 環境 インデックス v5.2（0520 MTG / 0519 Figma反映）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">0520</span>
+      <span class="ann-head">0520 MTG / 0519 Figma反映</span>
+      <div class="ann-row">
+        <span class="ann-row-label">E1 矢口氏（対応済）</span>
+        TNFDは「水資源」配下から切り出し、資源・化学物質・汚染防止・水資源・生物多様性の横断開示物として、生物多様性後段の独立ブロック（theme-block-cross）に配置。差別化のため左ボーダー＋破線上ボーダー＋淡背景。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">E2/E4 丹野（対応済）</span>
+        L2にも右コンパクトアンカーナビ（H2＋H3併載）を採用。本文を1fr+160pxレイアウトに変更し、H3はインデント表示のサブアイテム（.wf-anchor-nav-sub）として併載。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">E3 丹野（対応済）</span>
+        セクションB内の「このエリアの目次」（theme-toc）は右アンカーナビと役割重複のため削除。
+      </div>
+    </div>
 
     <div class="ann-item">
       <span class="ann-num">0513</span>
