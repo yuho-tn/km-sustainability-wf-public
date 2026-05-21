@@ -542,7 +542,7 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
           <!-- 再エネ比率グラフ（拡大可：+ボタン） -->
           <div class="wf-img" style="height:320px;">
             <span class="wf-img-label">グラフ：コニカミノルタ全体の電力使用量に占める再生可能エネルギー由来電力の比率</span>
-            <span class="img-zoom-btn"></span>
+
           </div>
           <p style="font-size:10px; color:var(--c-text-xs); margin-top:8px; line-height:1.7;">
             ※ 比率：コニカミノルタ全体の電力使用量に占める、再生可能エネルギー由来電力の割合。
@@ -569,21 +569,21 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
             <div>
               <div class="wf-img" style="height:200px;">
                 <span class="wf-img-label">写真：コニカミノルタ<br>メカトロニクス社<br>豊川市本社と屋根のパネル</span>
-                <span class="img-zoom-btn"></span>
+
               </div>
               <p class="wf-img-caption">コニカミノルタメカトロニクス社の豊川市本社と屋根に積載した太陽光発電パネル</p>
             </div>
             <div>
               <div class="wf-img" style="height:200px;">
                 <span class="wf-img-label">写真：コニカミノルタBT<br>（マレーシア）社<br>屋根の太陽光発電パネル</span>
-                <span class="img-zoom-btn"></span>
+
               </div>
               <p class="wf-img-caption">コニカミノルタビジネステクノロジーズ（マレーシア）社と屋根に積載した太陽光発電パネル</p>
             </div>
             <div>
               <div class="wf-img" style="height:200px;">
                 <span class="wf-img-label">写真：東莞社<br>工場屋根の<br>太陽光発電パネル群</span>
-                <span class="img-zoom-btn"></span>
+
               </div>
               <p class="wf-img-caption">工場屋根に取り付けられた太陽光発電パネル群（コニカミノルタビジネステクノロジーズ（東莞）社）</p>
             </div>
@@ -613,14 +613,14 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
             <div>
               <div class="wf-img" style="height:220px;">
                 <span class="wf-img-label">写真：欧州販売会社への<br>導入を推進している<br>ドイツ本社</span>
-                <span class="img-zoom-btn"></span>
+
               </div>
               <p class="wf-img-caption">欧州販売会社への再生可能エネルギー由来電力導入を推進しているドイツ本社</p>
             </div>
             <div>
               <div class="wf-img" style="height:220px;">
                 <span class="wf-img-label">写真：駐車場に設置した<br>太陽光発電設備（米国）</span>
-                <span class="img-zoom-btn"></span>
+
               </div>
               <p class="wf-img-caption">駐車場に設置した太陽光発電設備（コニカミノルタビジネスソリューションズ（USA）社）</p>
             </div>
@@ -642,7 +642,7 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
           <!-- バーチャルPPAスキーム図（拡大可：+ボタン） -->
           <div class="wf-img" style="height:360px;">
             <span class="wf-img-label">図：バーチャルPPAのスキーム概要</span>
-            <span class="img-zoom-btn"></span>
+
           </div>
 
           <div class="theme-related">
@@ -660,7 +660,7 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
           </div>
           <p class="wf-section-desc">サプライチェーンの各フェーズにおける脱炭素の取り組みを紹介します。</p>
 
-          <div class="wf-grid col-2 gap-24">
+          <div class="wf-grid col-3 gap-24">
             <div class="activity-card">
               <div class="activity-card-img">
                 <span class="activity-card-cat">製品／ソリューション</span>
@@ -872,6 +872,11 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
       <div class="ann-row">
         <span class="ann-row-label">関連リンク</span>
         背景・ボーダーを廃止し、本文より目立たないトーンに調整（11px / var(--c-text-s)）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">UI調整（0521）</span>
+        本ページは画像拡大不要のため、すべての画像PHから +ボタン（img-zoom-btn）を削除（7箇所）。<br>
+        その他の取り組み（⑥）を col-2 → <b>col-3</b> に変更（5カードを 3列で配置）。
       </div>
     </div>
 
