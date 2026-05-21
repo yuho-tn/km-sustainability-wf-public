@@ -27,7 +27,7 @@
   --c-ann-bg:   #FFFBF0;
   --c-ann-bdr:  #C8A000;
   --content-w:  1080px;
-  --page-w:     1280px;
+  --page-w:     1560px;
   --pad-section: 64px;
   --pad-section-sm: 40px;
   --pad-h: 100px;
@@ -421,26 +421,20 @@ body {
   padding-top: 0;
   border-top: none;
 }
+/* 0520MTG/225-#1：トリガーは「免責事項」リンク（小さい文字・リンク風・閉じた状態が既定） */
 .disclaimer-toggle summary {
   list-style: none;
   display: inline-block;
-  font-size: 9px;
-  color: var(--c-text-xs);
-  opacity: 0.75;
+  font-size: 10px;
+  color: var(--c-text-s);
   cursor: default;
   padding: 1px 0;
   letter-spacing: 0.04em;
+  text-decoration: underline;
 }
 .disclaimer-toggle summary::-webkit-details-marker { display: none; }
 .disclaimer-toggle summary::marker { content: ''; }
-.disclaimer-toggle summary::before {
-  content: '＋ ';
-  font-family: 'Helvetica Neue', sans-serif;
-  font-weight: 700;
-  margin-right: 4px;
-  color: var(--c-text-xs);
-}
-.disclaimer-toggle[open] summary::before { content: '− '; }
+.disclaimer-toggle summary:hover { color: var(--c-text-h); }
 .disclaimer-toggle p {
   font-size: 9px;
   color: var(--c-text-xs);
@@ -991,7 +985,7 @@ body {
         <!-- ============================================================
              B. 社外からの評価
         ============================================================ -->
-        <section class="wf-section bg-sub" id="evaluation">
+        <section class="wf-section bg-white" id="evaluation">
           <span class="wf-section-marker">B</span>
           <h2 class="wf-section-title">社外からの評価</h2>
 
@@ -1041,7 +1035,7 @@ body {
                 <div class="text-link-row"><a class="text-link">MSCI ESG Ratings</a></div>
               </div>
               <details class="disclaimer-toggle">
-                <summary>ディスクレイマーを表示</summary>
+                <summary>免責事項</summary>
                 <p>
                   コニカミノルタのMSCI ESG Research LLCまたはその関連会社（MSCI）のデータの使用や、MSCIのロゴ、商標、サービスマークやインデックス名の使用は、MSCIによるコニカミノルタの後援、宣伝、販売促進を行うものではありません。MSCIのサービスとデータは、MSCIまたはその情報プロバイダーの資産であり、現状を提示するものであり、保証するものではありません。MSCIの名称とロゴは、MSCIの商標またはトレードマークです。
                 </p>
@@ -1137,7 +1131,7 @@ body {
                 <div class="text-link-row"><a class="text-link">MSCI ESG Research</a></div>
               </div>
               <details class="disclaimer-toggle">
-                <summary>ディスクレイマーを表示</summary>
+                <summary>免責事項</summary>
                 <p>
                   コニカミノルタ（株）のMSCI Indexesへの組み入れ、MSCIのロゴ、商標、サービスマークまたはインデックス名称の使用は、MSCIまたはMSCI関係会社によるコニカミノルタ（株）の後援、推薦またはプロモーションではありません。MSCI IndexesはMSCIの独占的財産であり、その名称およびロゴはMSCIおよび関係会社の商標またはサービスマークです。
                 </p>
@@ -1177,7 +1171,7 @@ body {
                 コニカミノルタ（株）は、米国のMorningstar社による「Morningstar 日本株式ジェンダー・ダイバーシティ・ティルト指数（除くREIT）」の構成銘柄に新設当初の2023年から連続して選定されています。（2026年1月）
               </p>
               <details class="disclaimer-toggle">
-                <summary>ディスクレイマーを表示</summary>
+                <summary>免責事項</summary>
                 <p>
                   Morningstar, Inc 及び/またはその関連会社（単体/グループに関らず「Morningstar」）は、コニカミノルタ（株）が、「指定されたランキング年において、職場でのジェンダー・ダイバーシティに関して、Morningstar 日本株式ジェンダー・ダイバーシティ・ティルト指数（除くREIT）（「インデックス」）を構成する銘柄の最上位のグループにランクされた」という事実を反映するために、コニカミノルタ（株）がMorningstar 日本株式ジェンダー・ダイバーシティ・ティルト（除くREIT）・ロゴ（「ロゴ」）を使用することを承認しました。Morningstar は情報提供のみを目的としてコニカミノルタ（株）によるロゴの使用を承認しております。コニカミノルタ（株）によるロゴの使用は Morningstar がコニカミノルタ（株）を推奨するものではなく、また、コニカミノルタ（株）に関連する有価証券の購入、売却、引受けを推奨、提案、勧誘するものでもありません。当インデックスは日本の職場のジェンダー・ダイバーシティを反映するようにデザインされておりますが、Morningstarは、インデックスまたはインデックスに含まれるデータの正確性、完全性、または適時性を保証しません。Morningstarはインデックス、またはロゴに関して明示的にも暗黙的にも保証を行わず、インデックス、インデックスに含まれるデータまたはロゴに関する商品性および特定の目的または使用への適合性の保証を明示的に否認します。前述のいずれにも制限することなく、いかなる場合においても、Morningstarまたはその第三者のコンテンツプロバイダーは、いずれかの当事者によるインデックスまたはロゴの使用または信頼に起因する（直接的・間接的に関わらず）損害について、Morningstarが当該損害の可能性について認識していたとしても、いかなる責任も負わないものとします。Morningstarの名前、インデックス名、およびロゴは、Morningstar, Inc の商標またはサービスマークです。過去のパフォーマンスは、将来の結果を保証するものではありません。
                 </p>
@@ -1447,7 +1441,24 @@ body {
 
   <!-- アノテーション -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — イニシアティブ＋社外評価（v2.4）</h3>
+    <h3>設計ポイント — イニシアティブ＋社外評価（#225 / 0520 MTG反映版）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">0520</span>
+      <span class="ann-head">0520 MTG / 0519 Figma反映</span>
+      <div class="ann-row">
+        <span class="ann-row-label">丹野・桐原（対応済）</span>
+        免責事項の折りたたみ：トリガー文言を「ディスクレイマーを表示」→<b>「免責事項」</b>に変更（桐原氏：日本語表記は「免責事項」）。小さい文字＋リンク風（下線）スタイルで、閉じた状態を既定とする（桐原氏：リンクで閉じておくのはOK）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">桐原（要返信・D区分）</span>
+        「この部分は現サイトにない、何の要素か」の問い合わせ → 該当ピン位置の特定が必要。WF変更ではなくFigma上で返信予定。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">ルール統一</span>
+        L2背景を一律白に統一（社外からの評価セクションの bg-sub を bg-white に）。寸法を設計参考 KM_PC_L3_W1100px（全体1280 / コンテンツ880）に整合（--page-w 1560）。
+      </div>
+    </div>
 
     <div class="ann-item">
       <span class="ann-num">v2.4</span>
