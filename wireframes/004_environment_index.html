@@ -33,10 +33,8 @@
   --c-ann-bdr:  #C8A000;
 
   /* レイアウト */
-  /* 0520MTG：右アンカーナビ採用に伴いコンテンツ幅を拡張（KM_PC_L3_W1100px設計参考に合わせる）
-     設計参考： FRAME 1280 - 左pad100 - 右pad56 = 1124（うち content 880 + gap 60 + anchor 184） */
   --content-w:  1080px;    /* コンテンツ最大幅 */
-  --page-w:     1380px;    /* ページ最大幅（1280→1380。wf-page= 1380-280annotation = 1100px） */
+  --page-w:     1280px;    /* ページ最大幅（標準）*/
   --pad-section: 52px;     /* セクション上下パディング（標準） */
   --pad-section-sm: 32px;  /* セクション上下パディング（コンパクト） */
   --pad-h: 100px;          /* コンテンツ左右パディング */
@@ -1074,53 +1072,47 @@ body {
    第3〜4階層の長文ページで使用
 ============================================================ */
 /* 0520MTG/E2,E4：L2に右コンパクトアンカーナビを採用（H2 + H3 掲載）
-   設計参考 KM_PC_L3_W1100px に準拠：content 880 + gap 60 + anchor 184 + 右pad 56 */
+   0521：他ページ（077等）と揃える — 160pxナビ・カードUI（白fill+ボーダー+シャドウ）
+   L2は背景色一律白のため wf-section の bg-sub 帯は使わない（H2交互背景は L3/L4 のみ） */
 .wf-layout-with-anchornav {
-  display: grid; grid-template-columns: 1fr 184px;
-  gap: 60px;
-  padding-right: 56px;
+  display: grid; grid-template-columns: 1fr 160px;
+  gap: 0;
+  padding: 0 var(--pad-h) 0 0;
   position: relative;
 }
 .wf-anchornav-main { min-width: 0; }
-.wf-anchornav-main .wf-section { padding-right: 0; margin-right: 0; }
-/* 0521：デザイン参考 KM_PC_L3_W1100px の追従メニュー_R に準拠
-   外枠 184px、白fill、ボーダー/シャドウなし、24px 内左 padding、フォント細・行高低め */
 .wf-anchor-nav {
   position: sticky; top: 76px;
-  align-self: start;
-  margin-top: 28px;
+  align-self: start; margin-top: 28px;
   z-index: 3;
   background: var(--c-white);
-  padding: 0 24px 0 24px;
-  font-size: 12px;
+  border: 1px solid var(--c-border);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+  padding: 16px 16px 18px;
+  font-size: 11px;
 }
 .wf-anchor-nav-title {
-  font-size: 12px; font-weight: 400;
-  color: #767676;  /* 設計参考の rgb(118,118,118) */
-  margin-bottom: 12px;
+  font-size: 9px; font-weight: 700; color: var(--c-text-xs);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 8px;
 }
 .wf-anchor-nav-item {
   display: block;
-  font-size: 12px; color: var(--c-text);
-  padding: 4px 0; line-height: 1.5;
+  font-size: 11px; color: var(--c-text-s);
+  padding: 5px 0 5px 10px; line-height: 1.4;
   cursor: default;
+  border-left: 2px solid transparent;
   text-decoration: none;
 }
 .wf-anchor-nav-item:hover { color: var(--c-text-h); }
 .wf-anchor-nav-item.is-current {
-  color: var(--c-text-h);
-  font-weight: 700;
+  color: var(--c-text-h); font-weight: 700;
+  border-left-color: var(--c-text-h);
 }
 /* H3レベルのサブ項目（E4：H2/H3併載） */
-.wf-anchor-nav-sub {
-  display: block;
-  font-size: 11px; color: var(--c-text-s);
-  padding: 3px 0 3px 12px; line-height: 1.4;
-  cursor: default;
-  text-decoration: none;
+.wf-anchor-nav-item.is-sub {
+  font-size: 10px; padding-left: 22px; color: var(--c-text-xs);
 }
-.wf-anchor-nav-sub:hover { color: var(--c-text-h); }
-.wf-anchor-nav-sub.is-current { color: var(--c-text-h); font-weight: 600; }
 
 /* アコーディオンヘッド：タイトル左＋タグ右 */
 .wf-accordion-head-left {
@@ -1664,7 +1656,7 @@ body {
          化学物質・水資源・生物多様性はテキスト+リンク。
          TCFD/TNFDは差別化したUIモジュール。
     ============================================================ -->
-    <section class="wf-section bg-sub" id="env-strategy">
+    <section class="wf-section bg-white" id="env-strategy">
       <span class="wf-section-marker">B</span>
       <div class="top-rich-head">
         <div class="trh-main">
@@ -1834,7 +1826,7 @@ body {
     <!-- ============================================================
          セクション E：環境課題解決を推進する活動
     ============================================================ -->
-    <section class="wf-section bg-sub" id="env-activities-overview">
+    <section class="wf-section bg-white" id="env-activities-overview">
       <span class="wf-section-marker">E</span>
       <div class="top-rich-head">
         <div class="trh-main">
@@ -1858,7 +1850,7 @@ body {
     <!-- ============================================================
          セクション G：代表的な取り組み（現状構成維持）
     ============================================================ -->
-    <section class="wf-section bg-sub" id="env-activities">
+    <section class="wf-section bg-white" id="env-activities">
       <span class="wf-section-marker">G</span>
       <div class="top-rich-head">
         <div class="trh-main">
@@ -1949,17 +1941,17 @@ body {
 
       </div><!-- /wf-anchornav-main -->
 
-      <!-- 右コンパクトアンカーナビ（0520MTG/E2,E4：H2 + H3 掲載） -->
+      <!-- 右コンパクトアンカーナビ（0520MTG/E2,E4：H2 + H3 掲載、077スタイル踏襲） -->
       <nav class="wf-anchor-nav">
         <div class="wf-anchor-nav-title">目次</div>
         <a class="wf-anchor-nav-item is-current" href="#env-basic">基本的な考え方</a>
         <a class="wf-anchor-nav-item" href="#env-strategy">戦略・目標・実績</a>
-          <a class="wf-anchor-nav-sub" href="#env-climate">気候変動</a>
-          <a class="wf-anchor-nav-sub" href="#env-resource">資源循環</a>
-          <a class="wf-anchor-nav-sub" href="#env-chemical">化学物質・汚染防止</a>
-          <a class="wf-anchor-nav-sub" href="#env-water">水資源</a>
-          <a class="wf-anchor-nav-sub" href="#env-bio">生物多様性</a>
-          <a class="wf-anchor-nav-sub" href="#env-tnfd">TNFD開示</a>
+        <a class="wf-anchor-nav-item is-sub" href="#env-climate">気候変動</a>
+        <a class="wf-anchor-nav-item is-sub" href="#env-resource">資源循環</a>
+        <a class="wf-anchor-nav-item is-sub" href="#env-chemical">化学物質・汚染防止</a>
+        <a class="wf-anchor-nav-item is-sub" href="#env-water">水資源</a>
+        <a class="wf-anchor-nav-item is-sub" href="#env-bio">生物多様性</a>
+        <a class="wf-anchor-nav-item is-sub" href="#env-tnfd">TNFD開示</a>
         <a class="wf-anchor-nav-item" href="#env-management">体制</a>
         <a class="wf-anchor-nav-item" href="#env-activities-overview">推進する活動</a>
         <a class="wf-anchor-nav-item" href="#env-activities">取り組み</a>
@@ -2107,7 +2099,7 @@ body {
       </div>
       <div class="ann-row">
         <span class="ann-row-label">E2/E4 丹野（対応済）</span>
-        L2にも右コンパクトアンカーナビ（H2＋H3併載）を採用。設計参考 KM_PC_L3_W1100px に準拠：wf-page を 1100px へ拡張、anchor 184px / gap 60px / 右pad 56px、ナビUIは白fill＋ボーダー/シャドウなしのフラットスタイル、24px内左padding。
+        L2にも右コンパクトアンカーナビ（H2＋H3併載）を採用。077等の他ページと同じスタイル（160px幅・カードUI：白fill+ボーダー+シャドウ）に統一。H3はインデント表示の `.is-sub` アイテムとして併載。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">E3 丹野（対応済）</span>
@@ -2115,7 +2107,8 @@ body {
       </div>
       <div class="ann-row">
         <span class="ann-row-label">UI調整（0521）</span>
-        関連リンク（.theme-related）の背景・ボーダーを廃止し、本文より目立たないトーンに調整（フォント11px・色 var(--c-text-s)）。
+        関連リンク（.theme-related）の背景・ボーダーを廃止し、本文より目立たないトーンに調整（11px・色 var(--c-text-s)）。<br>
+        <b>L2背景ルール：</b>L2は背景色を一律白に統一（bg-sub帯廃止）。H2レベルの交互背景＋アンカーナビ含む全幅ベタ塗りは L3/L4 のみ適用。
       </div>
     </div>
 
