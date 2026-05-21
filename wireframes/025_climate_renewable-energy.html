@@ -26,7 +26,8 @@
   --c-ann-bg:   #FFFBF0;
   --c-ann-bdr:  #C8A000;
   --content-w:  1080px;
-  --page-w:     1280px;
+  /* 0521：設計参考 KM_PC_L3_W1100px（全体1280 / コンテンツ880）に揃える */
+  --page-w:     1560px;
   --pad-section: 52px;
   --pad-section-sm: 32px;
   --pad-h: 100px;
@@ -126,6 +127,10 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
 .wf-anchor-nav-item.is-current {
   color: var(--c-text-h); font-weight: 700;
   border-left-color: var(--c-text-h);
+}
+/* H3レベルのサブ項目（H2/H3併載） */
+.wf-anchor-nav-item.is-sub {
+  font-size: 10px; padding-left: 22px; color: var(--c-text-xs);
 }
 
 /* 背景帯を .wf-page 全幅へ貫通させる（右側は目次カラム＋右ガターまで回り込み）。
@@ -293,21 +298,19 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
 }
 .wf-photo-grid.col-3 { grid-template-columns: repeat(3, 1fr); }
 
-/* 関連リンク（共通モジュール／035 TCFD .theme-related と同仕様） */
+/* 0521：関連リンクは本文より目立たないトーン（背景・ボーダー廃止、フォント細・色淡） */
 .theme-related {
-  background: var(--c-bg-sub); border: 1px solid var(--c-border);
-  padding: 14px 18px; margin-top: 18px;
-  display: flex; flex-wrap: wrap;
-  column-gap: 18px; row-gap: 6px;
-  align-items: center;
+  background: transparent; border: none;
+  padding: 6px 0 0; margin-top: 10px;
+  display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
 }
 .theme-related-label {
-  flex-basis: 100%;
-  font-size: 10px; font-weight: 700; color: var(--c-text-xs);
-  letter-spacing: 0.1em; text-transform: uppercase;
-  padding-bottom: 8px; margin-bottom: 4px;
-  border-bottom: 1px dashed var(--c-border);
+  font-size: 11px; font-weight: 400; color: var(--c-text-s);
+  letter-spacing: 0.02em;
 }
+.theme-related .wf-link { font-size: 11px; color: var(--c-text-s); }
+.theme-related .wf-link:hover { color: var(--c-text-h); }
+.theme-related .rl-sub { font-size: 10px; color: var(--c-text-xs); margin-left: 2px; }
 
 /* 取り組みカード（131_health_management 同型／全ページ共通モジュール） */
 .activity-card {
@@ -596,7 +599,7 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
             生産・研究開発拠点とともに、全世界に数多くある販売拠点においても積極的に再生可能エネルギーの導入を進めています。今後も再生可能エネルギーへのお客様や社会からの期待に応えていきます。
           </p>
 
-          <h3 class="wf-sub-title">再生可能エネルギーの取り組み</h3>
+          <h3 class="wf-sub-title" id="sales-initiatives">再生可能エネルギーの取り組み</h3>
 
           <p class="wf-section-desc">
             コニカミノルタビジネスソリューションズ（USA）社の本社では、2013年から駐車場に太陽光発電設備を設置し、オフィスの電力として利用しています。さらに、2020年12月より残りの購入電力を再生可能エネルギー由来に切り替え、100％再生可能エネルギーになりました。
@@ -723,6 +726,7 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
         <a class="wf-anchor-nav-item is-current" href="#re100">RE100への加盟</a>
         <a class="wf-anchor-nav-item" href="#production">生産・研究開発拠点</a>
         <a class="wf-anchor-nav-item" href="#sales">販売拠点</a>
+        <a class="wf-anchor-nav-item is-sub" href="#sales-initiatives">再生可能エネルギーの取り組み</a>
         <a class="wf-anchor-nav-item" href="#vppa">バーチャルPPA</a>
         <a class="wf-anchor-nav-item" href="#other-initiatives">その他の取り組み</a>
       </nav>
@@ -852,7 +856,24 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
 
   <!-- アノテーション -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — 自社拠点 再エネ導入 v2.0（#025 旧#029）</h3>
+    <h3>設計ポイント — 自社拠点 再エネ導入（#025 / 0520 MTG反映版）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">0520</span>
+      <span class="ann-head">0520 MTG / 0519 Figma反映（追加FBなし、ルール統一のみ）</span>
+      <div class="ann-row">
+        <span class="ann-row-label">寸法整合</span>
+        設計参考 KM_PC_L3_W1100px（全体1280 / コンテンツ880）に揃えるため wf-canvas を 1560px へ拡張（wf-page 1280px / コンテンツ ~892px）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">アンカーナビ</span>
+        H3「再生可能エネルギーの取り組み」（販売拠点配下）にidを付与し、アンカーナビにサブ項目（.is-sub）として併載。L4も H2＋H3 併載ルールに統一。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">関連リンク</span>
+        背景・ボーダーを廃止し、本文より目立たないトーンに調整（11px / var(--c-text-s)）。
+      </div>
+    </div>
 
     <div class="ann-item">
       <span class="ann-num">★</span>
