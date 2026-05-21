@@ -405,11 +405,10 @@ body {
   padding-left: 12px; border-left: 3px solid var(--c-text-h);
 }
 
-/* アコーディオン内 画像ブロック */
-/* 画像レイアウト（原稿準拠）：原稿の写真はおおむね正方形寄り。
-   ・常に2カラムのグリッドを基準にし、画像は1カラム幅（≒左半分）に収める
-   ・2点の場合は横に2点並べる（左右2カラム）
-   ・1点の場合は左カラムのみに配置（右半分は余白） */
+/* アコーディオン内 画像ブロック
+   v5（0521）：
+   ・単一画像かつコンパクトな場合は「画像左＋テキスト右」横並びレイアウト（.has-side-image）
+   ・2画像以上（.col-2）または大きい画像の場合は、従来通りテキストと画像を上下に並べる */
 .acc-figs {
   display: grid; grid-template-columns: repeat(2, 1fr);
   gap: 14px; margin-bottom: 14px; align-items: start;
@@ -420,6 +419,29 @@ body {
 /* 固定高さを廃し、1カラム幅内で正方形寄り（4:3）に */
 .acc-figs .wf-img.h-160,
 .acc-figs .wf-img.h-200 { height: auto; aspect-ratio: 4 / 3; width: 100%; }
+
+/* 0521：単一画像 × コンパクト用「画像左＋テキスト右」レイアウト */
+.wf-acc-h3-body.has-side-image {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+.wf-acc-h3-body.has-side-image > .acc-figs {
+  grid-column: 1;
+  grid-row: 1 / span 99;
+  margin-bottom: 0;
+  display: block;
+}
+.wf-acc-h3-body.has-side-image > .acc-figs figure {
+  width: 100%;
+}
+.wf-acc-h3-body.has-side-image > .acc-figs .wf-img {
+  aspect-ratio: 4 / 3; width: 100%; height: auto;
+}
+.wf-acc-h3-body.has-side-image > *:not(.acc-figs) {
+  grid-column: 2;
+}
 
 /* #157：外部サイトリンクは別タブで開く想定。外部＋別タブを示すアイコンを付与 */
 .wf-link.is-external::after {
@@ -667,7 +689,7 @@ body {
               <span class="wf-acc-text">生物多様性保全のため養蜂を実施</span>
               <span class="wf-acc-tag">フランス</span>
             </summary>
-            <div class="wf-acc-h3-body">
+            <div class="wf-acc-h3-body has-side-image">
               <div class="acc-figs">
                 <figure><div class="wf-img h-200"><div class="wf-img-label">屋上での養蜂の様子</div></div><figcaption class="wf-img-caption">屋上での養蜂の様子</figcaption></figure>
               </div>
@@ -724,7 +746,7 @@ body {
             <summary class="wf-acc-h3-summary">
               <span class="wf-acc-text">介護現場のDX化による社会課題解決の支援</span>
             </summary>
-            <div class="wf-acc-h3-body">
+            <div class="wf-acc-h3-body has-side-image">
               <p>日本は、超高齢化社会を迎えようとしており、厚生労働省によると2040年には、介護スタッフが約57万人不足すると推計される一方、国の介護保険の費用は増加し続けています。日本政府は、費用抑制の方策として、介護予防に力点を置く「自立支援介護」を推進するため、科学的介護に大きく舵を切りましたが、介護施設の多くは、IT化、ITリテラシーが必ずしも進んでいません。</p>
               <p>コニカミノルタは、2016年からICTを軸として、介護ワークフローを変革するケアサポートソリューションを事業化し、すべての人たちが、きらめきときめく世界をともにつくりたいという想いを“HitomeQ”というブランドに込めて、高齢者のQOL向上を支えるサービスを展開しています。「HitomeQケアサポート」※によって、ともに現場を見つめ、新しい介護現場へとみちびくことを目指しています。</p>
               <p class="wf-note">※ 「HitomeQ ケアサポート」は、独自の画像センシング技術を活かした行動分析センサーとスマートフォンを軸に、ケア品質の向上と業務効率化するサービス。単なるシステムの提供だけではなく、業務診断による課題の特定から、システムの導入支援、ICTを活用する組織の構築までを行い、導入後もデータを活用した介護オペレーションを支援します。</p>
@@ -756,7 +778,7 @@ body {
             <summary class="wf-acc-h3-summary">
               <span class="wf-acc-text">乳がんの早期発見推進の取り組み</span>
             </summary>
-            <div class="wf-acc-h3-body">
+            <div class="wf-acc-h3-body has-side-image">
               <div class="acc-figs">
                 <figure><div class="wf-img h-200"><div class="wf-img-label">コニカミノルタのピンクリボン運動マーク</div></div><figcaption class="wf-img-caption">コニカミノルタのピンクリボン運動マーク</figcaption></figure>
               </div>
@@ -779,7 +801,7 @@ body {
             <summary class="wf-acc-h3-summary">
               <span class="wf-acc-text">地域のスポーツにおける社会貢献</span>
             </summary>
-            <div class="wf-acc-h3-body">
+            <div class="wf-acc-h3-body has-side-image">
               <div class="acc-figs">
                 <figure><div class="wf-img h-200"><div class="wf-img-label">ジョギング教室</div></div><figcaption class="wf-img-caption">ジョギング教室</figcaption></figure>
               </div>
@@ -794,7 +816,7 @@ body {
               <span class="wf-acc-text">防災水資源「救いの泉」を地域に提供</span>
               <span class="wf-acc-tag">日本</span>
             </summary>
-            <div class="wf-acc-h3-body">
+            <div class="wf-acc-h3-body has-side-image">
               <div class="acc-figs">
                 <figure><div class="wf-img h-200"><div class="wf-img-label">災害時協力協定の締結式</div></div><figcaption class="wf-img-caption">災害時協力協定の締結式</figcaption></figure>
               </div>
@@ -806,7 +828,7 @@ body {
               <span class="wf-acc-text">ハンディキャップを持つ人々を支援する企業内基金を設立</span>
               <span class="wf-acc-tag">フランス</span>
             </summary>
-            <div class="wf-acc-h3-body">
+            <div class="wf-acc-h3-body has-side-image">
               <div class="acc-figs"><figure><div class="wf-img h-160"><div class="wf-img-label">Fondation d&#39;entreprise（基金ロゴ）</div></div><figcaption class="wf-img-caption">企業内基金「Fondation d&#39;entreprise」ロゴ（リンク先）</figcaption></figure></div>
               <p>コニカミノルタの複合機は、障がいの有無に関わらずすべての人が簡単に使えることを目指す、ユニバーサルデザインの視点を取り入れて、設計されています。</p>
               <p>情報機器販売会社であるコニカミノルタビジネスソリューションズフランス社は、この考え方をさらに広げて、障がいを持つ人々がスポーツ、娯楽、文化、教育や仕事などに参加しやすい環境を作ることを目指し、公共の場所のバリアフリー化などを目的とした企業内基金を設立しました。従業員の提案から始まったこの活動は、今や会社全体に広がっており、従業員一人ひとりが寄付などの形で参加しています。</p>
@@ -834,7 +856,7 @@ body {
               <span class="wf-acc-text">IT業界における女性のキャリア形成を支援</span>
               <span class="wf-acc-tag">チェコ・ドイツ</span>
             </summary>
-            <div class="wf-acc-h3-body">
+            <div class="wf-acc-h3-body has-side-image">
               <div class="acc-figs">
                 <figure><div class="wf-img h-200"><div class="wf-img-label">ワークショップの様子</div></div><figcaption class="wf-img-caption">ワークショップの様子</figcaption></figure>
               </div>
@@ -845,7 +867,7 @@ body {
             <summary class="wf-acc-h3-summary">
               <span class="wf-acc-text">子どもたちの就学支援</span>
             </summary>
-            <div class="wf-acc-h3-body">
+            <div class="wf-acc-h3-body has-side-image">
               <div class="acc-figs">
                 <figure><div class="wf-img h-200"><div class="wf-img-label">卒業旅行で同社を訪れた子どもたち</div></div><figcaption class="wf-img-caption">卒業旅行で同社を訪れた子どもたち</figcaption></figure>
               </div>
