@@ -32,7 +32,8 @@
   --c-ann-bdr:  #C8A000;
 
   --content-w:  1080px;
-  --page-w:     1280px;
+  /* 0521：設計参考 KM_PC_L3_W1100px（全体1280 / コンテンツ880）に揃える */
+  --page-w:     1560px;
   --pad-section: 52px;
   --pad-section-sm: 32px;
   --pad-h: 100px;
@@ -130,6 +131,50 @@ body {
 .wf-section.pad-sm {
   padding-top: var(--pad-section-sm);
   padding-bottom: var(--pad-section-sm);
+}
+
+/* 0521/E2：L2にも右コンパクトアンカーナビを採用（077等と同スタイル） */
+.wf-layout-with-anchornav {
+  display: grid; grid-template-columns: 1fr 160px;
+  gap: 0;
+  padding: 0 var(--pad-h) 0 0;
+  position: relative;
+}
+.wf-anchornav-main { min-width: 0; }
+.wf-anchornav-main .wf-section {
+  padding: var(--pad-section) calc(160px + var(--pad-h) + 28px) var(--pad-section) var(--pad-h);
+  margin-right: calc(-160px - var(--pad-h));
+}
+.wf-anchornav-main .wf-section.policy-section {
+  padding-top: 36px; padding-bottom: 36px;
+}
+.wf-anchor-nav {
+  position: sticky; top: 76px;
+  align-self: start; margin-top: 28px;
+  z-index: 3;
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+  padding: 16px 16px 18px;
+  font-size: 11px;
+}
+.wf-anchor-nav-title {
+  font-size: 9px; font-weight: 700; color: var(--c-text-xs);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.wf-anchor-nav-item {
+  display: block;
+  font-size: 11px; color: var(--c-text-s);
+  padding: 5px 0 5px 10px; line-height: 1.4;
+  cursor: default;
+  border-left: 2px solid transparent;
+  text-decoration: none;
+}
+.wf-anchor-nav-item:hover { color: var(--c-text-h); }
+.wf-anchor-nav-item.is-current {
+  color: var(--c-text-h); font-weight: 700;
+  border-left-color: var(--c-text-h);
 }
 .wf-section-marker {
   position: absolute;
@@ -579,6 +624,10 @@ body {
       </p>
     </div>
 
+    <!-- 0521/E2：メインコンテンツ＋右コンパクトアンカーナビ -->
+    <div class="wf-layout-with-anchornav">
+      <div class="wf-anchornav-main">
+
     <!-- ============================================================
          A｜コニカミノルタグループ
     ============================================================ -->
@@ -739,6 +788,19 @@ body {
 
     </section>
 
+      </div><!-- /wf-anchornav-main -->
+
+      <!-- 右コンパクトアンカーナビ（0521/E2：L2にも採用） -->
+      <nav class="wf-anchor-nav">
+        <div class="wf-anchor-nav-title">目次</div>
+        <a class="wf-anchor-nav-item is-current" href="#cat-group">コニカミノルタグループ</a>
+        <a class="wf-anchor-nav-item" href="#cat-env">環境</a>
+        <a class="wf-anchor-nav-item" href="#cat-social">社会</a>
+        <a class="wf-anchor-nav-item" href="#cat-governance">ガバナンス</a>
+      </nav>
+
+    </div><!-- /wf-layout-with-anchornav -->
+
     <!-- サステナビリティサイトフッター（アコーディオン式・サイトマップ） -->
     <div class="sus-footer" data-open="true">
       <button class="sus-footer-toggle" type="button" onclick="this.parentElement.dataset.open = this.parentElement.dataset.open === 'true' ? 'false' : 'true'">
@@ -864,7 +926,24 @@ body {
        アノテーションパネル
   ============================================================ -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — 方針一覧（v2.8）</h3>
+    <h3>設計ポイント — 方針一覧（#097 / 0520 MTG反映版）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">0520</span>
+      <span class="ann-head">0520 MTG / 0519 Figma反映（追加FBなし、ルール統一のみ）</span>
+      <div class="ann-row">
+        <span class="ann-row-label">E2 アンカーナビ</span>
+        L2にも右コンパクトアンカーナビを採用（077等と同スタイル）。4カテゴリ（コニカミノルタグループ／環境／社会／ガバナンス）の H2 を目次として併載。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">寸法整合</span>
+        設計参考 KM_PC_L3_W1100px（全体1280 / コンテンツ880）に揃えるため wf-canvas を 1560px へ拡張（wf-page 1280px）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">L2背景ルール</span>
+        L2は背景色一律白（既に全セクション bg-white のため変更なし）。
+      </div>
+    </div>
 
     <div class="ann-item">
       <span class="ann-num">A-D</span>
