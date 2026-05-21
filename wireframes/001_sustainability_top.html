@@ -79,6 +79,12 @@ body {
 .wf-section.bg-sub { background: var(--c-bg-sub); }
 .wf-section.bg-white { background: var(--c-white); }
 .wf-section.pad-sm { padding-top: var(--pad-section-sm); padding-bottom: var(--pad-section-sm); }
+/* 0520MTG/T1：本セクション配下に「見えない」サブセクション。連番マーカーなし・上下境界線弱め */
+.wf-section.sub-section {
+  padding-top: 16px; padding-bottom: 24px;
+  border-top: none; border-bottom: 1px dashed var(--c-border-s);
+}
+.wf-section.sub-section + .wf-section { border-top: none; }
 .wf-section-marker {
   position: absolute; top: 12px; left: 8px; width: 22px; height: 22px;
   background: #222; color: #fff; border-radius: 50%; font-size: 10px;
@@ -736,6 +742,33 @@ body {
     </section>
 
     <!-- ============================================================
+         ③ クイックアクセス（旧⑥ 資料・データ）
+         ※0520MTG/T1：戦略の直後へ移動、見出しレベルを1段下げサブセクション扱いに
+         ※「資料・データ」見出しは廃止、QUICK ACCESS のミニラベルのみ
+    ============================================================ -->
+    <section class="wf-section bg-white pad-sm sub-section">
+      <div class="quick-access">
+        <div class="qa-label">QUICK ACCESS</div>
+        <div class="qa-items">
+          <a class="qa-item">
+            <div class="qa-item-main">
+              <div class="qa-item-title">サステナビリティレポート（PDF：16.0MB）</div>
+              <div class="qa-item-meta">最新版ダウンロード</div>
+            </div>
+            <span class="qa-item-icon"></span>
+          </a>
+          <a class="qa-item">
+            <div class="qa-item-main">
+              <div class="qa-item-title">ESGデータ（Excel：119KB）</div>
+              <div class="qa-item-meta">KPI・指標一覧</div>
+            </div>
+            <span class="qa-item-icon"></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
          ③ サステナビリティの取り組み
          ※#1：戦略の直後／#6：「ESGの取り組みと進捗」→「サステナビリティの取り組み」に改称
     ============================================================ -->
@@ -811,85 +844,50 @@ body {
         サステナビリティマネジメントの考え方、推進体制、ステークホルダーとのエンゲージメントについて紹介します。本テキスト入ります。本テキスト入ります。本テキスト入ります。本テキスト入ります。本テキスト入ります。本テキスト入ります。本テキスト入ります。本テキスト入ります。本テキスト入ります。本テキスト入ります。
       </p>
 
-      <!-- #13：見出し一体の「詳細を見る」を廃し、行き先が分かる末尾CTAへ。
-           主導線＝マネジメント詳細／副導線＝ステークホルダーエンゲージメント -->
+      <!-- #13/0520MTG-T3：見出し一体の「詳細を見る」を廃し、行き先が分かる末尾CTAへ。
+           CTAでないページ遷移ボタンは全てセカンダリ（白）に統一（戦略のみプライマリ例外） -->
       <div class="sec-cta">
-        <a class="wf-btn primary">サステナビリティマネジメント</a>
+        <a class="wf-btn">サステナビリティマネジメント</a>
         <a class="wf-btn">ステークホルダーエンゲージメント</a>
       </div>
     </section>
 
     <!-- ============================================================
-         ⑤ 社外からの評価とイニシアチブへの参画
-         ※#2：「資料・データ」を後段へ移したことに伴い、社外評価をこの位置へ
+         ⑤ イニシアチブへの参画と外部からの評価
+         ※0520MTG/T2：タイトル順序入れ替え（前後逆）。カルーセル廃止・4ロゴ1行固定。
+         　下層H2へのリンクを2本設置（イニシアチブ参画／外部評価）
     ============================================================ -->
     <section class="wf-section bg-white">
       <span class="wf-section-marker">5</span>
       <div class="top-rich-head">
         <div class="trh-main">
-          <h2 class="trh-title">社外からの評価とイニシアチブへの参画<span class="trh-sub">外部評価・参画イニシアティブ</span></h2>
+          <h2 class="trh-title">イニシアチブへの参画と外部からの評価<span class="trh-sub">参画イニシアティブ・外部評価</span></h2>
         </div>
       </div>
       <p class="wf-section-desc">
-        国内外の格付機関等によるサステナビリティの外部評価、および参画しているイニシアティブを紹介します。
+        コニカミノルタが賛同・参画しているイニシアティブと、国内外の格付機関等によるサステナビリティの外部評価を紹介します。
       </p>
 
-      <!-- #8：固定4点 → 左右＜＞で動的にスクロールできるロゴカルーセルに変更 -->
-      <div class="logo-carousel">
-        <button class="lc-arrow prev" type="button" aria-label="前へ" onclick="var t=this.parentElement.querySelector('.logo-carousel-track');t.scrollBy({left:-t.clientWidth,behavior:'smooth'})">‹</button>
-        <div class="logo-carousel-track">
-          <div class="eval-logo">[ FTSE4Good Index ]</div>
-          <div class="eval-logo">[ MSCI Selection Indexes 2025 ]</div>
-          <div class="eval-logo">[ ISS ESG Corporate Rating Prime ]</div>
-          <div class="eval-logo">[ CDP A List 2025 ]</div>
-          <div class="eval-logo">[ DJSI（S&amp;P Global） ]</div>
-          <div class="eval-logo">[ EcoVadis ]</div>
-          <div class="eval-logo">[ RE100 ]</div>
-          <div class="eval-logo">[ SBT 認定 ]</div>
-          <div class="eval-logo">[ TCFD 賛同 ]</div>
-          <div class="eval-logo">[ 国連グローバル・コンパクト ]</div>
-        </div>
-        <button class="lc-arrow next" type="button" aria-label="次へ" onclick="var t=this.parentElement.querySelector('.logo-carousel-track');t.scrollBy({left:t.clientWidth,behavior:'smooth'})">›</button>
+      <!-- 0520MTG/T2：動的UI不要・4ロゴ1行固定表示 -->
+      <div class="eval-logo-grid">
+        <div class="eval-logo">[ 国連グローバル・コンパクト ]</div>
+        <div class="eval-logo">[ TCFD 賛同 ]</div>
+        <div class="eval-logo">[ FTSE4Good Index ]</div>
+        <div class="eval-logo">[ CDP A List 2025 ]</div>
       </div>
-      <div class="lc-hint">デフォルトは4点表示。固定4点のまま ＜ ＞ で4点ずつ切り替えるカルーセル</div>
 
+      <!-- 0520MTG/T2：下層ページのH2へのリンクを2本設置（参画／評価それぞれのH2へ） -->
       <div class="sec-cta">
-        <a class="wf-btn">社外からの評価とイニシアチブ</a>
+        <a class="wf-btn">イニシアチブへの参画を見る</a>
+        <a class="wf-btn">外部からの評価を見る</a>
       </div>
     </section>
 
     <!-- ============================================================
-         ⑥ 資料・データ（QUICK ACCESS）
-         ※#2：村上氏「唐突。トピックスの前で」確定 → トピックスの直前へ移動
-    ============================================================ -->
-    <section class="wf-section bg-white pad-sm">
-      <span class="wf-section-marker">6</span>
-      <div class="quick-access">
-        <div class="qa-label">QUICK ACCESS</div>
-        <div class="qa-items">
-          <a class="qa-item">
-            <div class="qa-item-main">
-              <div class="qa-item-title">サステナビリティレポート（PDF：16.0MB）</div>
-              <div class="qa-item-meta">最新版ダウンロード</div>
-            </div>
-            <span class="qa-item-icon"></span>
-          </a>
-          <a class="qa-item">
-            <div class="qa-item-main">
-              <div class="qa-item-title">ESGデータ（Excel：119KB）</div>
-              <div class="qa-item-meta">KPI・指標一覧</div>
-            </div>
-            <span class="qa-item-icon"></span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         ⑦ トピックス
+         ⑥ トピックス
     ============================================================ -->
     <section class="wf-section bg-white">
-      <span class="wf-section-marker">7</span>
+      <span class="wf-section-marker">6</span>
       <div class="top-rich-head">
         <div class="trh-main">
           <h2 class="trh-title">トピックス<span class="trh-sub">サステナビリティ関連の新着情報</span></h2>
@@ -936,10 +934,10 @@ body {
     </section>
 
     <!-- ============================================================
-         ⑧ 関連情報・関連リンク
+         ⑦ 関連情報・関連リンク
     ============================================================ -->
     <section class="wf-section bg-sub">
-      <span class="wf-section-marker">8</span>
+      <span class="wf-section-marker">7</span>
       <h2 class="wf-section-title">関連情報・関連リンク</h2>
 
       <div class="related-grid">
@@ -1087,20 +1085,31 @@ body {
        アノテーションパネル
   ============================================================ -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — サステナビリティTOP（0513 Figma反映版 / 第2次）</h3>
+    <h3>設計ポイント — サステナビリティTOP（0520 MTG反映版）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">—</span>
+      <span class="ann-head">0520 MTG / 0519 Figma反映サマリ</span>
+      <p class="ann-body">
+        <b>T1：</b>クイックアクセスを「戦略の直下」へ移動し、見出しレベルを1段下げサブセクション扱い（連番マーカー外し・タイトル「資料・データ」廃止・上下境界線を弱める）。<br>
+        <b>T2：</b>セクション⑤を「イニシアチブへの参画と外部からの評価」（順序入替）へ改称。カルーセル廃止し4ロゴ1行固定。下層H2へのリンクを2本（参画／評価）設置。<br>
+        <b>T3/T4：</b>ボタンルールを統一。CTA以外のページ遷移はセカンダリ（白）。戦略のみプライマリ例外。マネジメントの「サステナビリティマネジメント」ボタンをプライマリ→セカンダリへ。<br>
+        <b>T6：</b>見出し横「詳しく見る」リンクは0513で全廃済み（再確認）。
+      </p>
+    </div>
 
     <div class="ann-item">
       <span class="ann-num">—</span>
       <span class="ann-head">0513レビュー反映サマリ（第2次）</span>
       <p class="ann-body">
         <b>#1：</b>セクション順を「戦略 → サステナビリティの取り組み → マネジメント」に整流。<br>
-        <b>#2：</b>「資料・データ」を社外評価の後・トピックスの直前へ移動（村上氏「唐突。トピックスの前で」確定）。<br>
+        <b>#2：</b>「資料・データ」を社外評価の後・トピックスの直前へ移動。<b>※0520 T1で更に上位（戦略直下）へ再配置</b>。<br>
         <b>#4：</b>戦略セクション右カラムに「サステナビリティ戦略 概念図PH」を追加。<br>
         <b>#6：</b>見出しを「ESGの取り組みと進捗」→「サステナビリティの取り組み」に改称。<br>
         <b>#7：</b>トピックス一覧リンクを一覧下部（右寄せ）に移設。<br>
-        <b>#8：</b>社外評価ロゴはデフォルト4点表示のまま、左右＜＞で4点ずつ送る固定4点カルーセルに変更。<br>
+        <b>#8：</b>社外評価ロゴは固定4点カルーセル。<b>※0520 T2でカルーセル廃止・1行4ロゴ固定へ更新</b>。<br>
         <b>#11：</b>ヒーロー高を圧縮。リード文（コニカミノルタは…）はヒーロービジュアル内に配置。<br>
-        <b>#12：</b>TOP専用見出しモジュール（連番なし・英字ラベル廃止・短い実線アクセント＋日本語タイトル＋補足サブ）を主要セクションへ適用。グラデ下線は下層見出し専用。戦略の旧キャッチコピーは削除し本文3行構成へ。<br>
+        <b>#12：</b>TOP専用見出しモジュール（連番なし・英字ラベル廃止・短い実線アクセント＋日本語タイトル＋補足サブ）を主要セクションへ適用。<br>
         <b>#13：</b>見出し一体の「詳細を見る」を全廃し末尾の明示CTAへ。
       </p>
     </div>
@@ -1139,31 +1148,31 @@ body {
     </div>
 
     <div class="ann-item">
-      <span class="ann-num">4</span>
-      <span class="ann-head">サステナビリティマネジメント（#13）</span>
+      <span class="ann-num">QA</span>
+      <span class="ann-head">クイックアクセス（T1：サブセクション化）</span>
       <p class="ann-body">
-        本文末に主導線＝「サステナビリティマネジメント」プライマリボタン（黒塗り）＋副導線＝「ステークホルダーエンゲージメント」サブボタン（白）の2段で重要度を明確化。ボタン文言の「の詳細を見る」は全廃。
+        戦略の直下に配置するが、本セクションではなくサブセクション扱い（連番マーカーなし・タイトル「資料・データ」廃止・上下境界を弱める）。MTGで「マネジメント配下に見えないよう差別化」と決定。
+      </p>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">4</span>
+      <span class="ann-head">サステナビリティマネジメント（#13/T3）</span>
+      <p class="ann-body">
+        本文末に主導線＝「サステナビリティマネジメント」と副導線＝「ステークホルダーエンゲージメント」の2ボタン。0520MTG/T3でCTAではないためどちらもセカンダリ（白）に統一。
       </p>
     </div>
 
     <div class="ann-item">
       <span class="ann-num">5</span>
-      <span class="ann-head">社外からの評価とイニシアチブ（#2/#8）</span>
+      <span class="ann-head">イニシアチブへの参画と外部からの評価（T2）</span>
       <p class="ann-body">
-        資料・データの前へ移動（#2）。ロゴはデフォルト4点表示の固定4点を保ちつつ、左右＜＞で4点ずつ送るカルーセルに変更（#8）。
+        タイトル順序を入替（前後逆だったため）。カルーセル廃止し4ロゴ1行固定。下層H2への遷移リンクを「イニシアチブへの参画を見る」「外部からの評価を見る」の2本設置。
       </p>
     </div>
 
     <div class="ann-item">
       <span class="ann-num">6</span>
-      <span class="ann-head">資料・データ（#2）</span>
-      <p class="ann-body">
-        村上氏「唐突。トピックスの前で」確定を受け、社外評価の後・トピックスの直前へ移動。UIは大きなカードをやめ、左ラベル「QUICK ACCESS」＋青の縦アクセント／右に「タイトル＋補足＋外部リンクアイコン＋下線」を横並びにしたコンパクトなクイックアクセスへ刷新。
-      </p>
-    </div>
-
-    <div class="ann-item">
-      <span class="ann-num">7</span>
       <span class="ann-head">トピックス（#7）</span>
       <p class="ann-body">
         新着5件の行リスト。一覧リンクは見出し横ではなくリスト下部の右寄せボタンに移設。年次告知はEVENTカード1枚。
@@ -1171,7 +1180,7 @@ body {
     </div>
 
     <div class="ann-item">
-      <span class="ann-num">8</span>
+      <span class="ann-num">7</span>
       <span class="ann-head">関連情報・関連リンク</span>
       <p class="ann-body">
         最下部に「報告・データ／方針・基準」2分類のテキストリンク2列。読了後の追加導線を最小限に。
