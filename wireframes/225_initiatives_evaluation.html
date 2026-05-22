@@ -241,8 +241,8 @@ body {
   letter-spacing: -0.01em;
   flex: 1;
 }
-/* v2.4：ロゴ挿入レイアウト仕様（KM指示）
-   ・ロゴ1〜2個 → 本文を左・ロゴは右側に「同一幅で1カラム縦積み」（既定）
+/* レイアウト仕様（0521：KM指示で画像を左配置に変更）
+   ・ロゴ1〜2個 → ロゴを左・本文は右（ロゴが無いエリアは本文が全幅）
    ・ロゴ3個以上／写真系 → 本文を上に全幅・ロゴは横幅全面の3〜4カラムグリッド（.logos-grid） */
 .csr-row-content {
   padding: 18px 26px 22px;
@@ -251,11 +251,10 @@ body {
   align-items: flex-start;
   gap: 28px;
 }
-.csr-row-body { order: 1; }
 
-/* ロゴ1〜2個：右側に固定幅の画像スペース・同一幅で縦1カラム */
+/* ロゴ1〜2個：左側に固定幅の画像スペース・同一幅で縦1カラム */
 .csr-logo-strip {
-  order: 2;
+  order: 1;
   flex: 0 0 208px;
   display: flex;
   flex-direction: column;
@@ -286,8 +285,9 @@ body {
   line-height: 1.3;
 }
 
-/* 本文ブロック（左カラム） */
+/* 本文ブロック（右カラム）。ロゴが無いエリアは flex:1 で全幅を使用 */
 .csr-row-body {
+  order: 2;
   flex: 1; min-width: 0;
   display: flex; flex-direction: column; gap: 10px;
 }
@@ -421,7 +421,8 @@ body {
   padding-top: 0;
   border-top: none;
 }
-/* 0520MTG/225-#1：トリガーは「免責事項」リンク（小さい文字・リンク風・閉じた状態が既定） */
+/* 0520MTG/225-#1：トリガーは「免責事項」リンク（小さい文字・リンク風・閉じた状態が既定）
+   0521：アコーディオン機能であることが分かるよう ＋/− マーカーを付与 */
 .disclaimer-toggle summary {
   list-style: none;
   display: inline-block;
@@ -434,6 +435,15 @@ body {
 }
 .disclaimer-toggle summary::-webkit-details-marker { display: none; }
 .disclaimer-toggle summary::marker { content: ''; }
+.disclaimer-toggle summary::before {
+  content: '＋ ';
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: 700;
+  margin-right: 2px;
+  text-decoration: none;
+  display: inline-block;
+}
+.disclaimer-toggle[open] summary::before { content: '− '; }
 .disclaimer-toggle summary:hover { color: var(--c-text-h); }
 .disclaimer-toggle p {
   font-size: 9px;
