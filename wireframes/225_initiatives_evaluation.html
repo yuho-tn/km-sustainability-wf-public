@@ -248,8 +248,15 @@ body {
   padding: 18px 26px 22px;
   background: var(--c-white);
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
   gap: 28px;
+}
+/* 0521：csr-row-content 直下のサブリストは全幅で改行（ロゴ列下も使い左余白なし） */
+.csr-row-content > .sub-list.is-fullwidth {
+  order: 3;
+  flex: 1 0 100%;
+  margin-top: 6px;
 }
 
 /* ロゴ1〜2個：左側に固定幅の画像スペース・同一幅で縦1カラム */
@@ -435,15 +442,15 @@ body {
 }
 .disclaimer-toggle summary::-webkit-details-marker { display: none; }
 .disclaimer-toggle summary::marker { content: ''; }
-.disclaimer-toggle summary::before {
-  content: '＋ ';
+.disclaimer-toggle summary::after {
+  content: ' ＋';
   font-family: 'Helvetica Neue', sans-serif;
   font-weight: 700;
-  margin-right: 2px;
+  margin-left: 4px;
   text-decoration: none;
   display: inline-block;
 }
-.disclaimer-toggle[open] summary::before { content: '− '; }
+.disclaimer-toggle[open] summary::after { content: ' −'; }
 .disclaimer-toggle summary:hover { color: var(--c-text-h); }
 .disclaimer-toggle p {
   font-size: 9px;
@@ -691,17 +698,18 @@ body {
               <p class="csr-row-desc">
                 2019年の「気候変動アクション日本サミット」では当社グループの担当役員がパネルディスカッションへ登壇。2024年4月、国際水準での排出削減を実現するカーボンプライシングへ改善を、11月には、1.5℃目標と整合する野心的な2035年目標を日本政府に求めるメッセージを、JCIを通じて発表しました。
               </p>
-              <div class="sub-list linked">
-                <div class="sub-list-label">JCIメッセージへの賛同</div>
-                <ul>
-                  <li>2030年の再生可能エネルギー電力目標を40〜50％に</li>
-                  <li>2030年の日本の温室効果ガス削減目標（NDC）を45％以上</li>
-                  <li>いまこそ再生可能エネルギーの導入加速を</li>
-                  <li>再生可能エネルギーとカーボンプライシングで二つの危機を打開する</li>
-                  <li>カーボンプライシング提言：2030年GHG排出削減目標と国際競争力強化の同時達成に向けて</li>
-                  <li>1.5℃目標と整合する野心的な2035年目標を</li>
-                </ul>
-              </div>
+            </div>
+            <!-- 0521：JCIメッセージへの賛同は左右幅全面（ロゴ列下も使い左余白を残さない） -->
+            <div class="sub-list linked is-fullwidth">
+              <div class="sub-list-label">JCIメッセージへの賛同</div>
+              <ul>
+                <li>2030年の再生可能エネルギー電力目標を40〜50％に</li>
+                <li>2030年の日本の温室効果ガス削減目標（NDC）を45％以上</li>
+                <li>いまこそ再生可能エネルギーの導入加速を</li>
+                <li>再生可能エネルギーとカーボンプライシングで二つの危機を打開する</li>
+                <li>カーボンプライシング提言：2030年GHG排出削減目標と国際競争力強化の同時達成に向けて</li>
+                <li>1.5℃目標と整合する野心的な2035年目標を</li>
+              </ul>
             </div>
             </div>
           </details>
