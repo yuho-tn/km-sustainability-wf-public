@@ -195,6 +195,28 @@ body {
 }
 
 /* ============================================================
+   ダウンロードリンク（PDF/XLSX/DOCX バッジ付き）
+   module-catalog 既存 .wf-dl-link と同型
+============================================================ */
+.wf-dl-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; color: var(--c-text-h); font-weight: 600;
+  cursor: default;
+}
+.wf-dl-link::before {
+  content: 'PDF'; font-size: 9px; font-weight: 700;
+  background: var(--c-text-h); color: var(--c-white);
+  padding: 2px 6px; margin-right: 4px;
+}
+.wf-dl-link.is-xlsx::before { content: 'XLSX'; }
+.wf-dl-link.is-docx::before { content: 'DOCX'; }
+.wf-dl-link::after { content: '↓'; font-size: 11px; }
+.wf-dl-link-row {
+  display: block;
+  margin-top: 6px;
+}
+
+/* ============================================================
    v2.1 統一モジュール：CSR-ROW（1カラム縦積み・アコーディオン化）
    - ロゴ数 1〜4 が混在しても統一感を保つ汎用行モジュール
    - 全ブロックを <details open> でアコーディオン化（デフォルト開）
@@ -983,15 +1005,12 @@ body {
               <p class="csr-row-desc">
                 コニカミノルタは、気候変動への対応をはじめとする先進的な環境の取り組みを、サミットや重要な国際会議の場で世界へ情報発信しています。
               </p>
-              <div class="sub-list dotted">
-                <div class="sub-list-label">過去のアドボカシー記事</div>
-                <ul>
-                  <li>2015年6月　G7ドイツ〔エルマウ〕</li>
-                  <li>2015年11月　COP21フランス〔パリ〕</li>
-                  <li>2016年5月　G7日本〔伊勢志摩〕</li>
-                  <li>2016年11月　COP22 モロッコ〔マラケシュ〕</li>
-                  <li>2017年5月　G7イタリア〔タオルミーナ〕</li>
-                </ul>
+              <div class="csr-row-links">
+                <div class="wf-dl-link-row"><a class="wf-dl-link">2015年6月　G7ドイツ〔エルマウ〕</a></div>
+                <div class="wf-dl-link-row"><a class="wf-dl-link">2015年11月　COP21フランス〔パリ〕</a></div>
+                <div class="wf-dl-link-row"><a class="wf-dl-link">2016年5月　G7日本〔伊勢志摩〕</a></div>
+                <div class="wf-dl-link-row"><a class="wf-dl-link">2016年11月　COP22 モロッコ〔マラケシュ〕</a></div>
+                <div class="wf-dl-link-row"><a class="wf-dl-link">2017年5月　G7イタリア〔タオルミーナ〕</a></div>
               </div>
             </div>
             </div>
@@ -1459,6 +1478,10 @@ body {
       <div class="ann-row">
         <span class="ann-row-label">ルール統一</span>
         L2背景を一律白に統一（社外からの評価セクションの bg-sub を bg-white に）。寸法を設計参考 KM_PC_L3_W1100px（全体1280 / コンテンツ880）に整合（--page-w 1560）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">アドボカシー記事（A区分）</span>
+        「過去のアドボカシー記事」の <b>.sub-list.dotted</b>（グレー背景＋全周ボーダーの◆リスト）を廃止。5件を <b>.wf-dl-link</b>（PDFバッジ＋↓）の関連リンク扱いに置換（module-catalog既存スタイル流用）。ラベル「過去のアドボカシー記事」も廃止（H2「アドボカシー記事の発信」で文脈明示）。
       </div>
     </div>
 
