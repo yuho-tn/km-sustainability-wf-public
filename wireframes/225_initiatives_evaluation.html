@@ -195,6 +195,38 @@ body {
 }
 
 /* ============================================================
+   認定ロゴ2カラムモジュール（くるみん／えるぼし 6ロゴ用）
+   0524 桐原FB：認定種別ごとに左右2カラム＋各カラム内で2列×nラインの compact 配置
+   - .csr-row-content 直下に置くと全幅で改行配置
+   - JS の auto logos-grid（.csr-logo-strip カウント）には引っかからない（別module）
+============================================================ */
+.csr-cert-2col {
+  flex: 1 0 100%;
+  order: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 4px;
+}
+.csr-cert-col-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  margin-bottom: 6px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--c-border);
+}
+.csr-cert-logos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+.csr-cert-logos .csr-logo {
+  width: 100%;
+  height: 78px;
+}
+
+/* ============================================================
    リンクリスト共通モジュール（複数リンク掲載時の標準UI）
    0523 桐原FB：現サイト同様の「〈タイトル〉＋テキストリンク」シンプルUI（背景・ボーダーなし）
    - 使い方：<div class="csr-link-block"><div class="csr-link-list-title">〈XX〉</div>
@@ -1302,24 +1334,40 @@ body {
             </div>
           </details>
 
-          <!-- くるみん／えるぼし（2ロゴ） -->
+          <!-- くるみん／えるぼし（6ロゴ：2カラム×各3ロゴ） 0524 桐原FB反映 -->
           <details class="csr-row" open>
             <summary class="csr-row-summary">
               <span class="csr-row-title">「くるみん」認定と「えるぼし」認定を取得</span>
             </summary>
             <div class="csr-row-content">
-              <div class="csr-logo-strip">
-              <div class="csr-logo"><span class="csr-logo-label">[ くるみん認定 ]</span></div>
-              <div class="csr-logo"><span class="csr-logo-label">[ えるぼし認定 ]</span></div>
-            </div>
-            <div class="csr-row-body">
-              <p class="csr-row-desc">
-                コニカミノルタ（株）および日本のグループ会社においては、厚生労働大臣から子育てサポート企業として「くるみん」、女性の活躍推進に関する状況等が優良な企業として「えるぼし」の認定を受けています。
-              </p>
-              <div class="csr-row-companies">
-                <span class="csr-row-companies-label">対象会社：</span>コニカミノルタ（株）／コニカミノルタジャパン（株）／コニカミノルタ情報システム（株）
+              <!-- 0524 桐原FB：実サイトには6ロゴが入っているため、2カラム（左=くるみん認定／右=えるぼし認定）に分け、
+                   各カラム内2列×nラインでコンパクトに配置。ロゴ名称はWF仮置き（KM確認予定）。 -->
+              <div class="csr-cert-2col">
+                <div class="csr-cert-col">
+                  <div class="csr-cert-col-title">「くるみん」認定</div>
+                  <div class="csr-cert-logos">
+                    <div class="csr-logo"><span class="csr-logo-label">[ くるみん ]</span></div>
+                    <div class="csr-logo"><span class="csr-logo-label">[ プラチナくるみん ]</span></div>
+                    <div class="csr-logo"><span class="csr-logo-label">[ トライくるみん ]</span></div>
+                  </div>
+                </div>
+                <div class="csr-cert-col">
+                  <div class="csr-cert-col-title">「えるぼし」認定</div>
+                  <div class="csr-cert-logos">
+                    <div class="csr-logo"><span class="csr-logo-label">[ えるぼし1段階目 ]</span></div>
+                    <div class="csr-logo"><span class="csr-logo-label">[ えるぼし2段階目 ]</span></div>
+                    <div class="csr-logo"><span class="csr-logo-label">[ プラチナえるぼし ]</span></div>
+                  </div>
+                </div>
               </div>
-            </div>
+              <div class="csr-row-body">
+                <p class="csr-row-desc">
+                  コニカミノルタ（株）および日本のグループ会社においては、厚生労働大臣から子育てサポート企業として「くるみん」、女性の活躍推進に関する状況等が優良な企業として「えるぼし」の認定を受けています。
+                </p>
+                <div class="csr-row-companies">
+                  <span class="csr-row-companies-label">対象会社：</span>コニカミノルタ（株）／コニカミノルタジャパン（株）／コニカミノルタ情報システム（株）
+                </div>
+              </div>
             </div>
           </details>
         </section>
@@ -1483,6 +1531,10 @@ body {
       <div class="ann-row">
         <span class="ann-row-label">ルール統一</span>
         L2背景を一律白に統一（社外からの評価セクションの bg-sub を bg-white に）。寸法を設計参考 KM_PC_L3_W1100px（全体1280 / コンテンツ880）に整合（--page-w 1560）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">0524 桐原FB（A区分・くるみん/えるぼし 6ロゴ化）</span>
+        実サイト（konicaminolta.jp/about/csr/csr/vision/evaluation.html）には6ロゴが入っているため、従来の2ロゴ縦並びを廃止し、新規モジュール <b>.csr-cert-2col</b>（2カラム grid＋各カラム内2列 grid）に置換。<b>左：「くるみん」認定（3ロゴ）／右：「えるぼし」認定（3ロゴ）</b>でコンパクト配置。各ロゴ名称は仮置き（KM確認予定）。<b>.csr-row-content</b> 直下に order:1 / flex:1 0 100% で全幅配置されるため、本文・対象会社ブロックがその下に続く構成。閉じた状態のサマリーロゴプレビューは本ブロックでは省略（6ロゴはヘッダ幅に収まらないため）。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">0523 桐原FB（A区分・3箇所統一・共通モジュール化）</span>
