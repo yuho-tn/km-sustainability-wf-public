@@ -29,8 +29,8 @@
   --c-ann-bg:   #FFFBF0;
   --c-ann-bdr:  #C8A000;
 
-  --content-w:  1080px;
-  --page-w:     1280px;
+  --content-w:  880px;
+  --page-w:     1560px;  /* 0524 v5.0：1560=wf-page 1280+annotation 280 */
   --pad-section: 64px;
   --pad-section-sm: 40px;
   --pad-h: 100px;
@@ -433,9 +433,11 @@ body {
 }
 .materiality-row:last-child { margin-bottom: 0; }
 
+/* 0524 桐原FB#11：マテリアリティへのナンバリング(01〜05)は廃止。
+   2カラム grid（アイコン＋タイトル＋トグル）に変更。 */
 .materiality-head {
   display: grid;
-  grid-template-columns: 32px 32px 1fr auto;
+  grid-template-columns: 32px 1fr auto;
   align-items: center;
   gap: 14px;
   padding: 12px 22px;
@@ -453,11 +455,7 @@ body {
   letter-spacing: 0.02em;
   line-height: 1.1; text-align: center;
 }
-.materiality-num {
-  font-size: 16px; font-weight: 700; color: var(--c-text-h);
-  font-family: 'Helvetica Neue', sans-serif; letter-spacing: 0;
-  text-align: center;
-}
+.materiality-num { display: none; }  /* 0524 FB#11：廃止 */
 .materiality-title {
   font-size: 15px; font-weight: 700; color: var(--c-text-h);
   line-height: 1.4;
@@ -491,16 +489,21 @@ body {
   display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
   margin-top: 8px;
 }
+/* 0524 桐原/池田FB#8：ブロックリンク風と紛らわしい全周ボーダーを廃止し、装飾を最小化。
+   タグ＋テキストの非ブロックUIに調整（左の縦罫だけで弱く区切る）。 */
 .risk-opp-card {
-  background: var(--c-white); border: 1px solid var(--c-border);
-  padding: 14px 18px;
+  background: transparent;
+  border: none;
+  border-left: 2px solid var(--c-border);
+  padding: 4px 0 4px 14px;
 }
 .risk-opp-card-tag {
   display: inline-block;
   font-size: 10px; font-weight: 700; color: var(--c-text-h);
-  background: var(--c-bg-sub);
-  padding: 5px 14px;
-  letter-spacing: 0.1em; margin-bottom: 8px;
+  padding: 0;
+  letter-spacing: 0.1em; margin-bottom: 6px;
+  border-bottom: 1px solid var(--c-border);
+  padding-bottom: 2px;
 }
 .risk-opp-card-text {
   font-size: 11px; color: var(--c-text); line-height: 1.85;
@@ -834,6 +837,88 @@ body {
 }
 .img-zoom-btn::before { content: "+"; }
 .img-zoom-btn:hover { background: #2a2a2a; }
+
+/* ============================================================
+   UNIFIED_RULES.md v5.0 共通モジュール（0524 適用）
+   - テキストリンク：→ 下線スタイル
+   - .csr-link-block：〈タイトル〉付き複数リンクリスト共通モジュール
+============================================================ */
+.text-link {
+  display: inline;
+  font-size: 12px;
+  color: var(--c-text-h);
+  font-weight: 600;
+  cursor: default;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.text-link::before {
+  content: '→ ';
+  display: inline-block;
+  margin-right: 2px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  text-decoration: none;
+}
+.text-link-row {
+  display: block;
+  margin-top: 6px;
+  margin-bottom: 4px;
+}
+.csr-row-links { margin-top: 4px; }
+.csr-row-links .text-link-row { margin: 3px 0; }
+.csr-link-block { /* 単独使用時は普通のブロック */ }
+.csr-link-list-title {
+  font-size: 12px; font-weight: 700;
+  color: var(--c-text-h);
+  margin-top: 4px; margin-bottom: 2px;
+  letter-spacing: 0.02em;
+}
+
+/* ============================================================
+   v5.0 右コンパクトアンカーナビ（160px 固定）— 225/077 と同型
+============================================================ */
+.wf-layout-with-anchornav {
+  display: grid; grid-template-columns: 1fr 160px;
+  gap: 0;
+  padding-right: var(--pad-h);
+  position: relative;
+}
+.wf-anchornav-main { min-width: 0; }
+.wf-anchornav-main .wf-section { padding-right: calc(160px + var(--pad-h) + 28px); margin-right: calc(-160px - var(--pad-h)); }
+.wf-anchor-nav {
+  position: sticky; top: 76px;
+  align-self: start;
+  margin-top: 28px;
+  z-index: 3;
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+  padding: 16px 16px 18px;
+  font-size: 11px;
+}
+.wf-anchor-nav-title {
+  font-size: 9px; font-weight: 700;
+  color: var(--c-text-xs);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding-bottom: 8px; margin-bottom: 10px;
+  border-bottom: 1px dashed var(--c-border);
+}
+.wf-anchor-nav-item {
+  display: block;
+  font-size: 11px; color: var(--c-text-h); font-weight: 600;
+  text-decoration: none;
+  padding: 4px 0;
+  cursor: default;
+  line-height: 1.4;
+}
+.wf-anchor-nav-item:hover { color: var(--c-text); }
+.wf-anchor-nav-item.is-sub {
+  padding-left: 12px;
+  font-size: 10px; font-weight: 500; color: var(--c-text);
+}
+.wf-anchor-nav-item.is-current { color: var(--c-text); font-weight: 700; }
 </style>
 </head>
 <body>
@@ -879,12 +964,16 @@ body {
       <div class="wf-img-label">キービジュアル画像（全幅）<br>サステナビリティ戦略イメージ（価値創造・共創・技術等）</div>
     </div>
 
+    <!-- 0524 v5.0：右コンパクトアンカーナビ採用のため2カラムレイアウトでラップ -->
+    <div class="wf-layout-with-anchornav">
+      <div class="wf-anchornav-main">
+
     <!-- ============================================================
          セクション A：コニカミノルタのサステナビリティ戦略
     ============================================================ -->
     <section class="wf-section bg-white">
       <span class="wf-section-marker">A</span>
-      <h2 class="wf-section-title">コニカミノルタのサステナビリティ戦略</h2>
+      <h2 class="wf-section-title" id="strategy">コニカミノルタのサステナビリティ戦略</h2>
 
       <p class="wf-section-desc">
         （文章はダミーです）コニカミノルタは、社会課題の解決と、それにつながる産業知能への進化を、独自の技術と人材による価値創出で実現し、顧客との共創を通じて成長の好循環を生み出していきます。サステナビリティ課題が顕在化・深刻化するなかで、これは当社にとってリスクであり同時に機会でもあると認識しています。リスクマネジメントを必須の取り組みとして、お客様をはじめとしたステークホルダーや社会の要請に網羅的に対応し、ネガティブインパクトの最小化を図ります。一方で機会については、当社の強みである「顧客との共創力」「技術の融合」「多様な人財」を活かして獲得し、ポジティブインパクトの最大化を目指します。本ページでは、サステナビリティ視点から見たコニカミノルタの価値創造ストーリーをご紹介します。
@@ -907,16 +996,16 @@ body {
     <!-- ============================================================
          セクション B：コニカミノルタのマテリアリティ
     ============================================================ -->
-    <section class="wf-section bg-sub">
+    <section class="wf-section bg-white">
       <span class="wf-section-marker">B</span>
-      <h2 class="wf-section-title">コニカミノルタのマテリアリティ</h2>
+      <h2 class="wf-section-title" id="materiality">コニカミノルタのマテリアリティ</h2>
 
       <p class="wf-section-desc">
         （文章はダミーです）マテリアリティを軸に、事業活動を通じて社会課題の解決に貢献することで、中長期の企業価値向上につなげます。新中計や成長の芽でも社会課題（CE：サーキュラーエコノミー、脱炭素、GX）からの事業創出を企図しています。
       </p>
 
       <!-- B1: マテリアリティの位置づけ -->
-      <h3 class="wf-sub-title" style="margin-top:32px;">マテリアリティの位置づけ</h3>
+      <h3 class="wf-sub-title" id="b-positioning" style="margin-top:32px;">マテリアリティの位置づけ</h3>
 
       <h4 class="wf-card-title" style="margin-top:6px; margin-bottom:14px;">5つのマテリアリティ（重要課題）を軸に、事業を通じて社会課題の解決に貢献</h4>
 
@@ -936,29 +1025,10 @@ body {
         そして、これらのマテリアリティごとに「2030年に目指す姿」を定め、中長期的な価値創出の方向性を示しています。
       </p>
 
-      <!-- B2: 価値創造プロセス -->
-      <h3 class="wf-sub-title" style="margin-top:36px;">価値創造プロセス</h3>
+      <!-- 0524 村上FB#2：価値創造プロセスは5つのマテリアリティの後に移動（このセクションの末尾） -->
 
-      <p style="font-size:13px; color:var(--c-text); line-height:1.95; margin-bottom:14px;">
-        （文章はダミーです）当社グループの強みである無形資産（顧客関係／技術の融合／多様な人財）を融合させ、4つの事業群を通じた「顧客との共創」により生み出される顧客価値、結果としての経済価値であるキャッシュ・フローを創出し、環境・社会課題の解決のインパクトを拡大していく価値創造プロセスを持続的に繰り返していくことで企業の成長を図っていきます。
-      </p>
-
-      <!-- 価値創造プロセス図 PH（現行サイト踏襲：バックキャスティング型） -->
-      <div class="process-figure-ph" style="aspect-ratio: 16 / 8;">
-        <span class="process-figure-ph-label">
-          [ 価値創造プロセス図 PH｜<strong>Backcasting（社会課題起点）</strong> ← マテリアリティ5アイコン ← <strong>2030 経営ビジョン Imaging to the People</strong><br>
-          INPUT（経営資本：財務／顧客関係／技術の融合／多様な人財）→ 事業活動（インダストリー／DWP／プロプリント／画像ソリューション／ガバナンス）<br>
-          → 顧客との共創 → OUTPUT（みたいに応える顧客価値提供）→ OUTCOME（キャッシュフロー創出）→ IMPACT（社会課題の解決）]
-        </span>
-        <span class="img-zoom-btn"></span>
-      </div>
-
-      <p style="font-size:11px; color:var(--c-text-xs); margin-top:8px; line-height:1.7;">
-        マテリアリティ特定の詳細なプロセスについては、下記「マテリアリティの評価・特定プロセス」をご覧ください。
-      </p>
-
-      <!-- B3: マテリアリティの評価・特定プロセス -->
-      <h3 class="wf-sub-title" style="margin-top:36px;">マテリアリティの評価・特定プロセス</h3>
+      <!-- B2: マテリアリティの評価・特定プロセス -->
+      <h3 class="wf-sub-title" id="b-evaluation" style="margin-top:36px;">マテリアリティの評価・特定プロセス</h3>
 
       <p style="font-size:13px; color:var(--c-text); line-height:1.9; margin-bottom:18px;">
         コニカミノルタは、GRIスタンダードやSDGsなどの国際的なフレームワークやガイドライン、各専門分野のマクロトレンドなどを参照しながら環境・社会・経済の中で課題を広範囲にリストアップし、ステークホルダーから当社へ寄せられる多様な評価・対話・要請からも課題を抽出。それらの課題について「ステークホルダーにとっての重要度」「事業としての重要度」の2軸で評価し、5段階の評価基準で重要度を設定。事業推進会議での妥当性確認を経てマテリアリティとして特定しています。
@@ -1097,8 +1167,8 @@ body {
         </div>
       </div>
 
-      <!-- B4: 5つのマテリアリティ（アコーディオン） -->
-      <h3 class="wf-sub-title" style="margin-top:44px;">5つのマテリアリティ</h3>
+      <!-- B3: 5つのマテリアリティ（アコーディオン） -->
+      <h3 class="wf-sub-title" id="b-five-materialities" style="margin-top:44px;">5つのマテリアリティ</h3>
       <p style="font-size:12px; color:var(--c-text-s); line-height:1.8; margin-bottom:18px;">
         各マテリアリティについて「ありたい姿」「社会・環境課題認識／機会／リスク」「KPI 目標と実績」を確認できます。各見出しのクリックで開閉します。新中計に合わせてアップデート、分量は1/2〜1/3で簡潔に記載します。
       </p>
@@ -1314,204 +1384,49 @@ body {
         </div>
 
       </div>
+
+      <!-- B4: 価値創造プロセス 0524 村上FB#2：5つのマテリアリティの後に移動 -->
+      <h3 class="wf-sub-title" id="b-value-creation" style="margin-top:44px;">価値創造プロセス</h3>
+
+      <p style="font-size:13px; color:var(--c-text); line-height:1.95; margin-bottom:14px;">
+        （文章はダミーです）当社グループの強みである無形資産（顧客関係／技術の融合／多様な人財）を融合させ、4つの事業群を通じた「顧客との共創」により生み出される顧客価値、結果としての経済価値であるキャッシュ・フローを創出し、環境・社会課題の解決のインパクトを拡大していく価値創造プロセスを持続的に繰り返していくことで企業の成長を図っていきます。
+      </p>
+
+      <!-- 価値創造プロセス図 PH（現行サイト踏襲：バックキャスティング型） -->
+      <div class="process-figure-ph" style="aspect-ratio: 16 / 8;">
+        <span class="process-figure-ph-label">
+          [ 価値創造プロセス図 PH｜<strong>Backcasting（社会課題起点）</strong> ← マテリアリティ5アイコン ← <strong>2030 経営ビジョン Imaging to the People</strong><br>
+          INPUT（経営資本：財務／顧客関係／技術の融合／多様な人財）→ 事業活動（インダストリー／DWP／プロプリント／画像ソリューション／ガバナンス）<br>
+          → 顧客との共創 → OUTPUT（みたいに応える顧客価値提供）→ OUTCOME（キャッシュフロー創出）→ IMPACT（社会課題の解決）]
+        </span>
+      </div>
     </section>
 
     <!-- ============================================================
-         セクション C：価値創出事例
+         セクション C：事業活動によるマテリアリティへの取り組み
+         （旧「価値創出事例」） 0524 村上FB#5：タイトル変更
     ============================================================ -->
     <section class="wf-section bg-white">
       <span class="wf-section-marker">C</span>
-      <h2 class="wf-section-title">価値創出事例</h2>
+      <h2 class="wf-section-title" id="cases">事業活動によるマテリアリティへの取り組み</h2>
 
       <p class="wf-section-desc">
-        （文章はダミーです）新中計重点領域であるインダストリー事業と、サステナビリティと関連性が深い成長の芽を中心に、コニカミノルタが社会・環境価値と経済価値を同時に創出する事業事例を紹介します。各事例について、取り組み概要・経済価値・社会／環境価値（市場データを含む）・対応するマテリアリティを掲載しています。経済価値の詳細はIR情報を参照ください。
+        （文章はダミーです）コニカミノルタは、5つのマテリアリティを軸に事業を通じた社会課題の解決と経済価値の創出を両立しています。本セクションでは、各マテリアリティに対応する代表的な事業事例を、マテリアリティ毎にまとめてご紹介します。各事例には取り組み概要・経済価値・社会／環境価値および関連製品・事業紹介ページへのリンクを掲載しています。
       </p>
 
-      <!-- カテゴリ：インダストリー事業 -->
-      <h3 class="wf-sub-title" style="margin-top:32px; margin-bottom:14px;">インダストリー事業<span style="font-size:11px; font-weight:400; color:var(--c-text-s); letter-spacing:0.02em; margin-left:10px;">新中計重点領域・売上割合が大きい2事業</span></h3>
+      <!-- 0524 村上FB#5/#6/#7：マテリアリティ毎に5カテゴリで再構成、CASE番号廃止、各事例に製品・事業紹介ページリンク追加 -->
 
+      <!-- マテリアリティ① 働きがい向上および企業活性化 -->
+      <h3 class="wf-sub-title" id="c-mat01" style="margin-top:32px; margin-bottom:14px;">働きがい向上および企業活性化</h3>
       <div class="case-acc">
         <div class="case-row">
           <div class="case-head">
-            <span class="case-head-cat">CASE 01</span>
-            <span class="case-head-title">センシング（HIS／モビリティ）</span>
-            <span class="case-head-toggle"></span>
-          </div>
-          <div class="case-body">
-            <div class="case-body-img">
-              <span class="case-body-img-label">[ センシング 製品PH ]</span>
-            </div>
-            <div class="case-body-content">
-              <div class="case-card-mat">
-                <span class="case-mat-prefix">対応マテリアリティ</span>
-                <span class="case-mat-icon">03</span>
-                <span class="case-mat-label">社会における安全・安心確保</span>
-              </div>
-              <p class="case-body-summary">
-                （文章はダミーです）ハイパースペクトルイメージング（HIS）と車載モビリティセンシング技術を中心に、検査・モニタリング・自動運転支援などの領域で安全・安心を支える。
-              </p>
-              <div class="case-value-block">
-                <h4 class="wf-card-title has-mark">経済価値</h4>
-                <p>市場CAGR / 売上拡大に寄与（IR情報）</p>
-              </div>
-              <div class="case-value-block">
-                <h4 class="wf-card-title has-mark">社会・環境価値</h4>
-                <p>食品・産業安全の検査自動化、労働力不足の解決</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="case-row is-collapsed">
-          <div class="case-head">
-            <span class="case-head-cat">CASE 02</span>
-            <span class="case-head-title">機能材料（SANUQI／SAZMA等）</span>
-            <span class="case-head-toggle"></span>
-          </div>
-          <div class="case-body">
-            <div class="case-body-img">
-              <span class="case-body-img-label">[ ディスプレイ用フィルム PH ]</span>
-            </div>
-            <div class="case-body-content">
-              <div class="case-card-mat">
-                <span class="case-mat-prefix">対応マテリアリティ</span>
-                <span class="case-mat-icon">04</span>
-                <span class="case-mat-label">気候変動への対応</span>
-              </div>
-              <p class="case-body-summary">
-                （文章はダミーです）ディスプレイ用新素材フィルムを中心に、独自の薄膜・光学制御技術で省エネ・高画質化に貢献。OLED TV向け反射防止フィルム等を展開。
-              </p>
-              <div class="case-value-block">
-                <h4 class="wf-card-title has-mark">経済価値</h4>
-                <p>高機能フィルム市場のシェア拡大、付加価値率向上</p>
-              </div>
-              <div class="case-value-block">
-                <h4 class="wf-card-title has-mark">社会・環境価値</h4>
-                <p>CO2排出量削減（製造工程・使用段階）、省資源化</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- カテゴリ：成長の芽 -->
-      <h3 class="wf-sub-title" style="margin-top:32px; margin-bottom:14px;">成長の芽<span style="font-size:11px; font-weight:400; color:var(--c-text-s); letter-spacing:0.02em; margin-left:10px;">サステナビリティと関連性が深い3事業</span></h3>
-
-      <div class="case-acc">
-        <div class="case-row">
-          <div class="case-head">
-            <span class="case-head-cat">CASE 03</span>
-            <span class="case-head-title">半導体検査装置向け光学コンポーネント</span>
-            <span class="case-head-toggle"></span>
-          </div>
-          <div class="case-body">
-            <div class="case-body-img">
-              <span class="case-body-img-label">[ 光学コンポーネント PH ]</span>
-            </div>
-            <div class="case-body-content">
-              <div class="case-card-mat">
-                <span class="case-mat-prefix">対応マテリアリティ</span>
-                <span class="case-mat-icon">05</span>
-                <span class="case-mat-label">有限な資源の有効利用</span>
-              </div>
-              <p class="case-body-summary">
-                （文章はダミーです）先端半導体製造プロセスの微細化に対応した検査装置向け高精度光学部品を提供。半導体産業の歩留まり向上・効率化に貢献。
-              </p>
-              <div class="case-value-block">
-                <h4 class="wf-card-title has-mark">経済価値</h4>
-                <p>半導体検査装置市場成長に連動した売上拡大</p>
-              </div>
-              <div class="case-value-block">
-                <h4 class="wf-card-title has-mark">社会・環境価値</h4>
-                <p>半導体産業の生産性向上、不良削減による省資源化</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="case-row is-collapsed">
-          <div class="case-head">
-            <span class="case-head-cat">CASE 04</span>
-            <span class="case-head-title">ペロブスカイト太陽電池バリアフィルム</span>
-            <span class="case-head-toggle"></span>
-          </div>
-          <div class="case-body">
-            <div class="case-body-img">
-              <span class="case-body-img-label">[ ペロブスカイト関連PH ]</span>
-            </div>
-            <div class="case-body-content">
-              <div class="case-card-mat">
-                <span class="case-mat-prefix">対応マテリアリティ</span>
-                <span class="case-mat-icon">04</span>
-                <span class="case-mat-label">気候変動への対応</span>
-              </div>
-              <p class="case-body-summary">
-                （文章はダミーです）脱炭素社会の実現に必須となる次世代太陽電池の重要パーツを提供。耐久性・耐水性・デバイス適用性に優れたバリアフィルムをKMの技術力で実現。
-              </p>
-              <div class="case-value-block">
-                <h4 class="wf-card-title has-mark">経済価値</h4>
-                <p>市場規模 〜2035年で500〜800億円／CAGR 35%以上</p>
-              </div>
-              <div class="case-value-block">
-                <h4 class="wf-card-title has-mark">社会・環境価値</h4>
-                <p>再エネ普及への貢献、CO2排出量削減（社会全体）</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="case-row is-collapsed">
-          <div class="case-head">
-            <span class="case-head-cat">CASE 05</span>
-            <span class="case-head-title">インテリジェント再生材</span>
-            <span class="case-head-toggle"></span>
-          </div>
-          <div class="case-body">
-            <div class="case-body-img">
-              <span class="case-body-img-label">[ 再生材選別工程PH ]</span>
-            </div>
-            <div class="case-body-content">
-              <div class="case-card-mat">
-                <span class="case-mat-prefix">対応マテリアリティ</span>
-                <span class="case-mat-icon">05</span>
-                <span class="case-mat-label">有限な資源の有効利用</span>
-              </div>
-              <p class="case-body-summary">
-                （文章はダミーです）ハイパースペクトルイメージング技術を活用した混合廃棄物の高精度選別により、マテリアルリサイクルの促進と資源循環型社会の実現に貢献。
-              </p>
-              <div class="case-value-block">
-                <h4 class="wf-card-title has-mark">経済価値</h4>
-                <p>CO2削減 約69,000t/年（2025見込）</p>
-              </div>
-              <div class="case-value-block">
-                <h4 class="wf-card-title has-mark">社会・環境価値</h4>
-                <p>資源の有効活用、循環型ビジネスの創出</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- カテゴリ：その他事業 -->
-      <h3 class="wf-sub-title" style="margin-top:32px; margin-bottom:14px;">その他事業<span style="font-size:11px; font-weight:400; color:var(--c-text-s); letter-spacing:0.02em; margin-left:10px;">情報機器を含む3事業から各1事例</span></h3>
-
-      <div class="case-acc">
-        <div class="case-row">
-          <div class="case-head">
-            <span class="case-head-cat">CASE 06</span>
             <span class="case-head-title">デジタルワークプレイス</span>
             <span class="case-head-toggle"></span>
           </div>
           <div class="case-body">
-            <div class="case-body-img">
-              <span class="case-body-img-label">[ DWP製品PH ]</span>
-            </div>
+            <div class="case-body-img"><span class="case-body-img-label">[ DWP製品PH ]</span></div>
             <div class="case-body-content">
-              <div class="case-card-mat">
-                <span class="case-mat-prefix">対応マテリアリティ</span>
-                <span class="case-mat-icon">01</span>
-                <span class="case-mat-label">働きがい向上および企業活性化</span>
-              </div>
               <p class="case-body-summary">
                 （文章はダミーです）クラウド・AI技術を活用した働き方変革ソリューションにより、お客様のオフィス業務の効率化と働きがいの向上を支援。
               </p>
@@ -1523,57 +1438,25 @@ body {
                 <h4 class="wf-card-title has-mark">社会・環境価値</h4>
                 <p>オフィスCO2削減、業務生産性向上、働き方改革</p>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="case-row is-collapsed">
-          <div class="case-head">
-            <span class="case-head-cat">CASE 07</span>
-            <span class="case-head-title">プロフェッショナルプリント</span>
-            <span class="case-head-toggle"></span>
-          </div>
-          <div class="case-body">
-            <div class="case-body-img">
-              <span class="case-body-img-label">[ プロプリント製品PH ]</span>
-            </div>
-            <div class="case-body-content">
-              <div class="case-card-mat">
-                <span class="case-mat-prefix">対応マテリアリティ</span>
-                <span class="case-mat-icon">04</span>
-                <span class="case-mat-label">気候変動への対応</span>
-              </div>
-              <p class="case-body-summary">
-                （文章はダミーです）商業・出版印刷向け高生産性デジタル印刷機を提供。デジタル化による在庫削減・廃棄削減で、印刷業界の環境負荷低減に貢献。
-              </p>
-              <div class="case-value-block">
-                <h4 class="wf-card-title has-mark">経済価値</h4>
-                <p>プロプリント市場の高付加価値領域でのポジション確保</p>
-              </div>
-              <div class="case-value-block">
-                <h4 class="wf-card-title has-mark">社会・環境価値</h4>
-                <p>在庫廃棄削減、紙資源の有効利用、CO2削減</p>
+              <div class="csr-row-links">
+                <div class="text-link-row"><a class="text-link">デジタルワークプレイス事業紹介ページへ</a></div>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="case-row is-collapsed">
+      <!-- マテリアリティ② 健康で質の高い生活の実現 -->
+      <h3 class="wf-sub-title" id="c-mat02" style="margin-top:32px; margin-bottom:14px;">健康で質の高い生活の実現</h3>
+      <div class="case-acc">
+        <div class="case-row">
           <div class="case-head">
-            <span class="case-head-cat">CASE 08</span>
             <span class="case-head-title">画像ソリューション</span>
             <span class="case-head-toggle"></span>
           </div>
           <div class="case-body">
-            <div class="case-body-img">
-              <span class="case-body-img-label">[ 画像ソリューションPH ]</span>
-            </div>
+            <div class="case-body-img"><span class="case-body-img-label">[ 画像ソリューションPH ]</span></div>
             <div class="case-body-content">
-              <div class="case-card-mat">
-                <span class="case-mat-prefix">対応マテリアリティ</span>
-                <span class="case-mat-icon">02</span>
-                <span class="case-mat-label">健康で質の高い生活の実現</span>
-              </div>
               <p class="case-body-summary">
                 （文章はダミーです）ヘルスケア領域の画像診断ソリューションや、介護現場向け見守り支援ソリューション等で、健康で質の高い生活の実現に貢献。
               </p>
@@ -1585,6 +1468,177 @@ body {
                 <h4 class="wf-card-title has-mark">社会・環境価値</h4>
                 <p>医療従事者・介護従事者の負担軽減、診療の質向上</p>
               </div>
+              <div class="csr-row-links">
+                <div class="text-link-row"><a class="text-link">画像ソリューション事業紹介ページへ</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- マテリアリティ③ 社会における安全・安心確保 -->
+      <h3 class="wf-sub-title" id="c-mat03" style="margin-top:32px; margin-bottom:14px;">社会における安全・安心確保</h3>
+      <div class="case-acc">
+        <div class="case-row">
+          <div class="case-head">
+            <span class="case-head-title">センシング（HIS／モビリティ）</span>
+            <span class="case-head-toggle"></span>
+          </div>
+          <div class="case-body">
+            <div class="case-body-img"><span class="case-body-img-label">[ センシング 製品PH ]</span></div>
+            <div class="case-body-content">
+              <p class="case-body-summary">
+                （文章はダミーです）ハイパースペクトルイメージング（HIS）と車載モビリティセンシング技術を中心に、検査・モニタリング・自動運転支援などの領域で安全・安心を支える。
+              </p>
+              <div class="case-value-block">
+                <h4 class="wf-card-title has-mark">経済価値</h4>
+                <p>市場CAGR / 売上拡大に寄与（IR情報）</p>
+              </div>
+              <div class="case-value-block">
+                <h4 class="wf-card-title has-mark">社会・環境価値</h4>
+                <p>食品・産業安全の検査自動化、労働力不足の解決</p>
+              </div>
+              <div class="csr-row-links">
+                <div class="text-link-row"><a class="text-link">センシング事業紹介ページへ</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- マテリアリティ④ 気候変動への対応 -->
+      <h3 class="wf-sub-title" id="c-mat04" style="margin-top:32px; margin-bottom:14px;">気候変動への対応</h3>
+      <div class="case-acc">
+        <div class="case-row">
+          <div class="case-head">
+            <span class="case-head-title">機能材料（SANUQI／SAZMA等）</span>
+            <span class="case-head-toggle"></span>
+          </div>
+          <div class="case-body">
+            <div class="case-body-img"><span class="case-body-img-label">[ ディスプレイ用フィルム PH ]</span></div>
+            <div class="case-body-content">
+              <p class="case-body-summary">
+                （文章はダミーです）ディスプレイ用新素材フィルムを中心に、独自の薄膜・光学制御技術で省エネ・高画質化に貢献。OLED TV向け反射防止フィルム等を展開。
+              </p>
+              <div class="case-value-block">
+                <h4 class="wf-card-title has-mark">経済価値</h4>
+                <p>高機能フィルム市場のシェア拡大、付加価値率向上</p>
+              </div>
+              <div class="case-value-block">
+                <h4 class="wf-card-title has-mark">社会・環境価値</h4>
+                <p>CO2排出量削減（製造工程・使用段階）、省資源化</p>
+              </div>
+              <div class="csr-row-links">
+                <div class="text-link-row"><a class="text-link">機能材料事業紹介ページへ</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-row is-collapsed">
+          <div class="case-head">
+            <span class="case-head-title">ペロブスカイト太陽電池バリアフィルム</span>
+            <span class="case-head-toggle"></span>
+          </div>
+          <div class="case-body">
+            <div class="case-body-img"><span class="case-body-img-label">[ ペロブスカイト関連PH ]</span></div>
+            <div class="case-body-content">
+              <p class="case-body-summary">
+                （文章はダミーです）脱炭素社会の実現に必須となる次世代太陽電池の重要パーツを提供。耐久性・耐水性・デバイス適用性に優れたバリアフィルムをKMの技術力で実現。
+              </p>
+              <div class="case-value-block">
+                <h4 class="wf-card-title has-mark">経済価値</h4>
+                <p>市場規模 〜2035年で500〜800億円／CAGR 35%以上</p>
+              </div>
+              <div class="case-value-block">
+                <h4 class="wf-card-title has-mark">社会・環境価値</h4>
+                <p>再エネ普及への貢献、CO2排出量削減（社会全体）</p>
+              </div>
+              <div class="csr-row-links">
+                <div class="text-link-row"><a class="text-link">ペロブスカイト関連事業紹介ページへ</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-row is-collapsed">
+          <div class="case-head">
+            <span class="case-head-title">プロフェッショナルプリント</span>
+            <span class="case-head-toggle"></span>
+          </div>
+          <div class="case-body">
+            <div class="case-body-img"><span class="case-body-img-label">[ プロプリント製品PH ]</span></div>
+            <div class="case-body-content">
+              <p class="case-body-summary">
+                （文章はダミーです）商業・出版印刷向け高生産性デジタル印刷機を提供。デジタル化による在庫削減・廃棄削減で、印刷業界の環境負荷低減に貢献。
+              </p>
+              <div class="case-value-block">
+                <h4 class="wf-card-title has-mark">経済価値</h4>
+                <p>プロプリント市場の高付加価値領域でのポジション確保</p>
+              </div>
+              <div class="case-value-block">
+                <h4 class="wf-card-title has-mark">社会・環境価値</h4>
+                <p>在庫廃棄削減、紙資源の有効利用、CO2削減</p>
+              </div>
+              <div class="csr-row-links">
+                <div class="text-link-row"><a class="text-link">プロフェッショナルプリント事業紹介ページへ</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- マテリアリティ⑤ 有限な資源の有効利用 -->
+      <h3 class="wf-sub-title" id="c-mat05" style="margin-top:32px; margin-bottom:14px;">有限な資源の有効利用</h3>
+      <div class="case-acc">
+        <div class="case-row">
+          <div class="case-head">
+            <span class="case-head-title">半導体検査装置向け光学コンポーネント</span>
+            <span class="case-head-toggle"></span>
+          </div>
+          <div class="case-body">
+            <div class="case-body-img"><span class="case-body-img-label">[ 光学コンポーネント PH ]</span></div>
+            <div class="case-body-content">
+              <p class="case-body-summary">
+                （文章はダミーです）先端半導体製造プロセスの微細化に対応した検査装置向け高精度光学部品を提供。半導体産業の歩留まり向上・効率化に貢献。
+              </p>
+              <div class="case-value-block">
+                <h4 class="wf-card-title has-mark">経済価値</h4>
+                <p>半導体検査装置市場成長に連動した売上拡大</p>
+              </div>
+              <div class="case-value-block">
+                <h4 class="wf-card-title has-mark">社会・環境価値</h4>
+                <p>半導体産業の生産性向上、不良削減による省資源化</p>
+              </div>
+              <div class="csr-row-links">
+                <div class="text-link-row"><a class="text-link">光学コンポーネント事業紹介ページへ</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-row is-collapsed">
+          <div class="case-head">
+            <span class="case-head-title">インテリジェント再生材</span>
+            <span class="case-head-toggle"></span>
+          </div>
+          <div class="case-body">
+            <div class="case-body-img"><span class="case-body-img-label">[ 再生材選別工程PH ]</span></div>
+            <div class="case-body-content">
+              <p class="case-body-summary">
+                （文章はダミーです）ハイパースペクトルイメージング技術を活用した混合廃棄物の高精度選別により、マテリアルリサイクルの促進と資源循環型社会の実現に貢献。
+              </p>
+              <div class="case-value-block">
+                <h4 class="wf-card-title has-mark">経済価値</h4>
+                <p>CO2削減 約69,000t/年（2025見込）</p>
+              </div>
+              <div class="case-value-block">
+                <h4 class="wf-card-title has-mark">社会・環境価値</h4>
+                <p>資源の有効活用、循環型ビジネスの創出</p>
+              </div>
+              <div class="csr-row-links">
+                <div class="text-link-row"><a class="text-link">インテリジェント再生材紹介ページへ</a></div>
+              </div>
             </div>
           </div>
         </div>
@@ -1595,6 +1649,27 @@ body {
         ※ 環境目標でグリーンウォッシュ懸念にならないよう、スコープ1+2+3を削減貢献量で相殺するような表現は避けています。
       </p>
     </section>
+
+      </div><!-- /wf-anchornav-main -->
+
+      <!-- 右コンパクトアンカーナビ -->
+      <nav class="wf-anchor-nav">
+        <div class="wf-anchor-nav-title">目次</div>
+        <a class="wf-anchor-nav-item is-current" href="#strategy">サステナビリティ戦略</a>
+        <a class="wf-anchor-nav-item" href="#materiality">マテリアリティ</a>
+        <a class="wf-anchor-nav-item is-sub" href="#b-positioning">位置づけ</a>
+        <a class="wf-anchor-nav-item is-sub" href="#b-evaluation">評価・特定プロセス</a>
+        <a class="wf-anchor-nav-item is-sub" href="#b-five-materialities">5つのマテリアリティ</a>
+        <a class="wf-anchor-nav-item is-sub" href="#b-value-creation">価値創造プロセス</a>
+        <a class="wf-anchor-nav-item" href="#cases">事業活動による取り組み</a>
+        <a class="wf-anchor-nav-item is-sub" href="#c-mat01">働きがい</a>
+        <a class="wf-anchor-nav-item is-sub" href="#c-mat02">健康</a>
+        <a class="wf-anchor-nav-item is-sub" href="#c-mat03">安全・安心</a>
+        <a class="wf-anchor-nav-item is-sub" href="#c-mat04">気候変動</a>
+        <a class="wf-anchor-nav-item is-sub" href="#c-mat05">資源の有効利用</a>
+      </nav>
+
+    </div><!-- /wf-layout-with-anchornav -->
 
     <!-- サステナビリティサイトフッター（アコーディオン式・サイトマップ） -->
     <div class="sus-footer" data-open="true">
@@ -1719,7 +1794,34 @@ body {
 
   <!-- アノテーション -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — サステナビリティ戦略 v1.0（#002 新規）</h3>
+    <h3>設計ポイント — サステナビリティ戦略 v2.0（#002 / 0524 Figma FB反映版）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">0524</span>
+      <span class="ann-head">0524 Figma FB（11件）反映サマリ</span>
+      <div class="ann-row">
+        <span class="ann-row-label">v5.0 横断ルール適用</span>
+        <b>L2 全白統一</b>（旧 bg-sub の B セクションを bg-white に）／<b>--page-w を 1280→1560</b>（content 880）に拡張／<b>右コンパクトアンカーナビ（160px）</b>追加（H2＋H3 併載・225/077 と同型）／<b>.csr-link-block</b> 共通モジュール CSS を追加。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">A区分（即修正・反映済）</span>
+        <b>#2（村上）</b>価値創造プロセスを「マテリアリティの位置づけ → 評価・特定プロセス → 5つのマテリアリティ」の<b>最後</b>に移動（新 B4）。<br>
+        <b>#5（村上）</b>セクション C タイトルを「価値創出事例」→「<b>事業活動によるマテリアリティへの取り組み</b>」に変更。<br>
+        <b>#6（村上）</b>価値創出事例を業種別（インダストリー／成長の芽／その他）3カテゴリ廃止 → <b>5マテリアリティ別カテゴリ</b>に完全再編。働きがい(1)／健康(1)／安全安心(1)／気候変動(3)／資源(2) = 8事例を該当マテリアリティ H3 配下に再配置。<br>
+        <b>#7（村上）</b>各事例の末尾に「<b>該当製品・事業紹介ページへ</b>」テキストリンクを追加（.csr-row-links / .text-link）。<br>
+        <b>#8（池田）</b>マテリアリティ内「機会／リスク」並列カード（.risk-opp-card）の全周ボーダーを廃止、装飾を最小化（左の縦罫＋タグ下線のみ）。<b>ブロックリンク風と紛らわしい</b>UIを解消。<br>
+        <b>#11（村上）</b>5つのマテリアリティの番号(<b>01〜05</b>)を全廃。.materiality-num を display:none、grid を 2カラムに変更しタイトル左寄せ。<br>
+        セクション C 内 CASE 番号(CASE 01-08)も廃止（マテリアリティ別整理に伴い不要）。.case-card-mat 冗長表示も削除（H3 がマテリアリティ表示済）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">B区分（要判断・保留）</span>
+        <b>#9（桐原）</b>TOP順序変更に伴うグローバルナビ再検討は<b>サイト全体課題</b>のため別途／<b>#10（桐原）</b>マテリアリティ・アイコンの想定は<b>デザイン工程</b>で決定。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">D区分（対応不要・Figma返信）</span>
+        <b>#1（村上）</b>セクションA 概念図のコンセプト（CE/GX路線）は<b>デザイン工程</b>／<b>#3（村上）</b>関連活動・実績リンクは<b>原稿対応</b>／<b>#4（村上）</b>事例タイトルの具体化は<b>原稿対応</b>。
+      </div>
+    </div>
 
     <div class="ann-item">
       <span class="ann-num">A</span>
