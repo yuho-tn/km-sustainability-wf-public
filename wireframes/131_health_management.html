@@ -723,11 +723,9 @@ body {
     </nav>
 
     <!-- ページタイトル -->
+    <!-- 0524 桐原FB#1：L3では「【社会】に関する取り組み」表示は削除 -->
     <div class="wf-page-title-area">
       <h1 class="wf-page-title">健康経営</h1>
-      <div class="wf-page-parent-cat">
-        【<a href="005_social_index.html">社会</a>】に関する取り組み
-      </div>
     </div>
 
     <!-- メインコンテンツ＋右コンパクトアンカーナビ -->
@@ -1390,7 +1388,66 @@ body {
 
   <!-- アノテーション -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — 健康経営 v2.5（#131）</h3>
+    <h3>設計ポイント — 健康経営 v2.6（0524 Figma FB反映）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">0524</span>
+      <span class="ann-head">0524 Figma FB（14件）反映サマリ</span>
+      <div class="ann-row">
+        <span class="ann-row-label">#1（A・反映済）桐原</span>
+        「L3では削除」→ ページタイトル下の「【社会】に関する取り組み」表示を<b>削除</b>。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#2（B・原稿対応）桐原</span>
+        表のタイトル＋グラフ化提案 → 行動変容内容と元原稿の連携でKM側にて整備。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#3（A・反映済）桐原</span>
+        「目次にH2/H3まで、H3はインデント」→ 右コンパクトアンカーナビにH2＋H3併載済（v5.0準拠／H3は is-sub クラスでインデント表示）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#4（B・要判断）桐原</span>
+        「健康宣言がhtml内に入ります」→ 健康宣言を本文HTML展開する専用モジュール（policy-statement系の継承）を次回モックで策定。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#5（B・原稿対応）桐原</span>
+        概念図の挿入 → KM側で実画像/データ提供後にPHを差し替え。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#6（B・要判断）桐原</span>
+        「PDFは戦略マップ。情報構造として一体に」→ 上部テキスト「戦略マップ」の説明と該当PDFリンクを<b>同一ブロック内</b>に統合する構造に修正予定。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#7（B・横断ルール）桐原</span>
+        グラフ/表モジュール整理タイミング → 横断ルールとしてUNIFIED_RULES.md／catalog 整備。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#8（B・要判断）桐原</span>
+        「健康宣言は『基本的な考え方』に入る。方針として他カテゴリと揃える」→ #4と連動。policy-statement モジュールで他ページと統一。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#9（B・要判断）桐原</span>
+        「健康リスク保有者の最小化」のリード文は閉じず、「フィジカル面」「メンタル面」を別アコ → アコーディオン分割の構造変更。次回モックで対応。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#10（D・デザイン工程）桐原</span>
+        グラフ/図/表は拡大不要で読めるレベルに → デザイン段階で対応。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#11/#12/#13（B・原稿/要判断）桐原</span>
+        「従業員の健康増進」配下に「過重労働対策」「健康度の見える化」のアコ／「健康度の見える化」配下に施策タイトル群（食事習慣改善・向上イベント等）／「女性の健康支援」はリード文見えるアコ＋施策タイトル（乳がん・子宮頸がん検診／FEMTECH 等） → <b>取り組み全体の階層構造の再編が必要</b>。次回モックで KM 原稿確認の上、対応。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#14（A・要追記）桐原</span>
+        外部評価が抜け落ち → 「外部評価」セクションを追加（ホワイト500 等の認定情報）。要KM 原稿。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">v5.0 横断ルール適用</span>
+        L3 bg-white/bg-sub交互維持／<b>--page-w 1280→1560</b>（content 880）／<b>アコーディオン全開</b>（is-collapsed廃止）。
+      </div>
+    </div>
+
+    <div class="ann-item" style="display:none;">
 
     <div class="ann-item">
       <span class="ann-num">★</span>
@@ -1474,6 +1531,7 @@ body {
         流用: kpi-block＋kpi-table（DE&I）／wf-acc-h4（148_quality v2.3／会社姿勢×従業員意識行動）／gov-structure-fig
       </p>
     </div>
+    </div><!-- /旧アノテーションラッパ -->
   </aside>
 
 </div>

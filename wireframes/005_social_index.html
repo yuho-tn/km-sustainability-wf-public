@@ -1022,7 +1022,58 @@ body {
 
   <!-- アノテーションパネル -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — 社会 インデックス v5.2（#アンカー方式採用）</h3>
+    <h3>設計ポイント — 社会 インデックス v5.3（0524 Figma FB反映）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">0524</span>
+      <span class="ann-head">0524 Figma FB（10件）反映サマリ</span>
+      <div class="ann-row">
+        <span class="ann-row-label">#1（C・横断ルール）池田</span>
+        ブロックリンクのUI示唆統一性不足 → サイト全体でリンクモジュール統一（UNIFIED_RULES.md v5.0／.csr-link-block）に準拠して順次置換予定。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#2（B・横断ルール）桐原</span>
+        右側アノテーションパネルにターゲット・行動変容根拠を記載 → 全WFに横展開予定（catalog影響）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#3（B・要判断）桐原</span>
+        L2はサブターゲットにわかりやすく、環境連動のKPI挿入（GESのみ） → GES（エンゲージメント／D・E・I）KPI簡易インジケータを各テーマブロックに既設置。詳細データ表示UIは次回モック。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#4（A・反映済）桐原</span>
+        「番号はつけない」→ 全テーマブロックの番号（01〜12）<b>削除</b>（.chip-num span を全廃）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#5（B・要判断）桐原</span>
+        「タイルの羅列ではなく関連性で整理（人財関連7つ＋人権/サプチェーン）」→ 現状すでに「人と組織（7テーマ）／社会・お客様（5テーマ）」でグルーピング済。さらに人権／サプチェーン強調などは次回モック。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#6（A・反映済）桐原</span>
+        「フッターのみに統一」→ 末尾の「サステナビリティ関連リンク（I）」セクション全廃。フッターのサイトマップに統一。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#7（D・回答）桐原</span>
+        フッターの並び順 → サイトマップv1.2準拠（環境・社会・ガバナンス・報告データの体系順）と回答。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#8（B・要判断）桐原</span>
+        テーマ内 # ハッシュチップが記事の＃のように見える → ナビ・目次らしいレイアウトに（特に人権）。次回モックで .theme-anchor の見せ方を再設計。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#9（A・反映済）桐原</span>
+        「『基本的な考え方』だけの場合は下層目次を入れない」→ 各テーマブロックで .theme-anchor が「基本的な考え方」1つだけの箇所を整理（労働慣行/AI利活用/社会貢献活動）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#10（B・原稿対応）桐原</span>
+        リード文ドラフト作成（下層コンテンツ説明として）→ KM 原稿確定時に差替。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">v5.0 横断ルール適用</span>
+        L2 全白統一（bg-sub → bg-white）／<b>--page-w 1280→1560</b>（content 880）／「詳細を見る」リンク全廃（v5.0 ボタンルール準拠）。
+      </div>
+    </div>
+
+    <div class="ann-item" style="display:none;">
 
     <div class="ann-item">
       <span class="ann-num">★</span>
@@ -1172,6 +1223,7 @@ body {
         #アンカー先のid付与はL3ページ実装時に対応（基本的な考え方→#concept、戦略・目標・実績→#strategy 等の命名規約を別途定義）。
       </div>
     </div>
+    </div><!-- /旧アノテーションラッパ -->
 
   </aside>
 

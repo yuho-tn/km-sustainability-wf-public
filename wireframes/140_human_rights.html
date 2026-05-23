@@ -780,11 +780,9 @@ body {
     </nav>
 
     <!-- ページタイトル -->
+    <!-- 0524 村上FB#1：『【社会】に関する取り組み』表示は不要（タイトル「人権」だけで充分）→ 削除 -->
     <div class="wf-page-title-area">
       <h1 class="wf-page-title">人権</h1>
-      <div class="wf-page-parent-cat">
-        【<a href="005_social_index.html">社会</a>】に関する取り組み
-      </div>
     </div>
 
     <!-- メインコンテンツ＋右コンパクトアンカーナビ -->
@@ -1204,7 +1202,8 @@ body {
         ============================================================ -->
         <section class="wf-section bg-white" id="remediation">
           <span class="wf-section-marker">E</span>
-          <h2 class="wf-section-title">是正</h2>
+          <!-- 0524 村上FB#4：「人権課題の是正策」のタイトルに変更 -->
+          <h2 class="wf-section-title">人権課題の是正策</h2>
 
           <p class="wf-section-desc">
             人権デュー・ディリジェンスやグリーバンスメカニズムを通じて発見された人権課題について、負の影響を受ける可能性のある当事者の声や社内外の有識者の助言を取り入れ適切に是正策を講じています。
@@ -1417,7 +1416,54 @@ body {
 
   <!-- アノテーション -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — 人権 v1.5（#140）</h3>
+    <h3>設計ポイント — 人権 v1.6（0524 Figma FB反映）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">0524</span>
+      <span class="ann-head">0524 Figma FB（9件）反映サマリ</span>
+      <div class="ann-row">
+        <span class="ann-row-label">#1（A・反映済）村上</span>
+        「【社会】に関する取り組み」表示を<b>削除</b>（タイトル「人権」だけで充分／L2導線はヘッダーで対応）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#2（D・原稿対応）村上</span>
+        「何に取り組んでいるか→体制で取り組む」順序 → 原稿レベルの構成・KM側で再構築。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#3（B・要判断）村上</span>
+        「人権DDのプロセス図」追加要望 → 既存の人権デューデリ セクションに図PHを追加するか、KM側で図を用意するか確認待ち。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#4（A・反映済）村上</span>
+        是正セクションH2 を「是正」→「<b>人権課題の是正策</b>」に変更。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#5（C・横断ルール）桐原</span>
+        リンク表現サイト全体ルール → UNIFIED_RULES.md v5.0 のリンク統一ルール（→ テキストリンク／.csr-link-block）に準拠。各箇所順次適用。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#6（D・回答）桐原</span>
+        「H2/H3まで記載するとどうなる？」→ 右側のコンパクトアンカーナビにH2＋H3併載済（UNIFIED_RULES.md v5.0準拠）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#7（B・要判断）桐原</span>
+        「人権方針はhtml展開なのでページで見せるモジュール作成」→ 方針本文を本ページに展開する専用モジュール（policy-content等）の新規策定を次回モックで提案。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#8（B・特定要）中山</span>
+        「グレーの四角で囲う必要なし、目立たせたくない」→ Figmaピン位置の特定が必要。WF内のbg-sub箱は複数あり該当が不明のためKMに具体箇所確認。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#9（B・要判断）中山</span>
+        「人権ページにアコーディオン不要」→ 現状 H3単位でアコーディオン使用中。完全展開固定にするか、項目絞り込みでアコ廃止か、要KM相談。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">v5.0 横断ルール適用</span>
+        L3 bg-white/bg-sub交互維持／<b>--page-w 1280→1560</b>（content 880）／<b>アコーディオン全開</b>（is-collapsed廃止）／ナンバリング廃止（該当なし）。
+      </div>
+    </div>
+
+    <div class="ann-item" style="display:none;">
 
     <div class="ann-item">
       <span class="ann-num">★</span>
@@ -1511,6 +1557,7 @@ body {
         流用: gov-structure-fig（131）／wf-acc-h3＋h4（131 v2.1丸枠アイコン）
       </p>
     </div>
+    </div><!-- /旧アノテーションラッパ -->
   </aside>
 
 </div>

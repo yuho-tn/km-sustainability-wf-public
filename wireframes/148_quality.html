@@ -1100,13 +1100,9 @@ body {
         <!-- ============================================================
              D. 取り組み（v2.10：H3アコ→H4/H5フラット見出し構成・131健康経営/124 DE&I 準拠）
         ============================================================ -->
-        <section class="wf-section bg-white" id="activities">
-          <span class="wf-section-marker">D</span>
-          <h2 class="wf-section-title">取り組み</h2>
-
-          <p class="wf-section-desc">
-            5つのテーマで具体的な取り組みを展開しています。各H3アコーディオンを展開するとテーマ配下の取り組み（H4アコーディオン共通モジュール）を確認できます。
-          </p>
+        <!-- 0524 滝ヶ浦FB#3：「取り組み」H2 タイトル＋セクションマーカー D を廃止。
+             KPIと取り組みを離さないため、戦略・目標・実績 セクションの続きとして H3 アコーディオン群を直結。 -->
+        <section class="wf-section bg-white" id="activities" style="padding-top:0;">
 
           <!-- 取り組み1：コンプライアンス／品質不正（初期展開） -->
           <details class="wf-acc-h3" open>
@@ -1519,7 +1515,50 @@ body {
 
   <!-- アノテーション -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — 顧客責任・品質 v2.10（#148）</h3>
+    <h3>設計ポイント — 顧客責任・品質 v2.11（0524 Figma FB反映）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">0524</span>
+      <span class="ann-head">0524 Figma FB（8件）反映サマリ</span>
+      <div class="ann-row">
+        <span class="ann-row-label">#1（B・原稿対応）滝ヶ浦</span>
+        「重要施策の概要」パーツは不要（基本的な考え方に統合） → 該当パーツが現WFにはないが、今後原稿に従い基本的な考え方セクションの本文に統合。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#2（B・原稿対応）滝ヶ浦</span>
+        「10行程度の要約をダミー文で記載」→ KMから原稿提供で対応。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#3（A・反映済）滝ヶ浦</span>
+        KPIと取り組みを離さない → <b>「取り組み」H2 タイトル＋セクションマーカー D を廃止</b>し、戦略・目標・実績セクションの続きとして H3 アコーディオン群を直結。タイトル無しでコンプライアンス/品質不正等のテーマが直接続く構成に。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#4（C・横断ルール）桐原</span>
+        方針類のデザインはサイト統一 → policy-statement／quality-policy モジュールを共通仕様としてDESIGN_SYSTEM.md整備対象。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#5（A・対応可）桐原</span>
+        「社長署名も入れられるように」→ policy-statement モジュールに署名エリア（policy-signature）を追加可能（次回モック）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#6（D・デザイン工程）桐原</span>
+        表/グラフのパターン整理 → デザイン段階で検討OK。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#7（A・反映済）桐原</span>
+        「全部開いて」→ <b>アコーディオン全開</b>（is-collapsed廃止）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#8（A・反映済）桐原</span>
+        「H3 まで目次に」→ 右コンパクトアンカーナビにH2＋H3 併載済（UNIFIED_RULES.md v5.0準拠）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">v5.0 横断ルール適用</span>
+        L3 bg-white/bg-sub交互維持／<b>--page-w 1280→1560</b>（content 880）／<b>アコーディオン全開</b>。
+      </div>
+    </div>
+
+    <div class="ann-item" style="display:none;">
 
     <div class="ann-item">
       <span class="ann-num">★</span>
@@ -1607,6 +1646,7 @@ body {
         撤去（v2.6）: bg-vision-table（背景・目指す姿表）／activity-card（5カード）／activity-grid → アコーディオン集約に変更
       </p>
     </div>
+    </div><!-- /旧アノテーションラッパ -->
   </aside>
 
 </div>

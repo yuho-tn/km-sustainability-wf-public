@@ -761,11 +761,9 @@ body {
     </nav>
 
     <!-- ページタイトル -->
+    <!-- 0524 桐原FB#3：L3には「【社会】に関する取り組み」表示は不要 → 削除 -->
     <div class="wf-page-title-area">
       <h1 class="wf-page-title">DE&I</h1>
-      <div class="wf-page-parent-cat">
-        【<a href="005_social_index.html">社会</a>】に関する取り組み
-      </div>
     </div>
 
     <!-- メインコンテンツ＋右コンパクトアンカーナビ -->
@@ -1536,7 +1534,82 @@ body {
 
   <!-- アノテーション -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — DE&I v3.9（#124）</h3>
+    <h3>設計ポイント — DE&I v4.0（0524 Figma FB反映）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">0524</span>
+      <span class="ann-head">0524 Figma FB（22件）反映サマリ</span>
+      <div class="ann-row">
+        <span class="ann-row-label">#1（A・反映済）桐原</span>
+        「H3まで目次に入れる」→ 右コンパクトアンカーナビにH2＋H3併載済（v5.0準拠）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#2（B・要判断）桐原</span>
+        「方針類はhtml化、サイト共通レイアウト＋上部掲載＋概念図」→ policy-statement モジュール共通化＋本ページ上部に「方針 + 概念図」セクションを新設予定（次回モック・KM原稿待ち）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#3（A・反映済）桐原</span>
+        「L3には不要」→ ページタイトル下の「【社会】に関する取り組み」表示を<b>削除</b>。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#4（B・原稿対応）桐原</span>
+        枠囲い不要／リード文ボールド使用は可 → 該当箇所のCSS調整＋本文をKM原稿に置換（次回モック）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#5（B・原稿対応）桐原</span>
+        グラフ化・枠の特殊化解消・実績近くに分析テキスト → 行動変容/デザイン段階で対応。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#6（B・要判断）桐原</span>
+        現状の表構造が壊れている可能性 → 現サイトレイアウト移行用に表モジュールを再整理（catalog影響）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#7（B・要判断）桐原</span>
+        体制図は現状なし／行動変容にも記載なし → 制作要否を KM 側で判断後に追加。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#8（A・要修正）桐原</span>
+        「公平な機会／知の結集」の実績分析は <b>体制ではなくKPI＞知の結集の下</b> → 該当ブロックを移動（次回モック）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#9（B・要判断）桐原</span>
+        該当箇所はH2か／タイトルでなく強調テキスト可？ → デザイン側で「強調テキスト（タイトル扱いではない）」モジュールを別途定義。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#10/#16（C・横断ルール）桐原</span>
+        サイト内リンクの統一・用途別整理 → UNIFIED_RULES.md v5.0 リンク統一ルール（→ テキストリンク／.csr-link-block）に準拠。catalog整備。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#11（A・原稿対応）桐原</span>
+        「ワーク・ライフ・マネジメントの促進」→「ワークライフバランス」に名称変更／元原稿を反映。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#12/#13/#14/#15/#20（B・要判断）桐原</span>
+        情報ブロック単位でのアコーディオン化（次世代育成手当の支給／表＋（＋）展開／3つ目タイトル／コニカミノルタ（株）取り組み 等）→ <b>取り組みセクション全体の階層構造を情報ブロック単位で再編</b>。次回モックで KM 原稿確認の上、対応。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#17/#18（B・要判断）桐原</span>
+        「もにす認定」の説明と活動3画像の説明を画像と関連付けて配置／認定マークと活動画像を区別 → 画像レイアウト調整（次回モック）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#19（A・原稿対応）桐原</span>
+        「アプローチ部分は削除」→ KM 原稿確認の上、該当ブロックを削除。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#21（B・原稿対応）桐原</span>
+        実際の原稿通りの表/画像配置 → KM原稿待ち。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#22（A・要修正）桐原</span>
+        「表とPDFリンクは別表現に分離」→ 該当箇所を表モジュール／PDFダウンロードリンク（.wf-dl-link）に分離（次回モック）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">v5.0 横断ルール適用</span>
+        L3 bg-white/bg-sub交互維持／<b>--page-w 1280→1560</b>（content 880）／<b>アコーディオン全開</b>。
+      </div>
+    </div>
+
+    <div class="ann-item" style="display:none;">
 
     <div class="ann-item">
       <span class="ann-num">★</span>
@@ -1601,6 +1674,7 @@ body {
         既存: dei-statement／vision-table／measure-table／kpi-block＋kpi-table／year-activity／gov-structure-fig
       </p>
     </div>
+    </div><!-- /旧アノテーションラッパ -->
   </aside>
 
 </div>
