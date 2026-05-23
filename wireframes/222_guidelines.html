@@ -28,8 +28,8 @@
   --c-ann-bdr:  #C8A000;
   --c-mat-bg:   #F8F4E5;
   --c-mat-bdr:  #C8A000;
-  --content-w:  1080px;
-  --page-w:     1280px;
+  --content-w:  880px;
+  --page-w:     1560px;  /* v5.0 0524 */
   --pad-section: 64px;
   --pad-section-sm: 40px;
   --pad-h: 100px;
@@ -656,7 +656,7 @@ body {
         <!-- ============================================================
              A. GRI ガイドライン
         ============================================================ -->
-        <section class="wf-section bg-sub" id="gri">
+        <section class="wf-section bg-white" id="gri">
           <span class="wf-section-marker">A</span>
           <h2 class="wf-section-title">GRIガイドライン</h2>
 
@@ -769,7 +769,7 @@ body {
           <!-- ▼ アコ3：経済（GRI 200シリーズ） -->
           <details class="gl-acc" open>
             <summary class="gl-acc-summary">
-              <span class="gl-acc-title">項目別スタンダード：経済（GRI 200シリーズ）</span>
+              <span class="gl-acc-title">経済（GRI 200シリーズ）</span>
             </summary>
             <div class="gl-acc-content">
               <div class="gri-table-wrap">
@@ -820,7 +820,7 @@ body {
           <!-- ▼ アコ4：環境（GRI 300シリーズ） -->
           <details class="gl-acc" open>
             <summary class="gl-acc-summary">
-              <span class="gl-acc-title">項目別スタンダード：環境（GRI 300シリーズ＋GRI 101 生物多様性 2024）</span>
+              <span class="gl-acc-title">環境（GRI 300シリーズ＋GRI 101 生物多様性 2024）</span>
             </summary>
             <div class="gl-acc-content">
               <div class="gri-table-wrap">
@@ -884,7 +884,7 @@ body {
           <!-- ▼ アコ5：社会（GRI 400シリーズ） -->
           <details class="gl-acc" open>
             <summary class="gl-acc-summary">
-              <span class="gl-acc-title">項目別スタンダード：社会（GRI 400シリーズ）</span>
+              <span class="gl-acc-title">社会（GRI 400シリーズ）</span>
             </summary>
             <div class="gl-acc-content">
               <div class="gri-table-wrap">
@@ -1180,7 +1180,37 @@ body {
 
   <!-- アノテーション -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — ガイドライン対照表 v1.1（#222）</h3>
+    <h3>設計ポイント — ガイドライン対照表 v1.2（0524 Figma FB反映）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">0524</span>
+      <span class="ann-head">0524 Figma FB（5件）反映サマリ</span>
+      <div class="ann-row">
+        <span class="ann-row-label">#1（D・原稿待ち）桐原</span>
+        ダミーデータ→実データへ。右側リンクが長く折り返しが多く区別しづらい → KM側で原稿差し替え（B/D区分・原稿対応）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#2（B・原稿対応）桐原</span>
+        「【利用したGRI 1】 GRI 1：基礎 2021」要素の追加 → 既存「レポート期間／GRI 1基準ボックス」CSS（line 396）あり、原稿差し替え時にデータ反映。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#3（B・原稿対応）桐原</span>
+        「GRIXXが項目後置の違和感、現サイト同様に」→ 項目列のラベル順は<b>現サイト準拠</b>で原稿確定時に再構成。WFテーブル構造側はカラム順入替対応可。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#4（A・反映済）桐原</span>
+        「項目別スタンダードの区切り不要、経済/環境/社会の3パートだとわかれば良い」→ <b>3アコーディオン見出しから「項目別スタンダード：」プレフィックスを廃止</b>。<br>
+        ・「経済（GRI 200シリーズ）」「環境（GRI 300＋GRI 101 生物多様性 2024）」「社会（GRI 400シリーズ）」のシンプル見出しに統一。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#5（B・要判断）桐原</span>
+        「GRI と SASB の2種類があることをもっとわかりやすく」→ 現状GRI とSASB の2 H2 セクションに分かれているが、ページTOP に明示するインデックス/タブ的UI を別途検討（次回モック）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">v5.0 横断ルール適用</span>
+        L2 全白統一／<b>--page-w 1280→1560</b>（content 880）／アコーディオン全開／ナンバリング廃止（該当なし）。
+      </div>
+    </div>
 
     <div class="ann-item">
       <span class="ann-num">★</span>

@@ -33,8 +33,8 @@
   --c-ann-bdr:  #C8A000;
 
   /* レイアウト */
-  --content-w:  1080px;    /* コンテンツ最大幅 */
-  --page-w:     1280px;    /* ページ最大幅 */
+  --content-w:  880px;    /* コンテンツ最大幅 */
+  --page-w:     1560px;  /* v5.0 0524 */    /* ページ最大幅 */
   --pad-section: 52px;     /* セクション上下パディング（標準） */
   --pad-section-sm: 32px;  /* セクション上下パディング（コンパクト） */
   --pad-h: 100px;          /* コンテンツ左右パディング */
@@ -1865,23 +1865,22 @@ body {
           <div class="esg-data-card-head env">
             <div class="esg-data-card-head-title">
               <div class="esg-data-card-head-name">環境データ</div>
-              <div class="esg-data-card-head-file">環境データ集 2025（XLSX・全項目）</div>
+              <div class="esg-data-card-head-file">環境データ集 2025年版 ｜ XLSX (約 1.2 MB)</div>
             </div>
-            <button class="wf-btn primary sm">DL ↓</button>
+            <button class="wf-btn primary sm">XLSX ダウンロード ↓</button>
           </div>
           <div class="esg-data-card-index">
             <div class="esg-data-card-index-title">収録項目</div>
             <ul class="esg-data-card-index-list">
-              <li>事業活動にともなう環境負荷</li>
-              <li>温室効果ガス排出量（Scope1/2/3）</li>
-              <li>エネルギー消費量</li>
-              <li>再生可能エネルギー使用量</li>
-              <li>物流の環境負荷低減</li>
-              <li>廃棄物関連</li>
-              <li>水資源</li>
-              <li>VOC</li>
-              <li>化学物質（PRTR）</li>
-              <li>土壌・地下水</li>
+              <li>当社事業活動による環境負荷全体像</li>
+              <li>温室効果ガス排出量（スコープ 1, 2, 3）</li>
+              <li>CO₂削減貢献量</li>
+              <li>エネルギー消費量・再生可能エネルギー由来電力使用量</li>
+              <li>資源投入量、排出物・廃棄物量</li>
+              <li>取水・排水・循環水量</li>
+              <li>SBTi 承認目標に対する進捗</li>
+              <li>社外評価・環境ラベル</li>
+              <li>環境認証取得関係会社・拠点</li>
             </ul>
           </div>
         </div>
@@ -1891,21 +1890,24 @@ body {
           <div class="esg-data-card-head social">
             <div class="esg-data-card-head-title">
               <div class="esg-data-card-head-name">社会データ</div>
-              <div class="esg-data-card-head-file">社会データ集 2025（XLSX・全項目）</div>
+              <div class="esg-data-card-head-file">社会データ集 2025年版 ｜ XLSX (約 0.9 MB)</div>
             </div>
-            <button class="wf-btn primary sm">DL ↓</button>
+            <button class="wf-btn primary sm">XLSX ダウンロード ↓</button>
           </div>
           <div class="esg-data-card-index">
             <div class="esg-data-card-index-title">収録項目</div>
             <ul class="esg-data-card-index-list">
-              <li>従業員の状況</li>
-              <li>ダイバーシティ</li>
-              <li>働き方改革</li>
-              <li>育児・介護支援</li>
-              <li>人材育成</li>
+              <li>主な両立支援制度の利用状況</li>
+              <li>育児休職復職率</li>
+              <li>人財育成 教育研修実施状況</li>
+              <li>従業員の健康管理への対応</li>
+              <li>各種がん検診受診率</li>
               <li>労働安全衛生</li>
-              <li>社会貢献活動</li>
-              <li>品質</li>
+              <li>製品事故発生状況</li>
+              <li>CSR調達の取り組み</li>
+              <li>紛争鉱物調査に関する対応</li>
+              <li>人権尊重の取り組み</li>
+              <li>社会貢献活動実績</li>
             </ul>
           </div>
         </div>
@@ -1915,18 +1917,18 @@ body {
           <div class="esg-data-card-head gov">
             <div class="esg-data-card-head-title">
               <div class="esg-data-card-head-name">ガバナンスデータ</div>
-              <div class="esg-data-card-head-file">ガバナンスデータ集 2025（XLSX・全項目）</div>
+              <div class="esg-data-card-head-file">ガバナンスデータ集 2025年版 ｜ XLSX (約 0.7 MB)</div>
             </div>
-            <button class="wf-btn primary sm">DL ↓</button>
+            <button class="wf-btn primary sm">XLSX ダウンロード ↓</button>
           </div>
           <div class="esg-data-card-index">
             <div class="esg-data-card-index-title">収録項目</div>
             <ul class="esg-data-card-index-list">
-              <li>コーポレートガバナンス</li>
+              <li>取締役会の出席率</li>
+              <li>取締役・執行役の報酬</li>
               <li>コンプライアンス</li>
               <li>情報セキュリティ</li>
-              <li>税務</li>
-              <li>取締役会の構成</li>
+              <li>政治献金やその他の支出</li>
             </ul>
           </div>
         </div>
@@ -2065,7 +2067,43 @@ body {
        アノテーションパネル
   ============================================================ -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — ESGデータ v3.4（#199）</h3>
+    <h3>設計ポイント — ESGデータ v3.5（0524 Figma FB反映）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">0524</span>
+      <span class="ann-head">0524 Figma FB（8件）反映サマリ</span>
+      <div class="ann-row">
+        <span class="ann-row-label">#1（A・反映済）池田</span>
+        DL ↓ アイコンを「<b>XLSX ダウンロード ↓</b>」のテキスト＋アイコン明示に置換。「下矢印が何を意味するか不明」を解消。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#2（B・デザイン工程）池田</span>
+        リンクボタンの情報構造上の紐づきが不明 → 行動変容/デザイン段階で詳細レイアウト検討。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#3 環境/#4 ガバナンス/#5 社会（A・反映済）滝ヶ浦</span>
+        収録項目を滝ヶ浦氏ご提示の<b>正式な項目リスト</b>に全置換。<br>
+        ・環境：当社事業活動による環境負荷全体像／温室効果ガス排出量（スコープ1,2,3）／CO₂削減貢献量／エネルギー消費量・再エネ由来電力使用量／資源投入量、排出物・廃棄物量／取水・排水・循環水量／SBTi進捗／社外評価・環境ラベル／環境認証取得関係会社・拠点 の9項目<br>
+        ・社会：両立支援制度の利用状況／育児休職復職率／人財育成 教育研修実施状況／健康管理対応／各種がん検診受診率／労働安全衛生／製品事故発生状況／CSR調達／紛争鉱物調査／人権尊重／社会貢献活動実績 の11項目<br>
+        ・ガバナンス：取締役会の出席率／取締役・執行役の報酬／コンプライアンス／情報セキュリティ／政治献金やその他の支出 の5項目
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#6（B・原稿待ち）桐原</span>
+        リード文がダミーか正式提案か → ダミー文の旨を補足／KM原稿確定時に差し替え。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#7（B・デザイン工程）桐原</span>
+        どの範囲をクリックでDL可能か → カード全体クリック想定だが、デザイン段階で明示UI（カード全体ホバー＋DL ボタン強調）を整備。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#8（A・反映済）桐原</span>
+        「環境データ」と「環境データ集」重複／「（XLSX：全項目）」意味不明 → カードタイトル名（環境データ）はカテゴリ表示、サブタイトルを「<b>環境データ集 2025年版 ｜ XLSX (約 1.2 MB)</b>」のように<b>ファイル形式・容量を明示</b>。アクセシビリティ表記の共通化を実施（社会/ガバナンスも同様）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">v5.0 横断ルール適用</span>
+        L2 全白統一／<b>--page-w 1280→1560</b>（content 880）／アコーディオン全開／ナンバリング廃止（該当なし）。
+      </div>
+    </div>
 
     <div class="ann-item">
       <span class="ann-num">★</span>

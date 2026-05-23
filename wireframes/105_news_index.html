@@ -26,8 +26,8 @@
   --c-black:    #111111;
   --c-ann-bg:   #FFFBF0;
   --c-ann-bdr:  #C8A000;
-  --content-w:  1080px;
-  --page-w:     1280px;
+  --content-w:  880px;
+  --page-w:     1560px;  /* v5.0 0524 */
   --pad-section: 52px;
   --pad-section-sm: 32px;
   --pad-h: 100px;
@@ -187,6 +187,18 @@ body {
 .wf-news-date { font-size: 12px; color: var(--c-text-xs); white-space: nowrap; min-width: 80px; }
 .wf-news-tag { font-size: 10px; color: var(--c-text-s); border: 1px solid var(--c-border); padding: 1px 7px; white-space: nowrap; flex-shrink: 0; }
 .wf-news-title { flex: 1; }
+/* 0524 村上FB#2：PDF添付トピックス用アイコン（KMサイトとの共通性） */
+.news-row-pdf {
+  display: inline-flex; align-items: center;
+  font-size: 9px; font-weight: 700; color: var(--c-white);
+  background: var(--c-text-h);
+  padding: 2px 6px;
+  margin-left: 6px;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+.news-row-pdf::before { content: 'PDF'; }
 
 /* RELATED BOX */
 .wf-related-box {
@@ -660,7 +672,7 @@ body {
       <div class="news-list-block" id="news-list-container">
         <div class="news-row">
           <div class="news-row-date">2025年12月23日</div>
-          <span class="news-row-title">CDPより最高評価の「気候変動Aリスト企業」に選定</span>
+          <span class="news-row-title">CDPより最高評価の「気候変動Aリスト企業」に選定<span class="news-row-pdf"></span></span>
         </div>
         <div class="news-row">
           <div class="news-row-date">2025年12月10日</div>
@@ -842,11 +854,32 @@ body {
        アノテーションパネル
   ============================================================ -->
   <aside class="wf-annotation">
-    <h3>設計ポイント ― トピックス一覧（v1.3：得意先FB #231反映）</h3>
+    <h3>設計ポイント ― トピックス一覧（v1.4：0524 Figma FB反映）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">0524</span>
+      <span class="ann-head">0524 Figma FB（3件）反映サマリ</span>
+      <div class="ann-row">
+        <span class="ann-row-label">#1（D・回答）村上</span>
+        「検索機能・カテゴリわけが無いのは何故？」→ <b>既に実装済み</b>。news-search（フリーワード検索）・news-category-tabs（カテゴリタブ）・年度チップを全て搭載済み。<b>WF対応不要（実装済の旨をFigma返信）</b>。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#2（A・反映済）村上</span>
+        「PDF添付時のPDFアイコン」→ <b>.news-row-pdf</b>（黒ベタPDFバッジ）スタイルを追加。記事タイトル末尾に <span class="news-row-pdf"></span> を付与する形でKMサイトと共通性を確保。冒頭1件をサンプルとして付与。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#3（D・回答）桐原</span>
+        「2015年まで掲載します」→ <b>既存サイトに2015年以前のXMLが存在しないため2016年まで掲載（v1.3対応済）</b>。KM側XMLの拡張があれば追加可能と返信。<b>WF対応不要</b>。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">v5.0 横断ルール適用</span>
+        L2 全白統一／<b>--page-w 1280→1560</b>（content 880）／アコーディオン全開／ナンバリング廃止（既に該当なし）。
+      </div>
+    </div>
 
     <div class="ann-item">
       <span class="ann-num">v1.3</span>
-      <span class="ann-head">今回の修正サマリー（FB #231）</span>
+      <span class="ann-head">前回サマリー（FB #231）</span>
       <div class="ann-row">
         <span class="ann-row-label">FB1</span>
         WF管理No.を「<strong>#105</strong>」→「<strong>#231（旧 #105）</strong>」に変更。新サイト仕様書のページNo.に統一。

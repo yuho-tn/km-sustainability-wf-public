@@ -33,8 +33,8 @@
   --c-ann-bdr:  #C8A000;
 
   /* レイアウト */
-  --content-w:  1080px;    /* コンテンツ最大幅 */
-  --page-w:     1280px;    /* ページ最大幅 */
+  --content-w:  880px;    /* コンテンツ最大幅 */
+  --page-w:     1560px;  /* v5.0 0524 */    /* ページ最大幅 */
   --pad-section: 52px;     /* セクション上下パディング（標準） */
   --pad-section-sm: 32px;  /* セクション上下パディング（コンパクト） */
   --pad-h: 100px;          /* コンテンツ左右パディング */
@@ -1729,9 +1729,11 @@ body {
          ヒーロー｜ページタイトル（KV画像なし・テキストのみ）
     ============================================================ -->
     <div style="background:var(--c-white); border-bottom:1px solid var(--c-border-s); padding:20px var(--pad-h) 16px;">
-      <h1 style="font-size:24px; font-weight:700; color:var(--c-text-h); line-height:1.2; margin-bottom:6px;">サステナビリティサイトアーカイブ</h1>
+      <!-- 0524 桐原FB#1：ページタイトルを「レポートアーカイブ」に修正（行動変容に統一） -->
+      <h1 style="font-size:24px; font-weight:700; color:var(--c-text-h); line-height:1.2; margin-bottom:6px;">レポートアーカイブ</h1>
+      <!-- 0524 桐原FB#8：リード文がダミーで長すぎるため短縮（KM原稿確定までの暫定） -->
       <p style="font-size:12px; color:var(--c-text-s); line-height:1.7;">
-        コニカミノルタのサステナビリティに関する詳細な報告は、コニカミノルタサステナビリティウェブサイト（以下「本サイト」）に一本化しています。本サイトの情報をPDF化した「サステナビリティレポート」も発行しています。本ページでは、情報開示体系における本サイトの位置づけ、本サイトの報告概要、およびバックナンバーを掲載しています。
+        （リード文：ダミー／原稿待ち）本サイトの情報開示体系、報告概要、およびバックナンバーをご案内します。
       </p>
     </div>
 
@@ -2149,7 +2151,49 @@ body {
        アノテーションパネル
   ============================================================ -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — サステナビリティサイトアーカイブ（v1.2：得意先FB #230反映）</h3>
+    <h3>設計ポイント — レポートアーカイブ v1.3（0524 Figma FB反映）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">0524</span>
+      <span class="ann-head">0524 Figma FB（9件）反映サマリ</span>
+      <div class="ann-row">
+        <span class="ann-row-label">#1（A・反映済）桐原</span>
+        ページタイトルを「サステナビリティサイトアーカイブ」→「<b>レポートアーカイブ</b>」に修正（行動変容との統一）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#2/#3（B・KM側待ち）桐原</span>
+        情報開示体系の図／適切なリード文／説明文 → 江森氏支援のもとKM側で作成中。WFは現状図表PHのまま保留。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#4/#6/#7（C・横断ルール）桐原</span>
+        会社資料DLページへのリンク表示／リンク表現統一（文中/→/別ページ移行）→ サイト横断のリンク命名ルールとしてUNIFIED_RULES.md側で別途整備（catalog影響）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#5（B・要判断）桐原</span>
+        資料DL欄を1カラム→2カラム/3カラムへ → page-w 1560 化（v5.0）により実質的に横幅拡張。次回モックで2列化提案を検討。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#8（A・反映済）桐原</span>
+        リード文がダミーで長すぎる → 簡潔な「（リード文：ダミー／原稿待ち）」表記に置換、長文は撤去。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#9（B・要判断）桐原</span>
+        「統合報告書」「ESGデータ」リンクは体系図枠内、「サステナビリティサイトアーカイブ」＋「バックナンバー」を「サステナビリティサイトについて」リード文の後に配置（行動変容の形に戻す）→ 構成変更が大きいため次回モックで実装。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">v5.0 横断ルール適用</span>
+        L2 全白統一／<b>--page-w 1280→1560</b>（content 880）／アコーディオン全開／ナンバリング廃止（該当なし）。
+      </div>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">v1.2</span>
+      <span class="ann-head">前回サマリ（FB #230）</span>
+      <p class="ann-body">v1.2まで適用済の修正：情報開示体系図／サステナビリティサイトについて／資料ダウンロード のセクション整理。</p>
+    </div>
+
+    <!-- 旧アノテーション -->
+    <div style="display:none;">
 
     <div class="ann-item">
       <span class="ann-num">v1.2</span>
@@ -2215,6 +2259,8 @@ body {
         旧リード文中の「ファクトブック」は現状サイトに存在しない媒体名＝架空表現だったため削除。編集方針表「関連情報」行で列挙されている実在媒体のみに揃え、本文には「（文章はダミーです）」プレフィックスを付与してダミーであることを明示。
       </div>
     </div>
+
+    </div><!-- /旧アノテーション wrapper -->
 
   </aside>
 
