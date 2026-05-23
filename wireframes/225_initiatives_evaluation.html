@@ -195,13 +195,25 @@ body {
 }
 
 /* ============================================================
-   リンクリスト小見出し（JCIメッセージ／RE-Users 政策提言／アドボカシー記事）
-   0523 桐原FB：現サイト同様に「タイトル＋テキストリンク」のシンプルUI（背景・ボーダーなし）
+   リンクリスト共通モジュール（複数リンク掲載時の標準UI）
+   0523 桐原FB：現サイト同様の「〈タイトル〉＋テキストリンク」シンプルUI（背景・ボーダーなし）
+   - 使い方：<div class="csr-link-block"><div class="csr-link-list-title">〈XX〉</div>
+              <div class="csr-row-links">...text-link-row × n...</div></div>
+   - .csr-row-content の直下に置くと「画像＋テキスト」の下に全幅で改行配置される
 ============================================================ */
+.csr-link-block {
+  /* 単独で使うときは普通のブロック */
+}
+.csr-row-content > .csr-link-block {
+  order: 3;
+  flex: 1 0 100%;
+  margin-top: 6px;
+}
 .csr-link-list-title {
   font-size: 12px; font-weight: 700;
   color: var(--c-text-h);
-  margin-top: 10px; margin-bottom: 2px;
+  margin-top: 4px; margin-bottom: 2px;
+  letter-spacing: 0.02em;
 }
 
 /* ============================================================
@@ -709,15 +721,17 @@ body {
                 2019年の「気候変動アクション日本サミット」では当社グループの担当役員がパネルディスカッションへ登壇。2024年4月、国際水準での排出削減を実現するカーボンプライシングへ改善を、11月には、1.5℃目標と整合する野心的な2035年目標を日本政府に求めるメッセージを、JCIを通じて発表しました。
               </p>
             </div>
-            <!-- 0523 桐原FB：現サイト同様にタイトル＋テキストリンクのシンプルUI（背景なし） -->
-            <div class="csr-link-list-title">JCIメッセージへの賛同</div>
-            <div class="csr-row-links">
-              <div class="text-link-row"><a class="text-link">2030年の再生可能エネルギー電力目標を40〜50％に</a></div>
-              <div class="text-link-row"><a class="text-link">2030年の日本の温室効果ガス削減目標（NDC）を45％以上</a></div>
-              <div class="text-link-row"><a class="text-link">いまこそ再生可能エネルギーの導入加速を</a></div>
-              <div class="text-link-row"><a class="text-link">再生可能エネルギーとカーボンプライシングで二つの危機を打開する</a></div>
-              <div class="text-link-row"><a class="text-link">カーボンプライシング提言：2030年GHG排出削減目標と国際競争力強化の同時達成に向けて</a></div>
-              <div class="text-link-row"><a class="text-link">1.5℃目標と整合する野心的な2035年目標を</a></div>
+            <!-- 0523 桐原FB：共通モジュール .csr-link-block を画像＋テキスト下に全幅で配置／〈タイトル〉付き -->
+            <div class="csr-link-block">
+              <div class="csr-link-list-title">〈JCIメッセージへの賛同〉</div>
+              <div class="csr-row-links">
+                <div class="text-link-row"><a class="text-link">2030年の再生可能エネルギー電力目標を40〜50％に</a></div>
+                <div class="text-link-row"><a class="text-link">2030年の日本の温室効果ガス削減目標（NDC）を45％以上</a></div>
+                <div class="text-link-row"><a class="text-link">いまこそ再生可能エネルギーの導入加速を</a></div>
+                <div class="text-link-row"><a class="text-link">再生可能エネルギーとカーボンプライシングで二つの危機を打開する</a></div>
+                <div class="text-link-row"><a class="text-link">カーボンプライシング提言：2030年GHG排出削減目標と国際競争力強化の同時達成に向けて</a></div>
+                <div class="text-link-row"><a class="text-link">1.5℃目標と整合する野心的な2035年目標を</a></div>
+              </div>
             </div>
             </div>
           </details>
@@ -758,8 +772,10 @@ body {
               <p class="csr-row-desc">
                 2023年、コニカミノルタは、日本における再エネ電力の普及に関する課題と解決策について、自然エネルギー財団を通じて、政策提言を発表しました。
               </p>
-              <!-- 0523 桐原FB：現サイト同様にタイトル＋テキストリンクのシンプルUI（背景なし） -->
-              <div class="csr-link-list-title">RE-Users 政策提言への賛同</div>
+            </div>
+            <!-- 0523 桐原FB：共通モジュール .csr-link-block を画像＋テキスト下に全幅で配置／〈タイトル〉付き -->
+            <div class="csr-link-block">
+              <div class="csr-link-list-title">〈RE-Users 政策提言への賛同〉</div>
               <div class="csr-row-links">
                 <div class="text-link-row"><a class="text-link">自然エネルギーの電力利用に関する課題と提言</a></div>
               </div>
@@ -990,8 +1006,10 @@ body {
               <p class="csr-row-desc">
                 コニカミノルタは、気候変動への対応をはじめとする先進的な環境の取り組みを、サミットや重要な国際会議の場で世界へ情報発信しています。
               </p>
-              <!-- 0523 桐原FB：現サイト同様にタイトル＋テキストリンクのシンプルUI（背景なし） -->
-              <div class="csr-link-list-title">過去のアドボカシー記事</div>
+            </div>
+            <!-- 0523 桐原FB：共通モジュール .csr-link-block を画像＋テキスト下に全幅で配置／〈タイトル〉付き -->
+            <div class="csr-link-block">
+              <div class="csr-link-list-title">〈過去のアドボカシー記事〉</div>
               <div class="csr-row-links">
                 <div class="text-link-row"><a class="text-link">2015年6月　G7ドイツ〔エルマウ〕</a></div>
                 <div class="text-link-row"><a class="text-link">2015年11月　COP21フランス〔パリ〕</a></div>
@@ -1467,8 +1485,9 @@ body {
         L2背景を一律白に統一（社外からの評価セクションの bg-sub を bg-white に）。寸法を設計参考 KM_PC_L3_W1100px（全体1280 / コンテンツ880）に整合（--page-w 1560）。
       </div>
       <div class="ann-row">
-        <span class="ann-row-label">0523 桐原FB（A区分・3箇所統一）</span>
-        <b>JCIメッセージへの賛同</b>／<b>RE-Users 政策提言への賛同</b>／<b>過去のアドボカシー記事</b> の3ブロックを、現サイト（konicaminolta.jp/about/csr/initiative.html）同様の <b>タイトル＋テキストリンクのシンプルUI</b>（背景・ボーダーなし）に統一。<b>.sub-list</b>（薄グレー背景＋全周ボーダー＋ラベル独立行）と先行採用していた <b>.wf-dl-link</b>（PDFバッジ＋↓）を廃止し、新規 <b>.csr-link-list-title</b>（12px太字の控えめ小見出し）＋ 既存 <b>.text-link-row / .text-link</b>（→ 下線リンク）で再構成。
+        <span class="ann-row-label">0523 桐原FB（A区分・3箇所統一・共通モジュール化）</span>
+        <b>JCIメッセージへの賛同</b>／<b>RE-Users 政策提言への賛同</b>／<b>過去のアドボカシー記事</b> の3ブロックを、現サイト（konicaminolta.jp/about/csr/initiative.html）同様の <b>〈タイトル〉＋テキストリンク</b>シンプルUI（背景・ボーダーなし）に統一。<b>.sub-list</b>（薄グレー背景＋全周ボーダー＋ラベル独立行）と先行採用していた <b>.wf-dl-link</b>（PDFバッジ＋↓）を廃止。<br>
+        新規共通モジュール <b>.csr-link-block</b>（複数リンク掲載時の標準UI）を策定：<b>.csr-link-list-title</b>（12px太字／〈〉括弧付き小見出し）＋ <b>.csr-row-links / .text-link-row / .text-link</b>（→ 下線リンク）で構成。<b>.csr-row-content の直下に置くと「画像＋テキスト」の下に全幅で改行配置される</b>（flex order:3 / flex:1 0 100%）。3ブロックすべて本文の右カラム内ではなく「画像＋テキスト」の下に全幅で配置するよう移動。以後、複数リンクが並ぶ箇所はこのモジュールを共通採用する。
       </div>
     </div>
 
