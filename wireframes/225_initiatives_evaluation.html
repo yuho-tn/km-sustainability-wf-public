@@ -195,25 +195,13 @@ body {
 }
 
 /* ============================================================
-   ダウンロードリンク（PDF/XLSX/DOCX バッジ付き）
-   module-catalog 既存 .wf-dl-link と同型
+   リンクリスト小見出し（JCIメッセージ／RE-Users 政策提言／アドボカシー記事）
+   0523 桐原FB：現サイト同様に「タイトル＋テキストリンク」のシンプルUI（背景・ボーダーなし）
 ============================================================ */
-.wf-dl-link {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: 12px; color: var(--c-text-h); font-weight: 600;
-  cursor: default;
-}
-.wf-dl-link::before {
-  content: 'PDF'; font-size: 9px; font-weight: 700;
-  background: var(--c-text-h); color: var(--c-white);
-  padding: 2px 6px; margin-right: 4px;
-}
-.wf-dl-link.is-xlsx::before { content: 'XLSX'; }
-.wf-dl-link.is-docx::before { content: 'DOCX'; }
-.wf-dl-link::after { content: '↓'; font-size: 11px; }
-.wf-dl-link-row {
-  display: block;
-  margin-top: 6px;
+.csr-link-list-title {
+  font-size: 12px; font-weight: 700;
+  color: var(--c-text-h);
+  margin-top: 10px; margin-bottom: 2px;
 }
 
 /* ============================================================
@@ -721,17 +709,15 @@ body {
                 2019年の「気候変動アクション日本サミット」では当社グループの担当役員がパネルディスカッションへ登壇。2024年4月、国際水準での排出削減を実現するカーボンプライシングへ改善を、11月には、1.5℃目標と整合する野心的な2035年目標を日本政府に求めるメッセージを、JCIを通じて発表しました。
               </p>
             </div>
-            <!-- 0521：JCIメッセージへの賛同は左右幅全面（ロゴ列下も使い左余白を残さない） -->
-            <div class="sub-list linked is-fullwidth">
-              <div class="sub-list-label">JCIメッセージへの賛同</div>
-              <ul>
-                <li>2030年の再生可能エネルギー電力目標を40〜50％に</li>
-                <li>2030年の日本の温室効果ガス削減目標（NDC）を45％以上</li>
-                <li>いまこそ再生可能エネルギーの導入加速を</li>
-                <li>再生可能エネルギーとカーボンプライシングで二つの危機を打開する</li>
-                <li>カーボンプライシング提言：2030年GHG排出削減目標と国際競争力強化の同時達成に向けて</li>
-                <li>1.5℃目標と整合する野心的な2035年目標を</li>
-              </ul>
+            <!-- 0523 桐原FB：現サイト同様にタイトル＋テキストリンクのシンプルUI（背景なし） -->
+            <div class="csr-link-list-title">JCIメッセージへの賛同</div>
+            <div class="csr-row-links">
+              <div class="text-link-row"><a class="text-link">2030年の再生可能エネルギー電力目標を40〜50％に</a></div>
+              <div class="text-link-row"><a class="text-link">2030年の日本の温室効果ガス削減目標（NDC）を45％以上</a></div>
+              <div class="text-link-row"><a class="text-link">いまこそ再生可能エネルギーの導入加速を</a></div>
+              <div class="text-link-row"><a class="text-link">再生可能エネルギーとカーボンプライシングで二つの危機を打開する</a></div>
+              <div class="text-link-row"><a class="text-link">カーボンプライシング提言：2030年GHG排出削減目標と国際競争力強化の同時達成に向けて</a></div>
+              <div class="text-link-row"><a class="text-link">1.5℃目標と整合する野心的な2035年目標を</a></div>
             </div>
             </div>
           </details>
@@ -772,11 +758,10 @@ body {
               <p class="csr-row-desc">
                 2023年、コニカミノルタは、日本における再エネ電力の普及に関する課題と解決策について、自然エネルギー財団を通じて、政策提言を発表しました。
               </p>
-              <div class="sub-list linked">
-                <div class="sub-list-label">RE-Users 政策提言への賛同</div>
-                <ul>
-                  <li>自然エネルギーの電力利用に関する課題と提言</li>
-                </ul>
+              <!-- 0523 桐原FB：現サイト同様にタイトル＋テキストリンクのシンプルUI（背景なし） -->
+              <div class="csr-link-list-title">RE-Users 政策提言への賛同</div>
+              <div class="csr-row-links">
+                <div class="text-link-row"><a class="text-link">自然エネルギーの電力利用に関する課題と提言</a></div>
               </div>
             </div>
             </div>
@@ -1005,12 +990,14 @@ body {
               <p class="csr-row-desc">
                 コニカミノルタは、気候変動への対応をはじめとする先進的な環境の取り組みを、サミットや重要な国際会議の場で世界へ情報発信しています。
               </p>
+              <!-- 0523 桐原FB：現サイト同様にタイトル＋テキストリンクのシンプルUI（背景なし） -->
+              <div class="csr-link-list-title">過去のアドボカシー記事</div>
               <div class="csr-row-links">
-                <div class="wf-dl-link-row"><a class="wf-dl-link">2015年6月　G7ドイツ〔エルマウ〕</a></div>
-                <div class="wf-dl-link-row"><a class="wf-dl-link">2015年11月　COP21フランス〔パリ〕</a></div>
-                <div class="wf-dl-link-row"><a class="wf-dl-link">2016年5月　G7日本〔伊勢志摩〕</a></div>
-                <div class="wf-dl-link-row"><a class="wf-dl-link">2016年11月　COP22 モロッコ〔マラケシュ〕</a></div>
-                <div class="wf-dl-link-row"><a class="wf-dl-link">2017年5月　G7イタリア〔タオルミーナ〕</a></div>
+                <div class="text-link-row"><a class="text-link">2015年6月　G7ドイツ〔エルマウ〕</a></div>
+                <div class="text-link-row"><a class="text-link">2015年11月　COP21フランス〔パリ〕</a></div>
+                <div class="text-link-row"><a class="text-link">2016年5月　G7日本〔伊勢志摩〕</a></div>
+                <div class="text-link-row"><a class="text-link">2016年11月　COP22 モロッコ〔マラケシュ〕</a></div>
+                <div class="text-link-row"><a class="text-link">2017年5月　G7イタリア〔タオルミーナ〕</a></div>
               </div>
             </div>
             </div>
@@ -1480,8 +1467,8 @@ body {
         L2背景を一律白に統一（社外からの評価セクションの bg-sub を bg-white に）。寸法を設計参考 KM_PC_L3_W1100px（全体1280 / コンテンツ880）に整合（--page-w 1560）。
       </div>
       <div class="ann-row">
-        <span class="ann-row-label">アドボカシー記事（A区分）</span>
-        「過去のアドボカシー記事」の <b>.sub-list.dotted</b>（グレー背景＋全周ボーダーの◆リスト）を廃止。5件を <b>.wf-dl-link</b>（PDFバッジ＋↓）の関連リンク扱いに置換（module-catalog既存スタイル流用）。ラベル「過去のアドボカシー記事」も廃止（H2「アドボカシー記事の発信」で文脈明示）。
+        <span class="ann-row-label">0523 桐原FB（A区分・3箇所統一）</span>
+        <b>JCIメッセージへの賛同</b>／<b>RE-Users 政策提言への賛同</b>／<b>過去のアドボカシー記事</b> の3ブロックを、現サイト（konicaminolta.jp/about/csr/initiative.html）同様の <b>タイトル＋テキストリンクのシンプルUI</b>（背景・ボーダーなし）に統一。<b>.sub-list</b>（薄グレー背景＋全周ボーダー＋ラベル独立行）と先行採用していた <b>.wf-dl-link</b>（PDFバッジ＋↓）を廃止し、新規 <b>.csr-link-list-title</b>（12px太字の控えめ小見出し）＋ 既存 <b>.text-link-row / .text-link</b>（→ 下線リンク）で再構成。
       </div>
     </div>
 
