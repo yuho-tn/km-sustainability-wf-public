@@ -1334,29 +1334,35 @@ body {
             </div>
           </details>
 
-          <!-- くるみん／えるぼし（6ロゴ：2カラム×各3ロゴ） 0524 桐原FB反映 -->
+          <!-- くるみん／えるぼし（3社 × 2認定 = 6ロゴ：2カラム grid に各社タイル配置） 0524 桐原FB反映 -->
           <details class="csr-row" open>
             <summary class="csr-row-summary">
               <span class="csr-row-title">「くるみん」認定と「えるぼし」認定を取得</span>
             </summary>
             <div class="csr-row-content">
-              <!-- 0524 桐原FB：実サイトには6ロゴが入っているため、2カラム（左=くるみん認定／右=えるぼし認定）に分け、
-                   各カラム内2列×nラインでコンパクトに配置。ロゴ名称はWF仮置き（KM確認予定）。 -->
+              <!-- 0524 桐原FB再修正：6ロゴは「3社 ×（くるみん＋えるぼし）」の組み合わせ。
+                   各社1タイル（会社名タイトル＋認定2ロゴ）を2カラム grid に並べ、3社目は2段目左に自然折返し。
+                   対象会社テキストブロックはタイトルと重複するため削除。 -->
               <div class="csr-cert-2col">
                 <div class="csr-cert-col">
-                  <div class="csr-cert-col-title">「くるみん」認定</div>
+                  <div class="csr-cert-col-title">コニカミノルタ（株）</div>
                   <div class="csr-cert-logos">
-                    <div class="csr-logo"><span class="csr-logo-label">[ くるみん ]</span></div>
-                    <div class="csr-logo"><span class="csr-logo-label">[ プラチナくるみん ]</span></div>
-                    <div class="csr-logo"><span class="csr-logo-label">[ トライくるみん ]</span></div>
+                    <div class="csr-logo"><span class="csr-logo-label">[ くるみん認定 ]</span></div>
+                    <div class="csr-logo"><span class="csr-logo-label">[ えるぼし認定 ]</span></div>
                   </div>
                 </div>
                 <div class="csr-cert-col">
-                  <div class="csr-cert-col-title">「えるぼし」認定</div>
+                  <div class="csr-cert-col-title">コニカミノルタジャパン（株）</div>
                   <div class="csr-cert-logos">
-                    <div class="csr-logo"><span class="csr-logo-label">[ えるぼし1段階目 ]</span></div>
-                    <div class="csr-logo"><span class="csr-logo-label">[ えるぼし2段階目 ]</span></div>
-                    <div class="csr-logo"><span class="csr-logo-label">[ プラチナえるぼし ]</span></div>
+                    <div class="csr-logo"><span class="csr-logo-label">[ くるみん認定 ]</span></div>
+                    <div class="csr-logo"><span class="csr-logo-label">[ えるぼし認定 ]</span></div>
+                  </div>
+                </div>
+                <div class="csr-cert-col">
+                  <div class="csr-cert-col-title">コニカミノルタ情報システム（株）</div>
+                  <div class="csr-cert-logos">
+                    <div class="csr-logo"><span class="csr-logo-label">[ くるみん認定 ]</span></div>
+                    <div class="csr-logo"><span class="csr-logo-label">[ えるぼし認定 ]</span></div>
                   </div>
                 </div>
               </div>
@@ -1364,9 +1370,6 @@ body {
                 <p class="csr-row-desc">
                   コニカミノルタ（株）および日本のグループ会社においては、厚生労働大臣から子育てサポート企業として「くるみん」、女性の活躍推進に関する状況等が優良な企業として「えるぼし」の認定を受けています。
                 </p>
-                <div class="csr-row-companies">
-                  <span class="csr-row-companies-label">対象会社：</span>コニカミノルタ（株）／コニカミノルタジャパン（株）／コニカミノルタ情報システム（株）
-                </div>
               </div>
             </div>
           </details>
@@ -1534,7 +1537,7 @@ body {
       </div>
       <div class="ann-row">
         <span class="ann-row-label">0524 桐原FB（A区分・くるみん/えるぼし 6ロゴ化）</span>
-        実サイト（konicaminolta.jp/about/csr/csr/vision/evaluation.html）には6ロゴが入っているため、従来の2ロゴ縦並びを廃止し、新規モジュール <b>.csr-cert-2col</b>（2カラム grid＋各カラム内2列 grid）に置換。<b>左：「くるみん」認定（3ロゴ）／右：「えるぼし」認定（3ロゴ）</b>でコンパクト配置。各ロゴ名称は仮置き（KM確認予定）。<b>.csr-row-content</b> 直下に order:1 / flex:1 0 100% で全幅配置されるため、本文・対象会社ブロックがその下に続く構成。閉じた状態のサマリーロゴプレビューは本ブロックでは省略（6ロゴはヘッダ幅に収まらないため）。
+        実サイト（konicaminolta.jp/about/csr/csr/vision/evaluation.html）には6ロゴが入っており、その内訳は <b>3社 ×（くるみん認定＋えるぼし認定）</b>。新規モジュール <b>.csr-cert-2col</b>（2カラム grid）に各社タイル（タイトル＝会社名＋認定2ロゴ）を3つ並べ、<b>1社目=コニカミノルタ（株）／2社目=コニカミノルタジャパン（株）／3社目=コニカミノルタ情報システム（株）</b>。3社目は2段目の左に自然折返し。<b>.csr-row-content</b> 直下に order:1 / flex:1 0 100% で全幅配置。各社名がタイル見出しになるため、従来の「対象会社」テキストブロック（<b>.csr-row-companies</b>）は重複につき削除。閉じた状態のサマリーロゴプレビューは本ブロックでは省略（6ロゴはヘッダ幅に収まらないため）。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">0523 桐原FB（A区分・3箇所統一・共通モジュール化）</span>
