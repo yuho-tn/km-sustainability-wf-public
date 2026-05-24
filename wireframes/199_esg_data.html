@@ -1763,6 +1763,41 @@ body {
   text-align: left;
 }
 
+/* 0524 桐原FB追加：Excelダウンロード用アイコン型ボタン
+   テキスト「XLSXダウンロード」を廃止し、Excelアイコン＋下向き矢印のみで意図を伝える */
+.dl-excel-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  background: #fff;
+  border: 1px solid var(--c-border);
+  cursor: pointer;
+  flex-shrink: 0;
+  font-family: inherit;
+}
+.dl-excel-btn:hover { background: var(--c-bg-sub); border-color: var(--c-text-h); }
+.dl-excel-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  background: #1F7244;     /* Excel green */
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  border-radius: 2px;
+}
+.dl-excel-arrow {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  line-height: 1;
+}
+
 /* 0513 Figma #26：ESGデータ参照ガイド（catalog 7-13 / .esg-link-guide）
    導入部に「3種Excel・環境はシート分割」の全体像を要約提示（詳細は下の区分別カードが担う） */
 .esg-link-guide {
@@ -1837,26 +1872,10 @@ body {
       <span class="wf-section-marker">A</span>
       <h2 class="wf-section-title">ESGデータ</h2>
       <p class="wf-section-desc">
-        コニカミノルタグループのESGデータを「環境データ」「社会データ」「ガバナンスデータ」の3つに区分しています。各区分のエクセルファイルから全項目の定量データをダウンロードいただけます。
+        ウェブサイトや過去のレポートなどに掲載している、さまざまなサステナビリティに関するデータを収集して報告します。環境（E）、社会（S）、ガバナンス（G）のデータを比較しやすいように経年でまとめ、エクセル形式で提供しています。
       </p>
 
-      <!-- #26：導入部にESGデータ参照ガイド（catalog 7-13）。3種Excel・環境はシート分割の全体像を要約。詳細インデックスは下の区分別カードが担う -->
-      <div class="esg-link-guide">
-        <div class="esg-link-guide-title">ESGデータの構成</div>
-        <p class="esg-link-guide-lead">下記3種のExcelに全定量データを収録しています。目的の区分から該当ファイルをご確認ください。</p>
-        <div class="esg-link-guide-item">
-          <span class="esg-link-guide-badge">XLSX</span>
-          <span class="esg-link-guide-text"><strong>環境データ集</strong> — GHG排出量／エネルギー／水資源／化学物質 ほか<span class="note">（シート分割：大気・水・廃棄物 等）</span></span>
-        </div>
-        <div class="esg-link-guide-item">
-          <span class="esg-link-guide-badge">XLSX</span>
-          <span class="esg-link-guide-text"><strong>社会データ集</strong> — 従業員／ダイバーシティ／人材育成／労働安全 ほか</span>
-        </div>
-        <div class="esg-link-guide-item">
-          <span class="esg-link-guide-badge">XLSX</span>
-          <span class="esg-link-guide-text"><strong>ガバナンスデータ集</strong> — コーポレートガバナンス／コンプライアンス／税務 ほか</span>
-        </div>
-      </div>
+      <!-- 0524 桐原FB：「ESGデータの構成」エリアは下のカードと重複するため削除 -->
 
       <div class="esg-data-grid">
 
@@ -1865,9 +1884,12 @@ body {
           <div class="esg-data-card-head env">
             <div class="esg-data-card-head-title">
               <div class="esg-data-card-head-name">環境データ</div>
-              <div class="esg-data-card-head-file">環境データ集 2025年版 ｜ XLSX (約 1.2 MB)</div>
+              <div class="esg-data-card-head-file">2025年版 ｜ XLSX (約 1.2 MB)</div>
             </div>
-            <button class="wf-btn primary sm">XLSX ダウンロード ↓</button>
+            <button class="dl-excel-btn" title="Excel形式でダウンロード" aria-label="環境データをExcelでダウンロード">
+              <span class="dl-excel-icon">X</span>
+              <span class="dl-excel-arrow">↓</span>
+            </button>
           </div>
           <div class="esg-data-card-index">
             <div class="esg-data-card-index-title">収録項目</div>
@@ -1890,9 +1912,12 @@ body {
           <div class="esg-data-card-head social">
             <div class="esg-data-card-head-title">
               <div class="esg-data-card-head-name">社会データ</div>
-              <div class="esg-data-card-head-file">社会データ集 2025年版 ｜ XLSX (約 0.9 MB)</div>
+              <div class="esg-data-card-head-file">2025年版 ｜ XLSX (約 0.9 MB)</div>
             </div>
-            <button class="wf-btn primary sm">XLSX ダウンロード ↓</button>
+            <button class="dl-excel-btn" title="Excel形式でダウンロード" aria-label="社会データをExcelでダウンロード">
+              <span class="dl-excel-icon">X</span>
+              <span class="dl-excel-arrow">↓</span>
+            </button>
           </div>
           <div class="esg-data-card-index">
             <div class="esg-data-card-index-title">収録項目</div>
@@ -1917,9 +1942,12 @@ body {
           <div class="esg-data-card-head gov">
             <div class="esg-data-card-head-title">
               <div class="esg-data-card-head-name">ガバナンスデータ</div>
-              <div class="esg-data-card-head-file">ガバナンスデータ集 2025年版 ｜ XLSX (約 0.7 MB)</div>
+              <div class="esg-data-card-head-file">2025年版 ｜ XLSX (約 0.7 MB)</div>
             </div>
-            <button class="wf-btn primary sm">XLSX ダウンロード ↓</button>
+            <button class="dl-excel-btn" title="Excel形式でダウンロード" aria-label="ガバナンスデータをExcelでダウンロード">
+              <span class="dl-excel-icon">X</span>
+              <span class="dl-excel-arrow">↓</span>
+            </button>
           </div>
           <div class="esg-data-card-index">
             <div class="esg-data-card-index-title">収録項目</div>
@@ -1935,9 +1963,26 @@ body {
 
       </div><!-- /esg-data-grid -->
 
-      <!-- v3.4：サステナビリティサイトについて（ボタンリンクのみ／最新wf-btn-pageモジュール） -->
+      <!-- 0524 桐原FB：「サステナビリティサイトについて」リンクを「関連リンク」UIに刷新。
+           親リンク＝レポートアーカイブ／子リンク＝該当ページ内3つのH2見出しアンカー -->
       <div class="about-link-section">
-        <a class="wf-btn-page">サステナビリティサイトについて</a>
+        <div class="report-group" style="max-width:560px;">
+          <div class="report-group-head">
+            <div class="report-group-title">関連リンク｜レポートアーカイブ</div>
+            <a class="report-group-head-link">ページへ</a>
+          </div>
+          <div class="report-group-body">
+            <div class="report-group-desc">
+              当社の情報開示体系、サステナビリティサイトの考え方、過去の統合報告書はレポートアーカイブにまとめています。
+            </div>
+            <div class="report-group-anchors-label">ページ内見出しへ</div>
+            <div class="report-group-anchors">
+              <a class="report-group-anchor" href="096_report_archive.html#disclosure-system">情報開示体系</a>
+              <a class="report-group-anchor" href="096_report_archive.html#about-site">サステナビリティサイトについて</a>
+              <a class="report-group-anchor" href="096_report_archive.html#integrated-report">統合報告書</a>
+            </div>
+          </div>
+        </div>
       </div>
 
     </section>
