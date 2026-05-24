@@ -358,6 +358,33 @@ body {
   color: var(--c-text-h); font-weight: 700;
 }
 
+/* 0524 桐原FB：STEP1用 シンプル見出し＋箇条書き（背景・区切り線なし） */
+.wf-h5-title-plain {
+  font-size: 12px; font-weight: 700; color: var(--c-text-h);
+  margin-top: 12px; margin-bottom: 6px; line-height: 1.5;
+}
+.plain-list {
+  list-style: none; padding-left: 0;
+  font-size: 11px; color: var(--c-text); line-height: 1.85;
+  margin-bottom: 4px;
+}
+.plain-list li {
+  padding: 2px 0 2px 14px;
+  position: relative;
+}
+.plain-list li::before {
+  content: '・'; position: absolute; left: 0; top: 2px;
+  color: var(--c-text-h); font-weight: 700;
+}
+
+/* 0524 桐原FB：STEP2 機会側面/リスク側面 H4 見出し（シンプル） */
+.opp-risk-h4 {
+  font-size: 14px; font-weight: 700; color: var(--c-text-h);
+  margin-top: 18px; margin-bottom: 10px; line-height: 1.4;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--c-border);
+}
+
 /* リスク／機会マッピング */
 .risk-opp-map {
   background: var(--c-bg-sub);
@@ -522,15 +549,16 @@ body {
 }
 
 /* 価値創出事例 — アコーディオン化（縦積み） */
+/* 0524 桐原FB：アコ間の余白を追加してバランス調整 */
 .case-acc {
-  border: 1px solid var(--c-border);
-  background: var(--c-white);
   margin-bottom: 24px;
+  display: flex; flex-direction: column;
+  gap: 12px;  /* アコ間の余白 */
 }
 .case-row {
-  border-top: 1px solid var(--c-border);
+  border: 1px solid var(--c-border);
+  background: var(--c-white);
 }
-.case-row:first-child { border-top: none; }
 .case-head {
   display: flex; align-items: center; gap: 14px;
   padding: 14px 22px;
@@ -1045,34 +1073,29 @@ body {
           <p style="font-size:12px; color:var(--c-text); line-height:1.9; margin-bottom:12px;">
             GRIスタンダードやSDGsなどの国際的なフレームワークやガイドライン、各専門分野のマクロトレンドなどを参照しながら環境・社会・経済の中で課題を広範囲にリストアップ。リストアップにあたっては、ストックホルム・レジリエンス・センターの「SDGsウェディングケーキモデル」を参照しSDGsの概念を表す構造を踏まえて作成。SDGsで設定されている170目標との関係性をつかむ。
           </p>
-          <div class="process-step-cols">
-            <div class="process-step-col">
-              <h5 class="wf-h5-title">参照したフレームワーク／ガイドライン</h5>
-              <ul class="process-list">
-                <li>GRIスタンダード</li>
-                <li>SASBスタンダード</li>
-                <li>ISO26000</li>
-                <li>SDGs（Sustainable Development Goals）</li>
-                <li>国連グローバル・コンパクト10原則</li>
-                <li>OECD多国籍企業行動指針</li>
-                <li>気候関連財務情報開示タスクフォース（TCFD）</li>
-                <li>気候変動をはじめとした各専門分野のマクロトレンド（パリ協定・SBT・RE100・CE等）</li>
-                <li>国際統合報告評議会（IIRC）「国際統合報告フレームワーク」</li>
-                <li>ストックホルム・レジリエンス・センター「SDGsウェディングケーキモデル」</li>
-              </ul>
-            </div>
-            <div class="process-step-col">
-              <h5 class="wf-h5-title">ステークホルダーから当社へ寄せられる評価・対話・要請</h5>
-              <ul class="process-list">
-                <li>IR説明会、事業説明会等での投資家からの対話</li>
-                <li>CDP、国内NGO・NPOとの対話</li>
-                <li>各種ESG調査での要請事項</li>
-                <li>グリーンマーケティング活動でのお客様との対話</li>
-                <li>環境デジタルプラットフォーム参加企業との対話</li>
-                <li>TCFDコンソーシアム等での投資家との対話</li>
-              </ul>
-            </div>
-          </div>
+          <!-- 0524 桐原FB：シンプルなH5＋箇条書き構成（背景色・区切り線なし） -->
+          <h5 class="wf-h5-title-plain">参照したフレームワーク／ガイドライン</h5>
+          <ul class="plain-list">
+            <li>GRIスタンダード</li>
+            <li>SASBスタンダード</li>
+            <li>ISO26000</li>
+            <li>SDGs（Sustainable Development Goals）</li>
+            <li>国連グローバル・コンパクト10原則</li>
+            <li>OECD多国籍企業行動指針</li>
+            <li>気候関連財務情報開示タスクフォース（TCFD）</li>
+            <li>気候変動をはじめとした各専門分野のマクロトレンド（パリ協定・SBT・RE100・CE等）</li>
+            <li>国際統合報告評議会（IIRC）「国際統合報告フレームワーク」</li>
+            <li>ストックホルム・レジリエンス・センター「SDGsウェディングケーキモデル」</li>
+          </ul>
+          <h5 class="wf-h5-title-plain" style="margin-top:18px;">ステークホルダーから当社へ寄せられる評価・対話・要請</h5>
+          <ul class="plain-list">
+            <li>IR説明会、事業説明会等での投資家からの対話</li>
+            <li>CDP、国内NGO・NPOとの対話</li>
+            <li>各種ESG調査での要請事項</li>
+            <li>グリーンマーケティング活動でのお客様との対話</li>
+            <li>環境デジタルプラットフォーム参加企業との対話</li>
+            <li>TCFDコンソーシアム等での投資家との対話</li>
+          </ul>
         </div>
       </div>
 
@@ -1089,9 +1112,9 @@ body {
             マテリアリティ分析は、「ステークホルダーにとっての重要度」と「事業にとっての重要度」の2軸で評価し、優先順位づけを行っています。「ステークホルダーにとっての重要度」では、お客様、社員、投資家、従業員などを定義し、それぞれ5段階の評価基準により定量化を行っています。また「事業にとっての重要度」におけるリスクで発生した場合に失われる利益の大きさ、機会では創出される利益の大きさ、すなわち、財務的影響に応じて5段階の評価基準を設定しています。
           </p>
 
-          <!-- 機会側面マッピング図 -->
+          <!-- 0524 桐原FB：機会側面 H4 見出しに変更（「（マッピング表）」記載削除） -->
+          <h4 class="opp-risk-h4">機会側面</h4>
           <div class="risk-opp-map">
-            <div class="risk-opp-map-head">機会側面（マッピング表）</div>
             <div class="process-figure-ph" style="aspect-ratio: 16 / 8;">
               <span class="process-figure-ph-label">
                 [ 機会マッピング図 PH｜横軸：事業としての重要度（DX事業）／縦軸：ステークホルダーにとっての重要度<br>
@@ -1123,9 +1146,9 @@ body {
             </table>
           </div>
 
-          <!-- リスク側面マッピング図 -->
-          <div class="risk-opp-map" style="margin-top:24px;">
-            <div class="risk-opp-map-head">リスク側面（マッピング表）</div>
+          <!-- 0524 桐原FB：リスク側面 H4 見出しに変更（「（マッピング表）」記載削除） -->
+          <h4 class="opp-risk-h4">リスク側面</h4>
+          <div class="risk-opp-map">
             <div class="process-figure-ph" style="aspect-ratio: 16 / 8;">
               <span class="process-figure-ph-label">
                 [ リスクマッピング図 PH｜横軸：事業としての重要度／縦軸：ステークホルダーにとっての重要度<br>
@@ -1192,16 +1215,10 @@ body {
             </div>
             <div class="materiality-section">
               <h4 class="wf-card-title has-mark">社会・環境課題認識／機会／リスク</h4>
-              <div class="risk-opp-grid">
-                <div class="risk-opp-card">
-                  <span class="risk-opp-card-tag">機会</span>
-                  <p class="risk-opp-card-text">人的資本経営の重要性が高まる中、人財投資・組織風土改革による生産性・創造性の向上が期待される。</p>
-                </div>
-                <div class="risk-opp-card">
-                  <span class="risk-opp-card-tag">リスク</span>
-                  <p class="risk-opp-card-text">人財獲得・定着の難航、エンゲージメント低下が事業継続性・競争力に直結する。</p>
-                </div>
-              </div>
+              <h5 class="wf-h5-title-plain">機会</h5>
+              <p style="font-size:11px; color:var(--c-text); line-height:1.85; margin-bottom:8px;">人的資本経営の重要性が高まる中、人財投資・組織風土改革による生産性・創造性の向上が期待される。</p>
+                <h5 class="wf-h5-title-plain">リスク</h5>
+              <p style="font-size:11px; color:var(--c-text); line-height:1.85; margin-bottom:8px;">人財獲得・定着の難航、エンゲージメント低下が事業継続性・競争力に直結する。</p>
             </div>
             <div class="materiality-section">
               <h4 class="wf-card-title has-mark">KPI 目標と実績</h4>
@@ -1236,16 +1253,10 @@ body {
             </div>
             <div class="materiality-section">
               <h4 class="wf-card-title has-mark">社会・環境課題認識／機会／リスク</h4>
-              <div class="risk-opp-grid">
-                <div class="risk-opp-card">
-                  <span class="risk-opp-card-tag">機会</span>
-                  <p class="risk-opp-card-text">超高齢社会・医療需要拡大に対応するソリューション市場の拡大。</p>
-                </div>
-                <div class="risk-opp-card">
-                  <span class="risk-opp-card-tag">リスク</span>
-                  <p class="risk-opp-card-text">医療現場の業務負荷増大、医療従事者不足への対応が遅れた場合の事業機会喪失。</p>
-                </div>
-              </div>
+              <h5 class="wf-h5-title-plain">機会</h5>
+              <p style="font-size:11px; color:var(--c-text); line-height:1.85; margin-bottom:8px;">超高齢社会・医療需要拡大に対応するソリューション市場の拡大。</p>
+                <h5 class="wf-h5-title-plain">リスク</h5>
+              <p style="font-size:11px; color:var(--c-text); line-height:1.85; margin-bottom:8px;">医療現場の業務負荷増大、医療従事者不足への対応が遅れた場合の事業機会喪失。</p>
             </div>
             <div class="materiality-section">
               <h4 class="wf-card-title has-mark">KPI 目標と実績</h4>
@@ -1276,16 +1287,10 @@ body {
             </div>
             <div class="materiality-section">
               <h4 class="wf-card-title has-mark">社会・環境課題認識／機会／リスク</h4>
-              <div class="risk-opp-grid">
-                <div class="risk-opp-card">
-                  <span class="risk-opp-card-tag">機会</span>
-                  <p class="risk-opp-card-text">インフラ老朽化・労働力不足への対応として、検査・モニタリングソリューションへの需要拡大。</p>
-                </div>
-                <div class="risk-opp-card">
-                  <span class="risk-opp-card-tag">リスク</span>
-                  <p class="risk-opp-card-text">製品・サービスの品質・セキュリティに関するインシデント発生時のブランド毀損。</p>
-                </div>
-              </div>
+              <h5 class="wf-h5-title-plain">機会</h5>
+              <p style="font-size:11px; color:var(--c-text); line-height:1.85; margin-bottom:8px;">インフラ老朽化・労働力不足への対応として、検査・モニタリングソリューションへの需要拡大。</p>
+                <h5 class="wf-h5-title-plain">リスク</h5>
+              <p style="font-size:11px; color:var(--c-text); line-height:1.85; margin-bottom:8px;">製品・サービスの品質・セキュリティに関するインシデント発生時のブランド毀損。</p>
             </div>
             <div class="materiality-section">
               <h4 class="wf-card-title has-mark">KPI 目標と実績</h4>
@@ -1316,16 +1321,10 @@ body {
             </div>
             <div class="materiality-section">
               <h4 class="wf-card-title has-mark">社会・環境課題認識／機会／リスク</h4>
-              <div class="risk-opp-grid">
-                <div class="risk-opp-card">
-                  <span class="risk-opp-card-tag">機会</span>
-                  <p class="risk-opp-card-text">脱炭素関連ソリューション（ペロブスカイト太陽電池バリアフィルム等）の市場拡大。</p>
-                </div>
-                <div class="risk-opp-card">
-                  <span class="risk-opp-card-tag">リスク</span>
-                  <p class="risk-opp-card-text">炭素税・規制強化に伴う事業コストの増加、移行リスク。</p>
-                </div>
-              </div>
+              <h5 class="wf-h5-title-plain">機会</h5>
+              <p style="font-size:11px; color:var(--c-text); line-height:1.85; margin-bottom:8px;">脱炭素関連ソリューション（ペロブスカイト太陽電池バリアフィルム等）の市場拡大。</p>
+                <h5 class="wf-h5-title-plain">リスク</h5>
+              <p style="font-size:11px; color:var(--c-text); line-height:1.85; margin-bottom:8px;">炭素税・規制強化に伴う事業コストの増加、移行リスク。</p>
             </div>
             <div class="materiality-section">
               <h4 class="wf-card-title has-mark">KPI 目標と実績</h4>
@@ -1360,16 +1359,10 @@ body {
             </div>
             <div class="materiality-section">
               <h4 class="wf-card-title has-mark">社会・環境課題認識／機会／リスク</h4>
-              <div class="risk-opp-grid">
-                <div class="risk-opp-card">
-                  <span class="risk-opp-card-tag">機会</span>
-                  <p class="risk-opp-card-text">インテリジェント再生材ビジネス等、資源循環関連ソリューションの市場拡大。</p>
-                </div>
-                <div class="risk-opp-card">
-                  <span class="risk-opp-card-tag">リスク</span>
-                  <p class="risk-opp-card-text">資源価格高騰・調達制約による事業活動への影響。</p>
-                </div>
-              </div>
+              <h5 class="wf-h5-title-plain">機会</h5>
+              <p style="font-size:11px; color:var(--c-text); line-height:1.85; margin-bottom:8px;">インテリジェント再生材ビジネス等、資源循環関連ソリューションの市場拡大。</p>
+                <h5 class="wf-h5-title-plain">リスク</h5>
+              <p style="font-size:11px; color:var(--c-text); line-height:1.85; margin-bottom:8px;">資源価格高騰・調達制約による事業活動への影響。</p>
             </div>
             <div class="materiality-section">
               <h4 class="wf-card-title has-mark">KPI 目標と実績</h4>
