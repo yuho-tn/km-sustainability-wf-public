@@ -43,8 +43,16 @@ body {
   background: var(--c-bg);
 }
 
+/* 0524: Figma html.to.design 取り込み互換性向上
+   プラグイン既定viewport(約1000px)で .wf-canvas が縮みグリッド主カラムが
+   想定より狭く書き出される現象を防ぐ。ブラウザは現状の見た目を維持。 */
+html, body { min-width: var(--page-w); }
+
 .wf-canvas {
-  max-width: var(--page-w); margin: 0 auto;
+  width: var(--page-w);
+  min-width: var(--page-w);
+  max-width: var(--page-w);
+  margin: 0 auto;
   display: grid; grid-template-columns: 1fr 280px; align-items: start;
 }
 .wf-page { background: var(--c-white); box-shadow: 0 2px 20px rgba(0,0,0,0.10); min-height: 100vh; }
