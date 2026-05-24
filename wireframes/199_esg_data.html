@@ -1763,7 +1763,9 @@ body {
   text-align: left;
 }
 
-/* 0524 桐原FB：レポートアーカイブセクション用 3ボタン横並びレイアウト */
+/* 0524 桐原FB（追加修正）：レポートアーカイブ 3ボタン横並びレイアウト
+   他ページ（131/140/222/225）の .wf-btn-page と同じデフォルト挙動に統一。
+   伸縮（flex:1 1 240px）は廃止し、コンテンツ幅可変＋左寄せ＋min-width:280px の標準仕様。 */
 .report-archive-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -1771,43 +1773,48 @@ body {
   margin-top: 8px;
 }
 .report-archive-buttons .wf-btn-page {
-  flex: 1 1 240px;
-  min-width: 240px;
+  flex: 0 0 auto;
 }
 
-/* 0524 桐原FB追加：Excelダウンロード用アイコン型ボタン
-   テキスト「XLSXダウンロード」を廃止し、Excelアイコン＋下向き矢印のみで意図を伝える */
+/* 0524 桐原FB（追加修正）：Excelダウンロード用アイコン型ボタン
+   - Excelロゴ風SVG（書類フォルド＋X文字）でリアリティ向上
+   - 旧の下向き矢印「↓」を廃止し、テキスト「DL↗」で外部リンク的にDL意図を表現
+   - ホバー演出はこのボタンのみ（カード全体のホバーは下のルールで無効化） */
 .dl-excel-btn {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 4px 8px;
+  padding: 4px 10px 4px 6px;
   background: #fff;
   border: 1px solid var(--c-border);
   cursor: pointer;
   flex-shrink: 0;
   font-family: inherit;
+  transition: background .15s ease, border-color .15s ease, box-shadow .15s ease;
 }
-.dl-excel-btn:hover { background: var(--c-bg-sub); border-color: var(--c-text-h); }
-.dl-excel-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 26px;
-  height: 26px;
-  background: #1F7244;     /* Excel green */
-  color: #fff;
+.dl-excel-btn:hover {
+  background: var(--c-bg-sub);
+  border-color: var(--c-text-h);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.10);
+}
+.dl-excel-svg { display: block; flex-shrink: 0; }
+.dl-excel-label {
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0;
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-  border-radius: 2px;
-}
-.dl-excel-arrow {
-  font-size: 16px;
-  font-weight: 700;
   color: var(--c-text-h);
+  letter-spacing: 0.04em;
   line-height: 1;
+}
+
+/* 0524 桐原FB（追加修正）：.esg-data-card のカード全体ホバー演出を無効化。
+   assets/wf-overlay.js が .esg-data-card を「クリッカブル・カード」扱いして
+   translateY/shadow/border-color を付与しているのを打ち消し、
+   ホバー演出は .dl-excel-btn のみに集約する */
+.esg-data-card { cursor: default !important; transition: none !important; }
+.esg-data-card:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  border-color: var(--c-border) !important;
 }
 
 /* 0513 Figma #26：ESGデータ参照ガイド（catalog 7-13 / .esg-link-guide）
@@ -1899,8 +1906,12 @@ body {
               <div class="esg-data-card-head-file">2025年版 ｜ XLSX (約 1.2 MB)</div>
             </div>
             <button class="dl-excel-btn" title="Excel形式でダウンロード" aria-label="環境データをExcelでダウンロード">
-              <span class="dl-excel-icon">X</span>
-              <span class="dl-excel-arrow">↓</span>
+              <svg class="dl-excel-svg" viewBox="0 0 24 28" width="20" height="24" aria-hidden="true">
+                <path d="M 2 0 L 18 0 L 22 4 L 22 28 L 2 28 Z" fill="#107C41"/>
+                <path d="M 18 0 L 22 4 L 18 4 Z" fill="#0A6033"/>
+                <text x="12" y="20" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="900" fill="#fff" letter-spacing="-0.5">X</text>
+              </svg>
+              <span class="dl-excel-label">DL↗</span>
             </button>
           </div>
           <div class="esg-data-card-index">
@@ -1927,8 +1938,12 @@ body {
               <div class="esg-data-card-head-file">2025年版 ｜ XLSX (約 0.9 MB)</div>
             </div>
             <button class="dl-excel-btn" title="Excel形式でダウンロード" aria-label="社会データをExcelでダウンロード">
-              <span class="dl-excel-icon">X</span>
-              <span class="dl-excel-arrow">↓</span>
+              <svg class="dl-excel-svg" viewBox="0 0 24 28" width="20" height="24" aria-hidden="true">
+                <path d="M 2 0 L 18 0 L 22 4 L 22 28 L 2 28 Z" fill="#107C41"/>
+                <path d="M 18 0 L 22 4 L 18 4 Z" fill="#0A6033"/>
+                <text x="12" y="20" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="900" fill="#fff" letter-spacing="-0.5">X</text>
+              </svg>
+              <span class="dl-excel-label">DL↗</span>
             </button>
           </div>
           <div class="esg-data-card-index">
@@ -1957,8 +1972,12 @@ body {
               <div class="esg-data-card-head-file">2025年版 ｜ XLSX (約 0.7 MB)</div>
             </div>
             <button class="dl-excel-btn" title="Excel形式でダウンロード" aria-label="ガバナンスデータをExcelでダウンロード">
-              <span class="dl-excel-icon">X</span>
-              <span class="dl-excel-arrow">↓</span>
+              <svg class="dl-excel-svg" viewBox="0 0 24 28" width="20" height="24" aria-hidden="true">
+                <path d="M 2 0 L 18 0 L 22 4 L 22 28 L 2 28 Z" fill="#107C41"/>
+                <path d="M 18 0 L 22 4 L 18 4 Z" fill="#0A6033"/>
+                <text x="12" y="20" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="900" fill="#fff" letter-spacing="-0.5">X</text>
+              </svg>
+              <span class="dl-excel-label">DL↗</span>
             </button>
           </div>
           <div class="esg-data-card-index">
