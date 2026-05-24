@@ -1755,12 +1755,24 @@ body {
   border-color: var(--c-text-h);
 }
 
-/* 下部「サステナビリティサイトについて」リンク行 */
+/* 下部「サステナビリティサイトについて」リンク行（v3.4 旧仕様・保持） */
 .about-link-section {
   margin-top: 28px;
   padding-top: 18px;
   border-top: 1px solid var(--c-border-s);
   text-align: left;
+}
+
+/* 0524 桐原FB：レポートアーカイブセクション用 3ボタン横並びレイアウト */
+.report-archive-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+}
+.report-archive-buttons .wf-btn-page {
+  flex: 1 1 240px;
+  min-width: 240px;
 }
 
 /* 0524 桐原FB追加：Excelダウンロード用アイコン型ボタン
@@ -1963,28 +1975,22 @@ body {
 
       </div><!-- /esg-data-grid -->
 
-      <!-- 0524 桐原FB：「サステナビリティサイトについて」リンクを「関連リンク」UIに刷新。
-           親リンク＝レポートアーカイブ／子リンク＝該当ページ内3つのH2見出しアンカー -->
-      <div class="about-link-section">
-        <div class="report-group" style="max-width:560px;">
-          <div class="report-group-head">
-            <div class="report-group-title">関連リンク｜レポートアーカイブ</div>
-            <a class="report-group-head-link">ページへ</a>
-          </div>
-          <div class="report-group-body">
-            <div class="report-group-desc">
-              当社の情報開示体系、サステナビリティサイトの考え方、過去の統合報告書はレポートアーカイブにまとめています。
-            </div>
-            <div class="report-group-anchors-label">ページ内見出しへ</div>
-            <div class="report-group-anchors">
-              <a class="report-group-anchor" href="096_report_archive.html#disclosure-system">情報開示体系</a>
-              <a class="report-group-anchor" href="096_report_archive.html#about-site">サステナビリティサイトについて</a>
-              <a class="report-group-anchor" href="096_report_archive.html#integrated-report">統合報告書</a>
-            </div>
-          </div>
-        </div>
-      </div>
+    </section>
 
+    <!-- ============================================================
+         B｜レポートアーカイブ（0524 桐原FB：H2見出し化＋3ボタンリンクUI）
+    ============================================================ -->
+    <section class="wf-section bg-white">
+      <span class="wf-section-marker">B</span>
+      <h2 class="wf-section-title">レポートアーカイブ</h2>
+      <p class="wf-section-desc">
+        当社の情報開示体系、サステナビリティサイトの考え方、過去の統合報告書はレポートアーカイブにまとめています。
+      </p>
+      <div class="report-archive-buttons">
+        <a class="wf-btn-page" href="096_report_archive.html#disclosure-system">情報開示体系</a>
+        <a class="wf-btn-page" href="096_report_archive.html#about-site">サステナビリティサイトについて</a>
+        <a class="wf-btn-page" href="096_report_archive.html#integrated-report">統合報告書</a>
+      </div>
     </section>
 
     <!-- サステナビリティサイトフッター（アコーディオン式・サイトマップ） -->
