@@ -1778,13 +1778,13 @@ body {
 
 /* 0524 桐原FB（追加修正）：Excelダウンロード用アイコン型ボタン
    - Excelロゴ風SVG（書類フォルド＋X文字）でリアリティ向上
-   - 旧の下向き矢印「↓」を廃止し、テキスト「DL↗」で外部リンク的にDL意図を表現
+   - ダウンロード意図は「下向き矢印＋トレイ」型のダウンロードアイコンで明示
    - ホバー演出はこのボタンのみ（カード全体のホバーは下のルールで無効化） */
 .dl-excel-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 4px 10px 4px 6px;
+  gap: 8px;
+  padding: 4px 10px;
   background: #fff;
   border: 1px solid var(--c-border);
   cursor: pointer;
@@ -1797,14 +1797,9 @@ body {
   border-color: var(--c-text-h);
   box-shadow: 0 2px 6px rgba(0,0,0,0.10);
 }
-.dl-excel-svg { display: block; flex-shrink: 0; }
-.dl-excel-label {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--c-text-h);
-  letter-spacing: 0.04em;
-  line-height: 1;
-}
+.dl-excel-svg,
+.dl-download-svg { display: block; flex-shrink: 0; }
+.dl-download-svg { color: var(--c-text-h); }
 
 /* 0524 桐原FB（追加修正）：.esg-data-card のカード全体ホバー演出を無効化。
    assets/wf-overlay.js が .esg-data-card を「クリッカブル・カード」扱いして
@@ -1911,7 +1906,10 @@ body {
                 <path d="M 18 0 L 22 4 L 18 4 Z" fill="#0A6033"/>
                 <text x="12" y="20" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="900" fill="#fff" letter-spacing="-0.5">X</text>
               </svg>
-              <span class="dl-excel-label">DL↗</span>
+              <svg class="dl-download-svg" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                <path d="M10 3 L10 11 L6 11 L12 18 L18 11 L14 11 L14 3 Z" fill="currentColor"/>
+                <rect x="3" y="20" width="18" height="2.5" fill="currentColor"/>
+              </svg>
             </button>
           </div>
           <div class="esg-data-card-index">
@@ -1943,7 +1941,10 @@ body {
                 <path d="M 18 0 L 22 4 L 18 4 Z" fill="#0A6033"/>
                 <text x="12" y="20" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="900" fill="#fff" letter-spacing="-0.5">X</text>
               </svg>
-              <span class="dl-excel-label">DL↗</span>
+              <svg class="dl-download-svg" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                <path d="M10 3 L10 11 L6 11 L12 18 L18 11 L14 11 L14 3 Z" fill="currentColor"/>
+                <rect x="3" y="20" width="18" height="2.5" fill="currentColor"/>
+              </svg>
             </button>
           </div>
           <div class="esg-data-card-index">
@@ -1977,7 +1978,10 @@ body {
                 <path d="M 18 0 L 22 4 L 18 4 Z" fill="#0A6033"/>
                 <text x="12" y="20" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="900" fill="#fff" letter-spacing="-0.5">X</text>
               </svg>
-              <span class="dl-excel-label">DL↗</span>
+              <svg class="dl-download-svg" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                <path d="M10 3 L10 11 L6 11 L12 18 L18 11 L14 11 L14 3 Z" fill="currentColor"/>
+                <rect x="3" y="20" width="18" height="2.5" fill="currentColor"/>
+              </svg>
             </button>
           </div>
           <div class="esg-data-card-index">
