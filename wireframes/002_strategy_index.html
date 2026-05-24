@@ -933,13 +933,22 @@ body {
   padding-bottom: 8px; margin-bottom: 10px;
   border-bottom: 1px dashed var(--c-border);
 }
+/* 0524: 右ナビは H2/H3 全文を表示。2行までは許容、3行以上は2行末尾で「…」省略
+   （225同型の共通ルール／略称禁止＝桐原FB） */
 .wf-anchor-nav-item {
-  display: block;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-size: 11px; color: var(--c-text-h); font-weight: 600;
   text-decoration: none;
   padding: 4px 0;
   cursor: default;
   line-height: 1.4;
+  word-break: normal;
+  overflow-wrap: anywhere;
 }
 .wf-anchor-nav-item:hover { color: var(--c-text); }
 .wf-anchor-nav-item.is-sub {
@@ -1648,18 +1657,19 @@ body {
       <!-- 右コンパクトアンカーナビ -->
       <nav class="wf-anchor-nav">
         <div class="wf-anchor-nav-title">目次</div>
-        <a class="wf-anchor-nav-item is-current" href="#strategy">サステナビリティ戦略</a>
-        <a class="wf-anchor-nav-item" href="#materiality">マテリアリティ</a>
-        <a class="wf-anchor-nav-item is-sub" href="#b-positioning">位置づけ</a>
-        <a class="wf-anchor-nav-item is-sub" href="#b-evaluation">評価・特定プロセス</a>
+        <!-- 0524 桐原FB（略称禁止ルール）：H2/H3全文を表記、2行までは許容、3行以上は2行末尾で「…」省略 -->
+        <a class="wf-anchor-nav-item is-current" href="#strategy">コニカミノルタのサステナビリティ戦略</a>
+        <a class="wf-anchor-nav-item" href="#materiality">コニカミノルタのマテリアリティ</a>
+        <a class="wf-anchor-nav-item is-sub" href="#b-positioning">マテリアリティの位置づけ</a>
+        <a class="wf-anchor-nav-item is-sub" href="#b-evaluation">マテリアリティの評価・特定プロセス</a>
         <a class="wf-anchor-nav-item is-sub" href="#b-five-materialities">5つのマテリアリティ</a>
         <a class="wf-anchor-nav-item is-sub" href="#b-value-creation">価値創造プロセス</a>
-        <a class="wf-anchor-nav-item" href="#cases">事業活動による取り組み</a>
-        <a class="wf-anchor-nav-item is-sub" href="#c-mat01">働きがい</a>
-        <a class="wf-anchor-nav-item is-sub" href="#c-mat02">健康</a>
-        <a class="wf-anchor-nav-item is-sub" href="#c-mat03">安全・安心</a>
-        <a class="wf-anchor-nav-item is-sub" href="#c-mat04">気候変動</a>
-        <a class="wf-anchor-nav-item is-sub" href="#c-mat05">資源の有効利用</a>
+        <a class="wf-anchor-nav-item" href="#cases">事業活動によるマテリアリティへの取り組み</a>
+        <a class="wf-anchor-nav-item is-sub" href="#c-mat01">働きがい向上および企業活性化</a>
+        <a class="wf-anchor-nav-item is-sub" href="#c-mat02">健康で質の高い生活の実現</a>
+        <a class="wf-anchor-nav-item is-sub" href="#c-mat03">社会における安全・安心確保</a>
+        <a class="wf-anchor-nav-item is-sub" href="#c-mat04">気候変動への対応</a>
+        <a class="wf-anchor-nav-item is-sub" href="#c-mat05">有限な資源の有効利用</a>
       </nav>
 
     </div><!-- /wf-layout-with-anchornav -->
