@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>サステナビリティ TOP — KM サステナビリティ WF v2.2</title>
+<title>サステナビリティ TOP — KM サステナビリティ WF v2.3</title>
 <style>
 /* ============================================================
    KM SUSTAINABILITY WF — SHARED CSS v3.0
@@ -28,11 +28,14 @@
   --c-ann-bg:   #FFFBF0;
   --c-ann-bdr:  #C8A000;
 
-  --content-w:  1080px;
-  --page-w:     1280px;
+  /* 0524: デザイン仕様に合わせて幅再設定（全体幅1280 / コンテンツ幅1100）
+     page-w 1560 = wf-page 1280 + annotation 280
+     pad-h 90 = (1280 - 1100) / 2 で wf-section 内側を1100pxに揃える */
+  --content-w:  1100px;
+  --page-w:     1560px;
   --pad-section: 64px;
   --pad-section-sm: 40px;
-  --pad-h: 100px;
+  --pad-h: 90px;
 }
 
 body {
