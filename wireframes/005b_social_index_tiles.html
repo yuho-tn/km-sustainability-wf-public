@@ -209,9 +209,9 @@ body {
 }
 
 /* 0524 追加修正：
-   - 目次ありタイル(.has-nav)：縦幅大（296px）
-   - 目次なしタイル(.no-nav)：縦幅小（200px）— 余白を詰める
-   - 本文3行・目次最大2行・タイル下部に白ボタン */
+   - 目次あり：縦幅 260px（余白を詰めた）
+   - 目次なし(.no-nav)：縦幅 168px
+   - ホバー効果は廃止（タイル自体は遷移しない／ボタンクリックでのみ遷移） */
 .social-tile {
   position: relative;
   display: flex;
@@ -219,27 +219,20 @@ body {
   background: var(--c-white);
   border-right: 1px solid var(--c-border);
   border-bottom: 1px solid var(--c-border);
-  padding: 22px 22px 64px;
-  height: 296px;
+  padding: 16px 18px 52px;
+  height: 260px;
   cursor: default;
-  transition: background 0.15s;
   overflow: hidden;
 }
 .social-tile.no-nav {
-  height: 200px;  /* 目次なしは余白を詰める */
-}
-.social-tile:hover {
-  background: var(--c-bg-sub);
+  height: 168px;
+  padding-bottom: 52px;
 }
 
-/* 0524 桐原FB#8：タイル内サブナビを「目次／ナビらしいレイアウト」へ変更
-   0524 追加修正：
-   - 「下層ページ目次」ラベル削除
-   - 3個以上は2カラム
-   - 2カラムで1行に収まらないものは2行折り返し許容（ブロック高さは固定で吸収） */
+/* 0524 桐原FB#8：タイル内サブナビ — 余白圧縮版 */
 .social-tile-nav {
-  margin-top: 10px;
-  padding-top: 10px;
+  margin-top: 6px;
+  padding-top: 8px;
   border-top: 1px solid var(--c-border);
   display: flex;
   flex-direction: column;
@@ -287,23 +280,24 @@ body {
 .social-tile-nav-item:hover { color: var(--c-text-h); background: var(--c-bg-sub); }
 
 /* 0524 追加修正：タイル下部の「›テーマ名」白ボタン
-   横幅は文字数に応じて可変・左寄せ */
+   横幅は文字数に応じて可変・左寄せ・ホバー時のみ背景変化（このボタンが唯一の遷移トリガー） */
 .social-tile-cta {
   position: absolute;
-  left: 22px; bottom: 16px;
+  left: 18px; bottom: 14px;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
+  gap: 6px;
+  padding: 6px 12px;
   background: var(--c-white);
   border: 1px solid var(--c-text-h);
   font-size: 12px; font-weight: 700;
   color: var(--c-text-h);
   letter-spacing: 0.02em;
-  cursor: default;
+  cursor: pointer;
   line-height: 1.3;
   white-space: nowrap;
   width: auto;
+  transition: background 0.15s;
 }
 .social-tile-cta::before {
   content: '›';
@@ -312,16 +306,16 @@ body {
   color: var(--c-text-h);
   flex-shrink: 0;
 }
-.social-tile:hover .social-tile-cta { background: var(--c-bg-sub); }
+.social-tile-cta:hover { background: var(--c-bg-sub); }
 
 /* 0524 桐原FB#4：マテリアリティ番号(01〜12)は廃止。.social-tile-num の出力なし */
 
 .social-tile-title {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
   color: var(--c-text-h);
-  line-height: 1.4;
-  margin-bottom: 10px;
+  line-height: 1.35;
+  margin-bottom: 6px;
   letter-spacing: -0.01em;
   /* 1行固定（はみ出しは省略） */
   white-space: nowrap;
@@ -329,18 +323,18 @@ body {
   text-overflow: ellipsis;
 }
 
-/* 0524 追加修正：本文は3行以内に収まる短文（…省略はしない）。
-   高さは3行ぶん確保して、目次位置の縦ズレを防止 */
+/* 0524 追加修正：本文は3行以内・…省略なし・高さ3行分予約 */
 .social-tile-desc {
   font-size: 12px;
   color: var(--c-text);
-  line-height: 1.75;
+  line-height: 1.65;
   display: block;
   overflow: hidden;
   word-break: normal;
   overflow-wrap: anywhere;
-  height: calc(12px * 1.75 * 3);  /* 63px：3行分の高さ予約（短文なら上揃え） */
+  height: calc(12px * 1.65 * 3);  /* 約59px：3行分の高さ予約 */
   flex: 0 0 auto;
+  margin: 0;
 }
 
 /* 0524 追加修正：丸ボタン .social-tile-arrow は廃止し .social-tile-cta（白ボタン）に統一 */
