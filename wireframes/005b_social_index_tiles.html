@@ -157,6 +157,10 @@ body {
   background: var(--c-white);
 }
 
+/* 0524 追加修正：タイルの縦幅を完全固定。本文3行・目次最大3行で揃える。
+   - .social-tile-title: 1行固定（CTA見出し相当）
+   - .social-tile-desc:  3行クランプ（line-clamp 3）
+   - .social-tile-nav:   3行分の高さ固定。3個以上は2カラム表示で行数を抑制 */
 .social-tile {
   position: relative;
   display: flex;
@@ -165,9 +169,10 @@ body {
   border-right: 1px solid var(--c-border);
   border-bottom: 1px solid var(--c-border);
   padding: 22px 24px 56px;
-  min-height: 220px;
+  height: 268px;  /* 完全固定：上pad22 + タイトル22 + 余白10 + desc3行(63) + nav部(105) + 下pad56 ≒ 280 を目安 */
   cursor: default;
   transition: background 0.15s;
+  overflow: hidden;
 }
 .social-tile:hover {
   background: var(--c-bg-sub);
@@ -175,14 +180,16 @@ body {
 
 /* 0524 桐原FB#8：タイル内サブナビを「目次／ナビらしいレイアウト」へ変更
    旧 .social-tile-anchor（# プレフィックス＋背景チップ）を廃止し、
-   .social-tile-nav（行型・→プレフィックス・縦積み）を導入 */
+   .social-tile-nav（行型・›プレフィックス・縦積み）を導入
+   0524 追加修正：3行までで高さ固定。3個以上は2カラム表示で行数を抑制 */
 .social-tile-nav {
-  margin-top: 14px;
+  margin-top: 12px;
   padding-top: 10px;
   border-top: 1px solid var(--c-border);
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  flex: 1 1 auto;
+  min-height: 0;
 }
 .social-tile-nav-label {
   font-size: 9px;
@@ -191,19 +198,35 @@ body {
   letter-spacing: 0.1em;
   margin-bottom: 4px;
   text-transform: uppercase;
+  flex: 0 0 auto;
+}
+/* 内側にリンク群を入れるラッパー：1〜2個=縦1カラム、3個以上=2カラム
+   3行ぶんの高さで完全固定し、はみ出しは隠す */
+.social-tile-nav-items {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0 12px;
+  max-height: calc(11px * 1.5 * 3 + 6px * 3);  /* 3行ぶん（line-height 1.5 × font 11px × 3 ＋ padding 余白） */
+  overflow: hidden;
+}
+.social-tile-nav-items.is-2col {
+  grid-template-columns: 1fr 1fr;
 }
 .social-tile-nav-item {
   display: flex;
   align-items: baseline;
-  gap: 6px;
+  gap: 4px;
   font-size: 11px;
   color: var(--c-text);
   padding: 3px 0 3px 4px;
   cursor: default;
   line-height: 1.5;
   border-bottom: 1px dotted var(--c-border);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
 }
-.social-tile-nav-item:last-child { border-bottom: none; }
 .social-tile-nav-item::before {
   content: '›';
   color: var(--c-text-h);
@@ -222,13 +245,26 @@ body {
   line-height: 1.4;
   margin-bottom: 10px;
   letter-spacing: -0.01em;
+  /* 1行固定（はみ出しは省略） */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
+/* 0524 追加修正：本文を3行クランプで完全固定 */
 .social-tile-desc {
   font-size: 12px;
   color: var(--c-text);
-  line-height: 1.8;
-  flex: 1;
+  line-height: 1.75;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: normal;
+  overflow-wrap: anywhere;
+  height: calc(12px * 1.75 * 3);  /* 63px：常に3行分の高さを確保 */
+  flex: 0 0 auto;
 }
 
 .social-tile-arrow {
@@ -298,54 +334,31 @@ body {
   letter-spacing: 0.05em;
 }
 
-/* 0524 桐原FB#3：KPIサマリー（GES連動データのみ）— サブターゲット可視化用
-   タイルグリッドの上部に2-3枚のKPIカードを並べる小型モジュール */
+/* 0524 桐原FB#3 + 追加修正：KPIサマリー
+   3カードレイアウト→GES画像を全幅で挿入する方式に変更 */
 .social-kpi-band {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  margin-bottom: 24px;
   background: var(--c-white);
   border: 1px solid var(--c-border);
   padding: 18px;
+  margin-bottom: 24px;
 }
 .social-kpi-band-label {
-  grid-column: 1 / -1;
   font-size: 11px;
   font-weight: 700;
   color: var(--c-text-h);
   letter-spacing: 0.04em;
   padding-bottom: 8px;
   border-bottom: 1px dashed var(--c-border);
-  margin-bottom: 6px;
+  margin-bottom: 12px;
 }
 .social-kpi-band-label .small {
   font-size: 10px; font-weight: 400; color: var(--c-text-s); margin-left: 8px;
 }
-.social-kpi-card {
-  background: var(--c-bg-sub);
-  border-left: 3px solid var(--c-text-h);
-  padding: 12px 14px;
-}
-.social-kpi-card-theme {
-  font-size: 10px; font-weight: 700; color: var(--c-text-h);
-  letter-spacing: 0.04em; margin-bottom: 4px;
-}
-.social-kpi-card-title {
-  font-size: 12px; font-weight: 700; color: var(--c-text);
-  line-height: 1.45; margin-bottom: 8px;
-}
-.social-kpi-card-value {
-  font-size: 18px; font-weight: 700; color: var(--c-text-h);
-  font-family: 'Helvetica Neue', sans-serif;
-  letter-spacing: 0;
-}
-.social-kpi-card-value .unit {
-  font-size: 11px; color: var(--c-text-s); margin-left: 3px; font-weight: 600;
-}
-.social-kpi-card-target {
-  font-size: 10px; color: var(--c-text-s);
-  margin-top: 4px; line-height: 1.5;
+.social-kpi-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--c-border-s);
 }
 
 /* 0524 桐原FB#10：リード文がドラフトであることを明示するマーカー */
@@ -569,7 +582,7 @@ body {
     ============================================================ -->
     <section class="wf-section bg-white" style="padding-top:40px; padding-bottom:32px;">
       <p style="font-size:13px; color:var(--c-text); line-height:1.95;">
-        <span class="draft-mark">DRAFT</span>コニカミノルタは、人的資本経営を中核に、社員一人ひとりが力を発揮できる職場づくりと、人権・サプライチェーン・顧客責任を通じた社会との共生を推進しています。本ページでは「人と組織」に関する7テーマと、「社会・お客様」に関する5テーマ（人権／サプライチェーンマネジメント／顧客責任・品質／AI利活用／社会貢献活動）の全12テーマで、社会領域の取り組み全体像と主要KPIをご紹介します。
+        <span class="draft-mark">DUMMY</span>コニカミノルタは、人財育成とDE&amp;Iを中心に、社員一人ひとりの可能性を引き出す職場づくりと、多様な人財が活躍できる組織の実現に取り組んでいます。
       </p>
     </section>
 
@@ -583,30 +596,13 @@ body {
     ============================================================ -->
     <section class="wf-section bg-sub" style="padding-top:40px;">
 
-      <!-- ── KPI サマリー（GESデータのみ／サブターゲット可視化） ── -->
+      <!-- ── KPI サマリー（GES結果を全幅で挿入） ── -->
       <div class="social-kpi-band">
         <div class="social-kpi-band-label">
           KPI サマリー
           <span class="small">※社会領域で開示可能なデータはGES（Global Employee Survey）が中心。詳細は各L3ページ参照。</span>
         </div>
-        <div class="social-kpi-card">
-          <div class="social-kpi-card-theme">人的資本戦略</div>
-          <div class="social-kpi-card-title">GES エンゲージメントスコア</div>
-          <div class="social-kpi-card-value">[ 値 PH ]<span class="unit">pt</span></div>
-          <div class="social-kpi-card-target">FY28目標：[ 値 PH ]pt ／ 実績は連結ベース</div>
-        </div>
-        <div class="social-kpi-card">
-          <div class="social-kpi-card-theme">DE&amp;I</div>
-          <div class="social-kpi-card-title">女性管理職比率 ／ GES公平性・意見の自由</div>
-          <div class="social-kpi-card-value">[ 値 PH ]<span class="unit">％</span></div>
-          <div class="social-kpi-card-target">グループ／KM(株) 経年開示</div>
-        </div>
-        <div class="social-kpi-card">
-          <div class="social-kpi-card-theme">健康経営</div>
-          <div class="social-kpi-card-title">健康経営優良法人（ホワイト500）認定継続</div>
-          <div class="social-kpi-card-value">[ 認定状況 PH ]</div>
-          <div class="social-kpi-card-target">KM(株)・主要グループ会社</div>
-        </div>
+        <img class="social-kpi-image" src="assets/ges-survey-result.png" alt="GES（Global Employee Survey：グローバル従業員意識調査）結果 — エンゲージメントスコアと回答率の推移">
       </div>
 
       <!-- ── グループA：人と組織（7テーマ） ── -->
@@ -625,8 +621,10 @@ body {
           </p>
           <nav class="social-tile-nav" aria-label="人的資本戦略 ページ内見出し">
             <span class="social-tile-nav-label">下層ページ目次</span>
-            <span class="social-tile-nav-item">基本的な考え方</span>
-            <span class="social-tile-nav-item">戦略・目標・実績</span>
+            <div class="social-tile-nav-items">
+              <span class="social-tile-nav-item">基本的な考え方</span>
+              <span class="social-tile-nav-item">戦略・目標・実績</span>
+            </div>
           </nav>
           <span class="social-tile-arrow"></span>
         </a>
@@ -639,8 +637,10 @@ body {
           </p>
           <nav class="social-tile-nav" aria-label="人財育成 ページ内見出し">
             <span class="social-tile-nav-label">下層ページ目次</span>
-            <span class="social-tile-nav-item">基本的な考え方</span>
-            <span class="social-tile-nav-item">戦略・目標・実績</span>
+            <div class="social-tile-nav-items">
+              <span class="social-tile-nav-item">基本的な考え方</span>
+              <span class="social-tile-nav-item">戦略・目標・実績</span>
+            </div>
           </nav>
           <span class="social-tile-arrow"></span>
         </a>
@@ -653,8 +653,10 @@ body {
           </p>
           <nav class="social-tile-nav" aria-label="企業文化・組織風土 ページ内見出し">
             <span class="social-tile-nav-label">下層ページ目次</span>
-            <span class="social-tile-nav-item">基本的な考え方</span>
-            <span class="social-tile-nav-item">取り組み</span>
+            <div class="social-tile-nav-items">
+              <span class="social-tile-nav-item">基本的な考え方</span>
+              <span class="social-tile-nav-item">取り組み</span>
+            </div>
           </nav>
           <span class="social-tile-arrow"></span>
         </a>
@@ -667,9 +669,11 @@ body {
           </p>
           <nav class="social-tile-nav" aria-label="DE&I ページ内見出し">
             <span class="social-tile-nav-label">下層ページ目次</span>
-            <span class="social-tile-nav-item">基本的な考え方</span>
-            <span class="social-tile-nav-item">戦略・目標・実績</span>
-            <span class="social-tile-nav-item">女性活躍推進</span>
+            <div class="social-tile-nav-items is-2col">
+              <span class="social-tile-nav-item">基本的な考え方</span>
+              <span class="social-tile-nav-item">戦略・目標・実績</span>
+              <span class="social-tile-nav-item">女性活躍推進</span>
+            </div>
           </nav>
           <span class="social-tile-arrow"></span>
         </a>
@@ -682,8 +686,10 @@ body {
           </p>
           <nav class="social-tile-nav" aria-label="健康経営 ページ内見出し">
             <span class="social-tile-nav-label">下層ページ目次</span>
-            <span class="social-tile-nav-item">基本的な考え方</span>
-            <span class="social-tile-nav-item">戦略・目標・実績</span>
+            <div class="social-tile-nav-items">
+              <span class="social-tile-nav-item">基本的な考え方</span>
+              <span class="social-tile-nav-item">戦略・目標・実績</span>
+            </div>
           </nav>
           <span class="social-tile-arrow"></span>
         </a>
@@ -696,8 +702,10 @@ body {
           </p>
           <nav class="social-tile-nav" aria-label="労働安全衛生 ページ内見出し">
             <span class="social-tile-nav-label">下層ページ目次</span>
-            <span class="social-tile-nav-item">基本的な考え方</span>
-            <span class="social-tile-nav-item">戦略・目標・実績</span>
+            <div class="social-tile-nav-items">
+              <span class="social-tile-nav-item">基本的な考え方</span>
+              <span class="social-tile-nav-item">戦略・目標・実績</span>
+            </div>
           </nav>
           <span class="social-tile-arrow"></span>
         </a>
@@ -728,12 +736,14 @@ body {
           </p>
           <nav class="social-tile-nav" aria-label="人権 ページ内見出し">
             <span class="social-tile-nav-label">下層ページ目次</span>
-            <span class="social-tile-nav-item">基本的な考え方</span>
-            <span class="social-tile-nav-item">体制</span>
-            <span class="social-tile-nav-item">人権デュー・デリジェンス</span>
-            <span class="social-tile-nav-item">相談・通報窓口</span>
-            <span class="social-tile-nav-item">是正</span>
-            <span class="social-tile-nav-item">ステークホルダーエンゲージメント</span>
+            <div class="social-tile-nav-items is-2col">
+              <span class="social-tile-nav-item">基本的な考え方</span>
+              <span class="social-tile-nav-item">体制</span>
+              <span class="social-tile-nav-item">人権デュー・デリジェンス</span>
+              <span class="social-tile-nav-item">相談・通報窓口</span>
+              <span class="social-tile-nav-item">是正</span>
+              <span class="social-tile-nav-item">ステークホルダーEG</span>
+            </div>
           </nav>
           <span class="social-tile-arrow"></span>
         </a>
@@ -746,10 +756,12 @@ body {
           </p>
           <nav class="social-tile-nav" aria-label="サプライチェーンマネジメント ページ内見出し">
             <span class="social-tile-nav-label">下層ページ目次</span>
-            <span class="social-tile-nav-item">基本的な考え方</span>
-            <span class="social-tile-nav-item">体制</span>
-            <span class="social-tile-nav-item">サステナブル調達</span>
-            <span class="social-tile-nav-item">責任ある鉱物調達</span>
+            <div class="social-tile-nav-items is-2col">
+              <span class="social-tile-nav-item">基本的な考え方</span>
+              <span class="social-tile-nav-item">体制</span>
+              <span class="social-tile-nav-item">サステナブル調達</span>
+              <span class="social-tile-nav-item">責任ある鉱物調達</span>
+            </div>
           </nav>
           <span class="social-tile-arrow"></span>
         </a>
@@ -762,9 +774,11 @@ body {
           </p>
           <nav class="social-tile-nav" aria-label="顧客責任・品質 ページ内見出し">
             <span class="social-tile-nav-label">下層ページ目次</span>
-            <span class="social-tile-nav-item">基本的な考え方</span>
-            <span class="social-tile-nav-item">体制</span>
-            <span class="social-tile-nav-item">戦略・目標・実績</span>
+            <div class="social-tile-nav-items is-2col">
+              <span class="social-tile-nav-item">基本的な考え方</span>
+              <span class="social-tile-nav-item">体制</span>
+              <span class="social-tile-nav-item">戦略・目標・実績</span>
+            </div>
           </nav>
           <span class="social-tile-arrow"></span>
         </a>
