@@ -29,11 +29,12 @@
   --c-ann-bg:   #FFFBF0;
   --c-ann-bdr:  #C8A000;
 
-  --content-w:  1080px;
-  --page-w:     1280px;
+  /* 0524 桐原FB：環境インデックス(004)と同じ広い幅に統一 */
+  --content-w:  1080px;    /* コンテンツ最大幅 */
+  --page-w:     1560px;    /* wf-canvas 全幅（wf-page 1280px + annotation 280px） */
   --pad-section: 64px;
   --pad-section-sm: 40px;
-  --pad-h: 100px;
+  --pad-h: 100px;          /* コンテンツ左右パディング */
 }
 
 body {
@@ -203,12 +204,14 @@ body {
   border-top: 1px solid var(--c-border);
   border-left: 1px solid var(--c-border);
   background: var(--c-white);
+  /* 同じ行（横並び）はCSS gridの仕様で自動的に揃う。
+     行ごとに高さが変わる場合は align-items を変更しない（既定 stretch）。 */
 }
 
-/* 0524 追加修正：タイルの縦幅を完全固定。本文3行・目次最大3行で揃える。
-   - .social-tile-title: 1行固定（CTA見出し相当）
-   - .social-tile-desc:  3行クランプ（line-clamp 3）
-   - .social-tile-nav:   3行分の高さ固定。3個以上は2カラム表示で行数を抑制 */
+/* 0524 追加修正：
+   - 目次ありタイル(.has-nav)：縦幅大（296px）
+   - 目次なしタイル(.no-nav)：縦幅小（200px）— 余白を詰める
+   - 本文3行・目次最大2行・タイル下部に白ボタン */
 .social-tile {
   position: relative;
   display: flex;
@@ -217,10 +220,13 @@ body {
   border-right: 1px solid var(--c-border);
   border-bottom: 1px solid var(--c-border);
   padding: 22px 22px 64px;
-  height: 296px;  /* 完全固定：タイトル+余白+desc3行+nav3行+下部ボタン領域 */
+  height: 296px;
   cursor: default;
   transition: background 0.15s;
   overflow: hidden;
+}
+.social-tile.no-nav {
+  height: 200px;  /* 目次なしは余白を詰める */
 }
 .social-tile:hover {
   background: var(--c-bg-sub);
@@ -241,39 +247,42 @@ body {
   min-height: 0;
 }
 /* 内側にリンク群を入れるラッパー：1〜2個=縦1カラム、3個以上=2カラム
-   3行ぶんを目安に高さ固定。はみ出しは隠す */
+   各item は最大2行までで折返し、3行以上は隠す（全体幅拡大で大半は1行収まる想定） */
 .social-tile-nav-items {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 4px 12px;
-  max-height: calc(11px * 1.4 * 6 + 8px);  /* 単行22px × 3行（1カラム時） or 2行折返し × 3行（2カラム時） */
+  gap: 2px 14px;
   overflow: hidden;
 }
 .social-tile-nav-items.is-2col {
   grid-template-columns: 1fr 1fr;
 }
 .social-tile-nav-item {
-  display: flex;
-  align-items: baseline;
-  gap: 4px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   font-size: 11px;
   color: var(--c-text);
-  padding: 2px 0 2px 4px;
+  padding: 3px 0 3px 12px;
   cursor: default;
   line-height: 1.4;
   border-bottom: 1px dotted var(--c-border);
   min-width: 0;
   word-break: normal;
   overflow-wrap: anywhere;
+  position: relative;
 }
 .social-tile-nav-item::before {
   content: '›';
   color: var(--c-text-h);
   font-weight: 700;
   font-size: 12px;
-  flex-shrink: 0;
-  align-self: flex-start;
-  margin-top: 1px;
+  position: absolute;
+  left: 0;
+  top: 3px;
+  line-height: 1.4;
 }
 .social-tile-nav-item:hover { color: var(--c-text-h); background: var(--c-bg-sub); }
 
@@ -352,25 +361,17 @@ body {
   background: #888;
 }
 
-/* 0524 桐原FB#5：「人財関連7項目」「人権＋SCM他」のグループ表示を復活
-   タイルグリッドの上に大分類ラベルを置き、関連性が見えるレイアウトに */
+/* 0524 桐原FB追加：H2見出しは共通モジュール .wf-section-title を適用
+   .social-group-label は H2 直下の説明文＋件数バッジ用のサブヘッダに役割変更 */
 .social-group-label {
   display: flex;
   align-items: baseline;
   gap: 14px;
   margin: 0 0 14px;
-  padding: 8px 0 8px 16px;
-  border-left: 4px solid var(--c-text-h);
 }
-.social-group-label.is-second { margin-top: 32px; }
-.social-group-label-tag {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--c-text-h);
-  letter-spacing: 0.04em;
-}
+.social-group-label.is-second { margin-top: 36px; }
 .social-group-label-desc {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--c-text-s);
   line-height: 1.6;
 }
@@ -652,20 +653,15 @@ body {
     <section class="wf-section bg-sub" style="padding-top:40px;">
 
       <!-- ── KPI サマリー（GES結果を全幅で挿入） ── -->
-      <div class="social-group-label">
-        <h2 class="social-group-label-tag" id="kpi-summary">KPIサマリー</h2>
-        <div class="social-group-label-desc">GES（Global Employee Survey：グローバル従業員意識調査）結果</div>
-      </div>
+      <h2 class="wf-section-title" id="kpi-summary">KPIサマリー</h2>
+      <p class="wf-section-desc">GES（Global Employee Survey：グローバル従業員意識調査）結果</p>
       <div class="social-kpi-band">
         <img class="social-kpi-image" src="assets/ges-survey-result.png" alt="GES結果 — エンゲージメントスコアと回答率の推移">
       </div>
 
       <!-- ── グループA：人と組織（7テーマ） ── -->
-      <div class="social-group-label is-second">
-        <h2 class="social-group-label-tag" id="group-people">人と組織</h2>
-        <div class="social-group-label-desc">人的資本経営の中核となる7テーマ（戦略〜労働慣行）</div>
-        <div class="social-group-label-count">7 テーマ</div>
-      </div>
+      <h2 class="wf-section-title" id="group-people" style="margin-top:40px;">人と組織</h2>
+      <p class="wf-section-desc">人的資本経営の中核となる7テーマ（戦略〜労働慣行）</p>
 
       <div class="social-tile-grid">
         <!-- 人的資本戦略 -->
@@ -760,7 +756,7 @@ body {
         </a>
 
         <!-- 労働慣行 — 0524 FB#9：基本的な考え方のみ → サブナビ非表示 -->
-        <a class="social-tile is-group-a">
+        <a class="social-tile is-group-a no-nav">
           <h3 class="social-tile-title" id="theme-labor">労働慣行</h3>
           <p class="social-tile-desc">
             ILO中核的労働基準を踏まえた労働慣行の遵守、結社の自由・団体交渉権の尊重、強制労働・児童労働の禁止など、グローバルでの労働者の権利保護を推進します。
@@ -770,11 +766,8 @@ body {
       </div>
 
       <!-- ── グループB：社会・お客様（5テーマ） — 人権／SCMを隣接配置 ── -->
-      <div class="social-group-label is-second">
-        <h2 class="social-group-label-tag" id="group-social">社会・お客様</h2>
-        <div class="social-group-label-desc">人権・SCM・顧客責任・AI・社会貢献の5テーマ。人権とSCMは関連性が高いため隣接配置。</div>
-        <div class="social-group-label-count">5 テーマ</div>
-      </div>
+      <h2 class="wf-section-title" id="group-social" style="margin-top:48px;">社会・お客様</h2>
+      <p class="wf-section-desc">人権・SCM・顧客責任・AI・社会貢献の5テーマ。人権とSCMは関連性が高いため隣接配置。</p>
 
       <div class="social-tile-grid">
         <!-- 人権 -->
@@ -830,7 +823,7 @@ body {
         </a>
 
         <!-- AIの利活用 — 0524 FB#9：基本的な考え方のみ → サブナビ非表示 -->
-        <a class="social-tile is-group-b">
+        <a class="social-tile is-group-b no-nav">
           <h3 class="social-tile-title" id="theme-ai">AIの利活用</h3>
           <p class="social-tile-desc">
             AI利活用に関する基本方針のもと、お客様・社員・社会への価値提供と、AI倫理・ガバナンスを両立。責任あるAI利活用を推進しています。
@@ -839,7 +832,7 @@ body {
         </a>
 
         <!-- 社会貢献活動 — 0524 FB#9：基本的な考え方のみ → サブナビ非表示 -->
-        <a class="social-tile is-group-b">
+        <a class="social-tile is-group-b no-nav">
           <h3 class="social-tile-title" id="theme-csr">社会貢献活動</h3>
           <p class="social-tile-desc">
             事業活動を通じた社会価値創出に加え、地域社会への貢献活動を推進。教育・文化・スポーツ・環境保全等の分野で、社員参加型の活動を展開しています。
