@@ -286,13 +286,13 @@ body {
 }
 .social-tile-nav-item:hover { color: var(--c-text-h); background: var(--c-bg-sub); }
 
-/* 0524 追加修正：タイル下部の「›テーマ名」白ボタン */
+/* 0524 追加修正：タイル下部の「›テーマ名」白ボタン
+   横幅は文字数に応じて可変・左寄せ */
 .social-tile-cta {
   position: absolute;
-  left: 22px; right: 22px; bottom: 16px;
-  display: flex;
+  left: 22px; bottom: 16px;
+  display: inline-flex;
   align-items: center;
-  justify-content: flex-start;
   gap: 8px;
   padding: 8px 14px;
   background: var(--c-white);
@@ -302,6 +302,8 @@ body {
   letter-spacing: 0.02em;
   cursor: default;
   line-height: 1.3;
+  white-space: nowrap;
+  width: auto;
 }
 .social-tile-cta::before {
   content: '›';
@@ -327,19 +329,17 @@ body {
   text-overflow: ellipsis;
 }
 
-/* 0524 追加修正：本文を3行クランプで完全固定 */
+/* 0524 追加修正：本文は3行以内に収まる短文（…省略はしない）。
+   高さは3行ぶん確保して、目次位置の縦ズレを防止 */
 .social-tile-desc {
   font-size: 12px;
   color: var(--c-text);
   line-height: 1.75;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
-  -webkit-box-orient: vertical;
+  display: block;
   overflow: hidden;
   word-break: normal;
   overflow-wrap: anywhere;
-  height: calc(12px * 1.75 * 3);  /* 63px：常に3行分の高さを確保 */
+  height: calc(12px * 1.75 * 3);  /* 63px：3行分の高さ予約（短文なら上揃え） */
   flex: 0 0 auto;
 }
 
@@ -668,7 +668,7 @@ body {
         <a class="social-tile is-group-a">
           <h3 class="social-tile-title" id="theme-hcm-strategy">人的資本戦略</h3>
           <p class="social-tile-desc">
-            個と組織の成長を両立させる人的資本戦略を推進。事業戦略と接続した人事戦略を策定し、エンゲージメントを通じた価値創造を実現します。
+            （文章はダミーです）事業戦略と接続した人事戦略を策定し、エンゲージメントを通じた価値創造を実現します。
           </p>
           <nav class="social-tile-nav" aria-label="人的資本戦略 ページ内見出し">
 <div class="social-tile-nav-items">
@@ -683,7 +683,7 @@ body {
         <a class="social-tile is-group-a">
           <h3 class="social-tile-title" id="theme-hcm-dev">人財育成</h3>
           <p class="social-tile-desc">
-            次世代経営人財育成の強化と、事業成長を牽引する専門人財・グローバル人財の育成を進めています。中長期の戦略人事と接続した育成体系を整備しています。
+            （文章はダミーです）次世代経営人財・専門人財・グローバル人財の育成を進めています。
           </p>
           <nav class="social-tile-nav" aria-label="人財育成 ページ内見出し">
 <div class="social-tile-nav-items">
@@ -698,7 +698,7 @@ body {
         <a class="social-tile is-group-a">
           <h3 class="social-tile-title" id="theme-culture">企業文化・組織風土</h3>
           <p class="social-tile-desc">
-            フィロソフィーを基軸とした風土醸成、心理的安全性の確保、対話を通じた組織変革を推進。事業成長を支える企業文化の浸透に取り組みます。
+            （文章はダミーです）フィロソフィーを基軸とした風土醸成と心理的安全性の確保で、組織変革を推進します。
           </p>
           <nav class="social-tile-nav" aria-label="企業文化・組織風土 ページ内見出し">
 <div class="social-tile-nav-items">
@@ -713,7 +713,7 @@ body {
         <a class="social-tile is-group-a">
           <h3 class="social-tile-title" id="theme-dei">DE&amp;I</h3>
           <p class="social-tile-desc">
-            ダイバーシティ・エクイティ＆インクルージョンの推進を通じ、多様な人財が能力を発揮できる組織を目指します。
+            （文章はダミーです）ダイバーシティ・エクイティ＆インクルージョンを推進し、多様な人財が活躍できる組織を目指します。
           </p>
           <nav class="social-tile-nav" aria-label="DE&I ページ内見出し">
 <div class="social-tile-nav-items is-2col">
@@ -729,7 +729,7 @@ body {
         <a class="social-tile is-group-a">
           <h3 class="social-tile-title" id="theme-health">健康経営</h3>
           <p class="social-tile-desc">
-            健康第一の風土醸成を通じた健全な経営の推進を重視。健康リスク保有者の最少化、過重労働対策、健康度の見える化、女性の健康支援に取り組みます。
+            （文章はダミーです）健康第一の風土醸成と、健康リスク低減・過重労働対策・健康度の見える化を進めています。
           </p>
           <nav class="social-tile-nav" aria-label="健康経営 ページ内見出し">
 <div class="social-tile-nav-items">
@@ -744,7 +744,7 @@ body {
         <a class="social-tile is-group-a">
           <h3 class="social-tile-title" id="theme-safety">労働安全衛生</h3>
           <p class="social-tile-desc">
-            製造会社として義務的に必要な労働安全衛生体制を構築。労働災害ゼロを目指し、労働安全衛生方針に基づく管理体制とリスクアセスメントを実施しています。
+            （文章はダミーです）労働災害ゼロを目指し、労働安全衛生方針に基づく管理体制とリスクアセスメントを実施します。
           </p>
           <nav class="social-tile-nav" aria-label="労働安全衛生 ページ内見出し">
 <div class="social-tile-nav-items">
@@ -759,7 +759,7 @@ body {
         <a class="social-tile is-group-a no-nav">
           <h3 class="social-tile-title" id="theme-labor">労働慣行</h3>
           <p class="social-tile-desc">
-            ILO中核的労働基準を踏まえた労働慣行の遵守、結社の自由・団体交渉権の尊重、強制労働・児童労働の禁止など、グローバルでの労働者の権利保護を推進します。
+            （文章はダミーです）ILO中核的労働基準を踏まえ、結社の自由・強制労働や児童労働の禁止など労働者の権利を保護します。
           </p>
           <span class="social-tile-cta">労働慣行</span>
         </a>
@@ -774,7 +774,7 @@ body {
         <a class="social-tile is-group-b">
           <h3 class="social-tile-title" id="theme-human-rights">人権</h3>
           <p class="social-tile-desc">
-            人権方針・KMグループ行動憲章・サプライチェーン行動規範を基盤に、グローバルな原則・国際規範に沿った人権尊重を実践。網羅的な人権デュー・デリジェンスを実施しています。
+            （文章はダミーです）人権方針と国際規範に沿った人権尊重を実践し、網羅的な人権デュー・デリジェンスを実施します。
           </p>
           <nav class="social-tile-nav" aria-label="人権 ページ内見出し">
 <div class="social-tile-nav-items is-2col">
@@ -793,7 +793,7 @@ body {
         <a class="social-tile is-group-b">
           <h3 class="social-tile-title" id="theme-scm">サプライチェーンマネジメント</h3>
           <p class="social-tile-desc">
-            サプライチェーン全体での人権・環境・倫理に配慮した責任ある調達活動を推進。サプライヤーとの協働を通じた持続可能なバリューチェーン構築を目指します。
+            （文章はダミーです）人権・環境・倫理に配慮した責任ある調達を推進し、持続可能なバリューチェーンを構築します。
           </p>
           <nav class="social-tile-nav" aria-label="サプライチェーンマネジメント ページ内見出し">
 <div class="social-tile-nav-items is-2col">
@@ -810,7 +810,7 @@ body {
         <a class="social-tile is-group-b">
           <h3 class="social-tile-title" id="theme-quality">顧客責任・品質</h3>
           <p class="social-tile-desc">
-            コンプライアンス／品質不正防止、製品セキュリティ、製品品質、顧客満足度の4軸でTQM（Total Quality Management）を推進。お客様への責任を多面的に果たします。
+            （文章はダミーです）品質不正防止・製品セキュリティ・品質・顧客満足度の4軸でTQMを推進します。
           </p>
           <nav class="social-tile-nav" aria-label="顧客責任・品質 ページ内見出し">
 <div class="social-tile-nav-items is-2col">
@@ -826,7 +826,7 @@ body {
         <a class="social-tile is-group-b no-nav">
           <h3 class="social-tile-title" id="theme-ai">AIの利活用</h3>
           <p class="social-tile-desc">
-            AI利活用に関する基本方針のもと、お客様・社員・社会への価値提供と、AI倫理・ガバナンスを両立。責任あるAI利活用を推進しています。
+            （文章はダミーです）AI倫理・ガバナンスを両立した、責任あるAI利活用を推進しています。
           </p>
           <span class="social-tile-cta">AIの利活用</span>
         </a>
@@ -835,7 +835,7 @@ body {
         <a class="social-tile is-group-b no-nav">
           <h3 class="social-tile-title" id="theme-csr">社会貢献活動</h3>
           <p class="social-tile-desc">
-            事業活動を通じた社会価値創出に加え、地域社会への貢献活動を推進。教育・文化・スポーツ・環境保全等の分野で、社員参加型の活動を展開しています。
+            （文章はダミーです）教育・文化・スポーツ・環境保全等の分野で、社員参加型の活動を展開しています。
           </p>
           <span class="social-tile-cta">社会貢献活動</span>
         </a>
