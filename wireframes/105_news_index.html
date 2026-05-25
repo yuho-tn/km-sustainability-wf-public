@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>トピックス一覧 ― KM サステナビリティ WF v1.4</title>
+<title>トピックス一覧 ― KM サステナビリティ WF v1.5</title>
 <style>
 /* ============================================================
    KM SUSTAINABILITY WF — SHARED CSS v3.0
@@ -596,7 +596,7 @@ body {
   <div>
     <strong>KONICA MINOLTA サステナビリティ</strong>
     <span class="meta-badge">トピックス一覧</span>
-    <span class="meta-badge">WF v1.3</span>
+    <span class="meta-badge">WF v1.5</span>
     <span class="meta-badge">#231 (旧 #105)</span>
     <span class="meta-badge" style="background:#C8A000; color:#111;">シンプル構成</span>
   </div>
@@ -636,12 +636,19 @@ body {
     </section>
 
     <!-- ============================================================
-         A｜年度フィルタ
+         A｜フリーワード検索 ＋ 年度フィルタ
+            v1.4：0525 桐原FB → 年度に2015を追加／検索ボックスを年度上に新設
     ============================================================ -->
     <section class="wf-section bg-white">
       <span class="wf-section-marker">A</span>
 
-      <!-- 年度フィルタ（2026〜2016 / 11年度／既存サイト実在年度のみ） -->
+      <!-- フリーワード検索（年度フィルタの上に配置） -->
+      <div class="news-search" style="margin-bottom:14px;">
+        <span class="news-search-icon"></span>
+        <input class="news-search-input" type="text" placeholder="キーワードで検索（記事タイトル）" disabled>
+      </div>
+
+      <!-- 年度フィルタ（2026〜2015 / 12年度） -->
       <div class="year-filter-block">
         <div class="year-filter-row">
           <span class="year-filter-label">年度で絞り込む</span>
@@ -656,6 +663,7 @@ body {
           <span class="year-chip" data-year="2018">2018</span>
           <span class="year-chip" data-year="2017">2017</span>
           <span class="year-chip" data-year="2016">2016</span>
+          <span class="year-chip" data-year="2015">2015</span>
         </div>
       </div>
     </section>
@@ -854,7 +862,20 @@ body {
        アノテーションパネル
   ============================================================ -->
   <aside class="wf-annotation">
-    <h3>設計ポイント ― トピックス一覧（v1.4：0524 Figma FB反映）</h3>
+    <h3>設計ポイント ― トピックス一覧（v1.5：0525 ユーザーFB反映）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">v1.5</span>
+      <span class="ann-head">v1.5 修正サマリ（0525 ユーザー追加FB）</span>
+      <div class="ann-row">
+        <span class="ann-row-label">2015年チップ追加</span>
+        年度絞り込みに <b>2015年</b> を追加（2026〜2015 の12年度に拡張）。実コンテンツの2015年データはKM側のXML提供を受けて差し込み予定。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">フリーワード検索追加</span>
+        年度フィルタブロックの<b>直上</b>に <code>.news-search</code>（虫眼鏡アイコン＋テキスト入力）を配置。記事タイトルに対する部分一致検索を想定。CSSは既存 .news-search を流用。
+      </div>
+    </div>
 
     <div class="ann-item">
       <span class="ann-num">0524</span>
