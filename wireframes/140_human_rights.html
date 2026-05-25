@@ -233,25 +233,23 @@ body {
   letter-spacing: 0.02em;
 }
 
-/* 国際規範リスト（v1.1：ラベルなし。リスト本体のみ） */
+/* 国際規範リスト（v1.6：0525 中山FB#8 反映 — グレー囲い廃止、シンプルな箇条書きモジュールに） */
 .norm-list {
-  background: var(--c-bg-sub);
-  border: 1px solid var(--c-border);
-  padding: 16px 22px;
-  margin-top: 14px;
+  margin-top: 10px;
+  margin-bottom: 18px;
 }
 .norm-list ul {
   list-style: none; padding: 0; margin: 0;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4px 24px;
 }
 .norm-list li {
-  font-size: 12px; color: var(--c-text);
+  font-size: 13px; color: var(--c-text);
   padding-left: 14px; position: relative;
-  line-height: 1.7;
+  line-height: 1.95;
 }
 .norm-list li::before {
-  content: '◆'; position: absolute; left: 0; top: 2px;
-  font-size: 8px; color: var(--c-text-h);
+  content: '・'; position: absolute; left: 0; top: 0;
+  font-size: 13px; color: var(--c-text-h);
 }
 
 /* 推進体制図 */
@@ -289,7 +287,29 @@ body {
 }
 .img-zoom-btn::before { content: '+'; }
 
-/* v1.2：DD 4ステップ図（dd-process／dd-step）は廃止しCSSも削除 */
+/* 人権DDプロセス図（v1.6：0525 村上FB#3 反映 — 4ステップ図を画像PHとして再導入） */
+.dd-process-fig {
+  background: var(--c-ph); border: 1px solid var(--c-ph-line);
+  position: relative; overflow: hidden;
+  aspect-ratio: 16 / 5;
+  display: flex; align-items: center; justify-content: center;
+  margin: 14px 0 20px;
+}
+.dd-process-fig::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(45deg, transparent 0 12px, rgba(0,0,0,0.04) 12px 13px);
+}
+.dd-process-fig-label {
+  position: relative; z-index: 1;
+  font-size: 11px; color: var(--c-text-s);
+  text-align: center; line-height: 1.7;
+  background: rgba(255,255,255,0.92); padding: 10px 18px;
+  letter-spacing: 0.04em;
+  border: 1px dashed var(--c-ph-line);
+  max-width: 86%;
+}
+.dd-process-fig-label strong { display: block; font-size: 12px; color: var(--c-text-h); margin-bottom: 4px; }
 
 /* インパクトアセスメント表 */
 .impact-table-wrap { overflow-x: auto; margin: 14px 0 8px; border: 1px solid var(--c-border); }
@@ -364,14 +384,24 @@ body {
 .measure-table .col-risk { width: 200px; }
 .measure-table ul { margin: 0; padding-left: 16px; }
 .measure-table li { margin-bottom: 4px; }
+/* v1.6：0525 桐原FB#5 反映 — テキストリンクは「→ リンクテキスト」で統一 */
 .measure-table .risk-detail-link {
   display: inline-block;
-  font-size: 10px; color: var(--c-text-s);
-  margin-top: 4px;
-  border-top: 1px dashed var(--c-border);
-  padding-top: 4px;
+  font-size: 11px; color: var(--c-text-h);
+  font-weight: 600;
+  margin-top: 6px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: default;
 }
-.measure-table .risk-detail-link::before { content: '→ '; }
+.measure-table .risk-detail-link::before {
+  content: '→ ';
+  display: inline-block;
+  margin-right: 2px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  text-decoration: none;
+}
 
 /* RBA VAP監査表 */
 .audit-table-wrap { overflow-x: auto; margin: 14px 0; border: 1px solid var(--c-border); }
@@ -504,10 +534,10 @@ body {
 }
 .wf-acc-h4-body > p:last-child { margin-bottom: 0; }
 
-/* v1.2：詳細リンク（取り組みの詳細はこちら）— policy-linkと同系統の素朴なテキストリンクUIに */
+/* テキストリンク（v1.6：0525 桐原FB#5 反映 — 全箇所「→ リンクテキスト」形式に統一） */
 .detail-link {
   display: inline-block;
-  font-size: 12px;
+  font-size: 13px;
   color: var(--c-text-h);
   font-weight: 600;
   margin-top: 12px;
@@ -516,12 +546,12 @@ body {
   text-underline-offset: 3px;
 }
 .detail-link::before {
-  content: '→ 取り組みの詳細はこちら： ';
+  content: '→ ';
   display: inline-block;
-  font-weight: 400;
-  color: var(--c-text-s);
-  font-size: 11px;
-  margin-right: 4px;
+  margin-right: 2px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--c-text-h);
   text-decoration: none;
 }
 
@@ -879,7 +909,16 @@ body {
             コニカミノルタは人権デュー・ディリジェンスの仕組みを構築し、自社の事業活動がステークホルダーに対して及ぼす潜在的・顕在的な人権リスクの特定、人権への負の影響の防止または軽減策の検討・実施、進捗状況についての情報開示を継続して行っています。なお、自社の事業活動には、新規および追加投資、M&Aによる事業拡大、新規プロジェクトへの参入を含み投資判断基準に人権に対する評価項目を盛り込んでいます。
           </p>
 
-          <!-- v1.2：DD 4ステップブロックは削除 -->
+          <!-- v1.6：0525 村上FB#3 反映 — 人権DDプロセス図PHを再導入 -->
+          <h3 class="wf-sub-title" id="dd-process">人権デュー・ディリジェンスのプロセス</h3>
+          <div class="dd-process-fig">
+            <span class="dd-process-fig-label">
+              <strong>図：人権デュー・ディリジェンス 4ステッププロセス PH</strong>
+              1. 人権への負の影響の特定・評価（インパクトアセスメント）　→　2. 適切な措置の実施（負の影響の防止・軽減）　→　3. 実効性の追跡評価　→　4. 情報公開<br>
+              ※ 国連「ビジネスと人権に関する指導原則」に則ったサイクル
+            </span>
+            <span class="img-zoom-btn"></span>
+          </div>
 
           <!-- 1. 特定・評価 -->
           <h3 class="wf-sub-title">1. 人権への負の影響の特定、評価（インパクトアセスメント）</h3>
