@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>人権 — KM サステナビリティ WF v1.7 (#140)</title>
+<title>人権 — KM サステナビリティ WF v1.8 (#140)</title>
 <style>
 /* ============================================================
    KM SUSTAINABILITY WF — SHARED CSS（131 健康経営 v2.1 ベース継承）
@@ -167,12 +167,23 @@ body {
   letter-spacing: 0.1em; text-transform: uppercase;
   margin-bottom: 8px;
 }
+/* v1.8：UNIFIED_RULES v5.0 §3 横断ルール準拠 — H2/H3全文表記＋2行クランプ＋H3インデント（.sub） */
 .wf-anchor-nav-item {
-  display: block;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-size: 11px; color: var(--c-text-s);
   padding: 5px 0 5px 10px; line-height: 1.4;
   cursor: default;
   border-left: 2px solid transparent;
+  text-decoration: none;
+}
+.wf-anchor-nav-item.sub {
+  font-size: 10px;
+  padding-left: 22px;
+  color: var(--c-text-xs);
 }
 .wf-anchor-nav-item:hover { color: var(--c-text-h); }
 .wf-anchor-nav-item.is-current {
@@ -893,12 +904,12 @@ body {
   <div>
     <strong>KONICA MINOLTA サステナビリティ</strong>
     <span class="meta-badge">人権</span>
-    <span class="meta-badge">WF v1.7</span>
+    <span class="meta-badge">WF v1.8</span>
     <span class="meta-badge">#140</span>
     <span class="meta-badge">L3</span>
-    <span class="meta-badge" style="background:#7a4a00; color:#fff;">v1.7（0525 FB#7反映）：コニカミノルタグループ人権方針PDF全文をページ内アコーディオン展開（policy-statement モジュール新規）</span>
+    <span class="meta-badge" style="background:#7a4a00; color:#fff;">v1.8（横断ルール適用）：右アンカーナビをUNIFIED_RULES v5.0 §3 準拠（H2/H3全文表記＋2行クランプ＋H3インデント）に揃え</span>
   </div>
-  <div style="font-size:10px; color:#666;">2026.05 / v1.6→v1.7：0525 FB#7反映</div>
+  <div style="font-size:10px; color:#666;">2026.05 / v1.7→v1.8：横断ルール準拠</div>
 </div>
 
 <div class="wf-canvas">
@@ -1065,7 +1076,7 @@ body {
             人権尊重に関する活動状況や抽出された重大な人権リスクについては、年2回開催されるリスクマネジメント委員会において報告・審議される体制を整えています。
           </p>
 
-          <h3 class="wf-sub-title">人権対応の体制図</h3>
+          <h3 class="wf-sub-title" id="structure-fig">人権対応の体制図</h3>
           <div class="gov-structure-fig">
             <span class="gov-structure-fig-label">
               <strong>図：人権対応の全社推進体制 PH</strong>
@@ -1102,7 +1113,7 @@ body {
           </div>
 
           <!-- 1. 特定・評価 -->
-          <h3 class="wf-sub-title">1. 人権への負の影響の特定、評価（インパクトアセスメント）</h3>
+          <h3 class="wf-sub-title" id="dd-impact">1. 人権への負の影響の特定、評価（インパクトアセスメント）</h3>
           <p class="wf-section-desc">
             コニカミノルタの事業活動や取引の結果として、潜在的または顕在的に負の影響を受けるステークホルダーとその人権課題について、日本の法務省が人権に関する主要な国際ルール／フレームワーク／ガイドラインからリストアップした"企業が配慮すべき主要な人権リスク類型"の項目をもとに整理しました。
           </p>
@@ -1190,7 +1201,7 @@ body {
           </div>
 
           <!-- 2. 適切な措置 ＋ 3. 実効性の追跡評価 -->
-          <h3 class="wf-sub-title">2. 適切な措置の実施（負の影響の防止・軽減）／ 3. 実効性の追跡評価</h3>
+          <h3 class="wf-sub-title" id="dd-measure">2. 適切な措置の実施（負の影響の防止・軽減）／ 3. 実効性の追跡評価</h3>
           <p class="wf-section-desc">
             コニカミノルタでは優先度が高いと特定した人権リスクについて、適切な措置を実施し、実効性を追跡評価しています。
           </p>
@@ -1309,7 +1320,7 @@ body {
           </p>
 
           <!-- 4. 情報公開 -->
-          <h3 class="wf-sub-title">4. 情報公開</h3>
+          <h3 class="wf-sub-title" id="dd-disclosure">4. 情報公開</h3>
           <p class="wf-section-desc">
             コニカミノルタはウェブサイトや統合報告書を通じて、定期的かつタイムリーに取り組み内容を公開していきます。
           </p>
@@ -1500,15 +1511,20 @@ body {
 
       </div><!-- /wf-anchornav-main -->
 
-      <!-- 右コンパクトアンカーナビ -->
+      <!-- 右コンパクトアンカーナビ（v1.8：UNIFIED_RULES v5.0 §3 準拠 — H2/H3全文表記＋2行クランプ＋H3インデント） -->
       <nav class="wf-anchor-nav">
         <div class="wf-anchor-nav-title">目次</div>
         <a class="wf-anchor-nav-item is-current" href="#policy">基本的な考え方</a>
         <a class="wf-anchor-nav-item" href="#structure">体制</a>
+        <a class="wf-anchor-nav-item sub" href="#structure-fig">人権対応の体制図</a>
         <a class="wf-anchor-nav-item" href="#dd">人権デュー・ディリジェンス</a>
-        <a class="wf-anchor-nav-item" href="#grievance">相談・通報窓口</a>
-        <a class="wf-anchor-nav-item" href="#remediation">是正</a>
-        <a class="wf-anchor-nav-item" href="#engagement">ステークホルダー<br>エンゲージメント</a>
+        <a class="wf-anchor-nav-item sub" href="#dd-process">人権デュー・ディリジェンスのプロセス</a>
+        <a class="wf-anchor-nav-item sub" href="#dd-impact">1. 人権への負の影響の特定、評価（インパクトアセスメント）</a>
+        <a class="wf-anchor-nav-item sub" href="#dd-measure">2. 適切な措置の実施（負の影響の防止・軽減）／ 3. 実効性の追跡評価</a>
+        <a class="wf-anchor-nav-item sub" href="#dd-disclosure">4. 情報公開</a>
+        <a class="wf-anchor-nav-item" href="#grievance">相談・通報窓口（グリーバンスメカニズム）</a>
+        <a class="wf-anchor-nav-item" href="#remediation">人権課題の是正策</a>
+        <a class="wf-anchor-nav-item" href="#engagement">ステークホルダーエンゲージメント</a>
       </nav>
 
     </div><!-- /wf-layout-with-anchornav -->
@@ -1636,7 +1652,28 @@ body {
 
   <!-- アノテーション -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — 人権 v1.7（0525 Figma FB追加反映＋人権方針HTML化）</h3>
+    <h3>設計ポイント — 人権 v1.8（横断ルール準拠 — 右アンカーナビ H2/H3 併載化）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">v1.8</span>
+      <span class="ann-head">UNIFIED_RULES v5.0 §3 横断ルール適用：右アンカーナビ H2/H3 併載化</span>
+      <div class="ann-row">
+        <span class="ann-row-label">対応FB</span>
+        桐原FB#6（D・回答済）「H2/H3まで記載すると、どうなりますか。（これであってますか）」の実装フォローアップ。0525アノテーションでは併載済と記載していたが実装はH2のみだったため、ここで揃える。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">CSS追加</span>
+        <code>.wf-anchor-nav-item</code> に <b>2行クランプ</b>（display:-webkit-box / -webkit-line-clamp:2 / -webkit-box-orient:vertical）。<code>.wf-anchor-nav-item.sub</code> 新設（font-size:10px / padding-left:22px / color:--c-text-xs）。096・225 と同一パターン。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">id付与（H3）</span>
+        <code>#structure-fig</code>（人権対応の体制図）／<code>#dd-process</code>（人権DDのプロセス・v1.6で付与済）／<code>#dd-impact</code>（特定・評価）／<code>#dd-measure</code>（措置／追跡評価）／<code>#dd-disclosure</code>（情報公開）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">目次構成（11項目）</span>
+        H2 6項目（A〜F／全文表記）＋H3 5項目（B-1, C-1〜C-4）。wf-acc-h3（D/E/F のアコサマリ）は本文の論理階層ではなく開閉単位のため目次には掲出しない（他WFと同方針）。
+      </div>
+    </div>
 
     <div class="ann-item">
       <span class="ann-num">v1.7</span>
