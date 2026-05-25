@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>サステナビリティサイトアーカイブ — KM サステナビリティ WF v1.3</title>
+<title>レポートアーカイブ — KM サステナビリティ WF v1.4</title>
 <style>
 /* ============================================================
    KM SUSTAINABILITY WF — SHARED CSS v3.0
@@ -1291,12 +1291,14 @@ body {
 .pc-item-dl.pdf,
 .pc-item-dl.data,
 .pc-item-dl.web { background: #555; }
-/* 説明文付きリンクボタン（共通モジュール 7-10） — タイトル＋説明文＋›矢印の独立ボタン */
+/* リンクボタン（共通モジュール 7-10） — タイトル＋›矢印の独立ボタン
+   v1.4：説明文（.link-btn-desc）は使用しないルールに統一。リンク先名のみで遷移先を伝える */
 .link-btn-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
 }
+.link-btn-grid.col-3 { grid-template-columns: repeat(3, 1fr); }
 .link-btn {
   display: grid;
   grid-template-columns: 1fr 24px;
@@ -1320,7 +1322,11 @@ body {
   color: var(--c-text-h);
   line-height: 1.4;
   letter-spacing: -0.01em;
-  margin-bottom: 2px;
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 .link-btn-desc {
   font-size: 11px;
@@ -1340,6 +1346,82 @@ body {
   line-height: 1;
 }
 .link-btn:hover .link-btn-arrow { color: var(--c-text-h); }
+
+/* ============================================================
+   リンク元表示ルール v5.1（0525 FB対応）
+   コーポレートサイト遷移（konicaminolta.com/jp-ja/...）／
+   外部サイト遷移を識別するバッジ・アイコン
+============================================================ */
+/* コーポレートサイトバッジ（KMドメイン内・サステナサイト外への遷移を明示） */
+.link-corp-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--c-text-s);
+  background: var(--c-bg-sub);
+  border: 1px solid var(--c-border);
+  padding: 1px 8px;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  line-height: 1.5;
+}
+/* 外部サイトアイコン（他社・公的機関等への遷移） */
+.link-ext-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  font-size: 11px;
+  color: var(--c-text-s);
+  line-height: 1;
+}
+.link-ext-icon::before { content: '↗'; }
+
+/* リンク先URL注記（テキストリンクの下に小さく表示） */
+.link-btn-url {
+  font-size: 10px;
+  color: var(--c-text-xs);
+  margin-top: 4px;
+  line-height: 1.4;
+  word-break: break-all;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+}
+
+/* インラインリンク：コーポレートサイトバージョン
+   .wf-link.is-corp → 「→ リンク名」の後ろにコーポレートサイトバッジ */
+.wf-link.is-corp::after,
+.wf-link.is-ext::after {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  margin-left: 6px;
+  padding: 0 6px;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+.wf-link.is-corp::after {
+  content: 'コーポレートサイト';
+  color: var(--c-text-s);
+  background: var(--c-bg-sub);
+  border: 1px solid var(--c-border);
+}
+.wf-link.is-ext::after {
+  content: '↗';
+  color: var(--c-text-s);
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-size: 11px;
+}
+
+/* スタンドアロン →リンク（汎用テキストリンク行） */
+.wf-link-row {
+  display: block;
+  margin-top: 8px;
+}
 /* 凡例 */
 .pc-legend {
   display: flex;
@@ -1694,8 +1776,8 @@ body {
 <div class="wf-meta-bar">
   <div>
     <strong>KONICA MINOLTA サステナビリティ</strong>
-    <span class="meta-badge">サステナビリティサイトアーカイブ</span>
-    <span class="meta-badge">WF v1.3</span>
+    <span class="meta-badge">レポートアーカイブ</span>
+    <span class="meta-badge">WF v1.4</span>
     <span class="meta-badge">#096 (旧 #230)</span>
   </div>
   <div style="font-size:10px; color:#666;">2026.03</div>
@@ -1709,7 +1791,7 @@ body {
     <div class="wf-firstview-line"></div>
 
     <div class="wf-page-indicator">
-      <span>サステナビリティサイトアーカイブ / URL: /about/csr/report-archive/</span>
+      <span>レポートアーカイブ / URL: /about/csr/report-archive/</span>
       <span class="pi-layer">関連情報（1-G） — 目次ページ</span>
     </div>
 
@@ -1722,7 +1804,7 @@ body {
     <nav class="wf-breadcrumb">
       ホーム <span class="sep">›</span>
       サステナビリティ <span class="sep">›</span>
-      <span class="current">サステナビリティサイトアーカイブ</span>
+      <span class="current">レポートアーカイブ</span>
     </nav>
 
     <!-- ============================================================
@@ -1767,8 +1849,8 @@ body {
             <div class="pc-plot-area">
               <!-- 本サイト（中心・強調） -->
               <div class="pc-item is-current" style="top:28%; left:55%;">本サイト<br>（サステナビリティ<br>ウェブサイト）</div>
-              <!-- サステナビリティレポート（本サイトのPDF版） -->
-              <div class="pc-item has-dl" style="top:48%; left:62%;">サステナビリティ<br>レポート <span class="pc-item-dl pdf">PDF</span></div>
+              <!-- サステナビリティサイトアーカイブ（本サイトのPDF版） — 0525 FB#1 命名統一 -->
+              <div class="pc-item has-dl" style="top:48%; left:62%;">サステナビリティ<br>サイトアーカイブ <span class="pc-item-dl pdf">PDF</span></div>
               <!-- ESGデータ -->
               <div class="pc-item has-dl" style="top:22%; left:22%;">ESGデータ <span class="pc-item-dl data">XLSX</span></div>
               <!-- 統合報告書 -->
@@ -1787,33 +1869,27 @@ body {
         </div>
       </div>
 
-      <!-- 最新：サステナビリティレポート2025（PDF） — 体系図で示した本サイトのアーカイブ／最もDLを促す媒体 -->
-      <div class="link-btn-grid" style="margin-top:20px; margin-bottom:12px;">
-        <div class="link-btn is-primary is-full">
+      <!-- 0525 FB#1/#2：3媒体（サステナビリティサイトアーカイブ・統合報告書・ESGデータ）を3カラム横並び。
+           v5.1 リンク元表示ルールに従い、説明文は不要・タイトル＋遷移先識別のみで構成 -->
+      <div class="link-btn-grid col-3" style="margin-top:20px;">
+        <div class="link-btn">
           <div class="link-btn-body">
-            <div class="link-btn-title">サステナビリティレポート 2025（PDF・16.0MB）</div>
-            <p class="link-btn-desc">
-              コニカミノルタのサステナビリティ報告はコニカミノルタサステナビリティウェブサイト（本サイト）にて行っています。環境・社会を含めたサステナビリティに関する2024年度の実績や取り組み状況について、本サイトにて公開しました（2025年10月）。本サイトの2025年10月時点の情報は「サステナビリティレポート2025」としてPDF化して公開します。なお、本サイトは、2025年10月以降も随時更新しています。
-            </p>
-            <p class="link-btn-meta">対象期間：2024年4月〜2025年3月（2024年度）｜発行：2025年10月｜本サイトのPDFアーカイブ</p>
+            <div class="link-btn-title">サステナビリティサイトアーカイブ</div>
           </div>
           <span class="link-btn-arrow">›</span>
         </div>
-      </div>
-
-      <!-- 関連媒体への導線（統合報告書・ESGデータ） -->
-      <div class="link-btn-grid">
         <div class="link-btn">
           <div class="link-btn-body">
-            <div class="link-btn-title">統合報告書</div>
-            <p class="link-btn-desc">経営戦略・財務・非財務を統合的に報告する統合報告書（IRサイト内）へ遷移します。</p>
+            <div class="link-btn-title">
+              統合報告書
+              <span class="link-corp-badge">コーポレートサイト</span>
+            </div>
           </div>
           <span class="link-btn-arrow">›</span>
         </div>
         <div class="link-btn">
           <div class="link-btn-body">
             <div class="link-btn-title">ESGデータ</div>
-            <p class="link-btn-desc">ESGに関する定量データの閲覧・一括ダウンロード（XLSX）が可能なデータ集ページです。</p>
           </div>
           <span class="link-btn-arrow">›</span>
         </div>
@@ -1867,31 +1943,31 @@ body {
                 <li>ISO26000、ISO30414</li>
                 <li>環境報告ガイドライン（2018年版）</li>
               </ul>
-              <p class="km-bullet-note">
-                GRIスタンダード、国連グローバル・コンパクト、ISO26000、SASBスタンダードの対照表については、<span class="wf-link">ガイドライン対照表</span>をご参照ください。
+              <p class="km-bullet-note" style="margin-bottom:8px;">
+                GRIスタンダード、国連グローバル・コンパクト、ISO26000、SASBスタンダードの対照表については、以下のページをご参照ください。
               </p>
+              <span class="wf-link wf-link-row">ガイドライン対照表</span>
             </td>
           </tr>
           <tr>
             <td style="background:#F5F5F5; font-weight:700;">第三者保証</td>
             <td>
-              2024年度（2024年4月1日〜2025年3月31日）の環境データおよび社会データの一部について、KPMGあずさサステナビリティ株式会社による第三者保証を取得しています。詳しくは第三者保証をご参照ください。<br>
-              <span class="wf-link" style="margin-top:4px;">第三者保証</span>
+              2024年度（2024年4月1日〜2025年3月31日）の環境データおよび社会データの一部について、KPMGあずさサステナビリティ株式会社による第三者保証を取得しています。詳しくは以下のページをご参照ください。
+              <span class="wf-link wf-link-row">第三者保証</span>
             </td>
           </tr>
           <tr>
             <td style="background:#F5F5F5; font-weight:700;">関連情報</td>
             <td>
-              当社に関する各資料は資料ダウンロードよりご覧いただけます。<br>
-              統合報告書／株主通信／有価証券報告書／コーポレートガバナンス報告書／知的財産報告書／テクノロジーレポート<br>
-              <span class="wf-link" style="margin-top:4px;">資料ダウンロード</span>
+              当社に関する各種資料（統合報告書／株主通信／有価証券報告書／コーポレートガバナンス報告書／知的財産報告書／テクノロジーレポート）は、コーポレートサイトの「資料ダウンロード」ページからご覧いただけます。
+              <span class="wf-link wf-link-row is-corp">資料ダウンロード</span>
             </td>
           </tr>
           <tr>
             <td style="background:#F5F5F5; font-weight:700;">本報告に関する<br>お問い合わせ</td>
             <td>
-              コニカミノルタ株式会社 経営企画部<br>
-              <span class="wf-link" style="margin-top:4px;">お問い合わせ</span>
+              コニカミノルタ株式会社 経営企画部
+              <span class="wf-link wf-link-row">お問い合わせ</span>
             </td>
           </tr>
           <tr>
@@ -1998,27 +2074,26 @@ body {
     </section>
 
     <!-- ============================================================
-         C｜資料ダウンロード（旧「その他レポート」）
-         ※得意先FB：「その他レポート」というタイトルは違和感。実体は会社資料一覧への
-           まとまったリンクなので、セクション名を「資料ダウンロード」に変更。
-           旧リード文「会社紹介・ファクトブックなど」はダミー由来の架空表現
-           （ファクトブックは現状サイトに存在しない媒体名）のため、編集方針表
-           「関連情報」行と同じ実在媒体の列挙にダミー明示で差し替え。
+         C｜資料ダウンロード（コーポレートサイトの「会社資料一覧」へ）
+         ※リンク先：https://www.konicaminolta.com/jp-ja/corporate/document-download.html
+           → サステナビリティサイト外（コーポレートサイト）への遷移。
+              v5.1「リンク元表示ルール」に従い .link-corp-badge で識別。
     ============================================================ -->
     <section class="wf-section bg-white">
       <span class="wf-section-marker">C</span>
       <h2 class="wf-section-title">資料ダウンロード</h2>
       <p class="wf-section-desc">
-        当社に関する各種資料は、コーポレートサイトの「資料ダウンロード」ページから一覧で閲覧・ダウンロードいただけます。
+        統合報告書／株主通信／有価証券報告書／コーポレートガバナンス報告書／知的財産報告書／テクノロジーレポートなど、当社の各種資料は、コーポレートサイトの「会社資料一覧」ページからご覧いただけます。
       </p>
 
       <div class="link-btn-grid">
         <div class="link-btn is-full">
           <div class="link-btn-body">
-            <div class="link-btn-title">会社資料一覧</div>
-            <p class="link-btn-desc">
-              （文章はダミーです）統合報告書／株主通信／有価証券報告書／コーポレートガバナンス報告書／知的財産報告書／テクノロジーレポートなど、当社の各種コーポレート資料をダウンロードいただけるページに遷移します。
-            </p>
+            <div class="link-btn-title">
+              会社資料一覧
+              <span class="link-corp-badge">コーポレートサイト</span>
+            </div>
+            <p class="link-btn-url">https://www.konicaminolta.com/jp-ja/corporate/document-download.html</p>
           </div>
           <span class="link-btn-arrow">›</span>
         </div>
@@ -2151,10 +2226,35 @@ body {
        アノテーションパネル
   ============================================================ -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — レポートアーカイブ v1.3（0524 Figma FB反映）</h3>
+    <h3>設計ポイント — レポートアーカイブ v1.4（0525 MTG FB反映）</h3>
 
     <div class="ann-item">
-      <span class="ann-num">0524</span>
+      <span class="ann-num">0525</span>
+      <span class="ann-head">0525 MTG FB（096分）反映サマリ</span>
+      <div class="ann-row">
+        <span class="ann-row-label">#A1 命名統一</span>
+        Section A 大型カード「サステナビリティレポート 2025（PDF・16.0MB）」を <b>「サステナビリティサイトアーカイブ」</b> にリネーム。情報開示体系図のチャート内ラベルも同様に統一（「サステナビリティレポート PDF」→「サステナビリティサイトアーカイブ PDF」）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#A2 3カラム化</span>
+        Section A の媒体導線を「<b>サステナビリティサイトアーカイブ / 統合報告書 / ESGデータ</b>」3媒体を <b>3カラム横並びボタン</b> に統合。説明文は全廃。ボタンタイトルのみで遷移先を明示し、統合報告書（コーポレートIRサイト内）には <code>.link-corp-badge</code>「コーポレートサイト」識別バッジを付与。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#B ガイドライン対照表</span>
+        編集方針表の「ガイドライン対照表」リンクが文中に埋め込まれて <code>→</code> プレフィックスが出ていなかったため、文末で別行の独立 <b>→ ガイドライン対照表</b> テキストリンクに変更（<code>.wf-link.wf-link-row</code>）。他の編集方針表内リンク（第三者保証 / 資料ダウンロード / お問い合わせ）も同じスタンドアロン行スタイルに統一。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#C 会社資料一覧</span>
+        Section C「会社資料一覧」のリンク先を実URL <code>www.konicaminolta.com/jp-ja/corporate/document-download.html</code> に固定。サステナビリティサイト外（コーポレートサイト）への遷移であることを明示する「コーポレートサイト」バッジを付与し、URLも明示表記。ダミー説明文は撤去。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">横断ルール</span>
+        <b>リンク元表示ルール v5.1</b> を UNIFIED_RULES.md に追加：①サステナビリティサイト内＝<code>→</code>テキストリンク／②コーポレートサイト内（konicaminolta.com/jp-ja/...）＝<code>→</code>＋「コーポレートサイト」バッジ／③真の外部サイト＝<code>↗</code>別タブアイコン／④ボタン直下の説明文は不要・タイトルで遷移先を伝える。catalog反映と他WF横展開は次フェーズ。
+      </div>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">v1.3</span>
       <span class="ann-head">0524 Figma FB（9件）反映サマリ</span>
       <div class="ann-row">
         <span class="ann-row-label">#1（A・反映済）桐原</span>
