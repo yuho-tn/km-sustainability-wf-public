@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>レポートアーカイブ — KM サステナビリティ WF v1.4.1</title>
+<title>レポートアーカイブ — KM サステナビリティ WF v1.5</title>
 <style>
 /* ============================================================
    KM SUSTAINABILITY WF — SHARED CSS v3.0
@@ -997,38 +997,64 @@ body {
 
 /* ============================================================
    LAYOUT WITH ANCHOR NAV（右アンカーナビ付きレイアウト）
-   第3〜4階層の長文ページで使用
+   v5.0 標準：カードUI（白fill＋ボーダー＋シャドウ、222準拠）
+   横断ルール：H2/H3 全文表記＋2行クランプ（3行以上は「…」省略）
 ============================================================ */
 .wf-layout-with-anchornav {
   display: grid;
-  grid-template-columns: 1fr 100px;
-  align-items: start;
+  grid-template-columns: 1fr 160px;
+  gap: 0;
+  padding-right: var(--pad-h);
+  position: relative;
 }
 .wf-anchornav-main { min-width: 0; }
+.wf-anchornav-main .wf-section {
+  padding-right: calc(160px + var(--pad-h) + 28px);
+  margin-right: calc(-160px - var(--pad-h));
+}
 .wf-anchor-nav {
   position: sticky;
-  top: 40px;
-  padding: 20px 0 20px 16px;
-  border-left: 1px solid var(--c-border-s);
+  top: 28px;
+  align-self: start;
+  margin-top: 28px;
+  z-index: 3;
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+  padding: 16px 16px 18px;
 }
 .wf-anchor-nav-title {
-  font-size: 12px;
+  font-size: 9px;
   font-weight: 700;
-  color: var(--c-text-h);
-  margin-bottom: 12px;
+  color: var(--c-text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
 }
 .wf-anchor-nav-item {
-  display: block;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-size: 11px;
   color: var(--c-text-s);
-  padding: 5px 0;
-  cursor: default;
+  padding: 5px 0 5px 10px;
   line-height: 1.4;
+  cursor: default;
+  border-left: 2px solid transparent;
   text-decoration: none;
 }
+.wf-anchor-nav-item.sub {
+  font-size: 10px;
+  padding-left: 22px;
+  color: var(--c-text-xs);
+}
+.wf-anchor-nav-item:hover { color: var(--c-text-h); }
 .wf-anchor-nav-item.is-current {
   color: var(--c-text-h);
   font-weight: 700;
+  border-left-color: var(--c-text-h);
 }
 
 /* アコーディオンヘッド：タイトル左＋タグ右 */
@@ -1797,28 +1823,9 @@ body {
 
 <body>
 
-<!-- WF管理バー -->
-<div class="wf-meta-bar">
-  <div>
-    <strong>KONICA MINOLTA サステナビリティ</strong>
-    <span class="meta-badge">レポートアーカイブ</span>
-    <span class="meta-badge">WF v1.4.1</span>
-    <span class="meta-badge">#096 (旧 #230)</span>
-  </div>
-  <div style="font-size:10px; color:#666;">2026.03</div>
-</div>
-
 <!-- ============================================================ -->
 <div class="wf-canvas">
   <div class="wf-page">
-
-    <!-- ファーストビュー境界線（1280×800想定） -->
-    <div class="wf-firstview-line"></div>
-
-    <div class="wf-page-indicator">
-      <span>レポートアーカイブ / URL: /about/csr/report-archive/</span>
-      <span class="pi-layer">関連情報（1-G） — 目次ページ</span>
-    </div>
 
     <!-- ヘッダー：KM公式デザイン（画像差し替え） -->
     <header class="wf-header-img">
@@ -1834,15 +1841,18 @@ body {
 
     <!-- ============================================================
          ヒーロー｜ページタイトル（KV画像なし・テキストのみ）
+         v1.5：リード文（ダミー）撤去
     ============================================================ -->
-    <div style="background:var(--c-white); border-bottom:1px solid var(--c-border-s); padding:20px var(--pad-h) 16px;">
-      <!-- 0524 桐原FB#1：ページタイトルを「レポートアーカイブ」に修正（行動変容に統一） -->
-      <h1 style="font-size:24px; font-weight:700; color:var(--c-text-h); line-height:1.2; margin-bottom:6px;">レポートアーカイブ</h1>
-      <!-- 0524 桐原FB#8：リード文がダミーで長すぎるため短縮（KM原稿確定までの暫定） -->
-      <p style="font-size:12px; color:var(--c-text-s); line-height:1.7;">
-        （リード文：ダミー／原稿待ち）本サイトの情報開示体系、報告概要、およびバックナンバーをご案内します。
-      </p>
+    <div style="background:var(--c-white); border-bottom:1px solid var(--c-border-s); padding:20px var(--pad-h) 20px;">
+      <h1 style="font-size:24px; font-weight:700; color:var(--c-text-h); line-height:1.2; margin:0;">レポートアーカイブ</h1>
     </div>
+
+    <!-- ============================================================
+         L2レイアウト：本文（左）＋右コンパクトアンカーナビ（160px）
+         v1.5：L2横断ルール準拠（077/199/222/225と同パターン）
+    ============================================================ -->
+    <div class="wf-layout-with-anchornav">
+      <div class="wf-anchornav-main">
 
     <!-- ============================================================
          A｜情報開示体系
@@ -2002,7 +2012,7 @@ body {
       </table>
 
       <!-- H3 バックナンバー -->
-      <h3 class="wf-sub-title">バックナンバー</h3>
+      <h3 id="backnumber" class="wf-sub-title" style="scroll-margin-top:80px;">バックナンバー</h3>
 
       <p style="font-size:11px; color:var(--c-text-s); line-height:1.7; margin-bottom:12px;">
         2020年以降は本サイト（サステナビリティウェブサイト）のPDFアーカイブとして発行しています。2015〜2019年はCSRレポートと環境報告書の2本立てで発行していました。
@@ -2101,7 +2111,7 @@ body {
            → サステナビリティサイト外（コーポレートサイト）への遷移。
               v5.1「リンク元表示ルール」に従い .link-corp-badge で識別。
     ============================================================ -->
-    <section class="wf-section bg-white">
+    <section id="document-download" class="wf-section bg-white" style="scroll-margin-top:80px;">
       <span class="wf-section-marker">C</span>
       <h2 class="wf-section-title">資料ダウンロード</h2>
       <p class="wf-section-desc">
@@ -2112,6 +2122,19 @@ body {
       <a class="wf-btn-page" href="https://www.konicaminolta.com/jp-ja/corporate/document-download.html">会社資料一覧</a>
 
     </section>
+
+      </div><!-- /wf-anchornav-main -->
+
+      <!-- 右コンパクトアンカーナビ（L2横断ルール：H2/H3併載・2行クランプ・160px） -->
+      <nav class="wf-anchor-nav">
+        <div class="wf-anchor-nav-title">目次</div>
+        <a class="wf-anchor-nav-item is-current" href="#info-disclosure">情報開示体系</a>
+        <a class="wf-anchor-nav-item" href="#about-site">サステナビリティサイトについて</a>
+        <a class="wf-anchor-nav-item sub" href="#backnumber">バックナンバー</a>
+        <a class="wf-anchor-nav-item" href="#document-download">資料ダウンロード</a>
+      </nav>
+
+    </div><!-- /wf-layout-with-anchornav -->
 
     <!-- サステナビリティサイトフッター（アコーディオン式・サイトマップ） -->
     <div class="sus-footer" data-open="true">
@@ -2238,7 +2261,24 @@ body {
        アノテーションパネル
   ============================================================ -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — レポートアーカイブ v1.4.1（0525 MTG FB反映＋追加修正）</h3>
+    <h3>設計ポイント — レポートアーカイブ v1.5（0525 L2構造化＋アンカーナビ追加）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">v1.5</span>
+      <span class="ann-head">v1.5 L2構造化（0525 ユーザー追加FB）</span>
+      <div class="ann-row">
+        <span class="ann-row-label">WF管理要素を撤去</span>
+        ページ最上部の WF管理バー（<code>.wf-meta-bar</code>「KONICA MINOLTA サステナビリティ」黒帯）・赤い <code>.wf-firstview-line</code> ファーストビュー境界線・<code>.wf-page-indicator</code>（"レポートアーカイブ / URL: /about/csr/report-archive/"）をすべて削除。本番遷移ページとほぼ同じ見え方に。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">リード文撤去</span>
+        H1直下のリード文（「（リード文：ダミー／原稿待ち）本サイトの情報開示体系、報告概要、およびバックナンバーをご案内します。」）を完全撤去。0525 FB#8で短縮済だったが、ダミー文表示そのものをやめる方針に。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">L2構造化＋アンカーナビ</span>
+        L2横断ルール（077/199/222/225 と同パターン）に揃え、本文を <code>.wf-layout-with-anchornav &gt; .wf-anchornav-main</code> でラップし、右160pxの <b>カードUIアンカーナビ</b>（白bg＋1pxボーダー＋シャドウ）を追加。<br>項目：情報開示体系（H2）／サステナビリティサイトについて（H2）＋バックナンバー（H3・インデント）／資料ダウンロード（H2）。横断ルール準拠で <b>H2/H3全文表記＋2行クランプ</b>（<code>-webkit-line-clamp:2</code>）対応。
+      </div>
+    </div>
 
     <div class="ann-item">
       <span class="ann-num">v1.4.1</span>
