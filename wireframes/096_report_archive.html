@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>レポートアーカイブ — KM サステナビリティ WF v1.4</title>
+<title>レポートアーカイブ — KM サステナビリティ WF v1.4.1</title>
 <style>
 /* ============================================================
    KM SUSTAINABILITY WF — SHARED CSS v3.0
@@ -1422,6 +1422,31 @@ body {
   display: block;
   margin-top: 8px;
 }
+
+/* ============================================================
+   .wf-btn-page — 横断ルール準拠のページ遷移ボタン（131/140/199/222/225 共通仕様）
+   content-fit + min-width 280px + ›プレフィックス + 白bg + 1pxボーダー
+============================================================ */
+.wf-btn-page {
+  display: inline-flex; align-items: center; justify-content: flex-start; gap: 8px;
+  font-size: 12px; font-weight: 600; font-family: inherit;
+  padding: 12px 20px; cursor: default;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  background: var(--c-white); color: var(--c-text-h);
+  border: 1px solid var(--c-border);
+  min-width: 280px;
+  text-decoration: none;
+}
+.wf-btn-page::before {
+  content: '›';
+  font-size: 14px; color: var(--c-text-h); font-weight: 700;
+  margin-right: 4px;
+}
+.wf-btn-page:hover {
+  background: var(--c-bg-sub);
+  border-color: var(--c-text-h);
+}
 /* 凡例 */
 .pc-legend {
   display: flex;
@@ -1777,7 +1802,7 @@ body {
   <div>
     <strong>KONICA MINOLTA サステナビリティ</strong>
     <span class="meta-badge">レポートアーカイブ</span>
-    <span class="meta-badge">WF v1.4</span>
+    <span class="meta-badge">WF v1.4.1</span>
     <span class="meta-badge">#096 (旧 #230)</span>
   </div>
   <div style="font-size:10px; color:#666;">2026.03</div>
@@ -1880,10 +1905,7 @@ body {
         </div>
         <div class="link-btn">
           <div class="link-btn-body">
-            <div class="link-btn-title">
-              統合報告書
-              <span class="link-corp-badge">コーポレートサイト</span>
-            </div>
+            <div class="link-btn-title">統合報告書</div>
           </div>
           <span class="link-btn-arrow">›</span>
         </div>
@@ -2086,18 +2108,8 @@ body {
         統合報告書／株主通信／有価証券報告書／コーポレートガバナンス報告書／知的財産報告書／テクノロジーレポートなど、当社の各種資料は、コーポレートサイトの「会社資料一覧」ページからご覧いただけます。
       </p>
 
-      <div class="link-btn-grid">
-        <div class="link-btn is-full">
-          <div class="link-btn-body">
-            <div class="link-btn-title">
-              会社資料一覧
-              <span class="link-corp-badge">コーポレートサイト</span>
-            </div>
-            <p class="link-btn-url">https://www.konicaminolta.com/jp-ja/corporate/document-download.html</p>
-          </div>
-          <span class="link-btn-arrow">›</span>
-        </div>
-      </div>
+      <!-- 0525 FB追加修正：横長ボタン→content-fit化（.wf-btn-page 横断ルール準拠：白bg+1pxボーダー+›プレフィックス+min-width 280px） -->
+      <a class="wf-btn-page" href="https://www.konicaminolta.com/jp-ja/corporate/document-download.html">会社資料一覧</a>
 
     </section>
 
@@ -2226,7 +2238,24 @@ body {
        アノテーションパネル
   ============================================================ -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — レポートアーカイブ v1.4（0525 MTG FB反映）</h3>
+    <h3>設計ポイント — レポートアーカイブ v1.4.1（0525 MTG FB反映＋追加修正）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">v1.4.1</span>
+      <span class="ann-head">v1.4.1 追加修正（0525 ユーザー追加FB）</span>
+      <div class="ann-row">
+        <span class="ann-row-label">バッジ撤去</span>
+        Section A 統合報告書ボタン／Section C 会社資料一覧ボタン上の「コーポレートサイト」バッジを撤去。リンク先スコープの識別は v5.1 ルール残置のうえで、UI上の常設バッジは表示しない方針に。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">URL注記撤去</span>
+        Section C 会社資料一覧ボタン下のURL注記（<code>.link-btn-url</code>）を撤去。リンク先URLはhref属性で保持。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">content-fit化</span>
+        Section C 会社資料一覧ボタンを横長（is-full）から <b>.wf-btn-page</b>（content-fit / min-width 280px / 横断ルール準拠＝131/140/199/222/225 と同仕様）に切替。
+      </div>
+    </div>
 
     <div class="ann-item">
       <span class="ann-num">0525</span>
