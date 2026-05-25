@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>健康経営 — KM サステナビリティ WF v2.5 (#131)</title>
+<title>健康経営 — KM サステナビリティ WF v3.0 (#131)</title>
 <style>
 /* ============================================================
    KM SUSTAINABILITY WF — SHARED CSS（DE&I v3.1 / 148 Quality v2.3 ベース継承）
@@ -167,12 +167,27 @@ body {
   letter-spacing: 0.1em; text-transform: uppercase;
   margin-bottom: 8px;
 }
+/* v3.0：UNIFIED_RULES v5.0 §3 横断ルール準拠 — H2/H3全文表記＋2行クランプ＋H3インデント（.sub）／max-heightで3行目を厳密にカット */
 .wf-anchor-nav-item {
-  display: block;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-size: 11px; color: var(--c-text-s);
-  padding: 5px 0 5px 10px; line-height: 1.4;
+  padding: 5px 0 5px 10px;
+  line-height: 1.4;
+  max-height: calc(1.4em * 2 + 10px);
   cursor: default;
   border-left: 2px solid transparent;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+.wf-anchor-nav-item.sub {
+  font-size: 10px;
+  padding-left: 22px;
+  color: var(--c-text-xs);
+  max-height: calc(1.4em * 2 + 10px);
 }
 .wf-anchor-nav-item:hover { color: var(--c-text-h); }
 .wf-anchor-nav-item.is-current {
@@ -194,44 +209,221 @@ body {
 .wf-btn::before { content: '›'; font-size: 14px; color: var(--c-text-h); font-weight: 700; margin-right: 4px; }
 .wf-btn:hover { background: var(--c-bg-sub); border-color: var(--c-text-h); }
 
-/* ============================================================
-   v2.1：健康経営宣言ボックス（トピックス風UIに変更）
-   - 背景グレー＋細い罫線で囲む、装飾は最小限
-============================================================ */
-.health-statement {
-  background: var(--c-bg-sub);
+/* ページ遷移ボタン（content-fit 標準・UNIFIED_RULES v5.1 §4-2b 準拠） */
+.wf-btn-page {
+  display: inline-flex; align-items: center; justify-content: flex-start; gap: 8px;
+  font-size: 12px; font-weight: 600; font-family: inherit;
+  padding: 12px 24px 12px 18px; cursor: default;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  background: var(--c-white); color: var(--c-text-h);
   border: 1px solid var(--c-border);
-  padding: 24px 28px 22px;
-  margin-top: 14px;
+  min-width: 280px;
+  text-decoration: none;
 }
-.health-statement-lead {
-  font-size: 15px; font-weight: 700; color: var(--c-text-h);
+.wf-btn-page::before { content: '›'; font-size: 14px; color: var(--c-text-h); font-weight: 700; margin-right: 4px; }
+.wf-btn-page:hover { background: var(--c-bg-sub); border-color: var(--c-text-h); }
+
+/* テキストリンク（v3.0：UNIFIED_RULES v5.1 §4-2b 準拠 — 「→ リンクテキスト」形式に統一） */
+.text-link-row { display: block; margin: 6px 0 18px; }
+.text-link {
+  display: inline;
+  font-size: 13px;
+  color: var(--c-text-h);
+  font-weight: 700;
+  cursor: default;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.text-link::before {
+  content: '→ ';
+  display: inline-block;
+  margin-right: 2px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  text-decoration: none;
+}
+.text-link.is-ext::after {
+  content: '↗';
+  display: inline-block;
+  font-size: 11px;
+  margin-left: 6px;
+  color: var(--c-text-s);
+  text-decoration: none;
+}
+
+/* ============================================================
+   方針文書アコーディオンモジュール .policy-statement
+   v3.0：0525 桐原FB#4・FB#8 反映 — 健康宣言PDF全文をページ内HTML展開
+   catalog 共通モジュール（140人権方針 で確立／148品質方針・124DE&I方針 にも横展開予定）
+============================================================ */
+.policy-statement {
+  margin: 14px 0 22px;
+  border: 1px solid var(--c-border);
+  background: var(--c-white);
+}
+.policy-statement-summary {
+  list-style: none;
+  cursor: default;
+  padding: 14px 60px 14px 18px;
+  display: flex; align-items: center; gap: 14px;
+  background: var(--c-white);
+  position: relative;
+  line-height: 1.5;
+}
+.policy-statement[open] .policy-statement-summary {
+  border-bottom: 1px solid var(--c-border);
+}
+.policy-statement-summary::-webkit-details-marker { display: none; }
+.policy-statement-summary::marker { content: ''; }
+.policy-statement-summary::after {
+  content: '＋';
+  position: absolute;
+  right: 16px; top: 50%; transform: translateY(-50%);
+  width: 26px; height: 26px;
+  background: var(--c-text-h); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  font-size: 14px; font-weight: 700;
+  line-height: 1;
+}
+.policy-statement[open] .policy-statement-summary::after { content: '−'; }
+.policy-statement-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700;
+  color: #fff; background: var(--c-text-h);
+  padding: 3px 9px;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.policy-statement-title {
+  font-size: 15px; font-weight: 700;
+  color: var(--c-text-h);
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.policy-statement-meta {
+  font-size: 11px; color: var(--c-text-s);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.policy-statement-body {
+  padding: 26px 30px 28px;
+  background: var(--c-white);
+}
+.policy-statement-lead {
+  font-size: 15px; font-weight: 700;
+  color: var(--c-text-h);
   letter-spacing: 0.02em;
-  margin-bottom: 14px;
-  padding-bottom: 12px;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
   border-bottom: 1px solid var(--c-border);
   line-height: 1.5;
 }
-.health-statement-text {
-  font-size: 13px; color: var(--c-text); line-height: 1.95;
-  font-weight: 400;
+.policy-statement-tagline {
+  text-align: center;
+  font-size: 13px; font-weight: 700; color: var(--c-text-h);
+  letter-spacing: 0.02em;
+  margin: 20px 0 22px;
+  padding: 14px 18px;
+  background: var(--c-bg-sub);
+  line-height: 1.7;
 }
-.health-statement-meta {
-  font-size: 11px; color: var(--c-text-s);
-  margin-top: 16px;
-  padding-top: 12px;
-  border-top: 1px dashed var(--c-border);
-  letter-spacing: 0.03em;
+.policy-section-title {
+  font-size: 14px; font-weight: 700;
+  color: var(--c-text-h);
+  margin-top: 26px;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--c-border);
+  letter-spacing: 0.01em;
+  line-height: 1.5;
+}
+.policy-section-title:first-child { margin-top: 0; }
+.policy-subsection-title {
+  font-size: 12px; font-weight: 700;
+  color: var(--c-text-h);
+  margin-top: 14px; margin-bottom: 4px;
+  line-height: 1.5;
+}
+.policy-statement-body p {
+  font-size: 13px; line-height: 1.95;
+  color: var(--c-text);
+  margin-bottom: 12px;
+}
+.policy-statement-body ul {
+  list-style: none;
+  padding: 0;
+  margin: 4px 0 14px;
+}
+.policy-statement-body li {
+  font-size: 12px;
+  line-height: 1.9;
+  color: var(--c-text);
+  padding-left: 14px;
+  position: relative;
+}
+.policy-statement-body li::before {
+  content: '・';
+  position: absolute; left: 0; top: 0;
+  font-size: 12px; color: var(--c-text-h);
+}
+.policy-subsection-title + p,
+.policy-subsection-title + ul { margin-top: 0; }
+.policy-statement-signature {
+  margin-top: 24px;
+  padding-top: 14px;
+  border-top: 1px solid var(--c-border);
   text-align: right;
+  font-size: 12px;
+  color: var(--c-text);
+  line-height: 1.85;
+}
+.policy-signature-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  font-family: 'Hiragino Mincho Pro', 'Yu Mincho', serif;
+  margin-top: 8px;
+  letter-spacing: 0.18em;
+  display: inline-block;
+  border-bottom: 1px solid var(--c-text-h);
+  padding: 0 4px 4px;
 }
 
-/* 健康宣言の補足リード */
-.health-statement-tagline {
-  text-align: center;
+/* 戦略マップ統合ブロック（v3.0：0525 桐原FB#6 — 説明テキスト＋PDFリンクを同一情報ブロックに） */
+.doc-link-block {
+  border: 1px solid var(--c-border);
+  background: var(--c-white);
+  padding: 18px 22px 20px;
+  margin: 14px 0 22px;
+}
+.doc-link-block-title {
   font-size: 14px; font-weight: 700; color: var(--c-text-h);
-  letter-spacing: 0.02em;
-  margin: 24px 0 12px;
-  line-height: 1.7;
+  margin-bottom: 8px;
+  line-height: 1.5;
+  display: flex; align-items: center; gap: 8px;
+}
+.doc-link-block-title .doc-type-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 9px; font-weight: 700;
+  color: #fff; background: var(--c-text-h);
+  padding: 2px 7px;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+.doc-link-block-desc {
+  font-size: 12px; color: var(--c-text); line-height: 1.85;
+  margin-bottom: 12px;
+}
+.doc-link-block-note {
+  font-size: 10px; color: var(--c-text-xs); line-height: 1.7;
+  margin-top: 6px;
 }
 
 /* KPIブロック */
@@ -683,6 +875,9 @@ body {
 .ann-num { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; background: #222; color: #fff; font-size: 10px; font-weight: 700; border-radius: 50%; margin-bottom: 5px; }
 .ann-head { font-size: 11px; font-weight: 700; color: #222; display: block; margin-bottom: 6px; line-height: 1.4; }
 .ann-body { font-size: 10px; color: #555; line-height: 1.6; margin-top: 6px; }
+.ann-row { font-size: 10px; color: #555; line-height: 1.6; margin-top: 8px; padding-top: 6px; border-top: 1px dotted #DDD; }
+.ann-row:first-of-type { border-top: none; padding-top: 0; margin-top: 6px; }
+.ann-row-label { display: inline-block; font-weight: 700; color: #222; margin-right: 6px; }
 
 </style>
 </head>
@@ -693,12 +888,12 @@ body {
   <div>
     <strong>KONICA MINOLTA サステナビリティ</strong>
     <span class="meta-badge">健康経営</span>
-    <span class="meta-badge">WF v2.5</span>
+    <span class="meta-badge">WF v3.0</span>
     <span class="meta-badge">#131</span>
     <span class="meta-badge">L3</span>
-    <span class="meta-badge" style="background:#7a4a00; color:#fff;">v2.5：取り組み4テーマをカードUI→H3アコーディオンへ変更／原稿26S220_取り組み.docx原文を全量集約</span>
+    <span class="meta-badge" style="background:#7a4a00; color:#fff;">v3.0（原稿26S220_0526完全準拠＋0525 FB反映）：健康宣言policy-statement化・A移動／戦略マップdoc-link-block統合／取り組み4テーマ順入替＋H4見出し化／外部評価E新設／右ナビH2H3併載</span>
   </div>
-  <div style="font-size:10px; color:#666;">2026.05 / v2.4→v2.5：原稿集約レイアウト化</div>
+  <div style="font-size:10px; color:#666;">2026.05 / v2.5→v3.0：原稿準拠全面再構成</div>
 </div>
 
 <div class="wf-canvas">
@@ -733,13 +928,14 @@ body {
       <div class="wf-anchornav-main">
 
         <!-- ============================================================
-             A. 基本的な考え方
+             A. 基本的な考え方 — 背景・目指す姿・POS-H・健康宣言（policy-statement モジュール）
+             v3.0：0525 桐原FB#5・FB#8 反映 — 健康宣言を「基本的な考え方」内に配置
         ============================================================ -->
         <section class="wf-section bg-white" id="policy">
           <span class="wf-section-marker">A</span>
           <h2 class="wf-section-title">基本的な考え方</h2>
 
-          <h3 class="wf-sub-title">背景と課題認識</h3>
+          <h3 class="wf-sub-title" id="background">背景と課題認識</h3>
           <p class="wf-section-desc">
             従業員のモチベーション/エンゲージメント、そしてリーダーシップは、従業員の心身の健康が土台となっています。「健康の質」の向上により「労働の質」や「商品・サービスの質」が向上し、企業の付加価値は高まると考えます。
           </p>
@@ -747,35 +943,102 @@ body {
             従業員の心身の健康推進と組織健康度の向上により、生産性やパフォーマンスを向上させることが重要な経営課題だと認識しています。
           </p>
 
-          <h3 class="wf-sub-title">目指す姿</h3>
+          <h3 class="wf-sub-title" id="vision">目指す姿</h3>
           <p class="wf-section-desc">
-            コニカミノルタは、「従業員の健康がすべての基盤」との認識のもと、「健康第一」の風土を醸成し、健康経営を推進しています。従業員を重要な経営資本と位置付け、従業員個人の心身の健康はもとより、組織としての健康度を高めることで生産性と活力を向上し、企業として持続的に成長することを目指しています。
-          </p>
-          <p class="wf-section-desc">
-            また、「従業員が認識している組織的な健康支援(=POS-H：Perceived Organizational Support-Health)の多さは、業績に正の相関がある」という理論に基づき、健康に関する従業員調査における、会社、経営層、上司の支援に関する肯定的な回答率を計測。独自に設定した目標値に向けて改善をすすめています。
+            コニカミノルタは、「従業員の健康がすべての基盤」との認識のもと、「健康第一」の風土を醸成し、健康経営を推進しています。従業員を重要な経営資本と位置付け、従業員個人の心身の健康はもとより、組織としての健康度を高めることで生産性と活力を向上し、企業として持続的に成長することを目指しています。また、「従業員が認識している組織的な健康支援(=POS-H：Perceived Organizational Support-Health)の多さは、業績に正の相関がある」という理論に基づき、健康に関する従業員調査における、会社、経営層、上司の支援に関する肯定的な回答率を計測。独自に設定した目標値に向けて改善をすすめています。
           </p>
 
-          <!-- v2.0：POS-Hを表からグラフPHに変更 -->
-          <h4 class="wf-card-title has-mark">従業員が認識している組織的な健康支援（POS-H）</h4>
-
-          <div class="chart-ph">
-            <span class="chart-ph-label">
-              <strong>グラフ：従業員が認識している組織的な健康支援（POS-H）肯定的回答率の推移 PH</strong>
-              横軸：2022年度／2023年度／2024年度／（2025年度／2026年度＝目標）<br>
-              凡例：①健康的な生活をするための機会やプログラムを十分に提供している（81.8% → 84.5% → 85.3%）／<br>
-              ②従業員の健康を重要な経営上の目標として位置付けている（84.2% → 86.3% → 85.9%）／<br>
-              ③健康的な生活をするための支援をしている（75.8% → 79.4% → 81.0%）<br>
-              ※ 棒グラフまたは折れ線グラフでの表現を想定（独自設定の目標値に向けた経年改善を可視化）
-            </span>
-            <span class="img-zoom-btn"></span>
+          <h4 class="wf-card-title has-mark">従業員が認識している組織的な健康支援（POS-H：Perceived Organizational Support-Health）</h4>
+          <div class="kpi-table-wrap">
+            <table class="kpi-table">
+              <thead>
+                <tr>
+                  <th rowspan="2" style="text-align:left;">設問内容</th>
+                  <th colspan="3">肯定的回答の割合（実績）</th>
+                  <th colspan="2" class="target-cell">目標</th>
+                </tr>
+                <tr>
+                  <th>2023年度</th>
+                  <th class="actual-cell">2024年度</th>
+                  <th>2025年度</th>
+                  <th class="target-cell">2025年度</th>
+                  <th class="target-cell">2026年度</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><th>健康的な生活をするための機会やプログラムを十分に提供している</th><td>84.5％</td><td class="actual-cell">85.3％</td><td>—</td><td class="target-cell">—</td><td class="target-cell">83.6％</td></tr>
+                <tr><th>従業員の健康を重要な経営上の目標として位置付けている</th><td>86.3％</td><td class="actual-cell">85.9％</td><td>—</td><td class="target-cell">—</td><td class="target-cell">87.5％</td></tr>
+                <tr><th>健康的な生活をするための支援をしている</th><td>79.4％</td><td class="actual-cell">81.0％</td><td>—</td><td class="target-cell">—</td><td class="target-cell">82.8％</td></tr>
+              </tbody>
+            </table>
           </div>
           <p class="kpi-table-note">注 2023年度の開示において、2022年度の実績に誤りがあったため、修正しました。</p>
+
+          <!-- v3.0：0525 桐原FB#4・FB#8 — 健康宣言を policy-statement モジュールで埋め込み（140人権方針 と同パターン） -->
+          <h3 class="wf-sub-title" id="health-declaration">コニカミノルタグループ健康宣言</h3>
+          <details class="policy-statement" id="health-declaration-policy" open>
+            <summary class="policy-statement-summary">
+              <span class="policy-statement-badge">宣言</span>
+              <span class="policy-statement-title">コニカミノルタグループ健康宣言</span>
+              <span class="policy-statement-meta">2022年4月制定</span>
+            </summary>
+            <div class="policy-statement-body">
+              <div class="policy-statement-lead">『いきいきと働くことができる職場（会社）を目指して』</div>
+              <p>
+                コニカミノルタグループは、「従業員の健康がすべての基盤」であるとの認識の下、健康第一の風土醸成を通じて健全な経営を推進し、豊かな社会の実現に貢献することを宣言します。従業員ひとりひとりの心と身体の健康こそが財産であると認識し、安全で快適な職場（会社）の実現を図ります。従業員の皆さんも、健康がご自身、家族そして会社の基盤であることを理解し、自律的な健康維持増進活動を心掛けるとともに、健康第一の企業風土の醸成に積極的に参加して下さい。
+              </p>
+
+              <div class="policy-statement-tagline">
+                「健康がすべての基盤」<br>
+                健康第一の風土の醸成を通して健全な経営を推進し<br>
+                豊かな社会の実現に寄与するために
+              </div>
+
+              <h4 class="policy-section-title">【健康第一の風土を醸成するための　会社の基本姿勢】</h4>
+
+              <h5 class="policy-subsection-title">健康を尊ぶ労働環境の提供</h5>
+              <ul>
+                <li>健康を維持する労働条件の提供と適材適所を推進します。</li>
+                <li>労働災害や健康障害につながるようなリスクを未然に洗い出し（リスクアセスメント）、その低減を図ります。</li>
+                <li>グループ全体に一貫した安全衛生管理体制を構築します。</li>
+              </ul>
+
+              <h5 class="policy-subsection-title">予防を重視した積極的な衛生管理施策の実施</h5>
+              <ul>
+                <li>業務に関連した疾患の予防と快適職場づくりを推進します。</li>
+                <li>心と身体の健康づくり対策を講じます。</li>
+                <li>自律的な健康増進活動を支援します。</li>
+              </ul>
+
+              <h4 class="policy-section-title">【健康第一の風土を醸成するための　従業員の意識行動】</h4>
+
+              <h5 class="policy-subsection-title">自律的な健康維持・増進活動</h5>
+              <ul>
+                <li>健康な心と身体を支えるライフスタイルの実践を心掛けて下さい。</li>
+                <li>健康診断を必ず受診するとともに、結果を活用し、ご自身の健康の維持・増進に努めて下さい。</li>
+              </ul>
+
+              <h5 class="policy-subsection-title">健康第一の企業風土醸成への参画</h5>
+              <ul>
+                <li>個人ならびに組織を通した健康づくりに積極的に参加して下さい。</li>
+                <li>自分だけでなく、周囲の人の健康に対する関心と気遣いを心掛けて下さい。</li>
+              </ul>
+
+              <div class="policy-statement-signature">
+                <div>2022年4月</div>
+                <div>コニカミノルタ株式会社</div>
+                <div>代表執行役社長 兼 CEO</div>
+                <div class="policy-signature-name">大幸 利充</div>
+              </div>
+            </div>
+          </details>
         </section>
 
         <!-- ============================================================
-             B. 戦略・目標・実績（v2.0：体制と順序入替）
+             B. 戦略・目標・実績
+             v3.0：原稿準拠（数値最新化）／ FB#6 — 戦略マップ説明＋PDFを doc-link-block に統合 ／ FB#2 — 表タイトル明記
         ============================================================ -->
-        <section class="wf-section bg-sub" id="kpi">
+        <section class="wf-section bg-sub" id="strategy">
           <span class="wf-section-marker">B</span>
           <h2 class="wf-section-title">戦略・目標・実績</h2>
 
@@ -786,23 +1049,27 @@ body {
             また、健康投資管理会計の考え方に基づいて、当社が実施している各種健康増進策（健康投資）が、従業員の健康度や生産性の向上にどのように影響し、経営課題の解決につながるかを体系的に整理した戦略マップを作成し、企業戦略との連携を図りながら、健康経営に取り組んでいます。
           </p>
 
-          <h3 class="wf-sub-title">健康投資管理会計の戦略マップ</h3>
-          <p class="wf-section-desc" style="font-size:11px; color:var(--c-text-s); margin-top:8px;">
-            ※「健康投資管理会計の戦略マップ」は経済産業省フォーマットの図のため、HTMLではなくPDFをご参照ください。
-          </p>
-          <div style="margin: 12px 0 8px;">
-            <span class="wf-btn">健康投資管理会計の戦略マップ（PDF）</span>
+          <!-- v3.0：0525 桐原FB#6 — 戦略マップ説明＋PDFリンクを同一情報ブロック化 -->
+          <div class="doc-link-block">
+            <div class="doc-link-block-title">
+              <span class="doc-type-badge">PDF</span>
+              健康投資管理会計の戦略マップ
+            </div>
+            <div class="doc-link-block-desc">
+              当社が実施している各種健康増進策（健康投資）が、従業員の健康度や生産性の向上にどのように影響し、経営課題の解決につながるかを体系的に整理した戦略マップです。経済産業省フォーマット（健康投資管理会計ガイドライン）に基づく図表のため、PDFにてご参照ください。
+            </div>
+            <a class="wf-btn-page" target="_blank" href="https://www.konicaminolta.jp/about/csr/social/human-capital/pdf/health-improvement_strategy-map.pdf">健康投資管理会計の戦略マップ（PDF）</a>
           </div>
 
-          <h3 class="wf-sub-title">KPI</h3>
+          <h3 class="wf-sub-title" id="medium-term-kpi">重点施策・KPI ｜ 中期経営計画（FY2023-FY2025）期間における取り組み</h3>
           <p class="wf-section-desc">
-            生産性と活力向上に向けて、組織健康度の向上、プレゼンティーズム/アブセンティーズム（※）の低減について、定量化して改善を進めることで、目指す姿の実現を図ります。
+            生産性と活力向上に向けて、組織健康度の向上、プレゼンティーズム／アブセンティーズム（※）の低減について、定量化して改善を進めることで、目指す姿の実現を図ります。
           </p>
 
           <!-- KPI① 組織健康度 -->
           <div class="kpi-block">
             <div class="kpi-block-head">
-              <h4 class="kpi-block-title">組織健康度</h4>
+              <h4 class="kpi-block-title">【KPI】組織健康度</h4>
             </div>
             <div class="kpi-table-wrap">
               <table class="kpi-table">
@@ -813,16 +1080,16 @@ body {
                     <th colspan="2" class="target-cell">目標</th>
                   </tr>
                   <tr>
-                    <th>2022年度</th>
-                    <th class="actual-cell">2023年度</th>
-                    <th>2024年度</th>
+                    <th>2023年度</th>
+                    <th class="actual-cell">2024年度</th>
+                    <th>2025年度</th>
                     <th class="target-cell">2025年度</th>
                     <th class="target-cell">2026年度</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr><th>ストレスレベルが適正範囲を超える職場※比率</th><td>13.3%</td><td class="actual-cell">5.3%</td><td>5.9%</td><td class="target-cell">9.3%</td><td class="target-cell">—</td></tr>
-                  <tr><th>組織健康度調査（10点満点）結果の平均点</th><td>6.1</td><td class="actual-cell">6.3</td><td>6.4</td><td class="target-cell">7.7</td><td class="target-cell">—</td></tr>
+                  <tr><th>ストレスレベルが適正範囲を超える職場<sup>※</sup>比率</th><td>5.3％</td><td class="actual-cell">5.9％</td><td>—</td><td class="target-cell">—</td><td class="target-cell">9.3％</td></tr>
+                  <tr><th>組織健康度調査（10点満点）結果の平均点</th><td>6.3</td><td class="actual-cell">6.4</td><td>—</td><td class="target-cell">—</td><td class="target-cell">7.7</td></tr>
                 </tbody>
               </table>
             </div>
@@ -834,7 +1101,7 @@ body {
           <!-- KPI② プレゼンティーズム -->
           <div class="kpi-block">
             <div class="kpi-block-head">
-              <h4 class="kpi-block-title">プレゼンティーズム</h4>
+              <h4 class="kpi-block-title">【KPI】プレゼンティーズム<sup>※</sup></h4>
             </div>
             <div class="kpi-table-wrap">
               <table class="kpi-table">
@@ -845,15 +1112,15 @@ body {
                     <th colspan="2" class="target-cell">目標</th>
                   </tr>
                   <tr>
-                    <th>2022年度</th>
-                    <th class="actual-cell">2023年度</th>
-                    <th>2024年度</th>
+                    <th>2023年度</th>
+                    <th class="actual-cell">2024年度</th>
+                    <th>2025年度</th>
                     <th class="target-cell">2025年度</th>
                     <th class="target-cell">2026年度</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr><th>健康問題による労働機能障害が中程度以上と判断された従業員の割合</th><td>18.2%</td><td class="actual-cell">18.2%</td><td>17.8%</td><td class="target-cell">15.1%</td><td class="target-cell">—</td></tr>
+                  <tr><th>健康問題による労働機能障害が中程度以上と判断された従業員の割合</th><td>18.2％</td><td class="actual-cell">17.8％</td><td>—</td><td class="target-cell">—</td><td class="target-cell">15.1％</td></tr>
                 </tbody>
               </table>
             </div>
@@ -865,7 +1132,7 @@ body {
           <!-- KPI③ アブセンティーズム -->
           <div class="kpi-block">
             <div class="kpi-block-head">
-              <h4 class="kpi-block-title">アブセンティーズム<sup>※1</sup></h4>
+              <h4 class="kpi-block-title">【KPI】アブセンティーズム<sup>※1</sup></h4>
             </div>
             <div class="kpi-table-wrap">
               <table class="kpi-table">
@@ -876,15 +1143,15 @@ body {
                     <th colspan="2" class="target-cell">目標</th>
                   </tr>
                   <tr>
-                    <th>2022年度</th>
-                    <th class="actual-cell">2023年度</th>
-                    <th>2024年度</th>
+                    <th>2023年度</th>
+                    <th class="actual-cell">2024年度</th>
+                    <th>2025年度</th>
                     <th class="target-cell">2025年度</th>
                     <th class="target-cell">2026年度</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr><th>休務者<sup>※2</sup>の平均休務日数削減率<sup>※3</sup></th><td>—</td><td class="actual-cell">2%増</td><td>12%減</td><td class="target-cell">17%減</td><td class="target-cell">—</td></tr>
+                  <tr><th>休務者<sup>※2</sup>の平均休務日数削減率<sup>※3</sup></th><td>2％増</td><td class="actual-cell">12％減</td><td>—</td><td class="target-cell">—</td><td class="target-cell">17％減</td></tr>
                 </tbody>
               </table>
             </div>
@@ -897,13 +1164,14 @@ body {
         </section>
 
         <!-- ============================================================
-             C. 体制（v2.0：戦略の後ろに移動 ／ 原稿順序に修正：宣言→組織体制図 ／ 社外評価削除）
+             C. 体制
+             v3.0：健康宣言をAに移動／コラボヘルス研究会代表挨拶リンク追加（原稿準拠）
         ============================================================ -->
         <section class="wf-section bg-white" id="structure">
           <span class="wf-section-marker">C</span>
           <h2 class="wf-section-title">体制</h2>
 
-          <h3 class="wf-sub-title">健康第一の風土醸成を通じた健全な経営の推進</h3>
+          <h3 class="wf-sub-title" id="structure-philosophy">健康第一の風土醸成を通じた健全な経営の推進</h3>
           <p class="wf-section-desc">
             いきいきと働くことができる職場（会社）を目指して活動を推進しています。
           </p>
@@ -911,71 +1179,19 @@ body {
             コニカミノルタでは健康経営を推進するうえでの理念である「コニカミノルタグループ健康宣言」に基づいて、会社と健康保険組合のリソースを最大限活用できるよう、施策立案と実行をワン・マネジメント体制（コラボヘルス）で運営しています。人事部長が健康保険組合理事長を兼務、また、人事部の健康推進責任者が健康保険組合常務理事を兼務し、重要案件では経営層も含めた迅速な意思決定を行いながら、健康増進策を積極的に展開しています。さらに、コラボヘルス研究会などの外部コンソーシアムや研究機関等と連携して、生産性と関わりの深い指標に基づいた健康経営を推進しています。
           </p>
           <p class="wf-section-desc">
-            こうした外部連携を通じて得られた知見を自社の健康経営の取り組みや施策に反映しています。コラボヘルス研究会では当社の人事部健康推進グループリーダー(健康保険組合常務理事兼務)が代表幹事を務めています。
+            こうした外部連携を通じて得られた知見を自社の健康経営の取り組みや施策に反映しています。コラボヘルス研究会では当社の人事部健康推進グループリーダー（健康保険組合常務理事兼務）が代表幹事を務めています。
           </p>
 
-          <!-- v2.0：原稿順序に合わせ「健康宣言→組織体制図」の順に修正 -->
-          <h3 class="wf-sub-title">コニカミノルタグループ健康宣言</h3>
-
-          <!-- v2.0：健康宣言ボックス（H3との差別化UI／左縦棒なし／上下罫線＋クォート） -->
-          <div class="health-statement">
-            <div class="health-statement-lead">いきいきと働くことができる職場（会社）を目指して</div>
-            <p class="health-statement-text">
-              コニカミノルタグループは、「従業員の健康がすべての基盤」であるとの認識の下、健康第一の風土醸成を通じて健全な経営を推進し、豊かな社会の実現に貢献することを宣言します。従業員ひとりひとりの心と身体の健康こそが財産であると認識し、安全で快適な職場（会社）の実現を図ります。従業員の皆さんも、健康がご自身、家族そして会社の基盤であることを理解し、自律的な健康維持増進活動を心掛けるとともに、健康第一の企業風土の醸成に積極的に参加して下さい。
-            </p>
-            <p class="health-statement-meta">
-              ２０２２年４月　コニカミノルタ株式会社　代表執行役社長 兼 CEO　大幸 利充
-            </p>
+          <!-- v3.0：原稿準拠 — コラボヘルス研究会代表挨拶リンク（完全な外部サイト → ↗別タブアイコン） -->
+          <div class="text-link-row">
+            <a class="text-link is-ext" href="https://www.collabo-health.jp/about-us/message" target="_blank">コラボヘルス研究会 代表挨拶</a>
           </div>
 
-          <p class="health-statement-tagline">
-            「健康がすべての基盤」<br>
-            健康第一の風土の醸成を通して健全な経営を推進し 豊かな社会の実現に寄与するために
-          </p>
-
-          <!-- v2.0：会社の基本姿勢／従業員の意識行動を1カラム＋アコーディオン2つ -->
-          <details class="wf-acc-h4" open>
-            <summary class="wf-acc-h4-summary">健康第一の風土を醸成するための 会社の基本姿勢</summary>
-            <div class="wf-acc-h4-body">
-              <div class="acc-sub-title">健康を尊ぶ労働環境の提供</div>
-              <ul>
-                <li>健康を維持する労働条件の提供と適材適所を推進します。</li>
-                <li>労働災害や健康障害につながるようなリスクを未然に洗い出し（リスクアセスメント）、その低減を図ります。</li>
-                <li>3グループ全体に一貫した安全衛生管理体制を構築します。</li>
-              </ul>
-
-              <div class="acc-sub-title">予防を重視した積極的な衛生管理施策の実施</div>
-              <ul>
-                <li>業務に関連した疾患の予防と快適職場づくりを推進します。</li>
-                <li>心と身体の健康づくり対策を講じます。</li>
-                <li>自律的な健康増進活動を支援します。</li>
-              </ul>
-            </div>
-          </details>
-
-          <details class="wf-acc-h4" open>
-            <summary class="wf-acc-h4-summary">健康第一の風土を醸成するための 従業員の意識行動</summary>
-            <div class="wf-acc-h4-body">
-              <div class="acc-sub-title">自律的な健康維持・増進活動</div>
-              <ul>
-                <li>健康な心と身体を支えるライフスタイルの実践を心掛けて下さい。</li>
-                <li>健康診断を必ず受診するとともに、結果を活用し、ご自身の健康の維持・増進に努めて下さい。</li>
-              </ul>
-
-              <div class="acc-sub-title">健康第一の企業風土醸成への参画</div>
-              <ul>
-                <li>個人ならびに組織を通した健康づくりに積極的に参加して下さい。</li>
-                <li>自分だけでなく、周囲の人の健康に対する関心と気遣いを心掛けて下さい。</li>
-              </ul>
-            </div>
-          </details>
-
-          <!-- v2.0：「健康経営」推進に向けた組織（コラボヘルス）体制を健康宣言の後ろに -->
-          <h3 class="wf-sub-title">「健康経営」推進に向けた組織（コラボヘルス）体制</h3>
+          <h3 class="wf-sub-title" id="collabo-health">「健康経営」推進に向けた組織（コラボヘルス）体制</h3>
           <div class="gov-structure-fig">
             <span class="gov-structure-fig-label">
               <strong>図：コラボヘルス組織体制 PH</strong>
-              代表執行役社長 → 人事部長（健康保険組合理事長兼務）→ 健康推進責任者（健康保険組合常務理事兼務）
+              代表執行役社長 → 人事部長（健康保険組合理事長兼務）→ 健康推進責任者（健康保険組合常務理事兼務）<br>
               ／ 会社×健康保険組合のワン・マネジメント体制（コラボヘルス）
             </span>
             <span class="img-zoom-btn"></span>
@@ -983,20 +1199,21 @@ body {
         </section>
 
         <!-- ============================================================
-             D. 取り組み（v2.5：原稿26S220_取り組み.docx の内容をH3アコーディオン4本に集約）
+             D. 取り組み — 原稿準拠4テーマ（①リスク最小化 → ②過重労働対策 → ③健康度の見える化 → ④女性の健康支援）
+             v3.0：順序を原稿準拠に修正 ／ FB#12 — 見える化配下にH4見出し群を追加
         ============================================================ -->
         <section class="wf-section bg-sub" id="activities">
           <span class="wf-section-marker">D</span>
           <h2 class="wf-section-title">取り組み</h2>
 
           <p class="wf-section-desc">
-            「健康リスク保有者の最少化」「従業員の健康度の『見える化』による健康増進活動」「過重労働対策」「女性の健康支援」の4テーマで、会社と健康保険組合が一体（コラボヘルス）となって施策を立案・実行しています。
+            「健康リスク保有者の最少化」「過重労働対策」「従業員の健康度の『見える化』による健康増進活動」「女性の健康支援」の4テーマで、会社と健康保険組合が一体（コラボヘルス）となって施策を立案・実行しています。
           </p>
 
           <!-- ============================================================
-               D-1. 健康リスク保有者の最少化
+               D-1. 健康リスク保有者の最少化（v3.0：FB#9 — フィジカル/メンタル H4分割を維持）
           ============================================================ -->
-          <details class="wf-acc-h3" open>
+          <details class="wf-acc-h3" id="health-risk-minimization" open>
             <summary class="wf-acc-h3-summary">健康リスク保有者の最少化</summary>
             <div class="wf-acc-h3-body">
               <p>コニカミノルタは、経営戦略の着実な遂行に不可欠な人財力を高めるため、そのベースとなる従業員の健康度向上に取り組んでいます。会社と健康保険組合が一体となって諸施策を立案・実行しており、健康リスク保有者をフィジカル・メンタルの両面からセグメント化し、数値目標を立ててそれぞれの人数低減を目指しています。</p>
@@ -1103,79 +1320,9 @@ body {
           </details>
 
           <!-- ============================================================
-               D-2. 従業員の健康度の「見える化」による健康増進活動
+               D-2. 過重労働対策（v3.0：原稿順に位置を入替 — 2番目に配置）
           ============================================================ -->
-          <details class="wf-acc-h3" open>
-            <summary class="wf-acc-h3-summary">従業員の健康度の「見える化」による健康増進活動</summary>
-            <div class="wf-acc-h3-body">
-              <p>コニカミノルタでは、従業員の健康度を示す指標として、健康の基本である4つの生活習慣（運動、睡眠、食事、喫煙）を「見える化」することで健康意識を向上させるとともに、さまざまな健康増進イベント（通算：年間10回以上）による支援活動を実施しています。</p>
-              <p>具体的には、国内グループ全体で、従業員の運動や歩行習慣の定着に向けたチーム対抗でのウォーキングイベントや外部インストラクターによる運動講習会、食事習慣の改善・意識向上を狙いとした食事習慣改善アプリ＆サイト「あすけん（法人契約）」の導入などを行っています。毎年定期的に実施しているウォーキングイベントは、常に従業員の半数以上が参加しています。</p>
-              <p>2024年度はヤクルト本社・あすけん社等との連携による腸活・栄養バランス・朝食欠食・摂取カロリー改善イベントを各拠点にて開催し、のべ2,000名超が参加しました。</p>
-
-              <div class="chart-ph">
-                <span class="chart-ph-label">
-                  <strong>写真：食事習慣改善・向上イベント PH</strong>
-                  ※ イベント実施風景の写真を想定
-                </span>
-                <span class="img-zoom-btn"></span>
-              </div>
-
-              <p>その結果、健康意識の高い「生活習慣の改善にすでに取り組んでいる（もしくは今後取り組みを開始したいと考えている）従業員の割合」は、前年度より改善し、高い水準を維持しています。</p>
-              <p>従業員の生活習慣については、コロナ禍以降、働き方が元に戻ってきたことで、運動と喫煙の項目は改善が見られましたが、睡眠と食事については課題が残りました。2025年度は引き続き食事習慣改善のための食育イベントや睡眠改善に向けたセミナーなどの施策を実施し、改善を進めていきます。</p>
-
-              <div class="chart-ph">
-                <span class="chart-ph-label">
-                  <strong>グラフ：生活習慣の改善意識が高い従業員の割合 PH</strong>
-                  ※ 棒グラフでの経年推移表現を想定
-                </span>
-                <span class="img-zoom-btn"></span>
-              </div>
-              <p class="kpi-table-note">注 コニカミノルタ（株）従業員が対象</p>
-
-              <div class="chart-ph">
-                <span class="chart-ph-label">
-                  <strong>グラフ：従業員の生活習慣（運動・睡眠・食事の3項目）PH</strong>
-                  ※ 棒グラフでの経年推移表現を想定
-                </span>
-                <span class="img-zoom-btn"></span>
-              </div>
-              <p class="kpi-table-note">
-                注 コニカミノルタ（株）従業員が対象<br>
-                ※1「週2回以上30分以上の運動」または「毎日1時間以上の歩行」のどちらかの習慣がある従業員比率（高いほど良い）<br>
-                ※2 睡眠不足と感じている従業員比率<br>
-                ※3「栄養バランスを考えていない」、「早食い」、「就寝2時間前の夕食」、「間食」、「朝食抜き」のうち3つ以上に該当する従業員比率（低いほど良い）
-              </p>
-
-              <p>また、従業員の健康増進を支援するためのウェブサイトを通して、直近の健康診断結果から、同年齢平均と比較した10年後の循環器系疾患、脳卒中、虚血性心疾患の発症倍率を個人ごとに提示することで、生活習慣の改善を促しています。この仕組みは従業員に加え、健康保険制度の扶養家族にあたる配偶者も利用できます。</p>
-
-              <div class="chart-ph">
-                <span class="chart-ph-label">
-                  <strong>画像：ウェブサイトでの将来の疾病リスクの提示例 PH</strong>
-                  ※ 画面キャプチャ／模式図を想定
-                </span>
-                <span class="img-zoom-btn"></span>
-              </div>
-
-              <p>さらに、受動喫煙対策として、過去、構内喫煙所の段階的な削減と喫煙所の屋外化、構内一日禁煙デーなどを実施するとともに、喫煙者には禁煙サポートプログラムへの参加を推奨してきましたが、2020年4月からは、喫煙に対する法規制強化を踏まえて、受動喫煙の防止と喫煙率のさらなる低下を目的に、労働組合と密に連携を取りつつ国内グループ会社全体で「構内・所定就業時間内全面禁煙化」に踏み切りました。</p>
-              <p>これらの対策が奏功し、喫煙率は年々低下しています。データの詳細はESGデータ内の社会データ（Excel）をご参照ください。</p>
-
-              <p>また、アンケート調査からプレゼンティーズムの主要因を分析したうえで、首肩痛・腰痛・眼精疲労等の改善に向けた取り組みを進めてきました。事業効果を検証するため、ICTを活用した改善プログラム（投資額997.5万円）を3カ月間集中的に展開した結果、症状の緩和・運動習慣の改善・メンタルリスクの軽減を実現でき、金額換算すると1,750万円の利益貢献に相当することが検証できたため、本プログラムの継続導入を行って参ります（年間投資金額：600万円）。</p>
-              <p>また、健康問題による労働機能障害の程度を測定する手法WFunを用いて調査を行ったところ、中程度以上の労働機能障害がある方の割合が2024年度は17.8％となりました。首肩こり・腰痛改善プログラム参加者の改善効果を検証したところ、中程度以上の労働機能障害がある方の割合が19％から15％へ減少し、維持・改善を含めると78％の方への効果が確認できました。一方で上述の通り、働き方が戻ってきたことによる睡眠課題の影響もあり、目標値に対しては未達となりました。2025年度では睡眠課題解決に向けた睡眠セミナーやウォーキング、食育のイベント、首肩コリ・腰痛改善プログラムの推進といった様々な角度からWFun改善に向け施策を進めてまいります。</p>
-
-              <div class="chart-ph">
-                <span class="chart-ph-label">
-                  <strong>グラフ：健康問題による労働機能障害が中程度以上と判断された従業員の割合 PH</strong>
-                  ※ 棒グラフでの経年推移表現を想定
-                </span>
-                <span class="img-zoom-btn"></span>
-              </div>
-            </div>
-          </details>
-
-          <!-- ============================================================
-               D-3. 過重労働対策
-          ============================================================ -->
-          <details class="wf-acc-h3" open>
+          <details class="wf-acc-h3" id="overwork-prevention" open>
             <summary class="wf-acc-h3-summary">過重労働対策</summary>
             <div class="wf-acc-h3-body">
               <p>過重労働による健康障害の防止に向け、長時間労働の抑制施策に努めています。</p>
@@ -1211,12 +1358,97 @@ body {
           </details>
 
           <!-- ============================================================
-               D-4. 女性の健康支援
+               D-3. 従業員の健康度の「見える化」による健康増進活動
+               v3.0：FB#12 — 配下の施策タイトル群（食事/生活習慣/WFun改善）をH4見出しとして明示化
           ============================================================ -->
-          <details class="wf-acc-h3" open>
+          <details class="wf-acc-h3" id="health-visualization" open>
+            <summary class="wf-acc-h3-summary">従業員の健康度の「見える化」による健康増進活動</summary>
+            <div class="wf-acc-h3-body">
+              <p>コニカミノルタでは、従業員の健康度を示す指標として、健康の基本である4つの生活習慣（運動、睡眠、食事、喫煙）を「見える化」することで健康意識を向上させるとともに、さまざまな健康増進イベント（通算：年間10回以上）による支援活動を実施しています。</p>
+
+              <!-- v3.0：FB#12 — 食事習慣改善・向上イベント -->
+              <h4 class="wf-card-title has-mark">食事習慣改善・向上イベント</h4>
+              <p>具体的には、国内グループ全体で、従業員の運動や歩行習慣の定着に向けたチーム対抗でのウォーキングイベントや外部インストラクターによる運動講習会、食事習慣の改善・意識向上を狙いとした食事習慣改善アプリ＆サイト「あすけん（法人契約）」の導入などを行っています。毎年定期的に実施しているウォーキングイベントは、常に従業員の半数以上が参加しています。</p>
+              <p>2024年度はヤクルト本社・あすけん社等との連携による腸活・栄養バランス・朝食欠食・摂取カロリー改善イベントを各拠点にて開催し、のべ2,000名超が参加しました。</p>
+
+              <div class="chart-ph">
+                <span class="chart-ph-label">
+                  <strong>写真：食事習慣改善・向上イベント PH</strong>
+                  ※ イベント実施風景の写真を想定
+                </span>
+                <span class="img-zoom-btn"></span>
+              </div>
+
+              <!-- v3.0：FB#12 — 生活習慣 -->
+              <h4 class="wf-card-title has-mark">生活習慣（運動・睡眠・食事・喫煙）</h4>
+              <p>その結果、健康意識の高い「生活習慣の改善にすでに取り組んでいる（もしくは今後取り組みを開始したいと考えている）従業員の割合」は、前年度より改善し、高い水準を維持しています。</p>
+              <p>従業員の生活習慣については、コロナ禍以降、働き方が元に戻ってきたことで、運動と喫煙の項目は改善が見られましたが、睡眠と食事については課題が残りました。2025年度は引き続き食事習慣改善のための食育イベントや睡眠改善に向けたセミナーなどの施策を実施し、改善を進めていきます。</p>
+
+              <div class="chart-ph">
+                <span class="chart-ph-label">
+                  <strong>グラフ：生活習慣の改善意識が高い従業員の割合 PH</strong>
+                  ※ 棒グラフでの経年推移表現を想定
+                </span>
+                <span class="img-zoom-btn"></span>
+              </div>
+              <p class="kpi-table-note">注 コニカミノルタ（株）従業員が対象</p>
+
+              <div class="chart-ph">
+                <span class="chart-ph-label">
+                  <strong>グラフ：従業員の生活習慣（運動<sup>※1</sup>／睡眠<sup>※2</sup>／食事<sup>※3</sup>）PH</strong>
+                  ※ 棒グラフでの経年推移表現を想定
+                </span>
+                <span class="img-zoom-btn"></span>
+              </div>
+              <p class="kpi-table-note">
+                注 コニカミノルタ（株）従業員が対象<br>
+                ※1「週2回以上30分以上の運動」または「毎日1時間以上の歩行」のどちらかの習慣がある従業員比率（高いほど良い）<br>
+                ※2 睡眠不足と感じている従業員比率<br>
+                ※3「栄養バランスを考えていない」「早食い」「就寝2時間前の夕食」「間食」「朝食抜き」のうち3つ以上に該当する従業員比率（低いほど良い）
+              </p>
+
+              <p>また、従業員の健康増進を支援するためのウェブサイトを通して、直近の健康診断結果から、同年齢平均と比較した10年後の循環器系疾患、脳卒中、虚血性心疾患の発症倍率を個人ごとに提示することで、生活習慣の改善を促しています。この仕組みは従業員に加え、健康保険制度の扶養家族にあたる配偶者も利用できます。</p>
+
+              <div class="chart-ph">
+                <span class="chart-ph-label">
+                  <strong>画像：ウェブサイトでの将来の疾病リスクの提示例 PH</strong>
+                  ※ 画面キャプチャ／模式図を想定
+                </span>
+                <span class="img-zoom-btn"></span>
+              </div>
+
+              <p>さらに、受動喫煙対策として、過去、構内喫煙所の段階的な削減と喫煙所の屋外化、構内一日禁煙デーなどを実施するとともに、喫煙者には禁煙サポートプログラムへの参加を推奨してきましたが、2020年4月からは、喫煙に対する法規制強化を踏まえて、受動喫煙の防止と喫煙率のさらなる低下を目的に、労働組合と密に連携を取りつつ国内グループ会社全体で「構内・所定就業時間内全面禁煙化」に踏み切りました。これらの対策が奏功し、喫煙率は年々低下しています。</p>
+              <p>データの詳細はESGデータ内の社会データ（Excel）をご参照ください。</p>
+              <div class="text-link-row">
+                <a class="text-link">ESGデータ ＞ 社会データ</a>
+              </div>
+
+              <!-- v3.0：FB#12 — 健康問題による労働機能障害が中程度以上の従業員割合 -->
+              <h4 class="wf-card-title has-mark">健康問題による労働機能障害が中程度以上と判断された従業員の割合</h4>
+              <p>また、アンケート調査からプレゼンティーズムの主要因を分析したうえで、首肩痛・腰痛・眼精疲労等の改善に向けた取り組みを進めてきました。事業効果を検証するため、ICTを活用した改善プログラム（投資額997.5万円）を3カ月間集中的に展開した結果、症状の緩和・運動習慣の改善・メンタルリスクの軽減を実現でき、金額換算すると1,750万円の利益貢献に相当することが検証できたため、本プログラムの継続導入を行って参ります（年間投資金額：600万円）。</p>
+              <p>また、健康問題による労働機能障害の程度を測定する手法WFunを用いて調査を行ったところ、中程度以上の労働機能障害がある方の割合が2024年度は17.8％となりました。首肩こり・腰痛改善プログラム参加者の改善効果を検証したところ、中程度以上の労働機能障害がある方の割合が19％から15％へ減少し、維持・改善を含めると78％の方への効果が確認できました。一方で上述の通り、働き方が戻ってきたことによる睡眠課題の影響もあり、目標値に対しては未達となりました。2025年度では睡眠課題解決に向けた睡眠セミナーやウォーキング、食育のイベント、首肩コリ・腰痛改善プログラムの推進といった様々な角度からWFun改善に向け施策を進めてまいります。</p>
+
+              <div class="chart-ph">
+                <span class="chart-ph-label">
+                  <strong>グラフ：健康問題による労働機能障害が中程度以上と判断された従業員の割合 PH</strong>
+                  ※ 棒グラフでの経年推移表現を想定
+                </span>
+                <span class="img-zoom-btn"></span>
+              </div>
+            </div>
+          </details>
+
+          <!-- ============================================================
+               D-4. 女性の健康支援（v3.0：FB#13 — 配下の施策タイトル「乳がん・子宮頸がん検診」「FEMTECHの活用」をH4見出し化）
+          ============================================================ -->
+          <details class="wf-acc-h3" id="womens-health" open>
             <summary class="wf-acc-h3-summary">女性の健康支援</summary>
             <div class="wf-acc-h3-body">
-              <p>女性活躍推進・健康支援強化の観点から、婦人科がんの早期発見、早期対応を目的として、がん検診の受診率向上を図っています。健康保険組合からの検診費用の補助に加えて、構内への検診車の導入や提携医療機関を増やすなど、受診環境の整備や感染防止策に取り組んだ結果、国内コニカミノルタグループにおける乳がん・子宮頸がん検診の受診率は、中期的に上昇しています。</p>
+              <p>女性活躍推進・健康支援強化の観点から、婦人科がんの早期発見、早期対応を目的として、がん検診の受診率向上を図っています。</p>
+
+              <!-- v3.0：FB#13 — 乳がん・子宮頸がん検診 -->
+              <h4 class="wf-card-title has-mark">乳がん・子宮頸がん検診</h4>
+              <p>健康保険組合からの検診費用の補助に加えて、構内への検診車の導入や提携医療機関を増やすなど、受診環境の整備や感染防止策に取り組んだ結果、国内コニカミノルタグループにおける乳がん・子宮頸がん検診の受診率は、中期的に上昇しています。</p>
               <p>2023年度以降は、定期健康診断と同時に受診できる場所を増やすなど従業員の利便性の観点からの取り組みも実施しており、受診率は高い水準を維持しています。今後もこのような取り組みを継続し、女性の健康推進を強力に支援していきます。</p>
 
               <div class="chart-ph">
@@ -1228,6 +1460,8 @@ body {
               </div>
               <p class="kpi-table-note">注 国内コニカミノルタグループ全従業員の受診率</p>
 
+              <!-- v3.0：FB#13 — FEMTECH（フェムテック）の活用 -->
+              <h4 class="wf-card-title has-mark">FEMTECH（フェムテック）の活用</h4>
               <p>2021年度からは、女性特有の健康課題へのプログラムとしてFEMTECH（フェムテック）<sup>※1</sup>の試験的導入を開始しました。女性従業員はライフステージごとに、女性特有の健康課題に直面し、パフォーマンスの低下やキャリア形成の阻害要因となっている可能性があることから、女性従業員の健康課題を組織・会社の課題として捉え、心身の健康確保と働きやすい職場環境の整備を目的とし、「正しい知識を正しく学ぶ」ため、プログラム導入前に専門家による「女性のカラダ知識講座」を開催しました。これには、男性従業員にも参加を促すことで職場における理解が深まる契機と捉えました。</p>
               <p>６カ月経過時に施策導入前後での女性従業員の「業務パフォーマンスの変化」を検証したところ、月経プログラムで23.5pt、更年期プログラムで6.2ptの改善が見られました。また、月経・更年期による不調が「１カ月のうちに影響を与える日数の変化」では、月経プログラムで2.1日、更年期プログラムで3.6日の改善が確認されたとともに、プログラム利用者における中・重度の有症状者比率の減少（月経73.3％→50.0％、更年期33.3％→5.9％）につながっており、これら検証データから、仕事における生産性にも良い影響が出ていると推測されます。</p>
 
@@ -1252,15 +1486,46 @@ body {
 
         </section>
 
+        <!-- ============================================================
+             E. 外部評価（v3.0：FB#14・原稿準拠で新規追加）
+        ============================================================ -->
+        <section class="wf-section bg-white" id="external-eval">
+          <span class="wf-section-marker">E</span>
+          <h2 class="wf-section-title">外部評価</h2>
+
+          <h3 class="wf-sub-title" id="white-500">「健康経営優良法人（ホワイト500）」への選定</h3>
+          <p class="wf-section-desc">
+            コニカミノルタは、「従業員の健康がすべての基盤」との認識のもと、「健康第一」の風土醸成を通じて健康経営を推進するという理念「コニカミノルタグループ健康宣言」に基づいて、会社と健康保険組合のリソースを最大限活用できるよう、コラボヘルスを推進し各種健康増進策を立案・実行していますが、従業員の健康管理を経営的な視点で考え戦略的に実践する「健康経営」の取り組みが評価され、コニカミノルタ株式会社は経済産業省が主導する「健康経営優良法人（ホワイト500）」に2017年から2025年まで連続して認定され続けています。
+          </p>
+          <p class="wf-section-desc">
+            また、経済産業省と東京証券取引所が共同で取り組む「健康経営銘柄」には、2015年以降計7回選定されています。国内グループ会社におきましても連携して各種施策を進めており、グループ会社2社が「健康経営優良法人2025（ホワイト500）」に選定されました。
+          </p>
+          <p class="wf-section-desc">
+            また、人財採用面におきましてコニカミノルタでは、新卒一括採用のみに頼らず、積極的に中途採用を行い即戦力となる人財を確保してきました。また、外部評価とあわせてさまざまな媒体で、健康経営を積極的に推進している会社であることをPRするとともに、採用活動全般を強化しています。その結果、IT系などをはじめとした即戦力人財の獲得競争が特に激しいなかで、2024年度における中途採用は経済動向や採用環境に大きく影響されることなく必要な人財を確保できています。新卒採用におきましても「コニカミノルタは従業員の健康を大切にする会社」として高評価を得ています。
+          </p>
+          <p class="wf-section-desc">
+            また、コニカミノルタ健康推進部門の担当者が、多くの顧客企業の課題を聞き、当社が実施している対策内容やその効果検証結果を踏まえたアドバイスを行う活動を行っています。お客様のご要望に応え、顧客企業が「健康経営」に取り組むうえでのサポート役として課題解決の手助けを行うことで、顧客接点の拡大にもつながっています。
+          </p>
+          <p class="kpi-table-note">注 健康経営はNPO法人健康経営研究会の登録商標です。</p>
+        </section>
+
       </div><!-- /wf-anchornav-main -->
 
-      <!-- 右コンパクトアンカーナビ -->
+      <!-- 右コンパクトアンカーナビ（v3.0：UNIFIED_RULES v5.0 §3 — H2/H3全文表記＋2行クランプ＋H3インデント） -->
       <nav class="wf-anchor-nav">
         <div class="wf-anchor-nav-title">目次</div>
         <a class="wf-anchor-nav-item is-current" href="#policy">基本的な考え方</a>
-        <a class="wf-anchor-nav-item" href="#kpi">戦略・目標・実績</a>
+        <a class="wf-anchor-nav-item sub" href="#background">背景と課題認識</a>
+        <a class="wf-anchor-nav-item sub" href="#vision">目指す姿</a>
+        <a class="wf-anchor-nav-item sub" href="#health-declaration">コニカミノルタグループ健康宣言</a>
+        <a class="wf-anchor-nav-item" href="#strategy">戦略・目標・実績</a>
+        <a class="wf-anchor-nav-item sub" href="#medium-term-kpi">重点施策・KPI ｜ 中期経営計画（FY2023-FY2025）期間における取り組み</a>
         <a class="wf-anchor-nav-item" href="#structure">体制</a>
+        <a class="wf-anchor-nav-item sub" href="#structure-philosophy">健康第一の風土醸成を通じた健全な経営の推進</a>
+        <a class="wf-anchor-nav-item sub" href="#collabo-health">「健康経営」推進に向けた組織（コラボヘルス）体制</a>
         <a class="wf-anchor-nav-item" href="#activities">取り組み</a>
+        <a class="wf-anchor-nav-item" href="#external-eval">外部評価</a>
+        <a class="wf-anchor-nav-item sub" href="#white-500">「健康経営優良法人（ホワイト500）」への選定</a>
       </nav>
 
     </div><!-- /wf-layout-with-anchornav -->
@@ -1388,11 +1653,52 @@ body {
 
   <!-- アノテーション -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — 健康経営 v2.6（0524 Figma FB反映）</h3>
+    <h3>設計ポイント — 健康経営 v3.0（原稿26S220_0526準拠＋0525 Figma FB反映）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">v3.0</span>
+      <span class="ann-head">原稿26S220_健康経営(0526).docx 準拠＋0525 FB B→A化サマリ</span>
+      <div class="ann-row">
+        <span class="ann-row-label">原稿準拠の全面再構成</span>
+        ① 原稿の右ナビ目次に揃え、ページ構造を「基本的な考え方／戦略・目標・実績／体制／取り組み／外部評価」の5セクションに再編。② 全数値（POS-H、KPI、入院費、がん検診、就業状況等）を原稿FY2023〜FY2025 実績＋目標値で再生成。③ コラボヘルス研究会代表挨拶リンク（[https://www.collabo-health.jp/about-us/message](https://www.collabo-health.jp/about-us/message) 外部 ↗）を体制セクションに追加。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#4・#8（B→A）桐原</span>
+        「健康宣言はhtml内に入る／基本的な考え方に配置／他カテゴリと揃える」→ <b>policy-statement モジュール（140人権方針 で確立）を健康宣言に適用</b>。A.基本的な考え方セクション内に配置。バッジ「宣言」＋制定日メタ＋＋/−マーカー／body：宣言文＋タグライン（中央寄せ）＋H4「会社の基本姿勢／従業員の意識行動」＋H5サブセクション＋・箇条書き＋明朝下線署名（大幸 利充）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#6（B→A）桐原</span>
+        「戦略マップPDFと上部テキストを同一情報ブロック化」→ <b>.doc-link-block 新規モジュール</b>を策定。「PDF」バッジ＋タイトル＋説明文＋ .wf-btn-page で1ブロックに統合。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#11・#12（B→A）桐原</span>
+        「取り組み順序の整理＋見える化配下に施策タイトル」→ D.取り組みを<b>原稿準拠順</b>（①リスク最小化→②過重労働対策→③見える化→④女性の健康支援）に並べ替え。③見える化アコ配下に<b>H4見出し3本</b>「食事習慣改善・向上イベント／生活習慣（運動・睡眠・食事・喫煙）／健康問題による労働機能障害が中程度以上の割合」を新設し、施策ごとの情報ブロック化。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#13（B→A）桐原</span>
+        「女性の健康支援に施策タイトル追加」→ D-4配下に<b>H4見出し2本</b>「乳がん・子宮頸がん検診／FEMTECH（フェムテック）の活用」を新設。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#14（A・反映済 強化）桐原</span>
+        「外部評価が抜け落ち」→ <b>E.外部評価セクション</b>を新設。「健康経営優良法人（ホワイト500）」への選定（2017〜2025連続）・健康経営銘柄（2015以降7回選定）・グループ会社2社認定・採用面の効果・健康推進部門による顧客サポートを原稿全文で記載。登録商標注記も明記。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">右ナビ H2/H3 併載</span>
+        UNIFIED_RULES v5.0 §3 準拠：H2 5項目＋H3 7項目を併載。<code>.wf-anchor-nav-item.sub</code>でH3インデント・2行クランプ＋max-heightで3行目を厳密にカット。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">テキストリンク統一</span>
+        UNIFIED_RULES v5.1 §4-2b 準拠：<code>.text-link</code>を新規追加し「→ リンクテキスト」形式に統一。完全外部サイトは<code>.is-ext</code>で「↗」付与（コラボヘルス研究会代表挨拶 ↗）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">継続課題（B保留）</span>
+        #2（行動変容と原稿連携でグラフ化）／#5（実画像・データ差し替え）／#7（catalog グラフ/表モジュール整理）／#9（リード見えるアコ＋フィジカル/メンタル分割UI）／#10（拡大不要レベルの読みやすさ）。デザインカンプ作成時 or KM原稿/画像受領後に対応。
+      </div>
+    </div>
 
     <div class="ann-item">
       <span class="ann-num">0524</span>
-      <span class="ann-head">0524 Figma FB（14件）反映サマリ</span>
+      <span class="ann-head">0524 Figma FB（14件）反映サマリ（旧）</span>
       <div class="ann-row">
         <span class="ann-row-label">#1（A・反映済）桐原</span>
         「L3では削除」→ ページタイトル下の「【社会】に関する取り組み」表示を<b>削除</b>。
