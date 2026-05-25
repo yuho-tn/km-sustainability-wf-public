@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ガイドライン対照表 — KM サステナビリティ WF v1.3 (#222)</title>
+<title>ガイドライン対照表 — KM サステナビリティ WF v1.4 (#222)</title>
 <style>
 /* ============================================================
    KM SUSTAINABILITY WF — SHARED CSS（225 イニシアティブ＋社外評価 v2.1 ベース継承）
@@ -323,6 +323,100 @@ body {
   line-height: 1.6;
 }
 
+/* ============================================================
+   v1.4: 上部ガイドラインTOCリンク群（現サイトの「GRIガイドライン／
+   ISO26000対照表／国連グローバル・コンパクト対照表／SASB対照表」
+   4本TOCを忠実に再現）
+============================================================ */
+.guideline-toc {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.guideline-toc-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--c-text-h);
+  cursor: default;
+  text-decoration: none;
+  line-height: 1.4;
+}
+.guideline-toc-item::before {
+  content: '›';
+  font-size: 14px; font-weight: 700;
+  color: var(--c-text-h);
+}
+.guideline-toc-item:hover {
+  background: var(--c-bg-sub);
+  border-color: var(--c-text-h);
+}
+.guideline-toc-item .toc-ext {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--c-text-s);
+  background: var(--c-bg-sub);
+  border: 1px solid var(--c-border);
+  padding: 1px 6px;
+  margin-left: 6px;
+  letter-spacing: 0.03em;
+}
+
+/* GRI内部目次（一般開示事項／マテリアルな項目／経済／環境／社会） */
+.gri-sub-toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 10px 14px;
+  margin-bottom: 18px;
+  background: var(--c-bg-sub);
+  border-left: 3px solid var(--c-text-h);
+  font-size: 12px;
+}
+.gri-sub-toc-label {
+  font-weight: 700;
+  color: var(--c-text-h);
+}
+.gri-sub-toc-link {
+  color: var(--c-text-h);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: default;
+}
+.gri-sub-toc-link::before { content: '→ '; }
+
+/* 【利用したGRI 1】 GRI 1：基礎 2021 表示ボックス（0524 FB#2） */
+.used-gri-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  background: var(--c-white);
+  border: 1px solid var(--c-text-h);
+  font-size: 12px;
+  color: var(--c-text-h);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+.used-gri-box-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--c-text-h);
+  padding: 2px 8px;
+  letter-spacing: 0.03em;
+}
+.used-gri-box-value {
+  font-weight: 700;
+}
+
 /* 省略・該当なし表示 */
 .gri-table .na { color: var(--c-text-xs); font-size: 10px; }
 
@@ -596,26 +690,8 @@ body {
 </head>
 <body>
 
-<!-- WF管理バー -->
-<div class="wf-meta-bar">
-  <div>
-    <strong>KONICA MINOLTA サステナビリティ</strong>
-    <span class="meta-badge">ガイドライン対照表</span>
-    <span class="meta-badge">WF v1.3</span>
-    <span class="meta-badge">#222</span>
-    <span class="meta-badge">L3</span>
-    <span class="meta-badge" style="background:#7a4a00; color:#fff;">v1.2：適用基準/対象期間/報告組織のメタBoxも削除</span>
-  </div>
-  <div style="font-size:10px; color:#666;">2026.05 / v1.0→v1.1：FB5点反映</div>
-</div>
-
 <div class="wf-canvas">
   <div class="wf-page">
-
-    <div class="wf-page-indicator">
-      <span>ガイドライン対照表 / URL: /about/csr/csr/vision/gri.html ＋ /about/csr/csr/vision/gri-sasb.html を統合</span>
-      <span class="pi-layer">L3 第3階層 — ガイドライン対照表</span>
-    </div>
 
     <!-- ヘッダー：KM公式デザイン（画像差し替え） -->
     <header class="wf-header-img">
@@ -629,12 +705,11 @@ body {
       <span class="current">ガイドライン対照表</span>
     </nav>
 
-    <!-- ページタイトル -->
-    <div class="wf-page-title-area">
-      <h1 class="wf-page-title">ガイドライン対照表</h1>
-      <div class="wf-page-parent-cat">
-        【<a href="001_sustainability_top.html">サステナビリティ</a>】に関連する情報
-      </div>
+    <!-- ============================================================
+         ヒーロー｜ページタイトル（v1.4：L2構造化／【サステナビリティ】親カテ表記を撤去）
+    ============================================================ -->
+    <div style="background:var(--c-white); border-bottom:1px solid var(--c-border-s); padding:20px var(--pad-h) 20px;">
+      <h1 style="font-size:24px; font-weight:700; color:var(--c-text-h); line-height:1.2; margin:0;">ガイドライン対照表</h1>
     </div>
 
     <!-- メインコンテンツ＋右コンパクトアンカーナビ -->
@@ -642,15 +717,25 @@ body {
       <div class="wf-anchornav-main">
 
         <!-- ============================================================
-             0. 導入文
+             0. 導入文＋ガイドライン4種TOC（現サイト準拠：GRIガイドライン／ISO26000対照表／
+                国連グローバル・コンパクト対照表／SASB対照表）
+                本WFスコープは GRI と SASB のみ。ISO26000／UNGC は別ページへリンク。
         ============================================================ -->
         <section class="wf-section bg-white pad-sm" id="intro">
           <p class="wf-section-desc" style="margin-bottom:12px;">
             コニカミノルタグループのサステナビリティ活動におけるマテリアリティ（重要課題）特定にあたっては、グローバル・コンパクト、ISO26000などの国際的なガイドラインを参照しています。
           </p>
-          <p class="wf-section-desc" style="margin-bottom:0;">
-            コニカミノルタは、2022年4月1日から2023年3月31日までの期間について、GRIスタンダードに準拠して報告しています。
+          <p class="wf-section-desc" style="margin-bottom:20px;">
+            コニカミノルタは、2024年4月1日から2025年3月31日までの期間について、GRIスタンダードに準拠して報告しています。
           </p>
+
+          <!-- 4種ガイドラインTOC -->
+          <div class="guideline-toc">
+            <a class="guideline-toc-item" href="#gri">GRIガイドライン</a>
+            <a class="guideline-toc-item" href="#">ISO26000対照表<span class="toc-ext">別ページ</span></a>
+            <a class="guideline-toc-item" href="#">国連グローバル・コンパクト対照表<span class="toc-ext">別ページ</span></a>
+            <a class="guideline-toc-item" href="#sasb">SASB対照表</a>
+          </div>
         </section>
 
         <!-- ============================================================
@@ -660,11 +745,27 @@ body {
           <span class="wf-section-marker">A</span>
           <h2 class="wf-section-title">GRIガイドライン</h2>
 
+          <!-- GRI内部TOC（一般開示事項／マテリアルな項目／経済／環境／社会） -->
+          <div class="gri-sub-toc">
+            <span class="gri-sub-toc-label">目次：</span>
+            <a class="gri-sub-toc-link" href="#gri-2">一般開示事項</a>
+            <a class="gri-sub-toc-link" href="#gri-3">マテリアルな項目</a>
+            <a class="gri-sub-toc-link" href="#gri-200">経済</a>
+            <a class="gri-sub-toc-link" href="#gri-300">環境</a>
+            <a class="gri-sub-toc-link" href="#gri-400">社会</a>
+          </div>
+
+          <!-- 【利用したGRI 1】 GRI 1：基礎 2021（0524 FB#2） -->
+          <div class="used-gri-box">
+            <span class="used-gri-box-label">利用したGRI 1</span>
+            <span class="used-gri-box-value">GRI 1：基礎 2021</span>
+          </div>
+
           <!-- マテリアル注釈（コンパクト・モノクロ） -->
           <p class="mat-note">※「＊」はマテリアルな項目に関連する開示事項を示します。</p>
 
           <!-- ▼ アコ1：共通スタンダード（GRI 2 一般開示事項） -->
-          <details class="gl-acc" open>
+          <details class="gl-acc" id="gri-2" open style="scroll-margin-top:80px;">
             <summary class="gl-acc-summary">
               <span class="gl-acc-title">共通スタンダード（GRI 2：一般開示事項 2021）</span>
             </summary>
@@ -731,7 +832,7 @@ body {
           </details>
 
           <!-- ▼ アコ2：マテリアルな項目（GRI 3） -->
-          <details class="gl-acc" open>
+          <details class="gl-acc" id="gri-3" open style="scroll-margin-top:80px;">
             <summary class="gl-acc-summary">
               <span class="gl-acc-title">マテリアルな項目（GRI 3：マテリアルな項目 2021）</span>
             </summary>
@@ -767,7 +868,7 @@ body {
           </details>
 
           <!-- ▼ アコ3：経済（GRI 200シリーズ） -->
-          <details class="gl-acc" open>
+          <details class="gl-acc" id="gri-200" open style="scroll-margin-top:80px;">
             <summary class="gl-acc-summary">
               <span class="gl-acc-title">経済（GRI 200シリーズ）</span>
             </summary>
@@ -818,7 +919,7 @@ body {
           </details>
 
           <!-- ▼ アコ4：環境（GRI 300シリーズ） -->
-          <details class="gl-acc" open>
+          <details class="gl-acc" id="gri-300" open style="scroll-margin-top:80px;">
             <summary class="gl-acc-summary">
               <span class="gl-acc-title">環境（GRI 300シリーズ＋GRI 101 生物多様性 2024）</span>
             </summary>
@@ -882,7 +983,7 @@ body {
           </details>
 
           <!-- ▼ アコ5：社会（GRI 400シリーズ） -->
-          <details class="gl-acc" open>
+          <details class="gl-acc" id="gri-400" open style="scroll-margin-top:80px;">
             <summary class="gl-acc-summary">
               <span class="gl-acc-title">社会（GRI 400シリーズ）</span>
             </summary>
@@ -985,56 +1086,56 @@ body {
                 <tr>
                   <th rowspan="1">製品のセキュリティ</th>
                   <td class="code">TC-HW-230a.1</td>
-                  <td>製品セキュリティのリスクを特定・対処するアプローチについての説明</td>
+                  <td>製品のデータセキュリティリスクを特定して対処するためのアプローチの説明</td>
                   <td class="loc"><span class="ref-link">製品・サービスのセキュリティ強化</span></td>
                 </tr>
                 <!-- 2. 従業員のダイバーシティ&インクルージョン -->
                 <tr>
                   <th rowspan="1">従業員のダイバーシティ&amp;インクルージョン</th>
                   <td class="code">TC-HW-330a.1</td>
-                  <td>(1) 経営役職、(2) 技術スタッフ、(3) 全従業員における、ジェンダー別および人種・民族別の割合</td>
-                  <td class="loc"><span class="ref-link">DE&I ／ ESGデータ／社会データ</span></td>
+                  <td>性別および組織を代表する多様性グループの割合（a）役員（b）管理職（c）技術スタッフ（d）他のすべての従業員</td>
+                  <td class="loc"><span class="ref-link">ESGデータ（社会データ参照）</span> ／ <span class="ref-link">ダイバーシティ&amp;インクルージョンへの取り組み</span></td>
                 </tr>
                 <!-- 3. 製品ライフサイクルマネジメント -->
                 <tr>
                   <th rowspan="4">製品ライフサイクルマネジメント</th>
                   <td class="code">TC-HW-410a.1</td>
-                  <td>IEC 62474宣言可能物質を含む製品の収益割合</td>
-                  <td class="loc"><span class="ref-link">化学物質管理</span></td>
+                  <td>IEC 62474対象物質を含む製品の収益の割合</td>
+                  <td class="loc"><span class="ref-link">製品に含まれる化学物質の管理</span> ／ <span class="ref-link">化学物質リスク排除の仕組み</span> ／ <span class="ref-link">グリーン調達関連</span></td>
                 </tr>
                 <tr>
                   <td class="code">TC-HW-410a.2</td>
-                  <td>EPEAT登録または同等基準を満たす対象製品の収益割合</td>
-                  <td class="loc"><span class="ref-link">グリーンプロダクツ</span></td>
+                  <td>EPEATまたは同等の要件を満たす製品の収益の割合</td>
+                  <td class="loc"><span class="ref-link">環境ラベル・認証等</span> ／ <span class="ref-link">環境マネジメント体制関連</span></td>
                 </tr>
                 <tr>
                   <td class="code">TC-HW-410a.3</td>
-                  <td>ENERGY STAR®基準を満たす対象製品の収益割合</td>
-                  <td class="loc"><span class="ref-link">省エネ製品開発</span></td>
+                  <td>エネルギー効率に関する認証を受けた製品の収益の割合</td>
+                  <td class="loc"><span class="ref-link">環境ラベル・認証等</span> ／ <span class="ref-link">国際エネルギースタープログラム</span></td>
                 </tr>
                 <tr>
                   <td class="code">TC-HW-410a.4</td>
-                  <td>(1) 回収した使用済製品の重量、(2) リサイクル材料の割合</td>
-                  <td class="loc"><span class="ref-link">資源循環 ／ ESGデータ</span></td>
+                  <td>回収された使用済み製品と電子廃棄物の重量、リサイクル率</td>
+                  <td class="loc"><span class="ref-link">ESGデータ</span> ／ <span class="ref-link">使用済み製品の回収・リサイクル</span></td>
                 </tr>
                 <!-- 4. サプライチェーンマネジメント -->
                 <tr>
                   <th rowspan="2">サプライチェーンマネジメント</th>
                   <td class="code">TC-HW-430a.1</td>
-                  <td>RBA行動規範に基づく主要サプライヤー施設での監査の結果（不適合事項の率）</td>
-                  <td class="loc"><span class="ref-link">CSR調達</span></td>
+                  <td>RBAのVAP（Validated Audit Process）または同等の監査を受けた一次サプライヤー施設のうち、（a）全施設（b）高リスク施設の割合</td>
+                  <td class="loc"><span class="ref-link">CSR調達の取り組み</span></td>
                 </tr>
                 <tr>
                   <td class="code">TC-HW-430a.2</td>
-                  <td>主要サプライヤーの不適合事項の対処率</td>
-                  <td class="loc"><span class="ref-link">CSR調達</span></td>
+                  <td>一次サプライヤーのうち、（1）RBAのVAP（Validated Audit Process）または同等の基準への不適合率、および（2）（a）優先度の高い不適合、（b）その他の不適合への是正措置比率</td>
+                  <td class="loc"><span class="na">該当なし</span></td>
                 </tr>
                 <!-- 5. 資材調達 -->
                 <tr>
                   <th rowspan="1">資材調達</th>
                   <td class="code">TC-HW-440a.1</td>
-                  <td>主要原材料の調達に関連するリスクの説明</td>
-                  <td class="loc"><span class="ref-link">CSR調達 ／ 責任ある鉱物調達</span></td>
+                  <td>重要な材料の使用に関するリスク管理の説明</td>
+                  <td class="loc"><span class="ref-link">責任ある鉱物調達への対応</span> ／ <span class="ref-link">資源有効利用に寄与する製品/ソリューション</span> ／ <span class="ref-link">責任あるサプライチェーン</span></td>
                 </tr>
               </tbody>
             </table>
@@ -1043,15 +1144,15 @@ body {
 
       </div><!-- /wf-anchornav-main -->
 
-      <!-- 右コンパクトアンカーナビ -->
+      <!-- 右コンパクトアンカーナビ（v1.4：GRI内部サブIDへ正確にリンク） -->
       <nav class="wf-anchor-nav">
         <div class="wf-anchor-nav-title">目次</div>
         <a class="wf-anchor-nav-item is-current" href="#gri">GRIガイドライン</a>
-        <a class="wf-anchor-nav-item sub" href="#gri">共通スタンダード（GRI 2）</a>
-        <a class="wf-anchor-nav-item sub" href="#gri">マテリアルな項目（GRI 3）</a>
-        <a class="wf-anchor-nav-item sub" href="#gri">経済（GRI 200）</a>
-        <a class="wf-anchor-nav-item sub" href="#gri">環境（GRI 300＋101）</a>
-        <a class="wf-anchor-nav-item sub" href="#gri">社会（GRI 400）</a>
+        <a class="wf-anchor-nav-item sub" href="#gri-2">一般開示事項（GRI 2）</a>
+        <a class="wf-anchor-nav-item sub" href="#gri-3">マテリアルな項目（GRI 3）</a>
+        <a class="wf-anchor-nav-item sub" href="#gri-200">経済（GRI 200）</a>
+        <a class="wf-anchor-nav-item sub" href="#gri-300">環境（GRI 300＋101）</a>
+        <a class="wf-anchor-nav-item sub" href="#gri-400">社会（GRI 400）</a>
         <a class="wf-anchor-nav-item" href="#sasb">SASB対照表</a>
       </nav>
 
@@ -1180,7 +1281,44 @@ body {
 
   <!-- アノテーション -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — ガイドライン対照表 v1.2（0524 Figma FB反映）</h3>
+    <h3>設計ポイント — ガイドライン対照表 v1.4（0525 MTG FB反映）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">v1.4</span>
+      <span class="ann-head">v1.4 修正サマリ（0525 ユーザー追加FB）</span>
+      <div class="ann-row">
+        <span class="ann-row-label">L2構造化＋サステナ親カテ撤去</span>
+        WF管理バー（<code>.wf-meta-bar</code>）／<code>.wf-page-indicator</code>／<code>.wf-page-parent-cat</code>（「【サステナビリティ】に関連する情報」リンク）を撤去。L1ヒーローはL2共通のシンプル白bg＋H1のみに統一（096 v1.5と同形）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">4種ガイドラインTOC追加</span>
+        導入文直下に <b>現サイト準拠の4本リンクTOC</b>（GRIガイドライン／ISO26000対照表／国連グローバル・コンパクト対照表／SASB対照表）を2×2グリッドで配置。本WFスコープ外のISO26000・UNGC対照表は「別ページ」バッジ付きで明示し、原ページ構造（gri.html）を踏襲。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">【利用したGRI 1】 GRI 1：基礎 2021</span>
+        FB#2 で追加要請のあったラベル要素を GRIセクション冒頭に <b>常設表示</b>（黒帯ラベル＋本文）。本サイトが GRI 1：基礎 2021 を準拠基準として利用していることを明示。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">GRI内部サブTOC追加</span>
+        GRIセクション冒頭に「一般開示事項／マテリアルな項目／経済／環境／社会」5本の <b>サブTOC</b>（薄グレー帯＋→リンク）を追加。各GRIアコーディオンに <code>id=gri-2/3/200/300/400</code> を付与しページ内ジャンプ可能に。原サイト「ページトップへ戻る」直前のアンカー群を踏襲。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">SASB対照表 全文言を原サイト準拠に</span>
+        9行すべて原サイト（gri-sasb.html）の文言に置換。例：TC-HW-230a.1「製品セキュリティのリスクを特定・対処するアプローチについての説明」→「<b>製品のデータセキュリティリスクを特定して対処するためのアプローチの説明</b>」など。掲載箇所も原文の複数リンク列挙（「製品に含まれる化学物質の管理／化学物質リスク排除の仕組み／グリーン調達関連」等）に揃え、TC-HW-430a.2「（記載なし）」は「該当なし」表示で対応。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">リード文の対象期間更新</span>
+        「2022年4月1日〜2023年3月31日」→「<b>2024年4月1日〜2025年3月31日</b>」（最新報告期間に統一。他WF＝096編集方針表「2024年4月1日〜2025年3月31日」と整合）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">FB#5（B・対応不要）桐原</span>
+        「GRIとSASBの2種類があることをわかりやすく」→ <b>右コンパクトアンカーナビでH2併載済み</b>（GRIガイドライン／SASB対照表）。タブUI追加は不要と判断（ユーザー確認済）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">原稿待ち事項</span>
+        FB#1（実データ反映）／FB#3（GRI番号カラム順入替）はKM原稿確定後に反映予定。本v1.4は構造・横断ルール対応＋SASB原文踏襲を完了。
+      </div>
+    </div>
 
     <div class="ann-item">
       <span class="ann-num">0524</span>
