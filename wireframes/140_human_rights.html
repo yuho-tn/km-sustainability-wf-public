@@ -167,7 +167,7 @@ body {
   letter-spacing: 0.1em; text-transform: uppercase;
   margin-bottom: 8px;
 }
-/* v1.8：UNIFIED_RULES v5.0 §3 横断ルール準拠 — H2/H3全文表記＋2行クランプ＋H3インデント（.sub） */
+/* v1.8.1：UNIFIED_RULES v5.0 §3 — H2/H3全文表記＋2行クランプ＋H3インデント（.sub）／max-heightで厳密に2行カット */
 .wf-anchor-nav-item {
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -175,15 +175,19 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 11px; color: var(--c-text-s);
-  padding: 5px 0 5px 10px; line-height: 1.4;
+  padding: 5px 0 5px 10px;
+  line-height: 1.4;
+  max-height: calc(1.4em * 2 + 10px); /* 2行分 + 上下padding 5+5px。3行目を厳密にカット */
   cursor: default;
   border-left: 2px solid transparent;
   text-decoration: none;
+  box-sizing: border-box;
 }
 .wf-anchor-nav-item.sub {
   font-size: 10px;
   padding-left: 22px;
   color: var(--c-text-xs);
+  max-height: calc(1.4em * 2 + 10px);
 }
 .wf-anchor-nav-item:hover { color: var(--c-text-h); }
 .wf-anchor-nav-item.is-current {
