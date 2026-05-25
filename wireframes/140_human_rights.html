@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>人権 — KM サステナビリティ WF v1.6 (#140)</title>
+<title>人権 — KM サステナビリティ WF v1.7 (#140)</title>
 <style>
 /* ============================================================
    KM SUSTAINABILITY WF — SHARED CSS（131 健康経営 v2.1 ベース継承）
@@ -534,6 +534,116 @@ body {
 }
 .wf-acc-h4-body > p:last-child { margin-bottom: 0; }
 
+/* ============================================================
+   方針文書アコーディオンモジュール .policy-statement
+   v1.7：0525 桐原FB#7 反映 — 人権方針PDF全文をページ内HTML展開
+   catalog 共通モジュール候補（131健康宣言・148品質方針・124DE&I方針 横展開予定）
+============================================================ */
+.policy-statement {
+  margin: 14px 0 22px;
+  border: 1px solid var(--c-border);
+  background: var(--c-white);
+}
+.policy-statement-summary {
+  list-style: none;
+  cursor: default;
+  padding: 14px 60px 14px 18px;
+  display: flex; align-items: center; gap: 14px;
+  background: var(--c-white);
+  position: relative;
+  line-height: 1.5;
+}
+.policy-statement[open] .policy-statement-summary {
+  border-bottom: 1px solid var(--c-border);
+}
+.policy-statement-summary::-webkit-details-marker { display: none; }
+.policy-statement-summary::marker { content: ''; }
+.policy-statement-summary::after {
+  content: '＋';
+  position: absolute;
+  right: 16px; top: 50%; transform: translateY(-50%);
+  width: 26px; height: 26px;
+  background: var(--c-text-h); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  font-size: 14px; font-weight: 700;
+  line-height: 1;
+}
+.policy-statement[open] .policy-statement-summary::after { content: '−'; }
+.policy-statement-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700;
+  color: #fff; background: var(--c-text-h);
+  padding: 3px 9px;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.policy-statement-title {
+  font-size: 15px; font-weight: 700;
+  color: var(--c-text-h);
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.policy-statement-meta {
+  font-size: 11px; color: var(--c-text-s);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.policy-statement-body {
+  padding: 26px 30px 28px;
+  background: var(--c-white);
+}
+.policy-section-title {
+  font-size: 14px; font-weight: 700;
+  color: var(--c-text-h);
+  margin-top: 26px;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--c-border);
+  letter-spacing: 0.01em;
+  line-height: 1.5;
+}
+.policy-section-title:first-child { margin-top: 0; }
+
+.policy-subsection-title {
+  font-size: 12px; font-weight: 700;
+  color: var(--c-text-h);
+  margin-top: 14px; margin-bottom: 4px;
+  line-height: 1.5;
+}
+.policy-statement-body p {
+  font-size: 13px; line-height: 1.95;
+  color: var(--c-text);
+  margin-bottom: 12px;
+}
+.policy-subsection-title + p { margin-top: 0; margin-bottom: 8px; }
+
+.policy-statement-signature {
+  margin-top: 28px;
+  padding-top: 16px;
+  border-top: 1px solid var(--c-border);
+  text-align: right;
+  font-size: 12px;
+  color: var(--c-text);
+  line-height: 1.85;
+}
+.policy-signature-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  font-family: 'Hiragino Mincho Pro', 'Yu Mincho', serif;
+  margin-top: 8px;
+  letter-spacing: 0.18em;
+  display: inline-block;
+  border-bottom: 1px solid var(--c-text-h);
+  padding: 0 4px 4px;
+}
+
 /* テキストリンク（v1.6：0525 桐原FB#5 反映 — 全箇所「→ リンクテキスト」形式に統一） */
 .detail-link {
   display: inline-block;
@@ -783,12 +893,12 @@ body {
   <div>
     <strong>KONICA MINOLTA サステナビリティ</strong>
     <span class="meta-badge">人権</span>
-    <span class="meta-badge">WF v1.6</span>
+    <span class="meta-badge">WF v1.7</span>
     <span class="meta-badge">#140</span>
     <span class="meta-badge">L3</span>
-    <span class="meta-badge" style="background:#7a4a00; color:#fff;">v1.6（0525 FB反映）：国際規範リスト箇条書き化／DDプロセス図PH追加／テキストリンク表現「→ ○○」統一</span>
+    <span class="meta-badge" style="background:#7a4a00; color:#fff;">v1.7（0525 FB#7反映）：コニカミノルタグループ人権方針PDF全文をページ内アコーディオン展開（policy-statement モジュール新規）</span>
   </div>
-  <div style="font-size:10px; color:#666;">2026.05 / v1.5→v1.6：0525 FB3点反映</div>
+  <div style="font-size:10px; color:#666;">2026.05 / v1.6→v1.7：0525 FB#7反映</div>
 </div>
 
 <div class="wf-canvas">
@@ -843,9 +953,77 @@ body {
           <p class="wf-section-desc">
             また、コニカミノルタグループの企業理念、経営ビジョンに基づいて、人権に対するコニカミノルタグループの責任と決意を「コニカミノルタグループ人権方針」に定めています。本方針は2021年9月経営審議会にて承認されています。
           </p>
-          <div class="policy-link-row">
-            <a class="policy-link">コニカミノルタグループ人権方針</a>
-          </div>
+
+          <!-- v1.7：0525 桐原FB#7 反映 — 人権方針PDF全文をページ内アコーディオン展開 -->
+          <details class="policy-statement" id="human-rights-policy" open>
+            <summary class="policy-statement-summary">
+              <span class="policy-statement-badge">方針</span>
+              <span class="policy-statement-title">コニカミノルタグループ人権方針</span>
+              <span class="policy-statement-meta">2022年4月1日制定</span>
+            </summary>
+            <div class="policy-statement-body">
+
+              <h4 class="policy-section-title">基本的な考え方</h4>
+              <p>
+                私たちコニカミノルタグループは、「Imaging to the People」を経営ビジョンに掲げ、「人間中心の生きがい追求」と「持続的な社会の実現」を高次に両立させることを目指しています。その実現にあたり、人権の尊重をコニカミノルタグループが事業活動を行う上での基本原則ととらえ、その責任を果たすことに努めます。
+              </p>
+              <p>
+                私たちは国連の「ビジネスと人権に関する指導原則」に基づき、「国際人権章典」および国際労働機関（ILO）の「労働の基本原則および権利に関する宣言」に記された人権を支持し尊重します。また、事業を展開する各国の関連法令を遵守します。各国の法令と国際規範に乖離がある場合、国際規範を尊重し優先するための方法を追求していきます。
+              </p>
+              <p>
+                本方針は、コニカミノルタグループの企業理念、経営ビジョンに基づいて、人権に対するコニカミノルタグループの責任と決意を宣言するものであり、コニカミノルタグループ内の人権に関わるすべての規程の上位に位置付けます。
+              </p>
+
+              <h4 class="policy-section-title">本方針の適用範囲</h4>
+              <p>
+                本方針は、コニカミノルタ株式会社およびその連結子会社からなるコニカミノルタグループのすべての役員と従業員に適用します。また、本方針に基づき、私たちは、コニカミノルタグループの事業に関連するビジネスパートナーやその他の関係者に対し、人権を尊重し、侵害しないよう求めていきます
+              </p>
+
+              <h4 class="policy-section-title">人権尊重への取り組み</h4>
+              <h5 class="policy-subsection-title">1）差別の排除</h5>
+              <p>
+                私たちは、人種、性別、国籍、年齢、性的指向・性自認、宗教、民族、障がい、妊娠状況、思想、信条、社会的身分などによる差別の排除に努めます。
+              </p>
+              <h5 class="policy-subsection-title">2）従業員への配慮</h5>
+              <p>
+                私たちは、従業員の多様性、基本的人権、プライバシーを尊重し、あらゆる差別の根絶に努めるとともに、児童労働、強制労働、ハラスメントなどを排除し、適正な労働時間の管理、最低賃金の確保、安全で衛生的な職場環境の提供、結社の自由と団体交渉権の尊重などに取り組みます。
+              </p>
+              <h5 class="policy-subsection-title">3）事業活動への配慮</h5>
+              <p>
+                私たちは、サプライチェーンの行動規範に沿って、コニカミノルタグループのサプライヤーとともに責任あるサプライチェーンの維持に努めます。また、お客様のプライバシーを尊重することにより、お客様に社会的な差別をもたらさないよう取り組みます。
+              </p>
+
+              <h4 class="policy-section-title">人権尊重の実践</h4>
+              <h5 class="policy-subsection-title">1）人権デュー・デリジェンスの実施</h5>
+              <p>
+                私たちは、人権デュー・デリジェンスの仕組みを構築し、潜在的または実際の人権リスクを評価・特定し、それらに対処することで、人権への負の影響の防止・軽減に努めます。
+              </p>
+              <h5 class="policy-subsection-title">2）救済措置</h5>
+              <p>
+                私たちは、人権に関する懸念を通報できる制度を活用し、人権侵害の申し立てがあった場合には速やかに調査し、人権に対する負の影響を直接的に引き起こしたり、あるいはこれに関与したことが明確である場合、社内外のしかるべき手続きを通じて是正策を講じます。
+              </p>
+              <h5 class="policy-subsection-title">3）教育</h5>
+              <p>
+                私たちは、本方針がコニカミノルタグループのすべての事業活動に組み込まれるよう、役員、従業員等に対し、適切な教育を行います。
+              </p>
+              <h5 class="policy-subsection-title">4）ステークホルダーとの対話</h5>
+              <p>
+                私たちは、本方針および本方針に基づく取り組みに対する外部ステークホルダーからの専門的な助言を通じて、人権尊重の取り組みを強化します。
+              </p>
+              <h5 class="policy-subsection-title">5）情報開示</h5>
+              <p>
+                私たちは、人権への負の影響に対処するための取り組みの進捗状況について、ホームページや統合報告書などを通じ適切に情報開示します。
+              </p>
+
+              <div class="policy-statement-signature">
+                <div>2022年4月1日</div>
+                <div>コニカミノルタ株式会社</div>
+                <div>代表執行役社長 兼 CEO</div>
+                <div class="policy-signature-name">大幸 利充</div>
+              </div>
+
+            </div>
+          </details>
 
           <p class="wf-section-desc">
             さらに、コニカミノルタグループ各社が取るべき具体的な行動を「コニカミノルタサプライチェーン行動規範」に定め、サプライヤー、パートナーにも同様の行動を要請しています。なお、「コニカミノルタサプライチェーン行動規範」は、2013年にCSR調達の質と透明性向上を図るために加盟したRBA(Responsible Business Alliance)の行動規範の最新版を基にしています。
@@ -1458,7 +1636,32 @@ body {
 
   <!-- アノテーション -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — 人権 v1.6（0525 Figma FB追加反映）</h3>
+    <h3>設計ポイント — 人権 v1.7（0525 Figma FB追加反映＋人権方針HTML化）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">v1.7</span>
+      <span class="ann-head">0525 FB#7 反映：人権方針PDF全文をページ内アコーディオン展開</span>
+      <div class="ann-row">
+        <span class="ann-row-label">対応FB</span>
+        桐原FB#7（B→A）「人権方針はhtmlで展開なので、このページで見せるモジュール作成してください」
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">実装内容</span>
+        A.基本的な考え方セクション内、人権方針言及段落の直下に <b>.policy-statement アコーディオンモジュール</b> を新規導入。コニカミノルタグループ人権方針PDF（<a href="https://www.konicaminolta.jp/about/csr/social/rights/pdf/human-rights-policy-jp.pdf" target="_blank">原本</a>）の全文を構造化HTML化して埋め込み（基本的な考え方／適用範囲／取り組み3項目／実践5項目／署名）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">モジュール仕様</span>
+        <code>&lt;details class="policy-statement"&gt;</code>。summary：黒バッジ「方針」＋タイトル＋制定日メタ＋＋/−マーカー／body：policy-section-title（H4・下線付）／policy-subsection-title（H5）／policy-statement-signature（明朝下線署名）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">catalog 横展開</span>
+        本モジュールは 131健康宣言・148品質方針・124DE&I方針 にも適用可能な共通スケーラブル設計（badge ラベル・制定日メタ・任意の H4/H5/署名ブロック）。次フェーズで catalog 登録 & 他L3へ展開予定。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">表示モード</span>
+        WF確認用は open 状態（既定）。本番デプロイ時はデフォルト閉とする想定（UNIFIED_RULES §6 アコーディオン共通ルール準拠）。
+      </div>
+    </div>
 
     <div class="ann-item">
       <span class="ann-num">0525</span>
