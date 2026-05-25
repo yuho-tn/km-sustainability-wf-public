@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>人権 — KM サステナビリティ WF v1.5 (#140)</title>
+<title>人権 — KM サステナビリティ WF v1.6 (#140)</title>
 <style>
 /* ============================================================
    KM SUSTAINABILITY WF — SHARED CSS（131 健康経営 v2.1 ベース継承）
@@ -770,6 +770,9 @@ body {
 .ann-num { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; background: #222; color: #fff; font-size: 10px; font-weight: 700; border-radius: 50%; margin-bottom: 5px; }
 .ann-head { font-size: 11px; font-weight: 700; color: #222; display: block; margin-bottom: 6px; line-height: 1.4; }
 .ann-body { font-size: 10px; color: #555; line-height: 1.6; margin-top: 6px; }
+.ann-row { font-size: 10px; color: #555; line-height: 1.6; margin-top: 8px; padding-top: 6px; border-top: 1px dotted #DDD; }
+.ann-row:first-of-type { border-top: none; padding-top: 0; margin-top: 6px; }
+.ann-row-label { display: inline-block; font-weight: 700; color: #222; margin-right: 6px; }
 
 </style>
 </head>
@@ -780,12 +783,12 @@ body {
   <div>
     <strong>KONICA MINOLTA サステナビリティ</strong>
     <span class="meta-badge">人権</span>
-    <span class="meta-badge">WF v1.5</span>
+    <span class="meta-badge">WF v1.6</span>
     <span class="meta-badge">#140</span>
     <span class="meta-badge">L3</span>
-    <span class="meta-badge" style="background:#7a4a00; color:#fff;">v1.5：JaCERをお客様から独立し横並び4ステークホルダー化／是正の自社・サプライヤーをアコーディオンUI統一</span>
+    <span class="meta-badge" style="background:#7a4a00; color:#fff;">v1.6（0525 FB反映）：国際規範リスト箇条書き化／DDプロセス図PH追加／テキストリンク表現「→ ○○」統一</span>
   </div>
-  <div style="font-size:10px; color:#666;">2026.05 / v1.4→v1.5：FB2点反映</div>
+  <div style="font-size:10px; color:#666;">2026.05 / v1.5→v1.6：0525 FB3点反映</div>
 </div>
 
 <div class="wf-canvas">
@@ -1455,7 +1458,28 @@ body {
 
   <!-- アノテーション -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — 人権 v1.6（0524 Figma FB反映）</h3>
+    <h3>設計ポイント — 人権 v1.6（0525 Figma FB追加反映）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">0525</span>
+      <span class="ann-head">0525 Figma FB（B→A化3点）反映サマリ</span>
+      <div class="ann-row">
+        <span class="ann-row-label">#8（B→A・反映済）中山</span>
+        「目立たせたくない／グレーの四角は不要」→ <b>国際規範リスト（.norm-list）のグレー背景＋ボーダーを廃止</b>し、シンプルな「・」プレフィックス箇条書きモジュールに置換（2カラムグリッド構成は維持）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#3（B→A・反映済）村上</span>
+        「人権DDのプロセス図は必要では？」→ 人権デュー・ディリジェンスH2セクション冒頭に <b>H3「人権デュー・ディリジェンスのプロセス」＋ .dd-process-fig 画像PH</b> を追加（16:5の全幅PH、4ステップ「特定→措置→追跡→公開」のラベル付）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#5（C→A・反映済）桐原</span>
+        「リンク表現はサイト全体でルール決めお願いします」→ ページ内テキストリンクを <b>「→ リンクテキストの内容」形式に全箇所統一</b>。具体：(1) .detail-link の前段ラベル「→ 取り組みの詳細はこちら：」を廃止、シンプルな「→ リンク先名」へ／(2) .risk-detail-link のグレー小文字＋点線区切り装飾を廃止し、「→ ＋下線＋濃色」のテキストリンクスタイルに統一／(3) .policy-link は既に「→」プレフィックス済のため継続。UNIFIED_RULES v5.1 §4-2b 準拠。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">v1.6 残課題（B保留）</span>
+        FB#7（人権方針 policy-statement モジュール／catalog新規）／FB#9（アコーディオン不要 vs 全展開固定）はKM側確認待ち。次フェーズで対応。
+      </div>
+    </div>
 
     <div class="ann-item">
       <span class="ann-num">0524</span>
