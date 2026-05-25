@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>顧客責任・品質 — KM サステナビリティ WF v2.10 (#148)</title>
+<title>顧客責任・品質 — KM サステナビリティ WF v3.0 (#148)</title>
 <style>
 /* ============================================================
    KM SUSTAINABILITY WF — SHARED CSS（DE&I v3.1ベース継承）
@@ -171,12 +171,28 @@ body {
   letter-spacing: 0.1em; text-transform: uppercase;
   margin-bottom: 8px;
 }
+/* v3.0：UNIFIED_RULES v5.0 §3 — H2/H3全文表記＋2行クランプ＋H3インデント／px整数化で3行目を完全カット */
 .wf-anchor-nav-item {
-  display: block;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-size: 11px; color: var(--c-text-s);
-  padding: 5px 0 5px 10px; line-height: 1.4;
+  padding: 5px 0 5px 10px;
+  line-height: 15px;
+  max-height: 40px;
   cursor: default;
   border-left: 2px solid transparent;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+.wf-anchor-nav-item.sub {
+  font-size: 10px;
+  padding: 5px 0 5px 22px;
+  color: var(--c-text-xs);
+  line-height: 14px;
+  max-height: 38px;
 }
 .wf-anchor-nav-item:hover { color: var(--c-text-h); }
 .wf-anchor-nav-item.is-current {
@@ -196,6 +212,50 @@ body {
   min-width: 280px;
 }
 .wf-btn::before { content: '›'; font-size: 14px; color: var(--c-text-h); font-weight: 700; margin-right: 4px; }
+
+/* ページ遷移ボタン（content-fit 標準・UNIFIED_RULES v5.1 §4-2b 準拠） */
+.wf-btn-page {
+  display: inline-flex; align-items: center; justify-content: flex-start; gap: 8px;
+  font-size: 12px; font-weight: 600; font-family: inherit;
+  padding: 12px 24px 12px 18px; cursor: default;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  background: var(--c-white); color: var(--c-text-h);
+  border: 1px solid var(--c-border);
+  min-width: 280px;
+  text-decoration: none;
+}
+.wf-btn-page::before { content: '›'; font-size: 14px; color: var(--c-text-h); font-weight: 700; margin-right: 4px; }
+.wf-btn-page:hover { background: var(--c-bg-sub); border-color: var(--c-text-h); }
+
+/* テキストリンク（v3.0：UNIFIED_RULES v5.1 §4-2b 準拠 — 「→ リンクテキスト」形式に統一） */
+.text-link-row { display: block; margin: 6px 0 18px; }
+.text-link {
+  display: inline;
+  font-size: 13px;
+  color: var(--c-text-h);
+  font-weight: 700;
+  cursor: default;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.text-link::before {
+  content: '→ ';
+  display: inline-block;
+  margin-right: 2px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  text-decoration: none;
+}
+.text-link.is-ext::after {
+  content: '↗';
+  display: inline-block;
+  font-size: 11px;
+  margin-left: 6px;
+  color: var(--c-text-s);
+  text-decoration: none;
+}
 
 /* 背景と課題／目指す姿の表（v2.1：縦幅圧縮） */
 .bg-vision-table-wrap { margin: 14px 0; border: 1px solid var(--c-border); }
@@ -223,61 +283,96 @@ body {
   line-height: 1.5;
 }
 
-/* 品質方針ボックス */
+/* ============================================================
+   方針文書アコーディオンモジュール .policy-statement
+   v3.0：0525 FB#4・#5・#8 反映 — 品質方針PDF原稿をページ内HTML展開
+   catalog 共通モジュール（140人権方針 / 131健康宣言 と同パターン）
+============================================================ */
 .policy-statement {
-  background: var(--c-bg-sub);
+  margin: 14px 0 22px;
   border: 1px solid var(--c-border);
-  border-left: 4px solid var(--c-text-h);
-  padding: 20px 24px;
-  margin-top: 14px;
+  background: var(--c-white);
+}
+.policy-statement-summary {
+  list-style: none;
+  cursor: default;
+  padding: 14px 60px 14px 18px;
+  display: flex; align-items: center; gap: 14px;
+  background: var(--c-white);
+  position: relative;
+  line-height: 1.5;
+}
+.policy-statement[open] .policy-statement-summary {
+  border-bottom: 1px solid var(--c-border);
+}
+.policy-statement-summary::-webkit-details-marker { display: none; }
+.policy-statement-summary::marker { content: ''; }
+.policy-statement-summary::after {
+  content: '＋';
+  position: absolute;
+  right: 16px; top: 50%; transform: translateY(-50%);
+  width: 26px; height: 26px;
+  background: var(--c-text-h); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  font-size: 14px; font-weight: 700;
+  line-height: 1;
+}
+.policy-statement[open] .policy-statement-summary::after { content: '−'; }
+.policy-statement-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700;
+  color: #fff; background: var(--c-text-h);
+  padding: 3px 9px;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .policy-statement-title {
-  font-size: 13px; font-weight: 700; color: var(--c-text-h);
-  margin-bottom: 10px; padding-bottom: 8px;
-  border-bottom: 1px dashed var(--c-border);
+  font-size: 15px; font-weight: 700;
+  color: var(--c-text-h);
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.policy-statement-meta {
+  font-size: 11px; color: var(--c-text-s);
   letter-spacing: 0.04em;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
-.policy-statement-text {
-  font-size: 13px; color: var(--c-text); line-height: 1.95;
-}
-
-/* コニカミノルタ品質方針（HTML化 / v2.1：詳細項目化） */
-.quality-policy {
+.policy-statement-body {
+  padding: 26px 30px 28px;
   background: var(--c-white);
-  border: 1px solid var(--c-border);
-  padding: 22px 26px;
-  margin-top: 16px;
 }
-.quality-policy-head {
-  font-size: 14px; font-weight: 700; color: var(--c-text-h);
-  margin-bottom: 12px; padding-bottom: 10px;
-  border-bottom: 1px solid var(--c-border-s);
-}
-.quality-policy-lead {
-  font-size: 12px; color: var(--c-text); line-height: 1.95;
+.policy-statement-lead {
+  font-size: 13px; line-height: 1.95;
+  color: var(--c-text);
   margin-bottom: 14px;
 }
-.quality-policy-lead p { margin-bottom: 10px; }
-.quality-policy-lead p:last-child { margin-bottom: 0; }
-.quality-policy-motto {
-  background: var(--c-bg-sub);
-  border: 1px dashed var(--c-text-h);
-  padding: 14px 18px;
-  margin: 14px 0;
+.policy-statement-motto {
   text-align: center;
   font-size: 14px; font-weight: 700; color: var(--c-text-h);
   letter-spacing: 0.06em;
+  margin: 20px 0 22px;
+  padding: 14px 18px;
+  background: var(--c-bg-sub);
+  line-height: 1.7;
 }
-.quality-policy-items { margin-top: 14px; }
-.quality-policy-item {
+.policy-statement-items {
+  display: flex; flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--c-border);
+}
+.policy-statement-item {
   display: grid;
   grid-template-columns: 36px 1fr;
   gap: 14px;
   padding: 14px 0;
-  border-top: 1px dashed var(--c-border);
+  border-bottom: 1px dashed var(--c-border);
 }
-.quality-policy-item:first-child { border-top: 1px solid var(--c-border); }
-.quality-policy-item-num {
+.policy-statement-item-num {
   font-family: 'Helvetica Neue', sans-serif;
   font-size: 14px; font-weight: 700;
   color: #fff;
@@ -287,21 +382,33 @@ body {
   flex-shrink: 0;
   line-height: 1;
 }
-.quality-policy-item-title {
+.policy-statement-item-title {
   font-size: 13px; font-weight: 700; color: var(--c-text-h);
   line-height: 1.5;
   margin-bottom: 4px;
 }
-.quality-policy-item-text {
+.policy-statement-item-text {
   font-size: 12px; color: var(--c-text); line-height: 1.85;
 }
-.quality-policy-meta {
-  margin-top: 16px;
-  padding-top: 12px;
-  border-top: 1px dashed var(--c-border);
+.policy-statement-signature {
+  margin-top: 24px;
+  padding-top: 14px;
+  border-top: 1px solid var(--c-border);
   text-align: right;
-  font-size: 11px; color: var(--c-text-s);
-  line-height: 1.7;
+  font-size: 12px;
+  color: var(--c-text);
+  line-height: 1.85;
+}
+.policy-signature-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  font-family: 'Hiragino Mincho Pro', 'Yu Mincho', serif;
+  margin-top: 8px;
+  letter-spacing: 0.18em;
+  display: inline-block;
+  border-bottom: 1px solid var(--c-text-h);
+  padding: 0 4px 4px;
 }
 
 /* 体制図 */
@@ -754,6 +861,9 @@ body {
 .ann-num { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; background: #222; color: #fff; font-size: 10px; font-weight: 700; border-radius: 50%; margin-bottom: 5px; }
 .ann-head { font-size: 11px; font-weight: 700; color: #222; display: block; margin-bottom: 6px; line-height: 1.4; }
 .ann-body { font-size: 10px; color: #555; line-height: 1.6; margin-top: 6px; }
+.ann-row { font-size: 10px; color: #555; line-height: 1.6; margin-top: 8px; padding-top: 6px; border-top: 1px dotted #DDD; }
+.ann-row:first-of-type { border-top: none; padding-top: 0; margin-top: 6px; }
+.ann-row-label { display: inline-block; font-weight: 700; color: #222; margin-right: 6px; }
 
 </style>
 </head>
@@ -764,12 +874,12 @@ body {
   <div>
     <strong>KONICA MINOLTA サステナビリティ</strong>
     <span class="meta-badge">顧客責任・品質</span>
-    <span class="meta-badge">WF v2.10</span>
+    <span class="meta-badge">WF v3.0</span>
     <span class="meta-badge">#148</span>
     <span class="meta-badge">L3</span>
-    <span class="meta-badge" style="background:#7a4a00; color:#fff;">二重アコーディオン解消／H3アコ内をH4・H5フラット見出し構成へ（131健康経営・124DE&I 準拠）</span>
+    <span class="meta-badge" style="background:#7a4a00; color:#fff;">v3.0（原稿26S390_0526準拠＋0525 FB反映）：品質方針policy-statement化／【社会】＆重要施策概要アコ削除／関連リンクblock廃止／右ナビH2H3併載＋2行クランプ／テキストリンク「→ ○○」統一</span>
   </div>
-  <div style="font-size:10px; color:#666;">2026.05 / アコサマリ背景：#E0E0E0（c-border）／セクションbg-sub：#F2F2F2 — 全WFに共通適用</div>
+  <div style="font-size:10px; color:#666;">2026.05 / v2.10→v3.0：原稿準拠＋共通モジュール適用</div>
 </div>
 
 <div class="wf-canvas">
@@ -793,12 +903,9 @@ body {
       <span class="current">顧客責任・品質</span>
     </nav>
 
-    <!-- ページタイトル -->
+    <!-- ページタイトル（v3.0：「【社会】に関する取り組み」表示は削除） -->
     <div class="wf-page-title-area">
       <h1 class="wf-page-title">顧客責任・品質</h1>
-      <div class="wf-page-parent-cat">
-        【<a href="005_social_index.html">社会</a>】に関する取り組み
-      </div>
     </div>
 
     <!-- メインコンテンツ＋右コンパクトアンカーナビ -->
@@ -807,6 +914,7 @@ body {
 
         <!-- ============================================================
              A. 基本的な考え方
+             v3.0：0525 FB#1 反映 — 「重要施策の概要」アコ廃止。原稿準拠で3観点H3＋H4「背景と課題認識／目指す姿」構成
         ============================================================ -->
         <section class="wf-section bg-white" id="policy">
           <span class="wf-section-marker">A</span>
@@ -818,115 +926,118 @@ body {
           <p class="wf-section-desc">
             コニカミノルタは、価値ある製品やサービスの提供を通じて、お客様の満足と信頼を最大化することを目指しています。その基本的な考え方を「コニカミノルタ品質方針」として定め、世界各国のグループ会社で共有しています。なかでも重要課題としているのが、製品・サービスの安全性、信頼性の確保であり、グループ統一の品質保証体制を構築し、製品ライフサイクルの観点から取り組んでいます。さらに、お客様との関係性をより深めて、顕在化しているニーズだけでなく、潜在的なご要望も汲み取って実現することで、お客様の抱える課題を解決し、よりよい社会の実現に貢献していきます。
           </p>
-          <p class="wf-section-desc">
-            本領域では、これらの取り組みを「コンプライアンス／品質不正」「製品セキュリティ」「製品品質」「顧客満足度」の4つの重要課題として位置付けて推進しています。
-          </p>
 
-          <!-- v2.6：表組→3テーマ別の地の文（131健康経営と同じ「背景と課題認識／目指す姿」構成） -->
-          <h3 class="wf-sub-title">高信頼品質の実現</h3>
+          <!-- 3観点：背景と課題認識／目指す姿（原稿準拠） -->
+          <h3 class="wf-sub-title" id="reliability-quality">高信頼品質の実現</h3>
           <h4 class="wf-card-title has-mark">背景と課題認識</h4>
           <p class="wf-section-desc">
-            高信頼品質の実現には製品・サービスの安全、安心の確保が不可欠です。ハードウェア品質向上に加え、IoT時代における情報セキュリティ対応強化を、持続的な成長を図るうえで欠かすことのできない取り組みと位置づけています。
+            高信頼品質の実現には製品・サービスの安全、安心の確保が不可欠です。ハードウェアの品質向上や安全性の確保に努めることはもちろん、IoT時代の到来にともなって、お客様に大きな損害を与えかねない情報セキュリティの脅威への対応を強化することも、持続的な成長を図るうえで欠かすことのできない取り組みと考えています。
           </p>
           <h4 class="wf-card-title has-mark">目指す姿</h4>
           <p class="wf-section-desc">
-            製品・サービスを継続的に進化させながら、従業員一人ひとりがお客様視点の品質意識を高め、品質管理活動もレベルアップさせることで、安全でいつでも安心してご使用いただける製品・サービスの提供を目指します。
+            コニカミノルタは、お客様へ価値を提供するために、日々、新たな技術を取り入れながら製品・サービスを進化させ続けています。それにあわせて、従業員一人ひとりがお客様視点の品質意識を高め、品質管理活動もレベルアップさせることで、お客様の利便性を高めつつ、安全でいつでも安心してご使用いただける製品・サービスの提供を目指します。
           </p>
 
-          <h3 class="wf-sub-title">製品・サービスのセキュリティ強化</h3>
+          <h3 class="wf-sub-title" id="product-security-vision">製品・サービスのセキュリティ強化</h3>
           <h4 class="wf-card-title has-mark">背景と課題認識</h4>
           <p class="wf-section-desc">
-            「Imaging to the People」というビジョンのもと、IoTやAIといった最新デジタル技術を活用した製品・サービス開発に注力しています。一方で、サイバー攻撃が増加するなかで、その手口はますます高度化・巧妙化しているため、セキュアな製品・サービス提供と市場での事故防止、万が一事故が発生した場合にはお客様の被害を最小限にとどめ、迅速に復旧・解決する取り組みが求められています。
+            コニカミノルタは経営ビジョン「Imaging to the People」を掲げ、IoT、人工知能（AI）といった最新のデジタル技術を活用した製品・サービスの開発・提供に取り組んでいます。一方で、個人や企業を狙ったサイバー攻撃が増加するなかで、その手口はますます高度化・巧妙化している実態があります。コニカミノルタが提供する製品やサービスにおいても、セキュリティの脅威にお客様を晒すリスクを持つ可能性があります。そのため、セキュリティを確保した製品・サービスを提供し、市場における製品セキュリティ事故を未然に防ぐとともに、万が一事故が発生した場合には、お客様の被害を最小限にとどめ、迅速に復旧・解決する取り組みが求められています。
           </p>
           <h4 class="wf-card-title has-mark">目指す姿</h4>
           <p class="wf-section-desc">
-            従業員がお客様視点で品質意識を高め、セキュリティ面でも安全で安心してご利用いただける製品・サービスの提供を目指します。
+            コニカミノルタは、従業員一人ひとりがお客様視点の品質意識を高め、製品・サービスの高信頼品質を実現するとともに、セキュリティ面でも安全で安心してご利用いただける製品・サービスの提供を目指します。
           </p>
 
-          <h3 class="wf-sub-title">新たな品質価値の創出</h3>
+          <h3 class="wf-sub-title" id="customer-relationship-vision">カスタマーリレーションシップの強化</h3>
           <h4 class="wf-card-title has-mark">背景と課題認識</h4>
           <p class="wf-section-desc">
-            情報機器や医療機器、計測機器など、引渡し後もお客様との長期的なお付き合いが不可欠です。特にサービスビジネス領域では、サービス提供後もお客様に寄り添い、お客様の多様化・高度化するニーズに応え、潜在的な課題を先取りする必要があります。そのため積極的にお客様の現場に入り込み、信頼関係を構築するとともに、お客様と共創し課題を解決する活動が重要だと認識しています。
+            コニカミノルタの事業は、情報機器や医療機器、計測機器など、引渡し後もお客様との長期的なお付き合いが不可欠です。特にサービスビジネス領域ではサービスを提供して終わりではなく、サービス提供後もお客様に寄り添い、お客様の多様化・高度化するニーズに応え、潜在的な課題を先取りする必要があります。そのためには積極的にお客様の現場に入り込み、信頼関係を構築するとともに、お客様と共創し課題を解決する活動が重要だと認識しています。
           </p>
           <h4 class="wf-card-title has-mark">目指す姿</h4>
           <p class="wf-section-desc">
-            お客様の声を製品やサービスの改善に活かすとともに、お客様が目指す「ありたい姿」の実現をお手伝いできるよう、「カスタマーリレーションシップ」の強化を図っています。お客様満足度を高め、ほかのお客様にも推奨いただける関係を築きあげるとともに、デザイン思考を取り入れ、お客様が真に求める価値を導き出し、よりお客様の視点に立った製品・サービスを提供していくことを目指します。
+            コニカミノルタは、お客様の声を製品やサービスの改善に活かすとともに、お客様が目指す「ありたい姿」の実現をお手伝いできるよう、「カスタマーリレーションシップ」の強化を図っています。こうした取り組みを通じてお客様満足度を高め、ほかのお客様にも推奨いただけるような関係を築きあげることを目指しています。また、コニカミノルタではデザイン思考を取り入れ、お客様が真に求める価値を導き出し、よりお客様の視点に立った製品・サービスを提供していきます。
           </p>
 
-          <details class="wf-acc-h3" open>
-            <summary class="wf-acc-h3-summary">重点施策の概要</summary>
-            <div class="wf-acc-h3-body">
-              <p>
-                「コンプライアンス／品質不正」では、品質不正・認証取得漏れ・法規不遵守のリスク低減に向けた予防活動を推進します。「製品セキュリティ」では、セキュア開発・運用プロセスの徹底、脆弱性情報の収集と対処、製品セキュリティ事故発生時の迅速な対応を進めます。「製品品質」では、品質保証体制の強化と安全性確保・品質向上の取り組みを推進します。「顧客満足度」では、カスタマーリレーションシップの強化とサポート体制の整備を進めます。詳細は「戦略・目標・実績」および「取り組み」セクションをご覧ください。
+          <!-- v3.0：0525 FB#4・#5・#8 反映 — コニカミノルタ品質方針を policy-statement モジュールで埋め込み（140人権方針・131健康宣言 と同パターン） -->
+          <h3 class="wf-sub-title" id="quality-policy">コニカミノルタ品質方針</h3>
+          <p class="wf-section-desc">
+            お客様最優先と品質第一の方針を徹底しています。コニカミノルタは、お客様の満足と信頼を得るための基本的な考え方を「コニカミノルタ品質方針」として定め、世界各国のグループ会社で共有することで、お客様最優先と品質第一の徹底を図っています。この方針のもと、製品そのものの品質のみならず、保守やサービスも含むさまざまな視点から品質向上を図っています。
+          </p>
+
+          <details class="policy-statement" id="quality-policy-doc" open>
+            <summary class="policy-statement-summary">
+              <span class="policy-statement-badge">方針</span>
+              <span class="policy-statement-title">コニカミノルタ品質方針</span>
+              <span class="policy-statement-meta">2022年4月1日制定</span>
+            </summary>
+            <div class="policy-statement-body">
+              <p class="policy-statement-lead">
+                私たちコニカミノルタグループは、お客様最優先と品質第一を徹底し、価値ある製品とサービスを提供することで、お客様の満足と信頼を最大にします。
               </p>
-            </div>
-          </details>
+              <p class="policy-statement-lead">
+                私たちは、品質保証活動を信頼できるデータで定量的に把握・分析し、継続的な改善に繋げていくことを基本姿勢とします。
+              </p>
 
-          <details class="wf-acc-h3" open>
-            <summary class="wf-acc-h3-summary">コニカミノルタ品質方針</summary>
-            <div class="wf-acc-h3-body">
-          <div class="quality-policy" style="margin-top:0;">
-            <div class="quality-policy-lead">
-              <p>私たちコニカミノルタグループは、お客様最優先と品質第一を徹底し、価値ある製品とサービスを提供することで、お客様の満足と信頼を最大にします。</p>
-              <p>私たちは、品質保証活動を信頼できるデータで定量的に把握・分析し、継続的な改善に繋げていくことを基本姿勢とします。</p>
-            </div>
+              <div class="policy-statement-motto">― 測定なくしてコントロールなし ―</div>
 
-            <div class="quality-policy-motto">― 測定なくしてコントロールなし ―</div>
+              <div class="policy-statement-items">
+                <div class="policy-statement-item">
+                  <span class="policy-statement-item-num">1</span>
+                  <div>
+                    <div class="policy-statement-item-title">業界トップの顧客満足の実現</div>
+                    <p class="policy-statement-item-text">私たちは、常に世の中の商品動向を分析し、独自の改善によって、高品質・高信頼製品とサービスを提供し、業界トップの顧客満足を実現します。</p>
+                  </div>
+                </div>
+                <div class="policy-statement-item">
+                  <span class="policy-statement-item-num">2</span>
+                  <div>
+                    <div class="policy-statement-item-title">お客様のニーズを先取りした商品の提供</div>
+                    <p class="policy-statement-item-text">私たちは、常にお客様の立場で商品の使いやすさを追求し、お客様のニーズの変化を的確に捉えた商品を提供します。</p>
+                  </div>
+                </div>
+                <div class="policy-statement-item">
+                  <span class="policy-statement-item-num">3</span>
+                  <div>
+                    <div class="policy-statement-item-title">グローバルな品質保証体制の構築と展開</div>
+                    <p class="policy-statement-item-text">私たちは、国内外関係会社を含むグループ全体で統一されたグローバルな品質保証体制を構築し、展開していきます。</p>
+                  </div>
+                </div>
+                <div class="policy-statement-item">
+                  <span class="policy-statement-item-num">4</span>
+                  <div>
+                    <div class="policy-statement-item-title">製品全段階での品質マネジメントの実践</div>
+                    <p class="policy-statement-item-text">私たちは、製品・サービスの企画・開発段階から、生産、使用、廃棄に至るライフサイクルの各段階に関る品質を、定量的な指標に基づいて計測し、目標達成のマネジメントを実践します。</p>
+                  </div>
+                </div>
+                <div class="policy-statement-item">
+                  <span class="policy-statement-item-num">5</span>
+                  <div>
+                    <div class="policy-statement-item-title">品質保証プロセスの継続的発展</div>
+                    <p class="policy-statement-item-text">私たちは、常に業務の改善・改革活動を自主的かつ積極的に展開し、品質保証プロセスの発展に努めます。</p>
+                  </div>
+                </div>
+                <div class="policy-statement-item">
+                  <span class="policy-statement-item-num">6</span>
+                  <div>
+                    <div class="policy-statement-item-title">品質リスクの極小化</div>
+                    <p class="policy-statement-item-text">私たちは、品質問題の未然防止とお客様への迅速な対応によって、品質に起因するお客様と企業のリスクをなくします。</p>
+                  </div>
+                </div>
+                <div class="policy-statement-item">
+                  <span class="policy-statement-item-num">7</span>
+                  <div>
+                    <div class="policy-statement-item-title">商品安全情報の積極的開示</div>
+                    <p class="policy-statement-item-text">私たちは、商品の安全性に関する情報を積極的に開示し、お客様に安心して使用していただくとともに社会に対する説明責任を果たします。</p>
+                  </div>
+                </div>
+              </div>
 
-            <div class="quality-policy-items">
-              <div class="quality-policy-item">
-                <span class="quality-policy-item-num">1</span>
-                <div>
-                  <div class="quality-policy-item-title">業界トップの顧客満足の実現</div>
-                  <p class="quality-policy-item-text">常に世の中の商品動向を分析し、独自の改善によって、高品質・高信頼製品とサービスを提供し、業界トップの顧客満足を実現します。</p>
-                </div>
+              <div class="policy-statement-signature">
+                <div>2022年4月1日</div>
+                <div>コニカミノルタ株式会社</div>
+                <div>代表執行役社長 兼 CEO</div>
+                <div class="policy-signature-name">大幸 利充</div>
               </div>
-              <div class="quality-policy-item">
-                <span class="quality-policy-item-num">2</span>
-                <div>
-                  <div class="quality-policy-item-title">お客様のニーズを先取りした商品の提供</div>
-                  <p class="quality-policy-item-text">常にお客様の立場で商品の使いやすさを追求し、お客様のニーズの変化を的確に捉えた商品を提供します。</p>
-                </div>
-              </div>
-              <div class="quality-policy-item">
-                <span class="quality-policy-item-num">3</span>
-                <div>
-                  <div class="quality-policy-item-title">グローバルな品質保証体制の構築と展開</div>
-                  <p class="quality-policy-item-text">国内外関係会社を含むグループ全体で統一されたグローバルな品質保証体制を構築し、展開していきます。</p>
-                </div>
-              </div>
-              <div class="quality-policy-item">
-                <span class="quality-policy-item-num">4</span>
-                <div>
-                  <div class="quality-policy-item-title">製品全段階での品質マネジメントの実践</div>
-                  <p class="quality-policy-item-text">製品・サービスの企画・開発段階から、生産、使用、廃棄に至るライフサイクルの各段階に関る品質を、定量的な指標に基づいて計測し、目標達成のマネジメントを実践します。</p>
-                </div>
-              </div>
-              <div class="quality-policy-item">
-                <span class="quality-policy-item-num">5</span>
-                <div>
-                  <div class="quality-policy-item-title">品質保証プロセスの継続的発展</div>
-                  <p class="quality-policy-item-text">常に業務の改善・改革活動を自主的かつ積極的に展開し、品質保証プロセスの発展に努めます。</p>
-                </div>
-              </div>
-              <div class="quality-policy-item">
-                <span class="quality-policy-item-num">6</span>
-                <div>
-                  <div class="quality-policy-item-title">品質リスクの極小化</div>
-                  <p class="quality-policy-item-text">品質問題の未然防止とお客様への迅速な対応によって、品質に起因するお客様と企業のリスクをなくします。</p>
-                </div>
-              </div>
-              <div class="quality-policy-item">
-                <span class="quality-policy-item-num">7</span>
-                <div>
-                  <div class="quality-policy-item-title">商品安全情報の積極的開示</div>
-                  <p class="quality-policy-item-text">商品の安全性に関する情報を積極的に開示し、お客様に安心して使用していただくとともに社会に対する説明責任を果たします。</p>
-                </div>
-              </div>
-            </div>
-
-            <p class="quality-policy-meta">2022年4月1日制定<br>コニカミノルタ株式会社 代表執行役社長 兼 CEO</p>
-          </div>
             </div>
           </details>
         </section>
@@ -938,7 +1049,7 @@ body {
           <span class="wf-section-marker">B</span>
           <h2 class="wf-section-title">体制</h2>
 
-          <h3 class="wf-sub-title">品質マネジメント体制</h3>
+          <h3 class="wf-sub-title" id="quality-mgmt-system">品質マネジメント体制</h3>
           <p class="wf-section-desc">
             品質担当役員が、品質マネジメント全体を統括しています。
           </p>
@@ -965,7 +1076,7 @@ body {
           <span class="wf-section-marker">C</span>
           <h2 class="wf-section-title">戦略・目標・実績</h2>
 
-          <details class="wf-acc-h3" open>
+          <details class="wf-acc-h3" id="tqm" open>
             <summary class="wf-acc-h3-summary">TQM（Total Quality Management：総合的品質マネジメント）による組織能力の維持・向上</summary>
             <div class="wf-acc-h3-body">
               <p>
@@ -983,7 +1094,7 @@ body {
             </div>
           </details>
 
-          <h3 class="wf-sub-title">重要施策・KPI</h3>
+          <h3 class="wf-sub-title" id="key-kpi">重要施策・KPI</h3>
 
           <!-- KPI① コンプライアンス／品質不正 -->
           <div class="kpi-block">
@@ -1105,24 +1216,18 @@ body {
         <section class="wf-section bg-white" id="activities" style="padding-top:0;">
 
           <!-- 取り組み1：コンプライアンス／品質不正（初期展開） -->
-          <details class="wf-acc-h3" open>
+          <details class="wf-acc-h3" id="compliance-quality-fraud" open>
             <summary class="wf-acc-h3-summary">コンプライアンス／品質不正</summary>
             <div class="wf-acc-h3-body">
 
               <h4 class="wf-card-title has-mark">品質コンプライアンス活動の強化</h4>
               <p>昨今、他社にて頻発している品質不正事案や認証取得漏れの事案、法規不遵守のリスクに対し、当社としても最重要テーマの一つとして、予防活動に取り組んでいます。品質コンプライアンス強化に向けては、品質不正のみならず、法規制、認証、契約などの不遵守防止に向けて、組織の定期診断や品質従事者に向けた意識調査をもとに、改善のPDCAを回すことにより、リスク低減を行うほか、階層別教育や啓蒙により定期的に品質意識の醸成を図っています。特に、品質不正については、潜在的な品質不正発生リスクはゼロではないとの認識に立ち、2023年度から品質不正の意識診断の導入、継続的な風土改革、検査工程や記録の自動化など、品質不正を発生させない仕組みを構築し運用しています。</p>
 
-              <div class="theme-related">
-                <div class="theme-related-label">関連リンク</div>
-                <div class="theme-related-links">
-                  <span class="wf-link">コンプライアンス／品質不正の取り組み（下層ページ）</span>
-                </div>
-              </div>
             </div>
           </details>
 
           <!-- 取り組み2：製品セキュリティ -->
-          <details class="wf-acc-h3">
+          <details class="wf-acc-h3" id="product-security" open>
             <summary class="wf-acc-h3-summary">製品セキュリティ</summary>
             <div class="wf-acc-h3-body">
 
@@ -1176,17 +1281,11 @@ body {
               <p>セキュア開発・運用プロセスによりセキュリティ事故を未然に防ぐ対策や、ローンチ後の脆弱性情報の収集・対処に取り組んでいますが、設計上のバグや運用上の過失・過誤による問題が発生する可能性はゼロではありません。また、サイバー攻撃の手法も高度化・巧妙化を続けており、セキュリティ事故を完全になくすことは困難です。</p>
               <p>コニカミノルタグループでは、市場品質問題への対応として「グループ市場品質管理規程」に基づく対応を進めていますが、製品・サービスのセキュリティ事故が発生した場合にも、製品品質に関わる問題が発生した場合と同様にグループ統一の｢市場品質速報データベース｣に情報を登録し、品質担当役員を含む社内関係者に即座に情報伝達しています。さらに、IT担当役員およびCSIRTにも情報展開し、全社を挙げてセキュリティ事故の早期復旧と原因解析、再発防止に努めています。万が一、製品・サービスに起因する事故で機密情報やお客様の個人情報が漏洩した場合などには、お客様へのお詫びと説明、ならびに関係省庁・関係機関へ速やかに報告いたします。</p>
 
-              <div class="theme-related">
-                <div class="theme-related-label">関連リンク</div>
-                <div class="theme-related-links">
-                  <span class="wf-link">製品セキュリティの取り組み（下層ページ）</span>
-                </div>
-              </div>
             </div>
           </details>
 
           <!-- 取り組み3：製品品質 -->
-          <details class="wf-acc-h3">
+          <details class="wf-acc-h3" id="product-quality" open>
             <summary class="wf-acc-h3-summary">製品品質</summary>
             <div class="wf-acc-h3-body">
 
@@ -1234,17 +1333,11 @@ body {
               <p>サービスビジネス領域では、"モノの保証"から"コトの保証"への転換とプロセスの変革が求められています。"コト"は"モノ"と比べ、「形がない」「品質の事前確認ができない」「結果だけでなくそこに至る過程も重要」などの違いがあり、高信頼品質の実現に向けた課題となっています。</p>
               <p>こうした認識のもと、サービスビジネスにおけるライフサイクル全体での品質保証の仕組みづくりとして、この領域の商品特性に合った品質基準や運用ガイドラインの策定など、サービス商品化プロセスを構築し定着を進めています。また、プロセスを運用する人財を育成するため、サービスビジネスに必要なスキルに関する教育を実施しています。コニカミノルタでは、お客様との接点に近い場所でサービスビジネスの開発を実施しており、拠点も世界各地に広がっています。そのため、品質保証強化の仕組みづくりにおいても、グローバルな視点を重視しています。</p>
 
-              <div class="theme-related">
-                <div class="theme-related-label">関連リンク</div>
-                <div class="theme-related-links">
-                  <span class="wf-link">製品品質の取り組み（下層ページ）</span>
-                </div>
-              </div>
             </div>
           </details>
 
           <!-- 取り組み4：顧客満足度 -->
-          <details class="wf-acc-h3">
+          <details class="wf-acc-h3" id="customer-satisfaction" open>
             <summary class="wf-acc-h3-summary">顧客満足度</summary>
             <div class="wf-acc-h3-body">
 
@@ -1327,17 +1420,11 @@ body {
                 </table>
               </div>
 
-              <div class="theme-related">
-                <div class="theme-related-label">関連リンク</div>
-                <div class="theme-related-links">
-                  <span class="wf-link">顧客満足度の取り組み（下層ページ）</span>
-                </div>
-              </div>
             </div>
           </details>
 
           <!-- 取り組み5：組織力強化 -->
-          <details class="wf-acc-h3">
+          <details class="wf-acc-h3" id="organizational-capability" open>
             <summary class="wf-acc-h3-summary">組織力強化</summary>
             <div class="wf-acc-h3-body">
 
@@ -1369,12 +1456,6 @@ body {
                 ※ 原稿では「製品セキュリティ教育」「サポート品質向上のための研修」も本テーマ配下に列挙されています。本WFでは情報重複を避け、「製品セキュリティ」「顧客満足度」テーマ内に1か所ずつ収容しています。
               </p>
 
-              <div class="theme-related">
-                <div class="theme-related-label">関連リンク</div>
-                <div class="theme-related-links">
-                  <span class="wf-link">組織力強化の取り組み（下層ページ）</span>
-                </div>
-              </div>
             </div>
           </details>
         </section>
@@ -1385,9 +1466,20 @@ body {
       <nav class="wf-anchor-nav">
         <div class="wf-anchor-nav-title">目次</div>
         <a class="wf-anchor-nav-item is-current" href="#policy">基本的な考え方</a>
+        <a class="wf-anchor-nav-item sub" href="#reliability-quality">高信頼品質の実現</a>
+        <a class="wf-anchor-nav-item sub" href="#product-security-vision">製品・サービスのセキュリティ強化</a>
+        <a class="wf-anchor-nav-item sub" href="#customer-relationship-vision">カスタマーリレーションシップの強化</a>
+        <a class="wf-anchor-nav-item sub" href="#quality-policy">コニカミノルタ品質方針</a>
         <a class="wf-anchor-nav-item" href="#structure">体制</a>
+        <a class="wf-anchor-nav-item sub" href="#quality-mgmt-system">品質マネジメント体制</a>
         <a class="wf-anchor-nav-item" href="#kpi">戦略・目標・実績</a>
-        <a class="wf-anchor-nav-item" href="#activities">取り組み</a>
+        <a class="wf-anchor-nav-item sub" href="#tqm">TQM（Total Quality Management）による組織能力の維持・向上</a>
+        <a class="wf-anchor-nav-item sub" href="#key-kpi">重要施策・KPI</a>
+        <a class="wf-anchor-nav-item sub" href="#compliance-quality-fraud">コンプライアンス／品質不正</a>
+        <a class="wf-anchor-nav-item sub" href="#product-security">製品セキュリティ</a>
+        <a class="wf-anchor-nav-item sub" href="#product-quality">製品品質</a>
+        <a class="wf-anchor-nav-item sub" href="#customer-satisfaction">顧客満足度</a>
+        <a class="wf-anchor-nav-item sub" href="#organizational-capability">組織力強化</a>
       </nav>
 
     </div><!-- /wf-layout-with-anchornav -->
@@ -1515,11 +1607,48 @@ body {
 
   <!-- アノテーション -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — 顧客責任・品質 v2.11（0524 Figma FB反映）</h3>
+    <h3>設計ポイント — 顧客責任・品質 v3.0（原稿26S390_0526準拠＋0525 Figma FB反映）</h3>
+
+    <div class="ann-item">
+      <span class="ann-num">v3.0</span>
+      <span class="ann-head">原稿26S390_顧客責任・品質(0526).docx 準拠＋0525 FB B→A化サマリ</span>
+      <div class="ann-row">
+        <span class="ann-row-label">原稿準拠の再構成</span>
+        ① 原稿の「基本的な考え方」3観点（高信頼品質／製品セキュリティ／カスタマーリレーションシップ）を H3＋H4「背景と課題認識／目指す姿」構成で再生成。② 各取り組みアコ本文を原稿準拠で更新。③ 「【社会】に関する取り組み」表示削除（0525 桐原ルール）。④ 関連リンクブロック（.theme-related・下層ページリンク）を全アコから廃止（UNIFIED_RULES v5.0 §4-2 ラベル廃止）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#1（B→A）滝ヶ浦</span>
+        「重要施策の概要パーツ不要、基本的な考え方に統合」→ <b>「重要施策の概要」アコを廃止</b>し、内容は基本的な考え方の3観点リード文に集約。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#4・#5・#8（C→A 反映＋本適用）桐原</span>
+        「方針類のデザインをサイトで統一／社長署名／policy-statement モジュール catalog 化」→ 140人権方針・131健康宣言と同パターンの <b>.policy-statement モジュール（badge「方針」＋制定日メタ＋body：lead＋motto＋7項目＋明朝下線署名）</b>を品質方針に適用。catalog 共通モジュール化完了。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#3（A・反映済 維持）滝ヶ浦</span>
+        「『取り組み』H2無しでKPI→取り組みを直結」→ 既存仕様を維持（Dセクションの padding-top: 0 で直結表示）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#7（A・反映済 維持）桐原</span>
+        「全部開いてください」→ wf-acc-h3 を全て open 状態（D取り組み5本／C戦略・目標・実績のTQMアコ）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">#8（A・反映済 強化）桐原</span>
+        「H3まで全ファイル共通で右ナビ併載」→ <b>右コンパクトアンカーナビをH2/H3併載＋.sub インデント＋2行クランプ＋px整数化max-height</b>（131／140 と同パターン）。H2 4＋H3 11項目を掲出。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">テキストリンク統一</span>
+        UNIFIED_RULES v5.1 §4-2b 準拠：<code>.text-link</code> モジュール新規追加（「→ リンクテキスト」形式・<code>.is-ext</code>で「↗」外部マーカー）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">残課題（B保留）</span>
+        #2（10行程度ダミー文）／#6（D・表・グラフのパターン整理）はデザインカンプ／原稿確定時に対応。
+      </div>
+    </div>
 
     <div class="ann-item">
       <span class="ann-num">0524</span>
-      <span class="ann-head">0524 Figma FB（8件）反映サマリ</span>
+      <span class="ann-head">0524 Figma FB（8件）反映サマリ（旧）</span>
       <div class="ann-row">
         <span class="ann-row-label">#1（B・原稿対応）滝ヶ浦</span>
         「重要施策の概要」パーツは不要（基本的な考え方に統合） → 該当パーツが現WFにはないが、今後原稿に従い基本的な考え方セクションの本文に統合。
