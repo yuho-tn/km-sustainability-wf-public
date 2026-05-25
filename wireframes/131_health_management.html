@@ -167,7 +167,7 @@ body {
   letter-spacing: 0.1em; text-transform: uppercase;
   margin-bottom: 8px;
 }
-/* v3.0：UNIFIED_RULES v5.0 §3 横断ルール準拠 — H2/H3全文表記＋2行クランプ＋H3インデント（.sub）／max-heightで3行目を厳密にカット */
+/* v3.0：UNIFIED_RULES v5.0 §3 横断ルール準拠 — H2/H3全文表記＋2行クランプ＋H3インデント（.sub）／line-height・max-height をpx整数化して3行目を完全カット */
 .wf-anchor-nav-item {
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -176,8 +176,8 @@ body {
   text-overflow: ellipsis;
   font-size: 11px; color: var(--c-text-s);
   padding: 5px 0 5px 10px;
-  line-height: 1.4;
-  max-height: calc(1.4em * 2 + 10px);
+  line-height: 15px;     /* px整数化：端数による3行目の見え漏れを防止 */
+  max-height: 40px;      /* 15 × 2 + 上下padding 5+5 = 40px ぴったり */
   cursor: default;
   border-left: 2px solid transparent;
   text-decoration: none;
@@ -185,9 +185,10 @@ body {
 }
 .wf-anchor-nav-item.sub {
   font-size: 10px;
-  padding-left: 22px;
+  padding: 5px 0 5px 22px;
   color: var(--c-text-xs);
-  max-height: calc(1.4em * 2 + 10px);
+  line-height: 14px;     /* px整数化 */
+  max-height: 38px;      /* 14 × 2 + padding 5+5 = 38px */
 }
 .wf-anchor-nav-item:hover { color: var(--c-text-h); }
 .wf-anchor-nav-item.is-current {
