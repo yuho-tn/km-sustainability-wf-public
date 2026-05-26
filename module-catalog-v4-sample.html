@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>KMサステナビリティWF — モジュール一覧 v3.7.3</title>
+
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --c-white: #FFFFFF; --c-bg: #F7F7F7; --c-bg-sub: #F2F2F2;
+  --c-border: #E0E0E0; --c-border-s: #E8E8E8;
+  --c-ph: #EBEBEB; --c-ph-line: #D8D8D8;
+  --c-text-h: #111; --c-text: #333; --c-text-s: #666; --c-text-xs: #999;
+  --pad-h: 60px;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+  font-size: 13px; line-height: 1.7; color: var(--c-text); background: var(--c-bg);
+}
+.cat-meta-bar {
+  background: #111; color: #ccc; font-size: 11px; padding: 10px 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 100; letter-spacing: 0.04em;
+}
+.cat-meta-bar strong { color: #fff; font-size: 13px; }
+.cat-meta-bar .badge { background: #333; color: #aaa; font-size: 10px; padding: 2px 8px; margin-left: 8px; border-radius: 2px; }
+.cat-page { max-width: 1280px; margin: 0 auto; background: #fff; min-height: 100vh; box-shadow: 0 2px 20px rgba(0,0,0,0.10); }
+.cat-hero { background: #1F1F1F; color: #fff; padding: 36px var(--pad-h); }
+.cat-hero h1 { font-size: 24px; font-weight: 700; letter-spacing: 0.02em; margin-bottom: 8px; }
+.cat-hero p { font-size: 12px; color: #BBB; line-height: 1.8; max-width: 800px; }
+.cat-toc { background: var(--c-bg-sub); padding: 18px var(--pad-h); border-bottom: 1px solid var(--c-border); position: sticky; top: 32px; z-index: 50; }
+.cat-toc-title { font-size: 10px; font-weight: 700; color: var(--c-text-xs); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+.cat-toc ul { list-style: none; display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px 14px; }
+.cat-toc li { font-size: 11px; }
+.cat-toc a {
+  color: var(--c-text-h); text-decoration: none;
+  display: inline-block; padding: 4px 8px;
+  border-radius: 2px; transition: background 0.15s;
+}
+.cat-toc a:hover { background: var(--c-border); }
+.cat-section {
+  padding: 36px var(--pad-h) 40px;
+  border-bottom: 4px solid var(--c-border);
+  position: relative;
+}
+.cat-section-num {
+  position: absolute; top: 38px; left: 22px;
+  width: 26px; height: 26px;
+  background: #111; color: #fff; border-radius: 50%;
+  font-size: 11px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+.cat-section-title {
+  font-size: 20px; font-weight: 700; color: var(--c-text-h);
+  margin-bottom: 6px; padding-bottom: 10px;
+  border-bottom: 1px solid var(--c-border);
+  position: relative;
+}
+.cat-section-title::after {
+  content: ''; position: absolute; left: 0; bottom: -1px;
+  width: 110px; height: 3px;
+  background: linear-gradient(90deg, #111, #444 40%, #888 70%, transparent);
+}
+.cat-section-desc { font-size: 11px; color: var(--c-text-s); margin-bottom: 18px; line-height: 1.85; }
+.cat-subhead {
+  font-size: 12px; font-weight: 700; color: var(--c-text-h);
+  margin: 18px 0 8px; padding-left: 10px;
+  border-left: 3px solid var(--c-text-h);
+}
+
+/* コンパクトモジュール行：[No.+クラス] | プレビュー | メタ */
+.cat-mod {
+  display: grid; grid-template-columns: 200px 1fr 320px;
+  align-items: stretch;
+  background: #fff; border: 1px solid var(--c-border);
+  margin-bottom: 8px;
+  min-height: 70px;
+}
+.cat-mod-id {
+  background: var(--c-border);
+  padding: 10px 14px;
+  display: flex; flex-direction: column; gap: 4px;
+  border-right: 1px solid var(--c-border);
+}
+.cat-mod-id-num {
+  background: var(--c-text-h); color: #fff;
+  font-size: 9px; font-weight: 700; letter-spacing: 0.08em;
+  padding: 2px 8px;
+  align-self: flex-start;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+.cat-mod-id-name {
+  font-size: 12px; font-weight: 700; color: var(--c-text-h);
+  letter-spacing: -0.01em; line-height: 1.4;
+}
+.cat-mod-id-class {
+  font-size: 9px; color: var(--c-text-s);
+  font-family: 'Helvetica Neue', monospace;
+  margin-top: auto;
+}
+.cat-mod-preview {
+  padding: 14px 16px;
+  background: #FAFAFA;
+  border-right: 1px solid var(--c-border);
+  display: flex; align-items: flex-start; justify-content: flex-start; gap: 10px;
+  flex-wrap: wrap;
+}
+.cat-mod-preview-state {
+  font-size: 9px; font-weight: 700; color: var(--c-text-xs);
+  letter-spacing: 0.06em; text-transform: uppercase;
+  padding-bottom: 4px;
+  text-align: left;
+}
+.cat-mod-preview-col {
+  display: flex; flex-direction: column; gap: 4px;
+  align-items: flex-start;
+  flex: 1; min-width: 0;
+}
+.cat-mod-meta {
+  padding: 10px 14px;
+  font-size: 11px; line-height: 1.7;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.cat-mod-meta-row {
+  display: grid; grid-template-columns: 56px 1fr;
+  gap: 6px; align-items: start;
+}
+.cat-mod-meta-label {
+  font-size: 9px; font-weight: 700; color: var(--c-text-h);
+  background: var(--c-bg-sub);
+  padding: 2px 6px;
+  letter-spacing: 0.06em;
+  text-align: center;
+  height: 18px; line-height: 14px;
+}
+.cat-mod-meta-body { font-size: 10px; color: var(--c-text); line-height: 1.65; }
+.cat-mod-meta-body .page-chip {
+  display: inline-block;
+  background: var(--c-border); color: var(--c-text-h);
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 9px; font-weight: 700;
+  padding: 1px 6px; margin: 1px 3px 1px 0;
+  letter-spacing: 0.04em;
+}
+
+/* ============== モジュール再現用CSS（コンパクト・実物準拠） ============== */
+.dem { font-size: 12px; }
+
+/* ① ヒーロー */
+.dem-hero-top {
+  background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.30) 50%, rgba(0,0,0,0.55) 100%), repeating-linear-gradient(135deg, #4A4A4A 0 18px, #555 18px 19px), #4F4F4F;
+  color: #fff; padding: 18px 20px; min-height: 90px; width: 100%;
+}
+.dem-hero-top h1 { font-size: 16px; font-weight: 700; }
+.dem-hero-top .copy { font-size: 11px; margin-top: 4px; opacity: 0.85; }
+.dem-hero-top .lead { font-size: 9px; margin-top: 4px; opacity: 0.7; line-height: 1.6; }
+
+.dem-hero-l2 {
+  position: relative; width: 100%; height: 90px;
+  background: var(--c-ph); display: flex; align-items: center;
+  overflow: hidden;
+}
+.dem-hero-l2::before {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(-45deg, transparent 0 8px, rgba(0,0,0,0.04) 8px 9px);
+}
+.dem-hero-l2 .title-box {
+  position: relative; z-index: 1;
+  background: rgba(255,255,255,0.88);
+  border: 1px solid var(--c-border);
+  padding: 6px 14px; margin-left: 16px;
+  font-size: 11px; font-weight: 700; color: var(--c-text-h);
+}
+.dem-hero-l2 .img-note {
+  position: absolute; right: 8px; bottom: 6px; z-index: 1;
+  font-size: 8px; color: var(--c-text-xs);
+  background: rgba(255,255,255,0.75); padding: 2px 6px;
+}
+
+.dem-hero-l3 {
+  background: #fff; padding: 14px 18px; width: 100%;
+  border-bottom: 1px solid var(--c-border-s);
+}
+.dem-hero-l3 h1 { font-size: 16px; font-weight: 700; color: var(--c-text-h); }
+.dem-hero-l3 .parent {
+  font-size: 9px; color: var(--c-text-s); margin-top: 4px;
+}
+.dem-hero-l3 .parent a {
+  color: var(--c-text-h); font-weight: 700;
+  border-bottom: 1px dashed var(--c-text-h); padding-bottom: 1px;
+}
+
+/* ② 見出し */
+.dem-h2 {
+  font-size: 16px; font-weight: 700; color: var(--c-text-h);
+  padding-bottom: 8px; border-bottom: 1px solid var(--c-border);
+  position: relative; width: 100%;
+}
+.dem-h2::after {
+  content: ''; position: absolute; left: 0; bottom: -1px;
+  width: 80px; height: 2px;
+  background: linear-gradient(90deg, #111, #444 40%, #888 70%, transparent);
+}
+.dem-h3 {
+  font-size: 13px; font-weight: 700; color: var(--c-text-h);
+  padding-left: 10px; border-left: 3px solid var(--c-text-h);
+  line-height: 1.5;
+}
+.dem-h4 {
+  font-size: 12px; font-weight: 700; color: var(--c-text-h);
+  display: flex; align-items: center; gap: 4px; line-height: 1.4;
+}
+.dem-h4::before { content: '◾'; color: var(--c-text-h); font-size: 10px; }
+.dem-h5 {
+  font-size: 11px; font-weight: 700; color: var(--c-text-h);
+  line-height: 1.5;
+}
+
+/* ③ 画像 */
+.dem-img-ph {
+  background: var(--c-ph); position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 8px; color: var(--c-text-xs);
+}
+.dem-img-ph::before {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(-45deg, transparent 0 6px, rgba(0,0,0,0.04) 6px 7px);
+}
+.dem-img-ph span { position: relative; z-index: 1; background: rgba(255,255,255,0.85); padding: 2px 6px; }
+.dem-img-grid { display: grid; gap: 4px; width: 100%; }
+.dem-img-grid.col-1 { grid-template-columns: 1fr; }
+.dem-img-grid.col-2 { grid-template-columns: 1fr 1fr; }
+.dem-img-grid.col-3 { grid-template-columns: repeat(3, 1fr); }
+.dem-img-grid.col-4 { grid-template-columns: repeat(4, 1fr); }
+.dem-img-grid .dem-img-ph { aspect-ratio: 16/9; }
+.dem-img-grid.col-1 .dem-img-ph { aspect-ratio: 16/5; }
+.dem-img-cap { font-size: 8px; color: var(--c-text-xs); margin-top: 2px; line-height: 1.4; text-align: center; }
+.dem-img-zoom-btn {
+  position: absolute; right: 4px; bottom: 4px;
+  width: 18px; height: 18px;
+  background: #111; color: #fff; border: 1px solid #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; z-index: 2;
+}
+
+/* ④ テキスト */
+.dem-strong { font-size: 12px; font-weight: 700; color: var(--c-text-h); line-height: 1.7; }
+.dem-normal { font-size: 11px; color: var(--c-text); line-height: 1.7; }
+.dem-note { font-size: 9px; color: var(--c-text-xs); line-height: 1.5; }
+.dem-dummy { color: var(--c-text-xs); }
+
+/* ⑤ 画像＋テキスト */
+.dem-it-row { display: grid; gap: 8px; width: 100%; align-items: start; }
+.dem-it-row.is-40-60 { grid-template-columns: 40% 1fr; }
+.dem-it-row.is-60-40 { grid-template-columns: 1fr 40%; }
+.dem-it-row.is-30-70 { grid-template-columns: 30% 1fr; }
+.dem-it-row .dem-img-ph { aspect-ratio: 4/3; }
+.dem-it-body { display: flex; flex-direction: column; gap: 3px; }
+.dem-it-title { font-size: 9px; font-weight: 700; color: var(--c-text-h); line-height: 1.3; }
+.dem-it-text { font-size: 8px; color: var(--c-text); line-height: 1.6; }
+.dem-logo-row {
+  display: grid; gap: 6px; align-items: center; width: 100%;
+  grid-template-columns: 1fr 70px;
+}
+.dem-logo-row .dem-logo-ph {
+  aspect-ratio: 1/1; background: #fff; border: 1px solid var(--c-border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 7px; color: var(--c-text-xs);
+}
+.dem-logo-stack {
+  display: flex; flex-direction: column; gap: 4px; width: 100%;
+}
+.dem-logo-stack .dem-logo-row { padding: 4px 6px; border-bottom: 1px dashed var(--c-border); }
+.dem-logo-stack .dem-logo-row:last-child { border-bottom: none; }
+.dem-graph-link {
+  display: flex; flex-direction: column; gap: 4px; width: 100%;
+}
+.dem-graph-link .dem-img-ph { aspect-ratio: 16/9; }
+.dem-graph-link-row {
+  display: flex; justify-content: flex-end; padding-right: 2px;
+}
+.dem-graph-link-row span {
+  font-size: 8px; font-weight: 600; color: var(--c-text-h);
+  border-bottom: 1px solid var(--c-text-h);
+  padding-bottom: 1px;
+}
+.dem-graph-link-row span::before { content: '› '; font-weight: 700; }
+
+/* ⑥ 強調エリア */
+.dem-callout {
+  background: var(--c-white); border: 1px solid var(--c-border);
+  padding: 8px 12px 10px; width: 100%;
+}
+.dem-callout-tag {
+  display: inline-block;
+  background: var(--c-bg-sub); color: var(--c-text-h);
+  font-size: 8px; font-weight: 700; letter-spacing: 0.1em;
+  padding: 3px 10px; margin-bottom: 6px;
+}
+.dem-callout-body { font-size: 10px; color: var(--c-text); line-height: 1.65; }
+.dem-graybg {
+  background: var(--c-bg-sub); border: 1px solid var(--c-border);
+  padding: 8px 10px; width: 100%;
+  font-size: 10px; color: var(--c-text); line-height: 1.65;
+}
+.dem-graybg-label {
+  font-size: 8px; font-weight: 700; color: var(--c-text-xs);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding-bottom: 4px; margin-bottom: 4px;
+  border-bottom: 1px dashed var(--c-border);
+  display: block;
+}
+
+/* ⑦ リンク */
+.dem-textlink {
+  font-size: 11px; color: var(--c-text-h); font-weight: 700;
+  text-decoration: underline; text-underline-offset: 3px;
+}
+.dem-textlink::before { content: '→ '; font-weight: 700; }
+.dem-btn {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 10px; font-weight: 600; color: var(--c-text-h);
+  background: #fff; border: 1px solid var(--c-border);
+  padding: 6px 12px; min-width: 160px;
+}
+.dem-btn::before { content: '›'; font-weight: 700; }
+.dem-card {
+  background: #fff; border: 1px solid var(--c-border); width: 100%;
+}
+.dem-card-img { aspect-ratio: 16/9; background: var(--c-ph); border-bottom: 1px solid var(--c-border); position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 8px; color: var(--c-text-xs); }
+.dem-card-img::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, transparent 0 6px, rgba(0,0,0,0.04) 6px 7px); }
+.dem-card-img > span { position: relative; z-index: 1; background: rgba(255,255,255,0.85); padding: 2px 6px; }
+.dem-card-cat {
+  position: absolute; top: 5px; left: 5px; z-index: 2;
+  background: var(--c-text-h); color: #fff;
+  font-size: 8px; font-weight: 700; padding: 2px 7px;
+}
+.dem-card-body { padding: 8px 10px 10px; }
+.dem-card-title {
+  font-size: 11px; font-weight: 700; color: var(--c-text-h);
+  display: flex; align-items: center; justify-content: space-between;
+  padding-bottom: 4px; border-bottom: 1px solid var(--c-border-s);
+}
+.dem-card-arrow {
+  width: 16px; height: 16px; background: var(--c-text-h); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; font-size: 9px; font-weight: 700; flex-shrink: 0;
+}
+.dem-card-sum { font-size: 9px; color: var(--c-text); margin-top: 6px; line-height: 1.5; }
+
+.dem-list-stack { width: 100%; border: 1px solid var(--c-border); background: #fff; }
+.dem-list-stack-row { display: grid; grid-template-columns: 100px 1fr; border-top: 1px solid var(--c-border); }
+.dem-list-stack-row:first-child { border-top: none; }
+.dem-list-stack-head {
+  background: var(--c-text-h); color: #fff;
+  padding: 6px 8px; font-size: 9px; font-weight: 700;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.dem-list-stack-head::after { content: '›'; font-size: 11px; }
+.dem-list-stack-chips { padding: 4px 6px; display: flex; flex-wrap: wrap; gap: 3px; }
+.dem-l3-chip {
+  display: inline-flex; align-items: center;
+  font-size: 8px; color: var(--c-text-h);
+  border: 1px solid var(--c-border);
+  background: #fff; padding: 1px 6px 1px 10px;
+  position: relative;
+}
+.dem-l3-chip::before { content: '›'; position: absolute; left: 3px; top: -1px; font-weight: 700; color: var(--c-text-h); font-size: 8px; }
+
+.dem-event {
+  background: #fff; border: 1px solid var(--c-border);
+  padding: 10px 12px; width: 100%;
+  display: grid; grid-template-columns: 60px 1fr; gap: 12px; align-items: center;
+}
+.dem-event-label {
+  font-size: 9px; font-weight: 700; color: var(--c-text-h);
+  border: 1px solid var(--c-text-h);
+  padding: 3px 0; text-align: center; letter-spacing: 0.1em;
+}
+.dem-event-body { display: flex; flex-direction: column; gap: 3px; }
+.dem-event-title { font-size: 10px; font-weight: 700; color: var(--c-text-h); line-height: 1.4; }
+.dem-event-desc { font-size: 8px; color: var(--c-text-s); line-height: 1.6; }
+
+/* ESGフォトカード（TOP実物：3列・画像PH+E/S/G letter+EN+JP+desc） */
+.dem-esg-photo-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 6px; width: 100%;
+}
+.dem-esg-photo-card {
+  background: #fff; border: 1px solid var(--c-border);
+  display: flex; flex-direction: column;
+}
+.dem-esg-photo {
+  aspect-ratio: 16/9; background: var(--c-ph);
+  border-bottom: 1px solid var(--c-border);
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 7px; color: var(--c-text-xs);
+}
+.dem-esg-photo::before {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(-45deg, transparent 0 6px, rgba(0,0,0,0.04) 6px 7px);
+}
+.dem-esg-photo > span:not(.dem-esg-photo-letter) { position: relative; z-index: 1; background: rgba(255,255,255,0.85); padding: 1px 5px; }
+.dem-esg-photo-letter {
+  position: absolute; top: 6px; left: 6px; z-index: 2;
+  width: 22px; height: 22px;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid var(--c-border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; color: var(--c-text-h);
+  font-family: 'Helvetica Neue', sans-serif;
+}
+.dem-esg-photo-body { padding: 6px 8px 8px; }
+.dem-esg-photo-en { font-size: 7px; color: var(--c-text-xs); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; margin-bottom: 1px; }
+.dem-esg-photo-title { font-size: 11px; font-weight: 700; color: var(--c-text-h); margin-bottom: 3px; }
+.dem-esg-photo-desc { font-size: 8px; color: var(--c-text); line-height: 1.55; }
+
+.dem-news-row { display: grid; grid-template-columns: 70px 1fr; padding: 6px 0; border-bottom: 1px solid var(--c-border-s); font-size: 9px; width: 100%; }
+.dem-news-row .date { color: var(--c-text-s); letter-spacing: 0.04em; }
+.dem-news-row .title { color: var(--c-text-h); }
+
+.dem-qa {
+  background: #fff; border: 1px solid var(--c-border);
+  padding: 6px 10px; display: flex; align-items: center; gap: 8px; width: 100%;
+}
+.dem-qa-icon {
+  width: 24px; height: 24px; background: var(--c-ph); border: 1px solid var(--c-border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 8px; font-weight: 700; color: var(--c-text-s); flex-shrink: 0;
+}
+.dem-qa-body { flex: 1; min-width: 0; }
+.dem-qa-title { font-size: 10px; font-weight: 700; color: var(--c-text-h); }
+.dem-qa-meta { font-size: 8px; color: var(--c-text-xs); margin-top: 1px; }
+
+.dem-esg3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; width: 100%; }
+.dem-esg3 div { background: #fff; border: 1px solid var(--c-border); padding: 8px 6px; text-align: center; font-size: 10px; font-weight: 700; }
+
+/* ⑧ アコーディオン */
+.dem-acc { border: 1px solid var(--c-border); background: #fff; width: 100%; }
+.dem-acc-summary {
+  padding: 8px 40px 8px 12px;
+  background: var(--c-border);
+  font-size: 11px; font-weight: 700; color: var(--c-text-h);
+  position: relative; display: flex; align-items: center; gap: 8px;
+  line-height: 1.5;
+}
+.dem-acc-summary::after {
+  content: '＋'; position: absolute;
+  right: 8px; top: 50%; transform: translateY(-50%);
+  width: 20px; height: 20px;
+  background: var(--c-text-h); color: #fff;
+  border-radius: 50%; font-size: 11px;
+  display: flex; align-items: center; justify-content: center;
+}
+.dem-acc.is-open .dem-acc-summary::after { content: '−'; }
+.dem-acc.h2-style .dem-acc-summary { border-left: 4px solid var(--c-text-h); }
+.dem-acc-tag {
+  display: inline-block;
+  background: var(--c-bg-sub); color: var(--c-text-h);
+  font-size: 8px; font-weight: 700; letter-spacing: 0.06em;
+  padding: 1px 6px; flex-shrink: 0;
+}
+.dem-acc-num {
+  width: 18px; height: 18px;
+  background: var(--c-text-h); color: #fff;
+  border-radius: 50%; font-size: 9px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; font-family: 'Helvetica Neue', sans-serif;
+}
+.dem-acc-icon {
+  width: 20px; height: 20px;
+  background: var(--c-white); border: 1px solid var(--c-ph-line);
+  font-size: 6px; color: var(--c-text-xs);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.dem-acc-body {
+  padding: 8px 12px; font-size: 9px; color: var(--c-text); line-height: 1.7;
+  background: #fff;
+}
+
+/* ⑨ モーダル */
+.dem-modal-trigger {
+  width: 100%; display: flex; align-items: center; justify-content: center;
+  position: relative; aspect-ratio: 16/9; background: var(--c-ph);
+}
+.dem-modal-trigger::before {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(-45deg, transparent 0 6px, rgba(0,0,0,0.04) 6px 7px);
+}
+.dem-modal-trigger > span { position: relative; z-index: 1; background: rgba(255,255,255,0.85); padding: 2px 6px; font-size: 8px; color: var(--c-text-xs); }
+.dem-zoom {
+  background: rgba(0,0,0,0.6); padding: 8px; width: 100%; position: relative;
+}
+.dem-zoom-frame {
+  background: #fff; padding: 8px;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.dem-zoom-head {
+  display: flex; justify-content: space-between;
+  font-size: 9px; font-weight: 700; color: var(--c-text-h);
+  padding-bottom: 4px; border-bottom: 1px solid var(--c-border);
+}
+.dem-zoom-img {
+  background: var(--c-ph); aspect-ratio: 16/8; position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 8px; color: var(--c-text-xs);
+}
+.dem-zoom-img::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, transparent 0 6px, rgba(0,0,0,0.04) 6px 7px); }
+.dem-zoom-img > span { position: relative; z-index: 1; background: rgba(255,255,255,0.85); padding: 2px 6px; }
+
+.dem-term-trigger {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 10px; color: var(--c-text-h);
+  background: var(--c-white); border: 1px solid var(--c-text-h);
+  padding: 2px 8px 2px 4px; border-radius: 10px;
+}
+.dem-term-mark {
+  width: 12px; height: 12px;
+  background: var(--c-text-h); color: #fff; font-size: 7px;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700;
+}
+.dem-term-modal {
+  background: #fff; border: 1px solid var(--c-border);
+  padding: 8px 10px; margin-top: 6px;
+}
+.dem-term-modal-title {
+  font-size: 10px; font-weight: 700; color: var(--c-text-h);
+  padding-bottom: 4px; border-bottom: 1px solid var(--c-border-s); margin-bottom: 4px;
+}
+.dem-term-modal-body { font-size: 8px; color: var(--c-text); line-height: 1.6; }
+
+/* ⑬ ナビゲーション */
+.dem-bc { background: #fff; padding: 5px 10px; font-size: 9px; color: var(--c-text-s); display: flex; gap: 4px; border-bottom: 1px solid var(--c-border-s); width: 100%; }
+.dem-bc .sep { color: var(--c-border); }
+.dem-bc .cur { color: var(--c-text); }
+
+.dem-anchor-nav {
+  background: #fff; padding: 8px 0 8px 10px; border-left: 2px solid var(--c-text-h);
+  font-size: 9px; width: 90px;
+}
+.dem-anchor-nav-title { font-size: 7px; font-weight: 700; color: var(--c-text-xs); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+.dem-anchor-nav-item { padding: 3px 0 3px 8px; font-size: 9px; }
+.dem-anchor-nav-item.is-current { font-weight: 700; border-left: 2px solid var(--c-text-h); margin-left: -12px; padding-left: 10px; }
+
+.dem-header-img {
+  background: linear-gradient(180deg, #fff 0%, #fff 60%, #3A3A3A 60%, #3A3A3A 100%);
+  border: 1px solid var(--c-border); padding: 8px 10px; width: 100%;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.dem-header-img-top { display: flex; justify-content: space-between; align-items: center; font-size: 8px; color: #444; }
+.dem-header-img-logo { font-weight: 800; letter-spacing: 0.05em; }
+.dem-header-img-gnav { display: flex; gap: 8px; font-size: 7px; color: #555; padding: 2px 0; }
+.dem-header-img-gnav .is-cur { color: #111; font-weight: 700; border-bottom: 1px solid #111; padding-bottom: 1px; }
+.dem-header-img-lnav { display: flex; gap: 8px; font-size: 7px; color: #ccc; padding-top: 4px; }
+.dem-header-img-lnav .is-cur { color: #fff; font-weight: 700; }
+
+
+.dem-footer-closed {
+  background: #1F1F1F; color: #BBB; padding: 10px 16px; width: 100%;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 11px;
+}
+.dem-footer-closed::after { content: '▼'; color: #888; font-size: 9px; }
+.dem-footer-open {
+  background: #1F1F1F; color: #999; padding: 14px 16px; width: 100%;
+  font-size: 9px;
+}
+.dem-footer-open-head { display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px; border-bottom: 1px solid #333; margin-bottom: 10px; font-size: 11px; color: #fff; font-weight: 700; }
+.dem-footer-open-head::after { content: '▲'; color: #888; font-size: 9px; }
+.dem-footer-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; padding-bottom: 6px; }
+.dem-footer-col-title { color: #fff; font-weight: 700; font-size: 8px; border-bottom: 1px solid #555; padding-bottom: 3px; margin-bottom: 4px; letter-spacing: 0.02em; }
+.dem-footer-link { display: block; padding: 1px 0; font-size: 7px; color: #ddd; line-height: 1.4; }
+
+/* ⑩ テーブル */
+.dem-tbl { width: 100%; border-collapse: collapse; font-size: 9px; background: #fff; border: 1px solid var(--c-border); }
+.dem-tbl th, .dem-tbl td { padding: 4px 6px; border: 1px solid var(--c-border-s); }
+.dem-tbl th { background: var(--c-bg-sub); font-weight: 700; text-align: left; }
+.dem-tbl td { line-height: 1.5; }
+.dem-tbl .target { background: #F0F0F0; font-weight: 700; text-align: center; }
+.dem-tbl .num { text-align: center; }
+.dem-tbl .cat-row th { background: var(--c-border); }
+.dem-tbl .badge-l { background: #111; color: #fff; font-size: 8px; padding: 1px 5px; font-weight: 700; }
+.dem-tbl .badge-m { background: #666; color: #fff; font-size: 8px; padding: 1px 5px; font-weight: 700; }
+.dem-tbl .badge-s { background: #AAA; color: #fff; font-size: 8px; padding: 1px 5px; font-weight: 700; }
+
+/* ⑪ リスト */
+.dem-ol { font-size: 10px; padding-left: 18px; line-height: 1.7; color: var(--c-text); }
+.dem-ul-basic { list-style: disc; padding-left: 16px; font-size: 10px; line-height: 1.7; color: var(--c-text); }
+.dem-ul-basic li { padding: 2px 0; }
+.dem-ul-basic li strong { color: var(--c-text-h); font-weight: 700; display: block; }
+.dem-ul-basic li span { color: var(--c-text-s); font-size: 9px; line-height: 1.55; display: block; margin-top: 1px; }
+.dem-ul-dot { list-style: none; padding: 0; font-size: 10px; }
+.dem-ul-dot li { padding: 3px 0 3px 12px; position: relative; border-bottom: 1px dashed var(--c-border); line-height: 1.6; }
+.dem-ul-dot li:last-child { border-bottom: none; }
+.dem-ul-dot li::before { content: '・'; position: absolute; left: 0; color: var(--c-text-h); font-weight: 700; }
+.dem-ul-norm { background: var(--c-bg-sub); border: 1px solid var(--c-border); padding: 8px 12px; list-style: none; font-size: 10px; }
+.dem-ul-norm li { padding: 2px 0 2px 12px; position: relative; }
+.dem-ul-norm li::before { content: '◆'; position: absolute; left: 0; color: var(--c-text-h); font-size: 7px; top: 5px; }
+
+/* ⑫ タグ */
+.dem-tag-card { display: inline-block; background: #111; color: #fff; font-size: 9px; font-weight: 700; padding: 2px 8px; letter-spacing: 0.05em; }
+.dem-tag-badge { display: inline-flex; gap: 4px; }
+.dem-tag-badge span { background: #111; color: #fff; font-size: 9px; padding: 2px 8px; font-weight: 700; }
+.dem-tag-badge span:nth-child(2) { background: #666; }
+.dem-tag-badge span:nth-child(3) { background: #AAA; }
+.dem-tag-marker {
+  width: 20px; height: 20px; background: #222; color: #fff;
+  border-radius: 50%; font-size: 9px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+.dem-tag-year { display: inline-flex; flex-wrap: wrap; gap: 4px; }
+.dem-tag-year span { font-size: 9px; padding: 3px 8px; border: 1px solid var(--c-border); }
+.dem-tag-year .active { background: var(--c-text-h); color: #fff; border-color: var(--c-text-h); font-weight: 700; }
+
+/* ============== v3.7.2 拡張モジュール ============== */
+
+/* 7-10 L2 テーマ別リンクブロック */
+.dem-theme-block {
+  background: #fff; border: 1px solid var(--c-border);
+  padding: 10px 12px; width: 100%;
+}
+.dem-theme-block-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  padding-bottom: 6px; border-bottom: 1px solid var(--c-border);
+  margin-bottom: 6px;
+}
+.dem-theme-block-head h3 {
+  font-size: 11px; font-weight: 700; color: var(--c-text-h);
+}
+.dem-theme-block-link {
+  font-size: 9px; font-weight: 700; color: var(--c-text-h);
+  border-bottom: 1px solid var(--c-text-h); padding-bottom: 1px;
+}
+.dem-theme-block-link::before { content: '› '; font-weight: 700; }
+.dem-theme-block-body { font-size: 8px; color: var(--c-text); line-height: 1.6; }
+
+/* 7-11 タイル型リンクグリッド（005b 別案） */
+.dem-tile-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+  border-top: 1px solid var(--c-border); border-left: 1px solid var(--c-border);
+  background: #fff; width: 100%;
+}
+.dem-tile {
+  position: relative; display: flex; flex-direction: column;
+  background: #fff;
+  border-right: 1px solid var(--c-border); border-bottom: 1px solid var(--c-border);
+  padding: 8px 10px 22px; min-height: 90px;
+}
+.dem-tile::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--c-text-h);
+}
+.dem-tile.is-grp-b::before { background: #888; }
+.dem-tile-num {
+  font-size: 7px; font-weight: 700; color: var(--c-text-xs);
+  letter-spacing: 0.1em; font-family: 'Helvetica Neue', sans-serif;
+  margin-bottom: 2px;
+}
+.dem-tile-title {
+  font-size: 10px; font-weight: 700; color: var(--c-text-h);
+  line-height: 1.3; margin-bottom: 3px;
+}
+.dem-tile-desc { font-size: 7px; color: var(--c-text); line-height: 1.55; flex: 1; }
+.dem-tile-anchors {
+  display: flex; flex-wrap: wrap; gap: 2px;
+  margin-top: 4px; padding-top: 4px;
+  border-top: 1px dashed var(--c-border);
+}
+.dem-tile-anchor {
+  font-size: 6.5px; color: var(--c-text);
+  background: var(--c-bg-sub); border: 1px solid var(--c-border);
+  padding: 1px 4px; letter-spacing: 0.02em;
+}
+.dem-tile-anchor::before { content: '#'; color: var(--c-text-xs); margin-right: 2px; font-weight: 700; }
+.dem-tile-arrow {
+  position: absolute; right: 6px; bottom: 6px;
+  width: 14px; height: 14px;
+  background: var(--c-text-h); color: #fff; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px; font-weight: 700;
+}
+
+/* 7-12 バックナンバー年別リスト */
+.dem-bn-list { width: 100%; border: 1px solid var(--c-border); background: #fff; }
+.dem-bn-row {
+  display: grid; grid-template-columns: 60px 1fr;
+  gap: 8px; padding: 6px 10px;
+  border-top: 1px solid var(--c-border-s);
+}
+.dem-bn-row:first-child { border-top: none; }
+.dem-bn-year {
+  font-size: 9px; font-weight: 700; color: var(--c-text-h);
+  letter-spacing: 0.04em; font-family: 'Helvetica Neue', sans-serif;
+}
+.dem-bn-links { display: flex; flex-wrap: wrap; gap: 4px; }
+.dem-bn-link {
+  display: inline-flex; align-items: center; gap: 2px;
+  font-size: 8px; color: var(--c-text);
+  border: 1px solid var(--c-border); background: #fff;
+  padding: 1px 6px;
+}
+.dem-bn-link .pdf {
+  background: var(--c-bg-sub); color: var(--c-text-s);
+  font-size: 6px; font-weight: 700; padding: 1px 3px; letter-spacing: 0.05em;
+}
+
+/* 11-5 番号付き理念リスト（品質方針） */
+.dem-policy-items {
+  list-style: none; padding: 0; width: 100%;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.dem-policy-item {
+  display: grid; grid-template-columns: 22px 1fr; gap: 6px; align-items: start;
+  background: #fff; border: 1px solid var(--c-border);
+  padding: 6px 8px;
+}
+.dem-policy-num {
+  width: 22px; height: 22px;
+  background: var(--c-text-h); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+.dem-policy-title { font-size: 9px; font-weight: 700; color: var(--c-text-h); }
+.dem-policy-text { font-size: 7.5px; color: var(--c-text); line-height: 1.55; margin-top: 1px; }
+
+/* 12-4 #アンカーチップ（再現用） */
+.dem-anchor-chip-row { display: flex; flex-wrap: wrap; gap: 3px; }
+.dem-anchor-chip {
+  display: inline-flex; align-items: center;
+  font-size: 8.5px; color: var(--c-text);
+  background: var(--c-bg-sub); border: 1px solid var(--c-border);
+  padding: 2px 6px; letter-spacing: 0.02em;
+}
+.dem-anchor-chip::before {
+  content: '#'; color: var(--c-text-xs);
+  margin-right: 3px; font-weight: 700;
+}
+
+/* 13-5 ページ内 番号付きアンカーチップ集 */
+.dem-anchor-grid {
+  background: #fff; border: 1px solid var(--c-border);
+  padding: 8px 10px; width: 100%;
+}
+.dem-anchor-grid-lbl {
+  font-size: 7px; font-weight: 700; color: var(--c-text-xs);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.dem-anchor-grid-chips { display: flex; flex-wrap: wrap; gap: 3px; }
+.dem-anchor-grid-chip {
+  display: inline-flex; align-items: center; gap: 3px;
+  font-size: 8px; color: var(--c-text-h);
+  border: 1px solid var(--c-border); background: #fff;
+  padding: 2px 6px;
+}
+.dem-anchor-grid-chip-num {
+  font-size: 6.5px; color: var(--c-text-xs);
+  font-family: 'Helvetica Neue', sans-serif; letter-spacing: 0.05em;
+}
+
+/* 13-6 年度フィルタブロック */
+.dem-year-filter {
+  background: #fff; border: 1px solid var(--c-border);
+  padding: 6px 10px; width: 100%;
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.dem-year-filter-lbl {
+  font-size: 8px; font-weight: 700; color: var(--c-text-h);
+  letter-spacing: 0.04em;
+}
+.dem-year-filter-chips { display: inline-flex; flex-wrap: wrap; gap: 3px; }
+.dem-year-filter-chip {
+  font-size: 8px; padding: 2px 7px;
+  border: 1px solid var(--c-border); background: #fff;
+}
+.dem-year-filter-chip.active {
+  background: var(--c-text-h); color: #fff; border-color: var(--c-text-h);
+  font-weight: 700;
+}
+
+/* 13-7 ページネーション */
+.dem-pagination {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 8px;
+}
+.dem-pagination span {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 18px; height: 18px;
+  border: 1px solid var(--c-border); background: #fff; color: var(--c-text);
+}
+.dem-pagination span.active {
+  background: var(--c-text-h); color: #fff; border-color: var(--c-text-h);
+  font-weight: 700;
+}
+.dem-pagination .nav { width: 24px; font-weight: 700; }
+
+/* ============================================================
+   v4.0 sample 追加デモCSS（新規モジュール用 / dem-* スタイル）
+============================================================ */
+.dem-btn-primary {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: #111; color: #fff;
+  border: 1px solid #111;
+  padding: 8px 16px; font-size: 11px; font-weight: 700;
+  cursor: default;
+}
+.dem-btn-primary::before { content: '› '; }
+.dem-btn-grid { display: grid; gap: 12px; padding: 8px 0; }
+.dem-btn-grid--col2 { grid-template-columns: 1fr 1fr; max-width: 380px; }
+.dem-btn-grid--col3 { grid-template-columns: repeat(3, 1fr); max-width: 540px; }
+.dem-btn-grid .dem-btn { min-width: 0; }
+.dem-qa-list {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px;
+  padding: 12px; border: 1px solid var(--c-border); background: #FAFAFA;
+  max-width: 380px;
+}
+.dem-qa-item { font-size: 11px; color: var(--c-text-h); cursor: default; }
+.dem-tile-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 8px 0; }
+.dem-tile { display: flex; flex-direction: column; gap: 4px; padding: 12px; background: var(--c-bg-sub); border: 1px solid var(--c-border); cursor: default; }
+.dem-tile-num { font-size: 10px; color: var(--c-text-s); font-weight: 700; letter-spacing: 0.1em; }
+.dem-tile-title { font-size: 11px; font-weight: 700; color: var(--c-text-h); }
+.dem-esg-data { border: 1px solid var(--c-border); background: #FFF; max-width: 380px; }
+.dem-esg-data-head { background: var(--c-border); padding: 8px 14px; font-size: 11px; font-weight: 700; color: var(--c-text-h); }
+.dem-esg-data-body { padding: 10px 14px; display: flex; flex-direction: column; gap: 4px; }
+.dem-esg-data-row { font-size: 10px; color: var(--c-text); cursor: default; }
+.dem-link-block { border: 1px solid var(--c-border); background: #FFF; padding: 14px 16px; max-width: 320px; display: flex; flex-direction: column; gap: 6px; }
+.dem-link-block-title { font-size: 12px; font-weight: 700; color: var(--c-text-h); }
+.dem-link-block-desc { font-size: 10px; color: var(--c-text-s); line-height: 1.6; }
+.dem-link-block-link { font-size: 11px; color: var(--c-text-h); padding-top: 6px; border-top: 1px solid var(--c-border-s); cursor: default; }
+.dem-textlink-ext::after { content: ' ↗'; font-size: 9px; vertical-align: super; }
+
+</style>
+</head>
+<body>
+
+<div class="cat-meta-bar">
+  <div>
+    <strong>KMサステナビリティWF</strong>
+    <span class="badge">モジュール一覧 v4.0 サンプル</span>
+    <span class="badge">⑦ リンクカテゴリのみ</span>
+  </div>
+  <div style="font-size:10px; color:#888;">クラス統一後の v4.0 サンプル — リンク・ボタン15バリアント</div>
+</div>
+
+<div class="cat-page">
+
+  <div class="cat-hero">
+    <h1>モジュール一覧（v4.0 サンプル）</h1>
+    <p>クラス統一作業（リンク・アコ・表・他）完了後の新v4.0カタログ。本サンプルは <strong>リンク・ボタン系の15バリアント</strong> のみを掲載。ユーザー期待モジュール構成に沿って整理。</p>
+  </div>
+
+  <nav class="cat-toc">
+    <div class="cat-toc-title">⑦ リンク・ボタン 15バリアント</div>
+    <ul style="grid-template-columns: repeat(3, 1fr);">
+      <li><a href="#m-7-1">7-1 プライマリーボタン</a></li>
+      <li><a href="#m-7-2">7-2 セカンダリーボタン</a></li>
+      <li><a href="#m-7-3">7-3 ボタングリッド（2列）</a></li>
+      <li><a href="#m-7-4">7-4 ボタングリッド（3列）</a></li>
+      <li><a href="#m-7-5">7-5 クイックアクセス</a></li>
+      <li><a href="#m-7-6">7-6 ESGカード</a></li>
+      <li><a href="#m-7-7">7-7 トピックスボタン</a></li>
+      <li><a href="#m-7-8">7-8 ブロック型テキストリンク</a></li>
+      <li><a href="#m-7-9">7-9 テキストリンク（→）</a></li>
+      <li><a href="#m-7-10">7-10 関連リンク</a></li>
+      <li><a href="#m-7-11">7-11 取り組みカード</a></li>
+      <li><a href="#m-7-12">7-12 目次タイル（番号付き）</a></li>
+      <li><a href="#m-7-13">7-13 ESGデータブロック</a></li>
+      <li><a href="#m-7-14">7-14 見出し横リンク</a></li>
+      <li><a href="#m-7-15">7-15 外部リンク（↗）</a></li>
+    </ul>
+  </nav>
+
+  <section class="cat-section" id="sec-7">
+    <span class="cat-section-num">7</span>
+    <h2 class="cat-section-title">リンク・ボタン</h2>
+    <p class="cat-section-desc">遷移系の表現15バリアント。<strong>3族</strong>（ボタン族 .wf-btn ／ テキストリンク族 .wf-text-link ／ リンクブロック・カード族）に分類。</p>
+
+    <h3 class="cat-subhead">A. ボタン族 <code>.wf-btn</code></h3>
+
+    <div class="cat-mod" id="m-7-1">
+      <div class="cat-mod-id"><span class="cat-mod-id-num">7-1</span><span class="cat-mod-id-name">プライマリーボタン</span><span class="cat-mod-id-class">.wf-btn.is-primary</span></div>
+      <div class="cat-mod-preview"><a class="dem-btn-primary">サステナビリティレポート2025を見る</a></div>
+      <div class="cat-mod-meta">
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">UI</span><span class="cat-mod-meta-body">黒bg＋白文字。最重要CTAに限定使用。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">新規策定</span></span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">ルール</span><span class="cat-mod-meta-body">1ページ1〜2箇所まで。「重要なPDF閲覧」「年次レポート閲覧」など、ページの主目的に直結するCTAのみ。</span></div>
+      </div>
+    </div>
+
+    <div class="cat-mod" id="m-7-2">
+      <div class="cat-mod-id"><span class="cat-mod-id-num">7-2</span><span class="cat-mod-id-name">セカンダリーボタン</span><span class="cat-mod-id-class">.wf-btn</span></div>
+      <div class="cat-mod-preview"><a class="dem-btn">ESGデータページへ</a></div>
+      <div class="cat-mod-meta">
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">UI</span><span class="cat-mod-meta-body">白bg＋黒文字＋黒border。「›」プレフィックス。文字サイズはコンテンツ量で可変。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">001</span><span class="page-chip">004</span><span class="page-chip">024</span><span class="page-chip">035</span><span class="page-chip">096</span><span class="page-chip">097</span><span class="page-chip">105</span><span class="page-chip">140</span><span class="page-chip">199</span></span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">ルール</span><span class="cat-mod-meta-body">セクション末尾の主要CTA／個別ページ遷移／PDF・Excel DL（その場合 <code>[data-icon=pdf|xlsx]</code> 付与可）。複数並列時は <code>.wf-btn-grid</code> でラップ。</span></div>
+      </div>
+    </div>
+
+    <div class="cat-mod" id="m-7-3">
+      <div class="cat-mod-id"><span class="cat-mod-id-num">7-3</span><span class="cat-mod-id-name">ボタングリッド（2列）</span><span class="cat-mod-id-class">.wf-btn-grid--col2</span></div>
+      <div class="cat-mod-preview"><div class="dem-btn-grid dem-btn-grid--col2"><a class="dem-btn">コニカミノルタグループ行動憲章</a><a class="dem-btn">コーポレートガバナンス報告書</a></div></div>
+      <div class="cat-mod-meta">
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">UI</span><span class="cat-mod-meta-body">grid 2カラム＋gap16px。中の <code>.wf-btn</code> は等幅。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">097 方針一覧</span></span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">ルール</span><span class="cat-mod-meta-body">関連性の高いセカンダリ遷移を2並列で配置（例：方針本文＋関連方針）。</span></div>
+      </div>
+    </div>
+
+    <div class="cat-mod" id="m-7-4">
+      <div class="cat-mod-id"><span class="cat-mod-id-num">7-4</span><span class="cat-mod-id-name">ボタングリッド（3列）</span><span class="cat-mod-id-class">.wf-btn-grid--col3</span></div>
+      <div class="cat-mod-preview"><div class="dem-btn-grid dem-btn-grid--col3"><a class="dem-btn">統合報告書</a><a class="dem-btn">サステナビリティレポート</a><a class="dem-btn">会社案内</a></div></div>
+      <div class="cat-mod-meta">
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">UI</span><span class="cat-mod-meta-body">grid 3カラム＋gap16px。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">096 アーカイブ</span><span class="page-chip">199 ESGデータ</span></span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">ルール</span><span class="cat-mod-meta-body">レポートアーカイブの3媒体（統合・サステナ・会社案内）のような並列遷移に限定。</span></div>
+      </div>
+    </div>
+
+    <h3 class="cat-subhead">B. テキストリンク族 <code>.wf-text-link</code></h3>
+
+    <div class="cat-mod" id="m-7-9">
+      <div class="cat-mod-id"><span class="cat-mod-id-num">7-9</span><span class="cat-mod-id-name">テキストリンク（→）</span><span class="cat-mod-id-class">.wf-text-link</span></div>
+      <div class="cat-mod-preview"><div style="padding:14px 0; font-size:12px;"><a class="dem-textlink">気候変動への取り組み</a></div></div>
+      <div class="cat-mod-meta">
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">UI</span><span class="cat-mod-meta-body">「→」プレフィックス＋下線。インラインまたは段落直下の独立行。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">002</span><span class="page-chip">004</span><span class="page-chip">024</span><span class="page-chip">025</span><span class="page-chip">035</span><span class="page-chip">077</span><span class="page-chip">096</span><span class="page-chip">124</span><span class="page-chip">131</span><span class="page-chip">140</span><span class="page-chip">148</span><span class="page-chip">222</span><span class="page-chip">225</span></span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">ルール</span><span class="cat-mod-meta-body">本文段落で言及した別ページへのインラインジャンプ。共通基盤として最も多用。</span></div>
+      </div>
+    </div>
+
+    <div class="cat-mod" id="m-7-10">
+      <div class="cat-mod-id"><span class="cat-mod-id-num">7-10</span><span class="cat-mod-id-name">関連リンク</span><span class="cat-mod-id-class">.wf-related-links</span></div>
+      <div class="cat-mod-preview"><div class="dem-graybg"><span class="dem-graybg-label">関連リンク</span><div style="font-size:9px; line-height:1.7;">→ 環境マネジメント体制　　→ ガバナンス体制　　→ マテリアリティ評価</div></div></div>
+      <div class="cat-mod-meta">
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">UI</span><span class="cat-mod-meta-body">薄グレーbg＋全周ボーダー＋上部「関連リンク」破線下線ラベル＋複数 <code>.wf-text-link</code> を flex-wrap。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">024</span><span class="page-chip">025</span><span class="page-chip">035</span><span class="page-chip">124</span><span class="page-chip">131</span><span class="page-chip">148</span></span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">ルール</span><span class="cat-mod-meta-body">セクション末尾の関連ページ集約。L3ページの末尾に標準配置。</span></div>
+      </div>
+    </div>
+
+    <div class="cat-mod" id="m-7-14">
+      <div class="cat-mod-id"><span class="cat-mod-id-num">7-14</span><span class="cat-mod-id-name">見出し横リンク</span><span class="cat-mod-id-class">.wf-heading-link</span></div>
+      <div class="cat-mod-preview"><div style="padding:8px 0; display:flex; align-items:baseline; gap:12px;"><span style="font-size:14px; font-weight:700;">気候変動</span><a class="dem-textlink" style="font-size:11px;">気候変動を見る</a></div></div>
+      <div class="cat-mod-meta">
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">UI</span><span class="cat-mod-meta-body">見出し（H2/H3）の右側に小さく配置。「→」プレフィックス＋下線。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">025 自社拠点再エネ</span></span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">ルール</span><span class="cat-mod-meta-body">第4階層から第3階層へ戻るような上位リンクに限定。乱用しない。</span></div>
+      </div>
+    </div>
+
+    <div class="cat-mod" id="m-7-15">
+      <div class="cat-mod-id"><span class="cat-mod-id-num">7-15</span><span class="cat-mod-id-name">外部リンク（↗）</span><span class="cat-mod-id-class">.wf-text-link.is-external</span></div>
+      <div class="cat-mod-preview"><div style="padding:14px 0; font-size:12px;"><a class="dem-textlink dem-textlink-ext">コーポレートサイト</a></div></div>
+      <div class="cat-mod-meta">
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">UI</span><span class="cat-mod-meta-body">テキストリンクの末尾に「↗」アイコン。外部遷移を示す。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">新規策定</span></span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">ルール</span><span class="cat-mod-meta-body">サステナビリティサイト外（コーポレートサイト、IR、PDF外部リンク等）への遷移に必須付与。サステナサイト内は不要。</span></div>
+      </div>
+    </div>
+
+    <h3 class="cat-subhead">C. リンクブロック・カード族</h3>
+
+    <div class="cat-mod" id="m-7-5">
+      <div class="cat-mod-id"><span class="cat-mod-id-num">7-5</span><span class="cat-mod-id-name">クイックアクセス</span><span class="cat-mod-id-class">.wf-quick-access</span></div>
+      <div class="cat-mod-preview"><div class="dem-qa-list"><div class="dem-qa-item">→ ESGデータ</div><div class="dem-qa-item">→ レポートアーカイブ</div><div class="dem-qa-item">→ 方針一覧</div><div class="dem-qa-item">→ 社外評価</div></div></div>
+      <div class="cat-mod-meta">
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">UI</span><span class="cat-mod-meta-body">TOPファーストビュー直下のクイックアクセスブロック（4-5件のテキストリンク集）。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">001 TOPユニーク</span></span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">ルール</span><span class="cat-mod-meta-body">TOPのみ。下位ページでは使用しない。</span></div>
+      </div>
+    </div>
+
+    <div class="cat-mod" id="m-7-6">
+      <div class="cat-mod-id"><span class="cat-mod-id-num">7-6</span><span class="cat-mod-id-name">ESGカード</span><span class="cat-mod-id-class">.wf-esg-card</span></div>
+      <div class="cat-mod-preview"><div class="dem-esg-photo-grid"><div class="dem-esg-photo-card"><div class="dem-esg-photo"><span class="dem-esg-photo-letter">E</span><span>[ 環境イメージPH ]</span></div><div class="dem-esg-photo-body"><div class="dem-esg-photo-en">Environment</div><div class="dem-esg-photo-title">環境</div></div></div><div class="dem-esg-photo-card"><div class="dem-esg-photo"><span class="dem-esg-photo-letter">S</span><span>[ 社会PH ]</span></div><div class="dem-esg-photo-body"><div class="dem-esg-photo-en">Social</div><div class="dem-esg-photo-title">社会</div></div></div><div class="dem-esg-photo-card"><div class="dem-esg-photo"><span class="dem-esg-photo-letter">G</span><span>[ ガバナンスPH ]</span></div><div class="dem-esg-photo-body"><div class="dem-esg-photo-en">Governance</div><div class="dem-esg-photo-title">ガバナンス</div></div></div></div></div>
+      <div class="cat-mod-meta">
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">UI</span><span class="cat-mod-meta-body">写真PH＋左上のE/S/Gレターバッジ＋英語ラベル＋日本語タイトル＋説明文。3カラム横並び。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">001 TOP</span></span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">ルール</span><span class="cat-mod-meta-body">TOPの主要3カテゴリ（環境／社会／ガバナンス）への並列遷移カード。TOPユニーク。</span></div>
+      </div>
+    </div>
+
+    <div class="cat-mod" id="m-7-7">
+      <div class="cat-mod-id"><span class="cat-mod-id-num">7-7</span><span class="cat-mod-id-name">トピックスボタン</span><span class="cat-mod-id-class">.wf-topics-btn</span></div>
+      <div class="cat-mod-preview"><div class="dem-event"><span class="dem-event-label">EVENT</span><div class="dem-event-body"><div class="dem-event-title">投資家・アナリスト向け説明会 — Konica Minolta Day</div><div class="dem-event-desc">中期経営計画・各事業の成長戦略について、経営トップが直接ご説明する年次インベスターデイ。</div></div></div></div>
+      <div class="cat-mod-meta">
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">UI</span><span class="cat-mod-meta-body">白bg＋全周ボーダー＋左に枠線囲み「EVENT」ラベル＋タイトル＋説明文。横長カード。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">001 TOP（トピックス末尾）</span></span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">ルール</span><span class="cat-mod-meta-body">投資家・アナリスト向け年次イベントなど、期間限定告知の強調表示用。1件のみ配置。</span></div>
+      </div>
+    </div>
+
+    <div class="cat-mod" id="m-7-8">
+      <div class="cat-mod-id"><span class="cat-mod-id-num">7-8</span><span class="cat-mod-id-name">ブロック型テキストリンク</span><span class="cat-mod-id-class">.wf-link-block</span></div>
+      <div class="cat-mod-preview"><div class="dem-link-block"><div class="dem-link-block-title">サステナビリティレポート2024</div><div class="dem-link-block-desc">気候変動・人権・DE&amp;I等の取り組みを網羅したESG投資家向け統合レポート（PDF・16.0MB）</div><div class="dem-link-block-link">→ PDFを見る</div></div></div>
+      <div class="cat-mod-meta">
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">UI</span><span class="cat-mod-meta-body">枠付きブロック＋タイトル＋説明文＋下部にテキストリンク。<strong>マスター=001 TOP「報告・データ」ブロック</strong>。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">001 TOP</span><span class="page-chip">002 戦略</span><span class="page-chip">004 環境</span><span class="page-chip">131 健康経営</span><span class="page-chip">225 イニシアティブ</span></span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">ルール</span><span class="cat-mod-meta-body">PDF・関連方針・関連ページなど、文脈付きの説明と一緒に遷移先を提示する場合。「ボタン」よりも情報量が多い時。</span></div>
+      </div>
+    </div>
+
+    <div class="cat-mod" id="m-7-11">
+      <div class="cat-mod-id"><span class="cat-mod-id-num">7-11</span><span class="cat-mod-id-name">取り組みカード</span><span class="cat-mod-id-class">.wf-activity-card</span></div>
+      <div class="cat-mod-preview"><div class="dem-card" style="max-width:200px;"><div class="dem-card-img"><span class="dem-card-cat">脱炭素</span><span>[PH]</span></div><div class="dem-card-body"><div class="dem-card-title"><span>製品の脱炭素化</span><span class="dem-card-arrow">›</span></div><div class="dem-card-sum">商業・産業用印刷機の主力製品でCO2削減を実現。</div></div></div></div>
+      <div class="cat-mod-meta">
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">UI</span><span class="cat-mod-meta-body">画像PH＋黒背景カテゴリタグ（左上）＋タイトル＋黒丸›矢印＋サマリ。131同型を共通化。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">004</span><span class="page-chip">024</span><span class="page-chip">025</span><span class="page-chip">124</span><span class="page-chip">131</span><span class="page-chip">148</span></span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">ルール</span><span class="cat-mod-meta-body">取り組み一覧表示。3列(004 環境Index)／2列(L3ページのアンカーナビ付き)。カテゴリタグはジャンル別に記載。</span></div>
+      </div>
+    </div>
+
+    <div class="cat-mod" id="m-7-12">
+      <div class="cat-mod-id"><span class="cat-mod-id-num">7-12</span><span class="cat-mod-id-name">目次タイル（番号付き）</span><span class="cat-mod-id-class">.wf-index-tile</span></div>
+      <div class="cat-mod-preview"><div class="dem-tile-grid"><div class="dem-tile"><div class="dem-tile-num">01</div><div class="dem-tile-title">人的資本戦略</div></div><div class="dem-tile"><div class="dem-tile-num">02</div><div class="dem-tile-title">人財育成</div></div><div class="dem-tile"><div class="dem-tile-num">03</div><div class="dem-tile-title">企業文化</div></div><div class="dem-tile"><div class="dem-tile-num">04</div><div class="dem-tile-title">DE&amp;I</div></div></div></div>
+      <div class="cat-mod-meta">
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">UI</span><span class="cat-mod-meta-body">番号付きタイル群。社会インデックスでは12タイル（3カラム×4行）。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">005b 社会インデックス</span></span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">ルール</span><span class="cat-mod-meta-body">第2階層インデックスで下位ページを番号順に一覧表示する場合（タイル数が多く目次的に表示したい時）。</span></div>
+      </div>
+    </div>
+
+    <div class="cat-mod" id="m-7-13">
+      <div class="cat-mod-id"><span class="cat-mod-id-num">7-13</span><span class="cat-mod-id-name">ESGデータブロック</span><span class="cat-mod-id-class">.wf-esg-data-block</span></div>
+      <div class="cat-mod-preview"><div class="dem-esg-data"><div class="dem-esg-data-head">環境データ</div><div class="dem-esg-data-body"><div class="dem-esg-data-row">→ GHG排出量（スコープ1, 2, 3）</div><div class="dem-esg-data-row">→ エネルギー使用量</div><div class="dem-esg-data-row">→ 水資源使用量</div><div class="dem-esg-data-row">→ 廃棄物排出量</div></div></div></div>
+      <div class="cat-mod-meta">
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">UI</span><span class="cat-mod-meta-body">カテゴリ見出し＋データ項目リスト。199 ESGデータページから各テーマへの参照ガイド。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">002 戦略</span><span class="page-chip">004 環境</span><span class="page-chip">005b 社会</span><span class="page-chip">199 ESGデータ</span></span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">ルール</span><span class="cat-mod-meta-body">ESGデータページのテーマ別データセットへの遷移／L2インデックスからESGデータページへの誘導。</span></div>
+      </div>
+    </div>
+
+    <p style="margin-top:24px; padding:14px; background:#FFF9E6; border:1px solid #E8D070; font-size:11px;">
+      ⚠️ <strong>注：</strong>本サンプルは <strong>v3.7.1 catalog の cat-section / cat-mod 構造をそのまま流用</strong>。各モジュールのプレビューは既存catalog内の <code>dem-*</code> クラスのレンダリング結果。新規モジュール（7-1 プライマリ／7-5 クイックアクセス／7-7 トピックス／7-8 ブロック型／7-12 目次タイル／7-13 ESGデータブロック／7-14 見出し横／7-15 外部リンク）のプレビューは別途追加CSSが必要（このサンプルでは既存catalogのデモCSSを流用または近似表示）。
+    </p>
+
+  </section>
+
+</div><!-- /cat-page -->
+
+</body>
+</html>
