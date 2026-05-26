@@ -1208,6 +1208,41 @@ body {
 .img-text-row.is-50-50 { grid-template-columns: 1fr 1fr; }
 .img-text-row .img-text-img { display: flex; flex-direction: column; gap: 8px; }
 .img-text-row .img-text-img .wf-img-ph { margin: 0; }
+
+/* 画像プレースホルダ — 124等と同型（グレー背景＋ハッチング＋白枠ラベル） */
+.wf-img-ph {
+  background: var(--c-ph); border: 1px solid var(--c-ph-line);
+  aspect-ratio: 16 / 7;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  font-size: 11px; color: var(--c-text-s);
+  margin: 10px 0 12px;
+  overflow: hidden;
+}
+.wf-img-ph::before {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(45deg, transparent 0 12px, rgba(0,0,0,0.04) 12px 13px);
+}
+.wf-img-ph-label {
+  position: relative; z-index: 1;
+  background: rgba(255,255,255,0.92);
+  padding: 4px 12px;
+  border: 1px dashed var(--c-ph-line);
+  letter-spacing: 0.03em;
+  font-weight: 700;
+  color: var(--c-text-h);
+}
+.img-zoom-btn {
+  position: absolute;
+  bottom: 6px; right: 6px;
+  width: 26px; height: 26px;
+  background: var(--c-text-h); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 700; line-height: 1;
+  cursor: default; z-index: 5;
+  border: 1px solid #fff;
+}
+.img-zoom-btn::before { content: '+'; }
 .img-text-row .img-cap {
   font-size: 11px;
   color: var(--c-text-s);
