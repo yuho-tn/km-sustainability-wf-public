@@ -577,15 +577,12 @@ html, body { min-width: var(--page-w); }
   color: var(--c-text-xs); font-size: 11px; margin-right: 6px;
 }
 
-/* #13 下層導線ボタン：見出しと一体の「詳細を見る」を廃し、
-   本文を読んだ末尾に行き先が分かる文言の明示ボタンを配置 */
-.wf-btn-grid { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 16px; }
-
-/* #7 トピックス一覧リンクを一覧の下部（右寄せ）に配置（KM他サイト準拠） */
+/* ボタングリッド：複数の .wf-btn を並べる共通コンテナ。
+   原則 左揃え／上ボーダー無し（旧 .sec-cta / .list-bottom-link を統合） */
 .wf-btn-grid {
-  display: flex; justify-content: flex-end;
-  border-top: 1px solid var(--c-border);
-  padding-top: 14px; margin-bottom: 24px;
+  margin-top: 24px;
+  display: flex; flex-wrap: wrap; gap: 16px;
+  justify-content: flex-start;
 }
 .wf-btn-grid .wf-btn { min-width: 0; }
 
