@@ -45,7 +45,7 @@ body {
   position: sticky; top: 0; z-index: 2000; letter-spacing: 0.03em;
 }
 .wf-meta-bar strong { color: #fff; font-size: 12px; }
-.wf-meta-bar .meta-badge { background: #333; color: #aaa; font-size: 10px; padding: 2px 8px; border-radius: 2px; margin-left: 8px; }
+.wf-meta-bar .wf-meta-badge { background: #333; color: #aaa; font-size: 10px; padding: 2px 8px; border-radius: 2px; margin-left: 8px; }
 
 .wf-canvas { max-width: var(--page-w); margin: 0 auto; display: grid; grid-template-columns: 1fr 280px; align-items: start; }
 /* v2.4：overflow-x:clip でスクロールコンテナを作らず目次sticky追従を維持 */
@@ -59,7 +59,7 @@ body {
 .wf-breadcrumb span.current { color: var(--c-text); }
 
 .wf-page-indicator { background: #2A2A2A; color: #aaa; padding: 6px 32px; font-size: 10px; display: flex; align-items: center; justify-content: space-between; }
-.wf-page-indicator .pi-layer { background: #444; color: #888; font-size: 9px; padding: 1px 8px; border-radius: 2px; }
+.wf-page-indicator .wf-pi-layer { background: #444; color: #888; font-size: 9px; padding: 1px 8px; border-radius: 2px; }
 
 .wf-section { padding: var(--pad-section) var(--pad-h); border-bottom: 1px solid var(--c-border-s); position: relative; }
 .wf-section.bg-sub { background: var(--c-bg-sub); }
@@ -250,26 +250,26 @@ body {
 }
 
 /* 国際規範リスト（v1.6：0525 中山FB#8 反映 — グレー囲い廃止、シンプルな箇条書きモジュールに） */
-.norm-list {
+.wf-norm-list {
   margin-top: 10px;
   margin-bottom: 18px;
 }
-.norm-list ul {
+.wf-norm-list ul {
   list-style: none; padding: 0; margin: 0;
   display: grid; grid-template-columns: 1fr 1fr; gap: 4px 24px;
 }
-.norm-list li {
+.wf-norm-list li {
   font-size: 13px; color: var(--c-text);
   padding-left: 14px; position: relative;
   line-height: 1.95;
 }
-.norm-list li::before {
+.wf-norm-list li::before {
   content: '・'; position: absolute; left: 0; top: 0;
   font-size: 13px; color: var(--c-text-h);
 }
 
 /* 推進体制図 */
-.gov-structure-fig {
+.wf-gov-structure-fig {
   background: var(--c-ph); border: 1px solid var(--c-ph-line);
   position: relative; overflow: hidden;
   aspect-ratio: 16 / 6;
@@ -281,7 +281,7 @@ body {
   position: absolute; inset: 0;
   background: repeating-linear-gradient(45deg, transparent 0 12px, rgba(0,0,0,0.04) 12px 13px);
 }
-.gov-structure-fig-label {
+.wf-gov-structure-fig-label {
   position: relative; z-index: 1;
   font-size: 11px; color: var(--c-text-s);
   text-align: center; line-height: 1.7;
@@ -290,8 +290,8 @@ body {
   border: 1px dashed var(--c-ph-line);
   max-width: 80%;
 }
-.gov-structure-fig-label strong { display: block; font-size: 12px; color: var(--c-text-h); margin-bottom: 4px; }
-.img-zoom-btn {
+.wf-gov-structure-fig-label strong { display: block; font-size: 12px; color: var(--c-text-h); margin-bottom: 4px; }
+.wf-img-zoom-btn {
   position: absolute;
   bottom: 6px; right: 6px;
   width: 26px; height: 26px;
@@ -301,7 +301,7 @@ body {
   cursor: default; z-index: 5;
   border: 1px solid #fff;
 }
-.img-zoom-btn::before { content: '+'; }
+.wf-img-zoom-btn::before { content: '+'; }
 
 /* 人権DDプロセス図（v1.6：0525 村上FB#3 反映 — 4ステップ図を画像PHとして再導入） */
 .dd-process-fig {
@@ -328,50 +328,50 @@ body {
 .dd-process-fig-label strong { display: block; font-size: 12px; color: var(--c-text-h); margin-bottom: 4px; }
 
 /* インパクトアセスメント表 */
-.impact-table-wrap { overflow-x: auto; margin: 14px 0 8px; border: 1px solid var(--c-border); }
-.impact-table { width: 100%; border-collapse: collapse; font-size: 11px; background: var(--c-white); min-width: 920px; }
-.impact-table th, .impact-table td {
+.wf-impact-table-wrap { overflow-x: auto; margin: 14px 0 8px; border: 1px solid var(--c-border); }
+.wf-impact-table { width: 100%; border-collapse: collapse; font-size: 11px; background: var(--c-white); min-width: 920px; }
+.wf-impact-table th, .wf-impact-table td {
   border: 1px solid var(--c-border-s);
   padding: 8px 10px; text-align: center;
   line-height: 1.6; vertical-align: middle;
 }
-.impact-table thead th {
+.wf-impact-table thead th {
   background: var(--c-text-h); color: #fff;
   font-size: 10px; font-weight: 700;
   letter-spacing: 0.04em;
 }
-.impact-table thead th.sub-th {
+.wf-impact-table thead th.sub-th {
   background: #555;
   font-size: 10px;
 }
-.impact-table tbody th {
+.wf-impact-table tbody th {
   background: var(--c-bg-sub); color: var(--c-text-h);
   font-weight: 700; font-size: 11px;
   text-align: left;
   white-space: normal;
 }
-.impact-table .check { font-size: 14px; color: var(--c-text-h); font-weight: 700; }
-.impact-table .ex {
+.wf-impact-table .check { font-size: 14px; color: var(--c-text-h); font-weight: 700; }
+.wf-impact-table .ex {
   text-align: left;
   font-size: 11px; color: var(--c-text-s);
   line-height: 1.6;
 }
-.impact-table-note { font-size: 10px; color: var(--c-text-xs); margin-top: 6px; line-height: 1.7; }
+.wf-impact-table-note { font-size: 10px; color: var(--c-text-xs); margin-top: 6px; line-height: 1.7; }
 
 /* 優先度サマリ表（ステークホルダー別） */
-.priority-table-wrap { overflow-x: auto; margin: 14px 0 8px; border: 1px solid var(--c-border); }
-.priority-table { width: 100%; border-collapse: collapse; font-size: 12px; background: var(--c-white); }
-.priority-table th, .priority-table td {
+.wf-priority-table-wrap { overflow-x: auto; margin: 14px 0 8px; border: 1px solid var(--c-border); }
+.wf-priority-table { width: 100%; border-collapse: collapse; font-size: 12px; background: var(--c-white); }
+.wf-priority-table th, .wf-priority-table td {
   border: 1px solid var(--c-border-s);
   padding: 12px 14px; line-height: 1.7;
   vertical-align: top;
 }
-.priority-table thead th {
+.wf-priority-table thead th {
   background: var(--c-text-h); color: #fff;
   font-size: 11px; font-weight: 700;
   letter-spacing: 0.04em; text-align: center;
 }
-.priority-table tbody th {
+.wf-priority-table tbody th {
   background: var(--c-bg-sub); color: var(--c-text-h);
   font-weight: 700; font-size: 12px;
   text-align: left;
@@ -380,28 +380,28 @@ body {
 }
 
 /* 措置／追跡評価表 */
-.measure-table-wrap { overflow-x: auto; margin: 14px 0 8px; border: 1px solid var(--c-border); }
-.measure-table { width: 100%; border-collapse: collapse; font-size: 11px; background: var(--c-white); min-width: 880px; }
-.measure-table th, .measure-table td {
+.wf-measure-table-wrap { overflow-x: auto; margin: 14px 0 8px; border: 1px solid var(--c-border); }
+.wf-measure-table { width: 100%; border-collapse: collapse; font-size: 11px; background: var(--c-white); min-width: 880px; }
+.wf-measure-table th, .wf-measure-table td {
   border: 1px solid var(--c-border-s);
   padding: 10px 12px; text-align: left;
   line-height: 1.7; vertical-align: top;
 }
-.measure-table thead th {
+.wf-measure-table thead th {
   background: var(--c-text-h); color: #fff;
   font-size: 11px; font-weight: 700;
   letter-spacing: 0.04em; text-align: center;
 }
-.measure-table tbody th {
+.wf-measure-table tbody th {
   background: var(--c-bg-sub); color: var(--c-text-h);
   font-weight: 700; font-size: 11px;
 }
-.measure-table .col-stake { width: 130px; }
-.measure-table .col-risk { width: 200px; }
-.measure-table ul { margin: 0; padding-left: 16px; }
-.measure-table li { margin-bottom: 4px; }
+.wf-measure-table .col-stake { width: 130px; }
+.wf-measure-table .col-risk { width: 200px; }
+.wf-measure-table ul { margin: 0; padding-left: 16px; }
+.wf-measure-table li { margin-bottom: 4px; }
 /* v1.6：0525 桐原FB#5 反映 — テキストリンクは「→ リンクテキスト」で統一 */
-.measure-table .wf-text-link {
+.wf-measure-table .wf-text-link {
   display: inline-block;
   font-size: 11px; color: var(--c-text-h);
   font-weight: 600;
@@ -410,7 +410,7 @@ body {
   text-underline-offset: 2px;
   cursor: default;
 }
-.measure-table .wf-text-link::before {
+.wf-measure-table .wf-text-link::before {
   content: '→ ';
   display: inline-block;
   margin-right: 2px;
@@ -420,28 +420,28 @@ body {
 }
 
 /* RBA VAP監査表 */
-.audit-table-wrap { overflow-x: auto; margin: 14px 0; border: 1px solid var(--c-border); }
-.audit-table { width: 100%; border-collapse: collapse; font-size: 12px; background: var(--c-white); }
-.audit-table th, .audit-table td {
+.wf-audit-table-wrap { overflow-x: auto; margin: 14px 0; border: 1px solid var(--c-border); }
+.wf-audit-table { width: 100%; border-collapse: collapse; font-size: 12px; background: var(--c-white); }
+.wf-audit-table th, .wf-audit-table td {
   border: 1px solid var(--c-border-s);
   padding: 10px 14px; line-height: 1.6;
   vertical-align: middle;
 }
-.audit-table thead th {
+.wf-audit-table thead th {
   background: var(--c-text-h); color: #fff;
   font-size: 11px; font-weight: 700;
   letter-spacing: 0.04em; text-align: center;
 }
-.audit-table tbody td {
+.wf-audit-table tbody td {
   font-size: 12px; color: var(--c-text);
   text-align: center;
 }
-.audit-table tbody td:first-child {
+.wf-audit-table tbody td:first-child {
   text-align: left;
   font-weight: 700;
   color: var(--c-text-h);
 }
-.audit-table tbody td.rank {
+.wf-audit-table tbody td.rank {
   background: #FAF7F0;
   font-weight: 700;
 }
@@ -555,12 +555,12 @@ body {
    v1.7：0525 桐原FB#7 反映 — 人権方針PDF全文をページ内HTML展開
    catalog 共通モジュール候補（131健康宣言・148品質方針・124DE&I方針 横展開予定）
 ============================================================ */
-.policy-statement {
+.wf-policy-statement {
   margin: 14px 0 22px;
   border: 1px solid var(--c-border);
   background: var(--c-white);
 }
-.policy-statement-summary {
+.wf-policy-statement-summary {
   list-style: none;
   cursor: default;
   padding: 14px 60px 14px 18px;
@@ -569,12 +569,12 @@ body {
   position: relative;
   line-height: 1.5;
 }
-.policy-statement[open] .policy-statement-summary {
+.policy-statement[open] .wf-policy-statement-summary {
   border-bottom: 1px solid var(--c-border);
 }
-.policy-statement-summary::-webkit-details-marker { display: none; }
-.policy-statement-summary::marker { content: ''; }
-.policy-statement-summary::after {
+.wf-policy-statement-summary::-webkit-details-marker { display: none; }
+.wf-policy-statement-summary::marker { content: ''; }
+.wf-policy-statement-summary::after {
   content: '＋';
   position: absolute;
   right: 16px; top: 50%; transform: translateY(-50%);
@@ -585,8 +585,8 @@ body {
   font-size: 14px; font-weight: 700;
   line-height: 1;
 }
-.policy-statement[open] .policy-statement-summary::after { content: '−'; }
-.policy-statement-badge {
+.policy-statement[open] .wf-policy-statement-summary::after { content: '−'; }
+.wf-policy-statement-badge {
   display: inline-flex; align-items: center; justify-content: center;
   font-size: 10px; font-weight: 700;
   color: #fff; background: var(--c-text-h);
@@ -595,7 +595,7 @@ body {
   white-space: nowrap;
   flex-shrink: 0;
 }
-.policy-statement-title {
+.wf-policy-statement-title {
   font-size: 15px; font-weight: 700;
   color: var(--c-text-h);
   letter-spacing: -0.01em;
@@ -603,18 +603,18 @@ body {
   flex: 1 1 auto;
   min-width: 0;
 }
-.policy-statement-meta {
+.wf-policy-statement-meta {
   font-size: 11px; color: var(--c-text-s);
   letter-spacing: 0.04em;
   white-space: nowrap;
   flex-shrink: 0;
 }
 
-.policy-statement-body {
+.wf-policy-statement-body {
   padding: 26px 30px 28px;
   background: var(--c-white);
 }
-.policy-section-title {
+.wf-policy-section-title {
   font-size: 14px; font-weight: 700;
   color: var(--c-text-h);
   margin-top: 26px;
@@ -624,22 +624,22 @@ body {
   letter-spacing: 0.01em;
   line-height: 1.5;
 }
-.policy-section-title:first-child { margin-top: 0; }
+.wf-policy-section-title:first-child { margin-top: 0; }
 
-.policy-subsection-title {
+.wf-policy-subsection-title {
   font-size: 12px; font-weight: 700;
   color: var(--c-text-h);
   margin-top: 14px; margin-bottom: 4px;
   line-height: 1.5;
 }
-.policy-statement-body p {
+.wf-policy-statement-body p {
   font-size: 13px; line-height: 1.95;
   color: var(--c-text);
   margin-bottom: 12px;
 }
-.policy-subsection-title + p { margin-top: 0; margin-bottom: 8px; }
+.wf-policy-subsection-title + p { margin-top: 0; margin-bottom: 8px; }
 
-.policy-statement-signature {
+.wf-policy-statement-signature {
   margin-top: 28px;
   padding-top: 16px;
   border-top: 1px solid var(--c-border);
@@ -648,7 +648,7 @@ body {
   color: var(--c-text);
   line-height: 1.85;
 }
-.policy-signature-name {
+.wf-policy-signature-name {
   font-size: 18px;
   font-weight: 700;
   color: var(--c-text-h);
@@ -908,11 +908,11 @@ body {
 <div class="wf-meta-bar">
   <div>
     <strong>KONICA MINOLTA サステナビリティ</strong>
-    <span class="meta-badge">人権</span>
-    <span class="meta-badge">WF v1.8</span>
-    <span class="meta-badge">#140</span>
-    <span class="meta-badge">L3</span>
-    <span class="meta-badge" style="background:#7a4a00; color:#fff;">v1.8（横断ルール適用）：右アンカーナビをUNIFIED_RULES v5.0 §3 準拠（H2/H3全文表記＋2行クランプ＋H3インデント）に揃え</span>
+    <span class="wf-meta-badge">人権</span>
+    <span class="wf-meta-badge">WF v1.8</span>
+    <span class="wf-meta-badge">#140</span>
+    <span class="wf-meta-badge">L3</span>
+    <span class="wf-meta-badge" style="background:#7a4a00; color:#fff;">v1.8（横断ルール適用）：右アンカーナビをUNIFIED_RULES v5.0 §3 準拠（H2/H3全文表記＋2行クランプ＋H3インデント）に揃え</span>
   </div>
   <div style="font-size:10px; color:#666;">2026.05 / v1.7→v1.8：横断ルール準拠</div>
 </div>
@@ -922,7 +922,7 @@ body {
 
     <div class="wf-page-indicator">
       <span>人権 / URL: /about/csr/social/human-rights/</span>
-      <span class="pi-layer">L3 第3階層 — 人権</span>
+      <span class="wf-pi-layer">L3 第3階層 — 人権</span>
     </div>
 
     <!-- ヘッダー：KM公式デザイン（画像差し替え） -->
@@ -971,15 +971,15 @@ body {
           </p>
 
           <!-- v1.7：0525 桐原FB#7 反映 — 人権方針PDF全文をページ内アコーディオン展開 -->
-          <details class="policy-statement" id="human-rights-policy" open>
-            <summary class="policy-statement-summary">
-              <span class="policy-statement-badge">方針</span>
-              <span class="policy-statement-title">コニカミノルタグループ人権方針</span>
-              <span class="policy-statement-meta">2022年4月1日制定</span>
+          <details class="wf-policy-statement" id="human-rights-policy" open>
+            <summary class="wf-policy-statement-summary">
+              <span class="wf-policy-statement-badge">方針</span>
+              <span class="wf-policy-statement-title">コニカミノルタグループ人権方針</span>
+              <span class="wf-policy-statement-meta">2022年4月1日制定</span>
             </summary>
-            <div class="policy-statement-body">
+            <div class="wf-policy-statement-body">
 
-              <h4 class="policy-section-title">基本的な考え方</h4>
+              <h4 class="wf-policy-section-title">基本的な考え方</h4>
               <p>
                 私たちコニカミノルタグループは、「Imaging to the People」を経営ビジョンに掲げ、「人間中心の生きがい追求」と「持続的な社会の実現」を高次に両立させることを目指しています。その実現にあたり、人権の尊重をコニカミノルタグループが事業活動を行う上での基本原則ととらえ、その責任を果たすことに努めます。
               </p>
@@ -990,52 +990,52 @@ body {
                 本方針は、コニカミノルタグループの企業理念、経営ビジョンに基づいて、人権に対するコニカミノルタグループの責任と決意を宣言するものであり、コニカミノルタグループ内の人権に関わるすべての規程の上位に位置付けます。
               </p>
 
-              <h4 class="policy-section-title">本方針の適用範囲</h4>
+              <h4 class="wf-policy-section-title">本方針の適用範囲</h4>
               <p>
                 本方針は、コニカミノルタ株式会社およびその連結子会社からなるコニカミノルタグループのすべての役員と従業員に適用します。また、本方針に基づき、私たちは、コニカミノルタグループの事業に関連するビジネスパートナーやその他の関係者に対し、人権を尊重し、侵害しないよう求めていきます
               </p>
 
-              <h4 class="policy-section-title">人権尊重への取り組み</h4>
-              <h5 class="policy-subsection-title">1）差別の排除</h5>
+              <h4 class="wf-policy-section-title">人権尊重への取り組み</h4>
+              <h5 class="wf-policy-subsection-title">1）差別の排除</h5>
               <p>
                 私たちは、人種、性別、国籍、年齢、性的指向・性自認、宗教、民族、障がい、妊娠状況、思想、信条、社会的身分などによる差別の排除に努めます。
               </p>
-              <h5 class="policy-subsection-title">2）従業員への配慮</h5>
+              <h5 class="wf-policy-subsection-title">2）従業員への配慮</h5>
               <p>
                 私たちは、従業員の多様性、基本的人権、プライバシーを尊重し、あらゆる差別の根絶に努めるとともに、児童労働、強制労働、ハラスメントなどを排除し、適正な労働時間の管理、最低賃金の確保、安全で衛生的な職場環境の提供、結社の自由と団体交渉権の尊重などに取り組みます。
               </p>
-              <h5 class="policy-subsection-title">3）事業活動への配慮</h5>
+              <h5 class="wf-policy-subsection-title">3）事業活動への配慮</h5>
               <p>
                 私たちは、サプライチェーンの行動規範に沿って、コニカミノルタグループのサプライヤーとともに責任あるサプライチェーンの維持に努めます。また、お客様のプライバシーを尊重することにより、お客様に社会的な差別をもたらさないよう取り組みます。
               </p>
 
-              <h4 class="policy-section-title">人権尊重の実践</h4>
-              <h5 class="policy-subsection-title">1）人権デュー・デリジェンスの実施</h5>
+              <h4 class="wf-policy-section-title">人権尊重の実践</h4>
+              <h5 class="wf-policy-subsection-title">1）人権デュー・デリジェンスの実施</h5>
               <p>
                 私たちは、人権デュー・デリジェンスの仕組みを構築し、潜在的または実際の人権リスクを評価・特定し、それらに対処することで、人権への負の影響の防止・軽減に努めます。
               </p>
-              <h5 class="policy-subsection-title">2）救済措置</h5>
+              <h5 class="wf-policy-subsection-title">2）救済措置</h5>
               <p>
                 私たちは、人権に関する懸念を通報できる制度を活用し、人権侵害の申し立てがあった場合には速やかに調査し、人権に対する負の影響を直接的に引き起こしたり、あるいはこれに関与したことが明確である場合、社内外のしかるべき手続きを通じて是正策を講じます。
               </p>
-              <h5 class="policy-subsection-title">3）教育</h5>
+              <h5 class="wf-policy-subsection-title">3）教育</h5>
               <p>
                 私たちは、本方針がコニカミノルタグループのすべての事業活動に組み込まれるよう、役員、従業員等に対し、適切な教育を行います。
               </p>
-              <h5 class="policy-subsection-title">4）ステークホルダーとの対話</h5>
+              <h5 class="wf-policy-subsection-title">4）ステークホルダーとの対話</h5>
               <p>
                 私たちは、本方針および本方針に基づく取り組みに対する外部ステークホルダーからの専門的な助言を通じて、人権尊重の取り組みを強化します。
               </p>
-              <h5 class="policy-subsection-title">5）情報開示</h5>
+              <h5 class="wf-policy-subsection-title">5）情報開示</h5>
               <p>
                 私たちは、人権への負の影響に対処するための取り組みの進捗状況について、ホームページや統合報告書などを通じ適切に情報開示します。
               </p>
 
-              <div class="policy-statement-signature">
+              <div class="wf-policy-statement-signature">
                 <div>2022年4月1日</div>
                 <div>コニカミノルタ株式会社</div>
                 <div>代表執行役社長 兼 CEO</div>
-                <div class="policy-signature-name">大幸 利充</div>
+                <div class="wf-policy-signature-name">大幸 利充</div>
               </div>
 
             </div>
@@ -1053,7 +1053,7 @@ body {
             取り組みにあたっては、特に下記のグローバルな原則や国際規範の最新版を支持し尊重しています。
           </p>
 
-          <div class="norm-list">
+          <div class="wf-norm-list">
             <ul>
               <li>世界人権宣言</li>
               <li>国際人権規約</li>
@@ -1082,13 +1082,13 @@ body {
           </p>
 
           <h3 class="wf-sub-title" id="structure-fig">人権対応の体制図</h3>
-          <div class="gov-structure-fig">
-            <span class="gov-structure-fig-label">
+          <div class="wf-gov-structure-fig">
+            <span class="wf-gov-structure-fig-label">
               <strong>図：人権対応の全社推進体制 PH</strong>
               リスクマネジメント担当役員 ／ リスクマネジメント委員会 ／ 経営企画部門・法務部門・生産企画部門 ／ 事業領域別推進責任者<br>
               ※ 年2回のリスクマネジメント委員会で報告・審議
             </span>
-            <span class="img-zoom-btn"></span>
+            <span class="wf-img-zoom-btn"></span>
           </div>
         </section>
 
@@ -1114,7 +1114,7 @@ body {
               1. 人権への負の影響の特定・評価（インパクトアセスメント）　→　2. 適切な措置の実施（負の影響の防止・軽減）　→　3. 実効性の追跡評価　→　4. 情報公開<br>
               ※ 国連「ビジネスと人権に関する指導原則」に則ったサイクル
             </span>
-            <span class="img-zoom-btn"></span>
+            <span class="wf-img-zoom-btn"></span>
           </div>
 
           <!-- 1. 特定・評価 -->
@@ -1124,8 +1124,8 @@ body {
           </p>
 
           <h4 class="wf-card-title has-mark">人権リスク項目の特定とステークホルダーの関連性</h4>
-          <div class="impact-table-wrap">
-            <table class="impact-table">
+          <div class="wf-impact-table-wrap">
+            <table class="wf-impact-table">
               <thead>
                 <tr>
                   <th rowspan="2" style="text-align:left;">人権リスク項目</th>
@@ -1176,8 +1176,8 @@ body {
           </p>
 
           <h4 class="wf-card-title has-mark">ステークホルダーごとの優先度が高いと特定した人権リスク項目</h4>
-          <div class="priority-table-wrap">
-            <table class="priority-table">
+          <div class="wf-priority-table-wrap">
+            <table class="wf-priority-table">
               <thead>
                 <tr>
                   <th>ステークホルダー</th>
@@ -1212,8 +1212,8 @@ body {
           </p>
 
           <h4 class="wf-card-title has-mark">優先度が高いと特定した人権リスク項目に対する適切な措置の実施と実効性の追跡評価の事例</h4>
-          <div class="measure-table-wrap">
-            <table class="measure-table">
+          <div class="wf-measure-table-wrap">
+            <table class="wf-measure-table">
               <thead>
                 <tr>
                   <th class="col-stake">ステークホルダー</th>
@@ -1286,8 +1286,8 @@ body {
           <p class="wf-section-desc">
             コニカミノルタでは自社生産拠点における人権リスク軽減のため第三者監査（RBA VAP監査）を継続的に受審しています。2025年4月1日時点では以下の主要な3拠点にて認証を保有しています。
           </p>
-          <div class="audit-table-wrap">
-            <table class="audit-table">
+          <div class="wf-audit-table-wrap">
+            <table class="wf-audit-table">
               <thead>
                 <tr>
                   <th style="text-align:left;">事業所名</th>
@@ -1423,7 +1423,7 @@ body {
                   <strong>図：JaCER対話救済プラットフォーム 全ステークホルダー対応フロー PH</strong>
                   受付（匿名OK・代理人OK）→ JaCERによる第三者支援 → 事実確認・対話 → 是正・救済 → 進捗共有・公開
                 </span>
-                <span class="img-zoom-btn"></span>
+                <span class="wf-img-zoom-btn"></span>
               </div>
 
               <div style="margin-top:8px;">
@@ -1454,7 +1454,7 @@ body {
               </p>
               <div class="remediation-photo">
                 <span class="remediation-photo-label">[ 写真PH ]</span>
-                <span class="img-zoom-btn"></span>
+                <span class="wf-img-zoom-btn"></span>
               </div>
               <p class="remediation-cap">自動ドアの停電時に備え設置された非常出口</p>
             </div>
@@ -1693,7 +1693,7 @@ body {
       </div>
       <div class="ann-row">
         <span class="ann-row-label">モジュール仕様</span>
-        <code>&lt;details class="policy-statement"&gt;</code>。summary：黒バッジ「方針」＋タイトル＋制定日メタ＋＋/−マーカー／body：policy-section-title（H4・下線付）／policy-subsection-title（H5）／policy-statement-signature（明朝下線署名）。
+        <code>&lt;details class="wf-policy-statement"&gt;</code>。summary：黒バッジ「方針」＋タイトル＋制定日メタ＋＋/−マーカー／body：wf-policy-section-title（H4・下線付）／wf-policy-subsection-title（H5）／wf-policy-statement-signature（明朝下線署名）。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">catalog 横展開</span>
@@ -1710,7 +1710,7 @@ body {
       <span class="ann-head">0525 Figma FB（B→A化3点）反映サマリ</span>
       <div class="ann-row">
         <span class="ann-row-label">#8（B→A・反映済）中山</span>
-        「目立たせたくない／グレーの四角は不要」→ <b>国際規範リスト（.norm-list）のグレー背景＋ボーダーを廃止</b>し、シンプルな「・」プレフィックス箇条書きモジュールに置換（2カラムグリッド構成は維持）。
+        「目立たせたくない／グレーの四角は不要」→ <b>国際規範リスト（.wf-norm-list）のグレー背景＋ボーダーを廃止</b>し、シンプルな「・」プレフィックス箇条書きモジュールに置換（2カラムグリッド構成は維持）。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">#3（B→A・反映済）村上</span>
@@ -1722,7 +1722,7 @@ body {
       </div>
       <div class="ann-row">
         <span class="ann-row-label">v1.6 残課題（B保留）</span>
-        FB#7（人権方針 policy-statement モジュール／catalog新規）／FB#9（アコーディオン不要 vs 全展開固定）はKM側確認待ち。次フェーズで対応。
+        FB#7（人権方針 wf-policy-statement モジュール／catalog新規）／FB#9（アコーディオン不要 vs 全展開固定）はKM側確認待ち。次フェーズで対応。
       </div>
     </div>
 
@@ -1860,8 +1860,8 @@ body {
       <span class="ann-num">M</span>
       <span class="ann-head">主要モジュール</span>
       <p class="ann-body">
-        共通: ヘッダー／lnav／パンくず／フッター／H2/H3/H4／wf-btn／img-zoom-btn＋modal preview／コンパクトアンカーナビ（6項目）<br>
-        新規: norm-list（国際規範◆2列）／dd-process（4ステップ›連結）／impact-table（19×4の大型マトリクス）／priority-table／measure-table（リスク詳細リンク付）／audit-table（RBA VAP）／jacer-fig／remediation-photo／wf-text-link<br>
+        共通: ヘッダー／lnav／パンくず／フッター／H2/H3/H4／wf-btn／wf-img-zoom-btn＋modal preview／コンパクトアンカーナビ（6項目）<br>
+        新規: wf-norm-list（国際規範◆2列）／dd-process（4ステップ›連結）／wf-impact-table（19×4の大型マトリクス）／wf-priority-table／wf-measure-table（リスク詳細リンク付）／wf-audit-table（RBA VAP）／jacer-fig／remediation-photo／wf-text-link<br>
         流用: gov-structure-fig（131）／wf-acc-h3＋h4（131 v2.1丸枠アイコン）
       </p>
     </div>

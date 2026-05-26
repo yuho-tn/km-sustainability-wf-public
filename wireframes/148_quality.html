@@ -45,7 +45,7 @@ body {
   position: sticky; top: 0; z-index: 2000; letter-spacing: 0.03em;
 }
 .wf-meta-bar strong { color: #fff; font-size: 12px; }
-.wf-meta-bar .meta-badge { background: #333; color: #aaa; font-size: 10px; padding: 2px 8px; border-radius: 2px; margin-left: 8px; }
+.wf-meta-bar .wf-meta-badge { background: #333; color: #aaa; font-size: 10px; padding: 2px 8px; border-radius: 2px; margin-left: 8px; }
 
 .wf-canvas { max-width: var(--page-w); margin: 0 auto; display: grid; grid-template-columns: 1fr 280px; align-items: start; }
 /* v2.4：overflow-x:clip でスクロールコンテナを作らず目次sticky追従を維持 */
@@ -59,7 +59,7 @@ body {
 .wf-breadcrumb span.current { color: var(--c-text); }
 
 .wf-page-indicator { background: #2A2A2A; color: #aaa; padding: 6px 32px; font-size: 10px; display: flex; align-items: center; justify-content: space-between; }
-.wf-page-indicator .pi-layer { background: #444; color: #888; font-size: 9px; padding: 1px 8px; border-radius: 2px; }
+.wf-page-indicator .wf-pi-layer { background: #444; color: #888; font-size: 9px; padding: 1px 8px; border-radius: 2px; }
 
 .wf-section { padding: var(--pad-section) var(--pad-h); border-bottom: 1px solid var(--c-border-s); position: relative; }
 .wf-section.bg-sub { background: var(--c-bg-sub); }
@@ -258,24 +258,24 @@ body {
 }
 
 /* 背景と課題／目指す姿の表（v2.1：縦幅圧縮） */
-.bg-vision-table-wrap { margin: 14px 0; border: 1px solid var(--c-border); }
-.bg-vision-table { width: 100%; border-collapse: collapse; font-size: 12px; background: var(--c-white); table-layout: fixed; }
-.bg-vision-table th, .bg-vision-table td {
+.wf-bg-wf-vision-table-wrap { margin: 14px 0; border: 1px solid var(--c-border); }
+.wf-bg-wf-vision-table { width: 100%; border-collapse: collapse; font-size: 12px; background: var(--c-white); table-layout: fixed; }
+.wf-bg-wf-vision-table th, .wf-bg-wf-vision-table td {
   border: 1px solid var(--c-border-s);
   padding: 10px 14px; text-align: left;
   line-height: 1.7; vertical-align: top;
   word-break: break-word;
 }
-.bg-vision-table thead th {
+.wf-bg-wf-vision-table thead th {
   background: var(--c-text-h); color: #fff;
   font-size: 11px; font-weight: 700;
   letter-spacing: 0.04em;
   text-align: center;
 }
-.bg-vision-table colgroup col.col-theme { width: 130px; }
-.bg-vision-table colgroup col.col-bg { width: 44%; }
-.bg-vision-table colgroup col.col-vision { width: auto; }
-.bg-vision-table tbody th {
+.wf-bg-wf-vision-table colgroup col.col-theme { width: 130px; }
+.wf-bg-wf-vision-table colgroup col.col-bg { width: 44%; }
+.wf-bg-wf-vision-table colgroup col.col-vision { width: auto; }
+.wf-bg-wf-vision-table tbody th {
   background: var(--c-bg-sub); color: var(--c-text-h);
   font-weight: 700; font-size: 12px;
   vertical-align: middle;
@@ -288,12 +288,12 @@ body {
    v3.0：0525 FB#4・#5・#8 反映 — 品質方針PDF原稿をページ内HTML展開
    catalog 共通モジュール（140人権方針 / 131健康宣言 と同パターン）
 ============================================================ */
-.policy-statement {
+.wf-policy-statement {
   margin: 14px 0 22px;
   border: 1px solid var(--c-border);
   background: var(--c-white);
 }
-.policy-statement-summary {
+.wf-policy-statement-summary {
   list-style: none;
   cursor: default;
   padding: 14px 60px 14px 18px;
@@ -302,12 +302,12 @@ body {
   position: relative;
   line-height: 1.5;
 }
-.policy-statement[open] .policy-statement-summary {
+.policy-statement[open] .wf-policy-statement-summary {
   border-bottom: 1px solid var(--c-border);
 }
-.policy-statement-summary::-webkit-details-marker { display: none; }
-.policy-statement-summary::marker { content: ''; }
-.policy-statement-summary::after {
+.wf-policy-statement-summary::-webkit-details-marker { display: none; }
+.wf-policy-statement-summary::marker { content: ''; }
+.wf-policy-statement-summary::after {
   content: '＋';
   position: absolute;
   right: 16px; top: 50%; transform: translateY(-50%);
@@ -318,8 +318,8 @@ body {
   font-size: 14px; font-weight: 700;
   line-height: 1;
 }
-.policy-statement[open] .policy-statement-summary::after { content: '−'; }
-.policy-statement-badge {
+.policy-statement[open] .wf-policy-statement-summary::after { content: '−'; }
+.wf-policy-statement-badge {
   display: inline-flex; align-items: center; justify-content: center;
   font-size: 10px; font-weight: 700;
   color: #fff; background: var(--c-text-h);
@@ -328,7 +328,7 @@ body {
   white-space: nowrap;
   flex-shrink: 0;
 }
-.policy-statement-title {
+.wf-policy-statement-title {
   font-size: 15px; font-weight: 700;
   color: var(--c-text-h);
   letter-spacing: -0.01em;
@@ -336,23 +336,23 @@ body {
   flex: 1 1 auto;
   min-width: 0;
 }
-.policy-statement-meta {
+.wf-policy-statement-meta {
   font-size: 11px; color: var(--c-text-s);
   letter-spacing: 0.04em;
   white-space: nowrap;
   flex-shrink: 0;
 }
-.policy-statement-body {
+.wf-policy-statement-body {
   padding: 26px 30px 28px;
   background: var(--c-white);
 }
-.policy-statement-body p {
+.wf-policy-statement-body p {
   font-size: 13px; line-height: 1.95;
   color: var(--c-text);
   margin-bottom: 12px;
 }
-.policy-statement-body p:last-child { margin-bottom: 0; }
-.policy-statement-motto {
+.wf-policy-statement-body p:last-child { margin-bottom: 0; }
+.wf-policy-statement-motto {
   text-align: center;
   font-size: 14px; font-weight: 700; color: var(--c-text-h);
   letter-spacing: 0.06em;
@@ -361,20 +361,20 @@ body {
   background: var(--c-bg-sub);
   line-height: 1.7;
 }
-.policy-statement-items {
+.wf-policy-statement-items {
   display: flex; flex-direction: column;
   gap: 0;
   border-top: 1px solid var(--c-border);
   margin: 14px 0 8px;
 }
-.policy-statement-item {
+.wf-policy-statement-item {
   display: grid;
   grid-template-columns: 36px 1fr;
   gap: 14px;
   padding: 14px 0;
   border-bottom: 1px dashed var(--c-border);
 }
-.policy-statement-item-num {
+.wf-policy-statement-item-num {
   font-family: 'Helvetica Neue', sans-serif;
   font-size: 14px; font-weight: 700;
   color: #fff;
@@ -384,15 +384,15 @@ body {
   flex-shrink: 0;
   line-height: 1;
 }
-.policy-statement-item-title {
+.wf-policy-statement-item-title {
   font-size: 13px; font-weight: 700; color: var(--c-text-h);
   line-height: 1.5;
   margin-bottom: 4px;
 }
-.policy-statement-item-text {
+.wf-policy-statement-item-text {
   font-size: 12px; color: var(--c-text); line-height: 1.85;
 }
-.policy-statement-signature {
+.wf-policy-statement-signature {
   margin-top: 24px;
   padding-top: 14px;
   border-top: 1px solid var(--c-border);
@@ -401,7 +401,7 @@ body {
   color: var(--c-text);
   line-height: 1.85;
 }
-.policy-signature-name {
+.wf-policy-signature-name {
   font-size: 18px;
   font-weight: 700;
   color: var(--c-text-h);
@@ -414,7 +414,7 @@ body {
 }
 
 /* 体制図 */
-.gov-structure-fig {
+.wf-gov-structure-fig {
   background: var(--c-ph); border: 1px solid var(--c-ph-line);
   position: relative; overflow: hidden;
   aspect-ratio: 16 / 7;
@@ -426,7 +426,7 @@ body {
   position: absolute; inset: 0;
   background: repeating-linear-gradient(45deg, transparent 0 12px, rgba(0,0,0,0.04) 12px 13px);
 }
-.gov-structure-fig-label {
+.wf-gov-structure-fig-label {
   position: relative; z-index: 1;
   font-size: 11px; color: var(--c-text-s);
   text-align: center; line-height: 1.7;
@@ -435,8 +435,8 @@ body {
   border: 1px dashed var(--c-ph-line);
   max-width: 86%;
 }
-.gov-structure-fig-label strong { display: block; font-size: 12px; color: var(--c-text-h); margin-bottom: 4px; }
-.img-zoom-btn {
+.wf-gov-structure-fig-label strong { display: block; font-size: 12px; color: var(--c-text-h); margin-bottom: 4px; }
+.wf-img-zoom-btn {
   position: absolute;
   bottom: 6px; right: 6px;
   width: 26px; height: 26px;
@@ -446,7 +446,7 @@ body {
   cursor: default; z-index: 5;
   border: 1px solid #fff;
 }
-.img-zoom-btn::before { content: '+'; }
+.wf-img-zoom-btn::before { content: '+'; }
 
 /* TQM 戦略ボックス（v2.1：border-top統一でKPIブロックと揃える） */
 .strategy-block {
@@ -584,42 +584,42 @@ body {
 .wf-acc-h4-static-body > p:last-child { margin-bottom: 0; }
 
 /* KPIブロック */
-.kpi-block {
+.wf-kpi-block {
   background: var(--c-white);
   border: 1px solid var(--c-border);
   border-top: 4px solid var(--c-text-h);
   padding: 22px 26px;
   margin-bottom: 16px;
 }
-.kpi-block-head {
+.wf-kpi-block-head {
   margin-bottom: 12px; padding-bottom: 10px;
   border-bottom: 1px solid var(--c-border-s);
 }
-.kpi-block-title { font-size: 15px; font-weight: 700; color: var(--c-text-h); line-height: 1.4; }
+.wf-kpi-block-title { font-size: 15px; font-weight: 700; color: var(--c-text-h); line-height: 1.4; }
 .kpi-block-sub { font-size: 12px; color: var(--c-text); margin-bottom: 12px; line-height: 1.85; }
 
-.kpi-table-wrap { overflow-x: auto; margin: 8px 0; border: 1px solid var(--c-border); }
-.kpi-table { width: 100%; border-collapse: collapse; font-size: 11px; background: var(--c-white); min-width: 720px; }
-.kpi-table th, .kpi-table td {
+.wf-kpi-table-wrap { overflow-x: auto; margin: 8px 0; border: 1px solid var(--c-border); }
+.wf-kpi-table { width: 100%; border-collapse: collapse; font-size: 11px; background: var(--c-white); min-width: 720px; }
+.wf-kpi-table th, .wf-kpi-table td {
   border: 1px solid var(--c-border-s);
   padding: 8px 10px; text-align: right;
   line-height: 1.5; font-family: 'Helvetica Neue', sans-serif;
 }
-.kpi-table thead th {
+.wf-kpi-table thead th {
   background: var(--c-text-h); color: #fff;
   font-size: 10px; font-weight: 700;
   letter-spacing: 0.04em; white-space: nowrap;
   text-align: center;
 }
-.kpi-table tbody th {
+.wf-kpi-table tbody th {
   background: var(--c-bg-sub); color: var(--c-text-h);
   font-weight: 700; font-size: 11px;
   text-align: left; white-space: nowrap;
   font-family: 'Hiragino Kaku Gothic Pro', sans-serif;
 }
-.kpi-table .target-cell { background: #FAF7F0; font-weight: 700; color: var(--c-text-h); }
-.kpi-table .actual-cell { background: #F4F4F4; font-weight: 700; }
-.kpi-table-note { font-size: 10px; color: var(--c-text-xs); margin-top: 6px; line-height: 1.7; }
+.wf-kpi-table .wf-target-cell { background: #FAF7F0; font-weight: 700; color: var(--c-text-h); }
+.wf-kpi-table .wf-actual-cell { background: #F4F4F4; font-weight: 700; }
+.wf-kpi-table-note { font-size: 10px; color: var(--c-text-xs); margin-top: 6px; line-height: 1.7; }
 .kpi-na {
   background: var(--c-bg-sub);
   border: 1px dashed var(--c-border);
@@ -667,7 +667,7 @@ body {
   display: flex; align-items: center; justify-content: space-between;
   gap: 8px;
 }
-.card-link-arrow {
+.wf-card-link-arrow {
   display: inline-flex; align-items: center; justify-content: center;
   width: 22px; height: 22px;
   background: var(--c-text-h); color: #fff;
@@ -953,79 +953,79 @@ body {
           </p>
 
           <h3 class="wf-sub-title" id="km-quality-policy">コニカミノルタ品質方針</h3>
-          <details class="policy-statement" id="quality-policy-doc" open>
-            <summary class="policy-statement-summary">
-              <span class="policy-statement-badge">方針</span>
-              <span class="policy-statement-title">コニカミノルタ品質方針</span>
-              <span class="policy-statement-meta">2022年4月1日制定</span>
+          <details class="wf-policy-statement" id="wf-quality-policy-doc" open>
+            <summary class="wf-policy-statement-summary">
+              <span class="wf-policy-statement-badge">方針</span>
+              <span class="wf-policy-statement-title">コニカミノルタ品質方針</span>
+              <span class="wf-policy-statement-meta">2022年4月1日制定</span>
             </summary>
-            <div class="policy-statement-body">
-              <p class="policy-statement-lead">
+            <div class="wf-policy-statement-body">
+              <p class="wf-policy-statement-lead">
                 私たちコニカミノルタグループは、お客様最優先と品質第一を徹底し、価値ある製品とサービスを提供することで、お客様の満足と信頼を最大にします。
               </p>
-              <p class="policy-statement-lead">
+              <p class="wf-policy-statement-lead">
                 私たちは、品質保証活動を信頼できるデータで定量的に把握・分析し、継続的な改善に繋げていくことを基本姿勢とします。
               </p>
 
-              <div class="policy-statement-motto">― 測定なくしてコントロールなし ―</div>
+              <div class="wf-policy-statement-motto">― 測定なくしてコントロールなし ―</div>
 
-              <div class="policy-statement-items">
-                <div class="policy-statement-item">
-                  <span class="policy-statement-item-num">1</span>
+              <div class="wf-policy-statement-items">
+                <div class="wf-policy-statement-item">
+                  <span class="wf-policy-statement-item-num">1</span>
                   <div>
-                    <div class="policy-statement-item-title">業界トップの顧客満足の実現</div>
-                    <p class="policy-statement-item-text">私たちは、常に世の中の商品動向を分析し、独自の改善によって、高品質・高信頼製品とサービスを提供し、業界トップの顧客満足を実現します。</p>
+                    <div class="wf-policy-statement-item-title">業界トップの顧客満足の実現</div>
+                    <p class="wf-policy-statement-item-text">私たちは、常に世の中の商品動向を分析し、独自の改善によって、高品質・高信頼製品とサービスを提供し、業界トップの顧客満足を実現します。</p>
                   </div>
                 </div>
-                <div class="policy-statement-item">
-                  <span class="policy-statement-item-num">2</span>
+                <div class="wf-policy-statement-item">
+                  <span class="wf-policy-statement-item-num">2</span>
                   <div>
-                    <div class="policy-statement-item-title">お客様のニーズを先取りした商品の提供</div>
-                    <p class="policy-statement-item-text">私たちは、常にお客様の立場で商品の使いやすさを追求し、お客様のニーズの変化を的確に捉えた商品を提供します。</p>
+                    <div class="wf-policy-statement-item-title">お客様のニーズを先取りした商品の提供</div>
+                    <p class="wf-policy-statement-item-text">私たちは、常にお客様の立場で商品の使いやすさを追求し、お客様のニーズの変化を的確に捉えた商品を提供します。</p>
                   </div>
                 </div>
-                <div class="policy-statement-item">
-                  <span class="policy-statement-item-num">3</span>
+                <div class="wf-policy-statement-item">
+                  <span class="wf-policy-statement-item-num">3</span>
                   <div>
-                    <div class="policy-statement-item-title">グローバルな品質保証体制の構築と展開</div>
-                    <p class="policy-statement-item-text">私たちは、国内外関係会社を含むグループ全体で統一されたグローバルな品質保証体制を構築し、展開していきます。</p>
+                    <div class="wf-policy-statement-item-title">グローバルな品質保証体制の構築と展開</div>
+                    <p class="wf-policy-statement-item-text">私たちは、国内外関係会社を含むグループ全体で統一されたグローバルな品質保証体制を構築し、展開していきます。</p>
                   </div>
                 </div>
-                <div class="policy-statement-item">
-                  <span class="policy-statement-item-num">4</span>
+                <div class="wf-policy-statement-item">
+                  <span class="wf-policy-statement-item-num">4</span>
                   <div>
-                    <div class="policy-statement-item-title">製品全段階での品質マネジメントの実践</div>
-                    <p class="policy-statement-item-text">私たちは、製品・サービスの企画・開発段階から、生産、使用、廃棄に至るライフサイクルの各段階に関る品質を、定量的な指標に基づいて計測し、目標達成のマネジメントを実践します。</p>
+                    <div class="wf-policy-statement-item-title">製品全段階での品質マネジメントの実践</div>
+                    <p class="wf-policy-statement-item-text">私たちは、製品・サービスの企画・開発段階から、生産、使用、廃棄に至るライフサイクルの各段階に関る品質を、定量的な指標に基づいて計測し、目標達成のマネジメントを実践します。</p>
                   </div>
                 </div>
-                <div class="policy-statement-item">
-                  <span class="policy-statement-item-num">5</span>
+                <div class="wf-policy-statement-item">
+                  <span class="wf-policy-statement-item-num">5</span>
                   <div>
-                    <div class="policy-statement-item-title">品質保証プロセスの継続的発展</div>
-                    <p class="policy-statement-item-text">私たちは、常に業務の改善・改革活動を自主的かつ積極的に展開し、品質保証プロセスの発展に努めます。</p>
+                    <div class="wf-policy-statement-item-title">品質保証プロセスの継続的発展</div>
+                    <p class="wf-policy-statement-item-text">私たちは、常に業務の改善・改革活動を自主的かつ積極的に展開し、品質保証プロセスの発展に努めます。</p>
                   </div>
                 </div>
-                <div class="policy-statement-item">
-                  <span class="policy-statement-item-num">6</span>
+                <div class="wf-policy-statement-item">
+                  <span class="wf-policy-statement-item-num">6</span>
                   <div>
-                    <div class="policy-statement-item-title">品質リスクの極小化</div>
-                    <p class="policy-statement-item-text">私たちは、品質問題の未然防止とお客様への迅速な対応によって、品質に起因するお客様と企業のリスクをなくします。</p>
+                    <div class="wf-policy-statement-item-title">品質リスクの極小化</div>
+                    <p class="wf-policy-statement-item-text">私たちは、品質問題の未然防止とお客様への迅速な対応によって、品質に起因するお客様と企業のリスクをなくします。</p>
                   </div>
                 </div>
-                <div class="policy-statement-item">
-                  <span class="policy-statement-item-num">7</span>
+                <div class="wf-policy-statement-item">
+                  <span class="wf-policy-statement-item-num">7</span>
                   <div>
-                    <div class="policy-statement-item-title">商品安全情報の積極的開示</div>
-                    <p class="policy-statement-item-text">私たちは、商品の安全性に関する情報を積極的に開示し、お客様に安心して使用していただくとともに社会に対する説明責任を果たします。</p>
+                    <div class="wf-policy-statement-item-title">商品安全情報の積極的開示</div>
+                    <p class="wf-policy-statement-item-text">私たちは、商品の安全性に関する情報を積極的に開示し、お客様に安心して使用していただくとともに社会に対する説明責任を果たします。</p>
                   </div>
                 </div>
               </div>
 
-              <div class="policy-statement-signature">
+              <div class="wf-policy-statement-signature">
                 <div>2022年4月1日</div>
                 <div>コニカミノルタ株式会社</div>
                 <div>代表執行役社長 兼 CEO</div>
-                <div class="policy-signature-name">大幸 利充</div>
+                <div class="wf-policy-signature-name">大幸 利充</div>
               </div>
             </div>
           </details>
@@ -1051,12 +1051,12 @@ body {
             コニカミノルタ（株）は、品質担当役員を責任者とする製品セキュリティの全社推進体制を確立し、品質本部主管のもと、すべての事業部門に製品セキュリティ推進活動を展開しています。
           </p>
 
-          <div class="gov-structure-fig">
-            <span class="gov-structure-fig-label">
+          <div class="wf-gov-structure-fig">
+            <span class="wf-gov-structure-fig-label">
               <strong>図：品質マネジメント体制（製品セキュリティ全社推進体制を統合）PH</strong>
               代表執行役社長 → 品質担当役員（議長）→ 品質保証責任者会議（四半期開催）／製品セキュリティ推進会議（社内横断）／品質本部主管 → 各事業部門（品質保証＋製品セキュリティ推進）／PDCA運用
             </span>
-            <span class="img-zoom-btn"></span>
+            <span class="wf-img-zoom-btn"></span>
           </div>
         </section>
 
@@ -1089,28 +1089,28 @@ body {
               <p>昨今、他社にて頻発している品質不正事案や認証取得漏れの事案、法規不遵守のリスクに対し、当社としても最重要テーマの一つとして、予防活動に取り組んでいます。品質コンプライアンス強化に向けては、品質不正のみならず、法規制、認証、契約などの不遵守防止に向けて、組織の定期診断や品質従事者に向けた意識調査をもとに、改善のPDCAを回すことにより、リスク低減を行うほか、階層別教育や啓蒙により定期的に品質意識の醸成を図っています。特に、品質不正については、潜在的な品質不正発生リスクはゼロではないとの認識に立ち、2023年度から品質不正の意識診断の導入、継続的な風土改革、検査工程や記録の自動化など、品質不正を発生させない仕組みを構築し運用しています。</p>
 
               <h4 class="wf-card-title has-mark">コンプライアンス／品質不正 — 重点施策（KPI）</h4>
-              <div class="kpi-table-wrap">
-                <table class="kpi-table">
+              <div class="wf-kpi-table-wrap">
+                <table class="wf-kpi-table">
                   <thead>
                     <tr>
                       <th rowspan="2" style="text-align:left;">指標</th>
                       <th colspan="3">実績</th>
-                      <th colspan="2" class="target-cell">目標</th>
+                      <th colspan="2" class="wf-target-cell">目標</th>
                     </tr>
                     <tr>
                       <th>2023年度</th>
-                      <th class="actual-cell">2024年度</th>
+                      <th class="wf-actual-cell">2024年度</th>
                       <th>2025年度</th>
-                      <th class="target-cell">2025年度</th>
-                      <th class="target-cell">2026年度</th>
+                      <th class="wf-target-cell">2025年度</th>
+                      <th class="wf-target-cell">2026年度</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr><th>コンプライアンス／品質不正発生件数</th><td>XX件</td><td class="actual-cell">XX件</td><td>—</td><td class="target-cell">XX件</td><td class="target-cell">XX件</td></tr>
+                    <tr><th>コンプライアンス／品質不正発生件数</th><td>XX件</td><td class="wf-actual-cell">XX件</td><td>—</td><td class="wf-target-cell">XX件</td><td class="wf-target-cell">XX件</td></tr>
                   </tbody>
                 </table>
               </div>
-              <p class="kpi-table-note">※ 実績数値は原稿確定後に反映予定（XX件はプレースホルダ）</p>
+              <p class="wf-kpi-table-note">※ 実績数値は原稿確定後に反映予定（XX件はプレースホルダ）</p>
             </div>
           </details>
 
@@ -1122,28 +1122,28 @@ body {
               <p>コニカミノルタは、セキュアな製品・サービスを開発・提供し、セキュアに運用・保守するための取り組みをグローバルで推進することにより、重大な製品セキュリティ事故の防止に取り組んでいます。</p>
 
               <h4 class="wf-card-title has-mark">重大な製品セキュリティ事故の徹底排除 — 重点施策（KPI）</h4>
-              <div class="kpi-table-wrap">
-                <table class="kpi-table">
+              <div class="wf-kpi-table-wrap">
+                <table class="wf-kpi-table">
                   <thead>
                     <tr>
                       <th rowspan="2" style="text-align:left;">指標</th>
                       <th colspan="3">実績</th>
-                      <th colspan="2" class="target-cell">目標</th>
+                      <th colspan="2" class="wf-target-cell">目標</th>
                     </tr>
                     <tr>
                       <th>2023年度</th>
-                      <th class="actual-cell">2024年度</th>
+                      <th class="wf-actual-cell">2024年度</th>
                       <th>2025年度</th>
-                      <th class="target-cell">2025年度</th>
-                      <th class="target-cell">2026年度</th>
+                      <th class="wf-target-cell">2025年度</th>
+                      <th class="wf-target-cell">2026年度</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr><th>製品セキュリティの重大事故<sup>※</sup>発生件数</th><td>0件</td><td class="actual-cell">0件</td><td>—</td><td class="target-cell">0件</td><td class="target-cell">0件</td></tr>
+                    <tr><th>製品セキュリティの重大事故<sup>※</sup>発生件数</th><td>0件</td><td class="wf-actual-cell">0件</td><td>—</td><td class="wf-target-cell">0件</td><td class="wf-target-cell">0件</td></tr>
                   </tbody>
                 </table>
               </div>
-              <p class="kpi-table-note">※ 重大セキュリティ事故：製品セキュリティに関し、製品・サービスの使用者のビジネスに深刻かつ重大な影響を及ぼした場合を対象とします。</p>
+              <p class="wf-kpi-table-note">※ 重大セキュリティ事故：製品セキュリティに関し、製品・サービスの使用者のビジネスに深刻かつ重大な影響を及ぼした場合を対象とします。</p>
 
               <h4 class="wf-card-title has-mark">製品セキュリティガイドライン</h4>
               <p>コニカミノルタは、「製品セキュリティガイドライン」としてセキュア開発・運用を実現するための社内規程やガイドライン類を制定し、グループ全体で製品・サービスのセキュア開発・運用プロセスを推進しています。製品セキュリティガイドラインは、世間動向や各国の法規・外部規格類に応じ、常にアップデートを行っています。製品セキュリティガイドラインに準拠した開発・運用は、コニカミノルタグループのすべての製品およびサービスに適用され、製品・サービスの企画・提案から廃棄・サービス終了に至るまでのライフサイクル全体、ならびに開発・運用委託先や調達先などのサプライチェーンを含む活動として実施されます。また、製品セキュリティの課題について討議する、社内横断による「製品セキュリティ推進会議」を定期的に開催し、社内外のベストプラクティス情報を共有するなど、継続的なレベル向上に取り組んでいます。</p>
@@ -1168,28 +1168,28 @@ body {
               <p>品質保証体制の強化に向けたさまざまな取り組みを推進しています。コニカミノルタは、品質保証体制を構築し、品質課題を追求するとともに、製品・サービスの安全性に関わる市場品質問題の解析を強化し、重大事故の防止と品質問題の低減に取り組んでいます。</p>
 
               <h4 class="wf-card-title has-mark">製品・サービス使用時における安全性確保の強化 — 重点施策（KPI）</h4>
-              <div class="kpi-table-wrap">
-                <table class="kpi-table">
+              <div class="wf-kpi-table-wrap">
+                <table class="wf-kpi-table">
                   <thead>
                     <tr>
                       <th rowspan="2" style="text-align:left;">指標</th>
                       <th colspan="3">実績</th>
-                      <th colspan="2" class="target-cell">目標</th>
+                      <th colspan="2" class="wf-target-cell">目標</th>
                     </tr>
                     <tr>
                       <th>2023年度</th>
-                      <th class="actual-cell">2024年度</th>
+                      <th class="wf-actual-cell">2024年度</th>
                       <th>2025年度</th>
-                      <th class="target-cell">2025年度</th>
-                      <th class="target-cell">2026年度</th>
+                      <th class="wf-target-cell">2025年度</th>
+                      <th class="wf-target-cell">2026年度</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr><th>製品の重大事故<sup>※</sup>発生件数</th><td>0件</td><td class="actual-cell">0件</td><td>—</td><td class="target-cell">0件</td><td class="target-cell">0件</td></tr>
+                    <tr><th>製品の重大事故<sup>※</sup>発生件数</th><td>0件</td><td class="wf-actual-cell">0件</td><td>—</td><td class="wf-target-cell">0件</td><td class="wf-target-cell">0件</td></tr>
                   </tbody>
                 </table>
               </div>
-              <p class="kpi-table-note">
+              <p class="wf-kpi-table-note">
                 ※ 重大事故：製品使用者の生命・身体に重大な被害を及ぼした場合、製品以外の財産に重大な被害を及ぼした場合を対象とします<br>
                 ※ 集計対象：すべてのコニカミノルタ製品
               </p>
@@ -1237,24 +1237,24 @@ body {
 
               <h4 class="wf-card-title has-mark">音響試験棟を活用した製品開発</h4>
               <p>デジタル複合機やプリンターから発生するさまざまな音を測定、解析することで、オフィス環境を損なうことのない"静かな製品"の開発を進めています。その一環として、産学連携で、製品から聞こえる音の発生メカニズムを解明する方法を構築しました。これを使用することで、製品ができ上がる前に騒音が予測でき、より静かな製品開発が可能になります。コニカミノルタでは、ISO/IEC 17025<sup>※</sup>の認証を得た世界トップレベルの音響特性を備えた「音響試験棟」を活用し、ドイツの環境ラベル「ブルーエンジェルマーク」の申請に必要な音響測定を自社内で実施しています。</p>
-              <div class="gov-structure-fig" style="aspect-ratio: 16/6;">
-                <span class="gov-structure-fig-label">
+              <div class="wf-gov-structure-fig" style="aspect-ratio: 16/6;">
+                <span class="wf-gov-structure-fig-label">
                   <strong>■音響試験棟内部 PH</strong>
                   ISO/IEC 17025認証取得の音響試験棟（写真）
                 </span>
-                <span class="img-zoom-btn"></span>
+                <span class="wf-img-zoom-btn"></span>
               </div>
-              <p class="kpi-table-note">※ ISO/IEC 17025：試験所および校正機関の能力に関する一般要求事項</p>
+              <p class="wf-kpi-table-note">※ ISO/IEC 17025：試験所および校正機関の能力に関する一般要求事項</p>
 
               <h4 class="wf-card-title has-mark">多様な用紙の検証</h4>
               <p>商業印刷では、厚紙、薄紙、光沢や凹凸のある紙など、多様な用紙を使用したいとのご要望があります。また、オフィスのデジタル複合機においても、環境配慮のために再生紙や薄紙を使用する場面が増えています。このようなニーズに応えて、印刷可能な用紙の種類をできる限り増やすため、コニカミノルタは、多種多様な用紙（メディア）について、画像再現性や通紙性のテストを行っています。ここでは、世界各地で使用される数百種類の用紙の性質を測定するとともに、実機による印刷テストで用紙ごとに最適な設定の検証を行っています。</p>
               <p>さらには、得られた測定・検証結果に基づき、用紙ごとに最適な印刷条件をパッケージ化し、多様な用紙に対して高品質に印刷するための「ペーパープロファイル」を作成しました。このプロファイルを印刷機に搭載することにより、多様な用紙への信頼性の高い条件設定が実現し、お客様の稼動率向上につながっています。また、印刷機内に搭載した内蔵センサーにより、通紙した用紙の種類や坪量を自動で判別して搭載したペーパープロファイルから最適な設定を選択でき、作業の簡略化とスキルレスを実現しています。</p>
-              <div class="gov-structure-fig" style="aspect-ratio: 16/6;">
-                <span class="gov-structure-fig-label">
+              <div class="wf-gov-structure-fig" style="aspect-ratio: 16/6;">
+                <span class="wf-gov-structure-fig-label">
                   <strong>■メディア評価 PH</strong>
                   Media Evaluation Center（写真）
                 </span>
-                <span class="img-zoom-btn"></span>
+                <span class="wf-img-zoom-btn"></span>
               </div>
 
               <h4 class="wf-card-title has-mark">サービスビジネス領域における品質保証体制づくり・実践</h4>
@@ -1272,28 +1272,28 @@ body {
               <p>コニカミノルタが取り扱う情報機器や医療機器、計測機器などの製品は、ご購入後の継続的なサービスが不可欠です。コニカミノルタは、こうした長期的なお付き合いを通じてお客様からの評価と信頼を高め、ほかのお客様にも推奨いただけるような関係を築き上げることを目指しています。そのため、お客様の声を積極的に収集し、製品やサービスの改善に活かす仕組みを構築するとともに、グループ全体で「カスタマーリレーションシップ」の強化を図っています。</p>
 
               <h4 class="wf-card-title has-mark">顧客満足度 — 重点施策（KPI）</h4>
-              <div class="kpi-table-wrap">
-                <table class="kpi-table">
+              <div class="wf-kpi-table-wrap">
+                <table class="wf-kpi-table">
                   <thead>
                     <tr>
                       <th rowspan="2" style="text-align:left;">指標</th>
                       <th colspan="3">実績</th>
-                      <th colspan="2" class="target-cell">目標</th>
+                      <th colspan="2" class="wf-target-cell">目標</th>
                     </tr>
                     <tr>
                       <th>2023年度</th>
-                      <th class="actual-cell">2024年度</th>
+                      <th class="wf-actual-cell">2024年度</th>
                       <th>2025年度</th>
-                      <th class="target-cell">2025年度</th>
-                      <th class="target-cell">2026年度</th>
+                      <th class="wf-target-cell">2025年度</th>
+                      <th class="wf-target-cell">2026年度</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr><th>顧客満足度</th><td>XX</td><td class="actual-cell">XX</td><td>—</td><td class="target-cell">XX</td><td class="target-cell">XX</td></tr>
+                    <tr><th>顧客満足度</th><td>XX</td><td class="wf-actual-cell">XX</td><td>—</td><td class="wf-target-cell">XX</td><td class="wf-target-cell">XX</td></tr>
                   </tbody>
                 </table>
               </div>
-              <p class="kpi-table-note">※ 情報機器事業ではNPS®調査を併用し、グローバルでカスタマーリレーション強化のPDCAを展開</p>
+              <p class="wf-kpi-table-note">※ 情報機器事業ではNPS®調査を併用し、グローバルでカスタマーリレーション強化のPDCAを展開</p>
 
               <h4 class="wf-card-title has-mark">お客様に密着した専門組織設置による顧客価値提供</h4>
               <p>産業印刷・テキスタイル印刷といったお客様からのカスタマイズ要望の多い領域での搭載判断・実践スピード向上、お客様との信頼関係の強化を狙いとした専門組織を立ち上げました。専門組織では、開発・品証保証・カスタマーサービス・事業部門との連携体制でお客様との直接コミュニケーションを密に行うことにより、特殊メディア対応、ワークフロー・ソフトウェアの最適なカスタマイズ対応や装置の信頼性を向上させる機能改善を迅速に行っています。このお客様に密着した取り組み・要望にお応えした結果として、お客様のプリントボリューム増加やお客様の新規導入案件の増加につながっています。</p>
@@ -1311,7 +1311,7 @@ body {
               <p>情報機器事業では、お客様関係力の強化に向けた取り組みを組織的に展開するため、2012年にカスタマーリレーション（CR）組織を設置し、目標指標に Net Promoter Score®（NPS®）<sup>※</sup>を導入しました。従来のお客様満足度調査にNPS®を加えた独自の科学的アプローチをグローバルに展開し、その結果を製品・サービス品質の改善に活かしています。2017年度から、お問い合わせの電話や修理対応など、お客様との接点における満足度とNPS®を把握する「トランザクション調査」システムを導入、2019年度からは導入国を拡大し、2020年度には、「トランザクション調査」システムを利用したサービス改善プロセスを開始しました。個々のお客様のご要望や不満点をリアルタイムに把握し、迅速な改善を行っています。NPS®調査による全体的な課題と、トランザクション調査による個々のお客様の課題についてPDCAサイクルを展開することで、NPS®のさらなる向上に取り組んでいます。</p>
               <p>NPS®調査はPDCAサイクルの展開プログラムを実施する対象国数をグローバルに拡大し、2025年4月時点で、日本、米国、欧州、アジアパシフィックの地域（28カ国）で展開しています。NPS®調査結果は、2014年度のグローバル調査本格展開以降向上を続け、2020年度は22ptとなりました。その後、商品の納品・トナー配送に関連する満足度が大幅に下落したことが影響し、2021年度は11pt、2022年度は2ptとNPS®が低下する結果となりました。コニカミノルタはこの結果を真摯に受け止め、供給遅延の解消と顧客ケアのプログラムによる課題改善に取り組みました。その結果、2024年度は13ptまでNPS®を改善することができました。今後も顧客ケアのプログラムを進めるなどしてお客様からの信頼回復に努めていきます。</p>
               <p>ヘルスケア事業やインダストリー事業においても顧客満足度を計測しており、その結果をお客様に満足いただける製品・サービス品質の改善に活かしています。</p>
-              <p class="kpi-table-note">
+              <p class="wf-kpi-table-note">
                 ※ Net Promoter Score®（NPS®）：企業や製品、サービスを他者に推奨する割合を測定した指標。Net Promoter Score®およびNPS®は、ベイン・アンド・カンパニー、フレッド・ライクヘルド、サトメトリックス・システムズの登録商標です。
               </p>
             </div>
@@ -1326,25 +1326,25 @@ body {
 
               <h4 class="wf-card-title has-mark">カスタマーリレーション推進担当者の育成制度「CRマスタープログラム」を展開</h4>
               <p>コニカミノルタでは、世界各地の販売会社のCR推進担当者のスキルアップを目的に、独自のCR活動を体系化した教育・認定プログラム「CRマスタープログラム」を展開しています。このプログラムに参加している販売会社から、CR推進担当者だけではなく、全従業員向けの教育プログラム開設の強い要望があり、2017年度に、カスタマーセントリックな考え方・行動指針を現場メンバーに示すe-Learningプログラムである「CRホワイトベルト」を設置しました。わかりやすい教材を英語版と日本語版で作成して、各販売会社に共有し、すでに教育を開始した販売会社から高評価を得ています。CR推進担当者向けに、2020年度にコミュニティサイトをオープン、2023年度からはコミュニティコールを開始、各国のCR活動事例の共有を行い、グローバルにCR活動の品質向上を目指しています。</p>
-              <div class="gov-structure-fig" style="aspect-ratio: 16/6;">
-                <span class="gov-structure-fig-label">
+              <div class="wf-gov-structure-fig" style="aspect-ratio: 16/6;">
+                <span class="wf-gov-structure-fig-label">
                   <strong>「CR ホワイトベルト」のe-Learning教材の画像イメージ PH</strong>
                 </span>
-                <span class="img-zoom-btn"></span>
+                <span class="wf-img-zoom-btn"></span>
               </div>
 
               <h4 class="wf-card-title has-mark">リモートメンテナンスの導入を促進</h4>
               <p>デジタルワークプレイス事業が提供する複合機のリモート管理サービス「コニカミノルタiCare」は、セキュアな状態共有を実現し、故障の未然防止や、故障時の迅速対応でダウンタイム削減に努めています。故障時の自動通報のほか、パーツや消耗品の状態を管理しており、適切なタイミングになるとトナーの自動配送やエンジニアが訪問して消耗品の交換などを行います。コニカミノルタiCareは全世界で100万台以上稼働しており、実際の稼働状況をフィードバックすることで、故障予知の精度を日々高めています。コニカミノルタiCareのデータにはビッグデータの分析環境を導入、機械学習や時系列予測、検証を繰り返して使える分析モデルを構築しています。顧客ごとの出力枚数予測に基づくトナー交換の最適化やコールセンターのコール履歴分析など、さまざまな分析モデルを揃えており、高度なデータマイニングでお客様を支援しています。</p>
               <p>ヘルスケア事業が提供する製品は、患者さんの生命に関わる医療現場で使用されるため、故障、トラブル、お問い合わせなどについては特に素早い対応が必要です。このためコニカミノルタは、コールセンターを設置し24時間／365日の体制で、医療現場の障害を最短で取り除くための活動を継続的に行っています。特に「お客様の電話待ち時間短縮」「コールセンターの自己解決力の強化」「お客様満足度の向上」に注力し、それぞれKPI<sup>※1</sup>を設定してより良いサービスの実現に取り組んでいます。その手段として、国内コールセンターでは、インターネットを介してお客様先の製品を遠隔操作し、トラブルを早期解決する「リモートメンテナンス」の導入を積極的に進めてきました。これにより、エンジニアが出動することなく遠隔でトラブルが解決できるため、製品・サービスのダウンタイムを削減し、医療現場における障害時間の短縮を実現しています。</p>
               <p>2024年度にコールセンターが受け付けた電話の約70％がリモートメンテナンスを利用されているお客様からのものでした。結果として、製品・サービスのダウンタイムが年間で約50,000時間<sup>※2</sup>削減され、2010年度と比較し約2倍の削減時間を達成し、2018年以降はその水準を維持しています。また、リモートメンテナンスの活用によりエンジニアの車両での移動が減少、ガソリン使用量が抑えられ、CO2排出量の削減にもつながっています。コニカミノルタは、2017年度に国内医療業界初のCOPC認証<sup>※3</sup>を取得しましたが、これからも厳格な認証基準を満たすコールセンターの品質を維持、発展させていきます。</p>
-              <div class="gov-structure-fig" style="aspect-ratio: 16/6;">
-                <span class="gov-structure-fig-label">
+              <div class="wf-gov-structure-fig" style="aspect-ratio: 16/6;">
+                <span class="wf-gov-structure-fig-label">
                   <strong>リモートメンテナンスの仕組み／ダウンタイム削減時間推移 PH</strong>
                   コールセンター向け国際品質基準（COPC）取得済み（図表）
                 </span>
-                <span class="img-zoom-btn"></span>
+                <span class="wf-img-zoom-btn"></span>
               </div>
-              <p class="kpi-table-note">
+              <p class="wf-kpi-table-note">
                 ※1 KPI（Key Performance Indicator）：重要業績評価指標<br>
                 ※2 独自の指標で試算<br>
                 ※3 COPC認証：パフォーマンスの優秀な組織のみが認証を得られる、コールセンター向け国際品質基準
@@ -1352,19 +1352,19 @@ body {
 
               <h4 class="wf-card-title has-mark">オンライン販売の導入</h4>
               <p>コニカミノルタでは情報機器事業（日本）において、お客様の利便性を向上するためにオンライン販売を導入しています。</p>
-              <div class="kpi-table-wrap">
-                <table class="kpi-table">
+              <div class="wf-kpi-table-wrap">
+                <table class="wf-kpi-table">
                   <thead>
                     <tr>
                       <th style="text-align:left;">指標</th>
                       <th>2023年度</th>
-                      <th class="actual-cell">2024年度</th>
-                      <th class="target-cell">2025年度</th>
+                      <th class="wf-actual-cell">2024年度</th>
+                      <th class="wf-target-cell">2025年度</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr><th>オンライン顧客数の割合（％）</th><td>—</td><td class="actual-cell">59</td><td class="target-cell">62</td></tr>
-                    <tr><th>オンライン収益の割合（％）</th><td>—</td><td class="actual-cell">3.9</td><td class="target-cell">3.9</td></tr>
+                    <tr><th>オンライン顧客数の割合（％）</th><td>—</td><td class="wf-actual-cell">59</td><td class="wf-target-cell">62</td></tr>
+                    <tr><th>オンライン収益の割合（％）</th><td>—</td><td class="wf-actual-cell">3.9</td><td class="wf-target-cell">3.9</td></tr>
                   </tbody>
                 </table>
               </div>
@@ -1382,23 +1382,23 @@ body {
               <p>お客様視点での品質向上活動を拡大しています。</p>
               <p>コニカミノルタでは、お客様視点での品質向上活動として、日常的にお客様と接している販売会社のスタッフが開発段階での品質評価に参加する「販社合同評価」を実施しています。これに加えて2017年度から、品質に対するお客様の"生の声"を把握するため、品質保証部門や開発部門のスタッフが販売会社とともにお客様を訪問する「C-PIUZ活動<sup>※</sup>」を展開しています。この活動を通じてお客様の感情を汲み取り、製品・サービスの改善に活かしています。</p>
               <p>さらにお客様が真に求める価値を「デザイン思考」で導き出し、開発段階ではその仮説検証を、上市後はお客様に本当に価値として認めていただけたかを検証する手法、プロセスを2018年度に構築。よりお客様の視点に立った製品・サービスの開発に取り組んでいます。</p>
-              <div class="gov-structure-fig" style="aspect-ratio: 16/6;">
-                <span class="gov-structure-fig-label">
+              <div class="wf-gov-structure-fig" style="aspect-ratio: 16/6;">
+                <span class="wf-gov-structure-fig-label">
                   <strong>コニカミノルタのデザイン思考 PH</strong>
                   お客様視点での品質向上活動の図解
                 </span>
-                <span class="img-zoom-btn"></span>
+                <span class="wf-img-zoom-btn"></span>
               </div>
-              <p class="kpi-table-note">※ C-PIUZ（Customer-Problem In Using to Zero）活動：お客様使用時における品質問題の削減を目指すコニカミノルタ独自の活動</p>
+              <p class="wf-kpi-table-note">※ C-PIUZ（Customer-Problem In Using to Zero）活動：お客様使用時における品質問題の削減を目指すコニカミノルタ独自の活動</p>
 
               <h4 class="wf-card-title has-mark">「デザイン思考」を活用したサービス開発を推進</h4>
               <p>コニカミノルタでは、デザインセンターが中心となって、「デザイン思考」を導入し、「メーカー視点」ではなく「お客様の視点」に立った、価値あるサービスを事業部門と連携して開発しています。デザイン思考とは、お客様への共感をもとに課題を定義し、課題からアイデアを着想して価値を磨き上げるプロセスとマインドセットです。</p>
               <p>コニカミノルタでは、デザイン思考を取り入れ、印刷現場やヘルスケア、工場の設備保全などの幅広いビジネス分野で、お客様視点に立ったサービス開発を推進しています。例えば、工場の設備保全サービスでは、関わるさまざまなステークホルダーへのヒアリングを行うとともに、パトロール業務に同行し、お客様のワークフローを自ら体験しています。現場が抱える潜在的な課題を発見し、仮説を構築し検証を繰り返しながら未来にあるべき安全な設備保全の姿を体験ストーリーにしてお客様にわかりやすくお伝えし、ガスや熱を可視化する新たなソリューションの共創を行いサービス開発の実現につなげています。コニカミノルタは、今後もさまざまな事業領域でお客様が真に求める価値創出を追求して社会や地域環境の課題提起／解決に貢献するイノベーションを創出していきます。</p>
-              <div class="gov-structure-fig" style="aspect-ratio: 16/6;">
-                <span class="gov-structure-fig-label">
+              <div class="wf-gov-structure-fig" style="aspect-ratio: 16/6;">
+                <span class="wf-gov-structure-fig-label">
                   <strong>■デザイン思考を取り入れた活動とツール PH</strong>
                 </span>
-                <span class="img-zoom-btn"></span>
+                <span class="wf-img-zoom-btn"></span>
               </div>
 
               <h4 class="wf-card-title has-mark">サポート品質向上のための研修を外部パートナーも含めて実施</h4>
@@ -1695,7 +1695,7 @@ body {
       </div>
       <div class="ann-row">
         <span class="ann-row-label">#5（A・対応可）桐原</span>
-        「社長署名も入れられるように」→ policy-statement モジュールに署名エリア（policy-signature）を追加可能（次回モック）。
+        「社長署名も入れられるように」→ wf-policy-statement モジュールに署名エリア（policy-signature）を追加可能（次回モック）。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">#6（D・デザイン工程）桐原</span>
@@ -1798,9 +1798,9 @@ body {
       <span class="ann-num">M</span>
       <span class="ann-head">主要モジュール（v2.6更新）</span>
       <p class="ann-body">
-        共通: ヘッダー／lnav／パンくず／フッター／H2/H3/H4／wf-acc-h3（catalog v3.1共通）／wf-related-links／img-zoom-btn＋modal preview／wf-btn<br>
-        使用: policy-statement／quality-policy（HTML化）／strategy-block（TQM）／kpi-block＋kpi-table／kpi-na（該当なし）／gov-structure-fig<br>
-        撤去（v2.6）: bg-vision-table（背景・目指す姿表）／wf-activity-card（5カード）／activity-grid → アコーディオン集約に変更
+        共通: ヘッダー／lnav／パンくず／フッター／H2/H3/H4／wf-acc-h3（catalog v3.1共通）／wf-related-links／wf-img-zoom-btn＋modal preview／wf-btn<br>
+        使用: policy-statement／quality-policy（HTML化）／strategy-block（TQM）／kpi-block＋wf-kpi-table／kpi-na（該当なし）／gov-structure-fig<br>
+        撤去（v2.6）: wf-bg-wf-vision-table（背景・目指す姿表）／wf-activity-card（5カード）／activity-grid → アコーディオン集約に変更
       </p>
     </div>
     </div><!-- /旧アノテーションラッパ -->

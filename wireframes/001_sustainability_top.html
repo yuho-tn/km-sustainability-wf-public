@@ -341,13 +341,13 @@ html, body { min-width: var(--page-w); }
 
 /* トピックエリア — 左上タグ＋全周ボーダー型（共通モジュール／全ページ統一仕様）
    タグ文言は各ページのトピック内容に合わせて変更可（例：MATERIALITY KPI / CARBON MINUS 2025 等） */
-.callout-box {
+.wf-callout-box {
   background: var(--c-white);
   border: 1px solid var(--c-border);
   padding: 18px 24px 22px;
   margin: 24px 0 28px;
 }
-.callout-box-tag {
+.wf-callout-box-tag {
   display: inline-block;
   background: var(--c-bg-sub);
   color: var(--c-text-h);
@@ -355,12 +355,12 @@ html, body { min-width: var(--page-w); }
   padding: 5px 14px;
   margin-bottom: 14px;
 }
-.callout-box-body {
+.wf-callout-box-body {
   font-size: 13px;
   color: var(--c-text);
   line-height: 1.95;
 }
-.callout-box-body strong { color: var(--c-text-h); font-weight: 700; }
+.wf-callout-box-body strong { color: var(--c-text-h); font-weight: 700; }
 
 /* 戦略・マネジメントセクションのボタン群 */
 .btn-row { display: flex; gap: 16px; flex-wrap: wrap; }
@@ -369,7 +369,7 @@ html, body { min-width: var(--page-w); }
 .quickaccess-grid {
   display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
 }
-.qa-card {
+.wf-qa-card {
   background: var(--c-white); border: 1px solid var(--c-border);
   padding: 18px 22px;
   display: grid; grid-template-columns: 50px 1fr auto; gap: 16px;
@@ -429,11 +429,11 @@ html, body { min-width: var(--page-w); }
 }
 
 /* 社外からの評価 — 4ロゴ */
-.eval-logo-grid {
+.wf-eval-logo-grid {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
   margin: 24px 0 28px;
 }
-.eval-logo {
+.wf-eval-logo {
   aspect-ratio: 5 / 3;
   background: var(--c-bg-sub); border: 1px solid var(--c-border);
   display: flex; align-items: center; justify-content: center;
@@ -442,13 +442,13 @@ html, body { min-width: var(--page-w); }
 }
 
 /* RSS配信リンク（既存KMサイト準拠：トピックスリスト直上に小さく配置） */
-.topics-rss {
+.wf-topics-rss {
   display: inline-flex; align-items: center; gap: 8px;
   font-size: 12px; color: var(--c-text-s);
   margin-bottom: 10px;
   cursor: default;
 }
-.topics-rss::before {
+.wf-topics-rss::before {
   content: '';
   display: inline-block;
   width: 16px; height: 16px;
@@ -457,23 +457,23 @@ html, body { min-width: var(--page-w); }
   background-repeat: no-repeat;
   background-size: contain;
 }
-.topics-rss > .rss-arrow { font-weight: 700; color: var(--c-text-s); }
-.topics-rss:hover { color: var(--c-text-h); text-decoration: underline; }
+.wf-topics-rss > .rss-arrow { font-weight: 700; color: var(--c-text-s); }
+.wf-topics-rss:hover { color: var(--c-text-h); text-decoration: underline; }
 
 /* トピックスリスト */
-.topics-list {
+.wf-topics-list {
   border-top: 1px solid var(--c-border);
   margin-bottom: 24px;
 }
-.topics-row {
+.wf-topics-row {
   display: grid; grid-template-columns: 110px 1fr;
   gap: 20px; align-items: center;
   padding: 14px 4px;
   border-bottom: 1px solid var(--c-border);
 }
 .topics-date { font-size: 11px; color: var(--c-text-s); letter-spacing: 0.04em; }
-.topics-title { font-size: 13px; color: var(--c-text-h); line-height: 1.6; }
-.topics-title .placeholder { font-size: 11px; color: var(--c-text-xs); }
+.wf-topics-title { font-size: 13px; color: var(--c-text-h); line-height: 1.6; }
+.wf-topics-title .placeholder { font-size: 11px; color: var(--c-text-xs); }
 
 /* イベントカード */
 .wf-topics-btn {
@@ -523,7 +523,7 @@ html, body { min-width: var(--page-w); }
 }
 
 /* 画像拡大ボタン（2カラム以上の画像PHに付与・全WF共通仕様 v4.4） */
-.img-zoom-btn {
+.wf-img-zoom-btn {
   position: absolute; bottom: 6px; right: 6px;
   width: 26px; height: 26px;
   background: #111; color: #fff;
@@ -532,8 +532,8 @@ html, body { min-width: var(--page-w); }
   cursor: default; z-index: 5;
   border: 1px solid #fff;
 }
-.img-zoom-btn::before { content: "+"; }
-.img-zoom-btn:hover { background: #2a2a2a; }
+.wf-img-zoom-btn::before { content: "+"; }
+.wf-img-zoom-btn:hover { background: #2a2a2a; }
 
 /* ============================================================
    0513 Figmaレビュー反映（#1/#7/#11/#12/#13）
@@ -594,18 +594,18 @@ html, body { min-width: var(--page-w); }
 /* TOP専用 見出しモジュール
    ・下層（仮想）ページの「グラデ下線見出し（.wf-section-title）」とは別系統
    ・英字ラベルは廃止。短い実線アクセント＋日本語タイトル＋補足サブのみ。連番なし */
-.top-rich-head { margin-bottom: 26px; }
-.trh-main { display: block; }
-.trh-title {
+.wf-top-rich-head { margin-bottom: 26px; }
+.wf-trh-main { display: block; }
+.wf-trh-title {
   font-size: 28px; font-weight: 700; color: var(--c-text-h);
   line-height: 1.3; letter-spacing: -0.015em;
 }
-.trh-title::before {
+.wf-trh-title::before {
   content: ''; display: inline-block; vertical-align: middle;
   width: 28px; height: 3px; background: var(--c-text-h);
   margin-right: 12px; transform: translateY(-3px);
 }
-.trh-title .trh-sub {
+.wf-trh-title .wf-trh-sub {
   display: block; font-size: 13px; font-weight: 600;
   color: var(--c-text-s); letter-spacing: 0.02em; margin-top: 10px;
   padding-left: 40px;
@@ -678,22 +678,22 @@ html, body { min-width: var(--page-w); }
 .qa-items {
   display: grid; grid-template-columns: 1fr 1fr; gap: 56px;
 }
-.qa-item {
+.wf-qa-item {
   display: flex; align-items: flex-end; justify-content: space-between;
   gap: 16px; padding: 6px 2px 12px;
   border-bottom: 1px solid var(--c-text-h);
   cursor: default;
 }
-.qa-item-title {
+.wf-qa-item-title {
   font-size: 14px; font-weight: 700; color: var(--c-text-h);
   line-height: 1.4;
 }
-.qa-item-meta { font-size: 11px; color: var(--c-text-s); margin-top: 4px; }
-.qa-item-icon {
+.wf-qa-item-meta { font-size: 11px; color: var(--c-text-s); margin-top: 4px; }
+.wf-qa-item-icon {
   flex: 0 0 auto; color: var(--c-text-h);
   font-size: 18px; font-weight: 700; line-height: 1;
 }
-.qa-item-icon::after { content: '›'; }
+.wf-qa-item-icon::after { content: '›'; }
 </style>
 </head>
 
@@ -729,9 +729,9 @@ html, body { min-width: var(--page-w); }
     ============================================================ -->
     <section class="wf-section bg-white">
       <span class="wf-section-marker">2</span>
-      <div class="top-rich-head">
-        <div class="trh-main">
-          <h2 class="trh-title">サステナビリティ戦略<span class="trh-sub">価値創造ストーリーに基づく中長期の方向性</span></h2>
+      <div class="wf-top-rich-head">
+        <div class="wf-trh-main">
+          <h2 class="wf-trh-title">サステナビリティ戦略<span class="wf-trh-sub">価値創造ストーリーに基づく中長期の方向性</span></h2>
         </div>
       </div>
 
@@ -744,9 +744,9 @@ html, body { min-width: var(--page-w); }
             テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
           </p>
 
-          <div class="callout-box">
-            <span class="callout-box-tag">MATERIALITY KPI</span>
-            <div class="callout-box-body">
+          <div class="wf-callout-box">
+            <span class="wf-callout-box-tag">MATERIALITY KPI</span>
+            <div class="wf-callout-box-body">
               各マテリアリティには定量的なKPIを設定し、進捗を定期的にモニタリングしています。<br>
               目標値と実績データの詳細は下層ページでご確認いただけます。
             </div>
@@ -761,7 +761,7 @@ html, body { min-width: var(--page-w); }
         <div class="strategy-col-figure">
           <div class="strategy-figure">
             [ サステナビリティ戦略 概念図 PH ]
-            <span class="img-zoom-btn"></span>
+            <span class="wf-img-zoom-btn"></span>
           </div>
         </div>
       </div>
@@ -776,19 +776,19 @@ html, body { min-width: var(--page-w); }
       <div class="wf-quick-access">
         <div class="qa-label">QUICK ACCESS</div>
         <div class="qa-items">
-          <a class="qa-item">
-            <div class="qa-item-main">
-              <div class="qa-item-title">サステナビリティサイトアーカイブ</div>
-              <div class="qa-item-meta">過去レポート一覧</div>
+          <a class="wf-qa-item">
+            <div class="wf-qa-item-main">
+              <div class="wf-qa-item-title">サステナビリティサイトアーカイブ</div>
+              <div class="wf-qa-item-meta">過去レポート一覧</div>
             </div>
-            <span class="qa-item-icon"></span>
+            <span class="wf-qa-item-icon"></span>
           </a>
-          <a class="qa-item">
-            <div class="qa-item-main">
-              <div class="qa-item-title">ESGデータ</div>
-              <div class="qa-item-meta">KPI・指標一覧</div>
+          <a class="wf-qa-item">
+            <div class="wf-qa-item-main">
+              <div class="wf-qa-item-title">ESGデータ</div>
+              <div class="wf-qa-item-meta">KPI・指標一覧</div>
             </div>
-            <span class="qa-item-icon"></span>
+            <span class="wf-qa-item-icon"></span>
           </a>
         </div>
       </div>
@@ -800,9 +800,9 @@ html, body { min-width: var(--page-w); }
     ============================================================ -->
     <section class="wf-section bg-white">
       <span class="wf-section-marker">3</span>
-      <div class="top-rich-head">
-        <div class="trh-main">
-          <h2 class="trh-title">サステナビリティの取り組み<span class="trh-sub">環境・社会・ガバナンスの取り組みと進捗</span></h2>
+      <div class="wf-top-rich-head">
+        <div class="wf-trh-main">
+          <h2 class="wf-trh-title">サステナビリティの取り組み<span class="wf-trh-sub">環境・社会・ガバナンスの取り組みと進捗</span></h2>
         </div>
       </div>
       <p class="wf-section-desc">
@@ -861,9 +861,9 @@ html, body { min-width: var(--page-w); }
     ============================================================ -->
     <section class="wf-section bg-white pad-sm">
       <span class="wf-section-marker">4</span>
-      <div class="top-rich-head">
-        <div class="trh-main">
-          <h2 class="trh-title">サステナビリティマネジメント<span class="trh-sub">推進体制とステークホルダーエンゲージメント</span></h2>
+      <div class="wf-top-rich-head">
+        <div class="wf-trh-main">
+          <h2 class="wf-trh-title">サステナビリティマネジメント<span class="wf-trh-sub">推進体制とステークホルダーエンゲージメント</span></h2>
         </div>
       </div>
       <p class="dummy-text">
@@ -885,9 +885,9 @@ html, body { min-width: var(--page-w); }
     ============================================================ -->
     <section class="wf-section bg-white">
       <span class="wf-section-marker">5</span>
-      <div class="top-rich-head">
-        <div class="trh-main">
-          <h2 class="trh-title">イニシアチブへの参画と外部からの評価<span class="trh-sub">参画イニシアティブ・外部評価</span></h2>
+      <div class="wf-top-rich-head">
+        <div class="wf-trh-main">
+          <h2 class="wf-trh-title">イニシアチブへの参画と外部からの評価<span class="wf-trh-sub">参画イニシアティブ・外部評価</span></h2>
         </div>
       </div>
       <p class="wf-section-desc">
@@ -895,11 +895,11 @@ html, body { min-width: var(--page-w); }
       </p>
 
       <!-- 0520MTG/T2：動的UI不要・4ロゴ1行固定表示 -->
-      <div class="eval-logo-grid">
-        <div class="eval-logo">[ 国連グローバル・コンパクト ]</div>
-        <div class="eval-logo">[ TCFD 賛同 ]</div>
-        <div class="eval-logo">[ FTSE4Good Index ]</div>
-        <div class="eval-logo">[ CDP A List 2025 ]</div>
+      <div class="wf-eval-logo-grid">
+        <div class="wf-eval-logo">[ 国連グローバル・コンパクト ]</div>
+        <div class="wf-eval-logo">[ TCFD 賛同 ]</div>
+        <div class="wf-eval-logo">[ FTSE4Good Index ]</div>
+        <div class="wf-eval-logo">[ CDP A List 2025 ]</div>
       </div>
 
       <!-- 0520MTG/T2：下層ページのH2へのリンクを2本設置（参画／評価それぞれのH2へ） -->
@@ -914,37 +914,37 @@ html, body { min-width: var(--page-w); }
     ============================================================ -->
     <section class="wf-section bg-white">
       <span class="wf-section-marker">6</span>
-      <div class="top-rich-head">
-        <div class="trh-main">
-          <h2 class="trh-title">トピックス<span class="trh-sub">サステナビリティ関連の新着情報</span></h2>
+      <div class="wf-top-rich-head">
+        <div class="wf-trh-main">
+          <h2 class="wf-trh-title">トピックス<span class="wf-trh-sub">サステナビリティ関連の新着情報</span></h2>
         </div>
       </div>
 
       <!-- 0523：既存KMサイト準拠でRSS配信リンクをトピックスリスト直上に配置 -->
-      <a class="topics-rss">
+      <a class="wf-topics-rss">
         <span class="rss-arrow">›</span>RSS配信について
       </a>
 
-      <div class="topics-list">
-        <div class="topics-row">
+      <div class="wf-topics-list">
+        <div class="wf-topics-row">
           <div class="topics-date">2025/03/15</div>
-          <div class="topics-title">CDP 2024 気候変動「Aリスト」に選定されました</div>
+          <div class="wf-topics-title">CDP 2024 気候変動「Aリスト」に選定されました</div>
         </div>
-        <div class="topics-row">
+        <div class="wf-topics-row">
           <div class="topics-date">2025/03/01</div>
-          <div class="topics-title">「健康経営優良法人2025（ホワイト500）」に認定されました</div>
+          <div class="wf-topics-title">「健康経営優良法人2025（ホワイト500）」に認定されました</div>
         </div>
-        <div class="topics-row">
+        <div class="wf-topics-row">
           <div class="topics-date">2025/02/20</div>
-          <div class="topics-title">サステナビリティレポート2024を公開しました</div>
+          <div class="wf-topics-title">サステナビリティレポート2024を公開しました</div>
         </div>
-        <div class="topics-row">
+        <div class="wf-topics-row">
           <div class="topics-date">2025/02/01</div>
-          <div class="topics-title">RE100達成に向けた再生可能エネルギー導入の進捗報告</div>
+          <div class="wf-topics-title">RE100達成に向けた再生可能エネルギー導入の進捗報告</div>
         </div>
-        <div class="topics-row">
+        <div class="wf-topics-row">
           <div class="topics-date">2025/01/28</div>
-          <div class="topics-title">人的資本経営への取り組みに関するお知らせ</div>
+          <div class="wf-topics-title">人的資本経営への取り組みに関するお知らせ</div>
         </div>
       </div>
 
@@ -1150,7 +1150,7 @@ html, body { min-width: var(--page-w); }
       <span class="ann-head">TOP専用 見出しモジュール（#12 / その他FB）</span>
       <p class="ann-body">
         <b>狙い：</b>下層（仮想）ページの「グラデ下線見出し」とは別系統にし、TOPを「面の入口」として見せる。<br>
-        <b>採用UI：</b>`.top-rich-head`＝連番なし・英字ラベルなし。短い実線アクセント＋28px日本語タイトル＋補足サブのみのシンプル構成。グラデ下線は下層見出し専用とし、TOPには使わない。
+        <b>採用UI：</b>`.wf-top-rich-head`＝連番なし・英字ラベルなし。短い実線アクセント＋28px日本語タイトル＋補足サブのみのシンプル構成。グラデ下線は下層見出し専用とし、TOPには使わない。
       </p>
     </div>
 

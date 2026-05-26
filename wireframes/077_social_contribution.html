@@ -54,7 +54,7 @@ body {
   letter-spacing: 0.03em;
 }
 .wf-meta-bar strong { color: #fff; font-size: 12px; }
-.wf-meta-bar .meta-badge {
+.wf-meta-bar .wf-meta-badge {
   background: #333; color: #aaa;
   font-size: 10px; padding: 2px 8px; border-radius: 2px;
   margin-left: 8px;
@@ -104,7 +104,7 @@ body {
   padding: 6px 32px; font-size: 10px;
   display: flex; align-items: center; justify-content: space-between;
 }
-.wf-page-indicator .pi-layer {
+.wf-page-indicator .wf-pi-layer {
   background: #444; color: #888;
   font-size: 9px; padding: 1px 8px; border-radius: 2px;
 }
@@ -253,7 +253,7 @@ body {
    catalog 3-1：ページ上 大型画像PH（全幅・16:8）
    キービジュアル／価値創造プロセス図／体制図 用
 ============================================================ */
-.large-figure-ph {
+.wf-large-figure-ph {
   background: var(--c-ph);
   border: 1px solid var(--c-ph-line);
   position: relative; overflow: hidden;
@@ -267,7 +267,7 @@ body {
   background: repeating-linear-gradient(45deg,
     transparent 0 12px, rgba(0,0,0,0.04) 12px 13px);
 }
-.large-figure-ph-label {
+.wf-large-figure-ph-label {
   position: relative; z-index: 1;
   font-size: 11px; color: var(--c-text-s);
   text-align: center; line-height: 1.7;
@@ -276,13 +276,13 @@ body {
   border: 1px dashed var(--c-ph-line);
   max-width: 80%;
 }
-.large-figure-ph-label strong {
+.wf-large-figure-ph-label strong {
   display: block; font-size: 12px; color: var(--c-text-h);
   margin-bottom: 4px;
 }
 
 /* catalog 3-6：画像拡大「+」ボタン（単独画像PHのみ／グラフ・体制図・模式図・全幅画像） */
-.img-zoom-btn {
+.wf-img-zoom-btn {
   position: absolute;
   bottom: 6px; right: 6px;
   width: 26px; height: 26px;
@@ -292,7 +292,7 @@ body {
   cursor: default; z-index: 5;
   border: 1px solid #fff;
 }
-.img-zoom-btn::before { content: '+'; }
+.wf-img-zoom-btn::before { content: '+'; }
 
 /* ============================================================
    GRID
@@ -1147,7 +1147,7 @@ body {
       </div>
       <div class="ann-row">
         <span class="ann-row-label">修正③ +ボタン</span>
-        アコ内写真PH に付けていた <code>.img-zoom-btn</code> を撤去。catalog 3-6 のシーン規定は「グラフ／体制図／模式図／全幅画像」のみで、アコ内活動写真はスコープ外。+ボタンは Hero <code>.large-figure-ph</code>（キービジュアル＝全幅画像）のみに残す。
+        アコ内写真PH に付けていた <code>.wf-img-zoom-btn</code> を撤去。catalog 3-6 のシーン規定は「グラフ／体制図／模式図／全幅画像」のみで、アコ内活動写真はスコープ外。+ボタンは Hero <code>.large-figure-ph</code>（キービジュアル＝全幅画像）のみに残す。
       </div>
     </div>
 
@@ -1164,7 +1164,7 @@ body {
       </div>
       <div class="ann-row">
         <span class="ann-row-label">③画像</span>
-        <strong>3-1</strong> <code>.large-figure-ph</code>（ページ上 1カラム全幅 16:8） / <strong>3-5</strong> アコ内画像（コンパクト・1〜2カラム） / <strong>3-6</strong> <code>.img-zoom-btn</code>（全幅画像のみ）
+        <strong>3-1</strong> <code>.large-figure-ph</code>（ページ上 1カラム全幅 16:8） / <strong>3-5</strong> アコ内画像（コンパクト・1〜2カラム） / <strong>3-6</strong> <code>.wf-img-zoom-btn</code>（全幅画像のみ）
       </div>
       <div class="ann-row">
         <span class="ann-row-label">⑥リンク</span>

@@ -65,7 +65,7 @@ body {
   letter-spacing: 0.03em;
 }
 .wf-meta-bar strong { color: #fff; font-size: 12px; }
-.wf-meta-bar .meta-badge {
+.wf-meta-bar .wf-meta-badge {
   background: #333;
   color: #aaa;
   font-size: 10px;
@@ -129,7 +129,7 @@ body {
   align-items: center;
   justify-content: space-between;
 }
-.wf-page-indicator .pi-layer {
+.wf-page-indicator .wf-pi-layer {
   background: #444;
   color: #888;
   font-size: 9px;
@@ -1503,12 +1503,12 @@ body {
 }
 
 /* 環境負荷全体像テーブルPH */
-.env-flow-table {
+.wf-env-flow-table {
   width: 100%;
   border-collapse: collapse;
   border: 1px solid var(--c-border);
 }
-.env-flow-table th {
+.wf-env-flow-table th {
   background: #3A3A3A;
   color: #fff;
   font-size: 11px;
@@ -1517,10 +1517,10 @@ body {
   text-align: center;
   border: 1px solid #555;
 }
-.env-flow-table th.env-header-green {
+.wf-env-flow-table th.env-header-green {
   background: #3A3A3A;
 }
-.env-flow-table td {
+.wf-env-flow-table td {
   font-size: 11px;
   color: var(--c-text);
   padding: 8px 12px;
@@ -1528,7 +1528,7 @@ body {
   vertical-align: top;
   line-height: 1.6;
 }
-.env-flow-table .cat-label {
+.wf-env-flow-table .cat-label {
   background: #F5F5F5;
   font-weight: 700;
   text-align: center;
@@ -1537,7 +1537,7 @@ body {
   letter-spacing: 0.1em;
   padding: 12px 8px;
 }
-.env-flow-table .num {
+.wf-env-flow-table .num {
   text-align: right;
   font-weight: 600;
   color: var(--c-text-h);
@@ -1610,13 +1610,13 @@ body {
   border-radius: 2px;
   flex-shrink: 0;
 }
-.co2-scope-table {
+.co2-wf-scope-table {
   width: 100%;
   border-collapse: collapse;
   border: 1px solid var(--c-border);
   margin-top: 16px;
 }
-.co2-scope-table th {
+.co2-wf-scope-table th {
   background: #F5F5F5;
   font-size: 10px;
   font-weight: 600;
@@ -1624,24 +1624,24 @@ body {
   text-align: left;
   border: 1px solid var(--c-border-s);
 }
-.co2-scope-table td {
+.co2-wf-scope-table td {
   font-size: 11px;
   padding: 6px 10px;
   border: 1px solid var(--c-border-s);
 }
-.co2-scope-table td.num {
+.co2-wf-scope-table td.num {
   text-align: right;
   font-weight: 600;
   color: var(--c-text-h);
 }
 
 /* 土壌・地下水テーブルPH */
-.soil-table {
+.wf-soil-table {
   width: 100%;
   border-collapse: collapse;
   border: 1px solid var(--c-border);
 }
-.soil-table th {
+.wf-soil-table th {
   background: #F5F5F5;
   font-size: 11px;
   font-weight: 600;
@@ -1649,7 +1649,7 @@ body {
   text-align: left;
   border: 1px solid var(--c-border-s);
 }
-.soil-table td {
+.wf-soil-table td {
   font-size: 11px;
   color: var(--c-text);
   padding: 8px 12px;
@@ -1841,11 +1841,11 @@ body {
 <div class="wf-meta-bar">
   <div>
     <strong>KONICA MINOLTA サステナビリティ</strong>
-    <span class="meta-badge">ESGデータ</span>
-    <span class="meta-badge">WF v3.5</span>
-    <span class="meta-badge">#199</span>
-    <span class="meta-badge">L3</span>
-    <span class="meta-badge" style="background:#7a4a00; color:#fff;">v3.4：KPMG保証ノートを削除／サステナサイトについてボタンを最新wf-btn-pageモジュールに統一</span>
+    <span class="wf-meta-badge">ESGデータ</span>
+    <span class="wf-meta-badge">WF v3.5</span>
+    <span class="wf-meta-badge">#199</span>
+    <span class="wf-meta-badge">L3</span>
+    <span class="wf-meta-badge" style="background:#7a4a00; color:#fff;">v3.4：KPMG保証ノートを削除／サステナサイトについてボタンを最新wf-btn-pageモジュールに統一</span>
   </div>
   <div style="font-size:10px; color:#666;">2026.05 / v3.3→v3.4：FB2点反映</div>
 </div>
@@ -1856,7 +1856,7 @@ body {
 
     <div class="wf-page-indicator">
       <span>ESGデータ / URL: /about/csr/esg-data/</span>
-      <span class="pi-layer">関連情報（1-G） — 目次ページ</span>
+      <span class="wf-pi-layer">関連情報（1-G） — 目次ページ</span>
     </div>
 
     <!-- ヘッダー：KM公式デザイン（画像差し替え） -->

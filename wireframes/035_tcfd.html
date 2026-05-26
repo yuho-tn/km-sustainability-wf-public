@@ -46,7 +46,7 @@ body {
   position: sticky; top: 0; z-index: 2000; letter-spacing: 0.03em;
 }
 .wf-meta-bar strong { color: #fff; font-size: 12px; }
-.wf-meta-bar .meta-badge { background: #333; color: #aaa; font-size: 10px; padding: 2px 8px; border-radius: 2px; margin-left: 8px; }
+.wf-meta-bar .wf-meta-badge { background: #333; color: #aaa; font-size: 10px; padding: 2px 8px; border-radius: 2px; margin-left: 8px; }
 
 .wf-canvas { max-width: var(--page-w); margin: 0 auto; display: grid; grid-template-columns: 1fr 280px; align-items: start; }
 /* v2.4：overflow-x:clip でスクロールコンテナを作らず目次sticky追従を維持 */
@@ -60,7 +60,7 @@ body {
 .wf-breadcrumb span.current { color: var(--c-text); }
 
 .wf-page-indicator { background: #2A2A2A; color: #aaa; padding: 6px 32px; font-size: 10px; display: flex; align-items: center; justify-content: space-between; }
-.wf-page-indicator .pi-layer { background: #444; color: #888; font-size: 9px; padding: 1px 8px; border-radius: 2px; }
+.wf-page-indicator .wf-pi-layer { background: #444; color: #888; font-size: 9px; padding: 1px 8px; border-radius: 2px; }
 
 .wf-section { padding: var(--pad-section) var(--pad-h); border-bottom: 1px solid var(--c-border-s); position: relative; }
 .wf-section.bg-sub { background: var(--c-bg-sub); }
@@ -212,7 +212,7 @@ body {
 .wf-btn:hover { background: var(--c-bg-sub); border-color: var(--c-text-h); }
 
 /* 大型図PH（全幅） */
-.large-figure-ph {
+.wf-large-figure-ph {
   background: var(--c-ph);
   border: 1px solid var(--c-ph-line);
   position: relative;
@@ -226,7 +226,7 @@ body {
   position: absolute; inset: 0;
   background: repeating-linear-gradient(45deg, transparent 0 12px, rgba(0,0,0,0.04) 12px 13px);
 }
-.large-figure-ph-label {
+.wf-large-figure-ph-label {
   position: relative; z-index: 1;
   font-size: 11px; color: var(--c-text-s);
   text-align: center; line-height: 1.7;
@@ -235,10 +235,10 @@ body {
   border: 1px dashed var(--c-ph-line);
   max-width: 80%;
 }
-.large-figure-ph-label strong { display: block; font-size: 12px; color: var(--c-text-h); margin-bottom: 4px; }
+.wf-large-figure-ph-label strong { display: block; font-size: 12px; color: var(--c-text-h); margin-bottom: 4px; }
 
 /* 画像拡大ボタン */
-.img-zoom-btn {
+.wf-img-zoom-btn {
   position: absolute;
   bottom: 6px; right: 6px;
   width: 26px; height: 26px;
@@ -248,8 +248,8 @@ body {
   cursor: default; z-index: 5;
   border: 1px solid #fff;
 }
-.img-zoom-btn::before { content: '+'; }
-.img-zoom-btn:hover { background: #2a2a2a; }
+.wf-img-zoom-btn::before { content: '+'; }
+.wf-img-zoom-btn:hover { background: #2a2a2a; }
 
 /* 画像拡大モーダルプレビュー */
 .img-zoom-modal-preview {
@@ -305,7 +305,7 @@ body {
 .img-zoom-modal-cap { font-size: 11px; color: var(--c-text-s); margin-top: 10px; line-height: 1.7; }
 
 /* トピックエリア（薄グレー） */
-.strategy-topic-box {
+.strategy-wf-topic-box {
   background: var(--c-bg-sub);
   border: 1px solid var(--c-border);
   padding: 16px 20px;
@@ -326,23 +326,23 @@ body {
 .strategy-topic-text strong { color: var(--c-text-h); }
 
 /* ガバナンス：取締役会承認テーブル */
-.gov-table {
+.wf-gov-table {
   width: 100%; border-collapse: collapse; background: var(--c-white);
   font-size: 12px; line-height: 1.7;
   border: 1px solid var(--c-border);
   margin-top: 14px;
 }
-.gov-table th, .gov-table td {
+.wf-gov-table th, .wf-gov-table td {
   border: 1px solid var(--c-border-s);
   padding: 10px 14px; text-align: left;
   vertical-align: top;
 }
-.gov-table thead th {
+.wf-gov-table thead th {
   background: var(--c-text-h); color: #fff;
   font-size: 11px; font-weight: 700;
   letter-spacing: 0.04em;
 }
-.gov-table tbody th {
+.wf-gov-table tbody th {
   background: var(--c-bg-sub); color: var(--c-text-h);
   font-weight: 700; font-size: 12px;
   white-space: nowrap; width: 90px;
@@ -350,20 +350,20 @@ body {
 }
 
 /* シナリオ分析：リスク機会テーブル */
-.scenario-table-wrap { overflow-x: auto; margin: 4px 0 8px; border: 1px solid var(--c-border); }
-.scenario-table { width: 100%; border-collapse: collapse; font-size: 11px; background: var(--c-white); }
-.scenario-table th, .scenario-table td {
+.wf-scenario-table-wrap { overflow-x: auto; margin: 4px 0 8px; border: 1px solid var(--c-border); }
+.wf-scenario-table { width: 100%; border-collapse: collapse; font-size: 11px; background: var(--c-white); }
+.wf-scenario-table th, .wf-scenario-table td {
   border: 1px solid var(--c-border-s);
   padding: 7px 10px; text-align: left;
   line-height: 1.5; vertical-align: top;
 }
-.scenario-table thead th {
+.wf-scenario-table thead th {
   background: var(--c-text-h); color: #fff;
   font-size: 10px; font-weight: 700;
   letter-spacing: 0.04em; white-space: nowrap;
 }
-.scenario-table .impact-col, .scenario-table .timeline-col { white-space: nowrap; text-align: center; }
-.scenario-table .badge {
+.wf-scenario-table .impact-col, .wf-scenario-table .timeline-col { white-space: nowrap; text-align: center; }
+.wf-scenario-table .badge {
   display: inline-block;
   font-size: 9px; font-weight: 700;
   padding: 1px 7px;
@@ -372,10 +372,10 @@ body {
   color: var(--c-text-h);
   border: 1px solid var(--c-border);
 }
-.scenario-table .badge.b-large { background: var(--c-text-h); color: #fff; border-color: var(--c-text-h); }
-.scenario-table .badge.b-mid { background: #555; color: #fff; border-color: #555; }
-.scenario-table .badge.b-low { background: var(--c-white); color: var(--c-text-h); border-color: var(--c-text-h); }
-.scenario-table .cat-cell { font-weight: 700; color: var(--c-text-h); }
+.wf-scenario-table .badge.b-large { background: var(--c-text-h); color: #fff; border-color: var(--c-text-h); }
+.wf-scenario-table .badge.b-mid { background: #555; color: #fff; border-color: #555; }
+.wf-scenario-table .badge.b-low { background: var(--c-white); color: var(--c-text-h); border-color: var(--c-text-h); }
+.wf-scenario-table .cat-cell { font-weight: 700; color: var(--c-text-h); }
 
 /* リスク分類カード（移行/物理） */
 .risk-2col {
@@ -426,48 +426,48 @@ body {
 }
 
 /* GHG排出量テーブル */
-.ghg-table-wrap { overflow-x: auto; margin: 10px 0; border: 1px solid var(--c-border); }
-.ghg-table { width: 100%; border-collapse: collapse; font-size: 11px; background: var(--c-white); min-width: 760px; }
-.ghg-table th, .ghg-table td {
+.wf-ghg-table-wrap { overflow-x: auto; margin: 10px 0; border: 1px solid var(--c-border); }
+.wf-ghg-table { width: 100%; border-collapse: collapse; font-size: 11px; background: var(--c-white); min-width: 760px; }
+.wf-ghg-table th, .wf-ghg-table td {
   border: 1px solid var(--c-border-s);
   padding: 8px 10px; text-align: right;
   line-height: 1.5; font-family: 'Helvetica Neue', sans-serif;
 }
-.ghg-table thead th {
+.wf-ghg-table thead th {
   background: var(--c-text-h); color: #fff;
   font-size: 10px; font-weight: 700;
   letter-spacing: 0.04em; white-space: nowrap;
   text-align: center;
 }
-.ghg-table tbody th {
+.wf-ghg-table tbody th {
   background: var(--c-bg-sub); color: var(--c-text-h);
   font-weight: 700; font-size: 11px;
   text-align: left; white-space: nowrap;
   font-family: 'Hiragino Kaku Gothic Pro', sans-serif;
 }
-.ghg-table .target-cell {
+.wf-ghg-table .wf-target-cell {
   background: #FAF7F0; font-weight: 700;
   color: var(--c-text-h);
 }
-.ghg-table .scope-row th { background: #444; color: #fff; font-size: 10px; }
+.wf-ghg-table .scope-row th { background: #444; color: #fff; font-size: 10px; }
 
 /* 経済価値・環境価値テーブル */
-.opp-table-wrap { overflow-x: auto; margin: 10px 0; border: 1px solid var(--c-border); }
-.opp-table { width: 100%; border-collapse: collapse; font-size: 11px; background: var(--c-white); }
-.opp-table th, .opp-table td {
+.wf-opp-table-wrap { overflow-x: auto; margin: 10px 0; border: 1px solid var(--c-border); }
+.wf-opp-table { width: 100%; border-collapse: collapse; font-size: 11px; background: var(--c-white); }
+.wf-opp-table th, .wf-opp-table td {
   border: 1px solid var(--c-border-s);
   padding: 8px 10px; line-height: 1.5;
 }
-.opp-table thead th {
+.wf-opp-table thead th {
   background: var(--c-text-h); color: #fff;
   font-size: 10px; font-weight: 700;
   letter-spacing: 0.04em; white-space: nowrap;
   text-align: center;
 }
-.opp-table .cat-th { background: var(--c-bg-sub); color: var(--c-text-h); font-weight: 700; text-align: left; vertical-align: middle; white-space: nowrap; }
-.opp-table .label-th { font-weight: 700; color: var(--c-text-h); text-align: left; }
-.opp-table .value-cell { text-align: right; font-family: 'Helvetica Neue', sans-serif; }
-.opp-table .target-cell { background: #FAF7F0; font-weight: 700; text-align: right; font-family: 'Helvetica Neue', sans-serif; }
+.wf-opp-table .cat-th { background: var(--c-bg-sub); color: var(--c-text-h); font-weight: 700; text-align: left; vertical-align: middle; white-space: nowrap; }
+.wf-opp-table .label-th { font-weight: 700; color: var(--c-text-h); text-align: left; }
+.wf-opp-table .wf-value-cell { text-align: right; font-family: 'Helvetica Neue', sans-serif; }
+.wf-opp-table .wf-target-cell { background: #FAF7F0; font-weight: 700; text-align: right; font-family: 'Helvetica Neue', sans-serif; }
 
 /* グラフPH */
 .graph-ph {
@@ -482,21 +482,21 @@ body {
 .graph-cap { font-size: 11px; color: var(--c-text-s); margin-top: 6px; line-height: 1.7; }
 
 /* 用語注釈エリア（モーダル起動トリガー） */
-.term-note {
+.wf-term-note {
   margin-top: 16px;
   padding-top: 12px;
   border-top: 1px dashed var(--c-border);
   display: flex; align-items: center; flex-wrap: wrap;
   gap: 10px;
 }
-.term-note-label {
+.wf-term-note-label {
   font-size: 10px; font-weight: 700; color: var(--c-text-xs);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
-.term-note-label::before { content: '※ '; }
+.wf-term-note-label::before { content: '※ '; }
 
-.term-trigger {
+.wf-term-trigger {
   display: inline-flex; align-items: center; gap: 8px;
   font-size: 11px; font-weight: 600; color: var(--c-text-h);
   background: var(--c-white);
@@ -506,7 +506,7 @@ body {
   letter-spacing: 0.02em;
   position: relative;
 }
-.term-trigger .term-trigger-mark {
+.wf-term-trigger .wf-term-trigger-mark {
   display: inline-flex; align-items: center; justify-content: center;
   width: 18px; height: 18px;
   background: var(--c-text-h); color: #fff;
@@ -515,7 +515,7 @@ body {
   font-family: 'Helvetica Neue', sans-serif;
   flex-shrink: 0;
 }
-.term-trigger:hover { background: var(--c-bg-sub); }
+.wf-term-trigger:hover { background: var(--c-bg-sub); }
 
 .modal-preview-zone {
   background: #FFF8E5;
@@ -534,7 +534,7 @@ body {
   font-size: 11px; color: var(--c-text-s);
   margin-bottom: 18px; line-height: 1.7;
 }
-.term-modal {
+.wf-term-modal {
   background: var(--c-white);
   border: 1px solid var(--c-border);
   box-shadow: 0 4px 14px rgba(0,0,0,0.10);
@@ -542,14 +542,14 @@ body {
   overflow: hidden;
   max-width: 420px;
 }
-.term-modal-head {
+.wf-term-modal-head {
   background: var(--c-text-h); color: #fff;
   padding: 14px 18px;
   display: flex; align-items: center; justify-content: space-between;
   gap: 10px;
 }
-.term-modal-title { font-size: 14px; font-weight: 700; }
-.term-modal-close {
+.wf-term-modal-title { font-size: 14px; font-weight: 700; }
+.wf-term-modal-close {
   width: 22px; height: 22px;
   background: #fff; color: var(--c-text-h);
   display: flex; align-items: center; justify-content: center;
@@ -557,13 +557,13 @@ body {
   border-radius: 50%;
   cursor: default;
 }
-.term-modal-body {
+.wf-term-modal-body {
   padding: 16px 20px 20px;
   font-size: 11px; color: var(--c-text);
   line-height: 1.85;
 }
-.term-modal-body p { margin-bottom: 8px; }
-.term-modal-body p:last-child { margin-bottom: 0; }
+.wf-term-modal-body p { margin-bottom: 8px; }
+.wf-term-modal-body p:last-child { margin-bottom: 0; }
 
 /* インラインテキストリンク行（140 wf-text-link モジュール準拠）
    本文段落の直下に「→ リンクテキスト」を独立行で配置。原文サイトの本文中リンクを再現 */
@@ -815,11 +815,11 @@ body {
 <div class="wf-meta-bar">
   <div>
     <strong>KONICA MINOLTA サステナビリティ</strong>
-    <span class="meta-badge">TCFD開示</span>
-    <span class="meta-badge">WF v3.4</span>
-    <span class="meta-badge">#031</span>
-    <span class="meta-badge">L3</span>
-    <span class="meta-badge" style="background:#7a4a00; color:#fff;">タグ非表示 / 関連コンテンツ撤去（他ページUI統一）</span>
+    <span class="wf-meta-badge">TCFD開示</span>
+    <span class="wf-meta-badge">WF v3.4</span>
+    <span class="wf-meta-badge">#031</span>
+    <span class="wf-meta-badge">L3</span>
+    <span class="wf-meta-badge" style="background:#7a4a00; color:#fff;">タグ非表示 / 関連コンテンツ撤去（他ページUI統一）</span>
   </div>
   <div style="font-size:10px; color:#666;">2026.05 / FB反映：wf-acc-tag非表示、関連コンテンツ3カードグリッド撤去（他ページに対応モジュールなし）</div>
 </div>
@@ -829,7 +829,7 @@ body {
 
     <div class="wf-page-indicator">
       <span>TCFD開示 / URL: /about/csr/environment/strategy/tcfd/</span>
-      <span class="pi-layer">L3 第3階層 — 気候関連財務情報開示</span>
+      <span class="wf-pi-layer">L3 第3階層 — 気候関連財務情報開示</span>
     </div>
 
     <!-- ヘッダー：KM公式デザイン（画像差し替え） -->
@@ -874,7 +874,7 @@ body {
               <span class="wf-acc-text">取締役会での承認事項</span>
             </summary>
             <div class="wf-acc-h3-body">
-              <table class="gov-table">
+              <table class="wf-gov-table">
                 <thead>
                   <tr><th style="width:90px;">時期</th><th>取締役会での承認事項</th></tr>
                 </thead>
@@ -1029,12 +1029,12 @@ body {
           </p>
 
           <h4 class="wf-card-title has-mark">コニカミノルタの気候関連リスクと機会（全体俯瞰）</h4>
-          <div class="large-figure-ph">
-            <span class="large-figure-ph-label">
+          <div class="wf-large-figure-ph">
+            <span class="wf-large-figure-ph-label">
               <strong>図：コニカミノルタの気候関連リスクと機会 PH</strong>
               移行／物理リスク × 機会の全体マッピング（事業セグメント別・時間軸別）
             </span>
-            <span class="img-zoom-btn"></span>
+            <span class="wf-img-zoom-btn"></span>
           </div>
 
           <!-- 1.5℃シナリオ -->
@@ -1047,8 +1047,8 @@ body {
                 <span class="wf-acc-text">気候変動の「リスク」への対処（5項目）</span>
               </summary>
               <div class="wf-acc-h3-body">
-                <div class="scenario-table-wrap">
-                  <table class="scenario-table">
+                <div class="wf-scenario-table-wrap">
+                  <table class="wf-scenario-table">
                     <thead>
                       <tr>
                         <th style="min-width:240px;">気候変動への対処／コニカミノルタへの影響</th>
@@ -1115,8 +1115,8 @@ body {
                 <p style="margin-bottom:10px; font-size:11px; color:var(--c-text-s);">
                   共通カテゴリ：製品サービスの需要変化による売上増加
                 </p>
-                <div class="scenario-table-wrap">
-                  <table class="scenario-table">
+                <div class="wf-scenario-table-wrap">
+                  <table class="wf-scenario-table">
                     <thead>
                       <tr>
                         <th>コニカミノルタへの影響</th>
@@ -1150,8 +1150,8 @@ body {
                 <span class="wf-acc-text">気候変動の「リスク」への対処（4項目）</span>
               </summary>
               <div class="wf-acc-h3-body">
-                <div class="scenario-table-wrap">
-                  <table class="scenario-table">
+                <div class="wf-scenario-table-wrap">
+                  <table class="wf-scenario-table">
                     <thead>
                       <tr>
                         <th style="min-width:240px;">気候変動への対処／コニカミノルタへの影響</th>
@@ -1210,8 +1210,8 @@ body {
                 <p style="margin-bottom:10px; font-size:11px; color:var(--c-text-s);">
                   共通カテゴリ：製品サービスの需要変化による売上増加
                 </p>
-                <div class="scenario-table-wrap">
-                  <table class="scenario-table">
+                <div class="wf-scenario-table-wrap">
+                  <table class="wf-scenario-table">
                     <thead>
                       <tr>
                         <th>コニカミノルタへの影響</th>
@@ -1342,12 +1342,12 @@ body {
 
           <!-- 「カーボンマイナス」「ネットゼロ」の目標：既存サイトは図画像 -->
           <h4 class="wf-card-title has-mark">「カーボンマイナス」および「ネットゼロ」の目標</h4>
-          <div class="large-figure-ph">
-            <span class="large-figure-ph-label">
+          <div class="wf-large-figure-ph">
+            <span class="wf-large-figure-ph-label">
               <strong>図：「カーボンマイナス」および「ネットゼロ」の目標 PH</strong>
               （既存サイト img_tcfd-metrics-targets_001.jpg）
             </span>
-            <span class="img-zoom-btn"></span>
+            <span class="wf-img-zoom-btn"></span>
           </div>
           <p class="wf-section-desc" style="margin-top:14px;">
             （文章はダミーです）目標と実績の詳細は「サステナビリティ目標と実績」を参照ください。
@@ -1385,8 +1385,8 @@ body {
                 </p>
 
                 <h5 class="wf-h5-title">製品ライフサイクルにおけるCO<sub>2</sub>排出量（単位：千トン-CO<sub>2</sub>）</h5>
-                <div class="ghg-table-wrap">
-                  <table class="ghg-table">
+                <div class="wf-ghg-table-wrap">
+                  <table class="wf-ghg-table">
                     <thead>
                       <tr>
                         <th rowspan="2" style="text-align:left;">区分</th>
@@ -1396,20 +1396,20 @@ body {
                         <th>2022</th>
                         <th>2023</th>
                         <th>2024</th>
-                        <th class="target-cell">2025目標</th>
-                        <th class="target-cell">2030目標</th>
+                        <th class="wf-target-cell">2025目標</th>
+                        <th class="wf-target-cell">2030目標</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr><th>製品ライフサイクル合計</th><td>2,067</td><td>1,041</td><td>790</td><td>851</td><td>748</td><td>784</td><td class="target-cell">800</td><td class="target-cell">620</td></tr>
+                      <tr><th>製品ライフサイクル合計</th><td>2,067</td><td>1,041</td><td>790</td><td>851</td><td>748</td><td>784</td><td class="wf-target-cell">800</td><td class="wf-target-cell">620</td></tr>
                       <tr class="scope-row"><th colspan="9">内訳</th></tr>
-                      <tr><th>スコープ１（生産・販売・サービス）</th><td>254</td><td>170</td><td>159</td><td>151</td><td>148</td><td>148</td><td class="target-cell">—</td><td class="target-cell">170</td></tr>
-                      <tr><th>スコープ２（生産・販売・サービス）</th><td>220</td><td>197</td><td>164</td><td>151</td><td>139</td><td>123</td><td class="target-cell">—</td><td class="target-cell">—</td></tr>
-                      <tr><th>スコープ３（調達・物流・製品使用）</th><td>1,592</td><td>675</td><td>467</td><td>548</td><td>462</td><td>513</td><td class="target-cell">—</td><td class="target-cell">450</td></tr>
+                      <tr><th>スコープ１（生産・販売・サービス）</th><td>254</td><td>170</td><td>159</td><td>151</td><td>148</td><td>148</td><td class="wf-target-cell">—</td><td class="wf-target-cell">170</td></tr>
+                      <tr><th>スコープ２（生産・販売・サービス）</th><td>220</td><td>197</td><td>164</td><td>151</td><td>139</td><td>123</td><td class="wf-target-cell">—</td><td class="wf-target-cell">—</td></tr>
+                      <tr><th>スコープ３（調達・物流・製品使用）</th><td>1,592</td><td>675</td><td>467</td><td>548</td><td>462</td><td>513</td><td class="wf-target-cell">—</td><td class="wf-target-cell">450</td></tr>
                       <tr class="scope-row"><th colspan="9">スコープ３ 主要カテゴリー</th></tr>
-                      <tr><th>カテゴリ１（購入物品・サービス）</th><td>397</td><td>437</td><td>247</td><td>296</td><td>272</td><td>314</td><td class="target-cell">—</td><td class="target-cell">—</td></tr>
-                      <tr><th>カテゴリ４（輸送・流通／製品物流）</th><td>58</td><td>26</td><td>41</td><td>83</td><td>28</td><td>53</td><td class="target-cell">—</td><td class="target-cell">—</td></tr>
-                      <tr><th>カテゴリ11（販売した製品の使用）</th><td>1,137</td><td>211</td><td>179</td><td>169</td><td>162</td><td>147</td><td class="target-cell">—</td><td class="target-cell">—</td></tr>
+                      <tr><th>カテゴリ１（購入物品・サービス）</th><td>397</td><td>437</td><td>247</td><td>296</td><td>272</td><td>314</td><td class="wf-target-cell">—</td><td class="wf-target-cell">—</td></tr>
+                      <tr><th>カテゴリ４（輸送・流通／製品物流）</th><td>58</td><td>26</td><td>41</td><td>83</td><td>28</td><td>53</td><td class="wf-target-cell">—</td><td class="wf-target-cell">—</td></tr>
+                      <tr><th>カテゴリ11（販売した製品の使用）</th><td>1,137</td><td>211</td><td>179</td><td>169</td><td>162</td><td>147</td><td class="wf-target-cell">—</td><td class="wf-target-cell">—</td></tr>
                     </tbody>
                   </table>
                 </div>
@@ -1438,7 +1438,7 @@ body {
                 <h5 class="wf-h5-title">再生可能エネルギー由来電力比率（経年推移）</h5>
                 <div class="graph-ph">
                   <span class="graph-ph-label">[ グラフ：再エネ由来電力比率の経年推移（FY18-24実績／FY30-50目標）PH ]</span>
-                  <span class="img-zoom-btn"></span>
+                  <span class="wf-img-zoom-btn"></span>
                 </div>
                 <p class="graph-cap">図：2050年100％、2030年50％以上を目標、2024年度実績 約20％</p>
               </div>
@@ -1468,27 +1468,27 @@ body {
                 <p>
                   （文章はダミーです）気候関連の機会の管理指標として、自社の製品やソリューションをステークホルダーへ提供することで創出される経済価値および環境価値の両方を採用し、目標を設定しています。経済価値は「グリーンプロダクツ売上高」「グリーンプロダクツ売上高比率」を、環境価値は「製品使用時CO<sub>2</sub>削減量」（スコープ３排出量削減）「自社製品ライフサイクル以外でのCO<sub>2</sub>削減貢献量」（スコープ４での削減貢献）を設定しています。
                 </p>
-                <div class="opp-table-wrap">
-                  <table class="opp-table">
+                <div class="wf-opp-table-wrap">
+                  <table class="wf-opp-table">
                     <thead>
                       <tr>
                         <th rowspan="2" style="text-align:left;">分類</th>
                         <th rowspan="2" style="text-align:left;">管理指標</th>
                         <th colspan="2">実績</th>
-                        <th colspan="2" class="target-cell">目標</th>
+                        <th colspan="2" class="wf-target-cell">目標</th>
                       </tr>
                       <tr>
                         <th>2023年度</th>
                         <th>2024年度</th>
-                        <th class="target-cell">2025年度</th>
-                        <th class="target-cell">2026年度</th>
+                        <th class="wf-target-cell">2025年度</th>
+                        <th class="wf-target-cell">2026年度</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr><th rowspan="2" class="cat-th">経済価値</th><td class="label-th">グリーンプロダクツ売上高（億円）</td><td class="value-cell">7,728</td><td class="value-cell">7,770</td><td class="target-cell">—</td><td class="target-cell">7,350</td></tr>
-                      <tr><td class="label-th">グリーンプロダクツ売上高比率（％）</td><td class="value-cell">67</td><td class="value-cell">69</td><td class="target-cell">—</td><td class="target-cell">70</td></tr>
-                      <tr><th rowspan="2" class="cat-th">環境価値</th><td class="label-th">製品使用時CO<sub>2</sub>削減量（千トン）</td><td class="value-cell">73</td><td class="value-cell">133</td><td class="target-cell">190</td><td class="target-cell">—</td></tr>
-                      <tr><td class="label-th">自社製品ライフサイクル以外でのCO<sub>2</sub>削減貢献量（千トン）</td><td class="value-cell">631</td><td class="value-cell">682</td><td class="target-cell">800</td><td class="target-cell">—</td></tr>
+                      <tr><th rowspan="2" class="cat-th">経済価値</th><td class="label-th">グリーンプロダクツ売上高（億円）</td><td class="wf-value-cell">7,728</td><td class="wf-value-cell">7,770</td><td class="wf-target-cell">—</td><td class="wf-target-cell">7,350</td></tr>
+                      <tr><td class="label-th">グリーンプロダクツ売上高比率（％）</td><td class="wf-value-cell">67</td><td class="wf-value-cell">69</td><td class="wf-target-cell">—</td><td class="wf-target-cell">70</td></tr>
+                      <tr><th rowspan="2" class="cat-th">環境価値</th><td class="label-th">製品使用時CO<sub>2</sub>削減量（千トン）</td><td class="wf-value-cell">73</td><td class="wf-value-cell">133</td><td class="wf-target-cell">190</td><td class="wf-target-cell">—</td></tr>
+                      <tr><td class="label-th">自社製品ライフサイクル以外でのCO<sub>2</sub>削減貢献量（千トン）</td><td class="wf-value-cell">631</td><td class="wf-value-cell">682</td><td class="wf-target-cell">800</td><td class="wf-target-cell">—</td></tr>
                     </tbody>
                   </table>
                 </div>
@@ -1733,7 +1733,7 @@ body {
       </div>
       <div class="ann-row">
         <span class="ann-row-label">#2/#3/#4/#5（A・反映済）矢口・池田</span>
-        「？」マーク（用語tooltip/モーダル）の使い分け/挙動不明 → <b>UNIFIED_RULES.md v5.0 に従い term-trigger（？マーク）型のツールチップ/モーダルを全廃</b>。.term-trigger 9箇所（SBT/ICP/CNパートナー活動/環境デジタルプラットフォーム/スコープ1〜3/スコープ4/ネットゼロ 等）を除去し、用語名のプレーンテキストに置換。Tips要素は今後 .term-note-small（11px本文内小注記）に統一。
+        「？」マーク（用語tooltip/モーダル）の使い分け/挙動不明 → <b>UNIFIED_RULES.md v5.0 に従い wf-term-trigger（？マーク）型のツールチップ/モーダルを全廃</b>。.wf-term-trigger 9箇所（SBT/ICP/CNパートナー活動/環境デジタルプラットフォーム/スコープ1〜3/スコープ4/ネットゼロ 等）を除去し、用語名のプレーンテキストに置換。Tips要素は今後 .wf-term-note-small（11px本文内小注記）に統一。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">v5.0 横断ルール適用</span>
@@ -1746,7 +1746,7 @@ body {
       <span class="ann-head">v3.1 主要変更（FB反映：原文厳守）</span>
       <p class="ann-body">
         既存4ページの本文・テーブルを完全踏襲し、WF独自の補足・装飾的展開を撤去。<br>
-        ・戦略：CARBON MINUS topic-box撤去（原文に独立強調なし）／リード文末尾「成長戦略の中核です」を補完／移行計画の案内文撤去／短中期事業活動末尾の重要管理指標を本文として正規化／GP/GF/GMの「活動」名称表記を原文どおり復元<br>
+        ・戦略：CARBON MINUS wf-topic-box撤去（原文に独立強調なし）／リード文末尾「成長戦略の中核です」を補完／移行計画の案内文撤去／短中期事業活動末尾の重要管理指標を本文として正規化／GP/GF/GMの「活動」名称表記を原文どおり復元<br>
         ・リスク管理：移行/物理2カラムカード撤去（原文では「使用したリスクの分類枠組み」1行のみ）／運用プロセスのアコーディオン撤去（原文では本文に統合）／4段落構造を原文どおり保持<br>
         ・指標と目標：主要KPIカード（2025/2050独自カード）→既存サイトの図画像PH（img_tcfd-metrics-targets_001.jpg相当）に置換／6番ICPの「環境価値の固有性を見極め」追加文撤去／7番報酬の「インセンティブを高めるとともに自社株保有の促進を図るため」追加文撤去／1番2番リード文を「短期/中期/長期目標」のリスト形式に整理<br>
         ・シナリオ分析：各テーブル冒頭の独自補足リード文を撤去

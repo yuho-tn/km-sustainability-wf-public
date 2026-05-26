@@ -37,7 +37,7 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
 
 .wf-meta-bar { background: #111; color: #ccc; font-size: 11px; padding: 8px 20px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 2000; letter-spacing: 0.03em; }
 .wf-meta-bar strong { color: #fff; font-size: 12px; }
-.wf-meta-bar .meta-badge { background: #333; color: #aaa; font-size: 10px; padding: 2px 8px; border-radius: 2px; margin-left: 8px; }
+.wf-meta-bar .wf-meta-badge { background: #333; color: #aaa; font-size: 10px; padding: 2px 8px; border-radius: 2px; margin-left: 8px; }
 
 .wf-canvas { max-width: var(--page-w); margin: 0 auto; display: grid; grid-template-columns: 1fr 280px; align-items: start; }
 /* overflow-x:clip = 背景帯の食い出しはクリップしつつ、スクロールコンテナを
@@ -52,7 +52,7 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
 .wf-breadcrumb span.current { color: var(--c-text); }
 
 .wf-page-indicator { background: #2A2A2A; color: #aaa; padding: 6px 32px; font-size: 10px; display: flex; align-items: center; justify-content: space-between; }
-.wf-page-indicator .pi-layer { background: #444; color: #888; font-size: 9px; padding: 1px 8px; border-radius: 2px; }
+.wf-page-indicator .wf-pi-layer { background: #444; color: #888; font-size: 9px; padding: 1px 8px; border-radius: 2px; }
 
 /* L4ページタイトル（ヒーローなし・テキストのみ） */
 .wf-page-title-area {
@@ -207,7 +207,7 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
 }
 
 /* 画像拡大ボタン（2カラム以上の画像PHに付与・全WF共通仕様） */
-.img-zoom-btn {
+.wf-img-zoom-btn {
   position: absolute;
   bottom: 6px; right: 6px;
   width: 26px; height: 26px;
@@ -217,8 +217,8 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
   cursor: default; z-index: 5;
   border: 1px solid #fff;
 }
-.img-zoom-btn::before { content: '+'; }
-.img-zoom-btn:hover { background: #2a2a2a; }
+.wf-img-zoom-btn::before { content: '+'; }
+.wf-img-zoom-btn:hover { background: #2a2a2a; }
 
 /* 画像拡大モーダル — プレビューゾーン */
 .img-zoom-preview-zone {
@@ -346,7 +346,7 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
   display: flex; align-items: center; justify-content: space-between;
   gap: 8px;
 }
-.card-link-arrow {
+.wf-card-link-arrow {
   display: inline-flex; align-items: center; justify-content: center;
   width: 22px; height: 22px;
   background: var(--c-text-h); color: #fff;
@@ -667,7 +667,7 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
                 <span class="wf-activity-card-img-label">[ グリーンプロダクツ等 PH ]</span>
               </div>
               <div class="wf-activity-card-body">
-                <div class="wf-activity-card-title"><span>製品/ソリューションでの脱炭素化</span><span class="card-link-arrow">›</span></div>
+                <div class="wf-activity-card-title"><span>製品/ソリューションでの脱炭素化</span><span class="wf-card-link-arrow">›</span></div>
                 <p class="wf-activity-card-summary">主力製品・ソリューションを通じてお客様の業務プロセスでのCO<sub>2</sub>削減を実現します。</p>
               </div>
             </div>
@@ -678,7 +678,7 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
                 <span class="wf-activity-card-img-label">[ グリーンファクトリー PH ]</span>
               </div>
               <div class="wf-activity-card-body">
-                <div class="wf-activity-card-title"><span>生産活動での脱炭素化</span><span class="card-link-arrow">›</span></div>
+                <div class="wf-activity-card-title"><span>生産活動での脱炭素化</span><span class="wf-card-link-arrow">›</span></div>
                 <p class="wf-activity-card-summary">主要生産サイトでの省エネ施策・グリーンファクトリー認定制度を運用します。</p>
               </div>
             </div>
@@ -689,7 +689,7 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
                 <span class="wf-activity-card-img-label">[ グリーンマーケティング PH ]</span>
               </div>
               <div class="wf-activity-card-body">
-                <div class="wf-activity-card-title"><span>販売活動での脱炭素</span><span class="card-link-arrow">›</span></div>
+                <div class="wf-activity-card-title"><span>販売活動での脱炭素</span><span class="wf-card-link-arrow">›</span></div>
                 <p class="wf-activity-card-summary">全世界の販売拠点でグローバル販売活動の環境負荷低減を進めています。</p>
               </div>
             </div>
@@ -700,7 +700,7 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
                 <span class="wf-activity-card-img-label">[ モーダルシフト PH ]</span>
               </div>
               <div class="wf-activity-card-body">
-                <div class="wf-activity-card-title"><span>物流での脱炭素化</span><span class="card-link-arrow">›</span></div>
+                <div class="wf-activity-card-title"><span>物流での脱炭素化</span><span class="wf-card-link-arrow">›</span></div>
                 <p class="wf-activity-card-summary">モーダルシフト、輸送効率化、低炭素輸送モードの活用を推進しています。</p>
               </div>
             </div>
@@ -711,7 +711,7 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
                 <span class="wf-activity-card-img-label">[ BCP・適応策 PH ]</span>
               </div>
               <div class="wf-activity-card-body">
-                <div class="wf-activity-card-title"><span>気候変動への適応</span><span class="card-link-arrow">›</span></div>
+                <div class="wf-activity-card-title"><span>気候変動への適応</span><span class="wf-card-link-arrow">›</span></div>
                 <p class="wf-activity-card-summary">気候変動の物理的影響への事業継続力強化・BCP対応・レジリエンス向上施策を推進。</p>
               </div>
             </div>
@@ -875,7 +875,7 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
       </div>
       <div class="ann-row">
         <span class="ann-row-label">UI調整（0521）</span>
-        本ページは画像拡大不要のため、すべての画像PHから +ボタン（img-zoom-btn）を削除（7箇所）。<br>
+        本ページは画像拡大不要のため、すべての画像PHから +ボタン（wf-img-zoom-btn）を削除（7箇所）。<br>
         その他の取り組み（⑥）を col-2 → <b>col-3</b> に変更（5カードを 3列で配置）。
       </div>
     </div>

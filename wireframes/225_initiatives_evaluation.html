@@ -45,7 +45,7 @@ body {
   position: sticky; top: 0; z-index: 2000; letter-spacing: 0.03em;
 }
 .wf-meta-bar strong { color: #fff; font-size: 12px; }
-.wf-meta-bar .meta-badge { background: #333; color: #aaa; font-size: 10px; padding: 2px 8px; border-radius: 2px; margin-left: 8px; }
+.wf-meta-bar .wf-meta-badge { background: #333; color: #aaa; font-size: 10px; padding: 2px 8px; border-radius: 2px; margin-left: 8px; }
 
 .wf-canvas { max-width: var(--page-w); margin: 0 auto; display: grid; grid-template-columns: 1fr 280px; align-items: start; }
 /* v2.4：overflow-x:clip でスクロールコンテナを作らず目次sticky追従を維持 */
@@ -59,7 +59,7 @@ body {
 .wf-breadcrumb span.current { color: var(--c-text); }
 
 .wf-page-indicator { background: #2A2A2A; color: #aaa; padding: 6px 32px; font-size: 10px; display: flex; align-items: center; justify-content: space-between; }
-.wf-page-indicator .pi-layer { background: #444; color: #888; font-size: 9px; padding: 1px 8px; border-radius: 2px; }
+.wf-page-indicator .wf-pi-layer { background: #444; color: #888; font-size: 9px; padding: 1px 8px; border-radius: 2px; }
 
 .wf-section { padding: var(--pad-section) var(--pad-h); border-bottom: 1px solid var(--c-border-s); position: relative; }
 .wf-section.bg-sub { background: var(--c-bg-sub); }
@@ -206,10 +206,10 @@ body {
 /* ============================================================
    認定ロゴ2カラムモジュール（くるみん／えるぼし 6ロゴ用）
    0524 桐原FB：認定種別ごとに左右2カラム＋各カラム内で2列×nラインの compact 配置
-   - .csr-row-content 直下に置くと全幅で改行配置
-   - JS の auto logos-grid（.csr-logo-strip カウント）には引っかからない（別module）
+   - .wf-csr-row-content 直下に置くと全幅で改行配置
+   - JS の auto logos-grid（.wf-csr-logo-strip カウント）には引っかからない（別module）
 ============================================================ */
-.csr-cert-2col {
+.wf-csr-cert-2col {
   flex: 1 0 100%;
   order: 1;
   display: grid;
@@ -217,18 +217,18 @@ body {
   gap: 24px;
   margin-bottom: 4px;
 }
-.csr-cert-col-title {
+.wf-csr-cert-col-title {
   font-size: 12px;
   font-weight: 700;
   color: var(--c-text-h);
   margin-bottom: 6px;
 }
-.csr-cert-logos {
+.wf-csr-cert-logos {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 8px;
 }
-.csr-cert-logos .csr-logo {
+.wf-csr-cert-logos .csr-logo {
   width: 100%;
   height: 78px;
 }
@@ -236,19 +236,19 @@ body {
 /* ============================================================
    リンクリスト共通モジュール（複数リンク掲載時の標準UI）
    0523 桐原FB：現サイト同様の「〈タイトル〉＋テキストリンク」シンプルUI（背景・ボーダーなし）
-   - 使い方：<div class="wf-link-block"><div class="csr-link-list-title">〈XX〉</div>
-              <div class="csr-row-links">...wf-text-link-row × n...</div></div>
-   - .csr-row-content の直下に置くと「画像＋テキスト」の下に全幅で改行配置される
+   - 使い方：<div class="wf-link-block"><div class="wf-csr-link-list-title">〈XX〉</div>
+              <div class="wf-csr-row-links">...wf-text-link-row × n...</div></div>
+   - .wf-csr-row-content の直下に置くと「画像＋テキスト」の下に全幅で改行配置される
 ============================================================ */
 .wf-link-block {
   /* 単独で使うときは普通のブロック */
 }
-.csr-row-content > .wf-link-block {
+.wf-csr-row-content > .wf-link-block {
   order: 3;
   flex: 1 0 100%;
   margin-top: 6px;
 }
-.csr-link-list-title {
+.wf-csr-link-list-title {
   font-size: 12px; font-weight: 700;
   color: var(--c-text-h);
   margin-top: 4px; margin-bottom: 2px;
@@ -261,14 +261,14 @@ body {
    - 全ブロックを <details open> でアコーディオン化（デフォルト開）
    - 構成：summary[タイトル＋＋/−マーカー] → content[ロゴストリップ→本文]
 ============================================================ */
-/* 035 TCFD アコーディオン共通モジュール（左縦棒なし／黒丸トグル）— 225 csr-row 同型 */
-.csr-row {
+/* 035 TCFD アコーディオン共通モジュール（左縦棒なし／黒丸トグル）— 225 wf-csr-row 同型 */
+.wf-csr-row {
   margin-bottom: 16px;
   border: 1px solid var(--c-border);
   background: var(--c-white);
 }
 .csr-row:last-child { margin-bottom: 0; }
-.csr-row-summary {
+.wf-csr-row-summary {
   list-style: none;
   cursor: default;
   padding: 12px 60px 12px 22px;
@@ -280,10 +280,10 @@ body {
   line-height: 1.5;
   letter-spacing: -0.01em;
 }
-.csr-row-summary:hover { background: #D5D5D5; }
-.csr-row-summary::-webkit-details-marker { display: none; }
-.csr-row-summary::marker { content: ''; }
-.csr-row-summary::after {
+.wf-csr-row-summary:hover { background: #D5D5D5; }
+.wf-csr-row-summary::-webkit-details-marker { display: none; }
+.wf-csr-row-summary::marker { content: ''; }
+.wf-csr-row-summary::after {
   content: '＋';
   position: absolute;
   right: 16px; top: 50%; transform: translateY(-50%);
@@ -294,8 +294,8 @@ body {
   font-size: 14px; font-weight: 700;
   line-height: 1;
 }
-.csr-row[open] .csr-row-summary::after { content: '−'; }
-.csr-row-title {
+.csr-row[open] .wf-csr-row-summary::after { content: '−'; }
+.wf-csr-row-title {
   font-size: 14px; font-weight: 700;
   color: var(--c-text-h);
   line-height: 1.5;
@@ -305,7 +305,7 @@ body {
 /* レイアウト仕様（0521：KM指示で画像を左配置に変更）
    ・ロゴ1〜2個 → ロゴを左・本文は右（ロゴが無いエリアは本文が全幅）
    ・ロゴ3個以上／写真系 → 本文を上に全幅・ロゴは横幅全面の3〜4カラムグリッド（.logos-grid） */
-.csr-row-content {
+.wf-csr-row-content {
   padding: 18px 26px 22px;
   background: var(--c-white);
   display: flex;
@@ -313,22 +313,22 @@ body {
   align-items: flex-start;
   gap: 28px;
 }
-/* 0521：csr-row-content 直下のサブリストは全幅で改行（ロゴ列下も使い左余白なし） */
-.csr-row-content > .sub-list.is-fullwidth {
+/* 0521：wf-csr-row-content 直下のサブリストは全幅で改行（ロゴ列下も使い左余白なし） */
+.wf-csr-row-content > .wf-sub-list.is-fullwidth {
   order: 3;
   flex: 1 0 100%;
   margin-top: 6px;
 }
 
 /* ロゴ1〜2個：左側に固定幅の画像スペース・同一幅で縦1カラム */
-.csr-logo-strip {
+.wf-csr-logo-strip {
   order: 1;
   flex: 0 0 208px;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.csr-logo {
+.wf-csr-logo {
   width: 208px; height: 100px;
   flex: 0 0 auto;
   background: var(--c-ph);
@@ -341,7 +341,7 @@ body {
   position: absolute; inset: 0;
   background: repeating-linear-gradient(-45deg, transparent 0 8px, rgba(0,0,0,0.04) 8px 9px);
 }
-.csr-logo-label {
+.wf-csr-logo-label {
   position: relative; z-index: 1;
   font-size: 9px; color: var(--c-text-s);
   background: rgba(255,255,255,0.85);
@@ -354,46 +354,46 @@ body {
 }
 
 /* 本文ブロック（右カラム）。ロゴが無いエリアは flex:1 で全幅を使用 */
-.csr-row-body {
+.wf-csr-row-body {
   order: 2;
   flex: 1; min-width: 0;
   display: flex; flex-direction: column; gap: 10px;
 }
 
 /* ロゴ3個以上／写真系：本文を上に全幅・ロゴは横幅全面の3〜4カラムグリッド */
-.csr-row-content.logos-grid { flex-direction: column; gap: 16px; }
-.csr-row-content.logos-grid .csr-logo-strip {
+.wf-csr-row-content.logos-grid { flex-direction: column; gap: 16px; }
+.wf-csr-row-content.logos-grid .wf-csr-logo-strip {
   order: 2;
   flex: none; width: 100%;
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
 }
-.csr-row-content.logos-grid.logos-4 .csr-logo-strip { grid-template-columns: repeat(4, 1fr); }
-.csr-row-content.logos-grid .csr-logo { width: 100%; height: 92px; }
-.csr-row-desc {
+.wf-csr-row-content.logos-grid.logos-4 .wf-csr-logo-strip { grid-template-columns: repeat(4, 1fr); }
+.wf-csr-row-content.logos-grid .csr-logo { width: 100%; height: 92px; }
+.wf-csr-row-desc {
   font-size: 13px; color: var(--c-text);
   line-height: 1.95;
 }
-.csr-row-links { margin-top: 4px; }
-.csr-row-links .wf-text-link-row { margin: 3px 0; }
+.wf-csr-row-links { margin-top: 4px; }
+.wf-csr-row-links .wf-text-link-row { margin: 3px 0; }
 
 /* ロゴなしの行（業界団体対処／表彰のいくつか） */
-.csr-row.no-logo .csr-logo-strip { display: none; }
+.csr-row.no-logo .wf-csr-logo-strip { display: none; }
 
 /* #41/#45：ロゴをアコーディオン見出し（summary）にも表示。
    開かなくても一覧でロゴが見えるよう、タイトル横にコンパクト版を配置（JSで移設） */
-.csr-row-summary .csr-logo-strip.in-summary {
+.wf-csr-row-summary .wf-csr-logo-strip.in-summary {
   margin: 0 44px 0 0; gap: 6px; flex: 0 0 auto; max-width: none;
   flex-direction: row; flex-wrap: wrap;
 }
-.csr-row-summary .csr-logo-strip.in-summary .csr-logo {
+.wf-csr-row-summary .wf-csr-logo-strip.in-summary .csr-logo {
   width: 84px; height: 38px;
 }
-.csr-row-summary .csr-logo-strip.in-summary .csr-logo-label {
+.wf-csr-row-summary .wf-csr-logo-strip.in-summary .wf-csr-logo-label {
   font-size: 8px; padding: 1px 4px; border: none; background: rgba(255,255,255,0.9);
 }
-.csr-row.no-logo .csr-row-summary .csr-logo-strip.in-summary { display: none; }
+.csr-row.no-logo .wf-csr-row-summary .wf-csr-logo-strip.in-summary { display: none; }
 /* 開いた行は左カラムにフルロゴが出るため、見出しの縮小ロゴは隠して二重表示を回避 */
-.csr-row[open] .csr-row-summary .csr-logo-strip.in-summary { display: none; }
+.csr-row[open] .wf-csr-row-summary .wf-csr-logo-strip.in-summary { display: none; }
 
 /* 注釈（小文字） */
 .note-small {
@@ -406,13 +406,13 @@ body {
    サブリスト（JCIメッセージ／RE-Users／アドボカシー履歴／構成銘柄）
    035 TCFD .wf-related-links と同型（ラベル独立行＋全周ボーダー＋薄グレー背景）
 ============================================================ */
-.sub-list {
+.wf-sub-list {
   background: var(--c-bg-sub);
   border: 1px solid var(--c-border);
   padding: 14px 18px;
   margin-top: 8px;
 }
-.sub-list-label {
+.wf-sub-list-label {
   display: block;
   font-size: 10px; font-weight: 700;
   color: var(--c-text-xs);
@@ -421,45 +421,45 @@ body {
   padding-bottom: 8px; margin-bottom: 8px;
   border-bottom: 1px dashed var(--c-border);
 }
-.sub-list ul {
+.wf-sub-list ul {
   list-style: none; padding: 0; margin: 0;
 }
-.sub-list li {
+.wf-sub-list li {
   font-size: 11px;
   padding-left: 14px; position: relative;
   line-height: 1.7;
   margin-bottom: 2px;
 }
-.sub-list li:last-child { margin-bottom: 0; }
-.sub-list.linked li {
+.wf-sub-list li:last-child { margin-bottom: 0; }
+.wf-sub-list.linked li {
   color: var(--c-text-h);
   text-decoration: underline;
   text-underline-offset: 2px;
   cursor: default;
 }
-.sub-list.linked li::before {
+.wf-sub-list.linked li::before {
   content: '›'; position: absolute; left: 0; top: 0;
   font-weight: 700; color: var(--c-text-h);
   text-decoration: none;
 }
-.sub-list.dotted li {
+.wf-sub-list.dotted li {
   color: var(--c-text);
 }
-.sub-list.dotted li::before {
+.wf-sub-list.dotted li::before {
   content: '◆'; position: absolute; left: 0; top: 4px;
   font-size: 7px; color: var(--c-text-h);
 }
-.sub-list.indexed li {
+.wf-sub-list.indexed li {
   color: var(--c-text-h);
   font-weight: 600;
 }
-.sub-list.indexed li::before {
+.wf-sub-list.indexed li::before {
   content: '■'; position: absolute; left: 0; top: 4px;
   font-size: 8px; color: var(--c-text-h);
 }
 
-/* くるみん／えるぼし対象会社／構成銘柄 — 001/002 .callout-box 同型（左上タグ＋全周ボーダー） */
-.csr-row-companies {
+/* くるみん／えるぼし対象会社／構成銘柄 — 001/002 .wf-callout-box 同型（左上タグ＋全周ボーダー） */
+.wf-csr-row-companies {
   position: relative;
   background: var(--c-white);
   border: 1px solid var(--c-border);
@@ -469,7 +469,7 @@ body {
   color: var(--c-text);
   line-height: 1.85;
 }
-.csr-row-companies-label {
+.wf-csr-row-companies-label {
   display: inline-block;
   background: var(--c-bg-sub);
   color: var(--c-text-h);
@@ -678,19 +678,19 @@ body {
           <h3 class="wf-sub-title" id="init-noone">誰一人取り残さない世界の実現に向けて</h3>
 
           <!-- 国連グローバル・コンパクト（1ロゴ） -->
-          <details class="csr-row" open>
-            <summary class="csr-row-summary">
-              <span class="csr-row-title">国連グローバル・コンパクトへの賛同</span>
+          <details class="wf-csr-row" open>
+            <summary class="wf-csr-row-summary">
+              <span class="wf-csr-row-title">国連グローバル・コンパクトへの賛同</span>
             </summary>
-            <div class="csr-row-content">
-              <div class="csr-logo-strip">
-              <div class="csr-logo"><span class="csr-logo-label">[ UN Global Compact ]</span></div>
+            <div class="wf-csr-row-content">
+              <div class="wf-csr-logo-strip">
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ UN Global Compact ]</span></div>
             </div>
-            <div class="csr-row-body">
-              <p class="csr-row-desc">
+            <div class="wf-csr-row-body">
+              <p class="wf-csr-row-desc">
                 コニカミノルタは、2008年12月、国連が提唱する「グローバル・コンパクト」に署名し、グローバル・コンパクト・ジャパン・ネットワークに加盟しています。グローバル・コンパクトとは、人権、労働、環境、腐敗防止の4つの分野における普遍的な10原則を示したもので、世界各国の企業に対して、その実現に向けて努力を継続することを求めています。
               </p>
-              <div class="csr-row-links">
+              <div class="wf-csr-row-links">
                 <div class="wf-text-link-row"><a class="wf-text-link">国連グローバル・コンパクト10原則</a></div>
                 <div class="wf-text-link-row"><a class="wf-text-link">グローバル・コンパクト・ジャパン・ネットワーク</a></div>
                 <div class="wf-text-link-row"><a class="wf-text-link">グローバル・コンパクト10原則対照表</a></div>
@@ -700,16 +700,16 @@ body {
           </details>
 
           <!-- TCFD（1ロゴ） -->
-          <details class="csr-row" open>
-            <summary class="csr-row-summary">
-              <span class="csr-row-title">気候関連財務情報開示のフレームワーク（TCFD）への対応</span>
+          <details class="wf-csr-row" open>
+            <summary class="wf-csr-row-summary">
+              <span class="wf-csr-row-title">気候関連財務情報開示のフレームワーク（TCFD）への対応</span>
             </summary>
-            <div class="csr-row-content">
-              <div class="csr-logo-strip">
-              <div class="csr-logo"><span class="csr-logo-label">[ TCFD ]</span></div>
+            <div class="wf-csr-row-content">
+              <div class="wf-csr-logo-strip">
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ TCFD ]</span></div>
             </div>
-            <div class="csr-row-body">
-              <p class="csr-row-desc">
+            <div class="wf-csr-row-body">
+              <p class="wf-csr-row-desc">
                 コニカミノルタは、G20金融安定理事会（FSB）が設置した「気候関連財務情報開示タスクフォース（TCFD）<sup>※</sup>」の最終報告書「気候関連財務情報開示タスクフォースによる提言」に賛同し、TCFDのフレームワークに沿って気候変動問題への取り組みを開示しています。また、2019年の設立当初から参画しているTCFDコンソーシアムが開催するラウンドテーブルにおいて、投資家や金融機関との対話を実施しています。
               </p>
               <p class="note-small">※TCFDは2023年10月、その任務を終えて解散し、その活動はISSB（国際サステナビリティ基準審議会）に引き継がれました。</p>
@@ -718,19 +718,19 @@ body {
           </details>
 
           <!-- TNFD（1ロゴ） -->
-          <details class="csr-row" open>
-            <summary class="csr-row-summary">
-              <span class="csr-row-title">自然関連財務情報開示のフレームワーク（TNFD）への対応</span>
+          <details class="wf-csr-row" open>
+            <summary class="wf-csr-row-summary">
+              <span class="wf-csr-row-title">自然関連財務情報開示のフレームワーク（TNFD）への対応</span>
             </summary>
-            <div class="csr-row-content">
-              <div class="csr-logo-strip">
-              <div class="csr-logo"><span class="csr-logo-label">[ TNFD ]</span></div>
+            <div class="wf-csr-row-content">
+              <div class="wf-csr-logo-strip">
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ TNFD ]</span></div>
             </div>
-            <div class="csr-row-body">
-              <p class="csr-row-desc">
+            <div class="wf-csr-row-body">
+              <p class="wf-csr-row-desc">
                 コニカミノルタは、自然資本に関する事業への依存とインパクト、その評価および機会とリスクに取り組んでいく姿勢を明確にするため、「自然関連財務情報開示タスクフォース（TNFD）」の理念と提言に賛同しています。2024年、TNFDアーリーアダプター企業の登録を行うとともに、TNFDフォーラムメンバーとして加盟しました。自然資本の依存とインパクトの評価およびその情報をTNFDフレームワークに沿って開示しています。
               </p>
-              <div class="csr-row-links">
+              <div class="wf-csr-row-links">
                 <div class="wf-text-link-row"><a class="wf-text-link">TNFD Forum webサイト</a></div>
               </div>
             </div>
@@ -744,26 +744,26 @@ body {
           </p>
 
           <!-- JCI（1ロゴ） -->
-          <details class="csr-row" open>
-            <summary class="csr-row-summary">
-              <span class="csr-row-title">パリ協定の実現に向けたネットワーク「気候変動イニシアティブ（JCI）」へ参画</span>
+          <details class="wf-csr-row" open>
+            <summary class="wf-csr-row-summary">
+              <span class="wf-csr-row-title">パリ協定の実現に向けたネットワーク「気候変動イニシアティブ（JCI）」へ参画</span>
             </summary>
-            <div class="csr-row-content">
-              <div class="csr-logo-strip">
-              <div class="csr-logo"><span class="csr-logo-label">[ JCI Japan Climate Initiative ]</span></div>
+            <div class="wf-csr-row-content">
+              <div class="wf-csr-logo-strip">
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ JCI Japan Climate Initiative ]</span></div>
             </div>
-            <div class="csr-row-body">
-              <p class="csr-row-desc">
+            <div class="wf-csr-row-body">
+              <p class="wf-csr-row-desc">
                 コニカミノルタは、脱炭素社会の実現を目指す企業・自治体・NGOなどが参加する「気候変動イニシアティブ（JCI）」に、2018年の設立時から参画しています。非国家アクターの一員として、パリ協定が求める脱炭素社会の実現に向け、世界とともに挑戦の最前線に立ち続けることを約束します。
               </p>
-              <p class="csr-row-desc">
+              <p class="wf-csr-row-desc">
                 2019年の「気候変動アクション日本サミット」では当社グループの担当役員がパネルディスカッションへ登壇。2024年4月、国際水準での排出削減を実現するカーボンプライシングへ改善を、11月には、1.5℃目標と整合する野心的な2035年目標を日本政府に求めるメッセージを、JCIを通じて発表しました。
               </p>
             </div>
             <!-- 0523 桐原FB：共通モジュール .wf-link-block を画像＋テキスト下に全幅で配置／〈タイトル〉付き -->
             <div class="wf-link-block">
-              <div class="csr-link-list-title">〈JCIメッセージへの賛同〉</div>
-              <div class="csr-row-links">
+              <div class="wf-csr-link-list-title">〈JCIメッセージへの賛同〉</div>
+              <div class="wf-csr-row-links">
                 <div class="wf-text-link-row"><a class="wf-text-link">2030年の再生可能エネルギー電力目標を40〜50％に</a></div>
                 <div class="wf-text-link-row"><a class="wf-text-link">2030年の日本の温室効果ガス削減目標（NDC）を45％以上</a></div>
                 <div class="wf-text-link-row"><a class="wf-text-link">いまこそ再生可能エネルギーの導入加速を</a></div>
@@ -776,22 +776,22 @@ body {
           </details>
 
           <!-- RE100（1ロゴ） -->
-          <details class="csr-row" open>
-            <summary class="csr-row-summary">
-              <span class="csr-row-title">再生可能エネルギー100％での事業運営を目指す「RE100」への加盟</span>
+          <details class="wf-csr-row" open>
+            <summary class="wf-csr-row-summary">
+              <span class="wf-csr-row-title">再生可能エネルギー100％での事業運営を目指す「RE100」への加盟</span>
             </summary>
-            <div class="csr-row-content">
-              <div class="csr-logo-strip">
-              <div class="csr-logo"><span class="csr-logo-label">[ RE100 ]</span></div>
+            <div class="wf-csr-row-content">
+              <div class="wf-csr-logo-strip">
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ RE100 ]</span></div>
             </div>
-            <div class="csr-row-body">
-              <p class="csr-row-desc">
+            <div class="wf-csr-row-body">
+              <p class="wf-csr-row-desc">
                 コニカミノルタは、パリ協定達成を目的として、企業が自らの事業活動で使用する電力を100％再生可能エネルギーで賄うことを目指す国際リーダーシップイニシアティブ「RE100」に加盟しています。2050年までに、自社の事業活動で使用する電力の調達を100％再生可能エネルギー由来にすることを目指します。
               </p>
-              <p class="csr-row-desc">
+              <p class="wf-csr-row-desc">
                 2024年、日本の再エネ電力の普及における課題と解決策を議論する「RE100メンバー会議」が日本で開催され、当社はメンバー企業として参画しました。今後も、グローバルで各地域に応じた最適な手段を検討し、再エネ電力の調達拡大と普及に向けた取り組みを強化していきます。
               </p>
-              <div class="csr-row-links">
+              <div class="wf-csr-row-links">
                 <div class="wf-text-link-row"><a class="wf-text-link">自社拠点での再生可能エネルギー導入</a></div>
               </div>
             </div>
@@ -799,23 +799,23 @@ body {
           </details>
 
           <!-- RE-Users（1ロゴ） -->
-          <details class="csr-row" open>
-            <summary class="csr-row-summary">
-              <span class="csr-row-title">再エネ電力普及に向けた活動〔RE-Users〕</span>
+          <details class="wf-csr-row" open>
+            <summary class="wf-csr-row-summary">
+              <span class="wf-csr-row-title">再エネ電力普及に向けた活動〔RE-Users〕</span>
             </summary>
-            <div class="csr-row-content">
-              <div class="csr-logo-strip">
-              <div class="csr-logo"><span class="csr-logo-label">[ RE-Users ]</span></div>
+            <div class="wf-csr-row-content">
+              <div class="wf-csr-logo-strip">
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ RE-Users ]</span></div>
             </div>
-            <div class="csr-row-body">
-              <p class="csr-row-desc">
+            <div class="wf-csr-row-body">
+              <p class="wf-csr-row-desc">
                 2023年、コニカミノルタは、日本における再エネ電力の普及に関する課題と解決策について、自然エネルギー財団を通じて、政策提言を発表しました。
               </p>
             </div>
             <!-- 0523 桐原FB：共通モジュール .wf-link-block を画像＋テキスト下に全幅で配置／〈タイトル〉付き -->
             <div class="wf-link-block">
-              <div class="csr-link-list-title">〈RE-Users 政策提言への賛同〉</div>
-              <div class="csr-row-links">
+              <div class="wf-csr-link-list-title">〈RE-Users 政策提言への賛同〉</div>
+              <div class="wf-csr-row-links">
                 <div class="wf-text-link-row"><a class="wf-text-link">自然エネルギーの電力利用に関する課題と提言</a></div>
               </div>
             </div>
@@ -823,19 +823,19 @@ body {
           </details>
 
           <!-- SBT（1ロゴ） -->
-          <details class="csr-row" open>
-            <summary class="csr-row-summary">
-              <span class="csr-row-title">コニカミノルタのCO₂排出削減目標がSBTネットゼロ認定を取得</span>
+          <details class="wf-csr-row" open>
+            <summary class="wf-csr-row-summary">
+              <span class="wf-csr-row-title">コニカミノルタのCO₂排出削減目標がSBTネットゼロ認定を取得</span>
             </summary>
-            <div class="csr-row-content">
-              <div class="csr-logo-strip">
-              <div class="csr-logo"><span class="csr-logo-label">[ SBTi Net-Zero ]</span></div>
+            <div class="wf-csr-row-content">
+              <div class="wf-csr-logo-strip">
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ SBTi Net-Zero ]</span></div>
             </div>
-            <div class="csr-row-body">
-              <p class="csr-row-desc">
+            <div class="wf-csr-row-body">
+              <p class="wf-csr-row-desc">
                 コニカミノルタは、パリ協定に整合する持続可能な企業を推進する国際的なイニシアティブ「SBTイニシアティブ」より、当社グループのCO₂排出削減目標が科学的根拠に基づいた目標として承認を得ています。2024年、1.5℃の排出経路に沿った最新のSBTi企業ネットゼロ基準（SBTi Corporate Net-Zero Standard）への適合が認められ、2017年にSBT認定を取得した従来目標の更新を完了しました。
               </p>
-              <div class="csr-row-links">
+              <div class="wf-csr-row-links">
                 <div class="wf-text-link-row"><a class="wf-text-link">SBTイニシアティブから「ネットゼロ目標」の認定を取得</a></div>
               </div>
             </div>
@@ -843,16 +843,16 @@ body {
           </details>
 
           <!-- Race to Zero（1ロゴ） -->
-          <details class="csr-row" open>
-            <summary class="csr-row-summary">
-              <span class="csr-row-title">Race to Zeroキャンペーンへ参加</span>
+          <details class="wf-csr-row" open>
+            <summary class="wf-csr-row-summary">
+              <span class="wf-csr-row-title">Race to Zeroキャンペーンへ参加</span>
             </summary>
-            <div class="csr-row-content">
-              <div class="csr-logo-strip">
-              <div class="csr-logo"><span class="csr-logo-label">[ Race to Zero ]</span></div>
+            <div class="wf-csr-row-content">
+              <div class="wf-csr-logo-strip">
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ Race to Zero ]</span></div>
             </div>
-            <div class="csr-row-body">
-              <p class="csr-row-desc">
+            <div class="wf-csr-row-body">
+              <p class="wf-csr-row-desc">
                 コニカミノルタは、気候変動に関する国際連合枠組条約（UNFCCC）が2020年の世界環境デーに立ち上げた「Race to Zero」キャンペーンに参加しています。遅くとも2050年までに温室効果ガス排出量を実質ゼロ、2030年までに実質半減を目指し、非国家アクターの一員として取り組んでいます。
               </p>
             </div>
@@ -860,19 +860,19 @@ body {
           </details>
 
           <!-- 経団連 チャレンジ・ゼロ（1ロゴ） -->
-          <details class="csr-row" open>
-            <summary class="csr-row-summary">
-              <span class="csr-row-title">日本経団連「チャレンジ・ゼロ」への参画</span>
+          <details class="wf-csr-row" open>
+            <summary class="wf-csr-row-summary">
+              <span class="wf-csr-row-title">日本経団連「チャレンジ・ゼロ」への参画</span>
             </summary>
-            <div class="csr-row-content">
-              <div class="csr-logo-strip">
-              <div class="csr-logo"><span class="csr-logo-label">[ Challenge Zero ]</span></div>
+            <div class="wf-csr-row-content">
+              <div class="wf-csr-logo-strip">
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ Challenge Zero ]</span></div>
             </div>
-            <div class="csr-row-body">
-              <p class="csr-row-desc">
+            <div class="wf-csr-row-body">
+              <p class="wf-csr-row-desc">
                 コニカミノルタは、日本経団連の「『チャレンジ・ゼロ』宣言」に賛同しています。脱炭素社会の実現に向け、野心的に挑戦するイノベーションの具体的な取り組みを公開しています。ネット・ゼロエミッション技術の開発へ積極的にチャレンジし、環境と成長の好循環を創出することで、イノベーションを通じた社会課題の解決「Society 5.0 for SDGs」の実現を目指します。
               </p>
-              <div class="csr-row-links">
+              <div class="wf-csr-row-links">
                 <div class="wf-text-link-row"><a class="wf-text-link">「チャレンジ・ゼロ」ウェブサイト</a></div>
               </div>
             </div>
@@ -880,13 +880,13 @@ body {
           </details>
 
           <!-- 業界団体...対処（ロゴなし） -->
-          <details class="csr-row no-logo" open>
-            <summary class="csr-row-summary">
-              <span class="csr-row-title">業界団体の気候変動政策との立場不一致への対処</span>
+          <details class="wf-csr-row no-logo" open>
+            <summary class="wf-csr-row-summary">
+              <span class="wf-csr-row-title">業界団体の気候変動政策との立場不一致への対処</span>
             </summary>
-            <div class="csr-row-content">
-              <div class="csr-row-body">
-              <p class="csr-row-desc">
+            <div class="wf-csr-row-content">
+              <div class="wf-csr-row-body">
+              <p class="wf-csr-row-desc">
                 コニカミノルタは、パリ協定の実現および気候変動の課題解決に向け、当社グループの考えや方向性と一致する業界団体・イニシアティブに積極的に参画し、気候変動への対応を推進しています。業界団体・イニシアティブの活動とコニカミノルタの気候変動に対する考え方が大きく矛盾していないか、キャンペーン活動などを定期的に精査し、一貫性と整合性を確認しています。対策の不足や乖離が大きい場合には、当該団体・イニシアティブから脱退する可能性を含め検討します。
               </p>
             </div>
@@ -897,19 +897,19 @@ body {
           <h3 class="wf-sub-title" id="init-supply">責任あるサプライチェーン構築に向けて</h3>
 
           <!-- RBA（1ロゴ） -->
-          <details class="csr-row" open>
-            <summary class="csr-row-summary">
-              <span class="csr-row-title">Responsible Business Alliance（RBA）</span>
+          <details class="wf-csr-row" open>
+            <summary class="wf-csr-row-summary">
+              <span class="wf-csr-row-title">Responsible Business Alliance（RBA）</span>
             </summary>
-            <div class="csr-row-content">
-              <div class="csr-logo-strip">
-              <div class="csr-logo"><span class="csr-logo-label">[ RBA ]</span></div>
+            <div class="wf-csr-row-content">
+              <div class="wf-csr-logo-strip">
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ RBA ]</span></div>
             </div>
-            <div class="csr-row-body">
-              <p class="csr-row-desc">
+            <div class="wf-csr-row-body">
+              <p class="wf-csr-row-desc">
                 コニカミノルタは、サプライチェーンにおけるCSR調達の取り組みを強化するために、2013年10月にRBAに加盟しました。RBAは、世界の電子機器メーカーや大手サプライヤーなど、加盟各社が、サプライチェーン上の労働者の権利（人権および労働条件）や、倫理・安全衛生などの改善を進めています。
               </p>
-              <div class="csr-row-links">
+              <div class="wf-csr-row-links">
                 <div class="wf-text-link-row"><a class="wf-text-link">コニカミノルタのRBA加盟に関するニュースリリース</a></div>
                 <div class="wf-text-link-row"><a class="wf-text-link">RBA</a></div>
               </div>
@@ -918,20 +918,20 @@ body {
           </details>
 
           <!-- RMI（2ロゴ：RMI＋JEITA） -->
-          <details class="csr-row" open>
-            <summary class="csr-row-summary">
-              <span class="csr-row-title">Responsible Minerals Initiative（RMI）</span>
+          <details class="wf-csr-row" open>
+            <summary class="wf-csr-row-summary">
+              <span class="wf-csr-row-title">Responsible Minerals Initiative（RMI）</span>
             </summary>
-            <div class="csr-row-content">
-              <div class="csr-logo-strip">
-              <div class="csr-logo"><span class="csr-logo-label">[ RMI ]</span></div>
-              <div class="csr-logo"><span class="csr-logo-label">[ JEITA 責任ある鉱物調達 ]</span></div>
+            <div class="wf-csr-row-content">
+              <div class="wf-csr-logo-strip">
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ RMI ]</span></div>
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ JEITA 責任ある鉱物調達 ]</span></div>
             </div>
-            <div class="csr-row-body">
-              <p class="csr-row-desc">
+            <div class="wf-csr-row-body">
+              <p class="wf-csr-row-desc">
                 コニカミノルタは外部団体と連携した責任ある鉱物調達の取り組みも進めています。コニカミノルタは責任ある鉱物調達の世界的な取り組みを主導しているRMIのメンバーです。RMIは世界標準の紛争鉱物調査票の制定や精錬業者の紛争非関与監査プログラムの推進、その他責任ある鉱物調達サプライチェーンのためのさまざまな取り組みを行っています。国内ではJEITA「責任ある鉱物調達検討会」に参画しています。
               </p>
-              <div class="csr-row-links">
+              <div class="wf-csr-row-links">
                 <div class="wf-text-link-row"><a class="wf-text-link">RMI（英語）</a></div>
                 <div class="wf-text-link-row"><a class="wf-text-link">JEITA責任ある鉱物調達検討会</a></div>
               </div>
@@ -943,19 +943,19 @@ body {
           <h3 class="wf-sub-title" id="init-circular">サーキュラーエコノミーの実現に向けて</h3>
 
           <!-- J4CE（1ロゴ） -->
-          <details class="csr-row" open>
-            <summary class="csr-row-summary">
-              <span class="csr-row-title">「循環経済パートナーシップ（J4CE）」への参画</span>
+          <details class="wf-csr-row" open>
+            <summary class="wf-csr-row-summary">
+              <span class="wf-csr-row-title">「循環経済パートナーシップ（J4CE）」への参画</span>
             </summary>
-            <div class="csr-row-content">
-              <div class="csr-logo-strip">
-              <div class="csr-logo"><span class="csr-logo-label">[ J4CE ]</span></div>
+            <div class="wf-csr-row-content">
+              <div class="wf-csr-logo-strip">
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ J4CE ]</span></div>
             </div>
-            <div class="csr-row-body">
-              <p class="csr-row-desc">
+            <div class="wf-csr-row-body">
+              <p class="wf-csr-row-desc">
                 コニカミノルタは、環境省、経済産業省および日本経団連が設立した「循環経済パートナーシップ（J4CE）」へ2021年より加盟しています。サーキュラーエコノミー社会の実現に向け、野心的に挑戦する取り組みを公開することで、企業や業界の枠を超えたオープンイノベーションを推進し、循環経済の社会実装を目指していきます。
               </p>
-              <div class="csr-row-links">
+              <div class="wf-csr-row-links">
                 <div class="wf-text-link-row"><a class="wf-text-link">循環経済パートナーシップ（J4CE）</a></div>
               </div>
             </div>
@@ -963,19 +963,19 @@ body {
           </details>
 
           <!-- サーキュラーパートナーズ（1ロゴ） -->
-          <details class="csr-row" open>
-            <summary class="csr-row-summary">
-              <span class="csr-row-title">「サーキュラーパートナーズ」への参画</span>
+          <details class="wf-csr-row" open>
+            <summary class="wf-csr-row-summary">
+              <span class="wf-csr-row-title">「サーキュラーパートナーズ」への参画</span>
             </summary>
-            <div class="csr-row-content">
-              <div class="csr-logo-strip">
-              <div class="csr-logo"><span class="csr-logo-label">[ Circular Partners ]</span></div>
+            <div class="wf-csr-row-content">
+              <div class="wf-csr-logo-strip">
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ Circular Partners ]</span></div>
             </div>
-            <div class="csr-row-body">
-              <p class="csr-row-desc">
+            <div class="wf-csr-row-body">
+              <p class="wf-csr-row-desc">
                 コニカミノルタは、経済産業省の「成長志向型の資源自律経済戦略」に基づいて設立された官民連携型イニシアティヴ「サーキュラーパートナーズ」に2024年より参画しています。他企業や自治体、研究機関の知識および成功事例を共有し、政策インセンティブを活用することで、新たなビジネス機会の創出を目指しています。
               </p>
-              <div class="csr-row-links">
+              <div class="wf-csr-row-links">
                 <div class="wf-text-link-row"><a class="wf-text-link">サーキュラーパートナーズ（CPs）</a></div>
               </div>
             </div>
@@ -986,19 +986,19 @@ body {
           <h3 class="wf-sub-title" id="init-biodiversity">生物多様性保護に向けて</h3>
 
           <!-- 経団連生物多様性宣言（1ロゴ） -->
-          <details class="csr-row" open>
-            <summary class="csr-row-summary">
-              <span class="csr-row-title">経団連生物多様性宣言イニシアティブへ賛同</span>
+          <details class="wf-csr-row" open>
+            <summary class="wf-csr-row-summary">
+              <span class="wf-csr-row-title">経団連生物多様性宣言イニシアティブへ賛同</span>
             </summary>
-            <div class="csr-row-content">
-              <div class="csr-logo-strip">
-              <div class="csr-logo"><span class="csr-logo-label">[ 経団連 生物多様性 ]</span></div>
+            <div class="wf-csr-row-content">
+              <div class="wf-csr-logo-strip">
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ 経団連 生物多様性 ]</span></div>
             </div>
-            <div class="csr-row-body">
-              <p class="csr-row-desc">
+            <div class="wf-csr-row-body">
+              <p class="wf-csr-row-desc">
                 コニカミノルタは、日本経団連および経団連自然保護協議会が設立した、「経団連生物多様性宣言イニシアティブ」に賛同しています。持続可能な社会の実現に向けて、「経団連生物多様性宣言・行動指針（改訂版）」を構成する7項目への取り組みを推進しています。
               </p>
-              <div class="csr-row-links">
+              <div class="wf-csr-row-links">
                 <div class="wf-text-link-row"><a class="wf-text-link">経団連生物多様性宣言イニシアティブ</a></div>
               </div>
             </div>
@@ -1009,19 +1009,19 @@ body {
           <h3 class="wf-sub-title" id="init-other">その他</h3>
 
           <!-- カーボンニュートラル行動計画（1ロゴ） -->
-          <details class="csr-row" open>
-            <summary class="csr-row-summary">
-              <span class="csr-row-title">電機・電子業界「カーボンニュートラル行動計画」への参画</span>
+          <details class="wf-csr-row" open>
+            <summary class="wf-csr-row-summary">
+              <span class="wf-csr-row-title">電機・電子業界「カーボンニュートラル行動計画」への参画</span>
             </summary>
-            <div class="csr-row-content">
-              <div class="csr-logo-strip">
-              <div class="csr-logo"><span class="csr-logo-label">[ 電機・電子業界 CN行動計画 ]</span></div>
+            <div class="wf-csr-row-content">
+              <div class="wf-csr-logo-strip">
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ 電機・電子業界 CN行動計画 ]</span></div>
             </div>
-            <div class="csr-row-body">
-              <p class="csr-row-desc">
+            <div class="wf-csr-row-body">
+              <p class="wf-csr-row-desc">
                 コニカミノルタは、電機・電子温暖化対策連絡会が推進する、地球温暖化防止に関する業界共通の取り組み「カーボンニュートラル行動計画」に参画しています。行動計画フェーズⅡでは、CO₂排出量を2030年度に2013年度比で46％程度削減する目標の達成に向け、会員企業の一員として削減活動に取り組んでいます。
               </p>
-              <div class="csr-row-links">
+              <div class="wf-csr-row-links">
                 <div class="wf-text-link-row"><a class="wf-text-link">電機・電子業界 カーボンニュートラル行動計画</a></div>
               </div>
             </div>
@@ -1029,27 +1029,27 @@ body {
           </details>
 
           <!-- アドボカシー記事（5ロゴ：過去のサミット会議） -->
-          <details class="csr-row" open>
-            <summary class="csr-row-summary">
-              <span class="csr-row-title">アドボカシー記事の発信</span>
+          <details class="wf-csr-row" open>
+            <summary class="wf-csr-row-summary">
+              <span class="wf-csr-row-title">アドボカシー記事の発信</span>
             </summary>
-            <div class="csr-row-content">
-              <div class="csr-logo-strip">
-              <div class="csr-logo"><span class="csr-logo-label">[ G7 ドイツ<br>2015年6月 ]</span></div>
-              <div class="csr-logo"><span class="csr-logo-label">[ COP21 パリ<br>2015年11月 ]</span></div>
-              <div class="csr-logo"><span class="csr-logo-label">[ G7 伊勢志摩<br>2016年5月 ]</span></div>
-              <div class="csr-logo"><span class="csr-logo-label">[ COP22 マラケシュ<br>2016年11月 ]</span></div>
-              <div class="csr-logo"><span class="csr-logo-label">[ G7 タオルミーナ<br>2017年5月 ]</span></div>
+            <div class="wf-csr-row-content">
+              <div class="wf-csr-logo-strip">
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ G7 ドイツ<br>2015年6月 ]</span></div>
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ COP21 パリ<br>2015年11月 ]</span></div>
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ G7 伊勢志摩<br>2016年5月 ]</span></div>
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ COP22 マラケシュ<br>2016年11月 ]</span></div>
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ G7 タオルミーナ<br>2017年5月 ]</span></div>
             </div>
-            <div class="csr-row-body">
-              <p class="csr-row-desc">
+            <div class="wf-csr-row-body">
+              <p class="wf-csr-row-desc">
                 コニカミノルタは、気候変動への対応をはじめとする先進的な環境の取り組みを、サミットや重要な国際会議の場で世界へ情報発信しています。
               </p>
             </div>
             <!-- 0523 桐原FB：共通モジュール .wf-link-block を画像＋テキスト下に全幅で配置／〈タイトル〉付き -->
             <div class="wf-link-block">
-              <div class="csr-link-list-title">〈過去のアドボカシー記事〉</div>
-              <div class="csr-row-links">
+              <div class="wf-csr-link-list-title">〈過去のアドボカシー記事〉</div>
+              <div class="wf-csr-row-links">
                 <div class="wf-text-link-row"><a class="wf-text-link">2015年6月　G7ドイツ〔エルマウ〕</a></div>
                 <div class="wf-text-link-row"><a class="wf-text-link">2015年11月　COP21フランス〔パリ〕</a></div>
                 <div class="wf-text-link-row"><a class="wf-text-link">2016年5月　G7日本〔伊勢志摩〕</a></div>
@@ -1076,20 +1076,20 @@ body {
           <h3 class="wf-sub-title" id="ev-rating">国際的なサステナビリティ格付機関からの評価</h3>
 
           <!-- CDP（2ロゴ：気候変動Aクラス＋サプライヤーエンゲージメントリーダー） -->
-          <details class="csr-row" open>
-            <summary class="csr-row-summary">
-              <span class="csr-row-title">CDP</span>
+          <details class="wf-csr-row" open>
+            <summary class="wf-csr-row-summary">
+              <span class="wf-csr-row-title">CDP</span>
             </summary>
-            <div class="csr-row-content">
-              <div class="csr-logo-strip">
-              <div class="csr-logo"><span class="csr-logo-label">[ CDP Climate A List ]</span></div>
-              <div class="csr-logo"><span class="csr-logo-label">[ Supplier Engagement Leader ]</span></div>
+            <div class="wf-csr-row-content">
+              <div class="wf-csr-logo-strip">
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ CDP Climate A List ]</span></div>
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ Supplier Engagement Leader ]</span></div>
             </div>
-            <div class="csr-row-body">
-              <p class="csr-row-desc">
+            <div class="wf-csr-row-body">
+              <p class="wf-csr-row-desc">
                 コニカミノルタ（株）は、持続可能な経済を実現させる活動を行う国際NGOのCDPにより「気候変動Aクラス」企業として選定されました。これまでに、最高評価のAクラスを9回獲得しています。（2026年1月）「サプライヤー・エンゲージメント・リーダー」企業にも選定されています。（2025年7月）
               </p>
-              <div class="csr-row-links">
+              <div class="wf-csr-row-links">
                 <div class="wf-text-link-row"><a class="wf-text-link">ニュースリリース／トピックス（CDP 気候変動Aクラスリスト）</a></div>
                 <div class="wf-text-link-row"><a class="wf-text-link">トピックス（サプライヤー・エンゲージメント・リーダー）</a></div>
               </div>
@@ -1098,19 +1098,19 @@ body {
           </details>
 
           <!-- MSCI ESG Ratings（1ロゴ） -->
-          <details class="csr-row" open>
-            <summary class="csr-row-summary">
-              <span class="csr-row-title">MSCI ESG Ratings</span>
+          <details class="wf-csr-row" open>
+            <summary class="wf-csr-row-summary">
+              <span class="wf-csr-row-title">MSCI ESG Ratings</span>
             </summary>
-            <div class="csr-row-content">
-              <div class="csr-logo-strip">
-              <div class="csr-logo"><span class="csr-logo-label">[ MSCI ESG Ratings AAA ]</span></div>
+            <div class="wf-csr-row-content">
+              <div class="wf-csr-logo-strip">
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ MSCI ESG Ratings AAA ]</span></div>
             </div>
-            <div class="csr-row-body">
-              <p class="csr-row-desc">
+            <div class="wf-csr-row-body">
+              <p class="wf-csr-row-desc">
                 コニカミノルタ（株）は、米国のMSCI社による「MSCI ESG Ratings」にて「AAA」の格付けを獲得しました。（2026年3月）
               </p>
-              <div class="csr-row-links">
+              <div class="wf-csr-row-links">
                 <div class="wf-text-link-row"><a class="wf-text-link">MSCI ESG Ratings</a></div>
               </div>
               <details class="wf-acc-disclaimer">
@@ -1124,19 +1124,19 @@ body {
           </details>
 
           <!-- ISS ESG（1ロゴ） -->
-          <details class="csr-row" open>
-            <summary class="csr-row-summary">
-              <span class="csr-row-title">ISS ESG Corporate Rating</span>
+          <details class="wf-csr-row" open>
+            <summary class="wf-csr-row-summary">
+              <span class="wf-csr-row-title">ISS ESG Corporate Rating</span>
             </summary>
-            <div class="csr-row-content">
-              <div class="csr-logo-strip">
-              <div class="csr-logo"><span class="csr-logo-label">[ ISS ESG Prime ]</span></div>
+            <div class="wf-csr-row-content">
+              <div class="wf-csr-logo-strip">
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ ISS ESG Prime ]</span></div>
             </div>
-            <div class="csr-row-body">
-              <p class="csr-row-desc">
+            <div class="wf-csr-row-body">
+              <p class="wf-csr-row-desc">
                 コニカミノルタ（株）は、米国に拠点を置くInstitutional Shareholder Services Inc.の責任投資部門であるISS ESGによる「ISS ESG Corporate Rating」において、世界の電子機器産業をリードする企業として2011年から「Prime」の認定を受けています。（2025年5月）
               </p>
-              <div class="csr-row-links">
+              <div class="wf-csr-row-links">
                 <div class="wf-text-link-row"><a class="wf-text-link">ISS-ESG</a></div>
               </div>
             </div>
@@ -1153,22 +1153,22 @@ body {
           <div class="wf-text-link-row" style="margin-bottom:18px;"><a class="wf-text-link">ニュースリリース：GPIFが採用する6つのESG指数すべてに選定されました</a></div>
 
           <!-- FTSE Russell（3ロゴ） -->
-          <details class="csr-row" open>
-            <summary class="csr-row-summary">
-              <span class="csr-row-title">FTSE Russell</span>
+          <details class="wf-csr-row" open>
+            <summary class="wf-csr-row-summary">
+              <span class="wf-csr-row-title">FTSE Russell</span>
             </summary>
-            <div class="csr-row-content">
-              <div class="csr-logo-strip">
-              <div class="csr-logo"><span class="csr-logo-label">[ FTSE4Good Index Series ]</span></div>
-              <div class="csr-logo"><span class="csr-logo-label">[ FTSE JPX Blossom Japan ]</span></div>
-              <div class="csr-logo"><span class="csr-logo-label">[ FTSE JPX Blossom Japan<br>Sector Relative ]</span></div>
+            <div class="wf-csr-row-content">
+              <div class="wf-csr-logo-strip">
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ FTSE4Good Index Series ]</span></div>
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ FTSE JPX Blossom Japan ]</span></div>
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ FTSE JPX Blossom Japan<br>Sector Relative ]</span></div>
             </div>
-            <div class="csr-row-body">
-              <p class="csr-row-desc">
+            <div class="wf-csr-row-body">
+              <p class="wf-csr-row-desc">
                 コニカミノルタ（株）は、英国のFTSE Russellによる「FTSE4Good Index」の構成銘柄に2003年から連続して選定されています。（2025年7月）また、「FTSE JPX Blossom Japan Index」「FTSE JPX Blossom Japan Sector Relative Index」にも新設当初から連続して選定されています。（2026年2月）
               </p>
               <!-- 0523/桐原FB：現サイトに存在しない要素のため「構成銘柄」サブリストを削除 -->
-              <div class="csr-row-links">
+              <div class="wf-csr-row-links">
                 <div class="wf-text-link-row"><a class="wf-text-link">FTSE4Good Index Series</a></div>
                 <div class="wf-text-link-row"><a class="wf-text-link">FTSE Blossom Index Series</a></div>
               </div>
@@ -1177,22 +1177,22 @@ body {
           </details>
 
           <!-- MSCI（3ロゴ） -->
-          <details class="csr-row" open>
-            <summary class="csr-row-summary">
-              <span class="csr-row-title">MSCI</span>
+          <details class="wf-csr-row" open>
+            <summary class="wf-csr-row-summary">
+              <span class="wf-csr-row-title">MSCI</span>
             </summary>
-            <div class="csr-row-content">
-              <div class="csr-logo-strip">
-              <div class="csr-logo"><span class="csr-logo-label">[ MSCI Selection Indexes ]</span></div>
-              <div class="csr-logo"><span class="csr-logo-label">[ MSCI日本株<br>ESGセレクト・リーダーズ ]</span></div>
-              <div class="csr-logo"><span class="csr-logo-label">[ MSCI日本株<br>女性活躍指数（WIN） ]</span></div>
+            <div class="wf-csr-row-content">
+              <div class="wf-csr-logo-strip">
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ MSCI Selection Indexes ]</span></div>
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ MSCI日本株<br>ESGセレクト・リーダーズ ]</span></div>
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ MSCI日本株<br>女性活躍指数（WIN） ]</span></div>
             </div>
-            <div class="csr-row-body">
-              <p class="csr-row-desc">
+            <div class="wf-csr-row-body">
+              <p class="wf-csr-row-desc">
                 コニカミノルタ（株）は、米国のMSCI社による「MSCI Selection Indexes」の構成銘柄に選定されました。（2025年7月）また、「MSCI日本株 ESGセレクト・リーダーズ指数」「MSCI日本株 女性活躍指数（WIN）」にも連続して選定されています。
               </p>
               <!-- 0523/桐原FB：現サイトに存在しない要素のため「構成銘柄」サブリストを削除 -->
-              <div class="csr-row-links">
+              <div class="wf-csr-row-links">
                 <div class="wf-text-link-row"><a class="wf-text-link">MSCI ESG Research</a></div>
               </div>
               <details class="wf-acc-disclaimer">
@@ -1206,16 +1206,16 @@ body {
           </details>
 
           <!-- S&P Global（1ロゴ） -->
-          <details class="csr-row" open>
-            <summary class="csr-row-summary">
-              <span class="csr-row-title">S&amp;P Global</span>
+          <details class="wf-csr-row" open>
+            <summary class="wf-csr-row-summary">
+              <span class="wf-csr-row-title">S&amp;P Global</span>
             </summary>
-            <div class="csr-row-content">
-              <div class="csr-logo-strip">
-              <div class="csr-logo"><span class="csr-logo-label">[ S&P／JPX Carbon Efficient ]</span></div>
+            <div class="wf-csr-row-content">
+              <div class="wf-csr-logo-strip">
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ S&P／JPX Carbon Efficient ]</span></div>
             </div>
-            <div class="csr-row-body">
-              <p class="csr-row-desc">
+            <div class="wf-csr-row-body">
+              <p class="wf-csr-row-desc">
                 コニカミノルタ（株）は、米国のS&amp;P Global社による「S&amp;P／JPXカーボン・エフィシェント指数」の構成銘柄に新設当初の2018年から連続して選定されています。（2025年7月）
               </p>
             </div>
@@ -1223,16 +1223,16 @@ body {
           </details>
 
           <!-- Morningstar（1ロゴ） -->
-          <details class="csr-row" open>
-            <summary class="csr-row-summary">
-              <span class="csr-row-title">Morningstar</span>
+          <details class="wf-csr-row" open>
+            <summary class="wf-csr-row-summary">
+              <span class="wf-csr-row-title">Morningstar</span>
             </summary>
-            <div class="csr-row-content">
-              <div class="csr-logo-strip">
-              <div class="csr-logo"><span class="csr-logo-label">[ Morningstar Gender Diversity Tilt ]</span></div>
+            <div class="wf-csr-row-content">
+              <div class="wf-csr-logo-strip">
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ Morningstar Gender Diversity Tilt ]</span></div>
             </div>
-            <div class="csr-row-body">
-              <p class="csr-row-desc">
+            <div class="wf-csr-row-body">
+              <p class="wf-csr-row-desc">
                 コニカミノルタ（株）は、米国のMorningstar社による「Morningstar 日本株式ジェンダー・ダイバーシティ・ティルト指数（除くREIT）」の構成銘柄に新設当初の2023年から連続して選定されています。（2026年1月）
               </p>
               <details class="wf-acc-disclaimer">
@@ -1249,16 +1249,16 @@ body {
           <h3 class="wf-sub-title" id="ev-award">サステナビリティ関連の表彰</h3>
 
           <!-- 日経サステナブル総合調査（1ロゴ） -->
-          <details class="csr-row" open>
-            <summary class="csr-row-summary">
-              <span class="csr-row-title">「日経サステナブル総合調査SDGs経営編」で星4.5を獲得</span>
+          <details class="wf-csr-row" open>
+            <summary class="wf-csr-row-summary">
+              <span class="wf-csr-row-title">「日経サステナブル総合調査SDGs経営編」で星4.5を獲得</span>
             </summary>
-            <div class="csr-row-content">
-              <div class="csr-logo-strip">
-              <div class="csr-logo"><span class="csr-logo-label">[ 日経サステナブル<br>★4.5 ]</span></div>
+            <div class="wf-csr-row-content">
+              <div class="wf-csr-logo-strip">
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ 日経サステナブル<br>★4.5 ]</span></div>
             </div>
-            <div class="csr-row-body">
-              <p class="csr-row-desc">
+            <div class="wf-csr-row-body">
+              <p class="wf-csr-row-desc">
                 コニカミノルタ（株）は、日本経済新聞社が実施した「日経サステナブル総合調査SDGs経営編」において、星4.5を獲得しました。これまでに、最高評価の星5を4回、星4.5を3回獲得しています。
               </p>
             </div>
@@ -1266,19 +1266,19 @@ body {
           </details>
 
           <!-- ESGファイナンス・アワード（1ロゴ） -->
-          <details class="csr-row" open>
-            <summary class="csr-row-summary">
-              <span class="csr-row-title">環境省「第7回ESGファイナンス・アワード・ジャパン」で銅賞を受賞</span>
+          <details class="wf-csr-row" open>
+            <summary class="wf-csr-row-summary">
+              <span class="wf-csr-row-title">環境省「第7回ESGファイナンス・アワード・ジャパン」で銅賞を受賞</span>
             </summary>
-            <div class="csr-row-content">
-              <div class="csr-logo-strip">
-              <div class="csr-logo"><span class="csr-logo-label">[ ESGファイナンス<br>アワード 銅賞 ]</span></div>
+            <div class="wf-csr-row-content">
+              <div class="wf-csr-logo-strip">
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ ESGファイナンス<br>アワード 銅賞 ]</span></div>
             </div>
-            <div class="csr-row-body">
-              <p class="csr-row-desc">
+            <div class="wf-csr-row-body">
+              <p class="wf-csr-row-desc">
                 コニカミノルタ（株）は、環境省主催の第7回「ESGファイナンス・アワード・ジャパン」の「環境サステナブル企業部門」で銅賞（選定委員長賞）を受賞しました。
               </p>
-              <div class="csr-row-links">
+              <div class="wf-csr-row-links">
                 <div class="wf-text-link-row"><a class="wf-text-link">ニュースリリース</a></div>
               </div>
             </div>
@@ -1286,20 +1286,20 @@ body {
           </details>
 
           <!-- Gomez IR／ESG（2ロゴ） -->
-          <details class="csr-row" open>
-            <summary class="csr-row-summary">
-              <span class="csr-row-title">Gomez IRサイト総合ランキングで「金賞3位」／ESGサイトランキングで「優秀企業」を獲得</span>
+          <details class="wf-csr-row" open>
+            <summary class="wf-csr-row-summary">
+              <span class="wf-csr-row-title">Gomez IRサイト総合ランキングで「金賞3位」／ESGサイトランキングで「優秀企業」を獲得</span>
             </summary>
-            <div class="csr-row-content">
-              <div class="csr-logo-strip">
-              <div class="csr-logo"><span class="csr-logo-label">[ Gomez IRサイト<br>金賞3位 ]</span></div>
-              <div class="csr-logo"><span class="csr-logo-label">[ Gomez ESGサイト<br>優秀企業 ]</span></div>
+            <div class="wf-csr-row-content">
+              <div class="wf-csr-logo-strip">
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ Gomez IRサイト<br>金賞3位 ]</span></div>
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ Gomez ESGサイト<br>優秀企業 ]</span></div>
             </div>
-            <div class="csr-row-body">
-              <p class="csr-row-desc">
+            <div class="wf-csr-row-body">
+              <p class="wf-csr-row-desc">
                 （株）ブロードバンドセキュリティが、IRサイトの使いやすさや情報の充実度を評価する「IRサイト総合ランキング2025」で「優秀企業：金賞3位」を獲得しました。（2025年12月）「ESGサイトランキング2025」で「優秀企業」を獲得しました。（2025年9月）
               </p>
-              <div class="csr-row-links">
+              <div class="wf-csr-row-links">
                 <div class="wf-text-link-row"><a class="wf-text-link">Gomez IRサイト総合ランキング</a></div>
                 <div class="wf-text-link-row"><a class="wf-text-link">Gomez ESGサイトランキング</a></div>
               </div>
@@ -1308,16 +1308,16 @@ body {
           </details>
 
           <!-- 大和IR（1ロゴ） -->
-          <details class="csr-row" open>
-            <summary class="csr-row-summary">
-              <span class="csr-row-title">大和IR インターネットIR表彰で「優良賞」／サステナビリティ部門「優秀賞」を受賞</span>
+          <details class="wf-csr-row" open>
+            <summary class="wf-csr-row-summary">
+              <span class="wf-csr-row-title">大和IR インターネットIR表彰で「優良賞」／サステナビリティ部門「優秀賞」を受賞</span>
             </summary>
-            <div class="csr-row-content">
-              <div class="csr-logo-strip">
-              <div class="csr-logo"><span class="csr-logo-label">[ 大和IR<br>インターネットIR表彰 ]</span></div>
+            <div class="wf-csr-row-content">
+              <div class="wf-csr-logo-strip">
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ 大和IR<br>インターネットIR表彰 ]</span></div>
             </div>
-            <div class="csr-row-body">
-              <p class="csr-row-desc">
+            <div class="wf-csr-row-body">
+              <p class="wf-csr-row-desc">
                 大和インベスター・リレーションズ（株）による「2025年インターネットIR表彰」において、「優良賞」を受賞しました。また、サステナビリティ部門において「優秀賞」を受賞しました。
               </p>
             </div>
@@ -1325,16 +1325,16 @@ body {
           </details>
 
           <!-- 日興IR（1ロゴ） -->
-          <details class="csr-row" open>
-            <summary class="csr-row-summary">
-              <span class="csr-row-title">日興アイ･アール 全上場企業ホームページ充実度ランキングで最優秀サイトを獲得</span>
+          <details class="wf-csr-row" open>
+            <summary class="wf-csr-row-summary">
+              <span class="wf-csr-row-title">日興アイ･アール 全上場企業ホームページ充実度ランキングで最優秀サイトを獲得</span>
             </summary>
-            <div class="csr-row-content">
-              <div class="csr-logo-strip">
-              <div class="csr-logo"><span class="csr-logo-label">[ 日興アイ・アール<br>最優秀サイト ]</span></div>
+            <div class="wf-csr-row-content">
+              <div class="wf-csr-logo-strip">
+              <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ 日興アイ・アール<br>最優秀サイト ]</span></div>
             </div>
-            <div class="csr-row-body">
-              <p class="csr-row-desc">
+            <div class="wf-csr-row-body">
+              <p class="wf-csr-row-desc">
                 日興アイ･アール（株）「2025年度全上場企業ホームページ充実度ランキング調査」で最優秀サイトを獲得しました。
               </p>
             </div>
@@ -1342,39 +1342,39 @@ body {
           </details>
 
           <!-- くるみん／えるぼし（3社 × 2認定 = 6ロゴ：2カラム grid に各社タイル配置） 0524 桐原FB反映 -->
-          <details class="csr-row" open>
-            <summary class="csr-row-summary">
-              <span class="csr-row-title">「くるみん」認定と「えるぼし」認定を取得</span>
+          <details class="wf-csr-row" open>
+            <summary class="wf-csr-row-summary">
+              <span class="wf-csr-row-title">「くるみん」認定と「えるぼし」認定を取得</span>
             </summary>
-            <div class="csr-row-content">
+            <div class="wf-csr-row-content">
               <!-- 0524 桐原FB再修正：6ロゴは「3社 ×（くるみん＋えるぼし）」の組み合わせ。
                    各社1タイル（会社名タイトル＋認定2ロゴ）を2カラム grid に並べ、3社目は2段目左に自然折返し。
                    対象会社テキストブロックはタイトルと重複するため削除。 -->
-              <div class="csr-cert-2col">
-                <div class="csr-cert-col">
-                  <div class="csr-cert-col-title">コニカミノルタ（株）</div>
-                  <div class="csr-cert-logos">
-                    <div class="csr-logo"><span class="csr-logo-label">[ くるみん認定 ]</span></div>
-                    <div class="csr-logo"><span class="csr-logo-label">[ えるぼし認定 ]</span></div>
+              <div class="wf-csr-cert-2col">
+                <div class="wf-csr-cert-col">
+                  <div class="wf-csr-cert-col-title">コニカミノルタ（株）</div>
+                  <div class="wf-csr-cert-logos">
+                    <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ くるみん認定 ]</span></div>
+                    <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ えるぼし認定 ]</span></div>
                   </div>
                 </div>
-                <div class="csr-cert-col">
-                  <div class="csr-cert-col-title">コニカミノルタジャパン（株）</div>
-                  <div class="csr-cert-logos">
-                    <div class="csr-logo"><span class="csr-logo-label">[ くるみん認定 ]</span></div>
-                    <div class="csr-logo"><span class="csr-logo-label">[ えるぼし認定 ]</span></div>
+                <div class="wf-csr-cert-col">
+                  <div class="wf-csr-cert-col-title">コニカミノルタジャパン（株）</div>
+                  <div class="wf-csr-cert-logos">
+                    <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ くるみん認定 ]</span></div>
+                    <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ えるぼし認定 ]</span></div>
                   </div>
                 </div>
-                <div class="csr-cert-col">
-                  <div class="csr-cert-col-title">コニカミノルタ情報システム（株）</div>
-                  <div class="csr-cert-logos">
-                    <div class="csr-logo"><span class="csr-logo-label">[ くるみん認定 ]</span></div>
-                    <div class="csr-logo"><span class="csr-logo-label">[ えるぼし認定 ]</span></div>
+                <div class="wf-csr-cert-col">
+                  <div class="wf-csr-cert-col-title">コニカミノルタ情報システム（株）</div>
+                  <div class="wf-csr-cert-logos">
+                    <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ くるみん認定 ]</span></div>
+                    <div class="wf-csr-logo"><span class="wf-csr-logo-label">[ えるぼし認定 ]</span></div>
                   </div>
                 </div>
               </div>
-              <div class="csr-row-body">
-                <p class="csr-row-desc">
+              <div class="wf-csr-row-body">
+                <p class="wf-csr-row-desc">
                   コニカミノルタ（株）および日本のグループ会社においては、厚生労働大臣から子育てサポート企業として「くるみん」、女性の活躍推進に関する状況等が優良な企業として「えるぼし」の認定を受けています。
                 </p>
               </div>
@@ -1545,12 +1545,12 @@ body {
       </div>
       <div class="ann-row">
         <span class="ann-row-label">0524 桐原FB（A区分・くるみん/えるぼし 6ロゴ化）</span>
-        実サイト（konicaminolta.jp/about/csr/csr/vision/evaluation.html）には6ロゴが入っており、その内訳は <b>3社 ×（くるみん認定＋えるぼし認定）</b>。新規モジュール <b>.csr-cert-2col</b>（2カラム grid）に各社タイル（タイトル＝会社名＋認定2ロゴ）を3つ並べ、<b>1社目=コニカミノルタ（株）／2社目=コニカミノルタジャパン（株）／3社目=コニカミノルタ情報システム（株）</b>。3社目は2段目の左に自然折返し。<b>.csr-row-content</b> 直下に order:1 / flex:1 0 100% で全幅配置。各社名がタイル見出しになるため、従来の「対象会社」テキストブロック（<b>.csr-row-companies</b>）は重複につき削除。閉じた状態のサマリーロゴプレビューは本ブロックでは省略（6ロゴはヘッダ幅に収まらないため）。
+        実サイト（konicaminolta.jp/about/csr/csr/vision/evaluation.html）には6ロゴが入っており、その内訳は <b>3社 ×（くるみん認定＋えるぼし認定）</b>。新規モジュール <b>.wf-csr-cert-2col</b>（2カラム grid）に各社タイル（タイトル＝会社名＋認定2ロゴ）を3つ並べ、<b>1社目=コニカミノルタ（株）／2社目=コニカミノルタジャパン（株）／3社目=コニカミノルタ情報システム（株）</b>。3社目は2段目の左に自然折返し。<b>.wf-csr-row-content</b> 直下に order:1 / flex:1 0 100% で全幅配置。各社名がタイル見出しになるため、従来の「対象会社」テキストブロック（<b>.wf-csr-row-companies</b>）は重複につき削除。閉じた状態のサマリーロゴプレビューは本ブロックでは省略（6ロゴはヘッダ幅に収まらないため）。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">0523 桐原FB（A区分・3箇所統一・共通モジュール化）</span>
-        <b>JCIメッセージへの賛同</b>／<b>RE-Users 政策提言への賛同</b>／<b>過去のアドボカシー記事</b> の3ブロックを、現サイト（konicaminolta.jp/about/csr/initiative.html）同様の <b>〈タイトル〉＋テキストリンク</b>シンプルUI（背景・ボーダーなし）に統一。<b>.sub-list</b>（薄グレー背景＋全周ボーダー＋ラベル独立行）と先行採用していた <b>.wf-dl-link</b>（PDFバッジ＋↓）を廃止。<br>
-        新規共通モジュール <b>.wf-link-block</b>（複数リンク掲載時の標準UI）を策定：<b>.csr-link-list-title</b>（12px太字／〈〉括弧付き小見出し）＋ <b>.csr-row-links / .wf-text-link-row / .wf-text-link</b>（→ 下線リンク）で構成。<b>.csr-row-content の直下に置くと「画像＋テキスト」の下に全幅で改行配置される</b>（flex order:3 / flex:1 0 100%）。3ブロックすべて本文の右カラム内ではなく「画像＋テキスト」の下に全幅で配置するよう移動。以後、複数リンクが並ぶ箇所はこのモジュールを共通採用する。
+        <b>JCIメッセージへの賛同</b>／<b>RE-Users 政策提言への賛同</b>／<b>過去のアドボカシー記事</b> の3ブロックを、現サイト（konicaminolta.jp/about/csr/initiative.html）同様の <b>〈タイトル〉＋テキストリンク</b>シンプルUI（背景・ボーダーなし）に統一。<b>.wf-sub-list</b>（薄グレー背景＋全周ボーダー＋ラベル独立行）と先行採用していた <b>.wf-dl-link</b>（PDFバッジ＋↓）を廃止。<br>
+        新規共通モジュール <b>.wf-link-block</b>（複数リンク掲載時の標準UI）を策定：<b>.wf-csr-link-list-title</b>（12px太字／〈〉括弧付き小見出し）＋ <b>.wf-csr-row-links / .wf-text-link-row / .wf-text-link</b>（→ 下線リンク）で構成。<b>.wf-csr-row-content の直下に置くと「画像＋テキスト」の下に全幅で改行配置される</b>（flex order:3 / flex:1 0 100%）。3ブロックすべて本文の右カラム内ではなく「画像＋テキスト」の下に全幅で配置するよう移動。以後、複数リンクが並ぶ箇所はこのモジュールを共通採用する。
       </div>
     </div>
 
@@ -1568,7 +1568,7 @@ body {
       <span class="ann-head">#46：カラム化でレイアウトの無駄を削減（桐原5/15＋池田5/17）</span>
       <p class="ann-body">
         従来＝ロゴストリップを本文の上に横並び（1ロゴ行で縦の余白が間延び）。<br>
-        変更＝<b>ロゴを左カラム・本文を右に回り込み</b>（.csr-row-content を2カラムflex化）。1ロゴ行の無駄な縦余白を解消。<br>
+        変更＝<b>ロゴを左カラム・本文を右に回り込み</b>（.wf-csr-row-content を2カラムflex化）。1ロゴ行の無駄な縦余白を解消。<br>
         ロゴサイズのバランス調整（桐原「フォントに比べ小さい」）：見出し内の縮小ロゴを 60×32→<b>84×38</b>・ラベル 7px→8px に拡大。見出しロゴは<b>複製</b>方式に変更し、閉じた状態の一覧可視化（村上#41/#45）と開いた状態の左カラム表示を両立（開いた行は見出し縮小ロゴを非表示にして二重表示を回避）。
       </p>
     </div>
@@ -1605,7 +1605,7 @@ body {
       <span class="ann-num">v2.0</span>
       <span class="ann-head">v2.0までの主要構成（参考）</span>
       <p class="ann-body">
-        全項目1カラム縦積み／csr-row共通モジュール／ロゴ数1〜5（固定140×80・左寄せ＋gap10）／sub-list 3バリアント（linked／dotted／indexed）／wf-acc-disclaimer折りたたみ
+        全項目1カラム縦積み／csr-row共通モジュール／ロゴ数1〜5（固定140×80・左寄せ＋gap10）／wf-sub-list 3バリアント（linked／dotted／indexed）／wf-acc-disclaimer折りたたみ
       </p>
     </div>
 
@@ -1637,9 +1637,9 @@ body {
       <span class="ann-num">M</span>
       <span class="ann-head">主要モジュール</span>
       <p class="ann-body">
-        新設：csr-row（共通行）／csr-row-head＋csr-row-title＋csr-row-tag／csr-row-date／csr-logo-strip＋csr-logo（固定140×80・1〜n個）／csr-row-body＋csr-row-desc＋csr-row-links<br>
-        sub-list：linked（›下線）／dotted（◆）／indexed（■）の3バリアント<br>
-        flexible：csr-row.no-logo でロゴ非表示／wf-acc-disclaimer折りたたみ／csr-row-companies（くるみん対象会社）<br>
+        新設：csr-row（共通行）／wf-csr-row-head＋wf-csr-row-title＋wf-csr-row-tag／wf-csr-row-date／wf-csr-logo-strip＋csr-logo（固定140×80・1〜n個）／wf-csr-row-body＋wf-csr-row-desc＋wf-csr-row-links<br>
+        wf-sub-list：linked（›下線）／dotted（◆）／indexed（■）の3バリアント<br>
+        flexible：csr-row.no-logo でロゴ非表示／wf-acc-disclaimer折りたたみ／wf-csr-row-companies（くるみん対象会社）<br>
         共通：ヘッダー／lnav／パンくず／フッター／H2/H3／wf-text-link／コンパクトアンカーナビ（main＋sub階層）
       </p>
     </div>
@@ -1661,9 +1661,9 @@ body {
    一覧でロゴが見えるよう、各 .csr-row のロゴストリップを見出し(summary)へ移設。
    共通モジュール .csr-row に一括適用（社外評価側も同一モジュールのため同時充足） */
 document.querySelectorAll('.csr-row').forEach(function (row) {
-  var sum = row.querySelector(':scope > .csr-row-summary');
-  var content = row.querySelector('.csr-row-content');
-  var strip = row.querySelector('.csr-row-content .csr-logo-strip');
+  var sum = row.querySelector(':scope > .wf-csr-row-summary');
+  var content = row.querySelector('.wf-csr-row-content');
+  var strip = row.querySelector('.wf-csr-row-content .wf-csr-logo-strip');
   if (content && strip) {
     /* v2.4：ロゴ数で挿入レイアウトを切替。
        1〜2個＝本文左・ロゴ右1カラム縦積み（既定）／

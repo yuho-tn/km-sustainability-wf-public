@@ -47,7 +47,7 @@ body {
   position: sticky; top: 0; z-index: 2000; letter-spacing: 0.03em;
 }
 .wf-meta-bar strong { color: #fff; font-size: 12px; }
-.wf-meta-bar .meta-badge { background: #333; color: #aaa; font-size: 10px; padding: 2px 8px; border-radius: 2px; margin-left: 8px; }
+.wf-meta-bar .wf-meta-badge { background: #333; color: #aaa; font-size: 10px; padding: 2px 8px; border-radius: 2px; margin-left: 8px; }
 
 .wf-canvas { max-width: var(--page-w); margin: 0 auto; display: grid; grid-template-columns: 1fr 280px; align-items: start; }
 /* v2.4：overflow-x:clip でスクロールコンテナを作らず目次sticky追従を維持 */
@@ -61,7 +61,7 @@ body {
 .wf-breadcrumb span.current { color: var(--c-text); }
 
 .wf-page-indicator { background: #2A2A2A; color: #aaa; padding: 6px 32px; font-size: 10px; display: flex; align-items: center; justify-content: space-between; }
-.wf-page-indicator .pi-layer { background: #444; color: #888; font-size: 9px; padding: 1px 8px; border-radius: 2px; }
+.wf-page-indicator .wf-pi-layer { background: #444; color: #888; font-size: 9px; padding: 1px 8px; border-radius: 2px; }
 
 .wf-section { padding: var(--pad-section) var(--pad-h); border-bottom: 1px solid var(--c-border-s); position: relative; }
 .wf-section.bg-sub { background: var(--c-bg-sub); }
@@ -265,20 +265,20 @@ body {
 /* ============================================================
    GRIテーブル
 ============================================================ */
-.gri-table-wrap {
+.wf-gri-table-wrap {
   overflow-x: auto;
   border: 1px solid var(--c-border);
   margin-top: 8px;
 }
-.gri-table {
+.wf-gri-table {
   width: 100%; border-collapse: collapse;
   font-size: 11px; background: var(--c-white);
   table-layout: fixed;
 }
-.gri-table colgroup col.col-code { width: 110px; }
-.gri-table colgroup col.col-disc { width: 38%; }
-.gri-table colgroup col.col-loc { width: auto; }
-.gri-table thead th {
+.wf-gri-table colgroup col.col-code { width: 110px; }
+.wf-gri-table colgroup col.col-disc { width: 38%; }
+.wf-gri-table colgroup col.col-loc { width: auto; }
+.wf-gri-table thead th {
   background: var(--c-text-h); color: #fff;
   font-size: 11px; font-weight: 700;
   letter-spacing: 0.04em; text-align: left;
@@ -286,7 +286,7 @@ body {
   position: sticky; top: 0;
   z-index: 1;
 }
-.gri-table tbody th {
+.wf-gri-table tbody th {
   background: var(--c-bg-sub); color: var(--c-text-h);
   font-weight: 700; font-size: 11px;
   text-align: left; vertical-align: top;
@@ -296,17 +296,17 @@ body {
   word-break: break-word;
   font-family: 'Helvetica Neue', sans-serif;
 }
-.gri-table tbody td {
+.wf-gri-table tbody td {
   padding: 9px 12px;
   border: 1px solid var(--c-border-s);
   vertical-align: top;
   line-height: 1.7;
   word-break: break-word;
 }
-.gri-table tbody td.disc { color: var(--c-text); }
-.gri-table tbody td.loc { color: var(--c-text-h); }
+.wf-gri-table tbody td.disc { color: var(--c-text); }
+.wf-gri-table tbody td.loc { color: var(--c-text-h); }
 /* カテゴリ行：左縦棒は廃止し、行全体をやや濃いグレー（c-border = #E0E0E0）で識別 */
-.gri-table tbody tr.cat-row th {
+.wf-gri-table tbody tr.cat-row th {
   background: var(--c-border);
   color: var(--c-text-h);
   font-size: 12px;
@@ -314,35 +314,35 @@ body {
   letter-spacing: 0.03em;
   padding: 12px 14px;
 }
-.gri-table tbody tr.cat-row td {
+.wf-gri-table tbody tr.cat-row td {
   background: var(--c-border);
   border-color: var(--c-border);
 }
 
 /* 省略・該当なし表示 */
-.gri-table .na { color: var(--c-text-xs); font-size: 10px; }
+.wf-gri-table .na { color: var(--c-text-xs); font-size: 10px; }
 
 /* テーブル内テキストリンク（v1.5：cat-rowセル内のリンクには→を付けない） */
-.gri-table .wf-text-link {
+.wf-gri-table .wf-text-link {
   color: var(--c-text-h);
   text-decoration: underline;
   text-underline-offset: 2px;
   cursor: default;
   font-weight: 600;
 }
-.gri-table .wf-text-link::before { content: '→ '; font-weight: 700; }
-.gri-table tr.cat-row .wf-text-link::before { content: ''; }
-.sasb-table .wf-text-link {
+.wf-gri-table .wf-text-link::before { content: '→ '; font-weight: 700; }
+.wf-gri-table tr.cat-row .wf-text-link::before { content: ''; }
+.wf-sasb-table .wf-text-link {
   color: var(--c-text-h);
   text-decoration: underline;
   text-underline-offset: 2px;
   cursor: default;
   font-weight: 600;
 }
-.sasb-table .wf-text-link::before { content: '→ '; font-weight: 700; }
+.wf-sasb-table .wf-text-link::before { content: '→ '; font-weight: 700; }
 
 /* 「残りN項目...」プレースホルダ行 */
-.gri-table tbody tr.more-row td {
+.wf-gri-table tbody tr.more-row td {
   background: #FAFAFA;
   text-align: center;
   font-size: 10px;
@@ -438,27 +438,27 @@ body {
 }
 
 /* SASBテーブル */
-.sasb-table-wrap {
+.wf-sasb-table-wrap {
   overflow-x: auto;
   border: 1px solid var(--c-border);
   margin-top: 8px;
 }
-.sasb-table {
+.wf-sasb-table {
   width: 100%; border-collapse: collapse;
   font-size: 11px; background: var(--c-white);
   table-layout: fixed;
 }
-.sasb-table colgroup col.col-topic { width: 24%; }
-.sasb-table colgroup col.col-code { width: 130px; }
-.sasb-table colgroup col.col-metric { width: auto; }
-.sasb-table colgroup col.col-loc { width: 28%; }
-.sasb-table thead th {
+.wf-sasb-table colgroup col.col-topic { width: 24%; }
+.wf-sasb-table colgroup col.col-code { width: 130px; }
+.wf-sasb-table colgroup col.col-metric { width: auto; }
+.wf-sasb-table colgroup col.col-loc { width: 28%; }
+.wf-sasb-table thead th {
   background: var(--c-text-h); color: #fff;
   font-size: 11px; font-weight: 700;
   letter-spacing: 0.04em; text-align: left;
   padding: 10px 12px;
 }
-.sasb-table tbody th {
+.wf-sasb-table tbody th {
   background: var(--c-bg-sub); color: var(--c-text-h);
   font-weight: 700; font-size: 12px;
   text-align: left; vertical-align: top;
@@ -466,20 +466,20 @@ body {
   border: 1px solid var(--c-border-s);
   font-family: 'Hiragino Kaku Gothic Pro', sans-serif;
 }
-.sasb-table tbody td {
+.wf-sasb-table tbody td {
   padding: 10px 12px;
   border: 1px solid var(--c-border-s);
   vertical-align: top;
   line-height: 1.7;
   font-size: 11px;
 }
-.sasb-table tbody td.code {
+.wf-sasb-table tbody td.code {
   font-family: 'Helvetica Neue', sans-serif;
   font-weight: 700;
   color: var(--c-text-h);
   white-space: nowrap;
 }
-.sasb-table tbody td.loc { color: var(--c-text-h); }
+.wf-sasb-table tbody td.loc { color: var(--c-text-h); }
 
 /* フッター */
 /* サステナビリティサイトフッター（アコーディオン式・全ページ共通） */
@@ -650,8 +650,8 @@ body {
             <summary class="wf-acc-h3-summary"><span class="wf-acc-text">共通スタンダード</span></summary>
             <div class="wf-acc-h3-body">
               <h3 class="wf-sub-title" id="gri-2" style="margin-top:6px;">GRI 2：一般開示事項 2021</h3>
-              <div class="gri-table-wrap">
-                <table class="gri-table">
+              <div class="wf-gri-table-wrap">
+                <table class="wf-gri-table">
                   <colgroup>
                     <col class="col-code">
                     <col class="col-disc">
@@ -824,8 +824,8 @@ body {
                 </table>
               </div>
               <h3 class="wf-sub-title" id="gri-3" style="margin-top:32px;">GRI 3：マテリアルな項目 2021</h3>
-              <div class="gri-table-wrap">
-                <table class="gri-table">
+              <div class="wf-gri-table-wrap">
+                <table class="wf-gri-table">
                   <colgroup>
                     <col class="col-code">
                     <col class="col-disc">
@@ -888,8 +888,8 @@ body {
           <details class="wf-acc-h3" id="gri-200" open style="scroll-margin-top:80px;">
             <summary class="wf-acc-h3-summary"><span class="wf-acc-text">経済</span></summary>
             <div class="wf-acc-h3-body">
-              <div class="gri-table-wrap">
-                <table class="gri-table">
+              <div class="wf-gri-table-wrap">
+                <table class="wf-gri-table">
                   <colgroup>
                     <col class="col-code">
                     <col class="col-disc">
@@ -1004,8 +1004,8 @@ body {
           <details class="wf-acc-h3" id="gri-300" open style="scroll-margin-top:80px;">
             <summary class="wf-acc-h3-summary"><span class="wf-acc-text">環境</span></summary>
             <div class="wf-acc-h3-body">
-              <div class="gri-table-wrap">
-                <table class="gri-table">
+              <div class="wf-gri-table-wrap">
+                <table class="wf-gri-table">
                   <colgroup>
                     <col class="col-code">
                     <col class="col-disc">
@@ -1237,8 +1237,8 @@ body {
           <details class="wf-acc-h3" id="gri-400" open style="scroll-margin-top:80px;">
             <summary class="wf-acc-h3-summary"><span class="wf-acc-text">社会</span></summary>
             <div class="wf-acc-h3-body">
-              <div class="gri-table-wrap">
-                <table class="gri-table">
+              <div class="wf-gri-table-wrap">
+                <table class="wf-gri-table">
                   <colgroup>
                     <col class="col-code">
                     <col class="col-disc">
@@ -1488,8 +1488,8 @@ body {
           <p class="wf-section-desc">SICS カテゴリー：技術・通信＞ハードウェア</p>
           <p class="wf-section-desc" style="margin-bottom:18px;">SICS カテゴリー：技術・通信＞ハードウェア</p>
 
-          <div class="sasb-table-wrap">
-            <table class="sasb-table">
+          <div class="wf-sasb-table-wrap">
+            <table class="wf-sasb-table">
               <colgroup><col class="col-topic"><col class="col-code"><col class="col-metric"><col class="col-loc"></colgroup>
               <thead><tr><th>トピック</th><th>コード</th><th>指標</th><th>開示箇所</th></tr></thead>
               <tbody>
@@ -1830,7 +1830,7 @@ body {
       <span class="ann-head">主要モジュール</span>
       <p class="ann-body">
         共通：ヘッダー／lnav／パンくず／フッター／H2／コンパクトアンカーナビ（main＋sub階層）<br>
-        新規：wf-acc-h3（ガイドライン用アコ／<strong>初期閉</strong>＋件数バッジ）／gl-summary-grid＋gl-summary-card（カテゴリ概観）／gl-meta-box（適用基準）／gl-toolbar（全展開／全折畳）／gri-table（3列・カテゴリ行・マテリアル強調）／sics-box／sasb-table（4列・rowspan）／mat-mark／mat-legend
+        新規：wf-acc-h3（ガイドライン用アコ／<strong>初期閉</strong>＋件数バッジ）／gl-summary-grid＋gl-summary-card（カテゴリ概観）／gl-meta-box（適用基準）／gl-toolbar（全展開／全折畳）／wf-gri-table（3列・カテゴリ行・マテリアル強調）／sics-box／wf-sasb-table（4列・rowspan）／mat-mark／mat-legend
       </p>
     </div>
 

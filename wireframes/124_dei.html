@@ -45,7 +45,7 @@ body {
   position: sticky; top: 0; z-index: 2000; letter-spacing: 0.03em;
 }
 .wf-meta-bar strong { color: #fff; font-size: 12px; }
-.wf-meta-bar .meta-badge { background: #333; color: #aaa; font-size: 10px; padding: 2px 8px; border-radius: 2px; margin-left: 8px; }
+.wf-meta-bar .wf-meta-badge { background: #333; color: #aaa; font-size: 10px; padding: 2px 8px; border-radius: 2px; margin-left: 8px; }
 
 .wf-canvas { max-width: var(--page-w); margin: 0 auto; display: grid; grid-template-columns: 1fr 280px; align-items: start; }
 /* v2.4：overflow-x:clip でスクロールコンテナを作らず目次sticky追従を維持 */
@@ -59,7 +59,7 @@ body {
 .wf-breadcrumb span.current { color: var(--c-text); }
 
 .wf-page-indicator { background: #2A2A2A; color: #aaa; padding: 6px 32px; font-size: 10px; display: flex; align-items: center; justify-content: space-between; }
-.wf-page-indicator .pi-layer { background: #444; color: #888; font-size: 9px; padding: 1px 8px; border-radius: 2px; }
+.wf-page-indicator .wf-pi-layer { background: #444; color: #888; font-size: 9px; padding: 1px 8px; border-radius: 2px; }
 
 .wf-section { padding: var(--pad-section) var(--pad-h); border-bottom: 1px solid var(--c-border-s); position: relative; }
 .wf-section.bg-sub { background: var(--c-bg-sub); }
@@ -232,12 +232,12 @@ body {
    v4.0：0525 FB#2 反映 — ダイバーシティ経営宣言をページ内HTML展開
    catalog 共通モジュール（140人権方針 / 131健康宣言 / 148品質方針 と同パターン）
 ============================================================ */
-.policy-statement {
+.wf-policy-statement {
   margin: 14px 0 22px;
   border: 1px solid var(--c-border);
   background: var(--c-white);
 }
-.policy-statement-summary {
+.wf-policy-statement-summary {
   list-style: none;
   cursor: default;
   padding: 14px 60px 14px 18px;
@@ -246,12 +246,12 @@ body {
   position: relative;
   line-height: 1.5;
 }
-.policy-statement[open] .policy-statement-summary {
+.policy-statement[open] .wf-policy-statement-summary {
   border-bottom: 1px solid var(--c-border);
 }
-.policy-statement-summary::-webkit-details-marker { display: none; }
-.policy-statement-summary::marker { content: ''; }
-.policy-statement-summary::after {
+.wf-policy-statement-summary::-webkit-details-marker { display: none; }
+.wf-policy-statement-summary::marker { content: ''; }
+.wf-policy-statement-summary::after {
   content: '＋';
   position: absolute;
   right: 16px; top: 50%; transform: translateY(-50%);
@@ -262,8 +262,8 @@ body {
   font-size: 14px; font-weight: 700;
   line-height: 1;
 }
-.policy-statement[open] .policy-statement-summary::after { content: '−'; }
-.policy-statement-badge {
+.policy-statement[open] .wf-policy-statement-summary::after { content: '−'; }
+.wf-policy-statement-badge {
   display: inline-flex; align-items: center; justify-content: center;
   font-size: 10px; font-weight: 700;
   color: #fff; background: var(--c-text-h);
@@ -272,7 +272,7 @@ body {
   white-space: nowrap;
   flex-shrink: 0;
 }
-.policy-statement-title {
+.wf-policy-statement-title {
   font-size: 15px; font-weight: 700;
   color: var(--c-text-h);
   letter-spacing: -0.01em;
@@ -280,23 +280,23 @@ body {
   flex: 1 1 auto;
   min-width: 0;
 }
-.policy-statement-meta {
+.wf-policy-statement-meta {
   font-size: 11px; color: var(--c-text-s);
   letter-spacing: 0.04em;
   white-space: nowrap;
   flex-shrink: 0;
 }
-.policy-statement-body {
+.wf-policy-statement-body {
   padding: 26px 30px 28px;
   background: var(--c-white);
 }
-.policy-statement-body p {
+.wf-policy-statement-body p {
   font-size: 13px; line-height: 1.95;
   color: var(--c-text);
   margin-bottom: 12px;
 }
-.policy-statement-body p:last-child { margin-bottom: 0; }
-.policy-statement-motto {
+.wf-policy-statement-body p:last-child { margin-bottom: 0; }
+.wf-policy-statement-motto {
   text-align: center;
   font-size: 14px; font-weight: 700; color: var(--c-text-h);
   letter-spacing: 0.06em;
@@ -305,28 +305,28 @@ body {
   background: var(--c-bg-sub);
   line-height: 1.7;
 }
-.policy-statement-h4 {
+.wf-policy-statement-h4 {
   font-size: 13px; font-weight: 700; color: var(--c-text-h);
   margin: 22px 0 10px;
   padding-left: 10px;
   border-left: 3px solid var(--c-text-h);
   line-height: 1.5;
 }
-.policy-statement-h5 {
+.wf-policy-statement-h5 {
   font-size: 12px; font-weight: 700; color: var(--c-text-h);
   margin: 14px 0 6px;
   line-height: 1.5;
 }
-.policy-statement-body ul.policy-statement-list {
+.wf-policy-statement-body ul.wf-policy-statement-list {
   padding-left: 20px;
   margin: 6px 0 14px;
   font-size: 12px; line-height: 1.85;
   color: var(--c-text);
 }
-.policy-statement-body ul.policy-statement-list li {
+.wf-policy-statement-body ul.wf-policy-statement-list li {
   margin-bottom: 6px;
 }
-.policy-statement-signature {
+.wf-policy-statement-signature {
   margin-top: 24px;
   padding-top: 14px;
   border-top: 1px solid var(--c-border);
@@ -335,7 +335,7 @@ body {
   color: var(--c-text);
   line-height: 1.85;
 }
-.policy-signature-name {
+.wf-policy-signature-name {
   font-size: 18px;
   font-weight: 700;
   color: var(--c-text-h);
@@ -347,7 +347,7 @@ body {
   padding: 0 4px 4px;
 }
 
-/* DEI 経営宣言ボックス — 001/002 .callout-box 同型（左上タグ＋全周ボーダー） — v4.0で廃止予定だが定義は残す */
+/* DEI 経営宣言ボックス — 001/002 .wf-callout-box 同型（左上タグ＋全周ボーダー） — v4.0で廃止予定だが定義は残す */
 .dei-statement {
   background: var(--c-white);
   border: 1px solid var(--c-border);
@@ -394,124 +394,124 @@ body {
 .dei-concept-fig-label strong { display: block; font-size: 12px; color: var(--c-text-h); margin-bottom: 4px; }
 
 /* 目指す姿 表（v3.1：項目幅コンパクト・英字削除） */
-.vision-table-wrap { margin: 14px 0; border: 1px solid var(--c-border); }
-.vision-table { width: 100%; border-collapse: collapse; font-size: 12px; background: var(--c-white); table-layout: fixed; }
-.vision-table th, .vision-table td {
+.wf-vision-table-wrap { margin: 14px 0; border: 1px solid var(--c-border); }
+.wf-vision-table { width: 100%; border-collapse: collapse; font-size: 12px; background: var(--c-white); table-layout: fixed; }
+.wf-vision-table th, .wf-vision-table td {
   border: 1px solid var(--c-border-s);
   padding: 12px 16px; text-align: left;
   line-height: 1.85; vertical-align: top;
   word-break: break-word;
 }
-.vision-table thead th {
+.wf-vision-table thead th {
   background: var(--c-text-h); color: #fff;
   font-size: 11px; font-weight: 700;
   letter-spacing: 0.04em;
   text-align: center;
 }
-.vision-table colgroup col.col-item { width: 130px; }
-.vision-table colgroup col.col-vision { width: 28%; }
-.vision-table colgroup col.col-concept { width: auto; }
-.vision-table tbody th {
+.wf-vision-table colgroup col.col-item { width: 130px; }
+.wf-vision-table colgroup col.col-vision { width: 28%; }
+.wf-vision-table colgroup col.col-concept { width: auto; }
+.wf-vision-table tbody th {
   background: var(--c-bg-sub); color: var(--c-text-h);
   font-weight: 700; font-size: 13px;
   vertical-align: middle;
   text-align: center;
   line-height: 1.5;
 }
-.vision-table ul { padding-left: 18px; margin: 0; }
-.vision-table li { margin-bottom: 6px; }
-.vision-table li:last-child { margin-bottom: 0; }
+.wf-vision-table ul { padding-left: 18px; margin: 0; }
+.wf-vision-table li { margin-bottom: 6px; }
+.wf-vision-table li:last-child { margin-bottom: 0; }
 
 /* 重点施策テーブル（v3.0：行＝会社／列＝D・E・I に逆転） */
-.measure-table-wrap { overflow-x: auto; margin: 10px 0; border: 1px solid var(--c-border); }
-.measure-table { width: 100%; border-collapse: collapse; font-size: 11px; background: var(--c-white); }
-.measure-table th, .measure-table td {
+.wf-measure-table-wrap { overflow-x: auto; margin: 10px 0; border: 1px solid var(--c-border); }
+.wf-measure-table { width: 100%; border-collapse: collapse; font-size: 11px; background: var(--c-white); }
+.wf-measure-table th, .wf-measure-table td {
   border: 1px solid var(--c-border-s);
   padding: 12px 14px; text-align: left;
   line-height: 1.7; vertical-align: top;
 }
-.measure-table thead th {
+.wf-measure-table thead th {
   background: var(--c-text-h); color: #fff;
   font-size: 11px; font-weight: 700;
   letter-spacing: 0.04em; text-align: center;
 }
-.measure-table tbody th {
+.wf-measure-table tbody th {
   background: var(--c-bg-sub); color: var(--c-text-h);
   font-weight: 700; font-size: 12px;
   white-space: nowrap; width: 180px;
 }
-.measure-table ul { margin: 0; padding-left: 18px; }
-.measure-table li { margin-bottom: 4px; }
+.wf-measure-table ul { margin: 0; padding-left: 18px; }
+.wf-measure-table li { margin-bottom: 4px; }
 
 /* KPIブロック */
-.kpi-block {
+.wf-kpi-block {
   background: var(--c-white);
   border: 1px solid var(--c-border);
   border-top: 4px solid var(--c-text-h);
   padding: 22px 26px;
   margin-bottom: 16px;
 }
-.kpi-block-head {
+.wf-kpi-block-head {
   margin-bottom: 12px; padding-bottom: 10px;
   border-bottom: 1px solid var(--c-border-s);
 }
-.kpi-block-title { font-size: 15px; font-weight: 700; color: var(--c-text-h); line-height: 1.4; }
+.wf-kpi-block-title { font-size: 15px; font-weight: 700; color: var(--c-text-h); line-height: 1.4; }
 .kpi-block-sub { font-size: 12px; color: var(--c-text); margin-bottom: 12px; line-height: 1.85; }
 
-.kpi-table-wrap { overflow-x: auto; margin: 8px 0; border: 1px solid var(--c-border); }
-.kpi-table { width: 100%; border-collapse: collapse; font-size: 11px; background: var(--c-white); min-width: 720px; }
-.kpi-table th, .kpi-table td {
+.wf-kpi-table-wrap { overflow-x: auto; margin: 8px 0; border: 1px solid var(--c-border); }
+.wf-kpi-table { width: 100%; border-collapse: collapse; font-size: 11px; background: var(--c-white); min-width: 720px; }
+.wf-kpi-table th, .wf-kpi-table td {
   border: 1px solid var(--c-border-s);
   padding: 8px 10px; text-align: right;
   line-height: 1.5; font-family: 'Helvetica Neue', sans-serif;
 }
-.kpi-table thead th {
+.wf-kpi-table thead th {
   background: var(--c-text-h); color: #fff;
   font-size: 10px; font-weight: 700;
   letter-spacing: 0.04em; white-space: nowrap;
   text-align: center;
 }
-.kpi-table tbody th {
+.wf-kpi-table tbody th {
   background: var(--c-bg-sub); color: var(--c-text-h);
   font-weight: 700; font-size: 11px;
   text-align: left; white-space: nowrap;
   font-family: 'Hiragino Kaku Gothic Pro', sans-serif;
 }
-.kpi-table .target-cell { background: #FAF7F0; font-weight: 700; color: var(--c-text-h); }
-.kpi-table .actual-cell { background: #F4F4F4; font-weight: 700; }
-.kpi-table-note { font-size: 10px; color: var(--c-text-xs); margin-top: 6px; line-height: 1.7; }
+.wf-kpi-table .wf-target-cell { background: #FAF7F0; font-weight: 700; color: var(--c-text-h); }
+.wf-kpi-table .wf-actual-cell { background: #F4F4F4; font-weight: 700; }
+.wf-kpi-table-note { font-size: 10px; color: var(--c-text-xs); margin-top: 6px; line-height: 1.7; }
 
 /* 2024年度の取り組み（v3.0：1カラム縦積み・原稿どおり） */
-.year-activity {
+.wf-year-activity {
   background: var(--c-white);
   border: 1px solid var(--c-border);
   padding: 0;
   margin-top: 14px;
 }
-.year-activity-row {
+.wf-year-activity-row {
   display: grid; grid-template-columns: 220px 1fr;
   border-bottom: 1px solid var(--c-border-s);
 }
-.year-activity-row:last-child { border-bottom: none; }
-.year-activity-label {
+.wf-year-activity-row:last-child { border-bottom: none; }
+.wf-year-activity-label {
   background: var(--c-bg-sub);
   padding: 16px 18px;
   font-size: 13px; font-weight: 700; color: var(--c-text-h);
   border-right: 1px solid var(--c-border-s);
   display: flex; align-items: center;
 }
-.year-activity-list {
+.wf-year-activity-list {
   padding: 16px 22px;
   font-size: 12px; color: var(--c-text);
   line-height: 1.95;
 }
-.year-activity-list ul { padding-left: 18px; }
-.year-activity-list ul ul { padding-left: 18px; margin-top: 4px; }
-.year-activity-list li { margin-bottom: 4px; }
-.year-activity-list .empty { color: var(--c-text-xs); font-style: italic; }
+.wf-year-activity-list ul { padding-left: 18px; }
+.wf-year-activity-list ul ul { padding-left: 18px; margin-top: 4px; }
+.wf-year-activity-list li { margin-bottom: 4px; }
+.wf-year-activity-list .empty { color: var(--c-text-xs); font-style: italic; }
 
 /* 推進体制図 */
-.gov-structure-fig {
+.wf-gov-structure-fig {
   background: var(--c-ph); border: 1px solid var(--c-ph-line);
   position: relative; overflow: hidden;
   aspect-ratio: 16 / 6;
@@ -523,7 +523,7 @@ body {
   position: absolute; inset: 0;
   background: repeating-linear-gradient(45deg, transparent 0 12px, rgba(0,0,0,0.04) 12px 13px);
 }
-.gov-structure-fig-label {
+.wf-gov-structure-fig-label {
   position: relative; z-index: 1;
   font-size: 11px; color: var(--c-text-s);
   text-align: center; line-height: 1.7;
@@ -532,8 +532,8 @@ body {
   border: 1px dashed var(--c-ph-line);
   max-width: 80%;
 }
-.gov-structure-fig-label strong { display: block; font-size: 12px; color: var(--c-text-h); margin-bottom: 4px; }
-.img-zoom-btn {
+.wf-gov-structure-fig-label strong { display: block; font-size: 12px; color: var(--c-text-h); margin-bottom: 4px; }
+.wf-img-zoom-btn {
   position: absolute;
   bottom: 6px; right: 6px;
   width: 26px; height: 26px;
@@ -543,7 +543,7 @@ body {
   cursor: default; z-index: 5;
   border: 1px solid #fff;
 }
-.img-zoom-btn::before { content: '+'; }
+.wf-img-zoom-btn::before { content: '+'; }
 
 /* v3.1：推進体制の縦糸/横糸はH3+本文のシンプル構成に統合（structure-2col撤去） */
 
@@ -587,7 +587,7 @@ body {
   display: flex; align-items: center; justify-content: space-between;
   gap: 8px;
 }
-.card-link-arrow {
+.wf-card-link-arrow {
   display: inline-flex; align-items: center; justify-content: center;
   width: 22px; height: 22px;
   background: var(--c-text-h); color: #fff;
@@ -954,48 +954,48 @@ body {
             社会課題を解決するソリューションを創出し続けるために、互いの違いを尊重し、多様な価値観を受け入れることで、従業員の働きがいを向上させます。そして、従業員同士が異なる考えを健全にぶつけ合うことができ、助け合いのなかから誰もがチャレンジできる組織風土の醸成を目指します。
           </p>
 
-          <!-- ダイバーシティ経営宣言：引用部分（原稿の T3-R4）+ policy-statement アコ -->
+          <!-- ダイバーシティ経営宣言：引用部分（原稿の T3-R4）+ wf-policy-statement アコ -->
           <!-- 原稿どおり：引用テキスト2行 + リンク「＞コニカミノルタグループ ダイバーシティ経営宣言」 -->
           <p class="wf-section-desc" style="font-weight:700; line-height:2.0;">
             一人ひとりが、互いの個性を歓迎し、理解し、認め合い、そしてともに挑戦を楽しむ。<br>
             「知の結集」につながる創造性・問題解決・イノベーションを刺激する「個の輝き」を実現するコニカミノルタへ
           </p>
-          <!-- policy-statement アコ：ダイバーシティ経営宣言（H3見出しなし／アコのみ） -->
-          <details class="policy-statement" id="dei-commitment-doc" open>
-            <summary class="policy-statement-summary">
-              <span class="policy-statement-badge">宣言</span>
-              <span class="policy-statement-title">コニカミノルタグループ ダイバーシティ経営宣言</span>
-              <span class="policy-statement-meta">2023年3月15日制定</span>
+          <!-- wf-policy-statement アコ：ダイバーシティ経営宣言（H3見出しなし／アコのみ） -->
+          <details class="wf-policy-statement" id="dei-commitment-doc" open>
+            <summary class="wf-policy-statement-summary">
+              <span class="wf-policy-statement-badge">宣言</span>
+              <span class="wf-policy-statement-title">コニカミノルタグループ ダイバーシティ経営宣言</span>
+              <span class="wf-policy-statement-meta">2023年3月15日制定</span>
             </summary>
-            <div class="policy-statement-body">
-              <div class="policy-statement-motto">
+            <div class="wf-policy-statement-body">
+              <div class="wf-policy-statement-motto">
                 一人ひとりが、互いの個性を歓迎し、理解し、認め合い、そしてともに挑戦を楽しむ。<br>
                 「知の結集」につながる創造性・問題解決・イノベーションを刺激する「個の輝き」を実現するコニカミノルタへ
               </div>
 
-              <h4 class="policy-statement-h4">私たちの約束</h4>
+              <h4 class="wf-policy-statement-h4">私たちの約束</h4>
 
-              <h5 class="policy-statement-h5">コニカミノルタは、実践します</h5>
-              <ul class="policy-statement-list">
+              <h5 class="wf-policy-statement-h5">コニカミノルタは、実践します</h5>
+              <ul class="wf-policy-statement-list">
                 <li>一人ひとりの違いが歓迎され、社員一人ひとりの「個」が輝くことができるよう、多様な人財の活躍を推進します</li>
                 <li>社員がライフとワークを両立し、成長する機会を得て、より高い能力が発揮できる環境を整備します</li>
                 <li>社員同士が異なる考えを健全にぶつけ合うことができ、誰もが安心してチャレンジできる組織風土を醸成します</li>
                 <li>ステークホルダーと共に多様な知と知を結集し、個々の「みたい」に応えるソリューションを通して、社会課題の解決に取り組みます</li>
               </ul>
 
-              <h5 class="policy-statement-h5">私たち一人ひとりが、実践します</h5>
-              <ul class="policy-statement-list">
+              <h5 class="wf-policy-statement-h5">私たち一人ひとりが、実践します</h5>
+              <ul class="wf-policy-statement-list">
                 <li>一人ひとりの違いを受け入れ、互いを認め合い、助け合います</li>
                 <li>様々な環境において疎外感を抱いている人々に寄り添い、応援します</li>
                 <li>共に働く仲間と、いつでも、どこでも、どんなことでも、率直に話し合います</li>
                 <li>『個の輝き』『公平な機会』『知の結集』について、向上心を持って学び続けます</li>
               </ul>
 
-              <div class="policy-statement-signature">
+              <div class="wf-policy-statement-signature">
                 <div>2023年3月15日</div>
                 <div>コニカミノルタ株式会社</div>
                 <div>代表執行役社長兼CEO</div>
-                <div class="policy-signature-name">大幸 利充</div>
+                <div class="wf-policy-signature-name">大幸 利充</div>
               </div>
             </div>
           </details>
@@ -1012,7 +1012,7 @@ body {
           <h4 class="wf-card-title has-mark" id="vision-2030" style="margin-top:18px;">違いを力に！　経営ビジョンの実現に向けて目指す姿</h4>
           <div class="wf-img-ph" style="aspect-ratio: 16 / 6;">
             <span class="wf-img-ph-label">違いを力に！　経営ビジョンの実現に向けて目指す姿 図PH</span>
-            <span class="img-zoom-btn"></span>
+            <span class="wf-img-zoom-btn"></span>
           </div>
         </section>
 
@@ -1026,8 +1026,8 @@ body {
           <h2 class="wf-section-title">戦略・目標・実績</h2>
 
           <!-- 原稿 T4 準拠：戦略・目標・実績 H2 直下に 3要素表（Diversity / Equity / Inclusion - 2030年の姿 + 考え方） -->
-          <div class="vision-table-wrap">
-            <table class="vision-table">
+          <div class="wf-vision-table-wrap">
+            <table class="wf-vision-table">
               <colgroup>
                 <col class="col-item">
                 <col class="col-vision">
@@ -1077,8 +1077,8 @@ body {
           <!-- 重点施策（行＝会社／列＝D・E・I）— 原稿どおり直接H3から開始 -->
           <h3 class="wf-sub-title" id="key-measures">重点施策</h3>
 
-          <div class="measure-table-wrap">
-            <table class="measure-table">
+          <div class="wf-measure-table-wrap">
+            <table class="wf-measure-table">
               <thead>
                 <tr>
                   <th style="width:180px;">&nbsp;</th>
@@ -1125,34 +1125,34 @@ body {
           <h3 class="wf-sub-title">KPI</h3>
 
           <!-- KPI① Diversity -->
-          <div class="kpi-block">
-            <div class="kpi-block-head">
-              <h4 class="kpi-block-title">Diversity【個の輝き】 — 管理職に占める女性の割合</h4>
+          <div class="wf-kpi-block">
+            <div class="wf-kpi-block-head">
+              <h4 class="wf-kpi-block-title">Diversity【個の輝き】 — 管理職に占める女性の割合</h4>
             </div>
-            <div class="kpi-table-wrap">
-              <table class="kpi-table">
+            <div class="wf-kpi-table-wrap">
+              <table class="wf-kpi-table">
                 <thead>
                   <tr>
                     <th rowspan="2" style="text-align:left;">区分</th>
                     <th colspan="3">実績</th>
-                    <th colspan="3" class="target-cell">目標</th>
+                    <th colspan="3" class="wf-target-cell">目標</th>
                   </tr>
                   <tr>
                     <th>2023年度</th>
-                    <th class="actual-cell">2024年度</th>
+                    <th class="wf-actual-cell">2024年度</th>
                     <th>2025年度</th>
-                    <th class="target-cell">2025年度</th>
-                    <th class="target-cell">2026年度</th>
-                    <th class="target-cell">2030年度</th>
+                    <th class="wf-target-cell">2025年度</th>
+                    <th class="wf-target-cell">2026年度</th>
+                    <th class="wf-target-cell">2030年度</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr><th>コニカミノルタグループ</th><td>21.1%</td><td class="actual-cell">19.2%</td><td>—</td><td class="target-cell">—</td><td class="target-cell">23%以上</td><td class="target-cell">26%以上</td></tr>
-                  <tr><th>コニカミノルタ（株）</th><td>10.7%</td><td class="actual-cell">11.1%</td><td>—</td><td class="target-cell">—</td><td class="target-cell">13%以上</td><td class="target-cell">18%以上</td></tr>
+                  <tr><th>コニカミノルタグループ</th><td>21.1%</td><td class="wf-actual-cell">19.2%</td><td>—</td><td class="wf-target-cell">—</td><td class="wf-target-cell">23%以上</td><td class="wf-target-cell">26%以上</td></tr>
+                  <tr><th>コニカミノルタ（株）</th><td>10.7%</td><td class="wf-actual-cell">11.1%</td><td>—</td><td class="wf-target-cell">—</td><td class="wf-target-cell">13%以上</td><td class="wf-target-cell">18%以上</td></tr>
                 </tbody>
               </table>
             </div>
-            <p class="kpi-table-note">
+            <p class="wf-kpi-table-note">
               ※コニカミノルタグループ：各年度末時点。コニカミノルタ（株）および国内連結子会社ならびに200名以上の海外連結子会社の主要な約50社を集計。集計範囲は連結グループのうち人数ベースで2021年度は87％、2022年度は88％以上、2023年度は86％以上、2024年度は85％以上をカバーする。<br>
               ※コニカミノルタ（株）：各年度の翌４月１日時点の正規従業員対象 ※なお2030年度は2030年４月１日時点
             </p>
@@ -1163,66 +1163,66 @@ body {
           </div>
 
           <!-- KPI② Equity -->
-          <div class="kpi-block">
-            <div class="kpi-block-head">
-              <h4 class="kpi-block-title">Equity【公平な機会】 — グローバル従業員意識調査項目「公平性」</h4>
+          <div class="wf-kpi-block">
+            <div class="wf-kpi-block-head">
+              <h4 class="wf-kpi-block-title">Equity【公平な機会】 — グローバル従業員意識調査項目「公平性」</h4>
             </div>
-            <div class="kpi-table-wrap">
-              <table class="kpi-table">
+            <div class="wf-kpi-table-wrap">
+              <table class="wf-kpi-table">
                 <thead>
                   <tr>
                     <th rowspan="2" style="text-align:left;">区分</th>
                     <th colspan="3">実績</th>
-                    <th colspan="2" class="target-cell">目標</th>
+                    <th colspan="2" class="wf-target-cell">目標</th>
                   </tr>
                   <tr>
                     <th>2023年度</th>
-                    <th class="actual-cell">2024年度</th>
+                    <th class="wf-actual-cell">2024年度</th>
                     <th>2025年度</th>
-                    <th class="target-cell">2025年度</th>
-                    <th class="target-cell">2026年度</th>
+                    <th class="wf-target-cell">2025年度</th>
+                    <th class="wf-target-cell">2026年度</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr><th>コニカミノルタグループ</th><td>7.6</td><td class="actual-cell">7.6</td><td>—</td><td class="target-cell">8.0以上</td><td class="target-cell">—</td></tr>
-                  <tr><th>コニカミノルタ(株)</th><td>6.6</td><td class="actual-cell">6.7</td><td>—</td><td class="target-cell">7.0以上</td><td class="target-cell">—</td></tr>
+                  <tr><th>コニカミノルタグループ</th><td>7.6</td><td class="wf-actual-cell">7.6</td><td>—</td><td class="wf-target-cell">8.0以上</td><td class="wf-target-cell">—</td></tr>
+                  <tr><th>コニカミノルタ(株)</th><td>6.6</td><td class="wf-actual-cell">6.7</td><td>—</td><td class="wf-target-cell">7.0以上</td><td class="wf-target-cell">—</td></tr>
                 </tbody>
               </table>
             </div>
-            <p class="kpi-table-note">
+            <p class="wf-kpi-table-note">
               ※以下設問について、0〜10段階での回答の平均点／公平性：「自身が所属する部門・チームでは、あらゆるバックグラウンドを持つ人々が公平に扱われている」<br>
               ※FY23〜25方針としてFY21調査時点での同業種ベンチマークをベースに目標値を設定
             </p>
           </div>
 
           <!-- KPI③ Inclusion -->
-          <div class="kpi-block">
-            <div class="kpi-block-head">
-              <h4 class="kpi-block-title">Inclusion【知の結集】 — グローバル従業員意識調査項目「意見の自由」</h4>
+          <div class="wf-kpi-block">
+            <div class="wf-kpi-block-head">
+              <h4 class="wf-kpi-block-title">Inclusion【知の結集】 — グローバル従業員意識調査項目「意見の自由」</h4>
             </div>
-            <div class="kpi-table-wrap">
-              <table class="kpi-table">
+            <div class="wf-kpi-table-wrap">
+              <table class="wf-kpi-table">
                 <thead>
                   <tr>
                     <th rowspan="2" style="text-align:left;">区分</th>
                     <th colspan="3">実績</th>
-                    <th colspan="2" class="target-cell">目標</th>
+                    <th colspan="2" class="wf-target-cell">目標</th>
                   </tr>
                   <tr>
                     <th>2023年度</th>
-                    <th class="actual-cell">2024年度</th>
+                    <th class="wf-actual-cell">2024年度</th>
                     <th>2025年度</th>
-                    <th class="target-cell">2025年度</th>
-                    <th class="target-cell">2026年度</th>
+                    <th class="wf-target-cell">2025年度</th>
+                    <th class="wf-target-cell">2026年度</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr><th>コニカミノルタグループ</th><td>7.3</td><td class="actual-cell">7.4</td><td>—</td><td class="target-cell">8.0以上</td><td class="target-cell">—</td></tr>
-                  <tr><th>コニカミノルタ(株)</th><td>6.8</td><td class="actual-cell">6.9</td><td>—</td><td class="target-cell">7.5以上</td><td class="target-cell">—</td></tr>
+                  <tr><th>コニカミノルタグループ</th><td>7.3</td><td class="wf-actual-cell">7.4</td><td>—</td><td class="wf-target-cell">8.0以上</td><td class="wf-target-cell">—</td></tr>
+                  <tr><th>コニカミノルタ(株)</th><td>6.8</td><td class="wf-actual-cell">6.9</td><td>—</td><td class="wf-target-cell">7.5以上</td><td class="wf-target-cell">—</td></tr>
                 </tbody>
               </table>
             </div>
-            <p class="kpi-table-note">
+            <p class="wf-kpi-table-note">
               ※以下設問について、0〜10段階での回答の平均点／意見の自由：「自身が所属する部門・チームにおいて自身の意見が尊重されている」<br>
               ※FY23〜25方針としてFY21調査時点での同業種ベンチマークをベースに目標値を設定
             </p>
@@ -1245,19 +1245,19 @@ body {
             KPIの目標値達成に向けて、継続・先行して取り組んでいる施策は次のとおりです。
           </p>
 
-          <div class="year-activity">
-            <div class="year-activity-row">
-              <div class="year-activity-label">Diversity【個の輝き】</div>
-              <div class="year-activity-list">
+          <div class="wf-year-activity">
+            <div class="wf-year-activity-row">
+              <div class="wf-year-activity-label">Diversity【個の輝き】</div>
+              <div class="wf-year-activity-list">
                 <ul>
                   <li>女性活躍推進</li>
                   <li>障がい者雇用</li>
                 </ul>
               </div>
             </div>
-            <div class="year-activity-row">
-              <div class="year-activity-label">Equity【公平な機会】</div>
-              <div class="year-activity-list">
+            <div class="wf-year-activity-row">
+              <div class="wf-year-activity-label">Equity【公平な機会】</div>
+              <div class="wf-year-activity-list">
                 <ul>
                   <li>DEIをベースとした組織風土醸成
                     <ul>
@@ -1269,9 +1269,9 @@ body {
                 </ul>
               </div>
             </div>
-            <div class="year-activity-row">
-              <div class="year-activity-label">Inclusion【知の結集】</div>
-              <div class="year-activity-list">
+            <div class="wf-year-activity-row">
+              <div class="wf-year-activity-label">Inclusion【知の結集】</div>
+              <div class="wf-year-activity-list">
                 <span class="empty">（原稿準備中）</span>
               </div>
             </div>
@@ -1292,12 +1292,12 @@ body {
             代表執行役社長が任命したダイバーシティ推進担当役員が統括しています。各事業・機能を担当する執行役、執行役員の責任のもとでの目標達成に向けた施策実行（縦糸）と、主要会社に設置されているDEI推進部署によるグループ各社支援（横糸）により、コニカミノルタ（株）に設置された「違いを力に！推進室」がリードするかたちで、コニカミノルタグループを網羅し一体となってDEI推進を加速させていきます。そして、進捗状況を定期的に取締役会に報告し、着実に目指す姿の実現に向けて行動します。
           </p>
 
-          <div class="gov-structure-fig">
-            <span class="gov-structure-fig-label">
+          <div class="wf-gov-structure-fig">
+            <span class="wf-gov-structure-fig-label">
               <strong>図：DEI推進体制（縦糸×横糸）PH</strong>
               代表執行役社長 → ダイバーシティ推進担当役員 → 縦糸（執行役・執行役員による施策実行）／横糸（主要会社DEI推進部署支援）／違いを力に！推進室がリード
             </span>
-            <span class="img-zoom-btn"></span>
+            <span class="wf-img-zoom-btn"></span>
           </div>
 
           <h4 class="wf-card-title has-mark">執行役、執行役員の責任のもと、目標達成に向けて施策を実行します</h4>
@@ -1342,7 +1342,7 @@ body {
               <h5 class="wf-h5-title">男性従業員の育児休職取得率と平均取得日数</h5>
               <div class="wf-img-ph">
                 <span class="wf-img-ph-label">育児休職取得率／平均取得日数 グラフPH</span>
-                <span class="img-zoom-btn"></span>
+                <span class="wf-img-zoom-btn"></span>
               </div>
               <p class="wf-note">※対象はコニカミノルタ（株）正規従業員<br>※育児休職取得率の算定方法：育休取得人数(前年度からの継続含む)÷配偶者が出産した人数</p>
               <p class="wf-text-link-row"><a class="wf-text-link">データ詳細はESGデータ内の社会データ（Excel）</a></p>
@@ -1359,7 +1359,7 @@ body {
               <p class="wf-note" style="margin-top:0;">※各種利用条件有り</p>
               <div class="wf-img-ph" style="aspect-ratio: 16 / 5;">
                 <span class="wf-img-ph-label">仕事と出産・育児の両立支援制度（抜粋） 表PH</span>
-                <span class="img-zoom-btn"></span>
+                <span class="wf-img-zoom-btn"></span>
               </div>
 
               <h4 class="wf-card-title has-mark">仕事と介護の両立に向けた支援</h4>
@@ -1369,7 +1369,7 @@ body {
               <h5 class="wf-h5-title">コニカミノルタの仕事と介護の両立支援制度（抜粋）</h5>
               <div class="wf-img-ph" style="aspect-ratio: 16 / 5;">
                 <span class="wf-img-ph-label">仕事と介護の両立支援制度（抜粋）※各種利用条件有り 表PH</span>
-                <span class="img-zoom-btn"></span>
+                <span class="wf-img-zoom-btn"></span>
               </div>
               <p class="wf-note">なお、育児・介護の各制度の利用実績の詳細は、ESGデータ内の社会データ(Excel) をご参照ください。</p>
 
@@ -1378,7 +1378,7 @@ body {
               <h5 class="wf-h5-title">男女性従業員の賃金差異</h5>
               <div class="wf-img-ph" style="aspect-ratio: 16 / 5;">
                 <span class="wf-img-ph-label">男女性従業員の賃金差異 表PH</span>
-                <span class="img-zoom-btn"></span>
+                <span class="wf-img-zoom-btn"></span>
               </div>
               <p class="wf-note">※「男女の職業生活における活躍の推進に関する法律」の規定に基づき算出</p>
 
@@ -1402,15 +1402,15 @@ body {
               <p class="wf-note">障がい者雇用率はESGデータ内の社会データ（Excel）をご参照ください。</p>
               <h5 class="wf-h5-title">認定マーク</h5>
               <div class="wf-img-row" style="grid-template-columns: 220px;">
-                <div class="wf-img-ph"><span class="wf-img-ph-cap">もにす認定マーク</span><span class="img-zoom-btn"></span></div>
+                <div class="wf-img-ph"><span class="wf-img-ph-cap">もにす認定マーク</span><span class="wf-img-zoom-btn"></span></div>
               </div>
 
               <h4 class="wf-card-title has-mark">主な業務</h4>
               <p>名刺・パンフレット印刷、事業所内カフェでの接客、コニカミノルタ製複合機のクリーニング・整備などを担当しています。</p>
               <div class="wf-img-row" style="grid-template-columns: repeat(3, 1fr);">
-                <div class="wf-img-ph"><span class="wf-img-ph-cap">名刺・パンフレット印刷業務</span><span class="img-zoom-btn"></span></div>
-                <div class="wf-img-ph"><span class="wf-img-ph-cap">事業所内カフェ接客業務</span><span class="img-zoom-btn"></span></div>
-                <div class="wf-img-ph"><span class="wf-img-ph-cap">複合機クリーニング・整備</span><span class="img-zoom-btn"></span></div>
+                <div class="wf-img-ph"><span class="wf-img-ph-cap">名刺・パンフレット印刷業務</span><span class="wf-img-zoom-btn"></span></div>
+                <div class="wf-img-ph"><span class="wf-img-ph-cap">事業所内カフェ接客業務</span><span class="wf-img-zoom-btn"></span></div>
+                <div class="wf-img-ph"><span class="wf-img-ph-cap">複合機クリーニング・整備</span><span class="wf-img-zoom-btn"></span></div>
               </div>
 
             </div>
@@ -1457,7 +1457,7 @@ body {
               <h4 class="wf-card-title has-mark">これまでのDEIグローバルプログラム</h4>
               <div class="wf-img-ph" style="aspect-ratio: 16 / 5;">
                 <span class="wf-img-ph-label">DEIグローバルプログラム履歴一覧（表PH）</span>
-                <span class="img-zoom-btn"></span>
+                <span class="wf-img-zoom-btn"></span>
               </div>
               <h5 class="wf-h5-title">2024年６月／グローバル：PROUD VOICES：How Diverse Thinking Links to Business Success</h5>
               <p>「PROUD VOICES：How Diverse Thinking Links to Business Success」（多様な視点がビジネスを成功へ導く）をテーマに、なぜ、ビジネスにおいて多様な視点が必要なのか、ともに働く私たち一人ひとりにとって、会社や組織にとって大切なことを、ゲストスピーカーの経験を通して学びました。世界17カ国より約270名が参加しました。</p>
@@ -1490,35 +1490,35 @@ body {
           <h3 class="wf-sub-title" id="women-empowerment">女性活躍推進</h3>
 
           <!-- 原稿準拠：女性新卒採用比率データ表（コニカミノルタ（株） / FY2020〜FY2024+目標） -->
-          <div class="kpi-block">
-            <div class="kpi-block-head">
-              <h4 class="kpi-block-title">コニカミノルタ（株） — 女性新卒採用比率<sup>※3</sup></h4>
+          <div class="wf-kpi-block">
+            <div class="wf-kpi-block-head">
+              <h4 class="wf-kpi-block-title">コニカミノルタ（株） — 女性新卒採用比率<sup>※3</sup></h4>
             </div>
-            <div class="kpi-table-wrap">
-              <table class="kpi-table">
+            <div class="wf-kpi-table-wrap">
+              <table class="wf-kpi-table">
                 <thead>
                   <tr>
                     <th rowspan="2" style="text-align:left;">指標</th>
                     <th colspan="5">実績</th>
-                    <th colspan="2" class="target-cell">目標</th>
+                    <th colspan="2" class="wf-target-cell">目標</th>
                   </tr>
                   <tr>
                     <th>2020年度</th>
                     <th>2021年度</th>
                     <th>2022年度</th>
                     <th>2023年度</th>
-                    <th class="actual-cell">2024年度</th>
-                    <th class="target-cell">2025年度</th>
-                    <th class="target-cell">2026年度</th>
+                    <th class="wf-actual-cell">2024年度</th>
+                    <th class="wf-target-cell">2025年度</th>
+                    <th class="wf-target-cell">2026年度</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr><th style="text-align:left;">女性新卒採用比率</th><td>23%</td><td>35%</td><td>37%</td><td>39%</td><td class="actual-cell">34%</td><td class="target-cell">30%以上維持</td><td class="target-cell">―</td></tr>
-                  <tr><th style="text-align:left;">（参考）技術系の女性新卒採用比率</th><td>―</td><td>33%</td><td>36%</td><td>32%</td><td class="actual-cell">35%</td><td class="target-cell">―</td><td class="target-cell">―</td></tr>
+                  <tr><th style="text-align:left;">女性新卒採用比率</th><td>23%</td><td>35%</td><td>37%</td><td>39%</td><td class="wf-actual-cell">34%</td><td class="wf-target-cell">30%以上維持</td><td class="wf-target-cell">―</td></tr>
+                  <tr><th style="text-align:left;">（参考）技術系の女性新卒採用比率</th><td>―</td><td>33%</td><td>36%</td><td>32%</td><td class="wf-actual-cell">35%</td><td class="wf-target-cell">―</td><td class="wf-target-cell">―</td></tr>
                 </tbody>
               </table>
             </div>
-            <p class="kpi-table-note">
+            <p class="wf-kpi-table-note">
               ※3　女性新卒採用比率：各年度内に内定し、翌４月以降に新卒で入社するコニカミノルタ（株）正規従業員対象
             </p>
           </div>
@@ -1541,7 +1541,7 @@ body {
               <h5 class="wf-h5-title">2024年度 コニカミノルタ（株）で実施した女性社員対象の育成プログラム</h5>
               <div class="wf-img-ph" style="aspect-ratio: 16 / 5;">
                 <span class="wf-img-ph-label">育成プログラム 表PH</span>
-                <span class="img-zoom-btn"></span>
+                <span class="wf-img-zoom-btn"></span>
               </div>
 
               <p>これらの取り組みの結果、2024年度のエグゼンプトに占める女性の割合は目標の12％に届かなかったものの11.1％となり、毎年確実に上昇しています。</p>
@@ -1551,7 +1551,7 @@ body {
               <h4 class="wf-card-title has-mark">コニカミノルタ（株）女性エグゼンプト数と比率の推移（各年4月時点）</h4>
               <div class="wf-img-ph" style="aspect-ratio: 16 / 6;">
                 <span class="wf-img-ph-label">女性エグゼンプト数と比率の推移 グラフPH</span>
-                <span class="img-zoom-btn"></span>
+                <span class="wf-img-zoom-btn"></span>
               </div>
 
             </div>
@@ -1585,8 +1585,8 @@ body {
 
               <!-- FB#22: 表（行動計画概要）とPDFリンクを別ブロックに分離 -->
               <h5 class="wf-h5-title">コニカミノルタ（株）2024〜2025年度 第5期 行動計画（概要）</h5>
-              <div class="kpi-table-wrap">
-                <table class="kpi-table" style="min-width:auto;">
+              <div class="wf-kpi-table-wrap">
+                <table class="wf-kpi-table" style="min-width:auto;">
                   <tbody>
                     <tr><th style="text-align:left;">（a）計画期間</th><td style="text-align:left;">2024年4月1日 〜 2026年3月31日</td></tr>
                     <tr><th style="text-align:left;">（b）数値目標</th><td style="text-align:left;">エグゼンプト（課長級以上）に占める女性割合13％以上／有給休暇取得率75％以上</td></tr>
@@ -1603,16 +1603,16 @@ body {
               <h5 class="wf-h5-title">コニカミノルタ（株）および国内連結子会社における女性管理職比率（各年度末時点）</h5>
               <div class="wf-img-ph" style="aspect-ratio: 16 / 5;">
                 <span class="wf-img-ph-label">女性管理職比率 グラフPH（FY2023：8.8% ／ FY2024：9.3% ／ FY2025：—）</span>
-                <span class="img-zoom-btn"></span>
+                <span class="wf-img-zoom-btn"></span>
               </div>
 
               <h4 class="wf-card-title has-mark">社外からの評価</h4>
               <p>コニカミノルタ（株）および日本のグループ会社においては、厚生労働大臣から子育てサポート企業として「くるみん」、女性の活躍推進に関する状況等が優良な企業として「えるぼし」の認定を受けています。</p>
               <h5 class="wf-h5-title">認定マーク（くるみん／えるぼし）</h5>
               <div class="wf-img-row" style="grid-template-columns: repeat(3, 1fr);">
-                <div class="wf-img-ph"><span class="wf-img-ph-cap">コニカミノルタ（株）認定マーク</span><span class="img-zoom-btn"></span></div>
-                <div class="wf-img-ph"><span class="wf-img-ph-cap">コニカミノルタジャパン（株）認定マーク</span><span class="img-zoom-btn"></span></div>
-                <div class="wf-img-ph"><span class="wf-img-ph-cap">コニカミノルタ情報システム（株）認定マーク</span><span class="img-zoom-btn"></span></div>
+                <div class="wf-img-ph"><span class="wf-img-ph-cap">コニカミノルタ（株）認定マーク</span><span class="wf-img-zoom-btn"></span></div>
+                <div class="wf-img-ph"><span class="wf-img-ph-cap">コニカミノルタジャパン（株）認定マーク</span><span class="wf-img-zoom-btn"></span></div>
+                <div class="wf-img-ph"><span class="wf-img-ph-cap">コニカミノルタ情報システム（株）認定マーク</span><span class="wf-img-zoom-btn"></span></div>
               </div>
 
             </div>
@@ -1777,7 +1777,7 @@ body {
       </div>
       <div class="ann-row">
         <span class="ann-row-label">#2（B・要判断）桐原</span>
-        「方針類はhtml化、サイト共通レイアウト＋上部掲載＋概念図」→ policy-statement モジュール共通化＋本ページ上部に「方針 + 概念図」セクションを新設予定（次回モック・KM原稿待ち）。
+        「方針類はhtml化、サイト共通レイアウト＋上部掲載＋概念図」→ wf-policy-statement モジュール共通化＋本ページ上部に「方針 + 概念図」セクションを新設予定（次回モック・KM原稿待ち）。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">#3（A・反映済）桐原</span>
@@ -1901,9 +1901,9 @@ body {
       <span class="ann-head">主要モジュール（catalog参照）</span>
       <p class="ann-body">
         catalog: <strong>2-2</strong> H3左縦棒(.wf-sub-title)＝アコ外のみ／<strong>2-3</strong> H4 ◾(.wf-card-title.has-mark)＝アコ内トップ／<strong>2-4</strong> H5太字(.wf-h5-title)＝アコ内サブ／<strong>8-4</strong> 通常アコ H3以下(.wf-acc-h3)<br>
-        共通: ヘッダー／lnav／パンくず／フッター／wf-related-links／img-zoom-btn／wf-btn<br>
+        共通: ヘッダー／lnav／パンくず／フッター／wf-related-links／wf-img-zoom-btn／wf-btn<br>
         新規（v3.7-3.9）: wf-img-ph（単独画像PH）／wf-img-row（写真ギャラリー）／wf-note（注釈テキスト）／event-title（太字段落・H5以下の深さ）<br>
-        既存: dei-statement／vision-table／measure-table／kpi-block＋kpi-table／year-activity／gov-structure-fig
+        既存: dei-statement／wf-vision-table／wf-measure-table／kpi-block＋wf-kpi-table／year-activity／gov-structure-fig
       </p>
     </div>
     </div><!-- /旧アノテーションラッパ -->

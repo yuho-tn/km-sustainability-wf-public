@@ -68,7 +68,7 @@ body {
   letter-spacing: 0.03em;
 }
 .wf-meta-bar strong { color: #fff; font-size: 12px; }
-.wf-meta-bar .meta-badge {
+.wf-meta-bar .wf-meta-badge {
   background: #333;
   color: #aaa;
   font-size: 10px;
@@ -132,7 +132,7 @@ body {
   align-items: center;
   justify-content: space-between;
 }
-.wf-page-indicator .pi-layer {
+.wf-page-indicator .wf-pi-layer {
   background: #444;
   color: #888;
   font-size: 9px;
@@ -210,20 +210,20 @@ body {
 }
 
 /* セクション見出し（h2） */
-/* H2 — TOP（001）と完全に同一のリッチ見出しモジュール（.top-rich-head/.trh-*）
+/* H2 — TOP（001）と完全に同一のリッチ見出しモジュール（.wf-top-rich-head/.trh-*）
    下層センテンス系のグラデ下線とは別系統。短い実線アクセント＋28pxタイトル＋補足サブ */
-.top-rich-head { margin-bottom: 26px; }
-.trh-main { display: block; }
-.trh-title {
+.wf-top-rich-head { margin-bottom: 26px; }
+.wf-trh-main { display: block; }
+.wf-trh-title {
   font-size: 28px; font-weight: 700; color: var(--c-text-h);
   line-height: 1.3; letter-spacing: -0.015em;
 }
-.trh-title::before {
+.wf-trh-title::before {
   content: ''; display: inline-block; vertical-align: middle;
   width: 28px; height: 3px; background: var(--c-text-h);
   margin-right: 12px; transform: translateY(-3px);
 }
-.trh-title .trh-sub {
+.wf-trh-title .wf-trh-sub {
   display: block; font-size: 13px; font-weight: 600;
   color: var(--c-text-s); letter-spacing: 0.02em; margin-top: 10px;
   padding-left: 40px;
@@ -321,7 +321,7 @@ body {
   display: flex; align-items: center; justify-content: space-between;
   gap: 8px;
 }
-.card-link-arrow {
+.wf-card-link-arrow {
   display: inline-flex; align-items: center; justify-content: center;
   width: 22px; height: 22px;
   background: var(--c-text-h); color: #fff;
@@ -1374,7 +1374,7 @@ body {
 }
 
 /* グラフ画像PH（行動変容定義でグラフ記載のあるテーマに使用） */
-.kpi-graph-ph {
+.wf-kpi-graph-ph {
   background: var(--c-ph);
   border: 1px solid var(--c-ph-line);
   aspect-ratio: 16 / 9;
@@ -1387,7 +1387,7 @@ body {
   position: absolute; inset: 0;
   background: repeating-linear-gradient(-45deg, transparent 0 10px, rgba(0,0,0,0.04) 10px 11px);
 }
-.kpi-graph-ph-label {
+.wf-kpi-graph-ph-label {
   position: relative; z-index: 1;
   font-size: 11px; color: var(--c-text-s);
   text-align: center;
@@ -1396,15 +1396,15 @@ body {
 }
 
 /* グラフ複数カラム配置（環境Index：気候変動3カラム／資源循環2カラム等） */
-.kpi-graph-grid {
+.wf-kpi-graph-grid {
   display: grid; gap: 14px; margin-top: 10px;
 }
-.kpi-graph-grid.col-2 { grid-template-columns: repeat(2, 1fr); }
-.kpi-graph-grid.col-3 { grid-template-columns: repeat(3, 1fr); }
-.kpi-graph-cell {
+.wf-kpi-graph-grid.col-2 { grid-template-columns: repeat(2, 1fr); }
+.wf-kpi-graph-grid.col-3 { grid-template-columns: repeat(3, 1fr); }
+.wf-kpi-graph-cell {
   display: flex; flex-direction: column; gap: 8px;
 }
-.kpi-graph-cell-caption {
+.wf-kpi-graph-cell-caption {
   font-size: 11px; color: var(--c-text-s); line-height: 1.5;
   text-align: left;
 }
@@ -1587,7 +1587,7 @@ body {
 
 
 /* 画像拡大ボタン（2カラム以上の画像PHに付与・全WF共通仕様 v4.4） */
-.img-zoom-btn {
+.wf-img-zoom-btn {
   position: absolute; bottom: 6px; right: 6px;
   width: 26px; height: 26px;
   background: #111; color: #fff;
@@ -1596,8 +1596,8 @@ body {
   cursor: default; z-index: 5;
   border: 1px solid #fff;
 }
-.img-zoom-btn::before { content: "+"; }
-.img-zoom-btn:hover { background: #2a2a2a; }
+.wf-img-zoom-btn::before { content: "+"; }
+.wf-img-zoom-btn:hover { background: #2a2a2a; }
 </style>
 </head>
 <body>
@@ -1635,9 +1635,9 @@ body {
     ============================================================ -->
     <section class="wf-section bg-white" id="env-basic">
       <span class="wf-section-marker">A</span>
-      <div class="top-rich-head">
-        <div class="trh-main">
-          <h2 class="trh-title">基本的な考え方<span class="trh-sub">環境方針・環境戦略・環境経営の全体像</span></h2>
+      <div class="wf-top-rich-head">
+        <div class="wf-trh-main">
+          <h2 class="wf-trh-title">基本的な考え方<span class="wf-trh-sub">環境方針・環境戦略・環境経営の全体像</span></h2>
         </div>
       </div>
       <p class="wf-section-desc" style="margin-bottom:32px;">
@@ -1666,9 +1666,9 @@ body {
     ============================================================ -->
     <section class="wf-section bg-white" id="env-strategy">
       <span class="wf-section-marker">B</span>
-      <div class="top-rich-head">
-        <div class="trh-main">
-          <h2 class="trh-title">戦略・目標・実績<span class="trh-sub">5領域の戦略と代表的なKPIの進捗</span></h2>
+      <div class="wf-top-rich-head">
+        <div class="wf-trh-main">
+          <h2 class="wf-trh-title">戦略・目標・実績<span class="wf-trh-sub">5領域の戦略と代表的なKPIの進捗</span></h2>
         </div>
       </div>
       <p class="wf-section-desc">気候変動・資源循環・化学物質汚染防止・水資源・生物多様性の5領域について、戦略と代表的なKPIの進捗を紹介します。</p>
@@ -1687,18 +1687,18 @@ body {
           （文章はダミーです）2030年に向けた気候変動戦略では、自社拠点・サプライチェーン全体でのスコープ1〜3排出量削減と、製品・ソリューションを通じた社会のCO2削減貢献量拡大の両輪で取り組みます。SBTi認定の削減目標に沿って計画を実行し、TCFD提言に沿ったシナリオ分析・リスク管理を継続しています。
         </p>
         <h4 class="wf-card-title">KPI進捗</h4>
-        <div class="kpi-graph-grid col-3">
-          <div class="kpi-graph-cell">
-            <div class="kpi-graph-ph"><span class="kpi-graph-ph-label">[ グラフ画像PH ]</span><span class="img-zoom-btn"></span></div>
-            <div class="kpi-graph-cell-caption">図：CO2削減量の推移（FY22-24実績／FY30目標）</div>
+        <div class="wf-kpi-graph-grid col-3">
+          <div class="wf-kpi-graph-cell">
+            <div class="wf-kpi-graph-ph"><span class="wf-kpi-graph-ph-label">[ グラフ画像PH ]</span><span class="wf-img-zoom-btn"></span></div>
+            <div class="wf-kpi-graph-cell-caption">図：CO2削減量の推移（FY22-24実績／FY30目標）</div>
           </div>
-          <div class="kpi-graph-cell">
-            <div class="kpi-graph-ph"><span class="kpi-graph-ph-label">[ グラフ画像PH ]</span><span class="img-zoom-btn"></span></div>
-            <div class="kpi-graph-cell-caption">図：関連商品売上の推移（FY22-24実績）</div>
+          <div class="wf-kpi-graph-cell">
+            <div class="wf-kpi-graph-ph"><span class="wf-kpi-graph-ph-label">[ グラフ画像PH ]</span><span class="wf-img-zoom-btn"></span></div>
+            <div class="wf-kpi-graph-cell-caption">図：関連商品売上の推移（FY22-24実績）</div>
           </div>
-          <div class="kpi-graph-cell">
-            <div class="kpi-graph-ph"><span class="kpi-graph-ph-label">[ グラフ画像PH ]</span><span class="img-zoom-btn"></span></div>
-            <div class="kpi-graph-cell-caption">図：RE100進捗（再エネ比率）（FY22-24実績／FY30目標）</div>
+          <div class="wf-kpi-graph-cell">
+            <div class="wf-kpi-graph-ph"><span class="wf-kpi-graph-ph-label">[ グラフ画像PH ]</span><span class="wf-img-zoom-btn"></span></div>
+            <div class="wf-kpi-graph-cell-caption">図：RE100進捗（再エネ比率）（FY22-24実績／FY30目標）</div>
           </div>
         </div>
 
@@ -1728,14 +1728,14 @@ body {
           （文章はダミーです）資源循環戦略では、製品設計段階からの省資源化、回収済製品からのマテリアル再利用、循環型ビジネスモデルの構築を推進します。再資源化率の向上とコスト削減効果の両面で、サーキュラーエコノミー実現への貢献を目指しています。
         </p>
         <h4 class="wf-card-title">KPI進捗</h4>
-        <div class="kpi-graph-grid col-2">
-          <div class="kpi-graph-cell">
-            <div class="kpi-graph-ph"><span class="kpi-graph-ph-label">[ グラフ画像PH ]</span><span class="img-zoom-btn"></span></div>
-            <div class="kpi-graph-cell-caption">図：再資源化率の推移（FY22-24実績／FY30目標）</div>
+        <div class="wf-kpi-graph-grid col-2">
+          <div class="wf-kpi-graph-cell">
+            <div class="wf-kpi-graph-ph"><span class="wf-kpi-graph-ph-label">[ グラフ画像PH ]</span><span class="wf-img-zoom-btn"></span></div>
+            <div class="wf-kpi-graph-cell-caption">図：再資源化率の推移（FY22-24実績／FY30目標）</div>
           </div>
-          <div class="kpi-graph-cell">
-            <div class="kpi-graph-ph"><span class="kpi-graph-ph-label">[ グラフ画像PH ]</span><span class="img-zoom-btn"></span></div>
-            <div class="kpi-graph-cell-caption">図：コスト削減効果の推移（FY22-24実績）</div>
+          <div class="wf-kpi-graph-cell">
+            <div class="wf-kpi-graph-ph"><span class="wf-kpi-graph-ph-label">[ グラフ画像PH ]</span><span class="wf-img-zoom-btn"></span></div>
+            <div class="wf-kpi-graph-cell-caption">図：コスト削減効果の推移（FY22-24実績）</div>
           </div>
         </div>
         <div class="wf-btn"><a class="wf-link-block-link">資源循環</a></div>
@@ -1807,9 +1807,9 @@ body {
     ============================================================ -->
     <section class="wf-section bg-white" id="env-management">
       <span class="wf-section-marker">D</span>
-      <div class="top-rich-head">
-        <div class="trh-main">
-          <h2 class="trh-title">体制<span class="trh-sub">環境マネジメント体制</span></h2>
+      <div class="wf-top-rich-head">
+        <div class="wf-trh-main">
+          <h2 class="wf-trh-title">体制<span class="wf-trh-sub">環境マネジメント体制</span></h2>
         </div>
       </div>
 
@@ -1824,7 +1824,7 @@ body {
         <div>
           <div class="wf-img h-200">
             <div class="wf-img-label">環境マネジメント体制図<br>（推進体制・組織図）</div>
-          <span class="img-zoom-btn"></span></div>
+          <span class="wf-img-zoom-btn"></span></div>
         </div>
       </div>
       <div class="sec-bottom-cta"><a class="wf-btn outline">環境マネジメント</a></div>
@@ -1835,9 +1835,9 @@ body {
     ============================================================ -->
     <section class="wf-section bg-white" id="env-activities-overview">
       <span class="wf-section-marker">E</span>
-      <div class="top-rich-head">
-        <div class="trh-main">
-          <h2 class="trh-title">コニカミノルタの環境課題解決を推進する活動<span class="trh-sub">バリューチェーン全体の環境活動の全体像</span></h2>
+      <div class="wf-top-rich-head">
+        <div class="wf-trh-main">
+          <h2 class="wf-trh-title">コニカミノルタの環境課題解決を推進する活動<span class="wf-trh-sub">バリューチェーン全体の環境活動の全体像</span></h2>
         </div>
       </div>
       <p class="wf-section-desc">バリューチェーン全体を通じた環境活動の全体像をご紹介します。</p>
@@ -1845,7 +1845,7 @@ body {
       <!-- 全体像：模式図 -->
       <div class="wf-img h-240">
         <div class="wf-img-label">環境課題解決を推進する活動 模式図<br>（調達→生産→物流→販売→使用→回収のバリューチェーン全体像）<br>※ビジネスパートナーにも分かりやすい構成</div>
-      <span class="img-zoom-btn"></span></div>
+      <span class="wf-img-zoom-btn"></span></div>
       <div class="sec-bottom-cta"><a class="wf-btn outline">環境課題解決を推進する活動</a></div>
     </section>
 
@@ -1859,9 +1859,9 @@ body {
     ============================================================ -->
     <section class="wf-section bg-white" id="env-activities">
       <span class="wf-section-marker">G</span>
-      <div class="top-rich-head">
-        <div class="trh-main">
-          <h2 class="trh-title">取り組み<span class="trh-sub">脱炭素・資源循環・生物多様性の代表事例</span></h2>
+      <div class="wf-top-rich-head">
+        <div class="wf-trh-main">
+          <h2 class="wf-trh-title">取り組み<span class="wf-trh-sub">脱炭素・資源循環・生物多様性の代表事例</span></h2>
         </div>
       </div>
       <p class="wf-section-desc">脱炭素、資源循環、生物多様性の各領域で、代表的な取り組み事例をご紹介します。</p>
@@ -1873,7 +1873,7 @@ body {
             <span class="wf-activity-card-img-label">[ 自社拠点再エネ導入 PH ]</span>
           </div>
           <div class="wf-activity-card-body">
-            <div class="wf-activity-card-title"><span>自社拠点での再生可能エネルギー導入</span><span class="card-link-arrow">›</span></div>
+            <div class="wf-activity-card-title"><span>自社拠点での再生可能エネルギー導入</span><span class="wf-card-link-arrow">›</span></div>
             <p class="wf-activity-card-summary">（文章はダミーです）国内外の主要拠点で太陽光発電の自家消費・グリーン電力購入を組み合わせ、2030年RE100達成を目指しています。</p>
           </div>
         </div>
@@ -1883,7 +1883,7 @@ body {
             <span class="wf-activity-card-img-label">[ 製品ライフサイクルCO2削減 PH ]</span>
           </div>
           <div class="wf-activity-card-body">
-            <div class="wf-activity-card-title"><span>製品ライフサイクルでのCO2削減</span><span class="card-link-arrow">›</span></div>
+            <div class="wf-activity-card-title"><span>製品ライフサイクルでのCO2削減</span><span class="wf-card-link-arrow">›</span></div>
             <p class="wf-activity-card-summary">（文章はダミーです）原材料調達から廃棄まで、製品ライフサイクル全体でのCO2排出量を可視化し、各段階での削減施策を継続展開しています。</p>
           </div>
         </div>
@@ -1893,7 +1893,7 @@ body {
             <span class="wf-activity-card-img-label">[ 使用済製品回収リサイクル PH ]</span>
           </div>
           <div class="wf-activity-card-body">
-            <div class="wf-activity-card-title"><span>使用済製品の回収・リサイクル</span><span class="card-link-arrow">›</span></div>
+            <div class="wf-activity-card-title"><span>使用済製品の回収・リサイクル</span><span class="wf-card-link-arrow">›</span></div>
             <p class="wf-activity-card-summary">（文章はダミーです）独自の回収スキームで使用済機器を集約し、部品再利用・マテリアル再生・廃棄最小化を一貫して実施しています。</p>
           </div>
         </div>
@@ -1903,7 +1903,7 @@ body {
             <span class="wf-activity-card-img-label">[ 包装材料使用量削減 PH ]</span>
           </div>
           <div class="wf-activity-card-body">
-            <div class="wf-activity-card-title"><span>包装材料の使用量削減</span><span class="card-link-arrow">›</span></div>
+            <div class="wf-activity-card-title"><span>包装材料の使用量削減</span><span class="wf-card-link-arrow">›</span></div>
             <p class="wf-activity-card-summary">（文章はダミーです）製品出荷時の段ボール・緩衝材を見直し、再生材活用と総量削減を継続的に推進しています。</p>
           </div>
         </div>
@@ -1913,7 +1913,7 @@ body {
             <span class="wf-activity-card-img-label">[ 生態系保全活動 PH ]</span>
           </div>
           <div class="wf-activity-card-body">
-            <div class="wf-activity-card-title"><span>事業所周辺の生態系保全活動</span><span class="card-link-arrow">›</span></div>
+            <div class="wf-activity-card-title"><span>事業所周辺の生態系保全活動</span><span class="wf-card-link-arrow">›</span></div>
             <p class="wf-activity-card-summary">（文章はダミーです）国内外の事業所近隣で在来種の植林や水辺環境の維持を実施し、地域コミュニティとの協働で生態系保全に取り組んでいます。</p>
           </div>
         </div>
@@ -1923,7 +1923,7 @@ body {
             <span class="wf-activity-card-img-label">[ 水資源保全 PH ]</span>
           </div>
           <div class="wf-activity-card-body">
-            <div class="wf-activity-card-title"><span>水資源の保全と効率的利用</span><span class="card-link-arrow">›</span></div>
+            <div class="wf-activity-card-title"><span>水資源の保全と効率的利用</span><span class="wf-card-link-arrow">›</span></div>
             <p class="wf-activity-card-summary">（文章はダミーです）水ストレスの高い拠点を重点的に管理し、製造プロセス内の循環利用と排水水質モニタリングを進めています。</p>
           </div>
         </div>
@@ -1935,9 +1935,9 @@ body {
     ============================================================ -->
     <section class="wf-section bg-white" id="env-labels">
       <span class="wf-section-marker">H</span>
-      <div class="top-rich-head">
-        <div class="trh-main">
-          <h2 class="trh-title">環境ラベル認証など<span class="trh-sub">主要な環境ラベル・第三者認証</span></h2>
+      <div class="wf-top-rich-head">
+        <div class="wf-trh-main">
+          <h2 class="wf-trh-title">環境ラベル認証など<span class="wf-trh-sub">主要な環境ラベル・第三者認証</span></h2>
         </div>
       </div>
       <p class="wf-section-desc">
@@ -2286,7 +2286,7 @@ body {
       </div>
       <div class="ann-row">
         <span class="ann-row-label">リッチH2見出し（TOP完全同型）</span>
-        TOP（001）の <code>.top-rich-head/.trh-title</code> モジュールを<strong>そのまま採用</strong>（短い実線アクセント＋28pxタイトル＋補足サブ）。各H2にサブを付与。下層のグラデ下線見出しとは別系統。
+        TOP（001）の <code>.wf-top-rich-head/.wf-trh-title</code> モジュールを<strong>そのまま採用</strong>（短い実線アクセント＋28pxタイトル＋補足サブ）。各H2にサブを付与。下層のグラデ下線見出しとは別系統。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">H3リファインモジュール</span>
