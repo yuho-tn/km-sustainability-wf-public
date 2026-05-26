@@ -484,14 +484,14 @@ body {
 ============================================================ */
 /* #47：ディスクレイマーは「記載してあればよい」もの。さらに控えめなレイアウトに弱める
    （区切り線を撤去・トリガ文字を一段小さく淡色・余白圧縮） */
-.disclaimer-toggle {
+.wf-acc-disclaimer {
   margin-top: 6px;
   padding-top: 0;
   border-top: none;
 }
 /* 0520MTG/225-#1：トリガーは「免責事項」リンク（小さい文字・リンク風・閉じた状態が既定）
    0521：アコーディオン機能であることが分かるよう ＋/− マーカーを付与 */
-.disclaimer-toggle summary {
+.wf-acc-disclaimer summary {
   list-style: none;
   display: inline-block;
   font-size: 10px;
@@ -501,9 +501,9 @@ body {
   letter-spacing: 0.04em;
   text-decoration: underline;
 }
-.disclaimer-toggle summary::-webkit-details-marker { display: none; }
-.disclaimer-toggle summary::marker { content: ''; }
-.disclaimer-toggle summary::after {
+.wf-acc-disclaimer summary::-webkit-details-marker { display: none; }
+.wf-acc-disclaimer summary::marker { content: ''; }
+.wf-acc-disclaimer summary::after {
   content: ' ＋';
   font-family: 'Helvetica Neue', sans-serif;
   font-weight: 700;
@@ -511,9 +511,9 @@ body {
   text-decoration: none;
   display: inline-block;
 }
-.disclaimer-toggle[open] summary::after { content: ' −'; }
-.disclaimer-toggle summary:hover { color: var(--c-text-h); }
-.disclaimer-toggle p {
+.wf-acc-disclaimer[open] summary::after { content: ' −'; }
+.wf-acc-disclaimer summary:hover { color: var(--c-text-h); }
+.wf-acc-disclaimer p {
   font-size: 9px;
   color: var(--c-text-xs);
   line-height: 1.6;
@@ -1113,7 +1113,7 @@ body {
               <div class="csr-row-links">
                 <div class="wf-text-link-row"><a class="wf-text-link">MSCI ESG Ratings</a></div>
               </div>
-              <details class="disclaimer-toggle">
+              <details class="wf-acc-disclaimer">
                 <summary>免責事項</summary>
                 <p>
                   コニカミノルタのMSCI ESG Research LLCまたはその関連会社（MSCI）のデータの使用や、MSCIのロゴ、商標、サービスマークやインデックス名の使用は、MSCIによるコニカミノルタの後援、宣伝、販売促進を行うものではありません。MSCIのサービスとデータは、MSCIまたはその情報プロバイダーの資産であり、現状を提示するものであり、保証するものではありません。MSCIの名称とロゴは、MSCIの商標またはトレードマークです。
@@ -1195,7 +1195,7 @@ body {
               <div class="csr-row-links">
                 <div class="wf-text-link-row"><a class="wf-text-link">MSCI ESG Research</a></div>
               </div>
-              <details class="disclaimer-toggle">
+              <details class="wf-acc-disclaimer">
                 <summary>免責事項</summary>
                 <p>
                   コニカミノルタ（株）のMSCI Indexesへの組み入れ、MSCIのロゴ、商標、サービスマークまたはインデックス名称の使用は、MSCIまたはMSCI関係会社によるコニカミノルタ（株）の後援、推薦またはプロモーションではありません。MSCI IndexesはMSCIの独占的財産であり、その名称およびロゴはMSCIおよび関係会社の商標またはサービスマークです。
@@ -1235,7 +1235,7 @@ body {
               <p class="csr-row-desc">
                 コニカミノルタ（株）は、米国のMorningstar社による「Morningstar 日本株式ジェンダー・ダイバーシティ・ティルト指数（除くREIT）」の構成銘柄に新設当初の2023年から連続して選定されています。（2026年1月）
               </p>
-              <details class="disclaimer-toggle">
+              <details class="wf-acc-disclaimer">
                 <summary>免責事項</summary>
                 <p>
                   Morningstar, Inc 及び/またはその関連会社（単体/グループに関らず「Morningstar」）は、コニカミノルタ（株）が、「指定されたランキング年において、職場でのジェンダー・ダイバーシティに関して、Morningstar 日本株式ジェンダー・ダイバーシティ・ティルト指数（除くREIT）（「インデックス」）を構成する銘柄の最上位のグループにランクされた」という事実を反映するために、コニカミノルタ（株）がMorningstar 日本株式ジェンダー・ダイバーシティ・ティルト（除くREIT）・ロゴ（「ロゴ」）を使用することを承認しました。Morningstar は情報提供のみを目的としてコニカミノルタ（株）によるロゴの使用を承認しております。コニカミノルタ（株）によるロゴの使用は Morningstar がコニカミノルタ（株）を推奨するものではなく、また、コニカミノルタ（株）に関連する有価証券の購入、売却、引受けを推奨、提案、勧誘するものでもありません。当インデックスは日本の職場のジェンダー・ダイバーシティを反映するようにデザインされておりますが、Morningstarは、インデックスまたはインデックスに含まれるデータの正確性、完全性、または適時性を保証しません。Morningstarはインデックス、またはロゴに関して明示的にも暗黙的にも保証を行わず、インデックス、インデックスに含まれるデータまたはロゴに関する商品性および特定の目的または使用への適合性の保証を明示的に否認します。前述のいずれにも制限することなく、いかなる場合においても、Morningstarまたはその第三者のコンテンツプロバイダーは、いずれかの当事者によるインデックスまたはロゴの使用または信頼に起因する（直接的・間接的に関わらず）損害について、Morningstarが当該損害の可能性について認識していたとしても、いかなる責任も負わないものとします。Morningstarの名前、インデックス名、およびロゴは、Morningstar, Inc の商標またはサービスマークです。過去のパフォーマンスは、将来の結果を保証するものではありません。
@@ -1605,7 +1605,7 @@ body {
       <span class="ann-num">v2.0</span>
       <span class="ann-head">v2.0までの主要構成（参考）</span>
       <p class="ann-body">
-        全項目1カラム縦積み／csr-row共通モジュール／ロゴ数1〜5（固定140×80・左寄せ＋gap10）／sub-list 3バリアント（linked／dotted／indexed）／disclaimer-toggle折りたたみ
+        全項目1カラム縦積み／csr-row共通モジュール／ロゴ数1〜5（固定140×80・左寄せ＋gap10）／sub-list 3バリアント（linked／dotted／indexed）／wf-acc-disclaimer折りたたみ
       </p>
     </div>
 
@@ -1639,7 +1639,7 @@ body {
       <p class="ann-body">
         新設：csr-row（共通行）／csr-row-head＋csr-row-title＋csr-row-tag／csr-row-date／csr-logo-strip＋csr-logo（固定140×80・1〜n個）／csr-row-body＋csr-row-desc＋csr-row-links<br>
         sub-list：linked（›下線）／dotted（◆）／indexed（■）の3バリアント<br>
-        flexible：csr-row.no-logo でロゴ非表示／disclaimer-toggle折りたたみ／csr-row-companies（くるみん対象会社）<br>
+        flexible：csr-row.no-logo でロゴ非表示／wf-acc-disclaimer折りたたみ／csr-row-companies（くるみん対象会社）<br>
         共通：ヘッダー／lnav／パンくず／フッター／H2/H3／wf-text-link／コンパクトアンカーナビ（main＋sub階層）
       </p>
     </div>

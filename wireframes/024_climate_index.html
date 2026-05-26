@@ -380,7 +380,7 @@ body {
 
 /* 旧 .strategy-topic-box は .callout-box 共通モジュールへ統合（v1.7） */
 
-/* H3レベルKPIブロック（① / ② 各 2グラフ）— 実績データ result-block と同規格（border-top） */
+/* H3レベルKPIブロック（① / ② 各 2グラフ）— 実績データ wf-acc-result-block と同規格（border-top） */
 .kpi-h3-block {
   background: var(--c-white);
   border: 1px solid var(--c-border);
@@ -411,9 +411,9 @@ body {
 .kpi-h3-graph-cell { display: flex; flex-direction: column; gap: 6px; }
 
 /* 実績データ — アコーディオン化 */
-.result-accordion .result-block { margin-bottom: 12px; }
-.result-block.is-collapsed .result-block-body { display: none; }
-.result-block-toggle {
+.wf-acc-result-accordion .wf-acc-result-block { margin-bottom: 12px; }
+.wf-acc-result-block.is-collapsed .wf-acc-result-block-body { display: none; }
+.wf-acc-result-block-toggle {
   width: 28px; height: 28px;
   background: var(--c-text-h); color: #fff;
   display: flex; align-items: center; justify-content: center;
@@ -422,10 +422,10 @@ body {
   flex-shrink: 0;
   margin-left: auto;
 }
-.result-block-toggle::before { content: '−'; }
-.result-block.is-collapsed .result-block-toggle::before { content: '＋'; }
-.result-block-head { cursor: default; }
-.result-block-head:hover { background: var(--c-bg-sub); }
+.wf-acc-result-block-toggle::before { content: '−'; }
+.wf-acc-result-block.is-collapsed .wf-acc-result-block-toggle::before { content: '＋'; }
+.wf-acc-result-block-head { cursor: default; }
+.wf-acc-result-block-head:hover { background: var(--c-bg-sub); }
 
 /* 用語注釈エリア（ブロック内下部）— モーダル起動トリガー */
 .term-note {
@@ -598,20 +598,20 @@ body {
 }
 
 /* 実績データ — 3カテゴリブロック */
-.result-block {
+.wf-acc-result-block {
   background: var(--c-white);
   border: 1px solid var(--c-border);
   border-top: 4px solid var(--c-text-h);
   padding: 22px 26px;
   margin-bottom: 16px;
 }
-.result-block-head {
+.wf-acc-result-block-head {
   display: flex; align-items: center; justify-content: space-between;
   gap: 16px; margin-bottom: 14px; padding-bottom: 12px;
   border-bottom: 1px solid var(--c-border-s);
   flex-wrap: wrap;
 }
-.result-block-head h3 {
+.wf-acc-result-block-head h3 {
   font-size: 15px; font-weight: 700; color: var(--c-text-h);
   line-height: 1.5;
   display: flex; align-items: center; gap: 8px;
@@ -628,15 +628,15 @@ body {
   font-size: 9px; font-weight: 700; color: var(--c-text-h);
   border-radius: 50%; margin-left: 4px;
 }
-.result-block-text {
+.wf-acc-result-block-text {
   font-size: 12px; color: var(--c-text); line-height: 1.95;
   margin-bottom: 12px;
 }
-.result-block-graph {
+.wf-acc-result-block-graph {
   display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
   margin-top: 10px;
 }
-.result-block-graph-cell { display: flex; flex-direction: column; gap: 6px; }
+.wf-acc-result-block-graph-cell { display: flex; flex-direction: column; gap: 6px; }
 
 /* 画像拡大ボタン（2カラム以上の画像PHに付与・全WF共通仕様） */
 .img-zoom-btn {
@@ -652,7 +652,7 @@ body {
 .img-zoom-btn::before { content: '+'; }
 .img-zoom-btn:hover { background: #2a2a2a; }
 
-.result-block-graph-ph {
+.wf-acc-result-block-graph-ph {
   background: var(--c-ph);
   border: 1px solid var(--c-ph-line);
   aspect-ratio: 4 / 3;
@@ -660,18 +660,18 @@ body {
   display: flex; align-items: center; justify-content: center;
   overflow: hidden;
 }
-.result-block-graph-ph::before {
+.wf-acc-result-block-graph-ph::before {
   content: '';
   position: absolute; inset: 0;
   background: repeating-linear-gradient(-45deg, transparent 0 10px, rgba(0,0,0,0.04) 10px 11px);
 }
-.result-block-graph-ph-label {
+.wf-acc-result-block-graph-ph-label {
   position: relative; z-index: 1;
   font-size: 11px; color: var(--c-text-s);
   background: rgba(255,255,255,0.85); padding: 4px 10px;
   letter-spacing: 0.04em;
 }
-.result-block-graph-cap {
+.wf-acc-result-block-graph-cap {
   font-size: 11px; color: var(--c-text-s); line-height: 1.7;
 }
 
@@ -996,12 +996,12 @@ body {
         </p>
         <div class="kpi-h3-graph-grid">
           <div class="kpi-h3-graph-cell">
-            <div class="result-block-graph-ph"><span class="result-block-graph-ph-label">[ グラフ画像PH ]</span><span class="img-zoom-btn"></span></div>
-            <p class="result-block-graph-cap">図：CO<sub>2</sub>削減貢献量（スコープ4）の経年推移（FY20-25）</p>
+            <div class="wf-acc-result-block-graph-ph"><span class="wf-acc-result-block-graph-ph-label">[ グラフ画像PH ]</span><span class="img-zoom-btn"></span></div>
+            <p class="wf-acc-result-block-graph-cap">図：CO<sub>2</sub>削減貢献量（スコープ4）の経年推移（FY20-25）</p>
           </div>
           <div class="kpi-h3-graph-cell">
-            <div class="result-block-graph-ph"><span class="result-block-graph-ph-label">[ グラフ画像PH ]</span><span class="img-zoom-btn"></span></div>
-            <p class="result-block-graph-cap">図：ソリューション売上高の経年推移（FY20-25）</p>
+            <div class="wf-acc-result-block-graph-ph"><span class="wf-acc-result-block-graph-ph-label">[ グラフ画像PH ]</span><span class="img-zoom-btn"></span></div>
+            <p class="wf-acc-result-block-graph-cap">図：ソリューション売上高の経年推移（FY20-25）</p>
           </div>
         </div>
       </div>
@@ -1023,12 +1023,12 @@ body {
         </p>
         <div class="kpi-h3-graph-grid">
           <div class="kpi-h3-graph-cell">
-            <div class="result-block-graph-ph"><span class="result-block-graph-ph-label">[ グラフ画像PH ]</span><span class="img-zoom-btn"></span></div>
-            <p class="result-block-graph-cap">図：スコープ1+2+3 合計CO<sub>2</sub>排出量の経年推移（FY05基準／FY20-25）</p>
+            <div class="wf-acc-result-block-graph-ph"><span class="wf-acc-result-block-graph-ph-label">[ グラフ画像PH ]</span><span class="img-zoom-btn"></span></div>
+            <p class="wf-acc-result-block-graph-cap">図：スコープ1+2+3 合計CO<sub>2</sub>排出量の経年推移（FY05基準／FY20-25）</p>
           </div>
           <div class="kpi-h3-graph-cell">
-            <div class="result-block-graph-ph"><span class="result-block-graph-ph-label">[ グラフ画像PH ]</span><span class="img-zoom-btn"></span></div>
-            <p class="result-block-graph-cap">図：再生可能エネルギー比率の経年推移（FY20-25実績／FY30-50目標）</p>
+            <div class="wf-acc-result-block-graph-ph"><span class="wf-acc-result-block-graph-ph-label">[ グラフ画像PH ]</span><span class="img-zoom-btn"></span></div>
+            <p class="wf-acc-result-block-graph-cap">図：再生可能エネルギー比率の経年推移（FY20-25実績／FY30-50目標）</p>
           </div>
         </div>
 
@@ -1085,7 +1085,7 @@ body {
           </tbody>
         </table>
       </div>
-        <p class="result-block-graph-cap" style="margin-top:8px;">※ 数値はダミー（KM確定原稿待ち）。表の構成・列体系（実績／直近目標／中計／2030・2050）を提示するモジュールです。</p>
+        <p class="wf-acc-result-block-graph-cap" style="margin-top:8px;">※ 数値はダミー（KM確定原稿待ち）。表の構成・列体系（実績／直近目標／中計／2030・2050）を提示するモジュールです。</p>
       </div>
       <!-- /KPI②ブロック（図＋表を内包） -->
 
@@ -1105,26 +1105,26 @@ body {
         （文章はダミーです）2024年度の中期計画の進捗状況について、お客様業務プロセス変革・自社拠点等・お取引先様の3カテゴリで進捗実績を整理しました。各取り組みごとの計画／実績／達成状況をご確認いただけます。
       </p>
 
-      <div class="result-accordion">
+      <div class="wf-acc-result-accordion">
 
         <!-- ① お客様の業務プロセス変革（スコープ4） -->
-        <div class="result-block" id="results-customer">
-          <div class="result-block-head">
+        <div class="wf-acc-result-block" id="results-customer">
+          <div class="wf-acc-result-block-head">
             <h3>① お客様の業務プロセス変革</h3>
-            <span class="result-block-toggle"></span>
+            <span class="wf-acc-result-block-toggle"></span>
           </div>
-          <div class="result-block-body">
-            <p class="result-block-text">
+          <div class="wf-acc-result-block-body">
+            <p class="wf-acc-result-block-text">
               （文章はダミーです）2024年度の計画に対する実績として、お客様の業務プロセス変革でエネルギー・CO<sub>2</sub>を削減（スコープ4削減貢献量）については、弊社主力の商業用・産業用印刷機の市場における効果・販売実績が計画どおり進捗し、CO<sub>2</sub>削減効果としても概ね計画どおり達成となりました。
             </p>
-            <div class="result-block-graph">
-              <div class="result-block-graph-cell">
-                <div class="result-block-graph-ph"><span class="result-block-graph-ph-label">[ グラフ画像PH ]</span><span class="img-zoom-btn"></span></div>
-                <p class="result-block-graph-cap">グラフ1：CO<sub>2</sub>削減量（E-001 / E-046）</p>
+            <div class="wf-acc-result-block-graph">
+              <div class="wf-acc-result-block-graph-cell">
+                <div class="wf-acc-result-block-graph-ph"><span class="wf-acc-result-block-graph-ph-label">[ グラフ画像PH ]</span><span class="img-zoom-btn"></span></div>
+                <p class="wf-acc-result-block-graph-cap">グラフ1：CO<sub>2</sub>削減量（E-001 / E-046）</p>
               </div>
-              <div class="result-block-graph-cell">
-                <div class="result-block-graph-ph"><span class="result-block-graph-ph-label">[ グラフ画像PH ]</span><span class="img-zoom-btn"></span></div>
-                <p class="result-block-graph-cap">グラフ2：グリーンプロダクツの売上高（E-046）</p>
+              <div class="wf-acc-result-block-graph-cell">
+                <div class="wf-acc-result-block-graph-ph"><span class="wf-acc-result-block-graph-ph-label">[ グラフ画像PH ]</span><span class="img-zoom-btn"></span></div>
+                <p class="wf-acc-result-block-graph-cap">グラフ2：グリーンプロダクツの売上高（E-046）</p>
               </div>
             </div>
             <!-- #19：用語モーダル説明を廃し「関連リンク程度」に簡素化。
@@ -1136,19 +1136,19 @@ body {
         </div>
 
         <!-- ② 自社拠点・自社製品・サービス、取引先 -->
-        <div class="result-block" id="results-internal">
-          <div class="result-block-head">
+        <div class="wf-acc-result-block" id="results-internal">
+          <div class="wf-acc-result-block-head">
             <h3>② 自社拠点、自社製品・サービス、取引先</h3>
-            <span class="result-block-toggle"></span>
+            <span class="wf-acc-result-block-toggle"></span>
           </div>
-          <div class="result-block-body">
-            <p class="result-block-text">
+          <div class="wf-acc-result-block-body">
+            <p class="wf-acc-result-block-text">
               （文章はダミーです）スコープ1, 2の削減にあたる自社生産拠点での環境負荷低減については、主要生産サイトでの省エネルギーの取り組みが計画よりも早期に進捗し、目標を超過達成となりました。再生可能エネルギー調達による効果も予定どおり表れています。スコープ3にあたる自社製品ライフサイクル環境負荷低減（製品使用・調達）では、省エネ・小型・省資源効果を有する製品群の販売数が計画に届かず、2025年度以降の市場投入で効果拡大を継続します。
             </p>
-            <div class="result-block-graph" style="grid-template-columns: 1fr;">
-              <div class="result-block-graph-cell">
-                <div class="result-block-graph-ph" style="aspect-ratio: 16 / 5;"><span class="result-block-graph-ph-label">[ グラフ画像PH ]</span><span class="img-zoom-btn"></span></div>
-                <p class="result-block-graph-cap">グラフ：CO<sub>2</sub>削減量（生産拠点の省エネ／再エネ）（E-046）</p>
+            <div class="wf-acc-result-block-graph" style="grid-template-columns: 1fr;">
+              <div class="wf-acc-result-block-graph-cell">
+                <div class="wf-acc-result-block-graph-ph" style="aspect-ratio: 16 / 5;"><span class="wf-acc-result-block-graph-ph-label">[ グラフ画像PH ]</span><span class="img-zoom-btn"></span></div>
+                <p class="wf-acc-result-block-graph-cap">グラフ：CO<sub>2</sub>削減量（生産拠点の省エネ／再エネ）（E-046）</p>
               </div>
             </div>
             <!-- 0520MTG/C1+C4：ツールチップ廃止、小フォント注記化 -->
@@ -1157,19 +1157,19 @@ body {
         </div>
 
         <!-- ③ お取引先様（CNパートナー活動） -->
-        <div class="result-block" id="results-supplier">
-          <div class="result-block-head">
+        <div class="wf-acc-result-block" id="results-supplier">
+          <div class="wf-acc-result-block-head">
             <h3>③ お取引先様</h3>
-            <span class="result-block-toggle"></span>
+            <span class="wf-acc-result-block-toggle"></span>
           </div>
-          <div class="result-block-body">
-            <p class="result-block-text">
+          <div class="wf-acc-result-block-body">
+            <p class="wf-acc-result-block-text">
               （文章はダミーです）DXを活用した調達先の環境負荷低減では、弊社の省エネルギー技術の支援とお取引先様の活動努力もあり計8社のお取引先様が目標達成となりましたが、期中での活動枠組みの見直しもあり、合計の削減量としては計画に対して未達成となりました。25年度の中期経営計画で定める目標達成を推進・実行していきます。
             </p>
-            <div class="result-block-graph" style="grid-template-columns: 1fr;">
-              <div class="result-block-graph-cell">
-                <div class="result-block-graph-ph" style="aspect-ratio: 16 / 5;"><span class="result-block-graph-ph-label">[ グラフ画像PH ]</span><span class="img-zoom-btn"></span></div>
-                <p class="result-block-graph-cap">グラフ：調達先におけるCO<sub>2</sub>削減量（E-003 / E-046）</p>
+            <div class="wf-acc-result-block-graph" style="grid-template-columns: 1fr;">
+              <div class="wf-acc-result-block-graph-cell">
+                <div class="wf-acc-result-block-graph-ph" style="aspect-ratio: 16 / 5;"><span class="wf-acc-result-block-graph-ph-label">[ グラフ画像PH ]</span><span class="img-zoom-btn"></span></div>
+                <p class="wf-acc-result-block-graph-cap">グラフ：調達先におけるCO<sub>2</sub>削減量（E-003 / E-046）</p>
               </div>
             </div>
             <!-- 0520MTG/C2+C4：ツールチップ廃止、小フォント注記化 -->
@@ -1183,7 +1183,7 @@ body {
           </div>
         </div>
 
-      </div><!-- /result-accordion -->
+      </div><!-- /wf-acc-result-accordion -->
 
     </section>
 
@@ -1439,7 +1439,7 @@ body {
         <span class="ann-row-label">UI調整（0521）</span>
         取り組み（D）セクションを col-2 → <b>col-3</b> に変更（6カードを2列×3行→3列×2行）。<br>
         <b>ESGデータ：</b>独立UI（.wf-esg-data-block / .esg-data-link）は廃止。関連リンクの中に「ESGデータ：環境データ、社会データ、ガバナンスデータ」と中身が分かる形で1リンクとして統合。<br>
-        <b>アンカーナビ：</b>H2に加えH3（主要KPI／①②③ の result-block）も `.is-sub` で併載。H3には id を付与（strategy-kpi / results-customer / results-internal / results-supplier）。
+        <b>アンカーナビ：</b>H2に加えH3（主要KPI／①②③ の wf-acc-result-block）も `.is-sub` で併載。H3には id を付与（strategy-kpi / results-customer / results-internal / results-supplier）。
       </div>
     </div>
 
@@ -1518,7 +1518,7 @@ body {
       <span class="ann-head">流用／新規モジュール</span>
       <p class="ann-body">
         共通: ヘッダー/lnav/パンくず/H2/H3/H4/フッター<br>
-        新規: parent-link-bar（L3→L2戻り）／basic-2col（機会リスク並列）／kpi-major-card／kpi-table（多列実績テーブル）／result-block（用語ヘルプ＋2グラフ）／cm-progress-box／wf-activity-card（SCOPE分類）
+        新規: parent-link-bar（L3→L2戻り）／basic-2col（機会リスク並列）／kpi-major-card／kpi-table（多列実績テーブル）／wf-acc-result-block（用語ヘルプ＋2グラフ）／cm-progress-box／wf-activity-card（SCOPE分類）
       </p>
     </div>
   </aside>

@@ -364,10 +364,10 @@ body {
   flex: 0 0 96px; width: 96px;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-/* タイトルラッパ：タイトルが先、国名タグは右側（FB：タグは右配置）。
+/* タイトルラッパ：タイトルが先、タグは .is-right バリアントで右側へ。
    全アコーディオンの行頭は左端で自然に揃う（エリア記載なしでも成立＝#108） */
 .wf-acc-text { flex: 1; min-width: 0; order: 0; }
-.wf-acc-tag { order: 1; margin-left: 12px; }
+.wf-acc-tag.is-right { order: 1; margin-left: 12px; }
 .wf-acc-h3-body {
   background: var(--c-white);
   padding: 14px 22px 16px;
@@ -669,7 +669,7 @@ body {
           <details class="wf-acc-h3" open>
             <summary class="wf-acc-h3-summary">
               <span class="wf-acc-text">コニカミノルタの環境戦略と社会貢献</span>
-              <span class="wf-acc-tag">日本</span>
+              <span class="wf-acc-tag is-right">日本</span>
             </summary>
             <div class="wf-acc-h3-body has-side-image">
               <div class="acc-figs col-2">
@@ -688,7 +688,7 @@ body {
           <details class="wf-acc-h3" open>
             <summary class="wf-acc-h3-summary">
               <span class="wf-acc-text">生物多様性保全のため養蜂を実施</span>
-              <span class="wf-acc-tag">フランス</span>
+              <span class="wf-acc-tag is-right">フランス</span>
             </summary>
             <div class="wf-acc-h3-body has-side-image">
               <div class="acc-figs">
@@ -700,7 +700,7 @@ body {
           <details class="wf-acc-h3" open>
             <summary class="wf-acc-h3-summary">
               <span class="wf-acc-text">アーバー・デイ財団と共に世界的な森林再生活動に貢献</span>
-              <span class="wf-acc-tag">米国</span>
+              <span class="wf-acc-tag is-right">米国</span>
             </summary>
             <div class="wf-acc-h3-body">
               <div class="acc-figs col-2 is-horizontal">
@@ -713,7 +713,7 @@ body {
           <details class="wf-acc-h3" open>
             <summary class="wf-acc-h3-summary">
               <span class="wf-acc-text">環境保全活動を支援</span>
-              <span class="wf-acc-tag">オーストラリア</span>
+              <span class="wf-acc-tag is-right">オーストラリア</span>
             </summary>
             <div class="wf-acc-h3-body">
               <p>コニカミノルタビジネスソリューションズオーストラリア社は長年にわたり、環境保全活動を行う地域のボランティア団体を支援し、従業員のボランティア派遣や寄付などを行っています。2017年度は、その活動の一環として25名の従業員が環境保全週間（ランドケア・ウィーク）に低木林地の雑草の除去や植樹を行いました。</p>
@@ -722,7 +722,7 @@ body {
           <details class="wf-acc-h3" open>
             <summary class="wf-acc-h3-summary">
               <span class="wf-acc-text">森林保護活動に協力</span>
-              <span class="wf-acc-tag">日本</span>
+              <span class="wf-acc-tag is-right">日本</span>
             </summary>
             <div class="wf-acc-h3-body">
               <p>コニカミノルタでは、さまざまな森林保護活動に参加、協力しています。「高尾の森づくりの会」は、東京都西部に位置する裏高尾の国有林において、生来の植生を考慮しつつ、間伐、植樹、下草刈りなどの作業を通して、針葉樹と広葉樹が混交した豊かな森の復元を目指しています。この会に法人会員として参加し、従業員もメンバーの一員として、毎月森づくりに汗を流しています。</p>
@@ -735,7 +735,7 @@ body {
           <details class="wf-acc-h3 is-last-in-group" open>
             <summary class="wf-acc-h3-summary">
               <span class="wf-acc-text">フランス国立森林局との提携</span>
-              <span class="wf-acc-tag">フランス</span>
+              <span class="wf-acc-tag is-right">フランス</span>
             </summary>
             <div class="wf-acc-h3-body">
               <p>コニカミノルタビジネスソリューションズ（フランス）社では、生態系を支える取り組みを強化するため、フランスの生物多様性を担う主要機関の一つである国立森林局（ONF）とパートナーシップを構築しています。</p>
@@ -746,7 +746,7 @@ body {
           <details class="wf-acc-h3" open>
             <summary class="wf-acc-h3-summary">
               <span class="wf-acc-text">介護現場のDX化による社会課題解決の支援</span>
-              <span class="wf-acc-tag">日本</span>
+              <span class="wf-acc-tag is-right">日本</span>
             </summary>
             <div class="wf-acc-h3-body has-side-image">
               <div class="acc-figs">
@@ -762,7 +762,7 @@ body {
           <details class="wf-acc-h3" open>
             <summary class="wf-acc-h3-summary">
               <span class="wf-acc-text">新生児の病的黄疸（核黄疸）の早期発見・治療支援</span>
-              <span class="wf-acc-tag">ミャンマー / 米国</span>
+              <span class="wf-acc-tag is-right">ミャンマー / 米国</span>
             </summary>
             <div class="wf-acc-h3-body has-side-image">
               <div class="acc-figs col-2">
@@ -817,7 +817,7 @@ body {
           <details class="wf-acc-h3" open>
             <summary class="wf-acc-h3-summary">
               <span class="wf-acc-text">防災水資源「救いの泉」を地域に提供</span>
-              <span class="wf-acc-tag">日本</span>
+              <span class="wf-acc-tag is-right">日本</span>
             </summary>
             <div class="wf-acc-h3-body has-side-image">
               <div class="acc-figs">
@@ -829,7 +829,7 @@ body {
           <details class="wf-acc-h3 is-last-in-group" open>
             <summary class="wf-acc-h3-summary">
               <span class="wf-acc-text">ハンディキャップを持つ人々を支援する企業内基金を設立</span>
-              <span class="wf-acc-tag">フランス</span>
+              <span class="wf-acc-tag is-right">フランス</span>
             </summary>
             <div class="wf-acc-h3-body has-side-image">
               <div class="acc-figs"><figure><div class="wf-img h-160"><div class="wf-img-label">Fondation d&#39;entreprise（基金ロゴ）</div></div><figcaption class="wf-img-caption">企業内基金「Fondation d&#39;entreprise」ロゴ（リンク先）</figcaption></figure></div>
@@ -846,7 +846,7 @@ body {
           <details class="wf-acc-h3" open>
             <summary class="wf-acc-h3-summary">
               <span class="wf-acc-text">若者のキャリア形成を支援</span>
-              <span class="wf-acc-tag">インド</span>
+              <span class="wf-acc-tag is-right">インド</span>
             </summary>
             <div class="wf-acc-h3-body">
               <p>コニカミノルタビジネスソリューションズインド社は、現地の職業訓練機関と提携し、2016年から貧困層の若者を対象としたスキル開発プログラムを実施しています。</p>
@@ -857,7 +857,7 @@ body {
           <details class="wf-acc-h3" open>
             <summary class="wf-acc-h3-summary">
               <span class="wf-acc-text">IT業界における女性のキャリア形成を支援</span>
-              <span class="wf-acc-tag">チェコ・ドイツ</span>
+              <span class="wf-acc-tag is-right">チェコ・ドイツ</span>
             </summary>
             <div class="wf-acc-h3-body has-side-image">
               <div class="acc-figs">
@@ -884,7 +884,7 @@ body {
           <details class="wf-acc-h3" open>
             <summary class="wf-acc-h3-summary">
               <span class="wf-acc-text">公益財団法人コニカミノルタ科学技術振興財団</span>
-              <span class="wf-acc-tag">日本</span>
+              <span class="wf-acc-tag is-right">日本</span>
             </summary>
             <div class="wf-acc-h3-body">
               <p>公益財団法人コニカミノルタ科学技術振興財団は、コニカ創立者のひとりである杉浦仙之助の遺志により、写真科学の研究を助成し、もって学術の振興および文化の向上に寄与することを目的として、昭和41年に設立された「橘保善会」を基としています。平成5年より財団としてその活動を受け継ぎ、現在は公益財団法人として、科学技術の振興、学術の発展及び文化の向上に寄与することを目的に、科学技術（特に光と画像の領域）の研究に対する援助・支援を行っています。コニカミノルタは、その趣意に賛同し、財団事業の継続と発展のため寄付等により協力しています。</p>

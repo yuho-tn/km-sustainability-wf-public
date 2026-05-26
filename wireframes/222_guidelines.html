@@ -177,12 +177,12 @@ body {
    - サマリ部にカテゴリ名＋件数バッジ＋＋/−マーカー
 ============================================================ */
 /* 035 TCFD アコーディオン共通モジュール（左縦棒なし／黒丸トグル）— 222 GRI/SASB タグ・件数バッジ付き */
-.gl-acc {
+.wf-acc-h3 {
   margin-bottom: 16px;
   border: 1px solid var(--c-border);
   background: var(--c-white);
 }
-.gl-acc-summary {
+.wf-acc-h3-summary {
   list-style: none;
   cursor: default;
   padding: 12px 60px 12px 22px;
@@ -195,10 +195,10 @@ body {
   line-height: 1.5;
   letter-spacing: -0.01em;
 }
-.gl-acc-summary:hover { background: #D5D5D5; }
-.gl-acc-summary::-webkit-details-marker { display: none; }
-.gl-acc-summary::marker { content: ''; }
-.gl-acc-summary::after {
+.wf-acc-h3-summary:hover { background: #D5D5D5; }
+.wf-acc-h3-summary::-webkit-details-marker { display: none; }
+.wf-acc-h3-summary::marker { content: ''; }
+.wf-acc-h3-summary::after {
   content: '＋';
   position: absolute;
   right: 16px; top: 50%; transform: translateY(-50%);
@@ -209,15 +209,15 @@ body {
   font-size: 14px; font-weight: 700;
   line-height: 1;
 }
-.gl-acc[open] .gl-acc-summary::after { content: '−'; }
-.gl-acc-title {
+.wf-acc-h3[open] .wf-acc-h3-summary::after { content: '−'; }
+.wf-acc-text {
   font-size: 14px; font-weight: 700;
   color: var(--c-text-h);
   line-height: 1.5;
   letter-spacing: -0.01em;
   flex: 1;
 }
-.gl-acc-count {
+.wf-acc-count {
   display: inline-block;
   font-size: 10px; font-weight: 700;
   color: var(--c-text-h);
@@ -227,7 +227,7 @@ body {
   letter-spacing: 0.04em;
   white-space: nowrap;
 }
-.gl-acc-content {
+.wf-acc-h3-body {
   padding: 18px 22px 22px;
   background: var(--c-white);
 }
@@ -646,9 +646,9 @@ body {
           </p>
 
           <!-- ▼ アコ1：共通スタンダード（GRI 2 + GRI 3 を H3 で内包） -->
-          <details class="gl-acc" id="gri-common" open style="scroll-margin-top:80px;">
-            <summary class="gl-acc-summary"><span class="gl-acc-title">共通スタンダード</span></summary>
-            <div class="gl-acc-content">
+          <details class="wf-acc-h3" id="gri-common" open style="scroll-margin-top:80px;">
+            <summary class="wf-acc-h3-summary"><span class="wf-acc-text">共通スタンダード</span></summary>
+            <div class="wf-acc-h3-body">
               <h3 class="wf-sub-title" id="gri-2" style="margin-top:6px;">GRI 2：一般開示事項 2021</h3>
               <div class="gri-table-wrap">
                 <table class="gri-table">
@@ -885,9 +885,9 @@ body {
             </div>
           </details>
 
-          <details class="gl-acc" id="gri-200" open style="scroll-margin-top:80px;">
-            <summary class="gl-acc-summary"><span class="gl-acc-title">経済</span></summary>
-            <div class="gl-acc-content">
+          <details class="wf-acc-h3" id="gri-200" open style="scroll-margin-top:80px;">
+            <summary class="wf-acc-h3-summary"><span class="wf-acc-text">経済</span></summary>
+            <div class="wf-acc-h3-body">
               <div class="gri-table-wrap">
                 <table class="gri-table">
                   <colgroup>
@@ -1001,9 +1001,9 @@ body {
             </div>
           </details>
 
-          <details class="gl-acc" id="gri-300" open style="scroll-margin-top:80px;">
-            <summary class="gl-acc-summary"><span class="gl-acc-title">環境</span></summary>
-            <div class="gl-acc-content">
+          <details class="wf-acc-h3" id="gri-300" open style="scroll-margin-top:80px;">
+            <summary class="wf-acc-h3-summary"><span class="wf-acc-text">環境</span></summary>
+            <div class="wf-acc-h3-body">
               <div class="gri-table-wrap">
                 <table class="gri-table">
                   <colgroup>
@@ -1234,9 +1234,9 @@ body {
             </div>
           </details>
 
-          <details class="gl-acc" id="gri-400" open style="scroll-margin-top:80px;">
-            <summary class="gl-acc-summary"><span class="gl-acc-title">社会</span></summary>
-            <div class="gl-acc-content">
+          <details class="wf-acc-h3" id="gri-400" open style="scroll-margin-top:80px;">
+            <summary class="wf-acc-h3-summary"><span class="wf-acc-text">社会</span></summary>
+            <div class="wf-acc-h3-body">
               <div class="gri-table-wrap">
                 <table class="gri-table">
                   <colgroup>
@@ -1794,7 +1794,7 @@ body {
       <span class="ann-head">v1.1 変更（FB5点反映）</span>
       <p class="ann-body">
         ① GRIガイドライン下のカテゴリ概観カード（4枚＋マテリアルマーク説明カード）を全削除<br>
-        ② 各アコーディオンの件数バッジ（gl-acc-count）を全削除<br>
+        ② 各アコーディオンの件数バッジ（wf-acc-count）を全削除<br>
         ③ 操作バー（全て開く／全て閉じる＋初期閉の説明文）を削除。各アコは初期開（プロジェクト規約に統一）<br>
         ④ マテリアル「＊」注釈をコンパクト・モノクロ化（mat-note：1行・薄グレー）。マテリアル強調行もbg-subに変更<br>
         ⑤ SASB対照表：オリジナル本文「コニカミノルタは、SASB...」を削除／SICS-boxを撤去し「SICS カテゴリー：技術・通信＞ハードウェア」を単純な本文に
@@ -1830,7 +1830,7 @@ body {
       <span class="ann-head">主要モジュール</span>
       <p class="ann-body">
         共通：ヘッダー／lnav／パンくず／フッター／H2／コンパクトアンカーナビ（main＋sub階層）<br>
-        新規：gl-acc（ガイドライン用アコ／<strong>初期閉</strong>＋件数バッジ）／gl-summary-grid＋gl-summary-card（カテゴリ概観）／gl-meta-box（適用基準）／gl-toolbar（全展開／全折畳）／gri-table（3列・カテゴリ行・マテリアル強調）／sics-box／sasb-table（4列・rowspan）／mat-mark／mat-legend
+        新規：wf-acc-h3（ガイドライン用アコ／<strong>初期閉</strong>＋件数バッジ）／gl-summary-grid＋gl-summary-card（カテゴリ概観）／gl-meta-box（適用基準）／gl-toolbar（全展開／全折畳）／gri-table（3列・カテゴリ行・マテリアル強調）／sics-box／sasb-table（4列・rowspan）／mat-mark／mat-legend
       </p>
     </div>
 

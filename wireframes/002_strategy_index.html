@@ -285,12 +285,12 @@ body {
 
 /* マテリアリティ評価・特定プロセス — STEPブロック（タグ付きアコーディオン）
    他のH3アコーディオンと同じグレー系（var(--c-border) = #E0E0E0）で統一 */
-.process-step {
+.wf-process-step {
   border: 1px solid var(--c-border);
   background: var(--c-white);
   margin-bottom: 16px;
 }
-.process-step-head {
+.wf-process-step-head {
   background: var(--c-border);
   color: var(--c-text-h);
   padding: 12px 22px;
@@ -298,8 +298,8 @@ body {
   flex-wrap: wrap;
   cursor: default;
 }
-.process-step-head:hover { background: #D5D5D5; }
-.process-step-num {
+.wf-process-step-head:hover { background: #D5D5D5; }
+.wf-process-step-num {
   display: inline-block;
   background: var(--c-text-h); color: #fff;
   font-size: 11px; font-weight: 700;
@@ -307,12 +307,12 @@ body {
   letter-spacing: 0.08em;
   font-family: 'Helvetica Neue', sans-serif;
 }
-.process-step-title {
+.wf-process-step-title {
   font-size: 15px; font-weight: 700; color: var(--c-text-h);
   letter-spacing: 0.02em;
   flex: 1;
 }
-.process-step-toggle {
+.wf-process-step-toggle {
   width: 28px; height: 28px;
   background: var(--c-text-h); color: #fff;
   display: flex; align-items: center; justify-content: center;
@@ -320,17 +320,17 @@ body {
   border-radius: 50%;
   flex-shrink: 0;
 }
-.process-step-toggle::before { content: '−'; }
-.process-step.is-collapsed .process-step-toggle::before { content: '＋'; }
-.process-step-body {
+.wf-process-step-toggle::before { content: '−'; }
+.wf-process-step.is-collapsed .wf-process-step-toggle::before { content: '＋'; }
+.wf-process-step-body {
   padding: 22px 28px 26px;
 }
-.process-step.is-collapsed .process-step-body { display: none; }
-.process-step-cols {
+.wf-process-step.is-collapsed .wf-process-step-body { display: none; }
+.wf-process-step-cols {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 22px; margin-top: 8px;
 }
-.process-step-col {
+.wf-process-step-col {
   background: var(--c-bg-sub);
   border: 1px solid var(--c-border);
   padding: 16px 18px;
@@ -452,17 +452,17 @@ body {
 /* マテリアリティ — アイコン付きアコーディオン
    順序：アイコン → 数字 → タイトル → トグル
    STEP（タグ付き）と同様、各行が独立カード（個別ボーダー＋16px間隔）で統一 */
-.materiality-accordion { /* wrapper only */ }
-.materiality-row {
+.wf-acc-materiality-accordion { /* wrapper only */ }
+.wf-acc-materiality-row {
   border: 1px solid var(--c-border);
   background: var(--c-white);
   margin-bottom: 16px;
 }
-.materiality-row:last-child { margin-bottom: 0; }
+.wf-acc-materiality-row:last-child { margin-bottom: 0; }
 
 /* 0524 桐原FB#11：マテリアリティへのナンバリング(01〜05)は廃止。
    2カラム grid（アイコン＋タイトル＋トグル）に変更。 */
-.materiality-head {
+.wf-acc-materiality-head {
   display: grid;
   grid-template-columns: 32px 1fr auto;
   align-items: center;
@@ -471,9 +471,9 @@ body {
   cursor: default;
   background: var(--c-border);
 }
-.materiality-head:hover { background: #D5D5D5; }
+.wf-acc-materiality-head:hover { background: #D5D5D5; }
 
-.materiality-icon-ph {
+.wf-acc-materiality-icon-ph {
   width: 32px; height: 32px;
   background: var(--c-white);
   border: 1px solid var(--c-ph-line);
@@ -482,32 +482,32 @@ body {
   letter-spacing: 0.02em;
   line-height: 1.1; text-align: center;
 }
-.materiality-num { display: none; }  /* 0524 FB#11：廃止 */
-.materiality-title {
+.wf-acc-materiality-num { display: none; }  /* 0524 FB#11：廃止 */
+.wf-acc-materiality-title {
   font-size: 15px; font-weight: 700; color: var(--c-text-h);
   line-height: 1.4;
 }
-.materiality-toggle {
+.wf-acc-materiality-toggle {
   width: 28px; height: 28px;
   background: var(--c-text-h); color: #fff;
   display: flex; align-items: center; justify-content: center;
   font-size: 14px; font-weight: 700;
   border-radius: 50%;
 }
-.materiality-toggle::before { content: '−'; }
-.materiality-row.is-collapsed .materiality-toggle::before { content: '＋'; }
+.wf-acc-materiality-toggle::before { content: '−'; }
+.wf-acc-materiality-row.is-collapsed .wf-acc-materiality-toggle::before { content: '＋'; }
 
-.materiality-body {
+.wf-acc-materiality-body {
   padding: 22px 28px 26px;
   background: var(--c-white);
 }
-.materiality-row.is-collapsed .materiality-body { display: none; }
+.wf-acc-materiality-row.is-collapsed .wf-acc-materiality-body { display: none; }
 
-.materiality-section {
+.wf-acc-materiality-section {
   margin-bottom: 22px;
 }
-.materiality-section:last-child { margin-bottom: 0; }
-.materiality-section-text {
+.wf-acc-materiality-section:last-child { margin-bottom: 0; }
+.wf-acc-materiality-section-text {
   font-size: 12px; color: var(--c-text); line-height: 1.9;
 }
 
@@ -550,37 +550,37 @@ body {
 
 /* 価値創出事例 — アコーディオン化（縦積み） */
 /* 0524 桐原FB：アコ間の余白を追加してバランス調整 */
-.case-acc {
+.wf-acc-case-acc {
   margin-bottom: 24px;
   display: flex; flex-direction: column;
   gap: 12px;  /* アコ間の余白 */
 }
-.case-row {
+.wf-acc-case-row {
   border: 1px solid var(--c-border);
   background: var(--c-white);
 }
-.case-head {
+.wf-acc-case-head {
   display: flex; align-items: center; gap: 14px;
   padding: 14px 22px;
   background: var(--c-border);
   cursor: default;
 }
-.case-head:hover { background: #D5D5D5; }
-.case-head-cat {
+.wf-acc-case-head:hover { background: #D5D5D5; }
+.wf-acc-case-head-cat {
   background: var(--c-text-h); color: #fff;
   font-size: 10px; font-weight: 700;
   padding: 3px 10px; letter-spacing: 0.08em;
   font-family: 'Helvetica Neue', sans-serif;
   flex-shrink: 0;
 }
-.case-head-title {
+.wf-acc-case-head-title {
   font-size: 14px; font-weight: 700; color: var(--c-text-h);
   line-height: 1.4; flex: 1;
 }
 
 /* 0525 桐原FB②：旧「対応マテリアリティ」ラベルを「関連事業」ラベルに置換。
-   case-head 内の事業名タイトルの直前に小バッジで表示し、情報構造を明示する。 */
-.case-mat-label {
+   wf-acc-case-head 内の事業名タイトルの直前に小バッジで表示し、情報構造を明示する。 */
+.wf-acc-case-mat-label {
   display: inline-flex;
   align-items: center;
   font-size: 10px;
@@ -594,7 +594,7 @@ body {
   flex-shrink: 0;
   white-space: nowrap;
 }
-.case-head-toggle {
+.wf-acc-case-head-toggle {
   width: 28px; height: 28px;
   background: var(--c-text-h); color: #fff;
   display: flex; align-items: center; justify-content: center;
@@ -602,16 +602,16 @@ body {
   border-radius: 50%;
   flex-shrink: 0;
 }
-.case-head-toggle::before { content: '−'; }
-.case-row.is-collapsed .case-head-toggle::before { content: '＋'; }
-.case-body {
+.wf-acc-case-head-toggle::before { content: '−'; }
+.wf-acc-case-row.is-collapsed .wf-acc-case-head-toggle::before { content: '＋'; }
+.wf-acc-case-body {
   padding: 22px 24px 24px;
   display: grid; grid-template-columns: 280px 1fr;
   gap: 22px;
   align-items: start;
 }
-.case-row.is-collapsed .case-body { display: none; }
-.case-body-img {
+.wf-acc-case-row.is-collapsed .wf-acc-case-body { display: none; }
+.wf-acc-case-body-img {
   aspect-ratio: 16 / 9;
   background: var(--c-ph);
   border: 1px solid var(--c-border);
@@ -619,31 +619,31 @@ body {
   display: flex; align-items: center; justify-content: center;
   font-size: 10px; color: var(--c-text-xs); letter-spacing: 0.05em;
 }
-.case-body-img::before {
+.wf-acc-case-body-img::before {
   content: '';
   position: absolute; inset: 0;
   background: repeating-linear-gradient(-45deg, transparent 0 10px, rgba(0,0,0,0.04) 10px 11px);
 }
-.case-body-img-label {
+.wf-acc-case-body-img-label {
   position: relative; z-index: 1;
   background: rgba(255,255,255,0.85); padding: 3px 10px;
 }
-.case-body-content { display: flex; flex-direction: column; gap: 12px; }
-.case-body-summary {
+.wf-acc-case-body-content { display: flex; flex-direction: column; gap: 12px; }
+.wf-acc-case-body-summary {
   font-size: 12px; color: var(--c-text); line-height: 1.85;
 }
 
 /* 価値創出事例 — 旧カードグリッド（互換用、未使用） */
-.case-grid {
+.wf-acc-case-grid {
   display: grid; grid-template-columns: repeat(3, 1fr);
   gap: 18px;
 }
-.case-card {
+.wf-acc-case-card {
   background: var(--c-white);
   border: 1px solid var(--c-border);
   display: flex; flex-direction: column;
 }
-.case-card-img {
+.wf-acc-case-card-img {
   aspect-ratio: 16 / 9;
   background: var(--c-ph);
   border-bottom: 1px solid var(--c-border);
@@ -651,65 +651,65 @@ body {
   display: flex; align-items: center; justify-content: center;
   font-size: 10px; color: var(--c-text-xs); letter-spacing: 0.05em;
 }
-.case-card-img::before {
+.wf-acc-case-card-img::before {
   content: '';
   position: absolute; inset: 0;
   background: repeating-linear-gradient(-45deg, transparent 0 10px, rgba(0,0,0,0.04) 10px 11px);
 }
-.case-card-cat {
+.wf-acc-case-card-cat {
   position: absolute; top: 10px; left: 10px; z-index: 2;
   background: var(--c-text-h); color: #fff;
   font-size: 9px; font-weight: 700;
   padding: 3px 9px; letter-spacing: 0.08em;
   text-transform: uppercase;
 }
-.case-card-img-label {
+.wf-acc-case-card-img-label {
   position: relative; z-index: 1;
   background: rgba(255,255,255,0.85); padding: 3px 10px;
 }
-.case-card-body {
+.wf-acc-case-card-body {
   padding: 16px 18px 20px;
   display: flex; flex-direction: column; gap: 12px;
   flex: 1;
 }
-.case-card-title {
+.wf-acc-case-card-title {
   font-size: 14px; font-weight: 700; color: var(--c-text-h);
   line-height: 1.5;
   padding-bottom: 8px;
   border-bottom: 1px solid var(--c-border-s);
 }
-.case-card-summary {
+.wf-acc-case-card-summary {
   font-size: 11px; color: var(--c-text); line-height: 1.85;
 }
 /* 経済価値／社会・環境価値ブロック — H4◾見出し＋本文 */
-.case-value-block { margin-bottom: 6px; }
-.case-value-block:last-child { margin-bottom: 0; }
-.case-value-block .wf-card-title { margin-bottom: 6px; }
-.case-value-block p {
+.wf-acc-case-value-block { margin-bottom: 6px; }
+.wf-acc-case-value-block:last-child { margin-bottom: 0; }
+.wf-acc-case-value-block .wf-card-title { margin-bottom: 6px; }
+.wf-acc-case-value-block p {
   font-size: 12px; color: var(--c-text); line-height: 1.85;
   margin: 0;
   padding-left: 18px; /* ◾アイコン分のインデント */
 }
 
-/* 対応マテリアリティ — case-body 上部の文脈タグ */
-.case-card-mat {
+/* 対応マテリアリティ — wf-acc-case-body 上部の文脈タグ */
+.wf-acc-case-card-mat {
   display: flex; align-items: center; gap: 10px;
   padding: 8px 12px;
   background: var(--c-bg-sub);
   margin-bottom: 6px;
 }
-.case-mat-prefix {
+.wf-acc-case-mat-prefix {
   font-size: 10px; font-weight: 700; color: var(--c-text-s);
   letter-spacing: 0.06em;
 }
-.case-mat-icon {
+.wf-acc-case-mat-icon {
   width: 26px; height: 26px;
   background: var(--c-text-h); color: #fff;
   display: flex; align-items: center; justify-content: center;
   font-size: 11px; font-weight: 700;
   font-family: 'Helvetica Neue', sans-serif;
 }
-.case-mat-label {
+.wf-acc-case-mat-label {
   font-size: 12px; color: var(--c-text-h); font-weight: 700;
   letter-spacing: 0.02em;
 }
@@ -1116,13 +1116,13 @@ body {
       </p>
 
       <!-- STEP 1: 課題のリストアップ -->
-      <div class="process-step">
-        <div class="process-step-head">
-          <span class="process-step-num">STEP 1</span>
-          <span class="process-step-title">課題のリストアップ</span>
-          <span class="process-step-toggle"></span>
+      <div class="wf-process-step">
+        <div class="wf-process-step-head">
+          <span class="wf-process-step-num">STEP 1</span>
+          <span class="wf-process-step-title">課題のリストアップ</span>
+          <span class="wf-process-step-toggle"></span>
         </div>
-        <div class="process-step-body">
+        <div class="wf-process-step-body">
           <p style="font-size:12px; color:var(--c-text); line-height:1.9; margin-bottom:12px;">
             GRIスタンダードやSDGsなどの国際的なフレームワークやガイドライン、各専門分野のマクロトレンドなどを参照しながら環境・社会・経済の中で課題を広範囲にリストアップ。リストアップにあたっては、ストックホルム・レジリエンス・センターの「SDGsウェディングケーキモデル」を参照しSDGsの概念を表す構造を踏まえて作成。SDGsで設定されている170目標との関係性をつかむ。
           </p>
@@ -1153,13 +1153,13 @@ body {
       </div>
 
       <!-- STEP 2: 課題の抽出と重要度評価 -->
-      <div class="process-step">
-        <div class="process-step-head">
-          <span class="process-step-num">STEP 2</span>
-          <span class="process-step-title">課題の抽出と重要度評価</span>
-          <span class="process-step-toggle"></span>
+      <div class="wf-process-step">
+        <div class="wf-process-step-head">
+          <span class="wf-process-step-num">STEP 2</span>
+          <span class="wf-process-step-title">課題の抽出と重要度評価</span>
+          <span class="wf-process-step-toggle"></span>
         </div>
-        <div class="process-step-body">
+        <div class="wf-process-step-body">
           <p style="font-size:12px; color:var(--c-text); line-height:1.9; margin-bottom:14px;">
             リストアップした課題の中から、特にコニカミノルタの事業に関連性の高い分野を抽出した上で、重要度評価を行いました。コニカミノルタのマテリアリティ分析は、リスクと機会の側面をそれぞれに評価している点に特徴があります。リスクと機会をそれぞれ評価することで、SDGsを進めるにあたり、企業に期待される「社会・環境課題を機会と捉えてビジネスを通じて解決することで事業成長を図る」ことを実践しています。<br>
             マテリアリティ分析は、「ステークホルダーにとっての重要度」と「事業にとっての重要度」の2軸で評価し、優先順位づけを行っています。「ステークホルダーにとっての重要度」では、お客様、社員、投資家、従業員などを定義し、それぞれ5段階の評価基準により定量化を行っています。また「事業にとっての重要度」におけるリスクで発生した場合に失われる利益の大きさ、機会では創出される利益の大きさ、すなわち、財務的影響に応じて5段階の評価基準を設定しています。
@@ -1230,13 +1230,13 @@ body {
       </div>
 
       <!-- STEP 3: 妥当性確認、特定 -->
-      <div class="process-step">
-        <div class="process-step-head">
-          <span class="process-step-num">STEP 3</span>
-          <span class="process-step-title">妥当性確認、特定</span>
-          <span class="process-step-toggle"></span>
+      <div class="wf-process-step">
+        <div class="wf-process-step-head">
+          <span class="wf-process-step-num">STEP 3</span>
+          <span class="wf-process-step-title">妥当性確認、特定</span>
+          <span class="wf-process-step-toggle"></span>
         </div>
-        <div class="process-step-body">
+        <div class="wf-process-step-body">
           <p style="font-size:12px; color:var(--c-text); line-height:1.9;">
             サステナビリティに関する取組推進を機関である事業推進会議で、これらのマテリアリティの評価プロセスおよび分析結果の妥当性も確認し、優先的に取り組むべきマテリアリティを確認します。特定したマテリアリティは、経営層による議論のうえ、取締役会による承認を経ています。なお、マテリアリティ特定プロセスについて、中期経営計画の策定プロセスのなかで必要に応じて見直しが行われます。この見直しにより、課題設定と計画の妥当性を担保しています。
           </p>
@@ -1249,31 +1249,31 @@ body {
         各マテリアリティについて「ありたい姿」「社会・環境課題認識／機会／リスク」「KPI 目標と実績」を確認できます。各見出しのクリックで開閉します。新中計に合わせてアップデート、分量は1/2〜1/3で簡潔に記載します。
       </p>
 
-      <div class="materiality-accordion">
+      <div class="wf-acc-materiality-accordion">
 
         <!-- マテリアリティ 1 -->
-        <div class="materiality-row">
-          <div class="materiality-head">
-            <div class="materiality-icon-ph">ICON</div>
-            <span class="materiality-num">01</span>
-            <h4 class="materiality-title">働きがい向上および企業活性化</h4>
-            <span class="materiality-toggle"></span>
+        <div class="wf-acc-materiality-row">
+          <div class="wf-acc-materiality-head">
+            <div class="wf-acc-materiality-icon-ph">ICON</div>
+            <span class="wf-acc-materiality-num">01</span>
+            <h4 class="wf-acc-materiality-title">働きがい向上および企業活性化</h4>
+            <span class="wf-acc-materiality-toggle"></span>
           </div>
-          <div class="materiality-body">
-            <div class="materiality-section">
+          <div class="wf-acc-materiality-body">
+            <div class="wf-acc-materiality-section">
               <h4 class="wf-card-title has-mark">ありたい姿</h4>
-              <p class="materiality-section-text">
+              <p class="wf-acc-materiality-section-text">
                 多様な人財が能力を最大限に発揮し、エンゲージメント高く働ける組織を実現。個と組織の成長を両立させ、お客様・社会への新たな価値創出を牽引する。
               </p>
             </div>
-            <div class="materiality-section">
+            <div class="wf-acc-materiality-section">
               <h4 class="wf-card-title has-mark">社会・環境課題認識／機会／リスク</h4>
               <h5 class="wf-h5-title-plain">機会</h5>
               <p style="font-size:11px; color:var(--c-text); line-height:1.85; margin-bottom:8px;">人的資本経営の重要性が高まる中、人財投資・組織風土改革による生産性・創造性の向上が期待される。</p>
                 <h5 class="wf-h5-title-plain">リスク</h5>
               <p style="font-size:11px; color:var(--c-text); line-height:1.85; margin-bottom:8px;">人財獲得・定着の難航、エンゲージメント低下が事業継続性・競争力に直結する。</p>
             </div>
-            <div class="materiality-section">
+            <div class="wf-acc-materiality-section">
               <h4 class="wf-card-title has-mark">KPI 目標と実績</h4>
               <div class="kpi-progress-grid">
                 <div class="kpi-progress-cell">
@@ -1290,28 +1290,28 @@ body {
         </div>
 
         <!-- マテリアリティ 2 -->
-        <div class="materiality-row">
-          <div class="materiality-head">
-            <div class="materiality-icon-ph">ICON</div>
-            <span class="materiality-num">02</span>
-            <h4 class="materiality-title">健康で質の高い生活の実現</h4>
-            <span class="materiality-toggle"></span>
+        <div class="wf-acc-materiality-row">
+          <div class="wf-acc-materiality-head">
+            <div class="wf-acc-materiality-icon-ph">ICON</div>
+            <span class="wf-acc-materiality-num">02</span>
+            <h4 class="wf-acc-materiality-title">健康で質の高い生活の実現</h4>
+            <span class="wf-acc-materiality-toggle"></span>
           </div>
-          <div class="materiality-body">
-            <div class="materiality-section">
+          <div class="wf-acc-materiality-body">
+            <div class="wf-acc-materiality-section">
               <h4 class="wf-card-title has-mark">ありたい姿</h4>
-              <p class="materiality-section-text">
+              <p class="wf-acc-materiality-section-text">
                 ヘルスケア・ウェルビーイング領域での価値創出を通じて、人々の健康と質の高い生活の実現に貢献する。
               </p>
             </div>
-            <div class="materiality-section">
+            <div class="wf-acc-materiality-section">
               <h4 class="wf-card-title has-mark">社会・環境課題認識／機会／リスク</h4>
               <h5 class="wf-h5-title-plain">機会</h5>
               <p style="font-size:11px; color:var(--c-text); line-height:1.85; margin-bottom:8px;">超高齢社会・医療需要拡大に対応するソリューション市場の拡大。</p>
                 <h5 class="wf-h5-title-plain">リスク</h5>
               <p style="font-size:11px; color:var(--c-text); line-height:1.85; margin-bottom:8px;">医療現場の業務負荷増大、医療従事者不足への対応が遅れた場合の事業機会喪失。</p>
             </div>
-            <div class="materiality-section">
+            <div class="wf-acc-materiality-section">
               <h4 class="wf-card-title has-mark">KPI 目標と実績</h4>
               <div class="kpi-progress-grid">
                 <div class="kpi-progress-cell">
@@ -1324,28 +1324,28 @@ body {
         </div>
 
         <!-- マテリアリティ 3 -->
-        <div class="materiality-row">
-          <div class="materiality-head">
-            <div class="materiality-icon-ph">ICON</div>
-            <span class="materiality-num">03</span>
-            <h4 class="materiality-title">社会における安全・安心確保</h4>
-            <span class="materiality-toggle"></span>
+        <div class="wf-acc-materiality-row">
+          <div class="wf-acc-materiality-head">
+            <div class="wf-acc-materiality-icon-ph">ICON</div>
+            <span class="wf-acc-materiality-num">03</span>
+            <h4 class="wf-acc-materiality-title">社会における安全・安心確保</h4>
+            <span class="wf-acc-materiality-toggle"></span>
           </div>
-          <div class="materiality-body">
-            <div class="materiality-section">
+          <div class="wf-acc-materiality-body">
+            <div class="wf-acc-materiality-section">
               <h4 class="wf-card-title has-mark">ありたい姿</h4>
-              <p class="materiality-section-text">
+              <p class="wf-acc-materiality-section-text">
                 独自のセンシング技術・画像IoT技術等を活用し、社会インフラ・産業の安全・安心を支える価値を創出する。
               </p>
             </div>
-            <div class="materiality-section">
+            <div class="wf-acc-materiality-section">
               <h4 class="wf-card-title has-mark">社会・環境課題認識／機会／リスク</h4>
               <h5 class="wf-h5-title-plain">機会</h5>
               <p style="font-size:11px; color:var(--c-text); line-height:1.85; margin-bottom:8px;">インフラ老朽化・労働力不足への対応として、検査・モニタリングソリューションへの需要拡大。</p>
                 <h5 class="wf-h5-title-plain">リスク</h5>
               <p style="font-size:11px; color:var(--c-text); line-height:1.85; margin-bottom:8px;">製品・サービスの品質・セキュリティに関するインシデント発生時のブランド毀損。</p>
             </div>
-            <div class="materiality-section">
+            <div class="wf-acc-materiality-section">
               <h4 class="wf-card-title has-mark">KPI 目標と実績</h4>
               <div class="kpi-progress-grid">
                 <div class="kpi-progress-cell">
@@ -1358,28 +1358,28 @@ body {
         </div>
 
         <!-- マテリアリティ 4 -->
-        <div class="materiality-row">
-          <div class="materiality-head">
-            <div class="materiality-icon-ph">ICON</div>
-            <span class="materiality-num">04</span>
-            <h4 class="materiality-title">気候変動への対応</h4>
-            <span class="materiality-toggle"></span>
+        <div class="wf-acc-materiality-row">
+          <div class="wf-acc-materiality-head">
+            <div class="wf-acc-materiality-icon-ph">ICON</div>
+            <span class="wf-acc-materiality-num">04</span>
+            <h4 class="wf-acc-materiality-title">気候変動への対応</h4>
+            <span class="wf-acc-materiality-toggle"></span>
           </div>
-          <div class="materiality-body">
-            <div class="materiality-section">
+          <div class="wf-acc-materiality-body">
+            <div class="wf-acc-materiality-section">
               <h4 class="wf-card-title has-mark">ありたい姿</h4>
-              <p class="materiality-section-text">
+              <p class="wf-acc-materiality-section-text">
                 製品・ソリューションを通じた削減貢献量の拡大と、自社拠点・サプライチェーンでのスコープ1〜3ネットゼロを実現。
               </p>
             </div>
-            <div class="materiality-section">
+            <div class="wf-acc-materiality-section">
               <h4 class="wf-card-title has-mark">社会・環境課題認識／機会／リスク</h4>
               <h5 class="wf-h5-title-plain">機会</h5>
               <p style="font-size:11px; color:var(--c-text); line-height:1.85; margin-bottom:8px;">脱炭素関連ソリューション（ペロブスカイト太陽電池バリアフィルム等）の市場拡大。</p>
                 <h5 class="wf-h5-title-plain">リスク</h5>
               <p style="font-size:11px; color:var(--c-text); line-height:1.85; margin-bottom:8px;">炭素税・規制強化に伴う事業コストの増加、移行リスク。</p>
             </div>
-            <div class="materiality-section">
+            <div class="wf-acc-materiality-section">
               <h4 class="wf-card-title has-mark">KPI 目標と実績</h4>
               <div class="kpi-progress-grid">
                 <div class="kpi-progress-cell">
@@ -1396,28 +1396,28 @@ body {
         </div>
 
         <!-- マテリアリティ 5 -->
-        <div class="materiality-row">
-          <div class="materiality-head">
-            <div class="materiality-icon-ph">ICON</div>
-            <span class="materiality-num">05</span>
-            <h4 class="materiality-title">有限な資源の有効利用</h4>
-            <span class="materiality-toggle"></span>
+        <div class="wf-acc-materiality-row">
+          <div class="wf-acc-materiality-head">
+            <div class="wf-acc-materiality-icon-ph">ICON</div>
+            <span class="wf-acc-materiality-num">05</span>
+            <h4 class="wf-acc-materiality-title">有限な資源の有効利用</h4>
+            <span class="wf-acc-materiality-toggle"></span>
           </div>
-          <div class="materiality-body">
-            <div class="materiality-section">
+          <div class="wf-acc-materiality-body">
+            <div class="wf-acc-materiality-section">
               <h4 class="wf-card-title has-mark">ありたい姿</h4>
-              <p class="materiality-section-text">
+              <p class="wf-acc-materiality-section-text">
                 資源循環型ビジネスモデルの構築と、製品ライフサイクル全体での資源有効利用を通じて、サーキュラーエコノミーの実現に貢献する。
               </p>
             </div>
-            <div class="materiality-section">
+            <div class="wf-acc-materiality-section">
               <h4 class="wf-card-title has-mark">社会・環境課題認識／機会／リスク</h4>
               <h5 class="wf-h5-title-plain">機会</h5>
               <p style="font-size:11px; color:var(--c-text); line-height:1.85; margin-bottom:8px;">インテリジェント再生材ビジネス等、資源循環関連ソリューションの市場拡大。</p>
                 <h5 class="wf-h5-title-plain">リスク</h5>
               <p style="font-size:11px; color:var(--c-text); line-height:1.85; margin-bottom:8px;">資源価格高騰・調達制約による事業活動への影響。</p>
             </div>
-            <div class="materiality-section">
+            <div class="wf-acc-materiality-section">
               <h4 class="wf-card-title has-mark">KPI 目標と実績</h4>
               <div class="kpi-progress-grid">
                 <div class="kpi-progress-cell">
@@ -1464,24 +1464,24 @@ body {
 
       <!-- マテリアリティ① 働きがい向上および企業活性化 -->
       <h3 class="wf-sub-title" id="c-mat01" style="margin-top:32px; margin-bottom:14px;">働きがい向上および企業活性化</h3>
-      <div class="case-acc">
-        <div class="case-row">
-          <div class="case-head">
-            <span class="case-mat-label">関連事業</span>
-            <span class="case-head-title">デジタルワークプレイス</span>
-            <span class="case-head-toggle"></span>
+      <div class="wf-acc-case-acc">
+        <div class="wf-acc-case-row">
+          <div class="wf-acc-case-head">
+            <span class="wf-acc-case-mat-label">関連事業</span>
+            <span class="wf-acc-case-head-title">デジタルワークプレイス</span>
+            <span class="wf-acc-case-head-toggle"></span>
           </div>
-          <div class="case-body">
-            <div class="case-body-img"><span class="case-body-img-label">[ DWP製品PH ]</span></div>
-            <div class="case-body-content">
-              <p class="case-body-summary">
+          <div class="wf-acc-case-body">
+            <div class="wf-acc-case-body-img"><span class="wf-acc-case-body-img-label">[ DWP製品PH ]</span></div>
+            <div class="wf-acc-case-body-content">
+              <p class="wf-acc-case-body-summary">
                 （文章はダミーです）クラウド・AI技術を活用した働き方変革ソリューションにより、お客様のオフィス業務の効率化と働きがいの向上を支援。
               </p>
-              <div class="case-value-block">
+              <div class="wf-acc-case-value-block">
                 <h4 class="wf-card-title has-mark">経済価値</h4>
                 <p>サービス売上拡大、リカーリング収益化</p>
               </div>
-              <div class="case-value-block">
+              <div class="wf-acc-case-value-block">
                 <h4 class="wf-card-title has-mark">社会・環境価値</h4>
                 <p>オフィスCO2削減、業務生産性向上、働き方改革</p>
               </div>
@@ -1500,24 +1500,24 @@ body {
 
       <!-- マテリアリティ② 健康で質の高い生活の実現 -->
       <h3 class="wf-sub-title" id="c-mat02" style="margin-top:32px; margin-bottom:14px;">健康で質の高い生活の実現</h3>
-      <div class="case-acc">
-        <div class="case-row">
-          <div class="case-head">
-            <span class="case-mat-label">関連事業</span>
-            <span class="case-head-title">画像ソリューション</span>
-            <span class="case-head-toggle"></span>
+      <div class="wf-acc-case-acc">
+        <div class="wf-acc-case-row">
+          <div class="wf-acc-case-head">
+            <span class="wf-acc-case-mat-label">関連事業</span>
+            <span class="wf-acc-case-head-title">画像ソリューション</span>
+            <span class="wf-acc-case-head-toggle"></span>
           </div>
-          <div class="case-body">
-            <div class="case-body-img"><span class="case-body-img-label">[ 画像ソリューションPH ]</span></div>
-            <div class="case-body-content">
-              <p class="case-body-summary">
+          <div class="wf-acc-case-body">
+            <div class="wf-acc-case-body-img"><span class="wf-acc-case-body-img-label">[ 画像ソリューションPH ]</span></div>
+            <div class="wf-acc-case-body-content">
+              <p class="wf-acc-case-body-summary">
                 （文章はダミーです）ヘルスケア領域の画像診断ソリューションや、介護現場向け見守り支援ソリューション等で、健康で質の高い生活の実現に貢献。
               </p>
-              <div class="case-value-block">
+              <div class="wf-acc-case-value-block">
                 <h4 class="wf-card-title has-mark">経済価値</h4>
                 <p>医療・介護領域でのソリューション売上拡大</p>
               </div>
-              <div class="case-value-block">
+              <div class="wf-acc-case-value-block">
                 <h4 class="wf-card-title has-mark">社会・環境価値</h4>
                 <p>医療従事者・介護従事者の負担軽減、診療の質向上</p>
               </div>
@@ -1536,24 +1536,24 @@ body {
 
       <!-- マテリアリティ③ 社会における安全・安心確保 -->
       <h3 class="wf-sub-title" id="c-mat03" style="margin-top:32px; margin-bottom:14px;">社会における安全・安心確保</h3>
-      <div class="case-acc">
-        <div class="case-row">
-          <div class="case-head">
-            <span class="case-mat-label">関連事業</span>
-            <span class="case-head-title">センシング（HIS／モビリティ）</span>
-            <span class="case-head-toggle"></span>
+      <div class="wf-acc-case-acc">
+        <div class="wf-acc-case-row">
+          <div class="wf-acc-case-head">
+            <span class="wf-acc-case-mat-label">関連事業</span>
+            <span class="wf-acc-case-head-title">センシング（HIS／モビリティ）</span>
+            <span class="wf-acc-case-head-toggle"></span>
           </div>
-          <div class="case-body">
-            <div class="case-body-img"><span class="case-body-img-label">[ センシング 製品PH ]</span></div>
-            <div class="case-body-content">
-              <p class="case-body-summary">
+          <div class="wf-acc-case-body">
+            <div class="wf-acc-case-body-img"><span class="wf-acc-case-body-img-label">[ センシング 製品PH ]</span></div>
+            <div class="wf-acc-case-body-content">
+              <p class="wf-acc-case-body-summary">
                 （文章はダミーです）ハイパースペクトルイメージング（HIS）と車載モビリティセンシング技術を中心に、検査・モニタリング・自動運転支援などの領域で安全・安心を支える。
               </p>
-              <div class="case-value-block">
+              <div class="wf-acc-case-value-block">
                 <h4 class="wf-card-title has-mark">経済価値</h4>
                 <p>市場CAGR / 売上拡大に寄与（IR情報）</p>
               </div>
-              <div class="case-value-block">
+              <div class="wf-acc-case-value-block">
                 <h4 class="wf-card-title has-mark">社会・環境価値</h4>
                 <p>食品・産業安全の検査自動化、労働力不足の解決</p>
               </div>
@@ -1572,24 +1572,24 @@ body {
 
       <!-- マテリアリティ④ 気候変動への対応 -->
       <h3 class="wf-sub-title" id="c-mat04" style="margin-top:32px; margin-bottom:14px;">気候変動への対応</h3>
-      <div class="case-acc">
-        <div class="case-row">
-          <div class="case-head">
-            <span class="case-mat-label">関連事業</span>
-            <span class="case-head-title">機能材料（SANUQI／SAZMA等）</span>
-            <span class="case-head-toggle"></span>
+      <div class="wf-acc-case-acc">
+        <div class="wf-acc-case-row">
+          <div class="wf-acc-case-head">
+            <span class="wf-acc-case-mat-label">関連事業</span>
+            <span class="wf-acc-case-head-title">機能材料（SANUQI／SAZMA等）</span>
+            <span class="wf-acc-case-head-toggle"></span>
           </div>
-          <div class="case-body">
-            <div class="case-body-img"><span class="case-body-img-label">[ ディスプレイ用フィルム PH ]</span></div>
-            <div class="case-body-content">
-              <p class="case-body-summary">
+          <div class="wf-acc-case-body">
+            <div class="wf-acc-case-body-img"><span class="wf-acc-case-body-img-label">[ ディスプレイ用フィルム PH ]</span></div>
+            <div class="wf-acc-case-body-content">
+              <p class="wf-acc-case-body-summary">
                 （文章はダミーです）ディスプレイ用新素材フィルムを中心に、独自の薄膜・光学制御技術で省エネ・高画質化に貢献。OLED TV向け反射防止フィルム等を展開。
               </p>
-              <div class="case-value-block">
+              <div class="wf-acc-case-value-block">
                 <h4 class="wf-card-title has-mark">経済価値</h4>
                 <p>高機能フィルム市場のシェア拡大、付加価値率向上</p>
               </div>
-              <div class="case-value-block">
+              <div class="wf-acc-case-value-block">
                 <h4 class="wf-card-title has-mark">社会・環境価値</h4>
                 <p>CO2排出量削減（製造工程・使用段階）、省資源化</p>
               </div>
@@ -1605,23 +1605,23 @@ body {
           </div>
         </div>
 
-        <div class="case-row">
-          <div class="case-head">
-            <span class="case-mat-label">関連事業</span>
-            <span class="case-head-title">ペロブスカイト太陽電池バリアフィルム</span>
-            <span class="case-head-toggle"></span>
+        <div class="wf-acc-case-row">
+          <div class="wf-acc-case-head">
+            <span class="wf-acc-case-mat-label">関連事業</span>
+            <span class="wf-acc-case-head-title">ペロブスカイト太陽電池バリアフィルム</span>
+            <span class="wf-acc-case-head-toggle"></span>
           </div>
-          <div class="case-body">
-            <div class="case-body-img"><span class="case-body-img-label">[ ペロブスカイト関連PH ]</span></div>
-            <div class="case-body-content">
-              <p class="case-body-summary">
+          <div class="wf-acc-case-body">
+            <div class="wf-acc-case-body-img"><span class="wf-acc-case-body-img-label">[ ペロブスカイト関連PH ]</span></div>
+            <div class="wf-acc-case-body-content">
+              <p class="wf-acc-case-body-summary">
                 （文章はダミーです）脱炭素社会の実現に必須となる次世代太陽電池の重要パーツを提供。耐久性・耐水性・デバイス適用性に優れたバリアフィルムをKMの技術力で実現。
               </p>
-              <div class="case-value-block">
+              <div class="wf-acc-case-value-block">
                 <h4 class="wf-card-title has-mark">経済価値</h4>
                 <p>市場規模 〜2035年で500〜800億円／CAGR 35%以上</p>
               </div>
-              <div class="case-value-block">
+              <div class="wf-acc-case-value-block">
                 <h4 class="wf-card-title has-mark">社会・環境価値</h4>
                 <p>再エネ普及への貢献、CO2排出量削減（社会全体）</p>
               </div>
@@ -1637,23 +1637,23 @@ body {
           </div>
         </div>
 
-        <div class="case-row">
-          <div class="case-head">
-            <span class="case-mat-label">関連事業</span>
-            <span class="case-head-title">プロフェッショナルプリント</span>
-            <span class="case-head-toggle"></span>
+        <div class="wf-acc-case-row">
+          <div class="wf-acc-case-head">
+            <span class="wf-acc-case-mat-label">関連事業</span>
+            <span class="wf-acc-case-head-title">プロフェッショナルプリント</span>
+            <span class="wf-acc-case-head-toggle"></span>
           </div>
-          <div class="case-body">
-            <div class="case-body-img"><span class="case-body-img-label">[ プロプリント製品PH ]</span></div>
-            <div class="case-body-content">
-              <p class="case-body-summary">
+          <div class="wf-acc-case-body">
+            <div class="wf-acc-case-body-img"><span class="wf-acc-case-body-img-label">[ プロプリント製品PH ]</span></div>
+            <div class="wf-acc-case-body-content">
+              <p class="wf-acc-case-body-summary">
                 （文章はダミーです）商業・出版印刷向け高生産性デジタル印刷機を提供。デジタル化による在庫削減・廃棄削減で、印刷業界の環境負荷低減に貢献。
               </p>
-              <div class="case-value-block">
+              <div class="wf-acc-case-value-block">
                 <h4 class="wf-card-title has-mark">経済価値</h4>
                 <p>プロプリント市場の高付加価値領域でのポジション確保</p>
               </div>
-              <div class="case-value-block">
+              <div class="wf-acc-case-value-block">
                 <h4 class="wf-card-title has-mark">社会・環境価値</h4>
                 <p>在庫廃棄削減、紙資源の有効利用、CO2削減</p>
               </div>
@@ -1672,24 +1672,24 @@ body {
 
       <!-- マテリアリティ⑤ 有限な資源の有効利用 -->
       <h3 class="wf-sub-title" id="c-mat05" style="margin-top:32px; margin-bottom:14px;">有限な資源の有効利用</h3>
-      <div class="case-acc">
-        <div class="case-row">
-          <div class="case-head">
-            <span class="case-mat-label">関連事業</span>
-            <span class="case-head-title">半導体検査装置向け光学コンポーネント</span>
-            <span class="case-head-toggle"></span>
+      <div class="wf-acc-case-acc">
+        <div class="wf-acc-case-row">
+          <div class="wf-acc-case-head">
+            <span class="wf-acc-case-mat-label">関連事業</span>
+            <span class="wf-acc-case-head-title">半導体検査装置向け光学コンポーネント</span>
+            <span class="wf-acc-case-head-toggle"></span>
           </div>
-          <div class="case-body">
-            <div class="case-body-img"><span class="case-body-img-label">[ 光学コンポーネント PH ]</span></div>
-            <div class="case-body-content">
-              <p class="case-body-summary">
+          <div class="wf-acc-case-body">
+            <div class="wf-acc-case-body-img"><span class="wf-acc-case-body-img-label">[ 光学コンポーネント PH ]</span></div>
+            <div class="wf-acc-case-body-content">
+              <p class="wf-acc-case-body-summary">
                 （文章はダミーです）先端半導体製造プロセスの微細化に対応した検査装置向け高精度光学部品を提供。半導体産業の歩留まり向上・効率化に貢献。
               </p>
-              <div class="case-value-block">
+              <div class="wf-acc-case-value-block">
                 <h4 class="wf-card-title has-mark">経済価値</h4>
                 <p>半導体検査装置市場成長に連動した売上拡大</p>
               </div>
-              <div class="case-value-block">
+              <div class="wf-acc-case-value-block">
                 <h4 class="wf-card-title has-mark">社会・環境価値</h4>
                 <p>半導体産業の生産性向上、不良削減による省資源化</p>
               </div>
@@ -1705,23 +1705,23 @@ body {
           </div>
         </div>
 
-        <div class="case-row">
-          <div class="case-head">
-            <span class="case-mat-label">関連事業</span>
-            <span class="case-head-title">インテリジェント再生材</span>
-            <span class="case-head-toggle"></span>
+        <div class="wf-acc-case-row">
+          <div class="wf-acc-case-head">
+            <span class="wf-acc-case-mat-label">関連事業</span>
+            <span class="wf-acc-case-head-title">インテリジェント再生材</span>
+            <span class="wf-acc-case-head-toggle"></span>
           </div>
-          <div class="case-body">
-            <div class="case-body-img"><span class="case-body-img-label">[ 再生材選別工程PH ]</span></div>
-            <div class="case-body-content">
-              <p class="case-body-summary">
+          <div class="wf-acc-case-body">
+            <div class="wf-acc-case-body-img"><span class="wf-acc-case-body-img-label">[ 再生材選別工程PH ]</span></div>
+            <div class="wf-acc-case-body-content">
+              <p class="wf-acc-case-body-summary">
                 （文章はダミーです）ハイパースペクトルイメージング技術を活用した混合廃棄物の高精度選別により、マテリアルリサイクルの促進と資源循環型社会の実現に貢献。
               </p>
-              <div class="case-value-block">
+              <div class="wf-acc-case-value-block">
                 <h4 class="wf-card-title has-mark">経済価値</h4>
                 <p>CO2削減 約69,000t/年（2025見込）</p>
               </div>
-              <div class="case-value-block">
+              <div class="wf-acc-case-value-block">
                 <h4 class="wf-card-title has-mark">社会・環境価値</h4>
                 <p>資源の有効活用、循環型ビジネスの創出</p>
               </div>
@@ -1907,8 +1907,8 @@ body {
         <b>#6（村上）</b>価値創出事例を業種別（インダストリー／成長の芽／その他）3カテゴリ廃止 → <b>5マテリアリティ別カテゴリ</b>に完全再編。働きがい(1)／健康(1)／安全安心(1)／気候変動(3)／資源(2) = 8事例を該当マテリアリティ H3 配下に再配置。<br>
         <b>#7（村上）</b>各事例の末尾に「<b>該当製品・事業紹介ページへ</b>」テキストリンクを追加（.csr-row-links / .wf-text-link）。<br>
         <b>#8（池田）</b>マテリアリティ内「機会／リスク」並列カード（.risk-opp-card）の全周ボーダーを廃止、装飾を最小化（左の縦罫＋タグ下線のみ）。<b>ブロックリンク風と紛らわしい</b>UIを解消。<br>
-        <b>#11（村上）</b>5つのマテリアリティの番号(<b>01〜05</b>)を全廃。.materiality-num を display:none、grid を 2カラムに変更しタイトル左寄せ。<br>
-        セクション C 内 CASE 番号(CASE 01-08)も廃止（マテリアリティ別整理に伴い不要）。.case-card-mat 冗長表示も削除（H3 がマテリアリティ表示済）。
+        <b>#11（村上）</b>5つのマテリアリティの番号(<b>01〜05</b>)を全廃。.wf-acc-materiality-num を display:none、grid を 2カラムに変更しタイトル左寄せ。<br>
+        セクション C 内 CASE 番号(CASE 01-08)も廃止（マテリアリティ別整理に伴い不要）。.wf-acc-case-card-mat 冗長表示も削除（H3 がマテリアリティ表示済）。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">B区分（要判断・保留）</span>
