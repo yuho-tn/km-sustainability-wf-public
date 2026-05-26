@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DE&I — KM サステナビリティ WF v3.9 (#124)</title>
+<title>DE&I — KM サステナビリティ WF v4.0 (#124)</title>
 <style>
 /* ============================================================
    KM SUSTAINABILITY WF — SHARED CSS（TCFD v3.3 ベース継承 / DE&I追加）
@@ -198,7 +198,127 @@ body {
 .wf-btn::before { content: '›'; font-size: 14px; color: var(--c-text-h); font-weight: 700; margin-right: 4px; }
 .wf-btn:hover { background: var(--c-bg-sub); border-color: var(--c-text-h); }
 
-/* DEI 経営宣言ボックス — 001/002 .callout-box 同型（左上タグ＋全周ボーダー） */
+/* ============================================================
+   方針文書アコーディオンモジュール .policy-statement
+   v4.0：0525 FB#2 反映 — ダイバーシティ経営宣言をページ内HTML展開
+   catalog 共通モジュール（140人権方針 / 131健康宣言 / 148品質方針 と同パターン）
+============================================================ */
+.policy-statement {
+  margin: 14px 0 22px;
+  border: 1px solid var(--c-border);
+  background: var(--c-white);
+}
+.policy-statement-summary {
+  list-style: none;
+  cursor: default;
+  padding: 14px 60px 14px 18px;
+  display: flex; align-items: center; gap: 14px;
+  background: var(--c-white);
+  position: relative;
+  line-height: 1.5;
+}
+.policy-statement[open] .policy-statement-summary {
+  border-bottom: 1px solid var(--c-border);
+}
+.policy-statement-summary::-webkit-details-marker { display: none; }
+.policy-statement-summary::marker { content: ''; }
+.policy-statement-summary::after {
+  content: '＋';
+  position: absolute;
+  right: 16px; top: 50%; transform: translateY(-50%);
+  width: 26px; height: 26px;
+  background: var(--c-text-h); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  font-size: 14px; font-weight: 700;
+  line-height: 1;
+}
+.policy-statement[open] .policy-statement-summary::after { content: '−'; }
+.policy-statement-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700;
+  color: #fff; background: var(--c-text-h);
+  padding: 3px 9px;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.policy-statement-title {
+  font-size: 15px; font-weight: 700;
+  color: var(--c-text-h);
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.policy-statement-meta {
+  font-size: 11px; color: var(--c-text-s);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.policy-statement-body {
+  padding: 26px 30px 28px;
+  background: var(--c-white);
+}
+.policy-statement-body p {
+  font-size: 13px; line-height: 1.95;
+  color: var(--c-text);
+  margin-bottom: 12px;
+}
+.policy-statement-body p:last-child { margin-bottom: 0; }
+.policy-statement-motto {
+  text-align: center;
+  font-size: 14px; font-weight: 700; color: var(--c-text-h);
+  letter-spacing: 0.06em;
+  margin: 20px 0 22px;
+  padding: 14px 18px;
+  background: var(--c-bg-sub);
+  line-height: 1.7;
+}
+.policy-statement-h4 {
+  font-size: 13px; font-weight: 700; color: var(--c-text-h);
+  margin: 22px 0 10px;
+  padding-left: 10px;
+  border-left: 3px solid var(--c-text-h);
+  line-height: 1.5;
+}
+.policy-statement-h5 {
+  font-size: 12px; font-weight: 700; color: var(--c-text-h);
+  margin: 14px 0 6px;
+  line-height: 1.5;
+}
+.policy-statement-body ul.policy-statement-list {
+  padding-left: 20px;
+  margin: 6px 0 14px;
+  font-size: 12px; line-height: 1.85;
+  color: var(--c-text);
+}
+.policy-statement-body ul.policy-statement-list li {
+  margin-bottom: 6px;
+}
+.policy-statement-signature {
+  margin-top: 24px;
+  padding-top: 14px;
+  border-top: 1px solid var(--c-border);
+  text-align: right;
+  font-size: 12px;
+  color: var(--c-text);
+  line-height: 1.85;
+}
+.policy-signature-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  font-family: 'Hiragino Mincho Pro', 'Yu Mincho', serif;
+  margin-top: 8px;
+  letter-spacing: 0.18em;
+  display: inline-block;
+  border-bottom: 1px solid var(--c-text-h);
+  padding: 0 4px 4px;
+}
+
+/* DEI 経営宣言ボックス — 001/002 .callout-box 同型（左上タグ＋全周ボーダー） — v4.0で廃止予定だが定義は残す */
 .dei-statement {
   background: var(--c-white);
   border: 1px solid var(--c-border);
@@ -219,6 +339,30 @@ body {
   font-weight: 700;
   margin: 0;
 }
+
+/* DEI コンセプト図（違いを力に！イメージ図）— v4.0 FB#2対応 */
+.dei-concept-fig {
+  background: var(--c-ph); border: 1px solid var(--c-ph-line);
+  position: relative; overflow: hidden;
+  aspect-ratio: 16 / 6;
+  display: flex; align-items: center; justify-content: center;
+  margin: 14px 0 20px;
+}
+.dei-concept-fig::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(45deg, transparent 0 12px, rgba(0,0,0,0.04) 12px 13px);
+}
+.dei-concept-fig-label {
+  position: relative; z-index: 1;
+  font-size: 11px; color: var(--c-text-s);
+  text-align: center; line-height: 1.7;
+  background: rgba(255,255,255,0.92); padding: 10px 18px;
+  letter-spacing: 0.04em;
+  border: 1px dashed var(--c-ph-line);
+  max-width: 86%;
+}
+.dei-concept-fig-label strong { display: block; font-size: 12px; color: var(--c-text-h); margin-bottom: 4px; }
 
 /* 目指す姿 表（v3.1：項目幅コンパクト・英字削除） */
 .vision-table-wrap { margin: 14px 0; border: 1px solid var(--c-border); }
@@ -726,26 +870,8 @@ body {
 </head>
 <body>
 
-<!-- WF管理バー -->
-<div class="wf-meta-bar">
-  <div>
-    <strong>KONICA MINOLTA サステナビリティ</strong>
-    <span class="meta-badge">DE&I</span>
-    <span class="meta-badge">WF v3.9</span>
-    <span class="meta-badge">#124</span>
-    <span class="meta-badge">L3</span>
-    <span class="meta-badge" style="background:#7a4a00; color:#fff;">アコ内見出しをH4/H5の2階層に再調整（H3はアコ外のみ）</span>
-  </div>
-  <div style="font-size:10px; color:#666;">2026.05 / FB反映：アコ内のH3→H4／H4→H5へ繰り下げ。アコ内見出しは catalog 2-3 .wf-card-title.has-mark(H4) ／ 2-4 .wf-h5-title(H5) のみで構成</div>
-</div>
-
 <div class="wf-canvas">
   <div class="wf-page">
-
-    <div class="wf-page-indicator">
-      <span>DE&I / URL: /about/csr/social/diversity/</span>
-      <span class="pi-layer">L3 第3階層 — DE&I</span>
-    </div>
 
     <!-- ヘッダー：KM公式デザイン（画像差し替え） -->
     <header class="wf-header-img">
@@ -772,12 +898,12 @@ body {
 
         <!-- ============================================================
              A. 基本的な考え方
+             v4.0：原稿26S150_DE&I (0526) 準拠／policy-statementモジュール適用
         ============================================================ -->
         <section class="wf-section bg-white" id="policy">
           <span class="wf-section-marker">A</span>
           <h2 class="wf-section-title">基本的な考え方</h2>
 
-          <h3 class="wf-sub-title">背景と課題認識</h3>
           <p class="wf-section-desc">
             私たちは、人財の多様性こそが、これまでにない革新的な発想をもたらし、経営ビジョンに掲げる「人間中心の生きがい追求」と「持続可能な社会の実現」を高次に両立させるソリューションを生み出す源泉と考えます。
           </p>
@@ -785,42 +911,83 @@ body {
             私たちは、社会的マイノリティへの公平性・包括性の向上、従業員一人ひとりの異なる強みを最大限発揮できる組織風土の醸成に長年にわたり取り組み、2003年のコニカとミノルタの経営統合以降、これらの取り組みを加速させてきました。これからは、経営ビジョンを実現し、社会のなかで認められ持続的成長を果たしていくために、Diversity, Equity and Inclusion（以下、DEI）推進をコニカミノルタグローバルで一体となり、より強化していく必要があります。
           </p>
 
-          <h3 class="wf-sub-title">基本的な考え方</h3>
+          <h3 class="wf-sub-title" id="background-vision">背景と課題認識／目指す姿</h3>
+          <h4 class="wf-card-title has-mark">背景と課題認識</h4>
+          <p class="wf-section-desc">
+            ジェンダー平等と女性のエンパワーメントは、グローバルで重視されているテーマの一つであり、SDGsを達成するための鍵です。とりわけ日本では、性別を問わず高度な教育を受けているにも関わらず、女性のリーダーシップやあらゆる分野への参画が限られているのが実情です。コニカミノルタの属する産業社会全体でも、女性が活躍できる環境の整備が急務であると認識しています。
+          </p>
+          <p class="wf-section-desc">
+            人財の多様性をイノベーションの源泉にしていくために、国籍や人種、性別、年齢、専門性などの多様性を持つ人財を受け入れ、従業員一人ひとりが持つ違いを強みに変え、チームとして力を発揮していくことが重要です。そのためには、従業員の力の発揮を阻害するバイアスを解消し、誰もが率直に対話できる心理的安全性の高い組織風土づくりが必要です。
+          </p>
 
-          <div class="dei-statement">
-            <p class="dei-statement-text">
-              一人ひとりが、互いの個性を歓迎し、理解し、認め合い、そしてともに挑戦を楽しむ。「知の結集」につながる創造性・問題解決・イノベーションを刺激する「個の輝き」を実現するコニカミノルタへ
-            </p>
-          </div>
+          <h4 class="wf-card-title has-mark">目指す姿</h4>
+          <p class="wf-section-desc">
+            人財の多様性こそが、これまでにない革新的な発想をもたらし、経営ビジョンに掲げる「人間中心の生きがい追求」と「持続可能な社会の実現」を高次に両立させるソリューションを生み出す源泉と捉えています。そして、女性の活躍を促進することが、あらゆる社会的マイノリティへの活躍促進につながると考え、女性従業員が活躍できるステージをさらに広げていくことを目指しています。
+          </p>
+          <p class="wf-section-desc">
+            社会課題を解決するソリューションを創出し続けるために、互いの違いを尊重し、多様な価値観を受け入れることで、従業員の働きがいを向上させます。そして、従業員同士が異なる考えを健全にぶつけ合うことができ、助け合いのなかから誰もがチャレンジできる組織風土の醸成を目指します。
+          </p>
 
-          <p class="wf-section-desc" style="margin-top:18px;">
+          <h3 class="wf-sub-title" id="dei-commitment">コニカミノルタグループ ダイバーシティ経営宣言</h3>
+          <p class="wf-section-desc">
             私たちを取り巻く環境の劇的な変化に対応するには、今までの延長線上にはない視点や発想を引き出し、取り入れた、新しい価値の創造が期待されます。コニカミノルタグループ行動憲章に掲げる「7. 人財育成と組織風土醸成」を実践するために、当社におけるDEI推進の基本的な考え方となる、コニカミノルタグループ ダイバーシティ経営宣言を2023年に社内外に発信しました。
           </p>
           <p class="wf-section-desc">
             私たちは、Diversity【個の輝き】、Equity【公平な機会】、Inclusion【知の結集】を推進することで、あらゆるステークホルダーの多様性を認め共感することから共創へとつなぎ、顧客企業の成長に寄与する新しい価値を創造し、提供し続けます。そして、顧客企業とともに、誰もが生きがいや幸せを追求でき、さらには豊かで持続可能な社会の実現を目指します。このダイバーシティ経営宣言に基づき、DEIの観点からコニカミノルタが目指す姿を明確化し、推進体制を整えて、計画的に施策を実行していきます。
           </p>
 
-          <div style="margin-top:14px;">
-            <a class="wf-btn">コニカミノルタグループ ダイバーシティ経営宣言</a>
+          <details class="policy-statement" id="dei-commitment-doc" open>
+            <summary class="policy-statement-summary">
+              <span class="policy-statement-badge">宣言</span>
+              <span class="policy-statement-title">コニカミノルタグループ ダイバーシティ経営宣言</span>
+              <span class="policy-statement-meta">2023年3月15日制定</span>
+            </summary>
+            <div class="policy-statement-body">
+              <div class="policy-statement-motto">
+                一人ひとりが、互いの個性を歓迎し、理解し、認め合い、そしてともに挑戦を楽しむ。<br>
+                「知の結集」につながる創造性・問題解決・イノベーションを刺激する「個の輝き」を実現するコニカミノルタへ
+              </div>
+
+              <h4 class="policy-statement-h4">私たちの約束</h4>
+
+              <h5 class="policy-statement-h5">コニカミノルタは、実践します</h5>
+              <ul class="policy-statement-list">
+                <li>一人ひとりの違いが歓迎され、社員一人ひとりの「個」が輝くことができるよう、多様な人財の活躍を推進します</li>
+                <li>社員がライフとワークを両立し、成長する機会を得て、より高い能力が発揮できる環境を整備します</li>
+                <li>社員同士が異なる考えを健全にぶつけ合うことができ、誰もが安心してチャレンジできる組織風土を醸成します</li>
+                <li>ステークホルダーと共に多様な知と知を結集し、個々の「みたい」に応えるソリューションを通して、社会課題の解決に取り組みます</li>
+              </ul>
+
+              <h5 class="policy-statement-h5">私たち一人ひとりが、実践します</h5>
+              <ul class="policy-statement-list">
+                <li>一人ひとりの違いを受け入れ、互いを認め合い、助け合います</li>
+                <li>様々な環境において疎外感を抱いている人々に寄り添い、応援します</li>
+                <li>共に働く仲間と、いつでも、どこでも、どんなことでも、率直に話し合います</li>
+                <li>『個の輝き』『公平な機会』『知の結集』について、向上心を持って学び続けます</li>
+              </ul>
+
+              <div class="policy-statement-signature">
+                <div>2023年3月15日</div>
+                <div>コニカミノルタ株式会社</div>
+                <div>代表執行役社長兼CEO</div>
+                <div class="policy-signature-name">大幸 利充</div>
+              </div>
+            </div>
+          </details>
+
+          <h3 class="wf-sub-title" id="vision-2030">違いを力に！　経営ビジョンの実現に向けて目指す姿</h3>
+          <p class="wf-section-desc">
+            Diversity【個の輝き】、Equity【公平な機会】、Inclusion【知の結集】の3要素について、それぞれ2030年に目指す姿と考え方を定めています。
+          </p>
+
+          <!-- 違いを力に！コンセプト図 -->
+          <div class="dei-concept-fig">
+            <span class="dei-concept-fig-label">
+              <strong>図：違いを力に！ 経営ビジョンの実現に向けて目指す姿 PH</strong>
+              Diversity【個の輝き】 × Equity【公平な機会】 × Inclusion【知の結集】の3要素モデル
+            </span>
+            <span class="img-zoom-btn"></span>
           </div>
-        </section>
-
-        <!-- ============================================================
-             B. 戦略・目標・実績（v3.0：体制より前に配置）
-        ============================================================ -->
-        <section class="wf-section bg-sub" id="kpi">
-          <span class="wf-section-marker">B</span>
-          <h2 class="wf-section-title">戦略・目標・実績</h2>
-
-          <p class="wf-section-desc">
-            新中期経営計画のもと、自社およびお客様・社会での生産性を高め、創造的な時間を創出し、個々が輝ける環境を整備するため、Diversity・Equity・Inclusionの3要素について重点施策を策定し、KPIを設定しています。コニカミノルタグループ ダイバーシティ経営宣言に基づき、2022年12月に2023年度から2025年度に実施する重点施策を策定、KPIを設定しました。
-          </p>
-
-          <!-- 目指す姿（v3.0：基本的な考え方から戦略・目標・実績の最初に移動） -->
-          <h3 class="wf-sub-title">目指す姿</h3>
-          <p class="wf-section-desc">
-            違いを力に！ 経営ビジョンの実現に向けて目指す姿として、Diversity【個の輝き】、Equity【公平な機会】、Inclusion【知の結集】の3要素について、それぞれ2030年に目指す姿を定めています。
-          </p>
 
           <div class="vision-table-wrap">
             <table class="vision-table">
@@ -869,9 +1036,49 @@ body {
               </tbody>
             </table>
           </div>
+        </section>
 
-          <!-- 重点施策（v3.0：行＝会社／列＝D・E・I に逆転） -->
-          <h3 class="wf-sub-title">重点施策</h3>
+        <!-- ============================================================
+             B. 体制（v4.0：131/148と統一して体制 → 戦略・目標・実績の順に）
+        ============================================================ -->
+        <section class="wf-section bg-sub" id="structure">
+          <span class="wf-section-marker">B</span>
+          <h2 class="wf-section-title">体制</h2>
+
+          <h3 class="wf-sub-title" id="promotion-system">推進体制</h3>
+          <p class="wf-section-desc">
+            代表執行役社長が任命したダイバーシティ推進担当役員が統括しています。各事業・機能を担当する執行役、執行役員の責任のもとでの目標達成に向けた施策実行（縦糸）と、主要会社に設置されているDEI推進部署によるグループ各社支援（横糸）により、コニカミノルタ（株）に設置された「違いを力に！推進室」がリードするかたちで、コニカミノルタグループを網羅し一体となってDEI推進を加速させていきます。そして、進捗状況を定期的に取締役会に報告し、着実に目指す姿の実現に向けて行動します。
+          </p>
+
+          <div class="gov-structure-fig">
+            <span class="gov-structure-fig-label">
+              <strong>図：DEI推進体制（縦糸×横糸）PH</strong>
+              代表執行役社長 → ダイバーシティ推進担当役員 → 縦糸（執行役・執行役員による施策実行）／横糸（主要会社DEI推進部署支援）／違いを力に！推進室がリード
+            </span>
+            <span class="img-zoom-btn"></span>
+          </div>
+
+          <h4 class="wf-card-title has-mark">執行役、執行役員の責任のもと、目標達成に向けて施策を実行します</h4>
+          <p>「2030年目指す姿」の実現に向けては、各事業・機能を担当する執行役、執行役員が責任を持ち、事業・機能別の2025年度末目標の設定・施策立案を行います。そして、各事業・機能の経営戦略の一つとして推進していきます。</p>
+
+          <h4 class="wf-card-title has-mark">コニカミノルタ（株）および主要グループ会社のDEI推進部署が、グループ各社を支援します</h4>
+          <p>数値目標の達成だけでなく、真のDEIを実現するために、コニカミノルタグループの主要会社に設置されているDEI推進部署が、保有する専門知識と経験をもとに、グループ会社のDEI推進を支援していきます。</p>
+        </section>
+
+        <!-- ============================================================
+             C. 戦略・目標・実績
+             v4.0：重点施策／KPI（D/E/I各KPIの直下に分析を併載 — FB#8）／事業成長DEI推進計画／2024年度の取り組み
+        ============================================================ -->
+        <section class="wf-section bg-white" id="strategy">
+          <span class="wf-section-marker">C</span>
+          <h2 class="wf-section-title">戦略・目標・実績</h2>
+
+          <p class="wf-section-desc">
+            新中期経営計画のもと、自社およびお客様・社会での生産性を高め、創造的な時間を創出し、個々が輝ける環境を整備するため、Diversity・Equity・Inclusionの3要素について重点施策を策定し、KPIを設定しています。コニカミノルタグループ ダイバーシティ経営宣言に基づき、2022年12月に2023年度から2025年度に実施する重点施策を策定、KPIを設定しました。
+          </p>
+
+          <!-- 重点施策（行＝会社／列＝D・E・I） -->
+          <h3 class="wf-sub-title" id="key-measures">重点施策</h3>
 
           <div class="measure-table-wrap">
             <table class="measure-table">
@@ -952,6 +1159,10 @@ body {
               ※コニカミノルタグループ：各年度末時点。コニカミノルタ（株）および国内連結子会社ならびに200名以上の海外連結子会社の主要な約50社を集計。集計範囲は連結グループのうち人数ベースで2021年度は87％、2022年度は88％以上、2023年度は86％以上、2024年度は85％以上をカバーする。<br>
               ※コニカミノルタ（株）：各年度の翌４月１日時点の正規従業員対象 ※なお2030年度は2030年４月１日時点
             </p>
+            <h5 class="wf-h5-title">実績に対する分析と今後の対応</h5>
+            <p class="wf-section-desc" style="margin-top:0;">
+              2024年度のエグゼンプトに占める女性の割合は目標の12％に届かなかったものの11.1％となり、毎年確実に上昇しています。目標未達の主な要因は、エグゼンプト一歩手前の層の女性社員割合の低さです。この課題を中長期的な視点で改善するため採用を強化しており、新卒採用における女性割合30％以上の目標は2021年度以降、継続的に達成しています。また2024年度にはパイプライン強化の仕組みを体系立てました。これからも目標達成に向けて、若手層からの計画的な育成強化に取り組んでいきます。
+            </p>
           </div>
 
           <!-- KPI② Equity -->
@@ -984,6 +1195,10 @@ body {
             <p class="kpi-table-note">
               ※以下設問について、0〜10段階での回答の平均点／公平性：「自身が所属する部門・チームでは、あらゆるバックグラウンドを持つ人々が公平に扱われている」<br>
               ※FY23〜25方針としてFY21調査時点での同業種ベンチマークをベースに目標値を設定
+            </p>
+            <h5 class="wf-h5-title">実績に対する分析と今後の対応</h5>
+            <p class="wf-section-desc" style="margin-top:0;">
+              2024年度は、コニカミノルタ（株）を含む主要グループ会社において、2022年度から2023年度に策定した各社の特徴にあったDEI推進計画（24カ国27社で策定）に沿って、活動を継続しています。その結果、目標には届きませんでしたが、グローバル構造改革という経営として痛みをともなう改革を進めたなかでも、KPIに設定した従業員エンゲージメント調査の設問項目について、維持・向上を図ることができました。
             </p>
           </div>
 
@@ -1018,10 +1233,19 @@ body {
               ※以下設問について、0〜10段階での回答の平均点／意見の自由：「自身が所属する部門・チームにおいて自身の意見が尊重されている」<br>
               ※FY23〜25方針としてFY21調査時点での同業種ベンチマークをベースに目標値を設定
             </p>
+            <h5 class="wf-h5-title">実績に対する分析と今後の対応</h5>
+            <p class="wf-section-desc" style="margin-top:0;">
+              2030年のコニカミノルタが目指す姿を実現するためには、各社・各事業がそれぞれ必要な取り組みを進めることが重要です。今後も、各組織が強みや課題を踏まえた対応を行い、コニカミノルタグループ一体となって、粘り強くDEI推進を進めます。
+            </p>
           </div>
 
-          <!-- 2024年度の取り組み（v3.0：1カラム縦積み） -->
-          <h3 class="wf-sub-title">2024年度の取り組み</h3>
+          <h3 class="wf-sub-title" id="dei-promotion-plan">事業の成長につながるDEI推進計画の策定と実行</h3>
+          <p class="wf-section-desc">
+            2024年度は、コニカミノルタ（株）を含む主要グループ会社において、2022年度から2023年度に策定した各社の特徴にあったDEI推進計画（24カ国27社で策定）に沿って、活動を継続しています。各社の特徴に応じたDEI推進計画を策定・実行することで、グループ一体となってDEI推進を加速させています。
+          </p>
+
+          <!-- 2024年度の取り組み -->
+          <h3 class="wf-sub-title" id="fy2024-activities">2024年度の取り組み</h3>
           <p class="wf-section-desc">
             KPIの目標値達成に向けて、継続・先行して取り組んでいる施策は次のとおりです。
           </p>
@@ -1037,7 +1261,7 @@ body {
               </div>
             </div>
             <div class="year-activity-row">
-              <div class="year-activity-label">Equity【公平な機会】</div>
+              <div class="year-activity-label">Equity【公平な機会】<br>Inclusion【知の結集】</div>
               <div class="year-activity-list">
                 <ul>
                   <li>DEIをベースとした組織風土醸成
@@ -1050,56 +1274,9 @@ body {
                 </ul>
               </div>
             </div>
-            <div class="year-activity-row">
-              <div class="year-activity-label">Inclusion【知の結集】</div>
-              <div class="year-activity-list">
-                <span class="empty">（記載準備中）</span>
-              </div>
-            </div>
           </div>
         </section>
 
-        <!-- ============================================================
-             C. 体制（v3.0：戦略・目標・実績の後ろに配置）
-        ============================================================ -->
-        <section class="wf-section bg-white" id="structure">
-          <span class="wf-section-marker">C</span>
-          <h2 class="wf-section-title">体制</h2>
-
-          <h3 class="wf-sub-title">推進体制</h3>
-          <p class="wf-section-desc">
-            代表執行役社長が任命したダイバーシティ推進担当役員が統括しています。各事業・機能を担当する執行役、執行役員の責任のもとでの目標達成に向けた施策実行（縦糸）と、主要会社に設置されているDEI推進部署によるグループ各社支援（横糸）により、コニカミノルタ（株）に設置された「違いを力に！推進室」がリードするかたちで、コニカミノルタグループを網羅し一体となってDEI推進を加速させていきます。そして、進捗状況を定期的に取締役会に報告し、着実に目指す姿の実現に向けて行動します。
-          </p>
-
-          <div class="gov-structure-fig">
-            <span class="gov-structure-fig-label">
-              <strong>図：DEI推進体制（縦糸×横糸）PH</strong>
-              代表執行役社長 → ダイバーシティ推進担当役員 → 縦糸（執行役・執行役員による施策実行）／横糸（主要会社DEI推進部署支援）／違いを力に！推進室がリード
-            </span>
-            <span class="img-zoom-btn"></span>
-          </div>
-
-          <h3 class="wf-sub-title">執行役、執行役員の責任のもと、目標達成に向けて施策を実行します</h3>
-          <p class="wf-section-desc">
-            「2030年目指す姿」の実現に向けては、各事業・機能を担当する執行役、執行役員が責任を持ち、事業・機能別の2025年度末目標の設定・施策立案を行います。そして、各事業・機能の経営戦略の一つとして推進していきます。
-          </p>
-
-          <h3 class="wf-sub-title">コニカミノルタ（株）および主要グループ会社のDEI推進部署が、グループ各社を支援します</h3>
-          <p class="wf-section-desc">
-            数値目標の達成だけでなく、真のDEIを実現するために、コニカミノルタグループの主要会社に設置されているDEI推進部署が、保有する専門知識と経験をもとに、グループ会社のDEI推進を支援していきます。
-          </p>
-
-          <h3 class="wf-sub-title">事業の成長につながるDEI推進計画の策定と実行</h3>
-          <p class="wf-section-desc">
-            2024年度は、コニカミノルタ（株）を含む主要グループ会社において、2022年度から2023年度に策定した各社の特徴にあったDEI推進計画（24カ国27社で策定）に沿って、活動を継続しています。
-          </p>
-          <p class="wf-section-desc">
-            その結果、目標には届きませんでしたが、グローバル構造改革という経営として痛みをともなう改革を進めたなかでも、KPIに設定した従業員エンゲージメント調査の設問項目について、維持・向上を図ることができました。
-          </p>
-          <p class="wf-section-desc">
-            2030年のコニカミノルタが目指す姿を実現するためには、各社・各事業がそれぞれ必要な取り組みを進めることが重要です。今後も、各組織が強みや課題を踏まえた対応を行い、コニカミノルタグループ一体となって、粘り強くDEI推進を進めます。
-          </p>
-        </section>
 
         <!-- ============================================================
              D. 取り組み（v3.6：原稿 26S150_DE&I_取り組み.docx を H3＋H4アコでマージ）
@@ -1119,18 +1296,16 @@ body {
           <!-- ============================================================
                D-1. 多様な人財が活躍できる風土づくり
           ============================================================ -->
-          <h3 class="wf-sub-title">多様な人財が活躍できる風土づくり</h3>
+          <h3 class="wf-sub-title" id="diversity-culture">多様な人財が活躍できる風土づくり</h3>
 
           <!-- アコ：ワークライフバランス -->
-          <details class="wf-acc-h3" open>
+          <details class="wf-acc-h3" id="work-life-balance" open>
             <summary class="wf-acc-h3-summary">ワークライフバランス</summary>
             <div class="wf-acc-h3-body">
 
-              <h4 class="wf-card-title has-mark">ワーク・ライフ・マネジメントの促進</h4>
-              <p>コニカミノルタ（株）の仕事と生活の両立支援は、女性従業員の出産・育児を理由とした離職を防止するために1990年代から整備を始めました。現在では、男性従業員の育児参画促進や仕事と介護の両立支援も充実させていくとともに、従業員一人ひとりの異なる状況により柔軟に対応ができるよう制度改定や環境づくりに取り組んでいます。</p>
-              <p>その結果、コニカミノルタ（株）における平均勤続年数の男女差は解消されており、誰もが仕事と生活を両立できる環境が整いつつあります。</p>
+              <p>コニカミノルタ（株）の仕事と生活の両立支援は、女性従業員の出産・育児を理由とした離職を防止するために1990年代から整備を始めました。現在では、男性従業員の育児参画促進や仕事と介護の両立支援も充実させていくとともに、従業員一人ひとりの異なる状況により柔軟に対応ができるよう制度改定や環境づくりに取り組んでいます。その結果、コニカミノルタ（株）における平均勤続年数の男女差は解消されており、誰もが仕事と生活を両立できる環境が整いつつあります。</p>
               <p>また、女性のライフステージ特有の月経前症候群や更年期障害等の疾病について、女性従業員と周囲の同僚・上司がともに正しい知識と対処方法を学ぶ機会をさまざまな場面で提供し、女性従業員が安心・安全に働くことができるよう取り組んでいます。</p>
-              <div style="margin-top:10px;"><a class="wf-btn">取組み詳細はこちら　女性の健康支援</a></div>
+              <div style="margin-top:6px;"><a class="wf-btn">→ 取組み詳細：女性の健康支援</a></div>
 
               <h4 class="wf-card-title has-mark">男女性従業員の育児とキャリアを両立させるための支援</h4>
               <p>コニカミノルタ（株）の育児休職制度は、1992年の導入以来、着実に根づいており、女性従業員の取得率は100％、復職率は95％以上の高水準を維持しています。</p>
@@ -1149,11 +1324,14 @@ body {
 
               <p style="margin-top:14px;">また、性別に関係なく、育児休職から復職した後も、子どもが小学校を卒業するまでの間、「短時間勤務」「在宅勤務」「リモートワーク」など、さまざまな勤務形態を選択することができ、家庭の事情や本人の考えにあわせたキャリア形成を図ることが可能です。さらには、育児期かどうかに関わらず、「フレックスタイム」「時間単位休暇」等の制度を導入しており、柔軟な働き方が選択可能となっています。</p>
 
-              <h4 class="wf-card-title has-mark">コニカミノルタの仕事と出産・育児の両立支援制度（抜粋）</h4>
+              <h4 class="wf-card-title has-mark">次世代育成手当の支給</h4>
               <p>コニカミノルタ（株）では、2012年に「家族手当」「住宅手当」に代わって「次世代育成手当」を創設し、18歳未満の子どもを育てる従業員に対して手当てを支給し、子育て世代の従業員を支援しています。</p>
               <p>また、「カフェテリアプラン制度」にて保育園・託児所等の利用料の一部について補助を受けることが可能です。</p>
               <p>さらに、2008年度からは、従来は本人の病気や怪我のための「ストック休暇（有給の積立式休暇）」<sup>*</sup>の利用範囲を、育児休職や子どもの学級閉鎖にともなう休暇にも拡大しています。</p>
               <p class="wf-note">＊ストック休暇：有効期間内に使い切らなかった年次有給休暇を積み立て、一定の条件について有給で利用することができる休暇制度。（最大40日まで積立が可能）</p>
+
+              <h5 class="wf-h5-title">コニカミノルタの仕事と出産・育児の両立支援制度（抜粋）</h5>
+              <p class="wf-note" style="margin-top:0;">※各種利用条件有り</p>
               <div class="wf-img-ph" style="aspect-ratio: 16 / 5;">
                 <span class="wf-img-ph-label">仕事と出産・育児の両立支援制度（抜粋） 表PH</span>
                 <span class="img-zoom-btn"></span>
@@ -1193,13 +1371,18 @@ body {
               <p>同社では、一人ひとりが仕事を通じて働きがいや生きがいを感じられるよう、入社後3年間にわたり多職種の業務を経験することや、5年後の目標設定を行う長期キャリアビジョンにより、障がいのある方々の職業能力を最大限高めることを意識したキャリア形成を支援しています。</p>
               <p>障がいのある従業員は名刺やコニカミノルタ製品マニュアルなどの印刷、文書の電子化やデータエントリー、事業所内カフェ・ショップでの接客、社内のメール集配、会議室・応接室清掃などの業務のほか、お客様が使用したコニカミノルタ製複合機のクリーニング・整備や他社の経理業務受託など、グループ内の販売会社や他社とコラボレーションする業務にも従事しています。</p>
               <p>グループ従業員への支援業務を行う企業から、コニカミノルタの主要事業に大きく貢献する企業へと進化を遂げ、お客様に対する価値提供を実践し、あわせて従業員のやりがいや成長を加速させ、グループ全体のDEIを進めております。</p>
-              <p>また、コニカミノルタウイズユー株式会社は、もにす認定企業として2023年3月に認定されました。もにす認定（障がい者雇用に関する優良な中小事業主に対する認定制度）は、厚生労働大臣が障がい者雇用の促進や安定に関する取り組みなどが優良な中小企業を認定する制度です。</p>
+              <h4 class="wf-card-title has-mark">もにす認定（障がい者雇用に関する優良な中小事業主に対する認定制度）</h4>
+              <p>コニカミノルタウイズユー株式会社は、もにす認定企業として2023年3月に認定されました。もにす認定は、厚生労働大臣が障がい者雇用の促進や安定に関する取り組みなどが優良な中小企業を認定する制度です。</p>
               <p>2024年には障害者雇用相談援助事業者として認定を受け、今後、障がい者を雇用したいが不安を抱える事業所に対して、支援を行う予定です。</p>
-              <p class="wf-note">障がい者雇用率はESGデータ内の社会データ(Excel) をご参照ください。</p>
-
-              <h5 class="wf-h5-title">主な業務・認定マーク</h5>
-              <div class="wf-img-row">
+              <p class="wf-note">障がい者雇用率はESGデータ内の社会データ（Excel）をご参照ください。</p>
+              <h5 class="wf-h5-title">認定マーク</h5>
+              <div class="wf-img-row" style="grid-template-columns: 220px;">
                 <div class="wf-img-ph"><span class="wf-img-ph-cap">もにす認定マーク</span><span class="img-zoom-btn"></span></div>
+              </div>
+
+              <h4 class="wf-card-title has-mark">主な業務</h4>
+              <p>名刺・パンフレット印刷、事業所内カフェでの接客、コニカミノルタ製複合機のクリーニング・整備などを担当しています。</p>
+              <div class="wf-img-row" style="grid-template-columns: repeat(3, 1fr);">
                 <div class="wf-img-ph"><span class="wf-img-ph-cap">名刺・パンフレット印刷業務</span><span class="img-zoom-btn"></span></div>
                 <div class="wf-img-ph"><span class="wf-img-ph-cap">事業所内カフェ接客業務</span><span class="img-zoom-btn"></span></div>
                 <div class="wf-img-ph"><span class="wf-img-ph-cap">複合機クリーニング・整備</span><span class="img-zoom-btn"></span></div>
@@ -1208,107 +1391,94 @@ body {
             </div>
           </details>
 
-          <!-- アコ：個が輝き、知を結集する組織風土 -->
-          <details class="wf-acc-h3" open>
-            <summary class="wf-acc-h3-summary">個が輝き、知を結集する組織風土</summary>
+          <!-- ============================================================
+               D-2. 個が輝き、知を結集する組織風土（H3）
+               v4.0：アプローチ部分削除（FB#19）、アコを情報ブロックタイトル化（FB#20）
+          ============================================================ -->
+          <h3 class="wf-sub-title" id="culture-shining">個が輝き、知を結集する組織風土</h3>
+
+          <!-- アコ：従業員への学びの場の提供（コニカミノルタ／性的指向／グループ一体の3ブロック） FB#20 -->
+          <details class="wf-acc-h3" id="learning-opportunities" open>
+            <summary class="wf-acc-h3-summary">従業員への学びの場の提供</summary>
             <div class="wf-acc-h3-body">
 
-              <h4 class="wf-card-title has-mark">コニカミノルタのアプローチ</h4>
-
-              <h5 class="wf-h5-title">背景と課題認識</h5>
-              <p>人財の多様性をイノベーションの源泉にしていくために、国籍や人種、性別、年齢、専門性などの多様性を持つ人財を受け入れ、従業員一人ひとりが持つ違いを強みに変え、チームとして力を発揮していくことが重要です。そのためには、従業員の力の発揮を阻害するバイアスを解消し、誰もが率直に対話できる心理的安全性の高い組織風土づくりが必要です。</p>
-
-              <h5 class="wf-h5-title">目指す姿</h5>
-              <p>社会課題を解決するソリューションを創出し続けるために、互いの違いを尊重し、多様な価値観を受け入れることで、従業員の働きがいを向上させます。そして、従業員同士が異なる考えを健全にぶつけ合うことができ、助け合いのなかから誰もがチャレンジできる組織風土の醸成を目指します。</p>
-
-              <h5 class="wf-h5-title">重点施策とKPI</h5>
-              <ul>
-                <li>社会からの要請に応え、ありたい組織風土を実現するため、コニカミノルタ（株）および主要グループ会社での独自のDEI推進計画立案と実行</li>
-                <li>グループ共通のDEI推進を実践するための学びの場の提供／啓発活動の強化</li>
-              </ul>
-
-              <h5 class="wf-h5-title">グローバル従業員意識調査</h5>
-              <p class="wf-note">※以下設問について、0～10段階での回答の平均点<br>公平性：「自身が所属する部門・チームでは、あらゆるバックグラウンドを持つ人々が公平に扱われている」<br>意見の自由：「自身が所属する部門・チームにおいて自身の意見が尊重されている」<br>※FY23～25方針としてFY21調査時点での同業種ベンチマークをベースに目標値を設定</p>
-
-              <h4 class="wf-card-title has-mark">従業員への学びの場の提供</h4>
-              <h5 class="wf-h5-title">コニカミノルタ（株）での取り組み</h5>
+              <h4 class="wf-card-title has-mark">コニカミノルタ（株）での取り組み</h4>
               <p>コニカミノルタ（株）では、2016年度からDEI推進の本質について経営層や従業員の理解促進を、並行して進めてきました。そして、従業員一人ひとりの違いを互いに認め合い、前向きにチャレンジできる組織風土醸成に取り組んできました。</p>
 
-              <h5 class="wf-h5-title">性的指向・性自認の多様性を受け入れる環境整備</h5>
+              <h4 class="wf-card-title has-mark">性的指向・性自認の多様性を受け入れる環境整備</h4>
               <p>コニカミノルタ（株）では、性的指向・性自認の多様性を受け入れる環境整備に取り組んでいます。</p>
               <p>2018年度には、「性的指向や性自認等に関する悩み相談窓口」を設置するとともに、全従業員対象のe-Learningを実施、社内ポータルサイトに掲載しています。また、社内の施設や設備についても、誰もが利用しやすいよう整備を進めています。</p>
 
-              <h5 class="wf-h5-title">コニカミノルタグループ一体となった取り組み</h5>
+              <h4 class="wf-card-title has-mark">コニカミノルタグループ一体となった取り組み</h4>
               <p>2022年度からは、従業員一人ひとりがDEIをより身近に感じ、学び続けることができる新たな DEIトレーニングをスタートしました。</p>
               <p>このトレーニングプログラムは、グループ会社のDEI推進担当者とともに、それぞれの知見や経験を持ち寄り、行動につながるトレーニングに必要なトピックを整理し、体系化して作成しました。コニカミノルタグループで働くうえで不可欠なDEIに関するスキルを効率的に身に付け、自らを高められるようになっています。</p>
               <p>「基礎編」の英語版をコニカミノルタグループ全体に展開、中国やベトナムなどでは、翻訳も進めています。</p>
               <p>また、日本においては独自コンテンツとして、心理的安全性の向上とアンコンシャスバイアス解消のための動画を作製しました。この動画と日本語版のDEIトレーニングプログラム「基礎編」の両方を必須受講で展開し、国内グループ会社の従業員1万人以上が受講しました。現在は、新規入社者を中心に未受講者への受講を進めています。</p>
+            </div>
+          </details>
 
-              <h4 class="wf-card-title has-mark">多様性を歓迎する活動（啓発活動の強化）</h4>
-              <h5 class="wf-h5-title">コニカミノルタグループで一体となった啓発活動</h5>
+          <!-- アコ：多様性を歓迎する活動（啓発活動の強化） -->
+          <details class="wf-acc-h3" id="welcome-diversity" open>
+            <summary class="wf-acc-h3-summary">多様性を歓迎する活動（啓発活動の強化）</summary>
+            <div class="wf-acc-h3-body">
+              <h4 class="wf-card-title has-mark">コニカミノルタグループで一体となった啓発活動</h4>
+
               <p>2017年度から日本国内グループ会社の従業員に向けて、役員やロールモデルへのインタビュー記事、社内のDEI推進好事例等を、社内ポータルサイトを活用して定期的に発信、また、全社プログラムを実施するなど、DEIの理解促進に取り組んできました。</p>
               <p>2021年からは、海外も含めコニカミノルタグループで一体となった活動を推進するため、欧州、米国と日本のDEI推進担当が集まり、グローバルプログラムを企画、年間３回開催しています。また、グローバルプログラムと同時期に日本国内向けプログラムも開催し、より多くの従業員がDEI推進に参画できるよう取り組んでいます。</p>
               <p>３月には、国際女性デーに連動したテーマで、６月はプライド月間に合わせたテーマで開催しています。そして11月は、毎回異なるテーマを設定しています。</p>
               <p class="wf-note">※６月はLGBTQ＋の権利について啓発を促す「プライド月間」として世界的に認知され、各地でさまざまなイベントが行われています。</p>
-              <div style="margin-top:6px;"><a class="wf-btn">国際女性デーに連動したプログラムは、こちら</a></div>
+              <div style="margin-top:6px;"><a class="wf-btn">→ 国際女性デーに連動したプログラム</a></div>
 
-              <h5 class="wf-h5-title">これまでのDEIグローバルプログラム</h5>
+              <h4 class="wf-card-title has-mark">これまでのDEIグローバルプログラム</h4>
               <div class="wf-img-ph" style="aspect-ratio: 16 / 5;">
-                <span class="wf-img-ph-label">DEIグローバルプログラム履歴一覧PH</span>
+                <span class="wf-img-ph-label">DEIグローバルプログラム履歴一覧（表PH）</span>
                 <span class="img-zoom-btn"></span>
               </div>
-              <p class="event-title"><strong>2024年６月／グローバル：PROUD VOICES：How Diverse Thinking Links to Business Success</strong></p>
-              <p>「PROUD VOICES：How Diverse Thinking Links to Business Success」(多様な視点がビジネスを成功へ導く)をテーマに、なぜ、ビジネスにおいて多様な視点が必要なのか、ともに働く私たち一人ひとりにとって、会社や組織にとって大切なことを、ゲストスピーカーの経験を通して学びました。世界17カ国より約270名が参加しました。</p>
-              <p class="event-title"><strong>2024年11月／グローバル：Sustainability/ESG in Action ／日本：仲間との絆で最強のチームをつくる！</strong></p>
-              <p>グローバルでは、「Sustainability/ESG in Action」と題して、CEOのオープニングスピーチで始まる社内外のゲストによるパネルディスカッションを開催。35カ国から約310名が参加、社会にとって、そしてコニカミノルタにとってサステナビリティ経営とESGの重要性を学びました。 また、日本においては「仲間との絆で最強のチームをつくる！」をテーマに、多様な人財がチームとなって力を発揮するために大切なことをゲストスピーカーと執行役員２名による講演とパネルディスカッションを通して学びました。対面とオンラインのハイブリッド開催で約440名が参加しました。また、一人ひとりの違いを活かしたチームづくりを体験するワークショップも開催しました。</p>
-
-              <h4 class="wf-card-title has-mark">各地域でのネットワーク活動</h4>
-              <p>コニカミノルタは、人種、性別、国籍、年齢、障がい、性的指向・性自認、宗教、民族等の従業員一人ひとりの違いを歓迎します。そのために、互いの違いを理解し合う活動を積極的に行っています。</p>
-              <p>例えば、コニカミノルタ（株）では、より職場の実情に沿った多様性推進に取り組む地域別「サポーター」活動や、ムスリムの従業員が中心となり開催した異文化交流会など、従業員一人ひとりが行動を起こすことができるよう支援しています。</p>
-
-              <h5 class="wf-h5-title">LGBTQ+ネットワーク「Vibrant」</h5>
-              <p>「Vibrant」は、2020年10月にイギリスで発足し、「ウェルビーイング」「教育」「ネットワーク」の３つの基本理念のもと、活動を展開している従業員リソースグループです。2021年末に開催したオンラインイベント「Christmas Social」では、LGBTQ+への理解を深め、相互理解の重要性を認識することができ、「安心して働くことができる環境を創出している」というコメントも寄せられました。</p>
-              <p>また、2021年６月のグローバルでのDEIプログラムをきっかけに、他地域にも活動が広がり、欧州との交流を図りながら活動しています。</p>
-
-              <h5 class="wf-h5-title">障がいを取り除くさまざまな活動</h5>
-              <p>イギリスで2023年に発足したニューロダイバーシティに関する従業員リソースグループ「Prism」は、インクルーシブな企業文化の醸成、多様な視点によるイノベーションの推進、従業員の福利厚生とエンゲージメントの向上、人財の獲得と維持の支援を目的としています。Prism立ち上げ時には、「Let's Talk」セッションを開催し、従業員に対するこのネットワークへの認識を高め、対話を促進しました。インクルーシブ採用、意識の向上、パートナーシップのさらなる発展に寄与する活動を行っていきます。</p>
-              <div style="margin-top:6px;"><a class="wf-btn">日本における障がい者雇用は、こちら</a></div>
-
-            </div>
-          </details>
-
-          <!-- アコ：ネットワーク活動、啓発活動 -->
-          <details class="wf-acc-h3" open>
-            <summary class="wf-acc-h3-summary">ネットワーク活動、啓発活動</summary>
-            <div class="wf-acc-h3-body">
-
-              <h4 class="wf-card-title has-mark">互いに助け合うネットワークづくり</h4>
-              <p>コニカミノルタでは、組織を超えたネットワーキングを促進しています。社内育児コミュニティや、キャリアについて考えるワークショップといった有志による取り組みは、女性活躍の促進にもつながっています。</p>
-
-              <h5 class="wf-h5-title">従業員リソースグループ「himawari」</h5>
-              <p>コニカミノルタ（株）では、女性技術者の採用が増え、男性しかいなかった職場に女性が配属されることもあり、環境変化の過程で今現在は「女性の技術者が少ない」という職場も実在しています。そこで、女性技術者が悩みを抱え込まずに、同じ悩みを持つ人、その悩みを乗り越えてきた人、まったく異なる視点から悩みにアプローチできる人など、多様な仲間とつながり、互いに助け合うことができる「リケジョ・ネットワーク」を2020年に立ち上げました。男性もサポートメンバーとして参加しています。活動は、家庭・子育てとの両立、キャリアなどテーマを決めたオンラインワークショップに加え、グループチャット等を利用し、いつでも相談し合える環境をつくっています。</p>
-              <p>現在は、技術系職種から、企画・マーケティング職へ、或いは企画・管理職種からシステム系の職種へといった、職種変更は、当たり前になりつつあります。そのため、2023年度からは、女性技術者に限らない活動に変更し、名称を太陽に向かい1本で凛と立つ向日葵の姿が活動の目的と重なることから、「himawari」に改称しました。また、これまでの経験を活かし、中高生向けキャリア教育支援など、社外活動も開始しました。</p>
+              <h5 class="wf-h5-title">2024年６月／グローバル：PROUD VOICES：How Diverse Thinking Links to Business Success</h5>
+              <p>「PROUD VOICES：How Diverse Thinking Links to Business Success」（多様な視点がビジネスを成功へ導く）をテーマに、なぜ、ビジネスにおいて多様な視点が必要なのか、ともに働く私たち一人ひとりにとって、会社や組織にとって大切なことを、ゲストスピーカーの経験を通して学びました。世界17カ国より約270名が参加しました。</p>
+              <h5 class="wf-h5-title">2024年11月／グローバル：Sustainability/ESG in Action ／日本：仲間との絆で最強のチームをつくる！</h5>
+              <p>グローバルでは、「Sustainability/ESG in Action」と題して、CEOのオープニングスピーチで始まる社内外のゲストによるパネルディスカッションを開催。35カ国から約310名が参加、社会にとって、そしてコニカミノルタにとってサステナビリティ経営とESGの重要性を学びました。また、日本においては「仲間との絆で最強のチームをつくる！」をテーマに、多様な人財がチームとなって力を発揮するために大切なことをゲストスピーカーと執行役員２名による講演とパネルディスカッションを通して学びました。対面とオンラインのハイブリッド開催で約440名が参加しました。また、一人ひとりの違いを活かしたチームづくりを体験するワークショップも開催しました。</p>
 
               <h4 class="wf-card-title has-mark">国際女性デーに連動したプログラムの開催</h4>
               <p>コニカミノルタでは、3月8日の国際女性デーに連動したプログラムを、2018年3月から継続して開催しています。</p>
 
               <h5 class="wf-h5-title">2024年度までの取り組み一覧</h5>
               <div class="wf-img-ph" style="aspect-ratio: 16 / 5;">
-                <span class="wf-img-ph-label">2024年度までの取り組み一覧PH</span>
+                <span class="wf-img-ph-label">2024年度までの取り組み一覧（表PH）</span>
                 <span class="img-zoom-btn"></span>
               </div>
 
               <h5 class="wf-h5-title">2025年3月　ACCELERATE ACTION</h5>
               <p>国際女性デーを祝う５回目のグローバルプログラムは、「キャリアを形成するうえで重要なこと」について、コニカミノルタのグループ会社に所属する異なるキャリアステージにある３名がそれぞれのキャリアを振り返るパネルディスカッションを行い、32カ国より約310名が参加しました。</p>
               <p>また、日本では、ゲストスピーカーによる「女性のエンパワーメント」についての講演と、コニカミノルタで活躍する女性役員と男性リーダーも加えて「楽しみながらチャレンジしよう」をテーマにパネルディスカッションを行い、約210名が参加しました。</p>
+            </div>
+          </details>
 
+          <!-- アコ：各地域でのネットワーク活動 -->
+          <details class="wf-acc-h3" id="regional-networking" open>
+            <summary class="wf-acc-h3-summary">各地域でのネットワーク活動</summary>
+            <div class="wf-acc-h3-body">
+              <p>コニカミノルタは、人種、性別、国籍、年齢、障がい、性的指向・性自認、宗教、民族等の従業員一人ひとりの違いを歓迎します。そのために、互いの違いを理解し合う活動を積極的に行っています。</p>
+              <p>例えば、コニカミノルタ（株）では、より職場の実情に沿った多様性推進に取り組む地域別「サポーター」活動や、ムスリムの従業員が中心となり開催した異文化交流会など、従業員一人ひとりが行動を起こすことができるよう支援しています。</p>
+
+              <h4 class="wf-card-title has-mark">従業員リソースグループ「himawari」</h4>
+              <p>コニカミノルタ（株）では、女性技術者の採用が増え、男性しかいなかった職場に女性が配属されることもあり、環境変化の過程で今現在は「女性の技術者が少ない」という職場も実在しています。そこで、女性技術者が悩みを抱え込まずに、同じ悩みを持つ人、その悩みを乗り越えてきた人、まったく異なる視点から悩みにアプローチできる人など、多様な仲間とつながり、互いに助け合うことができる「リケジョ・ネットワーク」を2020年に立ち上げました。男性もサポートメンバーとして参加しています。活動は、家庭・子育てとの両立、キャリアなどテーマを決めたオンラインワークショップに加え、グループチャット等を利用し、いつでも相談し合える環境をつくっています。</p>
+              <p>現在は、技術系職種から、企画・マーケティング職へ、或いは企画・管理職種からシステム系の職種へといった、職種変更は、当たり前になりつつあります。そのため、2023年度からは、女性技術者に限らない活動に変更し、名称を太陽に向かい1本で凛と立つ向日葵の姿が活動の目的と重なることから、「himawari」に改称しました。また、これまでの経験を活かし、中高生向けキャリア教育支援など、社外活動も開始しました。</p>
+
+              <h4 class="wf-card-title has-mark">LGBTQ+ネットワーク「Vibrant」</h4>
+              <p>「Vibrant」は、2020年10月にイギリスで発足し、「ウェルビーイング」「教育」「ネットワーク」の３つの基本理念のもと、活動を展開している従業員リソースグループです。2021年末に開催したオンラインイベント「Christmas Social」では、LGBTQ+への理解を深め、相互理解の重要性を認識することができ、「安心して働くことができる環境を創出している」というコメントも寄せられました。</p>
+              <p>また、2021年６月のグローバルでのDEIプログラムをきっかけに、他地域にも活動が広がり、欧州との交流を図りながら活動しています。</p>
+
+              <h4 class="wf-card-title has-mark">障がいを取り除くさまざまな活動</h4>
+              <p>イギリスで2023年に発足したニューロダイバーシティに関する従業員リソースグループ「Prism」は、インクルーシブな企業文化の醸成、多様な視点によるイノベーションの推進、従業員の福利厚生とエンゲージメントの向上、人財の獲得と維持の支援を目的としています。Prism立ち上げ時には、「Let's Talk」セッションを開催し、従業員に対するこのネットワークへの認識を高め、対話を促進しました。インクルーシブ採用、意識の向上、パートナーシップのさらなる発展に寄与する活動を行っていきます。</p>
+              <div style="margin-top:6px;"><a class="wf-btn">→ 日本における障がい者雇用</a></div>
             </div>
           </details>
 
           <!-- ============================================================
-               D-2. 女性活躍推進
+               D-3. 女性活躍推進
           ============================================================ -->
-          <h3 class="wf-sub-title">女性活躍推進</h3>
+          <h3 class="wf-sub-title" id="women-empowerment">女性活躍推進</h3>
 
           <!-- アコ：女性のキャリア形成支援 -->
           <details class="wf-acc-h3" open>
@@ -1374,19 +1544,35 @@ body {
                 <li>コニカミノルタテクノプロダクト株式会社</li>
                 <li>コニカミノルタIJプロダクト株式会社</li>
               </ul>
+
+              <!-- FB#22: 表（行動計画概要）とPDFリンクを別ブロックに分離 -->
+              <h5 class="wf-h5-title">コニカミノルタ（株）2024〜2025年度 第5期 行動計画（概要）</h5>
+              <div class="kpi-table-wrap">
+                <table class="kpi-table" style="min-width:auto;">
+                  <tbody>
+                    <tr><th style="text-align:left;">（a）計画期間</th><td style="text-align:left;">2024年4月1日 〜 2026年3月31日</td></tr>
+                    <tr><th style="text-align:left;">（b）数値目標</th><td style="text-align:left;">エグゼンプト（課長級以上）に占める女性割合13％以上／有給休暇取得率75％以上</td></tr>
+                    <tr><th style="text-align:left;">（c）取り組み内容</th><td style="text-align:left;">・エグゼンプト候補者層の選抜育成の実施<br>・若手層の育成強化による早期引き上げ<br>・計画的な有給休暇取得の促進</td></tr>
+                    <tr><th style="text-align:left;">（d）取組実施時期</th><td style="text-align:left;">随時実施</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h5 class="wf-h5-title">関連資料</h5>
               <div style="display:flex; flex-direction:column; gap:6px; margin-top:4px;">
-                <a class="wf-btn">コニカミノルタ（株）2024〜2025年度第5期行動計画</a>
-                <a class="wf-btn">コニカミノルタ（株）における女性の活躍状況</a>
+                <a class="wf-btn">→ コニカミノルタ（株）2024〜2025年度 第5期行動計画（PDF）</a>
+                <a class="wf-btn">→ コニカミノルタ（株）における女性の活躍状況（PDF）</a>
               </div>
 
               <h5 class="wf-h5-title">コニカミノルタ（株）および国内連結子会社における女性管理職比率（各年度末時点）</h5>
               <div class="wf-img-ph" style="aspect-ratio: 16 / 5;">
-                <span class="wf-img-ph-label">女性管理職比率 グラフPH</span>
+                <span class="wf-img-ph-label">女性管理職比率 グラフPH（FY2023：8.8% ／ FY2024：9.3% ／ FY2025：—）</span>
                 <span class="img-zoom-btn"></span>
               </div>
 
               <h4 class="wf-card-title has-mark">社外からの評価</h4>
               <p>コニカミノルタ（株）および日本のグループ会社においては、厚生労働大臣から子育てサポート企業として「くるみん」、女性の活躍推進に関する状況等が優良な企業として「えるぼし」の認定を受けています。</p>
+              <h5 class="wf-h5-title">認定マーク（くるみん／えるぼし）</h5>
               <div class="wf-img-row" style="grid-template-columns: repeat(3, 1fr);">
                 <div class="wf-img-ph"><span class="wf-img-ph-cap">コニカミノルタ（株）認定マーク</span><span class="img-zoom-btn"></span></div>
                 <div class="wf-img-ph"><span class="wf-img-ph-cap">コニカミノルタジャパン（株）認定マーク</span><span class="img-zoom-btn"></span></div>
@@ -1400,13 +1586,24 @@ body {
 
       </div><!-- /wf-anchornav-main -->
 
-      <!-- 右コンパクトアンカーナビ -->
+      <!-- 右コンパクトアンカーナビ（v4.0：H2/H3併載・UNIFIED_RULES v5.0準拠） -->
       <nav class="wf-anchor-nav">
         <div class="wf-anchor-nav-title">目次</div>
         <a class="wf-anchor-nav-item is-current" href="#policy">基本的な考え方</a>
-        <a class="wf-anchor-nav-item" href="#kpi">戦略・目標・実績</a>
+        <a class="wf-anchor-nav-item sub" href="#background-vision">背景と課題認識／目指す姿</a>
+        <a class="wf-anchor-nav-item sub" href="#dei-commitment">コニカミノルタグループ ダイバーシティ経営宣言</a>
+        <a class="wf-anchor-nav-item sub" href="#vision-2030">違いを力に！　目指す姿</a>
         <a class="wf-anchor-nav-item" href="#structure">体制</a>
+        <a class="wf-anchor-nav-item sub" href="#promotion-system">推進体制</a>
+        <a class="wf-anchor-nav-item" href="#strategy">戦略・目標・実績</a>
+        <a class="wf-anchor-nav-item sub" href="#key-measures">重点施策</a>
+        <a class="wf-anchor-nav-item sub" href="#kpi">KPI</a>
+        <a class="wf-anchor-nav-item sub" href="#dei-promotion-plan">事業の成長につながるDEI推進計画</a>
+        <a class="wf-anchor-nav-item sub" href="#fy2024-activities">2024年度の取り組み</a>
         <a class="wf-anchor-nav-item" href="#activities">取り組み</a>
+        <a class="wf-anchor-nav-item sub" href="#diversity-culture">多様な人財が活躍できる風土づくり</a>
+        <a class="wf-anchor-nav-item sub" href="#culture-shining">個が輝き、知を結集する組織風土</a>
+        <a class="wf-anchor-nav-item sub" href="#women-empowerment">女性活躍推進</a>
       </nav>
 
     </div><!-- /wf-layout-with-anchornav -->
