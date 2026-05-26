@@ -1190,7 +1190,64 @@ body {
    PAGE-LOCAL: サステナビリティレポート 用追加スタイル
 ============================================================ */
 
-/* 情報開示体系図（2軸ポジショニングチャート） */
+/* ============================================================
+   テキスト＋画像 2カラム（catalog 5-1／5-2） — v1.5
+   .img-text-row：画像左＋テキスト右（標準 40:60）
+   .img-text-row.is-reverse：テキスト左＋画像右（反転 60:40）
+============================================================ */
+.img-text-row {
+  display: grid;
+  grid-template-columns: 40% 1fr;
+  gap: 24px;
+  align-items: start;
+  margin: 14px 0 20px;
+}
+.img-text-row.is-reverse {
+  grid-template-columns: 1fr 40%;
+}
+.img-text-row.is-50-50 { grid-template-columns: 1fr 1fr; }
+.img-text-row .img-text-img { display: flex; flex-direction: column; gap: 8px; }
+.img-text-row .img-text-img .wf-img-ph { margin: 0; }
+.img-text-row .img-cap {
+  font-size: 11px;
+  color: var(--c-text-s);
+  line-height: 1.7;
+  border-top: 1px dashed var(--c-border);
+  padding-top: 10px;
+  margin-top: 4px;
+}
+.img-text-row .img-cap-row {
+  display: flex; align-items: flex-start; gap: 8px;
+  margin-bottom: 6px;
+  line-height: 1.6;
+}
+.img-text-row .img-cap-row:last-child { margin-bottom: 0; }
+.img-text-row .img-cap-dot {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 12px; height: 12px;
+  background: var(--c-text-h);
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+.img-text-row .img-cap-dot.muted { background: var(--c-text-xs); }
+.img-text-row .img-cap-dot.current { background: var(--c-text-h); box-shadow: 0 0 0 3px rgba(0,0,0,0.10); }
+.img-text-row .img-text-body p {
+  font-size: 13px;
+  color: var(--c-text);
+  line-height: 1.95;
+  margin-bottom: 12px;
+}
+.img-text-row .img-text-body p:last-child { margin-bottom: 0; }
+.img-text-row .img-text-body ul {
+  margin: 6px 0 12px;
+  padding-left: 18px;
+  font-size: 13px; color: var(--c-text); line-height: 1.95;
+}
+.img-text-row .img-text-body ul li { margin-bottom: 4px; }
+.img-text-row .img-text-body ul li strong { color: var(--c-text-h); }
+
+/* 情報開示体系図（2軸ポジショニングチャート） — 旧スタイルは catalog 移行に伴い段階的廃止予定 */
 .positioning-chart {
   border: 1px solid var(--c-border);
   background: var(--c-white);
@@ -1864,43 +1921,27 @@ body {
         本サイトは、サステナビリティに関する詳細な報告を一本化した中核媒体です。関連性の高い媒体（統合報告書、ESGデータ、サステナビリティレポート（PDF）など）と連携し、財務／非財務の両面から情報を体系的に開示しています。
       </p>
 
-      <!-- 情報開示体系図（2軸ポジショニングチャート） -->
-      <div class="positioning-chart">
-        <div class="pc-title">情報開示体系図 — 本サイトの位置づけ</div>
-        <div class="pc-body">
-          <div class="pc-intro">
-            本サイトの位置づけを、関連性の高い媒体との関係で以下の2軸で整理しています。
-            <ul>
-              <li><strong>縦軸：</strong>非財務情報（上）↔ 財務情報（下）</li>
-              <li><strong>横軸：</strong>定量情報（左）↔ 定性情報（右）</li>
-            </ul>
-            <p style="margin-top:8px;">本サイトはESG領域の中長期視点での取り組み・実績を定量・定性の両面から包括的に開示する中核媒体です。図中の各媒体は、ラベルをクリックすると該当ダウンロードまたは参照先に遷移します。</p>
-          </div>
-          <div class="pc-chart">
-            <span class="pc-axis-y-top">非財務情報</span>
-            <span class="pc-axis-y-bottom">財務情報</span>
-            <span class="pc-axis-x-left">定量情報</span>
-            <span class="pc-axis-x-right">定性情報</span>
-            <div class="pc-plot-area">
-              <!-- 本サイト（中心・強調） -->
-              <div class="pc-item is-current" style="top:28%; left:55%;">本サイト<br>（サステナビリティ<br>ウェブサイト）</div>
-              <!-- サステナビリティサイトアーカイブ（本サイトのPDF版） — 0525 FB#1 命名統一 -->
-              <div class="pc-item has-dl" style="top:48%; left:62%;">サステナビリティ<br>サイトアーカイブ <span class="pc-item-dl pdf">PDF</span></div>
-              <!-- ESGデータ -->
-              <div class="pc-item has-dl" style="top:22%; left:22%;">ESGデータ <span class="pc-item-dl data">XLSX</span></div>
-              <!-- 統合報告書 -->
-              <div class="pc-item has-dl" style="top:58%; left:80%;">統合報告書 <span class="pc-item-dl pdf">PDF</span></div>
-              <!-- 有価証券報告書（参照） -->
-              <div class="pc-item muted" style="top:80%; left:28%;">有価証券<br>報告書</div>
-              <!-- コーポレートガバナンス報告書（参照） -->
-              <div class="pc-item muted" style="top:78%; left:82%;">コーポレート<br>ガバナンス<br>報告書</div>
-            </div>
-          </div>
+      <!-- 情報開示体系図 — 本サイトの位置づけ（H3見出し＋catalog 5-2 モジュール：テキスト左・画像右） -->
+      <h3 class="wf-sub-title" id="info-disclosure-chart" style="scroll-margin-top:80px;">情報開示体系図 — 本サイトの位置づけ</h3>
+      <div class="img-text-row is-reverse">
+        <div class="img-text-body">
+          <p>本サイトの位置づけを、関連性の高い媒体との関係で以下の2軸で整理しています。</p>
+          <ul>
+            <li><strong>縦軸：</strong>非財務情報（上）↔ 財務情報（下）</li>
+            <li><strong>横軸：</strong>定量情報（左）↔ 定性情報（右）</li>
+          </ul>
+          <p>本サイトはESG領域の中長期視点での取り組み・実績を定量・定性の両面から包括的に開示する中核媒体です。図中の各媒体は、ラベルをクリックすると該当ダウンロードまたは参照先に遷移します。</p>
         </div>
-        <div class="pc-legend">
-          <div class="pc-legend-item"><div class="pc-legend-dot current"></div> 本サイト（中核媒体）</div>
-          <div class="pc-legend-item"><div class="pc-legend-dot"></div> 本サイトと関連性の高い媒体（PDF／データをダウンロード可）</div>
-          <div class="pc-legend-item"><div class="pc-legend-dot muted"></div> 関連する参照媒体</div>
+        <div class="img-text-img">
+          <div class="wf-img-ph" style="aspect-ratio: 4 / 3;">
+            <span class="wf-img-ph-label">情報開示体系図（2軸ポジショニング図）PH<br>本サイト／サステナビリティサイトアーカイブ／ESGデータ／統合報告書／有価証券報告書／コーポレートガバナンス報告書 を非財務⇔財務×定量⇔定性で配置</span>
+            <span class="img-zoom-btn"></span>
+          </div>
+          <div class="img-cap">
+            <div class="img-cap-row"><span class="img-cap-dot current"></span><span>本サイト（中核媒体）</span></div>
+            <div class="img-cap-row"><span class="img-cap-dot"></span><span>本サイトと関連性の高い媒体（PDF／データをダウンロード可）</span></div>
+            <div class="img-cap-row"><span class="img-cap-dot muted"></span><span>関連する参照媒体</span></div>
+          </div>
         </div>
       </div>
 
