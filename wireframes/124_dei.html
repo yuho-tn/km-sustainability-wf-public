@@ -114,6 +114,35 @@ body {
 .wf-link { font-size: 12px; color: var(--c-text-s); display: inline-flex; align-items: center; gap: 4px; cursor: default; }
 .wf-link::before { content: '→ '; font-size: 11px; }
 
+/* テキストリンク（v4.3：UNIFIED_RULES v5.1 §4-2b 準拠 — 131 と同型） */
+.text-link-row { display: block; margin: 6px 0 18px; }
+.text-link {
+  display: inline;
+  font-size: 13px;
+  color: var(--c-text-h);
+  font-weight: 700;
+  cursor: default;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.text-link::before {
+  content: '→ ';
+  display: inline-block;
+  margin-right: 2px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--c-text-h);
+  text-decoration: none;
+}
+.text-link.is-ext::after {
+  content: '↗';
+  display: inline-block;
+  font-size: 11px;
+  margin-left: 6px;
+  color: var(--c-text-s);
+  text-decoration: none;
+}
+
 /* L3ページタイトル */
 .wf-page-title-area {
   background: var(--c-white);
@@ -931,10 +960,6 @@ body {
             一人ひとりが、互いの個性を歓迎し、理解し、認め合い、そしてともに挑戦を楽しむ。<br>
             「知の結集」につながる創造性・問題解決・イノベーションを刺激する「個の輝き」を実現するコニカミノルタへ
           </p>
-          <p class="wf-section-desc">
-            <a class="wf-link" href="#dei-commitment-doc" style="text-decoration:underline;">→ コニカミノルタグループ ダイバーシティ経営宣言</a>
-          </p>
-
           <!-- policy-statement アコ：ダイバーシティ経営宣言（H3見出しなし／アコのみ） -->
           <details class="policy-statement" id="dei-commitment-doc" open>
             <summary class="policy-statement-summary">
@@ -983,8 +1008,12 @@ body {
             私たちは、Diversity【個の輝き】、Equity【公平な機会】、Inclusion【知の結集】を推進することで、あらゆるステークホルダーの多様性を認め共感することから共創へとつなぎ、顧客企業の成長に寄与する新しい価値を創造し、提供し続けます。そして、顧客企業とともに、誰もが生きがいや幸せを追求でき、さらには豊かで持続可能な社会の実現を目指します。このダイバーシティ経営宣言に基づき、DEIの観点からコニカミノルタが目指す姿を明確化し、推進体制を整えて、計画的に施策を実行していきます。
           </p>
 
-          <!-- 「違いを力に！」見出し（原稿 T3-R9 末尾の見出し相当・H4適用／本表は戦略・目標・実績 H2 直下に配置） -->
+          <!-- 「違いを力に！」見出し（原稿 T3-R9 末尾の見出し相当・H4適用）＋原稿の図 -->
           <h4 class="wf-card-title has-mark" id="vision-2030" style="margin-top:18px;">違いを力に！　経営ビジョンの実現に向けて目指す姿</h4>
+          <div class="wf-img-ph" style="aspect-ratio: 16 / 6;">
+            <span class="wf-img-ph-label">違いを力に！　経営ビジョンの実現に向けて目指す姿 図PH</span>
+            <span class="img-zoom-btn"></span>
+          </div>
         </section>
 
         <!-- ============================================================
@@ -1301,7 +1330,7 @@ body {
 
               <p>コニカミノルタ（株）の仕事と生活の両立支援は、女性従業員の出産・育児を理由とした離職を防止するために1990年代から整備を始めました。現在では、男性従業員の育児参画促進や仕事と介護の両立支援も充実させていくとともに、従業員一人ひとりの異なる状況により柔軟に対応ができるよう制度改定や環境づくりに取り組んでいます。その結果、コニカミノルタ（株）における平均勤続年数の男女差は解消されており、誰もが仕事と生活を両立できる環境が整いつつあります。</p>
               <p>また、女性のライフステージ特有の月経前症候群や更年期障害等の疾病について、女性従業員と周囲の同僚・上司がともに正しい知識と対処方法を学ぶ機会をさまざまな場面で提供し、女性従業員が安心・安全に働くことができるよう取り組んでいます。</p>
-              <div style="margin-top:6px;"><a class="wf-btn">→ 取組み詳細：女性の健康支援</a></div>
+              <p class="text-link-row"><a class="text-link">取組み詳細：女性の健康支援</a></p>
 
               <h4 class="wf-card-title has-mark">男女性従業員の育児とキャリアを両立させるための支援</h4>
               <p>コニカミノルタ（株）の育児休職制度は、1992年の導入以来、着実に根づいており、女性従業員の取得率は100％、復職率は95％以上の高水準を維持しています。</p>
@@ -1316,7 +1345,7 @@ body {
                 <span class="img-zoom-btn"></span>
               </div>
               <p class="wf-note">※対象はコニカミノルタ（株）正規従業員<br>※育児休職取得率の算定方法：育休取得人数(前年度からの継続含む)÷配偶者が出産した人数</p>
-              <div style="margin-top:6px;"><a class="wf-btn">データ詳細はESGデータ内の社会データ（Excel）</a></div>
+              <p class="text-link-row"><a class="text-link">データ詳細はESGデータ内の社会データ（Excel）</a></p>
 
               <p style="margin-top:14px;">また、性別に関係なく、育児休職から復職した後も、子どもが小学校を卒業するまでの間、「短時間勤務」「在宅勤務」「リモートワーク」など、さまざまな勤務形態を選択することができ、家庭の事情や本人の考えにあわせたキャリア形成を図ることが可能です。さらには、育児期かどうかに関わらず、「フレックスタイム」「時間単位休暇」等の制度を導入しており、柔軟な働き方が選択可能となっています。</p>
 
@@ -1423,7 +1452,7 @@ body {
               <p>2021年からは、海外も含めコニカミノルタグループで一体となった活動を推進するため、欧州、米国と日本のDEI推進担当が集まり、グローバルプログラムを企画、年間３回開催しています。また、グローバルプログラムと同時期に日本国内向けプログラムも開催し、より多くの従業員がDEI推進に参画できるよう取り組んでいます。</p>
               <p>３月には、国際女性デーに連動したテーマで、６月はプライド月間に合わせたテーマで開催しています。そして11月は、毎回異なるテーマを設定しています。</p>
               <p class="wf-note">※６月はLGBTQ＋の権利について啓発を促す「プライド月間」として世界的に認知され、各地でさまざまなイベントが行われています。</p>
-              <div style="margin-top:6px;"><a class="wf-btn">→ 国際女性デーに連動したプログラム</a></div>
+              <p class="text-link-row"><a class="text-link">国際女性デーに連動したプログラム</a></p>
 
               <h4 class="wf-card-title has-mark">これまでのDEIグローバルプログラム</h4>
               <div class="wf-img-ph" style="aspect-ratio: 16 / 5;">
@@ -1451,7 +1480,7 @@ body {
 
               <h4 class="wf-card-title has-mark">障がいを取り除くさまざまな活動</h4>
               <p>イギリスで2023年に発足したニューロダイバーシティに関する従業員リソースグループ「Prism」は、インクルーシブな企業文化の醸成、多様な視点によるイノベーションの推進、従業員の福利厚生とエンゲージメントの向上、人財の獲得と維持の支援を目的としています。Prism立ち上げ時には、「Let's Talk」セッションを開催し、従業員に対するこのネットワークへの認識を高め、対話を促進しました。インクルーシブ採用、意識の向上、パートナーシップのさらなる発展に寄与する活動を行っていきます。</p>
-              <div style="margin-top:6px;"><a class="wf-btn">→ 日本における障がい者雇用</a></div>
+              <p class="text-link-row"><a class="text-link">日本における障がい者雇用</a></p>
             </div>
           </details>
 
@@ -1568,10 +1597,8 @@ body {
               </div>
 
               <h5 class="wf-h5-title">関連資料</h5>
-              <div style="display:flex; flex-direction:column; gap:6px; margin-top:4px;">
-                <a class="wf-btn">→ コニカミノルタ（株）2024〜2025年度 第5期行動計画（PDF）</a>
-                <a class="wf-btn">→ コニカミノルタ（株）における女性の活躍状況（PDF）</a>
-              </div>
+              <p class="text-link-row"><a class="text-link">コニカミノルタ（株）2024〜2025年度 第5期行動計画（PDF）</a></p>
+              <p class="text-link-row"><a class="text-link">コニカミノルタ（株）における女性の活躍状況（PDF）</a></p>
 
               <h5 class="wf-h5-title">コニカミノルタ（株）および国内連結子会社における女性管理職比率（各年度末時点）</h5>
               <div class="wf-img-ph" style="aspect-ratio: 16 / 5;">
