@@ -226,8 +226,8 @@ body {
 .wf-btn-page:hover { background: var(--c-bg-sub); border-color: var(--c-text-h); }
 
 /* テキストリンク（v3.0：UNIFIED_RULES v5.1 §4-2b 準拠 — 「→ リンクテキスト」形式に統一） */
-.text-link-row { display: block; margin: 6px 0 18px; }
-.text-link {
+.wf-text-link-row { display: block; margin: 6px 0 18px; }
+.wf-text-link {
   display: inline;
   font-size: 13px;
   color: var(--c-text-h);
@@ -236,7 +236,7 @@ body {
   text-decoration: underline;
   text-underline-offset: 4px;
 }
-.text-link::before {
+.wf-text-link::before {
   content: '→ ';
   display: inline-block;
   margin-right: 2px;
@@ -245,7 +245,7 @@ body {
   color: var(--c-text-h);
   text-decoration: none;
 }
-.text-link.is-ext::after {
+.wf-text-link.is-ext::after {
   content: '↗';
   display: inline-block;
   font-size: 11px;
@@ -398,19 +398,19 @@ body {
 }
 
 /* 戦略マップ統合ブロック（v3.0：0525 桐原FB#6 — 説明テキスト＋PDFリンクを同一情報ブロックに） */
-.doc-link-block {
+.wf-link-block {
   border: 1px solid var(--c-border);
   background: var(--c-white);
   padding: 18px 22px 20px;
   margin: 14px 0 22px;
 }
-.doc-link-block-title {
+.wf-link-block-title {
   font-size: 14px; font-weight: 700; color: var(--c-text-h);
   margin-bottom: 8px;
   line-height: 1.5;
   display: flex; align-items: center; gap: 8px;
 }
-.doc-link-block-title .doc-type-badge {
+.wf-link-block-title .doc-type-badge {
   display: inline-flex; align-items: center; justify-content: center;
   font-size: 9px; font-weight: 700;
   color: #fff; background: var(--c-text-h);
@@ -418,11 +418,11 @@ body {
   letter-spacing: 0.08em;
   white-space: nowrap;
 }
-.doc-link-block-desc {
+.wf-link-block-desc {
   font-size: 12px; color: var(--c-text); line-height: 1.85;
   margin-bottom: 12px;
 }
-.doc-link-block-note {
+.wf-link-block-note {
   font-size: 10px; color: var(--c-text-xs); line-height: 1.7;
   margin-top: 6px;
 }
@@ -662,12 +662,12 @@ body {
   display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px;
   margin-top: 14px;
 }
-.activity-card {
+.wf-activity-card {
   background: var(--c-white);
   border: 1px solid var(--c-border);
   display: flex; flex-direction: column;
 }
-.activity-card-img {
+.wf-activity-card-img {
   aspect-ratio: 16 / 9;
   background: var(--c-ph);
   border-bottom: 1px solid var(--c-border);
@@ -675,20 +675,20 @@ body {
   display: flex; align-items: center; justify-content: center;
   font-size: 10px; color: var(--c-text-xs); letter-spacing: 0.05em;
 }
-.activity-card-img::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, transparent 0 10px, rgba(0,0,0,0.04) 10px 11px); }
-.activity-card-cat {
+.wf-activity-card-img::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, transparent 0 10px, rgba(0,0,0,0.04) 10px 11px); }
+.wf-activity-card-cat {
   position: absolute; top: 10px; left: 10px; z-index: 2;
   background: var(--c-text-h); color: #fff;
   font-size: 10px; font-weight: 700;
   padding: 3px 10px; letter-spacing: 0.05em;
 }
-.activity-card-img-label { position: relative; z-index: 1; background: rgba(255,255,255,0.85); padding: 3px 10px; }
-.activity-card-body {
+.wf-activity-card-img-label { position: relative; z-index: 1; background: rgba(255,255,255,0.85); padding: 3px 10px; }
+.wf-activity-card-body {
   padding: 16px 20px 20px;
   display: flex; flex-direction: column; gap: 10px;
   flex: 1;
 }
-.activity-card-title {
+.wf-activity-card-title {
   font-size: 14px; font-weight: 700; color: var(--c-text-h);
   line-height: 1.5; padding-bottom: 8px;
   border-bottom: 1px solid var(--c-border-s);
@@ -702,11 +702,11 @@ body {
   border-radius: 50%; font-size: 13px; font-weight: 700;
   flex-shrink: 0;
 }
-.activity-card-summary {
+.wf-activity-card-summary {
   font-size: 11px; color: var(--c-text); line-height: 1.85;
   flex: 1;
 }
-.activity-card-meta {
+.wf-activity-card-meta {
   font-size: 10px; color: var(--c-text-s);
   letter-spacing: 0.05em;
   border-top: 1px dashed var(--c-border);
@@ -892,7 +892,7 @@ body {
     <span class="meta-badge">WF v3.0</span>
     <span class="meta-badge">#131</span>
     <span class="meta-badge">L3</span>
-    <span class="meta-badge" style="background:#7a4a00; color:#fff;">v3.0（原稿26S220_0526完全準拠＋0525 FB反映）：健康宣言policy-statement化・A移動／戦略マップdoc-link-block統合／取り組み4テーマ順入替＋H4見出し化／外部評価E新設／右ナビH2H3併載</span>
+    <span class="meta-badge" style="background:#7a4a00; color:#fff;">v3.0（原稿26S220_0526完全準拠＋0525 FB反映）：健康宣言policy-statement化・A移動／戦略マップwf-link-block統合／取り組み4テーマ順入替＋H4見出し化／外部評価E新設／右ナビH2H3併載</span>
   </div>
   <div style="font-size:10px; color:#666;">2026.05 / v2.5→v3.0：原稿準拠全面再構成</div>
 </div>
@@ -1037,7 +1037,7 @@ body {
 
         <!-- ============================================================
              B. 戦略・目標・実績
-             v3.0：原稿準拠（数値最新化）／ FB#6 — 戦略マップ説明＋PDFを doc-link-block に統合 ／ FB#2 — 表タイトル明記
+             v3.0：原稿準拠（数値最新化）／ FB#6 — 戦略マップ説明＋PDFを wf-link-block に統合 ／ FB#2 — 表タイトル明記
         ============================================================ -->
         <section class="wf-section bg-sub" id="strategy">
           <span class="wf-section-marker">B</span>
@@ -1051,12 +1051,12 @@ body {
           </p>
 
           <!-- v3.0：0525 桐原FB#6 — 戦略マップ説明＋PDFリンクを同一情報ブロック化 -->
-          <div class="doc-link-block">
-            <div class="doc-link-block-title">
+          <div class="wf-link-block">
+            <div class="wf-link-block-title">
               <span class="doc-type-badge">PDF</span>
               健康投資管理会計の戦略マップ
             </div>
-            <div class="doc-link-block-desc">
+            <div class="wf-link-block-desc">
               当社が実施している各種健康増進策（健康投資）が、従業員の健康度や生産性の向上にどのように影響し、経営課題の解決につながるかを体系的に整理した戦略マップです。経済産業省フォーマット（健康投資管理会計ガイドライン）に基づく図表のため、PDFにてご参照ください。
             </div>
             <a class="wf-btn-page" target="_blank" href="https://www.konicaminolta.jp/about/csr/social/human-capital/pdf/health-improvement_strategy-map.pdf">健康投資管理会計の戦略マップ（PDF）</a>
@@ -1184,8 +1184,8 @@ body {
           </p>
 
           <!-- v3.0：原稿準拠 — コラボヘルス研究会代表挨拶リンク（完全な外部サイト → ↗別タブアイコン） -->
-          <div class="text-link-row">
-            <a class="text-link is-ext" href="https://www.collabo-health.jp/about-us/message" target="_blank">コラボヘルス研究会 代表挨拶</a>
+          <div class="wf-text-link-row">
+            <a class="wf-text-link is-ext" href="https://www.collabo-health.jp/about-us/message" target="_blank">コラボヘルス研究会 代表挨拶</a>
           </div>
 
           <h3 class="wf-sub-title" id="collabo-health">「健康経営」推進に向けた組織（コラボヘルス）体制</h3>
@@ -1420,8 +1420,8 @@ body {
 
               <p>さらに、受動喫煙対策として、過去、構内喫煙所の段階的な削減と喫煙所の屋外化、構内一日禁煙デーなどを実施するとともに、喫煙者には禁煙サポートプログラムへの参加を推奨してきましたが、2020年4月からは、喫煙に対する法規制強化を踏まえて、受動喫煙の防止と喫煙率のさらなる低下を目的に、労働組合と密に連携を取りつつ国内グループ会社全体で「構内・所定就業時間内全面禁煙化」に踏み切りました。これらの対策が奏功し、喫煙率は年々低下しています。</p>
               <p>データの詳細はESGデータ内の社会データ（Excel）をご参照ください。</p>
-              <div class="text-link-row">
-                <a class="text-link">ESGデータ ＞ 社会データ</a>
+              <div class="wf-text-link-row">
+                <a class="wf-text-link">ESGデータ ＞ 社会データ</a>
               </div>
 
               <!-- v3.0：FB#12 — 健康問題による労働機能障害が中程度以上の従業員割合 -->
@@ -1669,7 +1669,7 @@ body {
       </div>
       <div class="ann-row">
         <span class="ann-row-label">#6（B→A）桐原</span>
-        「戦略マップPDFと上部テキストを同一情報ブロック化」→ <b>.doc-link-block 新規モジュール</b>を策定。「PDF」バッジ＋タイトル＋説明文＋ .wf-btn-page で1ブロックに統合。
+        「戦略マップPDFと上部テキストを同一情報ブロック化」→ <b>.wf-link-block 新規モジュール</b>を策定。「PDF」バッジ＋タイトル＋説明文＋ .wf-btn-page で1ブロックに統合。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">#11・#12（B→A）桐原</span>
@@ -1689,7 +1689,7 @@ body {
       </div>
       <div class="ann-row">
         <span class="ann-row-label">テキストリンク統一</span>
-        UNIFIED_RULES v5.1 §4-2b 準拠：<code>.text-link</code>を新規追加し「→ リンクテキスト」形式に統一。完全外部サイトは<code>.is-ext</code>で「↗」付与（コラボヘルス研究会代表挨拶 ↗）。
+        UNIFIED_RULES v5.1 §4-2b 準拠：<code>.wf-text-link</code>を新規追加し「→ リンクテキスト」形式に統一。完全外部サイトは<code>.is-ext</code>で「↗」付与（コラボヘルス研究会代表挨拶 ↗）。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">継続課題（B保留）</span>

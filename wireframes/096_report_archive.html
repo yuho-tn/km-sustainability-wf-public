@@ -496,7 +496,7 @@ body {
   margin-top: 20px;
 }
 /* テキストリンク */
-.wf-link {
+.wf-text-link {
   font-size: 12px;
   color: var(--c-text-s);
   display: inline-flex;
@@ -505,9 +505,9 @@ body {
   cursor: default;
   text-decoration: none;
 }
-.wf-link::before { content: '→ '; font-size: 11px; }
+.wf-text-link::before { content: '→ '; font-size: 11px; }
 /* 「一覧へ」系リンク（右寄せ配置） */
-.wf-link-more {
+.wf-text-link-more {
   font-size: 12px;
   color: var(--c-text-s);
   display: inline-flex;
@@ -515,7 +515,7 @@ body {
   gap: 4px;
   cursor: default;
 }
-.wf-link-more::after { content: ' →'; font-size: 11px; }
+.wf-text-link-more::after { content: ' →'; font-size: 11px; }
 
 /* ============================================================
    LABEL / BADGE
@@ -1397,14 +1397,14 @@ body {
 .pc-item-dl.data,
 .pc-item-dl.web { background: #555; }
 /* リンクボタン（共通モジュール 7-10） — タイトル＋›矢印の独立ボタン
-   v1.4：説明文（.link-btn-desc）は使用しないルールに統一。リンク先名のみで遷移先を伝える */
-.link-btn-grid {
+   v1.4：説明文（.wf-btn-desc）は使用しないルールに統一。リンク先名のみで遷移先を伝える */
+.wf-btn-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
 }
-.link-btn-grid.col-3 { grid-template-columns: repeat(3, 1fr); }
-.link-btn {
+.wf-btn-grid.col-3 { grid-template-columns: repeat(3, 1fr); }
+.wf-btn {
   display: grid;
   grid-template-columns: 1fr 24px;
   align-items: center;
@@ -1414,14 +1414,14 @@ body {
   border: 1px solid var(--c-border);
   cursor: default;
 }
-.link-btn.is-primary { border: 2px solid var(--c-text-h); }
-.link-btn.is-full { grid-column: 1 / -1; }
-.link-btn:hover {
+.wf-btn.is-primary { border: 2px solid var(--c-text-h); }
+.wf-btn.is-full { grid-column: 1 / -1; }
+.wf-btn:hover {
   border-color: var(--c-text-h);
   background: #FAFAFA;
 }
-.link-btn-body { min-width: 0; }
-.link-btn-title {
+.wf-btn-body { min-width: 0; }
+.wf-btn-title {
   font-size: 14px;
   font-weight: 700;
   color: var(--c-text-h);
@@ -1433,24 +1433,24 @@ body {
   gap: 8px;
   flex-wrap: wrap;
 }
-.link-btn-desc {
+.wf-btn-desc {
   font-size: 11px;
   color: var(--c-text-s);
   line-height: 1.6;
 }
-.link-btn-meta {
+.wf-btn-meta {
   font-size: 11px;
   color: var(--c-text-xs);
   margin-top: 6px;
   line-height: 1.5;
 }
-.link-btn-arrow {
+.wf-btn-arrow {
   font-size: 14px;
   color: var(--c-text-s);
   text-align: right;
   line-height: 1;
 }
-.link-btn:hover .link-btn-arrow { color: var(--c-text-h); }
+.wf-btn:hover .wf-btn-arrow { color: var(--c-text-h); }
 
 /* ============================================================
    リンク元表示ルール v5.1（0525 FB対応）
@@ -1485,7 +1485,7 @@ body {
 .link-ext-icon::before { content: '↗'; }
 
 /* リンク先URL注記（テキストリンクの下に小さく表示） */
-.link-btn-url {
+.wf-btn-url {
   font-size: 10px;
   color: var(--c-text-xs);
   margin-top: 4px;
@@ -1495,9 +1495,9 @@ body {
 }
 
 /* インラインリンク：コーポレートサイトバージョン
-   .wf-link.is-corp → 「→ リンク名」の後ろにコーポレートサイトバッジ */
-.wf-link.is-corp::after,
-.wf-link.is-ext::after {
+   .wf-text-link.is-corp → 「→ リンク名」の後ろにコーポレートサイトバッジ */
+.wf-text-link.is-corp::after,
+.wf-text-link.is-ext::after {
   display: inline-block;
   font-size: 10px;
   font-weight: 600;
@@ -1507,13 +1507,13 @@ body {
   white-space: nowrap;
   line-height: 1.4;
 }
-.wf-link.is-corp::after {
+.wf-text-link.is-corp::after {
   content: 'コーポレートサイト';
   color: var(--c-text-s);
   background: var(--c-bg-sub);
   border: 1px solid var(--c-border);
 }
-.wf-link.is-ext::after {
+.wf-text-link.is-ext::after {
   content: '↗';
   color: var(--c-text-s);
   padding: 0;
@@ -1523,7 +1523,7 @@ body {
 }
 
 /* スタンドアロン →リンク（汎用テキストリンク行） */
-.wf-link-row {
+.wf-text-link-row {
   display: block;
   margin-top: 8px;
 }
@@ -1814,24 +1814,24 @@ body {
   color: var(--c-text-h);
   font-size: 13px;
 }
-.backnumber-links {
+.wf-text-links {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
-.backnumber-link {
+.wf-text-link {
   font-size: 12px;
   color: var(--c-text);
   display: inline-flex;
   align-items: center;
   gap: 6px;
 }
-.backnumber-link::before {
+.wf-text-link::before {
   content: '>';
   font-size: 10px;
   color: var(--c-text-xs);
 }
-.backnumber-link .file-size {
+.wf-text-link .file-size {
   font-size: 10px;
   color: var(--c-text-xs);
 }
@@ -1891,11 +1891,11 @@ body {
   line-height: 1.8;
   margin-top: 12px;
 }
-.km-bullet-note .wf-link {
+.km-bullet-note .wf-text-link {
   display: inline;
   text-decoration: underline;
 }
-.km-bullet-note .wf-link::before { content: ''; }
+.km-bullet-note .wf-text-link::before { content: ''; }
 
 </style>
 </head>
@@ -1969,24 +1969,24 @@ body {
 
       <!-- 0525 FB#1/#2：3媒体（サステナビリティサイトアーカイブ・統合報告書・ESGデータ）を3カラム横並び。
            v5.1 リンク元表示ルールに従い、説明文は不要・タイトル＋遷移先識別のみで構成 -->
-      <div class="link-btn-grid col-3" style="margin-top:20px;">
-        <div class="link-btn">
-          <div class="link-btn-body">
-            <div class="link-btn-title">サステナビリティサイトアーカイブ</div>
+      <div class="wf-btn-grid col-3" style="margin-top:20px;">
+        <div class="wf-btn">
+          <div class="wf-btn-body">
+            <div class="wf-btn-title">サステナビリティサイトアーカイブ</div>
           </div>
-          <span class="link-btn-arrow">›</span>
+          <span class="wf-btn-arrow">›</span>
         </div>
-        <div class="link-btn">
-          <div class="link-btn-body">
-            <div class="link-btn-title">統合報告書</div>
+        <div class="wf-btn">
+          <div class="wf-btn-body">
+            <div class="wf-btn-title">統合報告書</div>
           </div>
-          <span class="link-btn-arrow">›</span>
+          <span class="wf-btn-arrow">›</span>
         </div>
-        <div class="link-btn">
-          <div class="link-btn-body">
-            <div class="link-btn-title">ESGデータ</div>
+        <div class="wf-btn">
+          <div class="wf-btn-body">
+            <div class="wf-btn-title">ESGデータ</div>
           </div>
-          <span class="link-btn-arrow">›</span>
+          <span class="wf-btn-arrow">›</span>
         </div>
       </div>
 
@@ -2041,28 +2041,28 @@ body {
               <p class="km-bullet-note" style="margin-bottom:8px;">
                 GRIスタンダード、国連グローバル・コンパクト、ISO26000、SASBスタンダードの対照表については、以下のページをご参照ください。
               </p>
-              <span class="wf-link wf-link-row">ガイドライン対照表</span>
+              <span class="wf-text-link wf-text-link-row">ガイドライン対照表</span>
             </td>
           </tr>
           <tr>
             <td style="background:#F5F5F5; font-weight:700;">第三者保証</td>
             <td>
               2024年度（2024年4月1日〜2025年3月31日）の環境データおよび社会データの一部について、KPMGあずさサステナビリティ株式会社による第三者保証を取得しています。詳しくは以下のページをご参照ください。
-              <span class="wf-link wf-link-row">第三者保証</span>
+              <span class="wf-text-link wf-text-link-row">第三者保証</span>
             </td>
           </tr>
           <tr>
             <td style="background:#F5F5F5; font-weight:700;">関連情報</td>
             <td>
               当社に関する各種資料（統合報告書／株主通信／有価証券報告書／コーポレートガバナンス報告書／知的財産報告書／テクノロジーレポート）は、コーポレートサイトの「資料ダウンロード」ページからご覧いただけます。
-              <span class="wf-link wf-link-row is-corp">資料ダウンロード</span>
+              <span class="wf-text-link wf-text-link-row is-corp">資料ダウンロード</span>
             </td>
           </tr>
           <tr>
             <td style="background:#F5F5F5; font-weight:700;">本報告に関する<br>お問い合わせ</td>
             <td>
               コニカミノルタ株式会社 経営企画部
-              <span class="wf-link wf-link-row">お問い合わせ</span>
+              <span class="wf-text-link wf-text-link-row">お問い合わせ</span>
             </td>
           </tr>
           <tr>
@@ -2092,73 +2092,73 @@ body {
             <div class="backnumber-list">
               <div class="backnumber-row">
                 <div class="backnumber-year">2025年</div>
-                <div class="backnumber-links">
-                  <span class="backnumber-link">サステナビリティレポート2025 <span class="file-size">（16.0MB）</span></span>
+                <div class="wf-text-links">
+                  <span class="wf-text-link">サステナビリティレポート2025 <span class="file-size">（16.0MB）</span></span>
                 </div>
               </div>
               <div class="backnumber-row">
                 <div class="backnumber-year">2024年</div>
-                <div class="backnumber-links">
-                  <span class="backnumber-link">サステナビリティレポート2024 <span class="file-size">（16.6MB）</span></span>
+                <div class="wf-text-links">
+                  <span class="wf-text-link">サステナビリティレポート2024 <span class="file-size">（16.6MB）</span></span>
                 </div>
               </div>
               <div class="backnumber-row">
                 <div class="backnumber-year">2023年</div>
-                <div class="backnumber-links">
-                  <span class="backnumber-link">サステナビリティレポート2023 <span class="file-size">（17.6MB）</span></span>
+                <div class="wf-text-links">
+                  <span class="wf-text-link">サステナビリティレポート2023 <span class="file-size">（17.6MB）</span></span>
                 </div>
               </div>
               <div class="backnumber-row">
                 <div class="backnumber-year">2022年</div>
-                <div class="backnumber-links">
-                  <span class="backnumber-link">サステナビリティレポート2022 <span class="file-size">（16.3MB）</span></span>
+                <div class="wf-text-links">
+                  <span class="wf-text-link">サステナビリティレポート2022 <span class="file-size">（16.3MB）</span></span>
                 </div>
               </div>
               <div class="backnumber-row">
                 <div class="backnumber-year">2021年</div>
-                <div class="backnumber-links">
-                  <span class="backnumber-link">サステナビリティレポート2021 <span class="file-size">（19.4MB）</span></span>
+                <div class="wf-text-links">
+                  <span class="wf-text-link">サステナビリティレポート2021 <span class="file-size">（19.4MB）</span></span>
                 </div>
               </div>
               <div class="backnumber-row">
                 <div class="backnumber-year">2020年</div>
-                <div class="backnumber-links">
-                  <span class="backnumber-link">サステナビリティレポート2020 <span class="file-size">（23.9MB）</span></span>
+                <div class="wf-text-links">
+                  <span class="wf-text-link">サステナビリティレポート2020 <span class="file-size">（23.9MB）</span></span>
                 </div>
               </div>
               <div class="backnumber-row">
                 <div class="backnumber-year">2019年</div>
-                <div class="backnumber-links">
-                  <span class="backnumber-link">CSRレポート2019 <span class="file-size">（9.7MB）</span></span>
-                  <span class="backnumber-link">環境報告書2019 <span class="file-size">（21.9MB）</span></span>
+                <div class="wf-text-links">
+                  <span class="wf-text-link">CSRレポート2019 <span class="file-size">（9.7MB）</span></span>
+                  <span class="wf-text-link">環境報告書2019 <span class="file-size">（21.9MB）</span></span>
                 </div>
               </div>
               <div class="backnumber-row">
                 <div class="backnumber-year">2018年</div>
-                <div class="backnumber-links">
-                  <span class="backnumber-link">CSRレポート2018 <span class="file-size">（8.7MB）</span></span>
-                  <span class="backnumber-link">環境報告書2018 <span class="file-size">（20.0MB）</span></span>
+                <div class="wf-text-links">
+                  <span class="wf-text-link">CSRレポート2018 <span class="file-size">（8.7MB）</span></span>
+                  <span class="wf-text-link">環境報告書2018 <span class="file-size">（20.0MB）</span></span>
                 </div>
               </div>
               <div class="backnumber-row">
                 <div class="backnumber-year">2017年</div>
-                <div class="backnumber-links">
-                  <span class="backnumber-link">CSRレポート2017 <span class="file-size">（9.5MB）</span></span>
-                  <span class="backnumber-link">環境報告書2017 <span class="file-size">（6.8MB）</span></span>
+                <div class="wf-text-links">
+                  <span class="wf-text-link">CSRレポート2017 <span class="file-size">（9.5MB）</span></span>
+                  <span class="wf-text-link">環境報告書2017 <span class="file-size">（6.8MB）</span></span>
                 </div>
               </div>
               <div class="backnumber-row">
                 <div class="backnumber-year">2016年</div>
-                <div class="backnumber-links">
-                  <span class="backnumber-link">CSRレポート2016 <span class="file-size">（8.3MB）</span></span>
-                  <span class="backnumber-link">環境報告書2016 <span class="file-size">（20.3MB）</span></span>
+                <div class="wf-text-links">
+                  <span class="wf-text-link">CSRレポート2016 <span class="file-size">（8.3MB）</span></span>
+                  <span class="wf-text-link">環境報告書2016 <span class="file-size">（20.3MB）</span></span>
                 </div>
               </div>
               <div class="backnumber-row">
                 <div class="backnumber-year">2015年</div>
-                <div class="backnumber-links">
-                  <span class="backnumber-link">CSRレポート2015 <span class="file-size">（6.8MB）</span></span>
-                  <span class="backnumber-link">環境報告書2015 <span class="file-size">（13.9MB）</span></span>
+                <div class="wf-text-links">
+                  <span class="wf-text-link">CSRレポート2015 <span class="file-size">（6.8MB）</span></span>
+                  <span class="wf-text-link">環境報告書2015 <span class="file-size">（13.9MB）</span></span>
                 </div>
               </div>
             </div>
@@ -2352,7 +2352,7 @@ body {
       </div>
       <div class="ann-row">
         <span class="ann-row-label">URL注記撤去</span>
-        Section C 会社資料一覧ボタン下のURL注記（<code>.link-btn-url</code>）を撤去。リンク先URLはhref属性で保持。
+        Section C 会社資料一覧ボタン下のURL注記（<code>.wf-btn-url</code>）を撤去。リンク先URLはhref属性で保持。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">content-fit化</span>
@@ -2373,7 +2373,7 @@ body {
       </div>
       <div class="ann-row">
         <span class="ann-row-label">#B ガイドライン対照表</span>
-        編集方針表の「ガイドライン対照表」リンクが文中に埋め込まれて <code>→</code> プレフィックスが出ていなかったため、文末で別行の独立 <b>→ ガイドライン対照表</b> テキストリンクに変更（<code>.wf-link.wf-link-row</code>）。他の編集方針表内リンク（第三者保証 / 資料ダウンロード / お問い合わせ）も同じスタンドアロン行スタイルに統一。
+        編集方針表の「ガイドライン対照表」リンクが文中に埋め込まれて <code>→</code> プレフィックスが出ていなかったため、文末で別行の独立 <b>→ ガイドライン対照表</b> テキストリンクに変更（<code>.wf-text-link.wf-text-link-row</code>）。他の編集方針表内リンク（第三者保証 / 資料ダウンロード / お問い合わせ）も同じスタンドアロン行スタイルに統一。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">#C 会社資料一覧</span>

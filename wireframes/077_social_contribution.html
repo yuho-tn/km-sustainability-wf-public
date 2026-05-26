@@ -7,7 +7,7 @@
 <style>
 /* ============================================================
    KM SUSTAINABILITY WF — SHARED CSS（catalog v3.1 / 148 v2.3準拠）
-   077 リファクタ：共通モジュールに統一（page-title-area / acc-h3 / theme-related / anchor-nav）
+   077 リファクタ：共通モジュールに統一（page-title-area / acc-h3 / wf-related-links / anchor-nav）
 ============================================================ */
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -308,12 +308,12 @@ body {
 /* ============================================================
    LINK
 ============================================================ */
-.wf-link {
+.wf-text-link {
   font-size: 12px; color: var(--c-text-s);
   display: inline-flex; align-items: center; gap: 4px;
   cursor: default; text-decoration: none;
 }
-.wf-link::before { content: '→ '; font-size: 11px; }
+.wf-text-link::before { content: '→ '; font-size: 11px; }
 
 /* ============================================================
    アコーディオン共通モジュール（catalog 7-4／7-5準拠 / 148 v2.3）
@@ -445,29 +445,29 @@ body {
 }
 
 /* #157：外部サイトリンクは別タブで開く想定。外部＋別タブを示すアイコンを付与 */
-.wf-link.is-external::after {
+.wf-text-link.is-external::after {
   content: ' ↗';
   font-size: 11px; font-weight: 700;
   color: var(--c-text-s);
 }
-.wf-link.is-external { /* 別タブ遷移である旨を視覚化（モジュール共通ルール） */ }
+.wf-text-link.is-external { /* 別タブ遷移である旨を視覚化（モジュール共通ルール） */ }
 
 /* #108：国名タグを右配置にしたため、タグの有無に関わらずタイトル行頭は
    summary 左端（padding-left:22px）で自然に揃う。タグなしでも成立。 */
 
 /* ============================================================
-   関連リンク（共通モジュール .theme-related）
+   関連リンク（共通モジュール .wf-related-links）
    0520MTG/S5：「関連リンク」ラベル廃止／本文より目立たないトーン
 ============================================================ */
-.theme-related {
+.wf-related-links {
   background: transparent; border: none;
   padding: 6px 0 0; margin-top: 10px;
   display: flex; flex-wrap: wrap;
   column-gap: 14px; row-gap: 4px;
   align-items: baseline;
 }
-.theme-related .wf-link { font-size: 11px; color: var(--c-text-s); }
-.theme-related .wf-link:hover { color: var(--c-text-h); }
+.wf-related-links .wf-text-link { font-size: 11px; color: var(--c-text-s); }
+.wf-related-links .wf-text-link:hover { color: var(--c-text-h); }
 
 /* ============================================================
    FOOTER
@@ -677,11 +677,11 @@ body {
                 <figure><div class="wf-img h-160"><div class="wf-img-label">お客様工場での省エネ診断</div></div><figcaption class="wf-img-caption">お客様工場での省エネ診断</figcaption></figure>
               </div>
               <p>地球環境保全は、人類共通の課題です。コニカミノルタは、チャリティや社員によるボランティア活動だけではなく、コニカミノルタが培った環境経営ノウハウをお客様やお取引先といったステークホルダーに広め、それぞれのステークホルダーの活動が拡大することで、環境負荷低減の加速化に貢献することを目指しています。 コニカミノルタは、環境経営やノウハウについて、セミナーや講演会の形で、企業だけでなく、地方自治体やアカデミアに対しても実施しています。 さらに、お客様をはじめとする企業の皆様に、環境経営の実践に役立つ当社のノウハウやツールなどを共有・提供し、お客様企業での環境負荷低減を支援するグリーンマーケティング活動を展開しています。この活動をきっかけに企業間の関係強化につながり、ビジネス面においても製品・サービスの取引に結びついています。また、お取引先に対しても環境負荷低減とコスト削減を支援するカーボンニュートラルパートナー活動を進めています。 コニカミノルタは、自社の活動範囲にとどまらず、お客様、お取引先、地域社会といったさまざまなステークホルダーとともに環境負荷低減を進めることで、社会全体の環境負荷低減に貢献しています。</p>
-              <div class="theme-related">
-                <span class="wf-link">コニカミノルタの環境方針</span>
-                <span class="wf-link">エコビジョン2050</span>
-                <span class="wf-link">グリーンマーケティング活動</span>
-                <span class="wf-link">カーボンニュートラルパートナー活動</span>
+              <div class="wf-related-links">
+                <span class="wf-text-link">コニカミノルタの環境方針</span>
+                <span class="wf-text-link">エコビジョン2050</span>
+                <span class="wf-text-link">グリーンマーケティング活動</span>
+                <span class="wf-text-link">カーボンニュートラルパートナー活動</span>
               </div>
             </div>
           </details>
@@ -727,8 +727,8 @@ body {
             <div class="wf-acc-h3-body">
               <p>コニカミノルタでは、さまざまな森林保護活動に参加、協力しています。「高尾の森づくりの会」は、東京都西部に位置する裏高尾の国有林において、生来の植生を考慮しつつ、間伐、植樹、下草刈りなどの作業を通して、針葉樹と広葉樹が混交した豊かな森の復元を目指しています。この会に法人会員として参加し、従業員もメンバーの一員として、毎月森づくりに汗を流しています。</p>
               <p>また、コニカミノルタのデジタル印刷システムを用いて、同会の季刊の会報を制作し、提供しています。その他、世界の各地で環境保全活動のためにボランティア社員の派遣、サイト周辺清掃活動、団体の支援を行っています。</p>
-              <div class="theme-related">
-                <span class="wf-link is-external">高尾の森づくりの会（外部サイト）</span>
+              <div class="wf-related-links">
+                <span class="wf-text-link is-external">高尾の森づくりの会（外部サイト）</span>
               </div>
             </div>
           </details>
@@ -786,9 +786,9 @@ body {
                 <figure><div class="wf-img h-200"><div class="wf-img-label">コニカミノルタのピンクリボン運動マーク</div></div><figcaption class="wf-img-caption">コニカミノルタのピンクリボン運動マーク</figcaption></figure>
               </div>
               <p>コニカミノルタ（株）は、乳がんの早期発見に役立つ乳房X線撮影装置（デジタルマンモグラフィ）や乳房用超音波診断装置を提供しています。この事業に関連して、乳がん早期発見の重要性を訴える「ピンクリボン運動」を支援しています。</p>
-              <div class="theme-related">
-                <span class="wf-link">コニカミノルタのピンクリボン運動</span>
-                <span class="wf-link">一人ひとりにとって乳がん検診をより良いものに（ニュースリリース）</span>
+              <div class="wf-related-links">
+                <span class="wf-text-link">コニカミノルタのピンクリボン運動</span>
+                <span class="wf-text-link">一人ひとりにとって乳がん検診をより良いものに（ニュースリリース）</span>
               </div>
             </div>
           </details>
@@ -809,8 +809,8 @@ body {
                 <figure><div class="wf-img h-200"><div class="wf-img-label">ジョギング教室</div></div><figcaption class="wf-img-caption">ジョギング教室</figcaption></figure>
               </div>
               <p>コニカミノルタは、「コニカミノルタ陸上競技部」が長年培ってきた走りのノウハウや走る喜びを「ジョギング教室」といった独自の取り組みを通して、ビギナーや本格的なランナーに至るまで、地域社会の皆様との交流を促進し、スポーツ振興の貢献に取り組んでいます。</p>
-              <div class="theme-related">
-                <span class="wf-link is-external">コニカミノルタ陸上競技部（外部サイト）</span>
+              <div class="wf-related-links">
+                <span class="wf-text-link is-external">コニカミノルタ陸上競技部（外部サイト）</span>
               </div>
             </div>
           </details>
@@ -836,8 +836,8 @@ body {
               <p>コニカミノルタの複合機は、障がいの有無に関わらずすべての人が簡単に使えることを目指す、ユニバーサルデザインの視点を取り入れて、設計されています。</p>
               <p>情報機器販売会社であるコニカミノルタビジネスソリューションズフランス社は、この考え方をさらに広げて、障がいを持つ人々がスポーツ、娯楽、文化、教育や仕事などに参加しやすい環境を作ることを目指し、公共の場所のバリアフリー化などを目的とした企業内基金を設立しました。従業員の提案から始まったこの活動は、今や会社全体に広がっており、従業員一人ひとりが寄付などの形で参加しています。</p>
               <p>NPOや文化施設・文化的な催事の実行組織に協力し、地元レベルから全国規模のプロジェクトまで幅広い活動に対して、資金を提供しています。例えば、パリのケ・ブランリ美術館では、視覚障がいの方が館内の様子を理解するための三次元モデル制作を支援。また、シャモニー渓谷に車いす用の小道を作ったり、大西洋岸の浜に車いすの方が海水浴に利用できる設備を作ったりする国立森林公社の活動に協力しました。そのほか、レジャー施設の整備・改修をはじめ、障がい者のためのパラスポーツ用品の寄付、レジャーボートの乗降口の改修、介助犬の購入・養成、自閉症の子供向けの学習器具の寄付など、さまざまな活動を実施しています。</p>
-              <div class="theme-related">
-                <span class="wf-link is-external">Fondation d&#39;entreprise（外部サイト）</span>
+              <div class="wf-related-links">
+                <span class="wf-text-link is-external">Fondation d&#39;entreprise（外部サイト）</span>
               </div>
             </div>
           </details>
@@ -888,8 +888,8 @@ body {
             </summary>
             <div class="wf-acc-h3-body">
               <p>公益財団法人コニカミノルタ科学技術振興財団は、コニカ創立者のひとりである杉浦仙之助の遺志により、写真科学の研究を助成し、もって学術の振興および文化の向上に寄与することを目的として、昭和41年に設立された「橘保善会」を基としています。平成5年より財団としてその活動を受け継ぎ、現在は公益財団法人として、科学技術の振興、学術の発展及び文化の向上に寄与することを目的に、科学技術（特に光と画像の領域）の研究に対する援助・支援を行っています。コニカミノルタは、その趣意に賛同し、財団事業の継続と発展のため寄付等により協力しています。</p>
-              <div class="theme-related">
-                <span class="wf-link is-external">公益財団法人 コニカミノルタ科学技術振興財団ウェブサイト（外部サイト）</span>
+              <div class="wf-related-links">
+                <span class="wf-text-link is-external">公益財団法人 コニカミノルタ科学技術振興財団ウェブサイト（外部サイト）</span>
               </div>
             </div>
           </details>
@@ -899,8 +899,8 @@ body {
             </summary>
             <div class="wf-acc-h3-body">
               <p>プラネタリウムは、科学や天文学に対する知的好奇心を育てるとともに、宇宙を知り地球や人間について考えるきっかけともなります。コニカミノルタは、プラネタリウム施設において、小学校の授業で取り扱われる題材を取り上げた番組を提供するなど子どもたちの教育に役立つ取り組みを行っています。学習投影では季節の星座、星や月の動きをテーマとしています。</p>
-              <div class="theme-related">
-                <span class="wf-link">プラネタリウム製品 ＞ コンテンツ情報 ＞ 幼児・学習番組</span>
+              <div class="wf-related-links">
+                <span class="wf-text-link">プラネタリウム製品 ＞ コンテンツ情報 ＞ 幼児・学習番組</span>
               </div>
             </div>
           </details>
@@ -1067,7 +1067,7 @@ body {
       </div>
       <div class="ann-row">
         <span class="ann-row-label">S5 丹野・MTG（対応済）</span>
-        全 .theme-related から「関連リンク」ラベルを削除（7箇所）。本文内で自然に誘導する形に統一。
+        全 .wf-related-links から「関連リンク」ラベルを削除（7箇所）。本文内で自然に誘導する形に統一。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">S7/S8/S9 MTG（対応済の再確認）</span>
@@ -1112,7 +1112,7 @@ body {
         <b>#113：</b>国名タグ幅を固定（中央寄せ）し、全アコーディオンのタイトル行頭を揃えた。<br>
         <b>#108：</b>エリア（国名タグ）が無いアコーディオンでもタイトル開始位置を揃える（タグ列幅を予約）CSSを追加。タグ無しでも成立。<br>
         <b>#156：</b>アコーディオンはネイティブ&lt;details&gt;（name無し）＝<strong>個々で開閉（開いたら開いたまま／単一開閉ではない）</strong>。池田氏の望ましい挙動で実装済。<br>
-        <b>#157：</b>外部サイトリンクに別タブ遷移を示す外部アイコン（↗）を付与（`.wf-link.is-external`）。<br>
+        <b>#157：</b>外部サイトリンクに別タブ遷移を示す外部アイコン（↗）を付与（`.wf-text-link.is-external`）。<br>
         <b>#115：</b>画像「＋」＝単独画像PHの拡大表示（ライトボックス／aria-label="拡大"）。用語モーダルではない旨を整理票で回答（WF常設注記は不要）。
       </p>
     </div>
@@ -1168,7 +1168,7 @@ body {
       </div>
       <div class="ann-row">
         <span class="ann-row-label">⑥リンク</span>
-        <strong>6-4</strong> <code>.theme-related</code>（関連リンク：薄グレーbg＋全周border＋ラベル）
+        <strong>6-4</strong> <code>.wf-related-links</code>（関連リンク：薄グレーbg＋全周border＋ラベル）
       </div>
       <div class="ann-row">
         <span class="ann-row-label">⑦アコーディオン</span>
@@ -1212,7 +1212,7 @@ body {
       </div>
       <div class="ann-row">
         <span class="ann-row-label">アコ内 関連リンク</span>
-        catalog 6-4 <code>.theme-related</code>。アコ body 内の参照リンクを全てこのモジュールに統一。
+        catalog 6-4 <code>.wf-related-links</code>。アコ body 内の参照リンクを全てこのモジュールに統一。
       </div>
     </div>
 
@@ -1221,7 +1221,7 @@ body {
       <span class="ann-head">関連情報</span>
       <div class="ann-row">
         <span class="ann-row-label">構成</span>
-        bg-sub セクション + H2 + <code>.theme-related</code> で 8リンクを横並び表示。035 TCFD / 148 と同UI。
+        bg-sub セクション + H2 + <code>.wf-related-links</code> で 8リンクを横並び表示。035 TCFD / 148 と同UI。
       </div>
     </div>
 

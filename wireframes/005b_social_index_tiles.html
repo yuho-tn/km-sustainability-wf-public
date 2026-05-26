@@ -197,7 +197,7 @@ body {
    ★★ 別案コア：12タイル ブロック型リンク集 ★★
 ============================================================ */
 
-.social-tile-grid {
+.wf-index-tile-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0;
@@ -212,7 +212,7 @@ body {
    - 目次あり：縦幅 260px（余白を詰めた）
    - 目次なし(.no-nav)：縦幅 168px
    - ホバー効果は廃止（タイル自体は遷移しない／ボタンクリックでのみ遷移） */
-.social-tile {
+.wf-index-tile {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -224,13 +224,13 @@ body {
   cursor: default;
   overflow: hidden;
 }
-.social-tile.no-nav {
+.wf-index-tile.no-nav {
   height: 168px;
   padding-bottom: 52px;
 }
 
 /* 0524 桐原FB#8：タイル内サブナビ — 余白圧縮版 */
-.social-tile-nav {
+.wf-index-tile-nav {
   margin-top: 6px;
   padding-top: 8px;
   border-top: 1px solid var(--c-border);
@@ -241,16 +241,16 @@ body {
 }
 /* 内側にリンク群を入れるラッパー：1〜2個=縦1カラム、3個以上=2カラム
    各item は最大2行までで折返し、3行以上は隠す（全体幅拡大で大半は1行収まる想定） */
-.social-tile-nav-items {
+.wf-index-tile-nav-items {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2px 14px;
   overflow: hidden;
 }
-.social-tile-nav-items.is-2col {
+.wf-index-tile-nav-items.is-2col {
   grid-template-columns: 1fr 1fr;
 }
-.social-tile-nav-item {
+.wf-index-tile-nav-item {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   line-clamp: 2;
@@ -267,7 +267,7 @@ body {
   overflow-wrap: anywhere;
   position: relative;
 }
-.social-tile-nav-item::before {
+.wf-index-tile-nav-item::before {
   content: '›';
   color: var(--c-text-h);
   font-weight: 700;
@@ -277,11 +277,11 @@ body {
   top: 3px;
   line-height: 1.4;
 }
-.social-tile-nav-item:hover { color: var(--c-text-h); background: var(--c-bg-sub); }
+.wf-index-tile-nav-item:hover { color: var(--c-text-h); background: var(--c-bg-sub); }
 
 /* 0524 追加修正：タイル下部の「›テーマ名」白ボタン
    横幅は文字数に応じて可変・左寄せ・ホバー時のみ背景変化（このボタンが唯一の遷移トリガー） */
-.social-tile-cta {
+.wf-index-tile-cta {
   position: absolute;
   left: 18px; bottom: 14px;
   display: inline-flex;
@@ -299,18 +299,18 @@ body {
   width: auto;
   transition: background 0.15s;
 }
-.social-tile-cta::before {
+.wf-index-tile-cta::before {
   content: '›';
   font-weight: 700;
   font-size: 14px;
   color: var(--c-text-h);
   flex-shrink: 0;
 }
-.social-tile-cta:hover { background: var(--c-bg-sub); }
+.wf-index-tile-cta:hover { background: var(--c-bg-sub); }
 
-/* 0524 桐原FB#4：マテリアリティ番号(01〜12)は廃止。.social-tile-num の出力なし */
+/* 0524 桐原FB#4：マテリアリティ番号(01〜12)は廃止。.wf-index-tile-num の出力なし */
 
-.social-tile-title {
+.wf-index-tile-title {
   font-size: 15px;
   font-weight: 700;
   color: var(--c-text-h);
@@ -324,7 +324,7 @@ body {
 }
 
 /* 0524 追加修正：本文は3行以内・…省略なし・高さ3行分予約 */
-.social-tile-desc {
+.wf-index-tile-desc {
   font-size: 12px;
   color: var(--c-text);
   line-height: 1.65;
@@ -337,17 +337,17 @@ body {
   margin: 0;
 }
 
-/* 0524 追加修正：丸ボタン .social-tile-arrow は廃止し .social-tile-cta（白ボタン）に統一 */
+/* 0524 追加修正：丸ボタン .wf-index-tile-arrow は廃止し .wf-index-tile-cta（白ボタン）に統一 */
 
 /* タイル上部アクセント（人と組織 / 社会・お客様 で色帯を変える） */
-.social-tile.is-group-a::before {
+.wf-index-tile.is-group-a::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 3px;
   background: var(--c-text-h);
 }
-.social-tile.is-group-b::before {
+.wf-index-tile.is-group-b::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
@@ -420,7 +420,7 @@ body {
 /* ============================================================
    サステナビリティ関連リンク（005と完全同型）
 ============================================================ */
-.esg-link-stack {
+.wf-esg-data-block {
   border: 1px solid var(--c-border);
   background: var(--c-white);
 }
@@ -657,105 +657,105 @@ body {
       <h2 class="wf-section-title" id="group-people" style="margin-top:40px;">人と組織</h2>
       <p class="wf-section-desc">人的資本経営の中核となる7テーマ（戦略〜労働慣行）</p>
 
-      <div class="social-tile-grid">
+      <div class="wf-index-tile-grid">
         <!-- 人的資本戦略 -->
-        <a class="social-tile is-group-a">
-          <h3 class="social-tile-title" id="theme-hcm-strategy">人的資本戦略</h3>
-          <p class="social-tile-desc">
+        <a class="wf-index-tile is-group-a">
+          <h3 class="wf-index-tile-title" id="theme-hcm-strategy">人的資本戦略</h3>
+          <p class="wf-index-tile-desc">
             （文章はダミーです）事業戦略と接続した人事戦略を策定し、エンゲージメントを通じた価値創造を実現します。
           </p>
-          <nav class="social-tile-nav" aria-label="人的資本戦略 ページ内見出し">
-<div class="social-tile-nav-items">
-              <span class="social-tile-nav-item">基本的な考え方</span>
-              <span class="social-tile-nav-item">戦略・目標・実績</span>
+          <nav class="wf-index-tile-nav" aria-label="人的資本戦略 ページ内見出し">
+<div class="wf-index-tile-nav-items">
+              <span class="wf-index-tile-nav-item">基本的な考え方</span>
+              <span class="wf-index-tile-nav-item">戦略・目標・実績</span>
             </div>
           </nav>
-          <span class="social-tile-cta">人的資本戦略</span>
+          <span class="wf-index-tile-cta">人的資本戦略</span>
         </a>
 
         <!-- 人財育成 -->
-        <a class="social-tile is-group-a">
-          <h3 class="social-tile-title" id="theme-hcm-dev">人財育成</h3>
-          <p class="social-tile-desc">
+        <a class="wf-index-tile is-group-a">
+          <h3 class="wf-index-tile-title" id="theme-hcm-dev">人財育成</h3>
+          <p class="wf-index-tile-desc">
             （文章はダミーです）次世代経営人財・専門人財・グローバル人財の育成を進めています。
           </p>
-          <nav class="social-tile-nav" aria-label="人財育成 ページ内見出し">
-<div class="social-tile-nav-items">
-              <span class="social-tile-nav-item">基本的な考え方</span>
-              <span class="social-tile-nav-item">戦略・目標・実績</span>
+          <nav class="wf-index-tile-nav" aria-label="人財育成 ページ内見出し">
+<div class="wf-index-tile-nav-items">
+              <span class="wf-index-tile-nav-item">基本的な考え方</span>
+              <span class="wf-index-tile-nav-item">戦略・目標・実績</span>
             </div>
           </nav>
-          <span class="social-tile-cta">人財育成</span>
+          <span class="wf-index-tile-cta">人財育成</span>
         </a>
 
         <!-- 企業文化・組織風土 -->
-        <a class="social-tile is-group-a">
-          <h3 class="social-tile-title" id="theme-culture">企業文化・組織風土</h3>
-          <p class="social-tile-desc">
+        <a class="wf-index-tile is-group-a">
+          <h3 class="wf-index-tile-title" id="theme-culture">企業文化・組織風土</h3>
+          <p class="wf-index-tile-desc">
             （文章はダミーです）フィロソフィーを基軸とした風土醸成と心理的安全性の確保で、組織変革を推進します。
           </p>
-          <nav class="social-tile-nav" aria-label="企業文化・組織風土 ページ内見出し">
-<div class="social-tile-nav-items">
-              <span class="social-tile-nav-item">基本的な考え方</span>
-              <span class="social-tile-nav-item">取り組み</span>
+          <nav class="wf-index-tile-nav" aria-label="企業文化・組織風土 ページ内見出し">
+<div class="wf-index-tile-nav-items">
+              <span class="wf-index-tile-nav-item">基本的な考え方</span>
+              <span class="wf-index-tile-nav-item">取り組み</span>
             </div>
           </nav>
-          <span class="social-tile-cta">企業文化・組織風土</span>
+          <span class="wf-index-tile-cta">企業文化・組織風土</span>
         </a>
 
         <!-- DE&I -->
-        <a class="social-tile is-group-a">
-          <h3 class="social-tile-title" id="theme-dei">DE&amp;I</h3>
-          <p class="social-tile-desc">
+        <a class="wf-index-tile is-group-a">
+          <h3 class="wf-index-tile-title" id="theme-dei">DE&amp;I</h3>
+          <p class="wf-index-tile-desc">
             （文章はダミーです）ダイバーシティ・エクイティ＆インクルージョンを推進し、多様な人財が活躍できる組織を目指します。
           </p>
-          <nav class="social-tile-nav" aria-label="DE&I ページ内見出し">
-<div class="social-tile-nav-items is-2col">
-              <span class="social-tile-nav-item">基本的な考え方</span>
-              <span class="social-tile-nav-item">戦略・目標・実績</span>
-              <span class="social-tile-nav-item">女性活躍推進</span>
+          <nav class="wf-index-tile-nav" aria-label="DE&I ページ内見出し">
+<div class="wf-index-tile-nav-items is-2col">
+              <span class="wf-index-tile-nav-item">基本的な考え方</span>
+              <span class="wf-index-tile-nav-item">戦略・目標・実績</span>
+              <span class="wf-index-tile-nav-item">女性活躍推進</span>
             </div>
           </nav>
-          <span class="social-tile-cta">DE&amp;I</span>
+          <span class="wf-index-tile-cta">DE&amp;I</span>
         </a>
 
         <!-- 健康経営 -->
-        <a class="social-tile is-group-a">
-          <h3 class="social-tile-title" id="theme-health">健康経営</h3>
-          <p class="social-tile-desc">
+        <a class="wf-index-tile is-group-a">
+          <h3 class="wf-index-tile-title" id="theme-health">健康経営</h3>
+          <p class="wf-index-tile-desc">
             （文章はダミーです）健康第一の風土醸成と、健康リスク低減・過重労働対策・健康度の見える化を進めています。
           </p>
-          <nav class="social-tile-nav" aria-label="健康経営 ページ内見出し">
-<div class="social-tile-nav-items">
-              <span class="social-tile-nav-item">基本的な考え方</span>
-              <span class="social-tile-nav-item">戦略・目標・実績</span>
+          <nav class="wf-index-tile-nav" aria-label="健康経営 ページ内見出し">
+<div class="wf-index-tile-nav-items">
+              <span class="wf-index-tile-nav-item">基本的な考え方</span>
+              <span class="wf-index-tile-nav-item">戦略・目標・実績</span>
             </div>
           </nav>
-          <span class="social-tile-cta">健康経営</span>
+          <span class="wf-index-tile-cta">健康経営</span>
         </a>
 
         <!-- 労働安全衛生 -->
-        <a class="social-tile is-group-a">
-          <h3 class="social-tile-title" id="theme-safety">労働安全衛生</h3>
-          <p class="social-tile-desc">
+        <a class="wf-index-tile is-group-a">
+          <h3 class="wf-index-tile-title" id="theme-safety">労働安全衛生</h3>
+          <p class="wf-index-tile-desc">
             （文章はダミーです）労働災害ゼロを目指し、労働安全衛生方針に基づく管理体制とリスクアセスメントを実施します。
           </p>
-          <nav class="social-tile-nav" aria-label="労働安全衛生 ページ内見出し">
-<div class="social-tile-nav-items">
-              <span class="social-tile-nav-item">基本的な考え方</span>
-              <span class="social-tile-nav-item">戦略・目標・実績</span>
+          <nav class="wf-index-tile-nav" aria-label="労働安全衛生 ページ内見出し">
+<div class="wf-index-tile-nav-items">
+              <span class="wf-index-tile-nav-item">基本的な考え方</span>
+              <span class="wf-index-tile-nav-item">戦略・目標・実績</span>
             </div>
           </nav>
-          <span class="social-tile-cta">労働安全衛生</span>
+          <span class="wf-index-tile-cta">労働安全衛生</span>
         </a>
 
         <!-- 労働慣行 — 0524 FB#9：基本的な考え方のみ → サブナビ非表示 -->
-        <a class="social-tile is-group-a no-nav">
-          <h3 class="social-tile-title" id="theme-labor">労働慣行</h3>
-          <p class="social-tile-desc">
+        <a class="wf-index-tile is-group-a no-nav">
+          <h3 class="wf-index-tile-title" id="theme-labor">労働慣行</h3>
+          <p class="wf-index-tile-desc">
             （文章はダミーです）ILO中核的労働基準を踏まえ、結社の自由・強制労働や児童労働の禁止など労働者の権利を保護します。
           </p>
-          <span class="social-tile-cta">労働慣行</span>
+          <span class="wf-index-tile-cta">労働慣行</span>
         </a>
       </div>
 
@@ -763,75 +763,75 @@ body {
       <h2 class="wf-section-title" id="group-social" style="margin-top:48px;">社会・お客様</h2>
       <p class="wf-section-desc">人権・SCM・顧客責任・AI・社会貢献の5テーマ。人権とSCMは関連性が高いため隣接配置。</p>
 
-      <div class="social-tile-grid">
+      <div class="wf-index-tile-grid">
         <!-- 人権 -->
-        <a class="social-tile is-group-b">
-          <h3 class="social-tile-title" id="theme-human-rights">人権</h3>
-          <p class="social-tile-desc">
+        <a class="wf-index-tile is-group-b">
+          <h3 class="wf-index-tile-title" id="theme-human-rights">人権</h3>
+          <p class="wf-index-tile-desc">
             （文章はダミーです）人権方針と国際規範に沿った人権尊重を実践し、網羅的な人権デュー・デリジェンスを実施します。
           </p>
-          <nav class="social-tile-nav" aria-label="人権 ページ内見出し">
-<div class="social-tile-nav-items is-2col">
-              <span class="social-tile-nav-item">基本的な考え方</span>
-              <span class="social-tile-nav-item">体制</span>
-              <span class="social-tile-nav-item">人権デュー・デリジェンス</span>
-              <span class="social-tile-nav-item">相談・通報窓口</span>
-              <span class="social-tile-nav-item">是正</span>
-              <span class="social-tile-nav-item">ステークホルダーEG</span>
+          <nav class="wf-index-tile-nav" aria-label="人権 ページ内見出し">
+<div class="wf-index-tile-nav-items is-2col">
+              <span class="wf-index-tile-nav-item">基本的な考え方</span>
+              <span class="wf-index-tile-nav-item">体制</span>
+              <span class="wf-index-tile-nav-item">人権デュー・デリジェンス</span>
+              <span class="wf-index-tile-nav-item">相談・通報窓口</span>
+              <span class="wf-index-tile-nav-item">是正</span>
+              <span class="wf-index-tile-nav-item">ステークホルダーEG</span>
             </div>
           </nav>
-          <span class="social-tile-cta">人権</span>
+          <span class="wf-index-tile-cta">人権</span>
         </a>
 
         <!-- サプライチェーンマネジメント（人権と隣接） -->
-        <a class="social-tile is-group-b">
-          <h3 class="social-tile-title" id="theme-scm">サプライチェーンマネジメント</h3>
-          <p class="social-tile-desc">
+        <a class="wf-index-tile is-group-b">
+          <h3 class="wf-index-tile-title" id="theme-scm">サプライチェーンマネジメント</h3>
+          <p class="wf-index-tile-desc">
             （文章はダミーです）人権・環境・倫理に配慮した責任ある調達を推進し、持続可能なバリューチェーンを構築します。
           </p>
-          <nav class="social-tile-nav" aria-label="サプライチェーンマネジメント ページ内見出し">
-<div class="social-tile-nav-items is-2col">
-              <span class="social-tile-nav-item">基本的な考え方</span>
-              <span class="social-tile-nav-item">体制</span>
-              <span class="social-tile-nav-item">サステナブル調達</span>
-              <span class="social-tile-nav-item">責任ある鉱物調達</span>
+          <nav class="wf-index-tile-nav" aria-label="サプライチェーンマネジメント ページ内見出し">
+<div class="wf-index-tile-nav-items is-2col">
+              <span class="wf-index-tile-nav-item">基本的な考え方</span>
+              <span class="wf-index-tile-nav-item">体制</span>
+              <span class="wf-index-tile-nav-item">サステナブル調達</span>
+              <span class="wf-index-tile-nav-item">責任ある鉱物調達</span>
             </div>
           </nav>
-          <span class="social-tile-cta">サプライチェーンマネジメント</span>
+          <span class="wf-index-tile-cta">サプライチェーンマネジメント</span>
         </a>
 
         <!-- 顧客責任・品質 -->
-        <a class="social-tile is-group-b">
-          <h3 class="social-tile-title" id="theme-quality">顧客責任・品質</h3>
-          <p class="social-tile-desc">
+        <a class="wf-index-tile is-group-b">
+          <h3 class="wf-index-tile-title" id="theme-quality">顧客責任・品質</h3>
+          <p class="wf-index-tile-desc">
             （文章はダミーです）品質不正防止・製品セキュリティ・品質・顧客満足度の4軸でTQMを推進します。
           </p>
-          <nav class="social-tile-nav" aria-label="顧客責任・品質 ページ内見出し">
-<div class="social-tile-nav-items is-2col">
-              <span class="social-tile-nav-item">基本的な考え方</span>
-              <span class="social-tile-nav-item">体制</span>
-              <span class="social-tile-nav-item">戦略・目標・実績</span>
+          <nav class="wf-index-tile-nav" aria-label="顧客責任・品質 ページ内見出し">
+<div class="wf-index-tile-nav-items is-2col">
+              <span class="wf-index-tile-nav-item">基本的な考え方</span>
+              <span class="wf-index-tile-nav-item">体制</span>
+              <span class="wf-index-tile-nav-item">戦略・目標・実績</span>
             </div>
           </nav>
-          <span class="social-tile-cta">顧客責任・品質</span>
+          <span class="wf-index-tile-cta">顧客責任・品質</span>
         </a>
 
         <!-- AIの利活用 — 0524 FB#9：基本的な考え方のみ → サブナビ非表示 -->
-        <a class="social-tile is-group-b no-nav">
-          <h3 class="social-tile-title" id="theme-ai">AIの利活用</h3>
-          <p class="social-tile-desc">
+        <a class="wf-index-tile is-group-b no-nav">
+          <h3 class="wf-index-tile-title" id="theme-ai">AIの利活用</h3>
+          <p class="wf-index-tile-desc">
             （文章はダミーです）AI倫理・ガバナンスを両立した、責任あるAI利活用を推進しています。
           </p>
-          <span class="social-tile-cta">AIの利活用</span>
+          <span class="wf-index-tile-cta">AIの利活用</span>
         </a>
 
         <!-- 社会貢献活動 — 0524 FB#9：基本的な考え方のみ → サブナビ非表示 -->
-        <a class="social-tile is-group-b no-nav">
-          <h3 class="social-tile-title" id="theme-csr">社会貢献活動</h3>
-          <p class="social-tile-desc">
+        <a class="wf-index-tile is-group-b no-nav">
+          <h3 class="wf-index-tile-title" id="theme-csr">社会貢献活動</h3>
+          <p class="wf-index-tile-desc">
             （文章はダミーです）教育・文化・スポーツ・環境保全等の分野で、社員参加型の活動を展開しています。
           </p>
-          <span class="social-tile-cta">社会貢献活動</span>
+          <span class="wf-index-tile-cta">社会貢献活動</span>
         </a>
       </div>
 

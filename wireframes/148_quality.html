@@ -111,8 +111,8 @@ body {
 /* H5は太字のみ・マーカーなし（catalog v3.1準拠） */
 
 /* リンク */
-.wf-link { font-size: 12px; color: var(--c-text-s); display: inline-flex; align-items: center; gap: 4px; cursor: default; }
-.wf-link::before { content: '→ '; font-size: 11px; }
+.wf-text-link { font-size: 12px; color: var(--c-text-s); display: inline-flex; align-items: center; gap: 4px; cursor: default; }
+.wf-text-link::before { content: '→ '; font-size: 11px; }
 
 /* L3ページタイトル */
 .wf-page-title-area {
@@ -229,8 +229,8 @@ body {
 .wf-btn-page:hover { background: var(--c-bg-sub); border-color: var(--c-text-h); }
 
 /* テキストリンク（v3.0：UNIFIED_RULES v5.1 §4-2b 準拠 — 「→ リンクテキスト」形式に統一） */
-.text-link-row { display: block; margin: 6px 0 18px; }
-.text-link {
+.wf-text-link-row { display: block; margin: 6px 0 18px; }
+.wf-text-link {
   display: inline;
   font-size: 13px;
   color: var(--c-text-h);
@@ -239,7 +239,7 @@ body {
   text-decoration: underline;
   text-underline-offset: 4px;
 }
-.text-link::before {
+.wf-text-link::before {
   content: '→ ';
   display: inline-block;
   margin-right: 2px;
@@ -248,7 +248,7 @@ body {
   color: var(--c-text-h);
   text-decoration: none;
 }
-.text-link.is-ext::after {
+.wf-text-link.is-ext::after {
   content: '↗';
   display: inline-block;
   font-size: 11px;
@@ -634,12 +634,12 @@ body {
   display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px;
   margin-top: 14px;
 }
-.activity-card {
+.wf-activity-card {
   background: var(--c-white);
   border: 1px solid var(--c-border);
   display: flex; flex-direction: column;
 }
-.activity-card-img {
+.wf-activity-card-img {
   aspect-ratio: 16 / 9;
   background: var(--c-ph);
   border-bottom: 1px solid var(--c-border);
@@ -647,20 +647,20 @@ body {
   display: flex; align-items: center; justify-content: center;
   font-size: 10px; color: var(--c-text-xs); letter-spacing: 0.05em;
 }
-.activity-card-img::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, transparent 0 10px, rgba(0,0,0,0.04) 10px 11px); }
-.activity-card-cat {
+.wf-activity-card-img::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, transparent 0 10px, rgba(0,0,0,0.04) 10px 11px); }
+.wf-activity-card-cat {
   position: absolute; top: 10px; left: 10px; z-index: 2;
   background: var(--c-text-h); color: #fff;
   font-size: 10px; font-weight: 700;
   padding: 3px 10px; letter-spacing: 0.05em;
 }
-.activity-card-img-label { position: relative; z-index: 1; background: rgba(255,255,255,0.85); padding: 3px 10px; }
-.activity-card-body {
+.wf-activity-card-img-label { position: relative; z-index: 1; background: rgba(255,255,255,0.85); padding: 3px 10px; }
+.wf-activity-card-body {
   padding: 16px 20px 20px;
   display: flex; flex-direction: column; gap: 10px;
   flex: 1;
 }
-.activity-card-title {
+.wf-activity-card-title {
   font-size: 14px; font-weight: 700; color: var(--c-text-h);
   line-height: 1.5; padding-bottom: 8px;
   border-bottom: 1px solid var(--c-border-s);
@@ -674,7 +674,7 @@ body {
   border-radius: 50%; font-size: 13px; font-weight: 700;
   flex-shrink: 0;
 }
-.activity-card-summary {
+.wf-activity-card-summary {
   font-size: 11px; color: var(--c-text); line-height: 1.85;
   flex: 1;
   display: -webkit-box;
@@ -686,14 +686,14 @@ body {
 }
 
 /* 関連リンク */
-.theme-related {
+.wf-related-links {
   background: var(--c-bg-sub); border: 1px solid var(--c-border);
   padding: 14px 18px; margin-top: 18px;
   display: flex; flex-wrap: wrap;
   column-gap: 18px; row-gap: 6px;
   align-items: center;
 }
-.theme-related-label {
+.wf-related-links-label {
   flex-basis: 100%;
   font-size: 10px; font-weight: 700; color: var(--c-text-xs);
   letter-spacing: 0.1em; text-transform: uppercase;
@@ -1193,8 +1193,8 @@ body {
                 ※ 重大事故：製品使用者の生命・身体に重大な被害を及ぼした場合、製品以外の財産に重大な被害を及ぼした場合を対象とします<br>
                 ※ 集計対象：すべてのコニカミノルタ製品
               </p>
-              <div class="text-link-row">
-                <a class="text-link">ESGデータ ＞ 社会データ（過年度実績）</a>
+              <div class="wf-text-link-row">
+                <a class="wf-text-link">ESGデータ ＞ 社会データ（過年度実績）</a>
               </div>
 
               <h4 class="wf-card-title has-mark">品質会議による品質課題の追求</h4>
@@ -1642,7 +1642,7 @@ body {
       <span class="ann-head">v3.0（原稿準拠初版・参考）</span>
       <div class="ann-row">
         <span class="ann-row-label">原稿準拠の再構成</span>
-        ① 原稿の「基本的な考え方」3観点（高信頼品質／製品セキュリティ／カスタマーリレーションシップ）を H3＋H4「背景と課題認識／目指す姿」構成で再生成。② 各取り組みアコ本文を原稿準拠で更新。③ 「【社会】に関する取り組み」表示削除（0525 桐原ルール）。④ 関連リンクブロック（.theme-related・下層ページリンク）を全アコから廃止（UNIFIED_RULES v5.0 §4-2 ラベル廃止）。
+        ① 原稿の「基本的な考え方」3観点（高信頼品質／製品セキュリティ／カスタマーリレーションシップ）を H3＋H4「背景と課題認識／目指す姿」構成で再生成。② 各取り組みアコ本文を原稿準拠で更新。③ 「【社会】に関する取り組み」表示削除（0525 桐原ルール）。④ 関連リンクブロック（.wf-related-links・下層ページリンク）を全アコから廃止（UNIFIED_RULES v5.0 §4-2 ラベル廃止）。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">#1（B→A）滝ヶ浦</span>
@@ -1666,7 +1666,7 @@ body {
       </div>
       <div class="ann-row">
         <span class="ann-row-label">テキストリンク統一</span>
-        UNIFIED_RULES v5.1 §4-2b 準拠：<code>.text-link</code> モジュール新規追加（「→ リンクテキスト」形式・<code>.is-ext</code>で「↗」外部マーカー）。
+        UNIFIED_RULES v5.1 §4-2b 準拠：<code>.wf-text-link</code> モジュール新規追加（「→ リンクテキスト」形式・<code>.is-ext</code>で「↗」外部マーカー）。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">残課題（B保留）</span>
@@ -1798,9 +1798,9 @@ body {
       <span class="ann-num">M</span>
       <span class="ann-head">主要モジュール（v2.6更新）</span>
       <p class="ann-body">
-        共通: ヘッダー／lnav／パンくず／フッター／H2/H3/H4／wf-acc-h3（catalog v3.1共通）／theme-related／img-zoom-btn＋modal preview／wf-btn<br>
+        共通: ヘッダー／lnav／パンくず／フッター／H2/H3/H4／wf-acc-h3（catalog v3.1共通）／wf-related-links／img-zoom-btn＋modal preview／wf-btn<br>
         使用: policy-statement／quality-policy（HTML化）／strategy-block（TQM）／kpi-block＋kpi-table／kpi-na（該当なし）／gov-structure-fig<br>
-        撤去（v2.6）: bg-vision-table（背景・目指す姿表）／activity-card（5カード）／activity-grid → アコーディオン集約に変更
+        撤去（v2.6）: bg-vision-table（背景・目指す姿表）／wf-activity-card（5カード）／activity-grid → アコーディオン集約に変更
       </p>
     </div>
     </div><!-- /旧アノテーションラッパ -->

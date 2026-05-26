@@ -111,21 +111,21 @@ body {
 /* H5は太字のみ・マーカーなし（catalog v3.1準拠） */
 
 /* リンク */
-.section-head-link { font-size: 12px; font-weight: 600; color: var(--c-text-h); white-space: nowrap; cursor: default; letter-spacing: 0.03em; padding: 4px 0; border-bottom: 2px solid transparent; transition: border-color 0.15s; }
-.section-head-link:hover { border-bottom-color: var(--c-text-h); }
-.section-head-link::before { content: '› '; font-weight: 700; }
-.wf-link { font-size: 12px; color: var(--c-text-s); display: inline-flex; align-items: center; gap: 4px; cursor: default; }
-.wf-link::before { content: '→ '; font-size: 11px; }
+.wf-heading-link { font-size: 12px; font-weight: 600; color: var(--c-text-h); white-space: nowrap; cursor: default; letter-spacing: 0.03em; padding: 4px 0; border-bottom: 2px solid transparent; transition: border-color 0.15s; }
+.wf-heading-link:hover { border-bottom-color: var(--c-text-h); }
+.wf-heading-link::before { content: '› '; font-weight: 700; }
+.wf-text-link { font-size: 12px; color: var(--c-text-s); display: inline-flex; align-items: center; gap: 4px; cursor: default; }
+.wf-text-link::before { content: '→ '; font-size: 11px; }
 
 /* カード／グリッド */
 .wf-card { background: var(--c-white); border: 1px solid var(--c-border); padding: 20px; }
 /* 取り組みカード（131_health_management 同型／全ページ共通モジュール） */
-.activity-card {
+.wf-activity-card {
   background: var(--c-white);
   border: 1px solid var(--c-border);
   display: flex; flex-direction: column;
 }
-.activity-card-img {
+.wf-activity-card-img {
   aspect-ratio: 16 / 9;
   background: var(--c-ph);
   border-bottom: 1px solid var(--c-border);
@@ -133,20 +133,20 @@ body {
   display: flex; align-items: center; justify-content: center;
   font-size: 10px; color: var(--c-text-xs); letter-spacing: 0.05em;
 }
-.activity-card-img::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, transparent 0 10px, rgba(0,0,0,0.04) 10px 11px); }
-.activity-card-cat {
+.wf-activity-card-img::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, transparent 0 10px, rgba(0,0,0,0.04) 10px 11px); }
+.wf-activity-card-cat {
   position: absolute; top: 10px; left: 10px; z-index: 2;
   background: var(--c-text-h); color: #fff;
   font-size: 10px; font-weight: 700;
   padding: 3px 10px; letter-spacing: 0.05em;
 }
-.activity-card-img-label { position: relative; z-index: 1; background: rgba(255,255,255,0.85); padding: 3px 10px; }
-.activity-card-body {
+.wf-activity-card-img-label { position: relative; z-index: 1; background: rgba(255,255,255,0.85); padding: 3px 10px; }
+.wf-activity-card-body {
   padding: 16px 20px 20px;
   display: flex; flex-direction: column; gap: 10px;
   flex: 1;
 }
-.activity-card-title {
+.wf-activity-card-title {
   font-size: 14px; font-weight: 700; color: var(--c-text-h);
   line-height: 1.5; padding-bottom: 8px;
   border-bottom: 1px solid var(--c-border-s);
@@ -160,7 +160,7 @@ body {
   border-radius: 50%; font-size: 13px; font-weight: 700;
   flex-shrink: 0;
 }
-.activity-card-summary {
+.wf-activity-card-summary {
   font-size: 11px; color: var(--c-text); line-height: 1.85;
   flex: 1;
 }
@@ -705,12 +705,12 @@ body {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
   margin-top: 14px;
 }
-.activity-card {
+.wf-activity-card {
   background: var(--c-white);
   border: 1px solid var(--c-border);
   display: flex; flex-direction: column;
 }
-.activity-card-img {
+.wf-activity-card-img {
   aspect-ratio: 16 / 9;
   background: var(--c-ph);
   border-bottom: 1px solid var(--c-border);
@@ -718,8 +718,8 @@ body {
   display: flex; align-items: center; justify-content: center;
   font-size: 10px; color: var(--c-text-xs); letter-spacing: 0.05em;
 }
-.activity-card-img::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, transparent 0 10px, rgba(0,0,0,0.04) 10px 11px); }
-.activity-card-cat {
+.wf-activity-card-img::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, transparent 0 10px, rgba(0,0,0,0.04) 10px 11px); }
+.wf-activity-card-cat {
   position: absolute; top: 10px; left: 10px; z-index: 2;
   background: var(--c-text-h); color: #fff;
   font-size: 10px; font-weight: 700;
@@ -732,20 +732,20 @@ body {
   border-radius: 50%; font-size: 12px; font-weight: 700;
   flex-shrink: 0;
 }
-.activity-card-img-label { position: relative; z-index: 1; background: rgba(255,255,255,0.85); padding: 3px 10px; }
-.activity-card-body {
+.wf-activity-card-img-label { position: relative; z-index: 1; background: rgba(255,255,255,0.85); padding: 3px 10px; }
+.wf-activity-card-body {
   padding: 14px 18px 18px;
   display: flex; flex-direction: column; gap: 10px;
   flex: 1;
 }
-.activity-card-title {
+.wf-activity-card-title {
   font-size: 13px; font-weight: 700; color: var(--c-text-h);
   line-height: 1.5; padding-bottom: 8px;
   border-bottom: 1px solid var(--c-border-s);
   display: flex; align-items: center; justify-content: space-between;
   gap: 8px;
 }
-.activity-card-summary {
+.wf-activity-card-summary {
   font-size: 11px; color: var(--c-text); line-height: 1.85;
   flex: 1;
 }
@@ -772,14 +772,14 @@ body {
 .theme-topic-desc { font-size: 11px; color: var(--c-text); line-height: 1.85; }
 
 /* 0521：関連リンクは本文より目立たないトーン（背景・ボーダー廃止、フォント細・色淡） */
-.theme-related {
+.wf-related-links {
   background: transparent; border: none;
   padding: 6px 0 0; margin-top: 10px;
   display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
 }
-.theme-related-label { font-size: 11px; font-weight: 400; color: var(--c-text-s); letter-spacing: 0.02em; }
-.theme-related .wf-link { font-size: 11px; color: var(--c-text-s); }
-.theme-related .wf-link:hover { color: var(--c-text-h); }
+.wf-related-links-label { font-size: 11px; font-weight: 400; color: var(--c-text-s); letter-spacing: 0.02em; }
+.wf-related-links .wf-text-link { font-size: 11px; color: var(--c-text-s); }
+.wf-related-links .wf-text-link:hover { color: var(--c-text-h); }
 
 /* フッター */
 /* サステナビリティサイトフッター（アコーディオン式・全ページ共通） */
@@ -892,7 +892,7 @@ body {
 .ann-body { font-size: 10px; color: #555; line-height: 1.6; margin-top: 6px; }
 
 /* 0521：関連リンク内のサブ説明（中身の内訳表示用、例：ESGデータ：環境/社会/ガバナンス） */
-.theme-related .rl-sub {
+.wf-related-links .rl-sub {
   font-size: 10px; color: var(--c-text-xs);
   margin-left: 2px;
 }
@@ -1129,8 +1129,8 @@ body {
             </div>
             <!-- #19：用語モーダル説明を廃し「関連リンク程度」に簡素化。
                  ※「グリーン◯◯」表記の最終的な置換語はKM原稿確定待ち（グリーンウォッシュ対策・要判断） -->
-            <div class="theme-related" style="margin-top:14px;">
-                            <span class="wf-link">グリーンプロダクツ認定制度<span class="placeholder" style="font-size:11px;color:var(--c-text-xs);">（名称はKM確定原稿待ち）</span></span>
+            <div class="wf-related-links" style="margin-top:14px;">
+                            <span class="wf-text-link">グリーンプロダクツ認定制度<span class="placeholder" style="font-size:11px;color:var(--c-text-xs);">（名称はKM確定原稿待ち）</span></span>
             </div>
           </div>
         </div>
@@ -1176,9 +1176,9 @@ body {
             <p class="term-note-small">※ 「CN」は Carbon Neutral の略。お取引先様と協働でCO<sub>2</sub>排出量削減を進める活動。コニカミノルタが自社で培った省エネルギー診断・改善ノウハウを取引先様に提供し、サプライチェーン全体（スコープ3カテゴリ1）の削減を目指します。</p>
 
             <!-- 0523：関連リンク（TCFD / ESGデータ）を③お取引先様ブロック内へ格納 -->
-            <div class="theme-related">
-                            <span class="wf-link">TCFD</span>
-              <span class="wf-link">ESGデータ<span class="rl-sub">：環境データ、社会データ、ガバナンスデータ</span></span>
+            <div class="wf-related-links">
+                            <span class="wf-text-link">TCFD</span>
+              <span class="wf-text-link">ESGデータ<span class="rl-sub">：環境データ、社会データ、ガバナンスデータ</span></span>
             </div>
           </div>
         </div>
@@ -1201,69 +1201,69 @@ body {
 
       <div class="wf-grid col-3 gap-24">
 
-        <div class="activity-card">
-          <div class="activity-card-img">
-            <span class="activity-card-cat">製品／ソリューション</span>
-            <span class="activity-card-img-label">[ 製品/ソリューションPH ]</span>
+        <div class="wf-activity-card">
+          <div class="wf-activity-card-img">
+            <span class="wf-activity-card-cat">製品／ソリューション</span>
+            <span class="wf-activity-card-img-label">[ 製品/ソリューションPH ]</span>
           </div>
-          <div class="activity-card-body">
-            <div class="activity-card-title"><span>製品/ソリューションでの脱炭素化</span><span class="card-link-arrow">›</span></div>
-            <p class="activity-card-summary">（文章はダミーです）商業・産業用印刷機をはじめとした主力製品・ソリューションを通じて、お客様の業務プロセスでのCO<sub>2</sub>削減を実現します。</p>
-          </div>
-        </div>
-
-        <div class="activity-card">
-          <div class="activity-card-img">
-            <span class="activity-card-cat">生産</span>
-            <span class="activity-card-img-label">[ 太陽光発電PH ]</span>
-          </div>
-          <div class="activity-card-body">
-            <div class="activity-card-title"><span>自社拠点での再生可能エネルギー導入</span><span class="card-link-arrow">›</span></div>
-            <p class="activity-card-summary">（文章はダミーです）RE100加盟（2019年）。2050年までに事業運営電力を100%再エネ化、2030年中間目標50%。FY24で再エネ比率20.7%まで到達しました。</p>
+          <div class="wf-activity-card-body">
+            <div class="wf-activity-card-title"><span>製品/ソリューションでの脱炭素化</span><span class="card-link-arrow">›</span></div>
+            <p class="wf-activity-card-summary">（文章はダミーです）商業・産業用印刷機をはじめとした主力製品・ソリューションを通じて、お客様の業務プロセスでのCO<sub>2</sub>削減を実現します。</p>
           </div>
         </div>
 
-        <div class="activity-card">
-          <div class="activity-card-img">
-            <span class="activity-card-cat">生産</span>
-            <span class="activity-card-img-label">[ 生産活動PH ]</span>
+        <div class="wf-activity-card">
+          <div class="wf-activity-card-img">
+            <span class="wf-activity-card-cat">生産</span>
+            <span class="wf-activity-card-img-label">[ 太陽光発電PH ]</span>
           </div>
-          <div class="activity-card-body">
-            <div class="activity-card-title"><span>生産活動での脱炭素化</span><span class="card-link-arrow">›</span></div>
-            <p class="activity-card-summary">（文章はダミーです）主要生産サイトでの省エネ施策により、計画前倒しで目標達成。グリーンファクトリー認定制度を運用しています。</p>
-          </div>
-        </div>
-
-        <div class="activity-card">
-          <div class="activity-card-img">
-            <span class="activity-card-cat">販売</span>
-            <span class="activity-card-img-label">[ 販売活動PH ]</span>
-          </div>
-          <div class="activity-card-body">
-            <div class="activity-card-title"><span>販売活動での脱炭素</span><span class="card-link-arrow">›</span></div>
-            <p class="activity-card-summary">（文章はダミーです）全世界の販売拠点で再エネ導入を加速。USA本社100%再エネ化（2020年）、欧州11カ国販売会社で切替完了（FY23）しました。</p>
+          <div class="wf-activity-card-body">
+            <div class="wf-activity-card-title"><span>自社拠点での再生可能エネルギー導入</span><span class="card-link-arrow">›</span></div>
+            <p class="wf-activity-card-summary">（文章はダミーです）RE100加盟（2019年）。2050年までに事業運営電力を100%再エネ化、2030年中間目標50%。FY24で再エネ比率20.7%まで到達しました。</p>
           </div>
         </div>
 
-        <div class="activity-card">
-          <div class="activity-card-img">
-            <span class="activity-card-cat">物流</span>
-            <span class="activity-card-img-label">[ 物流PH ]</span>
+        <div class="wf-activity-card">
+          <div class="wf-activity-card-img">
+            <span class="wf-activity-card-cat">生産</span>
+            <span class="wf-activity-card-img-label">[ 生産活動PH ]</span>
           </div>
-          <div class="activity-card-body">
-            <div class="activity-card-title"><span>物流での脱炭素化</span><span class="card-link-arrow">›</span></div>
-            <p class="activity-card-summary">（文章はダミーです）モーダルシフト、輸送効率化、低炭素輸送モードの活用などサプライチェーン物流の環境負荷低減施策を推進しています。</p>
+          <div class="wf-activity-card-body">
+            <div class="wf-activity-card-title"><span>生産活動での脱炭素化</span><span class="card-link-arrow">›</span></div>
+            <p class="wf-activity-card-summary">（文章はダミーです）主要生産サイトでの省エネ施策により、計画前倒しで目標達成。グリーンファクトリー認定制度を運用しています。</p>
           </div>
         </div>
 
-        <div class="activity-card">
-          <div class="activity-card-img">
-            <span class="activity-card-cat">適応</span>
-            <span class="activity-card-img-label">[ 適応PH ]</span>
+        <div class="wf-activity-card">
+          <div class="wf-activity-card-img">
+            <span class="wf-activity-card-cat">販売</span>
+            <span class="wf-activity-card-img-label">[ 販売活動PH ]</span>
           </div>
-          <div class="activity-card-body">
-            <div class="activity-card-title"><span>気候変動への適応</span><span class="card-link-arrow">›</span></div>
-            <p class="activity-card-summary">（文章はダミーです）気候変動の物理的影響（異常気象・豪雨・熱波等）への事業継続力の強化、BCP対応、レジリエンス向上施策を推進しています。</p>
+          <div class="wf-activity-card-body">
+            <div class="wf-activity-card-title"><span>販売活動での脱炭素</span><span class="card-link-arrow">›</span></div>
+            <p class="wf-activity-card-summary">（文章はダミーです）全世界の販売拠点で再エネ導入を加速。USA本社100%再エネ化（2020年）、欧州11カ国販売会社で切替完了（FY23）しました。</p>
+          </div>
+        </div>
+
+        <div class="wf-activity-card">
+          <div class="wf-activity-card-img">
+            <span class="wf-activity-card-cat">物流</span>
+            <span class="wf-activity-card-img-label">[ 物流PH ]</span>
+          </div>
+          <div class="wf-activity-card-body">
+            <div class="wf-activity-card-title"><span>物流での脱炭素化</span><span class="card-link-arrow">›</span></div>
+            <p class="wf-activity-card-summary">（文章はダミーです）モーダルシフト、輸送効率化、低炭素輸送モードの活用などサプライチェーン物流の環境負荷低減施策を推進しています。</p>
+          </div>
+        </div>
+
+        <div class="wf-activity-card">
+          <div class="wf-activity-card-img">
+            <span class="wf-activity-card-cat">適応</span>
+            <span class="wf-activity-card-img-label">[ 適応PH ]</span>
+          </div>
+          <div class="wf-activity-card-body">
+            <div class="wf-activity-card-title"><span>気候変動への適応</span><span class="card-link-arrow">›</span></div>
+            <p class="wf-activity-card-summary">（文章はダミーです）気候変動の物理的影響（異常気象・豪雨・熱波等）への事業継続力の強化、BCP対応、レジリエンス向上施策を推進しています。</p>
           </div>
         </div>
 
@@ -1438,7 +1438,7 @@ body {
       <div class="ann-row">
         <span class="ann-row-label">UI調整（0521）</span>
         取り組み（D）セクションを col-2 → <b>col-3</b> に変更（6カードを2列×3行→3列×2行）。<br>
-        <b>ESGデータ：</b>独立UI（.esg-link-guide / .esg-data-link）は廃止。関連リンクの中に「ESGデータ：環境データ、社会データ、ガバナンスデータ」と中身が分かる形で1リンクとして統合。<br>
+        <b>ESGデータ：</b>独立UI（.wf-esg-data-block / .esg-data-link）は廃止。関連リンクの中に「ESGデータ：環境データ、社会データ、ガバナンスデータ」と中身が分かる形で1リンクとして統合。<br>
         <b>アンカーナビ：</b>H2に加えH3（主要KPI／①②③ の result-block）も `.is-sub` で併載。H3には id を付与（strategy-kpi / results-customer / results-internal / results-supplier）。
       </div>
     </div>
@@ -1518,7 +1518,7 @@ body {
       <span class="ann-head">流用／新規モジュール</span>
       <p class="ann-body">
         共通: ヘッダー/lnav/パンくず/H2/H3/H4/フッター<br>
-        新規: parent-link-bar（L3→L2戻り）／basic-2col（機会リスク並列）／kpi-major-card／kpi-table（多列実績テーブル）／result-block（用語ヘルプ＋2グラフ）／cm-progress-box／activity-card（SCOPE分類）
+        新規: parent-link-bar（L3→L2戻り）／basic-2col（機会リスク並列）／kpi-major-card／kpi-table（多列実績テーブル）／result-block（用語ヘルプ＋2グラフ）／cm-progress-box／wf-activity-card（SCOPE分類）
       </p>
     </div>
   </aside>

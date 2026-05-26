@@ -174,9 +174,9 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
 }
 .section-head-row .wf-section-title { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
 .section-head-row .wf-section-title::after { display: none; }
-.section-head-link { font-size: 12px; font-weight: 600; color: var(--c-text-h); white-space: nowrap; cursor: default; letter-spacing: 0.03em; padding: 4px 0; border-bottom: 2px solid transparent; }
-.section-head-link:hover { border-bottom-color: var(--c-text-h); }
-.section-head-link::before { content: '› '; font-weight: 700; }
+.wf-heading-link { font-size: 12px; font-weight: 600; color: var(--c-text-h); white-space: nowrap; cursor: default; letter-spacing: 0.03em; padding: 4px 0; border-bottom: 2px solid transparent; }
+.wf-heading-link:hover { border-bottom-color: var(--c-text-h); }
+.wf-heading-link::before { content: '› '; font-weight: 700; }
 
 /* H3 — 左縦棒 */
 .wf-sub-title {
@@ -195,8 +195,8 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
 .wf-card-title.has-mark::before { content: '◾'; color: var(--c-text-h); font-size: 12px; flex-shrink: 0; margin-right: 6px; }
 
 /* リンク */
-.wf-link { font-size: 12px; color: var(--c-text-s); display: inline-flex; align-items: center; gap: 4px; cursor: default; }
-.wf-link::before { content: '→ '; font-size: 11px; }
+.wf-text-link { font-size: 12px; color: var(--c-text-s); display: inline-flex; align-items: center; gap: 4px; cursor: default; }
+.wf-text-link::before { content: '→ '; font-size: 11px; }
 
 /* 画像PH・キャプション */
 .wf-img {
@@ -299,26 +299,26 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
 .wf-photo-grid.col-3 { grid-template-columns: repeat(3, 1fr); }
 
 /* 0521：関連リンクは本文より目立たないトーン（背景・ボーダー廃止、フォント細・色淡） */
-.theme-related {
+.wf-related-links {
   background: transparent; border: none;
   padding: 6px 0 0; margin-top: 10px;
   display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
 }
-.theme-related-label {
+.wf-related-links-label {
   font-size: 11px; font-weight: 400; color: var(--c-text-s);
   letter-spacing: 0.02em;
 }
-.theme-related .wf-link { font-size: 11px; color: var(--c-text-s); }
-.theme-related .wf-link:hover { color: var(--c-text-h); }
-.theme-related .rl-sub { font-size: 10px; color: var(--c-text-xs); margin-left: 2px; }
+.wf-related-links .wf-text-link { font-size: 11px; color: var(--c-text-s); }
+.wf-related-links .wf-text-link:hover { color: var(--c-text-h); }
+.wf-related-links .rl-sub { font-size: 10px; color: var(--c-text-xs); margin-left: 2px; }
 
 /* 取り組みカード（131_health_management 同型／全ページ共通モジュール） */
-.activity-card {
+.wf-activity-card {
   background: var(--c-white);
   border: 1px solid var(--c-border);
   display: flex; flex-direction: column;
 }
-.activity-card-img {
+.wf-activity-card-img {
   aspect-ratio: 16 / 9;
   background: var(--c-ph);
   border-bottom: 1px solid var(--c-border);
@@ -326,20 +326,20 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
   display: flex; align-items: center; justify-content: center;
   font-size: 10px; color: var(--c-text-xs); letter-spacing: 0.05em;
 }
-.activity-card-img::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, transparent 0 10px, rgba(0,0,0,0.04) 10px 11px); }
-.activity-card-cat {
+.wf-activity-card-img::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, transparent 0 10px, rgba(0,0,0,0.04) 10px 11px); }
+.wf-activity-card-cat {
   position: absolute; top: 10px; left: 10px; z-index: 2;
   background: var(--c-text-h); color: #fff;
   font-size: 10px; font-weight: 700;
   padding: 3px 10px; letter-spacing: 0.05em;
 }
-.activity-card-img-label { position: relative; z-index: 1; background: rgba(255,255,255,0.85); padding: 3px 10px; }
-.activity-card-body {
+.wf-activity-card-img-label { position: relative; z-index: 1; background: rgba(255,255,255,0.85); padding: 3px 10px; }
+.wf-activity-card-body {
   padding: 16px 20px 20px;
   display: flex; flex-direction: column; gap: 10px;
   flex: 1;
 }
-.activity-card-title {
+.wf-activity-card-title {
   font-size: 14px; font-weight: 700; color: var(--c-text-h);
   line-height: 1.5; padding-bottom: 8px;
   border-bottom: 1px solid var(--c-border-s);
@@ -353,7 +353,7 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
   border-radius: 50%; font-size: 13px; font-weight: 700;
   flex-shrink: 0;
 }
-.activity-card-summary {
+.wf-activity-card-summary {
   font-size: 11px; color: var(--c-text); line-height: 1.85;
   flex: 1;
 }
@@ -361,12 +361,12 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
 .wf-grid.col-2 { grid-template-columns: repeat(2, 1fr); }
 .wf-grid.col-3 { grid-template-columns: repeat(3, 1fr); }
 .wf-grid.gap-24 { gap: 24px; }
-.wf-link-more {
+.wf-text-link-more {
   font-size: 12px; font-weight: 600; color: var(--c-text-h);
   cursor: default; letter-spacing: 0.03em;
   padding: 4px 0; border-bottom: 2px solid transparent;
 }
-.wf-link-more::before { content: '› '; font-weight: 700; }
+.wf-text-link-more::before { content: '› '; font-weight: 700; }
 
 /* ファーストビューライン */
 .wf-firstview-line { position: relative; height: 0; border: none; margin: 24px 0 0; padding: 0; }
@@ -645,9 +645,9 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
 
           </div>
 
-          <div class="theme-related">
-            <span class="theme-related-label">関連リンク</span>
-            <span class="wf-link">ニュースリリース：コニカミノルタ、東急不動産　環境価値価格固定型のバーチャルPPA契約締結</span>
+          <div class="wf-related-links">
+            <span class="wf-related-links-label">関連リンク</span>
+            <span class="wf-text-link">ニュースリリース：コニカミノルタ、東急不動産　環境価値価格固定型のバーチャルPPA契約締結</span>
           </div>
         </section>
 
@@ -656,63 +656,63 @@ body { font-family: 'Hiragino Kaku Gothic Pro', 'Hiragino Sans', 'Noto Sans JP',
           <span class="wf-section-marker">6</span>
           <div class="section-head-row">
             <h2 class="wf-section-title">その他の取り組み</h2>
-            <span class="wf-link-more">気候変動のページを見る</span>
+            <span class="wf-text-link-more">気候変動のページを見る</span>
           </div>
           <p class="wf-section-desc">サプライチェーンの各フェーズにおける脱炭素の取り組みを紹介します。</p>
 
           <div class="wf-grid col-3 gap-24">
-            <div class="activity-card">
-              <div class="activity-card-img">
-                <span class="activity-card-cat">製品／ソリューション</span>
-                <span class="activity-card-img-label">[ グリーンプロダクツ等 PH ]</span>
+            <div class="wf-activity-card">
+              <div class="wf-activity-card-img">
+                <span class="wf-activity-card-cat">製品／ソリューション</span>
+                <span class="wf-activity-card-img-label">[ グリーンプロダクツ等 PH ]</span>
               </div>
-              <div class="activity-card-body">
-                <div class="activity-card-title"><span>製品/ソリューションでの脱炭素化</span><span class="card-link-arrow">›</span></div>
-                <p class="activity-card-summary">主力製品・ソリューションを通じてお客様の業務プロセスでのCO<sub>2</sub>削減を実現します。</p>
-              </div>
-            </div>
-
-            <div class="activity-card">
-              <div class="activity-card-img">
-                <span class="activity-card-cat">生産</span>
-                <span class="activity-card-img-label">[ グリーンファクトリー PH ]</span>
-              </div>
-              <div class="activity-card-body">
-                <div class="activity-card-title"><span>生産活動での脱炭素化</span><span class="card-link-arrow">›</span></div>
-                <p class="activity-card-summary">主要生産サイトでの省エネ施策・グリーンファクトリー認定制度を運用します。</p>
+              <div class="wf-activity-card-body">
+                <div class="wf-activity-card-title"><span>製品/ソリューションでの脱炭素化</span><span class="card-link-arrow">›</span></div>
+                <p class="wf-activity-card-summary">主力製品・ソリューションを通じてお客様の業務プロセスでのCO<sub>2</sub>削減を実現します。</p>
               </div>
             </div>
 
-            <div class="activity-card">
-              <div class="activity-card-img">
-                <span class="activity-card-cat">販売</span>
-                <span class="activity-card-img-label">[ グリーンマーケティング PH ]</span>
+            <div class="wf-activity-card">
+              <div class="wf-activity-card-img">
+                <span class="wf-activity-card-cat">生産</span>
+                <span class="wf-activity-card-img-label">[ グリーンファクトリー PH ]</span>
               </div>
-              <div class="activity-card-body">
-                <div class="activity-card-title"><span>販売活動での脱炭素</span><span class="card-link-arrow">›</span></div>
-                <p class="activity-card-summary">全世界の販売拠点でグローバル販売活動の環境負荷低減を進めています。</p>
-              </div>
-            </div>
-
-            <div class="activity-card">
-              <div class="activity-card-img">
-                <span class="activity-card-cat">物流</span>
-                <span class="activity-card-img-label">[ モーダルシフト PH ]</span>
-              </div>
-              <div class="activity-card-body">
-                <div class="activity-card-title"><span>物流での脱炭素化</span><span class="card-link-arrow">›</span></div>
-                <p class="activity-card-summary">モーダルシフト、輸送効率化、低炭素輸送モードの活用を推進しています。</p>
+              <div class="wf-activity-card-body">
+                <div class="wf-activity-card-title"><span>生産活動での脱炭素化</span><span class="card-link-arrow">›</span></div>
+                <p class="wf-activity-card-summary">主要生産サイトでの省エネ施策・グリーンファクトリー認定制度を運用します。</p>
               </div>
             </div>
 
-            <div class="activity-card">
-              <div class="activity-card-img">
-                <span class="activity-card-cat">適応</span>
-                <span class="activity-card-img-label">[ BCP・適応策 PH ]</span>
+            <div class="wf-activity-card">
+              <div class="wf-activity-card-img">
+                <span class="wf-activity-card-cat">販売</span>
+                <span class="wf-activity-card-img-label">[ グリーンマーケティング PH ]</span>
               </div>
-              <div class="activity-card-body">
-                <div class="activity-card-title"><span>気候変動への適応</span><span class="card-link-arrow">›</span></div>
-                <p class="activity-card-summary">気候変動の物理的影響への事業継続力強化・BCP対応・レジリエンス向上施策を推進。</p>
+              <div class="wf-activity-card-body">
+                <div class="wf-activity-card-title"><span>販売活動での脱炭素</span><span class="card-link-arrow">›</span></div>
+                <p class="wf-activity-card-summary">全世界の販売拠点でグローバル販売活動の環境負荷低減を進めています。</p>
+              </div>
+            </div>
+
+            <div class="wf-activity-card">
+              <div class="wf-activity-card-img">
+                <span class="wf-activity-card-cat">物流</span>
+                <span class="wf-activity-card-img-label">[ モーダルシフト PH ]</span>
+              </div>
+              <div class="wf-activity-card-body">
+                <div class="wf-activity-card-title"><span>物流での脱炭素化</span><span class="card-link-arrow">›</span></div>
+                <p class="wf-activity-card-summary">モーダルシフト、輸送効率化、低炭素輸送モードの活用を推進しています。</p>
+              </div>
+            </div>
+
+            <div class="wf-activity-card">
+              <div class="wf-activity-card-img">
+                <span class="wf-activity-card-cat">適応</span>
+                <span class="wf-activity-card-img-label">[ BCP・適応策 PH ]</span>
+              </div>
+              <div class="wf-activity-card-body">
+                <div class="wf-activity-card-title"><span>気候変動への適応</span><span class="card-link-arrow">›</span></div>
+                <p class="wf-activity-card-summary">気候変動の物理的影響への事業継続力強化・BCP対応・レジリエンス向上施策を推進。</p>
               </div>
             </div>
           </div>

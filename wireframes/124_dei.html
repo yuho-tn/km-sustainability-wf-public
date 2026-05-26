@@ -111,12 +111,12 @@ body {
 /* H5は太字のみ・マーカーなし（catalog v3.1準拠） */
 
 /* リンク */
-.wf-link { font-size: 12px; color: var(--c-text-s); display: inline-flex; align-items: center; gap: 4px; cursor: default; }
-.wf-link::before { content: '→ '; font-size: 11px; }
+.wf-text-link { font-size: 12px; color: var(--c-text-s); display: inline-flex; align-items: center; gap: 4px; cursor: default; }
+.wf-text-link::before { content: '→ '; font-size: 11px; }
 
 /* テキストリンク（v4.3：UNIFIED_RULES v5.1 §4-2b 準拠 — 131 と同型） */
-.text-link-row { display: block; margin: 6px 0 18px; }
-.text-link {
+.wf-text-link-row { display: block; margin: 6px 0 18px; }
+.wf-text-link {
   display: inline;
   font-size: 13px;
   color: var(--c-text-h);
@@ -125,7 +125,7 @@ body {
   text-decoration: underline;
   text-underline-offset: 4px;
 }
-.text-link::before {
+.wf-text-link::before {
   content: '→ ';
   display: inline-block;
   margin-right: 2px;
@@ -134,7 +134,7 @@ body {
   color: var(--c-text-h);
   text-decoration: none;
 }
-.text-link.is-ext::after {
+.wf-text-link.is-ext::after {
   content: '↗';
   display: inline-block;
   font-size: 11px;
@@ -554,12 +554,12 @@ body {
   display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px;
   margin-top: 14px;
 }
-.activity-card {
+.wf-activity-card {
   background: var(--c-white);
   border: 1px solid var(--c-border);
   display: flex; flex-direction: column;
 }
-.activity-card-img {
+.wf-activity-card-img {
   aspect-ratio: 16 / 9;
   background: var(--c-ph);
   border-bottom: 1px solid var(--c-border);
@@ -567,20 +567,20 @@ body {
   display: flex; align-items: center; justify-content: center;
   font-size: 10px; color: var(--c-text-xs); letter-spacing: 0.05em;
 }
-.activity-card-img::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, transparent 0 10px, rgba(0,0,0,0.04) 10px 11px); }
-.activity-card-cat {
+.wf-activity-card-img::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-45deg, transparent 0 10px, rgba(0,0,0,0.04) 10px 11px); }
+.wf-activity-card-cat {
   position: absolute; top: 10px; left: 10px; z-index: 2;
   background: var(--c-text-h); color: #fff;
   font-size: 10px; font-weight: 700;
   padding: 3px 10px; letter-spacing: 0.05em;
 }
-.activity-card-img-label { position: relative; z-index: 1; background: rgba(255,255,255,0.85); padding: 3px 10px; }
-.activity-card-body {
+.wf-activity-card-img-label { position: relative; z-index: 1; background: rgba(255,255,255,0.85); padding: 3px 10px; }
+.wf-activity-card-body {
   padding: 16px 20px 20px;
   display: flex; flex-direction: column; gap: 10px;
   flex: 1;
 }
-.activity-card-title {
+.wf-activity-card-title {
   font-size: 14px; font-weight: 700; color: var(--c-text-h);
   line-height: 1.5; padding-bottom: 8px;
   border-bottom: 1px solid var(--c-border-s);
@@ -594,7 +594,7 @@ body {
   border-radius: 50%; font-size: 13px; font-weight: 700;
   flex-shrink: 0;
 }
-.activity-card-summary {
+.wf-activity-card-summary {
   font-size: 11px; color: var(--c-text); line-height: 1.85;
   flex: 1;
 }
@@ -717,14 +717,14 @@ body {
 }
 
 /* 関連リンク */
-.theme-related {
+.wf-related-links {
   background: var(--c-bg-sub); border: 1px solid var(--c-border);
   padding: 14px 18px; margin-top: 18px;
   display: flex; flex-wrap: wrap;
   column-gap: 18px; row-gap: 6px;
   align-items: center;
 }
-.theme-related-label {
+.wf-related-links-label {
   flex-basis: 100%;
   font-size: 10px; font-weight: 700; color: var(--c-text-xs);
   letter-spacing: 0.1em; text-transform: uppercase;
@@ -1330,7 +1330,7 @@ body {
 
               <p>コニカミノルタ（株）の仕事と生活の両立支援は、女性従業員の出産・育児を理由とした離職を防止するために1990年代から整備を始めました。現在では、男性従業員の育児参画促進や仕事と介護の両立支援も充実させていくとともに、従業員一人ひとりの異なる状況により柔軟に対応ができるよう制度改定や環境づくりに取り組んでいます。その結果、コニカミノルタ（株）における平均勤続年数の男女差は解消されており、誰もが仕事と生活を両立できる環境が整いつつあります。</p>
               <p>また、女性のライフステージ特有の月経前症候群や更年期障害等の疾病について、女性従業員と周囲の同僚・上司がともに正しい知識と対処方法を学ぶ機会をさまざまな場面で提供し、女性従業員が安心・安全に働くことができるよう取り組んでいます。</p>
-              <p class="text-link-row"><a class="text-link">取組み詳細：女性の健康支援</a></p>
+              <p class="wf-text-link-row"><a class="wf-text-link">取組み詳細：女性の健康支援</a></p>
 
               <h4 class="wf-card-title has-mark">男女性従業員の育児とキャリアを両立させるための支援</h4>
               <p>コニカミノルタ（株）の育児休職制度は、1992年の導入以来、着実に根づいており、女性従業員の取得率は100％、復職率は95％以上の高水準を維持しています。</p>
@@ -1345,7 +1345,7 @@ body {
                 <span class="img-zoom-btn"></span>
               </div>
               <p class="wf-note">※対象はコニカミノルタ（株）正規従業員<br>※育児休職取得率の算定方法：育休取得人数(前年度からの継続含む)÷配偶者が出産した人数</p>
-              <p class="text-link-row"><a class="text-link">データ詳細はESGデータ内の社会データ（Excel）</a></p>
+              <p class="wf-text-link-row"><a class="wf-text-link">データ詳細はESGデータ内の社会データ（Excel）</a></p>
 
               <p style="margin-top:14px;">また、性別に関係なく、育児休職から復職した後も、子どもが小学校を卒業するまでの間、「短時間勤務」「在宅勤務」「リモートワーク」など、さまざまな勤務形態を選択することができ、家庭の事情や本人の考えにあわせたキャリア形成を図ることが可能です。さらには、育児期かどうかに関わらず、「フレックスタイム」「時間単位休暇」等の制度を導入しており、柔軟な働き方が選択可能となっています。</p>
 
@@ -1452,7 +1452,7 @@ body {
               <p>2021年からは、海外も含めコニカミノルタグループで一体となった活動を推進するため、欧州、米国と日本のDEI推進担当が集まり、グローバルプログラムを企画、年間３回開催しています。また、グローバルプログラムと同時期に日本国内向けプログラムも開催し、より多くの従業員がDEI推進に参画できるよう取り組んでいます。</p>
               <p>３月には、国際女性デーに連動したテーマで、６月はプライド月間に合わせたテーマで開催しています。そして11月は、毎回異なるテーマを設定しています。</p>
               <p class="wf-note">※６月はLGBTQ＋の権利について啓発を促す「プライド月間」として世界的に認知され、各地でさまざまなイベントが行われています。</p>
-              <p class="text-link-row"><a class="text-link">国際女性デーに連動したプログラム</a></p>
+              <p class="wf-text-link-row"><a class="wf-text-link">国際女性デーに連動したプログラム</a></p>
 
               <h4 class="wf-card-title has-mark">これまでのDEIグローバルプログラム</h4>
               <div class="wf-img-ph" style="aspect-ratio: 16 / 5;">
@@ -1480,7 +1480,7 @@ body {
 
               <h4 class="wf-card-title has-mark">障がいを取り除くさまざまな活動</h4>
               <p>イギリスで2023年に発足したニューロダイバーシティに関する従業員リソースグループ「Prism」は、インクルーシブな企業文化の醸成、多様な視点によるイノベーションの推進、従業員の福利厚生とエンゲージメントの向上、人財の獲得と維持の支援を目的としています。Prism立ち上げ時には、「Let's Talk」セッションを開催し、従業員に対するこのネットワークへの認識を高め、対話を促進しました。インクルーシブ採用、意識の向上、パートナーシップのさらなる発展に寄与する活動を行っていきます。</p>
-              <p class="text-link-row"><a class="text-link">日本における障がい者雇用</a></p>
+              <p class="wf-text-link-row"><a class="wf-text-link">日本における障がい者雇用</a></p>
             </div>
           </details>
 
@@ -1597,8 +1597,8 @@ body {
               </div>
 
               <h5 class="wf-h5-title">関連資料</h5>
-              <p class="text-link-row"><a class="text-link">コニカミノルタ（株）2024〜2025年度 第5期行動計画（PDF）</a></p>
-              <p class="text-link-row"><a class="text-link">コニカミノルタ（株）における女性の活躍状況（PDF）</a></p>
+              <p class="wf-text-link-row"><a class="wf-text-link">コニカミノルタ（株）2024〜2025年度 第5期行動計画（PDF）</a></p>
+              <p class="wf-text-link-row"><a class="wf-text-link">コニカミノルタ（株）における女性の活躍状況（PDF）</a></p>
 
               <h5 class="wf-h5-title">コニカミノルタ（株）および国内連結子会社における女性管理職比率（各年度末時点）</h5>
               <div class="wf-img-ph" style="aspect-ratio: 16 / 5;">
@@ -1809,7 +1809,7 @@ body {
       </div>
       <div class="ann-row">
         <span class="ann-row-label">#10/#16（C・横断ルール）桐原</span>
-        サイト内リンクの統一・用途別整理 → UNIFIED_RULES.md v5.0 リンク統一ルール（→ テキストリンク／.csr-link-block）に準拠。catalog整備。
+        サイト内リンクの統一・用途別整理 → UNIFIED_RULES.md v5.0 リンク統一ルール（→ テキストリンク／.wf-link-block）に準拠。catalog整備。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">#11（A・原稿対応）桐原</span>
@@ -1901,7 +1901,7 @@ body {
       <span class="ann-head">主要モジュール（catalog参照）</span>
       <p class="ann-body">
         catalog: <strong>2-2</strong> H3左縦棒(.wf-sub-title)＝アコ外のみ／<strong>2-3</strong> H4 ◾(.wf-card-title.has-mark)＝アコ内トップ／<strong>2-4</strong> H5太字(.wf-h5-title)＝アコ内サブ／<strong>8-4</strong> 通常アコ H3以下(.wf-acc-h3)<br>
-        共通: ヘッダー／lnav／パンくず／フッター／theme-related／img-zoom-btn／wf-btn<br>
+        共通: ヘッダー／lnav／パンくず／フッター／wf-related-links／img-zoom-btn／wf-btn<br>
         新規（v3.7-3.9）: wf-img-ph（単独画像PH）／wf-img-row（写真ギャラリー）／wf-note（注釈テキスト）／event-title（太字段落・H5以下の深さ）<br>
         既存: dei-statement／vision-table／measure-table／kpi-block＋kpi-table／year-activity／gov-structure-fig
       </p>

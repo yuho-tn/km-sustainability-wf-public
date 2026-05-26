@@ -121,8 +121,8 @@ body {
 .wf-card-title.has-mark::before { content: '◾'; color: var(--c-text-h); font-size: 12px; flex-shrink: 0; margin-right: 6px; }
 
 /* リンク・カード共通 */
-.wf-link { font-size: 12px; color: var(--c-text-s); display: inline-flex; align-items: center; gap: 4px; cursor: default; }
-.wf-link::before { content: '→ '; font-size: 11px; }
+.wf-text-link { font-size: 12px; color: var(--c-text-s); display: inline-flex; align-items: center; gap: 4px; cursor: default; }
+.wf-text-link::before { content: '→ '; font-size: 11px; }
 .wf-card { background: var(--c-white); border: 1px solid var(--c-border); padding: 20px; }
 .wf-grid { display: grid; gap: 16px; }
 .wf-grid.col-2 { grid-template-columns: repeat(2, 1fr); }
@@ -715,7 +715,7 @@ body {
 }
 
 /* サステナビリティ関連リンク（既存：1カラム×3ブロック） */
-.esg-link-stack {
+.wf-esg-data-block {
   border: 1px solid var(--c-border);
   background: var(--c-white);
 }
@@ -886,9 +886,9 @@ body {
 /* ============================================================
    UNIFIED_RULES.md v5.0 共通モジュール（0524 適用）
    - テキストリンク：→ 下線スタイル
-   - .csr-link-block：〈タイトル〉付き複数リンクリスト共通モジュール
+   - .wf-link-block：〈タイトル〉付き複数リンクリスト共通モジュール
 ============================================================ */
-.text-link {
+.wf-text-link {
   display: inline;
   font-size: 12px;
   color: var(--c-text-h);
@@ -897,7 +897,7 @@ body {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-.text-link::before {
+.wf-text-link::before {
   content: '→ ';
   display: inline-block;
   margin-right: 2px;
@@ -906,14 +906,14 @@ body {
   color: var(--c-text-h);
   text-decoration: none;
 }
-.text-link-row {
+.wf-text-link-row {
   display: block;
   margin-top: 6px;
   margin-bottom: 4px;
 }
 .csr-row-links { margin-top: 4px; }
-.csr-row-links .text-link-row { margin: 3px 0; }
-.csr-link-block { /* 単独使用時は普通のブロック */ }
+.csr-row-links .wf-text-link-row { margin: 3px 0; }
+.wf-link-block { /* 単独使用時は普通のブロック */ }
 .csr-link-list-title {
   font-size: 12px; font-weight: 700;
   color: var(--c-text-h);
@@ -1485,12 +1485,12 @@ body {
                 <h4 class="wf-card-title has-mark">社会・環境価値</h4>
                 <p>オフィスCO2削減、業務生産性向上、働き方改革</p>
               </div>
-              <div class="csr-link-block">
+              <div class="wf-link-block">
                 <div class="csr-link-list-title">〈関連ページ〉</div>
                 <div class="csr-row-links">
-                  <div class="text-link-row"><a class="text-link">デジタルワークプレイス事業紹介ページへ</a></div>
-                <div class="text-link-row"><a class="text-link">ITソリューション事例集（PDF）</a></div>
-                <div class="text-link-row"><a class="text-link">お客様事例：オフィスDX</a></div>
+                  <div class="wf-text-link-row"><a class="wf-text-link">デジタルワークプレイス事業紹介ページへ</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">ITソリューション事例集（PDF）</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">お客様事例：オフィスDX</a></div>
                 </div>
               </div>
             </div>
@@ -1521,12 +1521,12 @@ body {
                 <h4 class="wf-card-title has-mark">社会・環境価値</h4>
                 <p>医療従事者・介護従事者の負担軽減、診療の質向上</p>
               </div>
-              <div class="csr-link-block">
+              <div class="wf-link-block">
                 <div class="csr-link-list-title">〈関連ページ〉</div>
                 <div class="csr-row-links">
-                  <div class="text-link-row"><a class="text-link">ヘルスケア事業紹介ページへ</a></div>
-                <div class="text-link-row"><a class="text-link">介護見守りソリューションへ</a></div>
-                <div class="text-link-row"><a class="text-link">お客様事例：医療画像診断</a></div>
+                  <div class="wf-text-link-row"><a class="wf-text-link">ヘルスケア事業紹介ページへ</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">介護見守りソリューションへ</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">お客様事例：医療画像診断</a></div>
                 </div>
               </div>
             </div>
@@ -1557,12 +1557,12 @@ body {
                 <h4 class="wf-card-title has-mark">社会・環境価値</h4>
                 <p>食品・産業安全の検査自動化、労働力不足の解決</p>
               </div>
-              <div class="csr-link-block">
+              <div class="wf-link-block">
                 <div class="csr-link-list-title">〈関連ページ〉</div>
                 <div class="csr-row-links">
-                  <div class="text-link-row"><a class="text-link">センシング事業紹介ページへ</a></div>
-                  <div class="text-link-row"><a class="text-link">HIS（高機能インダストリアル）ソリューションへ</a></div>
-                  <div class="text-link-row"><a class="text-link">関連プレスリリース一覧</a></div>
+                  <div class="wf-text-link-row"><a class="wf-text-link">センシング事業紹介ページへ</a></div>
+                  <div class="wf-text-link-row"><a class="wf-text-link">HIS（高機能インダストリアル）ソリューションへ</a></div>
+                  <div class="wf-text-link-row"><a class="wf-text-link">関連プレスリリース一覧</a></div>
                 </div>
               </div>
             </div>
@@ -1593,12 +1593,12 @@ body {
                 <h4 class="wf-card-title has-mark">社会・環境価値</h4>
                 <p>CO2排出量削減（製造工程・使用段階）、省資源化</p>
               </div>
-              <div class="csr-link-block">
+              <div class="wf-link-block">
                 <div class="csr-link-list-title">〈関連ページ〉</div>
                 <div class="csr-row-links">
-                  <div class="text-link-row"><a class="text-link">機能材料事業紹介ページへ</a></div>
-                  <div class="text-link-row"><a class="text-link">SANUQI製品紹介ページへ</a></div>
-                  <div class="text-link-row"><a class="text-link">SAZMA製品紹介ページへ</a></div>
+                  <div class="wf-text-link-row"><a class="wf-text-link">機能材料事業紹介ページへ</a></div>
+                  <div class="wf-text-link-row"><a class="wf-text-link">SANUQI製品紹介ページへ</a></div>
+                  <div class="wf-text-link-row"><a class="wf-text-link">SAZMA製品紹介ページへ</a></div>
                 </div>
               </div>
             </div>
@@ -1625,12 +1625,12 @@ body {
                 <h4 class="wf-card-title has-mark">社会・環境価値</h4>
                 <p>再エネ普及への貢献、CO2排出量削減（社会全体）</p>
               </div>
-              <div class="csr-link-block">
+              <div class="wf-link-block">
                 <div class="csr-link-list-title">〈関連ページ〉</div>
                 <div class="csr-row-links">
-                  <div class="text-link-row"><a class="text-link">ペロブスカイト関連事業紹介ページへ</a></div>
-                  <div class="text-link-row"><a class="text-link">機能材料事業の脱炭素ソリューションへ</a></div>
-                  <div class="text-link-row"><a class="text-link">関連プレスリリース</a></div>
+                  <div class="wf-text-link-row"><a class="wf-text-link">ペロブスカイト関連事業紹介ページへ</a></div>
+                  <div class="wf-text-link-row"><a class="wf-text-link">機能材料事業の脱炭素ソリューションへ</a></div>
+                  <div class="wf-text-link-row"><a class="wf-text-link">関連プレスリリース</a></div>
                 </div>
               </div>
             </div>
@@ -1657,12 +1657,12 @@ body {
                 <h4 class="wf-card-title has-mark">社会・環境価値</h4>
                 <p>在庫廃棄削減、紙資源の有効利用、CO2削減</p>
               </div>
-              <div class="csr-link-block">
+              <div class="wf-link-block">
                 <div class="csr-link-list-title">〈関連ページ〉</div>
                 <div class="csr-row-links">
-                  <div class="text-link-row"><a class="text-link">プロフェッショナルプリント事業紹介ページへ</a></div>
-                <div class="text-link-row"><a class="text-link">産業印刷ソリューションへ</a></div>
-                <div class="text-link-row"><a class="text-link">お客様事例：印刷業DX</a></div>
+                  <div class="wf-text-link-row"><a class="wf-text-link">プロフェッショナルプリント事業紹介ページへ</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">産業印刷ソリューションへ</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">お客様事例：印刷業DX</a></div>
                 </div>
               </div>
             </div>
@@ -1693,12 +1693,12 @@ body {
                 <h4 class="wf-card-title has-mark">社会・環境価値</h4>
                 <p>半導体産業の生産性向上、不良削減による省資源化</p>
               </div>
-              <div class="csr-link-block">
+              <div class="wf-link-block">
                 <div class="csr-link-list-title">〈関連ページ〉</div>
                 <div class="csr-row-links">
-                  <div class="text-link-row"><a class="text-link">光学コンポーネント事業紹介ページへ</a></div>
-                  <div class="text-link-row"><a class="text-link">半導体検査装置向け事例</a></div>
-                  <div class="text-link-row"><a class="text-link">材料・コンポーネント事業紹介ページへ</a></div>
+                  <div class="wf-text-link-row"><a class="wf-text-link">光学コンポーネント事業紹介ページへ</a></div>
+                  <div class="wf-text-link-row"><a class="wf-text-link">半導体検査装置向け事例</a></div>
+                  <div class="wf-text-link-row"><a class="wf-text-link">材料・コンポーネント事業紹介ページへ</a></div>
                 </div>
               </div>
             </div>
@@ -1725,12 +1725,12 @@ body {
                 <h4 class="wf-card-title has-mark">社会・環境価値</h4>
                 <p>資源の有効活用、循環型ビジネスの創出</p>
               </div>
-              <div class="csr-link-block">
+              <div class="wf-link-block">
                 <div class="csr-link-list-title">〈関連ページ〉</div>
                 <div class="csr-row-links">
-                  <div class="text-link-row"><a class="text-link">インテリジェント再生材紹介ページへ</a></div>
-                  <div class="text-link-row"><a class="text-link">サーキュラーエコノミー関連事業へ</a></div>
-                  <div class="text-link-row"><a class="text-link">お客様事例：プラスチック再生</a></div>
+                  <div class="wf-text-link-row"><a class="wf-text-link">インテリジェント再生材紹介ページへ</a></div>
+                  <div class="wf-text-link-row"><a class="wf-text-link">サーキュラーエコノミー関連事業へ</a></div>
+                  <div class="wf-text-link-row"><a class="wf-text-link">お客様事例：プラスチック再生</a></div>
                 </div>
               </div>
             </div>
@@ -1898,14 +1898,14 @@ body {
       <span class="ann-head">0524 Figma FB（11件）反映サマリ</span>
       <div class="ann-row">
         <span class="ann-row-label">v5.0 横断ルール適用</span>
-        <b>L2 全白統一</b>（旧 bg-sub の B セクションを bg-white に）／<b>--page-w を 1280→1560</b>（content 880）に拡張／<b>右コンパクトアンカーナビ（160px）</b>追加（H2＋H3 併載・225/077 と同型）／<b>.csr-link-block</b> 共通モジュール CSS を追加。
+        <b>L2 全白統一</b>（旧 bg-sub の B セクションを bg-white に）／<b>--page-w を 1280→1560</b>（content 880）に拡張／<b>右コンパクトアンカーナビ（160px）</b>追加（H2＋H3 併載・225/077 と同型）／<b>.wf-link-block</b> 共通モジュール CSS を追加。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">A区分（即修正・反映済）</span>
         <b>#2（村上）</b>価値創造プロセスを「マテリアリティの位置づけ → 評価・特定プロセス → 5つのマテリアリティ」の<b>最後</b>に移動（新 B4）。<br>
         <b>#5（村上）</b>セクション C タイトルを「価値創出事例」→「<b>事業活動によるマテリアリティへの取り組み</b>」に変更。<br>
         <b>#6（村上）</b>価値創出事例を業種別（インダストリー／成長の芽／その他）3カテゴリ廃止 → <b>5マテリアリティ別カテゴリ</b>に完全再編。働きがい(1)／健康(1)／安全安心(1)／気候変動(3)／資源(2) = 8事例を該当マテリアリティ H3 配下に再配置。<br>
-        <b>#7（村上）</b>各事例の末尾に「<b>該当製品・事業紹介ページへ</b>」テキストリンクを追加（.csr-row-links / .text-link）。<br>
+        <b>#7（村上）</b>各事例の末尾に「<b>該当製品・事業紹介ページへ</b>」テキストリンクを追加（.csr-row-links / .wf-text-link）。<br>
         <b>#8（池田）</b>マテリアリティ内「機会／リスク」並列カード（.risk-opp-card）の全周ボーダーを廃止、装飾を最小化（左の縦罫＋タグ下線のみ）。<b>ブロックリンク風と紛らわしい</b>UIを解消。<br>
         <b>#11（村上）</b>5つのマテリアリティの番号(<b>01〜05</b>)を全廃。.materiality-num を display:none、grid を 2カラムに変更しタイトル左寄せ。<br>
         セクション C 内 CASE 番号(CASE 01-08)も廃止（マテリアリティ別整理に伴い不要）。.case-card-mat 冗長表示も削除（H3 がマテリアリティ表示済）。

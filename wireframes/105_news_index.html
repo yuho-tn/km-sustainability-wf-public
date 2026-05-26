@@ -162,10 +162,10 @@ body {
 .wf-btn::before { content: '›'; font-size: 14px; color: var(--c-text-h); font-weight: 700; margin-right: 4px; }
 .wf-btn:hover { background: var(--c-bg-sub); border-color: var(--c-text-h); }
 .wf-btn-group { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
-.wf-link { font-size: 12px; color: var(--c-text-s); display: inline-flex; align-items: center; gap: 4px; cursor: default; text-decoration: none; }
-.wf-link::before { content: '→ '; font-size: 11px; }
-.wf-link-more { font-size: 12px; color: var(--c-text-s); display: inline-flex; align-items: center; gap: 4px; cursor: default; }
-.wf-link-more::after { content: ' →'; font-size: 11px; }
+.wf-text-link { font-size: 12px; color: var(--c-text-s); display: inline-flex; align-items: center; gap: 4px; cursor: default; text-decoration: none; }
+.wf-text-link::before { content: '→ '; font-size: 11px; }
+.wf-text-link-more { font-size: 12px; color: var(--c-text-s); display: inline-flex; align-items: center; gap: 4px; cursor: default; }
+.wf-text-link-more::after { content: ' →'; font-size: 11px; }
 
 /* LABEL / FILTER */
 .wf-label { display: inline-block; font-size: 10px; font-weight: 600; color: var(--c-text-s); border: 1px solid var(--c-border); padding: 2px 8px; letter-spacing: 0.04em; }
@@ -517,15 +517,15 @@ body {
   display: flex; align-items: center; justify-content: center; gap: 6px;
   margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--c-border-s);
 }
-.news-page-btn {
+.wf-btn {
   display: inline-flex; align-items: center; justify-content: center;
   font-size: 12px; font-weight: 600; color: var(--c-text-s);
   border: 1px solid var(--c-border); background: #fff;
   padding: 8px 14px; min-width: 36px; cursor: default;
   font-family: 'Georgia', serif; letter-spacing: 0.02em;
 }
-.news-page-btn.is-active { background: #111; color: #fff; border-color: #111; }
-.news-page-btn.is-disabled { opacity: 0.35; }
+.wf-btn.is-active { background: #111; color: #fff; border-color: #111; }
+.wf-btn.is-disabled { opacity: 0.35; }
 .news-page-ellipsis {
   font-size: 12px; color: var(--c-text-xs); padding: 0 4px; letter-spacing: 0.1em;
 }
@@ -730,9 +730,9 @@ body {
 
       <!-- ページネーション（実装イメージ／全件1ページ表示時は非機能） -->
       <nav class="news-pagination" id="news-pagination" aria-label="ページ送り">
-        <span class="news-page-btn is-disabled">‹ 前へ</span>
-        <span class="news-page-btn is-active">1</span>
-        <span class="news-page-btn is-disabled">次へ ›</span>
+        <span class="wf-btn is-disabled">‹ 前へ</span>
+        <span class="wf-btn is-active">1</span>
+        <span class="wf-btn is-disabled">次へ ›</span>
       </nav>
     </section>
 

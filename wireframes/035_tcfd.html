@@ -110,8 +110,8 @@ body {
 /* H5は太字のみ・マーカーなし（catalog v3.1準拠） */
 
 /* リンク */
-.wf-link { font-size: 12px; color: var(--c-text-s); display: inline-flex; align-items: center; gap: 4px; cursor: default; }
-.wf-link::before { content: '→ '; font-size: 11px; }
+.wf-text-link { font-size: 12px; color: var(--c-text-s); display: inline-flex; align-items: center; gap: 4px; cursor: default; }
+.wf-text-link::before { content: '→ '; font-size: 11px; }
 
 /* L3ページタイトル（v3.0：parent-cat / title-en 撤去） */
 .wf-page-title-area {
@@ -565,13 +565,13 @@ body {
 .term-modal-body p { margin-bottom: 8px; }
 .term-modal-body p:last-child { margin-bottom: 0; }
 
-/* インラインテキストリンク行（140 policy-link モジュール準拠）
+/* インラインテキストリンク行（140 wf-text-link モジュール準拠）
    本文段落の直下に「→ リンクテキスト」を独立行で配置。原文サイトの本文中リンクを再現 */
-.policy-link-row {
+.wf-text-link-row {
   display: block;
   margin: -8px 0 18px;
 }
-.policy-link {
+.wf-text-link {
   display: inline;
   font-size: 13px;
   color: var(--c-text-h);
@@ -580,7 +580,7 @@ body {
   text-decoration: underline;
   text-underline-offset: 4px;
 }
-.policy-link::before {
+.wf-text-link::before {
   content: '→ ';
   display: inline-block;
   margin-right: 2px;
@@ -591,7 +591,7 @@ body {
 }
 
 /* 関連リンク（v3.3：0524 桐原FB — グレー背景・ボーダー廃止し本文より控えめなトーンに） */
-.theme-related {
+.wf-related-links {
   background: transparent; border: none;
   padding: 6px 0 0; margin-top: 14px;
   display: flex; flex-wrap: wrap;
@@ -599,7 +599,7 @@ body {
   align-items: center;
   border-top: 1px dashed var(--c-border);
 }
-.theme-related-label {
+.wf-related-links-label {
   flex-basis: 100%;
   font-size: 10px; font-weight: 700; color: var(--c-text-xs);
   letter-spacing: 0.1em; text-transform: uppercase;
@@ -893,30 +893,30 @@ body {
           <p class="wf-section-desc" style="margin-top:24px;">
             （文章はダミーです）気候変動を含む環境課題のガバナンスの詳細については、「環境マネジメント体制」を参照ください。
           </p>
-          <div class="policy-link-row">
-            <a class="policy-link">環境マネジメント体制</a>
+          <div class="wf-text-link-row">
+            <a class="wf-text-link">環境マネジメント体制</a>
           </div>
 
           <p class="wf-section-desc">
             （文章はダミーです）コーポレートガバナンス体制の詳細は、コーポレートサイトの「ガバナンス体制」を参照ください。
           </p>
-          <div class="policy-link-row">
-            <a class="policy-link">コーポレートガバナンス体制 ＞ ガバナンス体制</a>
+          <div class="wf-text-link-row">
+            <a class="wf-text-link">コーポレートガバナンス体制 ＞ ガバナンス体制</a>
           </div>
 
           <p class="wf-section-desc">
             （文章はダミーです）マテリアリティの評価・特定プロセスの詳細はこちらからご覧ください。
           </p>
-          <div class="policy-link-row">
-            <a class="policy-link">マテリアリティの評価・特定プロセス</a>
+          <div class="wf-text-link-row">
+            <a class="wf-text-link">マテリアリティの評価・特定プロセス</a>
           </div>
 
           <!-- 関連リンク -->
-          <div class="theme-related">
-            <span class="theme-related-label">関連リンク</span>
-            <span class="wf-link">環境マネジメント体制</span>
-            <span class="wf-link">コーポレートガバナンス体制 ＞ ガバナンス体制</span>
-            <span class="wf-link">マテリアリティの評価・特定プロセス</span>
+          <div class="wf-related-links">
+            <span class="wf-related-links-label">関連リンク</span>
+            <span class="wf-text-link">環境マネジメント体制</span>
+            <span class="wf-text-link">コーポレートガバナンス体制 ＞ ガバナンス体制</span>
+            <span class="wf-text-link">マテリアリティの評価・特定プロセス</span>
           </div>
         </section>
 
@@ -1252,30 +1252,30 @@ body {
           <p class="wf-section-desc" style="margin-top:24px;">
             （文章はダミーです）長期環境ビジョン「エコビジョン2050」はこちらからご覧ください。
           </p>
-          <div class="policy-link-row">
-            <a class="policy-link">環境 ＞ 方針：エコビジョン2050</a>
+          <div class="wf-text-link-row">
+            <a class="wf-text-link">環境 ＞ 方針：エコビジョン2050</a>
           </div>
 
           <p class="wf-section-desc">
             （文章はダミーです）気候変動の物理的影響への適応に関する取り組みについては、こちらをご覧ください。
           </p>
-          <div class="policy-link-row">
-            <a class="policy-link">環境 ＞ 気候変動への対応：気候変動への適応</a>
+          <div class="wf-text-link-row">
+            <a class="wf-text-link">環境 ＞ 気候変動への対応：気候変動への適応</a>
           </div>
 
           <p class="wf-section-desc">
             （文章はダミーです）当社が主催する企業間の共創の枠組み「環境デジタルプラットフォーム」では、技術動向・ロードマップ、課題やノウハウを共有し、具体的施策について議論しています。
           </p>
-          <div class="policy-link-row">
-            <a class="policy-link">環境デジタルプラットフォーム</a>
+          <div class="wf-text-link-row">
+            <a class="wf-text-link">環境デジタルプラットフォーム</a>
           </div>
 
           <!-- 関連リンク -->
-          <div class="theme-related">
-            <span class="theme-related-label">関連リンク</span>
-            <span class="wf-link">環境 ＞ 方針：エコビジョン2050</span>
-            <span class="wf-link">環境 ＞ 気候変動への対応：気候変動への適応</span>
-            <span class="wf-link">環境デジタルプラットフォーム</span>
+          <div class="wf-related-links">
+            <span class="wf-related-links-label">関連リンク</span>
+            <span class="wf-text-link">環境 ＞ 方針：エコビジョン2050</span>
+            <span class="wf-text-link">環境 ＞ 気候変動への対応：気候変動への適応</span>
+            <span class="wf-text-link">環境デジタルプラットフォーム</span>
           </div>
         </section>
 
@@ -1305,26 +1305,26 @@ body {
           <p class="wf-section-desc">
             （文章はダミーです）リスク管理体制・リスクマネジメントプロセスの詳細は「リスクマネジメント」および「有価証券報告書」を参照ください。
           </p>
-          <div class="policy-link-row">
-            <a class="policy-link">リスクマネジメント</a>
+          <div class="wf-text-link-row">
+            <a class="wf-text-link">リスクマネジメント</a>
           </div>
-          <div class="policy-link-row">
-            <a class="policy-link">有価証券報告書</a>
+          <div class="wf-text-link-row">
+            <a class="wf-text-link">有価証券報告書</a>
           </div>
 
           <p class="wf-section-desc">
             （文章はダミーです）リスク管理の対象となるマテリアリティの妥当性については「マテリアリティの評価・特定プロセス」を参照ください。
           </p>
-          <div class="policy-link-row">
-            <a class="policy-link">マテリアリティの評価・特定プロセス</a>
+          <div class="wf-text-link-row">
+            <a class="wf-text-link">マテリアリティの評価・特定プロセス</a>
           </div>
 
           <!-- 関連リンク -->
-          <div class="theme-related">
-            <span class="theme-related-label">関連リンク</span>
-            <span class="wf-link">リスクマネジメント</span>
-            <span class="wf-link">有価証券報告書</span>
-            <span class="wf-link">マテリアリティの評価・特定プロセス</span>
+          <div class="wf-related-links">
+            <span class="wf-related-links-label">関連リンク</span>
+            <span class="wf-text-link">リスクマネジメント</span>
+            <span class="wf-text-link">有価証券報告書</span>
+            <span class="wf-text-link">マテリアリティの評価・特定プロセス</span>
           </div>
         </section>
 
@@ -1352,15 +1352,15 @@ body {
           <p class="wf-section-desc" style="margin-top:14px;">
             （文章はダミーです）目標と実績の詳細は「サステナビリティ目標と実績」を参照ください。
           </p>
-          <div class="policy-link-row">
-            <a class="policy-link">サステナビリティ目標と実績</a>
+          <div class="wf-text-link-row">
+            <a class="wf-text-link">サステナビリティ目標と実績</a>
           </div>
 
           <p class="wf-section-desc">
             （文章はダミーです）詳細データは、「ESGデータページ」の環境データ（Excel）を参照ください。
           </p>
-          <div class="policy-link-row">
-            <a class="policy-link">ESGデータページ ＞ 環境データ（Excel）</a>
+          <div class="wf-text-link-row">
+            <a class="wf-text-link">ESGデータページ ＞ 環境データ（Excel）</a>
           </div>
 
           <!-- 7メトリクス（全アコーディオン化） -->
@@ -1551,15 +1551,15 @@ body {
           <p class="wf-section-desc" style="margin-top:24px;">
             （文章はダミーです）グリーンプロダクツの詳細はこちら：「グリーンプロダクツ認定制度」をご覧ください。
           </p>
-          <div class="policy-link-row">
-            <a class="policy-link">グリーンプロダクツ認定制度</a>
+          <div class="wf-text-link-row">
+            <a class="wf-text-link">グリーンプロダクツ認定制度</a>
           </div>
 
           <p class="wf-section-desc">
             （文章はダミーです）報酬の詳細は、「ガバナンスの仕組み・運営 ＞ 役員報酬について」を参照ください。
           </p>
-          <div class="policy-link-row">
-            <a class="policy-link">ガバナンスの仕組み・運営 ＞ 役員報酬について</a>
+          <div class="wf-text-link-row">
+            <a class="wf-text-link">ガバナンスの仕組み・運営 ＞ 役員報酬について</a>
           </div>
 
           <!-- ESGデータDLボタン -->
@@ -1568,13 +1568,13 @@ body {
           </div>
 
           <!-- 関連リンク -->
-          <div class="theme-related">
-            <span class="theme-related-label">関連リンク</span>
-            <span class="wf-link">サステナビリティ目標と実績</span>
-            <span class="wf-link">グリーンプロダクツ認定制度</span>
-            <span class="wf-link">グリーンファクトリー認定制度</span>
-            <span class="wf-link">グリーンマーケティング活動</span>
-            <span class="wf-link">ガバナンスの仕組み・運営 ＞ 役員報酬について</span>
+          <div class="wf-related-links">
+            <span class="wf-related-links-label">関連リンク</span>
+            <span class="wf-text-link">サステナビリティ目標と実績</span>
+            <span class="wf-text-link">グリーンプロダクツ認定制度</span>
+            <span class="wf-text-link">グリーンファクトリー認定制度</span>
+            <span class="wf-text-link">グリーンマーケティング活動</span>
+            <span class="wf-text-link">ガバナンスの仕組み・運営 ＞ 役員報酬について</span>
           </div>
         </section>
 

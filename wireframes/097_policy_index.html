@@ -270,7 +270,7 @@ body {
 .wf-btn.sm { font-size: 11px; padding: 8px 18px; }
 .wf-btn.lg { font-size: 13px; padding: 14px 36px; }
 
-.wf-link {
+.wf-text-link {
   font-size: 12px;
   color: var(--c-text-s);
   display: inline-flex;
@@ -279,7 +279,7 @@ body {
   cursor: default;
   text-decoration: none;
 }
-.wf-link::before { content: '→ '; font-size: 11px; }
+.wf-text-link::before { content: '→ '; font-size: 11px; }
 
 .wf-label {
   display: inline-block;
@@ -545,17 +545,17 @@ body {
    - auto-fill + minmax(240px,320px) で幅に応じ列数が増え、各カードは
      上限320pxで間延びしない（WF幅=2〜3列／デザイン幅=4〜5列）
    - 単独項目セクション(A)も巨大空白ボックスにならず左寄せの1カードのみ
-   - 村上FB＋原文厳守：当方補記の概要文(.link-btn-desc)を全廃しタイトルのみに */
+   - 村上FB＋原文厳守：当方補記の概要文(.wf-btn-desc)を全廃しタイトルのみに */
 /* v2.8.3：全ボタンを縦横とも完全統一
    - 全セクション共通の 3カラム固定グリッド（列幅=1fr で全ボタン同一横幅）
-   - .link-btn は固定高さ（height:64px）で全ボタン同一縦幅
+   - .wf-btn は固定高さ（height:64px）で全ボタン同一縦幅
    - タイトルは2行で line-clamp し、長文でも高さが膨らまない */
-.link-btn-grid {
+.wf-btn-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 8px;
 }
-.link-btn {
+.wf-btn {
   display: grid;
   grid-template-columns: 1fr 18px;
   align-items: center;
@@ -566,12 +566,12 @@ body {
   border: 1px solid var(--c-border);
   cursor: default;
 }
-.link-btn:hover {
+.wf-btn:hover {
   border-color: var(--c-text-h);
   background: #FAFAFA;
 }
-.link-btn-body { min-width: 0; }
-.link-btn-title {
+.wf-btn-body { min-width: 0; }
+.wf-btn-title {
   font-size: 12px;
   font-weight: 700;
   color: var(--c-text-h);
@@ -582,13 +582,13 @@ body {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-.link-btn-arrow {
+.wf-btn-arrow {
   font-size: 13px;
   color: var(--c-text-s);
   text-align: right;
   line-height: 1;
 }
-.link-btn:hover .link-btn-arrow { color: var(--c-text-h); }
+.wf-btn:hover .wf-btn-arrow { color: var(--c-text-h); }
 
 /* セクション間スペース調整（v2.8.1：見出し毎の区切りラインを削除） */
 .policy-section { padding-top: 36px; padding-bottom: 36px; border-bottom: none; }
@@ -636,12 +636,12 @@ body {
 
       <h2 class="wf-section-title">コニカミノルタグループ</h2>
 
-      <div class="link-btn-grid">
-        <div class="link-btn">
-          <div class="link-btn-body">
-            <div class="link-btn-title">コニカミノルタグループ行動憲章</div>
+      <div class="wf-btn-grid">
+        <div class="wf-btn">
+          <div class="wf-btn-body">
+            <div class="wf-btn-title">コニカミノルタグループ行動憲章</div>
           </div>
-          <span class="link-btn-arrow">›</span>
+          <span class="wf-btn-arrow">›</span>
         </div>
       </div>
 
@@ -655,12 +655,12 @@ body {
 
       <h2 class="wf-section-title">環境</h2>
 
-      <div class="link-btn-grid">
-        <div class="link-btn">
-          <div class="link-btn-body">
-            <div class="link-btn-title">コニカミノルタ環境方針</div>
+      <div class="wf-btn-grid">
+        <div class="wf-btn">
+          <div class="wf-btn-body">
+            <div class="wf-btn-title">コニカミノルタ環境方針</div>
           </div>
-          <span class="link-btn-arrow">›</span>
+          <span class="wf-btn-arrow">›</span>
         </div>
       </div>
 
@@ -674,60 +674,60 @@ body {
 
       <h2 class="wf-section-title">社会</h2>
 
-      <div class="link-btn-grid col-3">
-        <div class="link-btn">
-          <div class="link-btn-body">
-            <div class="link-btn-title">コニカミノルタグループ ダイバーシティ経営宣言</div>
+      <div class="wf-btn-grid col-3">
+        <div class="wf-btn">
+          <div class="wf-btn-body">
+            <div class="wf-btn-title">コニカミノルタグループ ダイバーシティ経営宣言</div>
           </div>
-          <span class="link-btn-arrow">›</span>
+          <span class="wf-btn-arrow">›</span>
         </div>
-        <a class="link-btn" href="098_health_declaration.html" style="text-decoration:none; color:inherit; cursor:pointer;">
-          <div class="link-btn-body">
-            <div class="link-btn-title">コニカミノルタグループ健康宣言</div>
+        <a class="wf-btn" href="098_health_declaration.html" style="text-decoration:none; color:inherit; cursor:pointer;">
+          <div class="wf-btn-body">
+            <div class="wf-btn-title">コニカミノルタグループ健康宣言</div>
           </div>
-          <span class="link-btn-arrow">›</span>
+          <span class="wf-btn-arrow">›</span>
         </a>
-        <a class="link-btn" href="099_occupational_safety_policy.html" style="text-decoration:none; color:inherit; cursor:pointer;">
-          <div class="link-btn-body">
-            <div class="link-btn-title">コニカミノルタ労働安全衛生方針</div>
+        <a class="wf-btn" href="099_occupational_safety_policy.html" style="text-decoration:none; color:inherit; cursor:pointer;">
+          <div class="wf-btn-body">
+            <div class="wf-btn-title">コニカミノルタ労働安全衛生方針</div>
           </div>
-          <span class="link-btn-arrow">›</span>
+          <span class="wf-btn-arrow">›</span>
         </a>
-        <div class="link-btn">
-          <div class="link-btn-body">
-            <div class="link-btn-title">コニカミノルタグループ人権方針</div>
+        <div class="wf-btn">
+          <div class="wf-btn-body">
+            <div class="wf-btn-title">コニカミノルタグループ人権方針</div>
           </div>
-          <span class="link-btn-arrow">›</span>
+          <span class="wf-btn-arrow">›</span>
         </div>
-        <div class="link-btn">
-          <div class="link-btn-body">
-            <div class="link-btn-title">コニカミノルタサプライチェーン行動規範</div>
+        <div class="wf-btn">
+          <div class="wf-btn-body">
+            <div class="wf-btn-title">コニカミノルタサプライチェーン行動規範</div>
           </div>
-          <span class="link-btn-arrow">›</span>
+          <span class="wf-btn-arrow">›</span>
         </div>
-        <div class="link-btn">
-          <div class="link-btn-body">
-            <div class="link-btn-title">コニカミノルタ調達方針</div>
+        <div class="wf-btn">
+          <div class="wf-btn-body">
+            <div class="wf-btn-title">コニカミノルタ調達方針</div>
           </div>
-          <span class="link-btn-arrow">›</span>
+          <span class="wf-btn-arrow">›</span>
         </div>
-        <div class="link-btn">
-          <div class="link-btn-body">
-            <div class="link-btn-title">コニカミノルタ責任ある鉱物調達方針</div>
+        <div class="wf-btn">
+          <div class="wf-btn-body">
+            <div class="wf-btn-title">コニカミノルタ責任ある鉱物調達方針</div>
           </div>
-          <span class="link-btn-arrow">›</span>
+          <span class="wf-btn-arrow">›</span>
         </div>
-        <div class="link-btn">
-          <div class="link-btn-body">
-            <div class="link-btn-title">コニカミノルタ品質方針</div>
+        <div class="wf-btn">
+          <div class="wf-btn-body">
+            <div class="wf-btn-title">コニカミノルタ品質方針</div>
           </div>
-          <span class="link-btn-arrow">›</span>
+          <span class="wf-btn-arrow">›</span>
         </div>
-        <div class="link-btn">
-          <div class="link-btn-body">
-            <div class="link-btn-title">コニカミノルタグループAIの利活用に関する基本方針</div>
+        <div class="wf-btn">
+          <div class="wf-btn-body">
+            <div class="wf-btn-title">コニカミノルタグループAIの利活用に関する基本方針</div>
           </div>
-          <span class="link-btn-arrow">›</span>
+          <span class="wf-btn-arrow">›</span>
         </div>
       </div>
 
@@ -741,48 +741,48 @@ body {
 
       <h2 class="wf-section-title">ガバナンス</h2>
 
-      <div class="link-btn-grid col-3">
-        <div class="link-btn">
-          <div class="link-btn-body">
-            <div class="link-btn-title">コーポレートガバナンス基本方針</div>
+      <div class="wf-btn-grid col-3">
+        <div class="wf-btn">
+          <div class="wf-btn-body">
+            <div class="wf-btn-title">コーポレートガバナンス基本方針</div>
           </div>
-          <span class="link-btn-arrow">›</span>
+          <span class="wf-btn-arrow">›</span>
         </div>
-        <div class="link-btn">
-          <div class="link-btn-body">
-            <div class="link-btn-title">ディスクロージャーポリシー</div>
+        <div class="wf-btn">
+          <div class="wf-btn-body">
+            <div class="wf-btn-title">ディスクロージャーポリシー</div>
           </div>
-          <span class="link-btn-arrow">›</span>
+          <span class="wf-btn-arrow">›</span>
         </div>
-        <div class="link-btn">
-          <div class="link-btn-body">
-            <div class="link-btn-title">コニカミノルタグループ税務方針</div>
+        <div class="wf-btn">
+          <div class="wf-btn-body">
+            <div class="wf-btn-title">コニカミノルタグループ税務方針</div>
           </div>
-          <span class="link-btn-arrow">›</span>
+          <span class="wf-btn-arrow">›</span>
         </div>
-        <div class="link-btn">
-          <div class="link-btn-body">
-            <div class="link-btn-title">コニカミノルタ情報セキュリティ基本方針</div>
+        <div class="wf-btn">
+          <div class="wf-btn-body">
+            <div class="wf-btn-title">コニカミノルタ情報セキュリティ基本方針</div>
           </div>
-          <span class="link-btn-arrow">›</span>
+          <span class="wf-btn-arrow">›</span>
         </div>
-        <div class="link-btn">
-          <div class="link-btn-body">
-            <div class="link-btn-title">コニカミノルタグループ個人情報保護方針</div>
+        <div class="wf-btn">
+          <div class="wf-btn-body">
+            <div class="wf-btn-title">コニカミノルタグループ個人情報保護方針</div>
           </div>
-          <span class="link-btn-arrow">›</span>
+          <span class="wf-btn-arrow">›</span>
         </div>
-        <div class="link-btn">
-          <div class="link-btn-body">
-            <div class="link-btn-title">アセットオーナーとしての方針</div>
+        <div class="wf-btn">
+          <div class="wf-btn-body">
+            <div class="wf-btn-title">アセットオーナーとしての方針</div>
           </div>
-          <span class="link-btn-arrow">›</span>
+          <span class="wf-btn-arrow">›</span>
         </div>
-        <div class="link-btn">
-          <div class="link-btn-body">
-            <div class="link-btn-title">パートナーシップ構築宣言</div>
+        <div class="wf-btn">
+          <div class="wf-btn-body">
+            <div class="wf-btn-title">パートナーシップ構築宣言</div>
           </div>
-          <span class="link-btn-arrow">›</span>
+          <span class="wf-btn-arrow">›</span>
         </div>
       </div>
 
@@ -960,7 +960,7 @@ body {
       </div>
       <div class="ann-row">
         <span class="ann-row-label">v2.8：村上FB＋原文厳守</span>
-        当方が補記していた方針概要の一文（.link-btn-desc 全18件）を<strong>全廃</strong>。村上氏「方針の概要一文は不要（ミスリード懸念）」の意向＋既存サイト原文厳守の原則に準拠。最終要否はKM社内吟味事項。
+        当方が補記していた方針概要の一文（.wf-btn-desc 全18件）を<strong>全廃</strong>。村上氏「方針の概要一文は不要（ミスリード懸念）」の意向＋既存サイト原文厳守の原則に準拠。最終要否はKM社内吟味事項。
       </div>
       <p class="ann-body">
         モジュール：⑦リンク系（タイトルのみリンクボタン）。方針一覧／規約一覧／関連リンク集約など汎用に使用可能。catalog-v2.html への反映は別途。

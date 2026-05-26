@@ -217,12 +217,12 @@ body {
 }
 .wf-btn-stack .wf-btn { min-width: 380px; }
 
-/* v1.2：本文段落直後に置く素朴なテキストリンク行（wf-link系統に揃え） */
-.policy-link-row {
+/* v1.2：本文段落直後に置く素朴なテキストリンク行（wf-text-link系統に揃え） */
+.wf-text-link-row {
   display: block;
   margin: -10px 0 22px;
 }
-.policy-link {
+.wf-text-link {
   display: inline;
   font-size: 13px;
   color: var(--c-text-h);
@@ -231,7 +231,7 @@ body {
   text-decoration: underline;
   text-underline-offset: 4px;
 }
-.policy-link::before {
+.wf-text-link::before {
   content: '→ ';
   display: inline-block;
   margin-right: 2px;
@@ -240,7 +240,7 @@ body {
   color: var(--c-text-h);
   text-decoration: none;
 }
-.policy-link-note {
+.wf-text-link-note {
   display: inline;
   margin-left: 10px;
   font-size: 10px;
@@ -401,7 +401,7 @@ body {
 .measure-table ul { margin: 0; padding-left: 16px; }
 .measure-table li { margin-bottom: 4px; }
 /* v1.6：0525 桐原FB#5 反映 — テキストリンクは「→ リンクテキスト」で統一 */
-.measure-table .risk-detail-link {
+.measure-table .wf-text-link {
   display: inline-block;
   font-size: 11px; color: var(--c-text-h);
   font-weight: 600;
@@ -410,7 +410,7 @@ body {
   text-underline-offset: 2px;
   cursor: default;
 }
-.measure-table .risk-detail-link::before {
+.measure-table .wf-text-link::before {
   content: '→ ';
   display: inline-block;
   margin-right: 2px;
@@ -661,7 +661,7 @@ body {
 }
 
 /* テキストリンク（v1.6：0525 桐原FB#5 反映 — 全箇所「→ リンクテキスト」形式に統一） */
-.detail-link {
+.wf-text-link {
   display: inline-block;
   font-size: 13px;
   color: var(--c-text-h);
@@ -671,7 +671,7 @@ body {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-.detail-link::before {
+.wf-text-link::before {
   content: '→ ';
   display: inline-block;
   margin-right: 2px;
@@ -962,8 +962,8 @@ body {
           <p class="wf-section-desc">
             コニカミノルタでは事業活動を行う行動原則を「コニカミノルタグループ行動憲章」に定めており、2022年4月取締役会の承認のもと、人権の尊重を行動の原則の一つとして追加しました。
           </p>
-          <div class="policy-link-row">
-            <a class="policy-link">コニカミノルタグループ行動憲章</a>
+          <div class="wf-text-link-row">
+            <a class="wf-text-link">コニカミノルタグループ行動憲章</a>
           </div>
 
           <p class="wf-section-desc">
@@ -1044,8 +1044,8 @@ body {
           <p class="wf-section-desc">
             さらに、コニカミノルタグループ各社が取るべき具体的な行動を「コニカミノルタサプライチェーン行動規範」に定め、サプライヤー、パートナーにも同様の行動を要請しています。なお、「コニカミノルタサプライチェーン行動規範」は、2013年にCSR調達の質と透明性向上を図るために加盟したRBA(Responsible Business Alliance)の行動規範の最新版を基にしています。
           </p>
-          <div class="policy-link-row">
-            <a class="policy-link">コニカミノルタサプライチェーン行動規範</a>
+          <div class="wf-text-link-row">
+            <a class="wf-text-link">コニカミノルタサプライチェーン行動規範</a>
           </div>
 
           <!-- グローバルな原則・国際規範 -->
@@ -1225,22 +1225,22 @@ body {
               <tbody>
                 <tr>
                   <th rowspan="6">グループ従業員</th>
-                  <td>過剰・不当な労働<br><span class="risk-detail-link">過重労働対策</span></td>
+                  <td>過剰・不当な労働<br><span class="wf-text-link">過重労働対策</span></td>
                   <td>勤怠システムにて所定外労働時間を把握</td>
                   <td>直近3年間の所定外労働時間が減少傾向</td>
                 </tr>
                 <tr>
-                  <td>労働安全衛生<br><span class="risk-detail-link">就業時災害の防止</span></td>
+                  <td>労働安全衛生<br><span class="wf-text-link">就業時災害の防止</span></td>
                   <td>事業変化に対応するリスクアセスメント実施／安全巡視や安全教育実施</td>
                   <td>重篤災害発生件数0件を継続</td>
                 </tr>
                 <tr>
-                  <td>差別（女性活躍）<br><span class="risk-detail-link">女性活躍推進</span></td>
+                  <td>差別（女性活躍）<br><span class="wf-text-link">女性活躍推進</span></td>
                   <td>女性リーダー候補への個別育成計画の立案・実行と研修の実施／男性従業員の育児参画促進や仕事と介護の両立支援の充実</td>
                   <td>女性管理職比率が上昇傾向（2024年度は構造改革の影響により減少）</td>
                 </tr>
                 <tr>
-                  <td>ジェンダーに関する人権問題<br><span class="risk-detail-link">コンプライアンスの基本的な考え方・推進体制</span></td>
+                  <td>ジェンダーに関する人権問題<br><span class="wf-text-link">コンプライアンスの基本的な考え方・推進体制</span></td>
                   <td>セクシャルハラスメント防止ガイドラインを設定しハラスメント防止教育実施／従業員が差別やハラスメントをした場合、是正措置、もしくは就業規則に従って懲戒処分実施</td>
                   <td>セクシュアルハラスメントや差別を含む人権関連の内部通報35件のうち、公表を要する重大な通報なし</td>
                 </tr>
@@ -1256,25 +1256,25 @@ body {
                 </tr>
                 <tr>
                   <th>グループ従業員</th>
-                  <td>プライバシーの権利<br><span class="risk-detail-link">情報セキュリティの推進</span></td>
+                  <td>プライバシーの権利<br><span class="wf-text-link">情報セキュリティの推進</span></td>
                   <td>個人情報保護および情報セキュリティに関する教育実施／グループ全体でインシデントに備えた体制（KM-CSIRT）を整備</td>
                   <td>KM-CSIRTへの5件のインシデント報告に適切に対応し、事業への影響なし</td>
                 </tr>
                 <tr>
                   <th>調達／委託先<br>従業員</th>
-                  <td>過剰・不当な労働、労働安全衛生、差別、外国人・移民労働者の権利<br><span class="risk-detail-link">CSR調達の取り組み</span></td>
+                  <td>過剰・不当な労働、労働安全衛生、差別、外国人・移民労働者の権利<br><span class="wf-text-link">CSR調達の取り組み</span></td>
                   <td>コニカミノルタサプライチェーン行動規範（=RBA行動規範）の遵守を要請／コニカミノルタサプライチェーン行動規範への実施レベルを診断するための自己診断アンケート実施（SAQ）</td>
                   <td>重要サプライヤー143社中131社にSAQを実施しハイリスクサプライヤー3社を特定、現地訪問による改善支援の結果、是正完了</td>
                 </tr>
                 <tr>
                   <th>地元住民／先住民</th>
-                  <td>強制的な労働、児童労働・若年労働<br><span class="risk-detail-link">責任ある鉱物調達への対応</span></td>
+                  <td>強制的な労働、児童労働・若年労働<br><span class="wf-text-link">責任ある鉱物調達への対応</span></td>
                   <td>責任ある鉱物調達の実施</td>
                   <td>デジタルワークプレイス事業、プロフェッショナルプリント事業において、紛争非関与が確認された3TG製錬所・監査プロセス中の製錬所割合が64％／主要製品の一つであるトナー、光学レンズと機能フィルムの一部製品が紛争非関与であることを確認</td>
                 </tr>
                 <tr>
                   <th>お客様</th>
-                  <td>プライバシーの権利<br><span class="risk-detail-link">個人情報の保護、製品・サービスのセキュリティ強化</span></td>
+                  <td>プライバシーの権利<br><span class="wf-text-link">個人情報の保護、製品・サービスのセキュリティ強化</span></td>
                   <td>GDPRに対応した個人情報保護方針および個人情報保護規程を策定／製品セキュリティガイドラインを制定し、グループ全体で製品・サービスのセキュア開発・運用プロセスを推進</td>
                   <td>製品の重大セキュリティ事故発生件数0件を継続</td>
                 </tr>
@@ -1360,7 +1360,7 @@ body {
               <p style="font-size:13px; line-height:1.95; margin-bottom:14px;">
                 グループコンプライアンス担当役員は、すべての内部通報情報を定期的に監査委員会に報告しています。2024年度の内部通報のうち、人権関連（パワーハラスメント／セクシュアルハラスメント／差別／不適切な扱い）に関連する内部通報件数は、国内11件、海外24件でした。なお、公表を必要とする重要問題の発生はありませんでした。
               </p>
-              <span class="detail-link">コンプライアンスの基本的な考え方・推進体制 ＞ 内部通報制度「ヘルプライン」</span>
+              <span class="wf-text-link">コンプライアンスの基本的な考え方・推進体制 ＞ 内部通報制度「ヘルプライン」</span>
 
               <h4 class="wf-card-title has-mark">ハラスメント相談窓口</h4>
               <p style="font-size:13px; line-height:1.95; margin-bottom:14px;">
@@ -1382,7 +1382,7 @@ body {
               <p style="font-size:13px; line-height:1.95; margin-bottom:14px;">
                 日本、中国、東南アジア地域の「ヘルプライン」では、サプライヤーに対しても「ヘルプライン」を開放し、欧州でもサプライヤーに対して開放しました。北米においてはサプライヤーを含む全ステークホルダーに開放しています。なお、2024年度のサプライヤーからの通報はありませんでした。
               </p>
-              <span class="detail-link">コンプライアンスの基本的な考え方・推進体制 ＞ 内部通報制度「ヘルプライン」</span>
+              <span class="wf-text-link">コンプライアンスの基本的な考え方・推進体制 ＞ 内部通報制度「ヘルプライン」</span>
 
             </div>
           </details>
@@ -1396,7 +1396,7 @@ body {
               <p style="font-size:13px; line-height:1.95; margin-bottom:14px;">
                 製品・サービスの脆弱性に関する情報を全社で一元管理し必要な対応を推進するとともに、社外の公的機関などと連携するための全社共通組織として「KONICA MINOLTA PSIRT」を立ち上げています。KONICA MINOLTA PSIRTでは社外ステークホルダーからコニカミノルタの製品・サービスに関する脆弱性の届け出を受けた場合、国際的な脆弱性ハンドリングプロセスに準拠して適切な対応を行います。
               </p>
-              <span class="detail-link">製品・サービスのセキュリティ強化 ＞ 脆弱性情報の収集と対処</span>
+              <span class="wf-text-link">製品・サービスのセキュリティ強化 ＞ 脆弱性情報の収集と対処</span>
 
             </div>
           </details>
@@ -1498,7 +1498,7 @@ body {
               <p style="font-size:13px; line-height:1.95; margin-bottom:14px;">
                 お取引先説明会や調達コラボレーションシステムを通して、「コニカミノルタ調達方針」の説明や、調達実績および次年度の調達計画の報告を行い、目標や課題の共有化を図るとともに、品質、納期、生産性、環境の側面について、優れた実績があったお取引先を表彰することで、お取引先の皆様にさらなる改善の取り組みを進めていただくようお願いしています。
               </p>
-              <span class="detail-link">調達に関する取り組み ＞ 「お取引先説明会」の実施</span>
+              <span class="wf-text-link">調達に関する取り組み ＞ 「お取引先説明会」の実施</span>
             </div>
           </details>
 
@@ -1509,7 +1509,7 @@ body {
               <p style="font-size:13px; line-height:1.95; margin-bottom:14px;">
                 コニカミノルタは、製品、サービスごとに、コールセンターやウェブサイトの相談窓口を世界各国で設置しています。各窓口に寄せられる不具合情報やお問い合わせに迅速に対応するとともに、それらの情報を一元集約して、品質状況やご要望などの把握に努めています。また、AI技術の利活用について、外部有識者を交えたAI倫理審査委員会を設置し、適正な利活用について確認しています。
               </p>
-              <span class="detail-link">AIの利活用 ＞ AIガバナンス体制</span>
+              <span class="wf-text-link">AIの利活用 ＞ AIガバナンス体制</span>
             </div>
           </details>
         </section>
@@ -1718,7 +1718,7 @@ body {
       </div>
       <div class="ann-row">
         <span class="ann-row-label">#5（C→A・反映済）桐原</span>
-        「リンク表現はサイト全体でルール決めお願いします」→ ページ内テキストリンクを <b>「→ リンクテキストの内容」形式に全箇所統一</b>。具体：(1) .detail-link の前段ラベル「→ 取り組みの詳細はこちら：」を廃止、シンプルな「→ リンク先名」へ／(2) .risk-detail-link のグレー小文字＋点線区切り装飾を廃止し、「→ ＋下線＋濃色」のテキストリンクスタイルに統一／(3) .policy-link は既に「→」プレフィックス済のため継続。UNIFIED_RULES v5.1 §4-2b 準拠。
+        「リンク表現はサイト全体でルール決めお願いします」→ ページ内テキストリンクを <b>「→ リンクテキストの内容」形式に全箇所統一</b>。具体：(1) .wf-text-link の前段ラベル「→ 取り組みの詳細はこちら：」を廃止、シンプルな「→ リンク先名」へ／(2) .wf-text-link のグレー小文字＋点線区切り装飾を廃止し、「→ ＋下線＋濃色」のテキストリンクスタイルに統一／(3) .wf-text-link は既に「→」プレフィックス済のため継続。UNIFIED_RULES v5.1 §4-2b 準拠。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">v1.6 残課題（B保留）</span>
@@ -1747,7 +1747,7 @@ body {
       </div>
       <div class="ann-row">
         <span class="ann-row-label">#5（C・横断ルール）桐原</span>
-        リンク表現サイト全体ルール → UNIFIED_RULES.md v5.0 のリンク統一ルール（→ テキストリンク／.csr-link-block）に準拠。各箇所順次適用。
+        リンク表現サイト全体ルール → UNIFIED_RULES.md v5.0 のリンク統一ルール（→ テキストリンク／.wf-link-block）に準拠。各箇所順次適用。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">#6（D・回答）桐原</span>
@@ -1786,7 +1786,7 @@ body {
       <span class="ann-num">v1.3</span>
       <span class="ann-head">v1.3 変更（参考）</span>
       <p class="ann-body">
-        ① ［企業情報サイトの該当ページへ遷移／PDF不可］等の[]書きの注記を全削除（policy-link 3箇所＋JaCERボタン）<br>
+        ① ［企業情報サイトの該当ページへ遷移／PDF不可］等の[]書きの注記を全削除（wf-text-link 3箇所＋JaCERボタン）<br>
         ② 相談・通報窓口配下H3アコの左4px縦棒（summary／body両方）＋body枠囲い罫線を撤去（UI的にくどい指摘）。アコーディオンはグレー背景＋＋/−マーカーのみで識別
       </p>
     </div>
@@ -1861,7 +1861,7 @@ body {
       <span class="ann-head">主要モジュール</span>
       <p class="ann-body">
         共通: ヘッダー／lnav／パンくず／フッター／H2/H3/H4／wf-btn／img-zoom-btn＋modal preview／コンパクトアンカーナビ（6項目）<br>
-        新規: norm-list（国際規範◆2列）／dd-process（4ステップ›連結）／impact-table（19×4の大型マトリクス）／priority-table／measure-table（リスク詳細リンク付）／audit-table（RBA VAP）／jacer-fig／remediation-photo／detail-link<br>
+        新規: norm-list（国際規範◆2列）／dd-process（4ステップ›連結）／impact-table（19×4の大型マトリクス）／priority-table／measure-table（リスク詳細リンク付）／audit-table（RBA VAP）／jacer-fig／remediation-photo／wf-text-link<br>
         流用: gov-structure-fig（131）／wf-acc-h3＋h4（131 v2.1丸枠アイコン）
       </p>
     </div>

@@ -179,7 +179,7 @@ body {
 /* ============================================================
    テキストリンク（140 v1.2 と統一）
 ============================================================ */
-.text-link {
+.wf-text-link {
   display: inline;
   font-size: 12px;
   color: var(--c-text-h);
@@ -188,7 +188,7 @@ body {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-.text-link::before {
+.wf-text-link::before {
   content: '→ ';
   display: inline-block;
   margin-right: 2px;
@@ -197,7 +197,7 @@ body {
   color: var(--c-text-h);
   text-decoration: none;
 }
-.text-link-row {
+.wf-text-link-row {
   display: block;
   margin-top: 6px;
   margin-bottom: 4px;
@@ -236,14 +236,14 @@ body {
 /* ============================================================
    リンクリスト共通モジュール（複数リンク掲載時の標準UI）
    0523 桐原FB：現サイト同様の「〈タイトル〉＋テキストリンク」シンプルUI（背景・ボーダーなし）
-   - 使い方：<div class="csr-link-block"><div class="csr-link-list-title">〈XX〉</div>
-              <div class="csr-row-links">...text-link-row × n...</div></div>
+   - 使い方：<div class="wf-link-block"><div class="csr-link-list-title">〈XX〉</div>
+              <div class="csr-row-links">...wf-text-link-row × n...</div></div>
    - .csr-row-content の直下に置くと「画像＋テキスト」の下に全幅で改行配置される
 ============================================================ */
-.csr-link-block {
+.wf-link-block {
   /* 単独で使うときは普通のブロック */
 }
-.csr-row-content > .csr-link-block {
+.csr-row-content > .wf-link-block {
   order: 3;
   flex: 1 0 100%;
   margin-top: 6px;
@@ -374,7 +374,7 @@ body {
   line-height: 1.95;
 }
 .csr-row-links { margin-top: 4px; }
-.csr-row-links .text-link-row { margin: 3px 0; }
+.csr-row-links .wf-text-link-row { margin: 3px 0; }
 
 /* ロゴなしの行（業界団体対処／表彰のいくつか） */
 .csr-row.no-logo .csr-logo-strip { display: none; }
@@ -404,7 +404,7 @@ body {
 
 /* ============================================================
    サブリスト（JCIメッセージ／RE-Users／アドボカシー履歴／構成銘柄）
-   035 TCFD .theme-related と同型（ラベル独立行＋全周ボーダー＋薄グレー背景）
+   035 TCFD .wf-related-links と同型（ラベル独立行＋全周ボーダー＋薄グレー背景）
 ============================================================ */
 .sub-list {
   background: var(--c-bg-sub);
@@ -691,9 +691,9 @@ body {
                 コニカミノルタは、2008年12月、国連が提唱する「グローバル・コンパクト」に署名し、グローバル・コンパクト・ジャパン・ネットワークに加盟しています。グローバル・コンパクトとは、人権、労働、環境、腐敗防止の4つの分野における普遍的な10原則を示したもので、世界各国の企業に対して、その実現に向けて努力を継続することを求めています。
               </p>
               <div class="csr-row-links">
-                <div class="text-link-row"><a class="text-link">国連グローバル・コンパクト10原則</a></div>
-                <div class="text-link-row"><a class="text-link">グローバル・コンパクト・ジャパン・ネットワーク</a></div>
-                <div class="text-link-row"><a class="text-link">グローバル・コンパクト10原則対照表</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">国連グローバル・コンパクト10原則</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">グローバル・コンパクト・ジャパン・ネットワーク</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">グローバル・コンパクト10原則対照表</a></div>
               </div>
             </div>
             </div>
@@ -731,7 +731,7 @@ body {
                 コニカミノルタは、自然資本に関する事業への依存とインパクト、その評価および機会とリスクに取り組んでいく姿勢を明確にするため、「自然関連財務情報開示タスクフォース（TNFD）」の理念と提言に賛同しています。2024年、TNFDアーリーアダプター企業の登録を行うとともに、TNFDフォーラムメンバーとして加盟しました。自然資本の依存とインパクトの評価およびその情報をTNFDフレームワークに沿って開示しています。
               </p>
               <div class="csr-row-links">
-                <div class="text-link-row"><a class="text-link">TNFD Forum webサイト</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">TNFD Forum webサイト</a></div>
               </div>
             </div>
             </div>
@@ -760,16 +760,16 @@ body {
                 2019年の「気候変動アクション日本サミット」では当社グループの担当役員がパネルディスカッションへ登壇。2024年4月、国際水準での排出削減を実現するカーボンプライシングへ改善を、11月には、1.5℃目標と整合する野心的な2035年目標を日本政府に求めるメッセージを、JCIを通じて発表しました。
               </p>
             </div>
-            <!-- 0523 桐原FB：共通モジュール .csr-link-block を画像＋テキスト下に全幅で配置／〈タイトル〉付き -->
-            <div class="csr-link-block">
+            <!-- 0523 桐原FB：共通モジュール .wf-link-block を画像＋テキスト下に全幅で配置／〈タイトル〉付き -->
+            <div class="wf-link-block">
               <div class="csr-link-list-title">〈JCIメッセージへの賛同〉</div>
               <div class="csr-row-links">
-                <div class="text-link-row"><a class="text-link">2030年の再生可能エネルギー電力目標を40〜50％に</a></div>
-                <div class="text-link-row"><a class="text-link">2030年の日本の温室効果ガス削減目標（NDC）を45％以上</a></div>
-                <div class="text-link-row"><a class="text-link">いまこそ再生可能エネルギーの導入加速を</a></div>
-                <div class="text-link-row"><a class="text-link">再生可能エネルギーとカーボンプライシングで二つの危機を打開する</a></div>
-                <div class="text-link-row"><a class="text-link">カーボンプライシング提言：2030年GHG排出削減目標と国際競争力強化の同時達成に向けて</a></div>
-                <div class="text-link-row"><a class="text-link">1.5℃目標と整合する野心的な2035年目標を</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">2030年の再生可能エネルギー電力目標を40〜50％に</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">2030年の日本の温室効果ガス削減目標（NDC）を45％以上</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">いまこそ再生可能エネルギーの導入加速を</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">再生可能エネルギーとカーボンプライシングで二つの危機を打開する</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">カーボンプライシング提言：2030年GHG排出削減目標と国際競争力強化の同時達成に向けて</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">1.5℃目標と整合する野心的な2035年目標を</a></div>
               </div>
             </div>
             </div>
@@ -792,7 +792,7 @@ body {
                 2024年、日本の再エネ電力の普及における課題と解決策を議論する「RE100メンバー会議」が日本で開催され、当社はメンバー企業として参画しました。今後も、グローバルで各地域に応じた最適な手段を検討し、再エネ電力の調達拡大と普及に向けた取り組みを強化していきます。
               </p>
               <div class="csr-row-links">
-                <div class="text-link-row"><a class="text-link">自社拠点での再生可能エネルギー導入</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">自社拠点での再生可能エネルギー導入</a></div>
               </div>
             </div>
             </div>
@@ -812,11 +812,11 @@ body {
                 2023年、コニカミノルタは、日本における再エネ電力の普及に関する課題と解決策について、自然エネルギー財団を通じて、政策提言を発表しました。
               </p>
             </div>
-            <!-- 0523 桐原FB：共通モジュール .csr-link-block を画像＋テキスト下に全幅で配置／〈タイトル〉付き -->
-            <div class="csr-link-block">
+            <!-- 0523 桐原FB：共通モジュール .wf-link-block を画像＋テキスト下に全幅で配置／〈タイトル〉付き -->
+            <div class="wf-link-block">
               <div class="csr-link-list-title">〈RE-Users 政策提言への賛同〉</div>
               <div class="csr-row-links">
-                <div class="text-link-row"><a class="text-link">自然エネルギーの電力利用に関する課題と提言</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">自然エネルギーの電力利用に関する課題と提言</a></div>
               </div>
             </div>
             </div>
@@ -836,7 +836,7 @@ body {
                 コニカミノルタは、パリ協定に整合する持続可能な企業を推進する国際的なイニシアティブ「SBTイニシアティブ」より、当社グループのCO₂排出削減目標が科学的根拠に基づいた目標として承認を得ています。2024年、1.5℃の排出経路に沿った最新のSBTi企業ネットゼロ基準（SBTi Corporate Net-Zero Standard）への適合が認められ、2017年にSBT認定を取得した従来目標の更新を完了しました。
               </p>
               <div class="csr-row-links">
-                <div class="text-link-row"><a class="text-link">SBTイニシアティブから「ネットゼロ目標」の認定を取得</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">SBTイニシアティブから「ネットゼロ目標」の認定を取得</a></div>
               </div>
             </div>
             </div>
@@ -873,7 +873,7 @@ body {
                 コニカミノルタは、日本経団連の「『チャレンジ・ゼロ』宣言」に賛同しています。脱炭素社会の実現に向け、野心的に挑戦するイノベーションの具体的な取り組みを公開しています。ネット・ゼロエミッション技術の開発へ積極的にチャレンジし、環境と成長の好循環を創出することで、イノベーションを通じた社会課題の解決「Society 5.0 for SDGs」の実現を目指します。
               </p>
               <div class="csr-row-links">
-                <div class="text-link-row"><a class="text-link">「チャレンジ・ゼロ」ウェブサイト</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">「チャレンジ・ゼロ」ウェブサイト</a></div>
               </div>
             </div>
             </div>
@@ -910,8 +910,8 @@ body {
                 コニカミノルタは、サプライチェーンにおけるCSR調達の取り組みを強化するために、2013年10月にRBAに加盟しました。RBAは、世界の電子機器メーカーや大手サプライヤーなど、加盟各社が、サプライチェーン上の労働者の権利（人権および労働条件）や、倫理・安全衛生などの改善を進めています。
               </p>
               <div class="csr-row-links">
-                <div class="text-link-row"><a class="text-link">コニカミノルタのRBA加盟に関するニュースリリース</a></div>
-                <div class="text-link-row"><a class="text-link">RBA</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">コニカミノルタのRBA加盟に関するニュースリリース</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">RBA</a></div>
               </div>
             </div>
             </div>
@@ -932,8 +932,8 @@ body {
                 コニカミノルタは外部団体と連携した責任ある鉱物調達の取り組みも進めています。コニカミノルタは責任ある鉱物調達の世界的な取り組みを主導しているRMIのメンバーです。RMIは世界標準の紛争鉱物調査票の制定や精錬業者の紛争非関与監査プログラムの推進、その他責任ある鉱物調達サプライチェーンのためのさまざまな取り組みを行っています。国内ではJEITA「責任ある鉱物調達検討会」に参画しています。
               </p>
               <div class="csr-row-links">
-                <div class="text-link-row"><a class="text-link">RMI（英語）</a></div>
-                <div class="text-link-row"><a class="text-link">JEITA責任ある鉱物調達検討会</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">RMI（英語）</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">JEITA責任ある鉱物調達検討会</a></div>
               </div>
             </div>
             </div>
@@ -956,7 +956,7 @@ body {
                 コニカミノルタは、環境省、経済産業省および日本経団連が設立した「循環経済パートナーシップ（J4CE）」へ2021年より加盟しています。サーキュラーエコノミー社会の実現に向け、野心的に挑戦する取り組みを公開することで、企業や業界の枠を超えたオープンイノベーションを推進し、循環経済の社会実装を目指していきます。
               </p>
               <div class="csr-row-links">
-                <div class="text-link-row"><a class="text-link">循環経済パートナーシップ（J4CE）</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">循環経済パートナーシップ（J4CE）</a></div>
               </div>
             </div>
             </div>
@@ -976,7 +976,7 @@ body {
                 コニカミノルタは、経済産業省の「成長志向型の資源自律経済戦略」に基づいて設立された官民連携型イニシアティヴ「サーキュラーパートナーズ」に2024年より参画しています。他企業や自治体、研究機関の知識および成功事例を共有し、政策インセンティブを活用することで、新たなビジネス機会の創出を目指しています。
               </p>
               <div class="csr-row-links">
-                <div class="text-link-row"><a class="text-link">サーキュラーパートナーズ（CPs）</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">サーキュラーパートナーズ（CPs）</a></div>
               </div>
             </div>
             </div>
@@ -999,7 +999,7 @@ body {
                 コニカミノルタは、日本経団連および経団連自然保護協議会が設立した、「経団連生物多様性宣言イニシアティブ」に賛同しています。持続可能な社会の実現に向けて、「経団連生物多様性宣言・行動指針（改訂版）」を構成する7項目への取り組みを推進しています。
               </p>
               <div class="csr-row-links">
-                <div class="text-link-row"><a class="text-link">経団連生物多様性宣言イニシアティブ</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">経団連生物多様性宣言イニシアティブ</a></div>
               </div>
             </div>
             </div>
@@ -1022,7 +1022,7 @@ body {
                 コニカミノルタは、電機・電子温暖化対策連絡会が推進する、地球温暖化防止に関する業界共通の取り組み「カーボンニュートラル行動計画」に参画しています。行動計画フェーズⅡでは、CO₂排出量を2030年度に2013年度比で46％程度削減する目標の達成に向け、会員企業の一員として削減活動に取り組んでいます。
               </p>
               <div class="csr-row-links">
-                <div class="text-link-row"><a class="text-link">電機・電子業界 カーボンニュートラル行動計画</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">電機・電子業界 カーボンニュートラル行動計画</a></div>
               </div>
             </div>
             </div>
@@ -1046,15 +1046,15 @@ body {
                 コニカミノルタは、気候変動への対応をはじめとする先進的な環境の取り組みを、サミットや重要な国際会議の場で世界へ情報発信しています。
               </p>
             </div>
-            <!-- 0523 桐原FB：共通モジュール .csr-link-block を画像＋テキスト下に全幅で配置／〈タイトル〉付き -->
-            <div class="csr-link-block">
+            <!-- 0523 桐原FB：共通モジュール .wf-link-block を画像＋テキスト下に全幅で配置／〈タイトル〉付き -->
+            <div class="wf-link-block">
               <div class="csr-link-list-title">〈過去のアドボカシー記事〉</div>
               <div class="csr-row-links">
-                <div class="text-link-row"><a class="text-link">2015年6月　G7ドイツ〔エルマウ〕</a></div>
-                <div class="text-link-row"><a class="text-link">2015年11月　COP21フランス〔パリ〕</a></div>
-                <div class="text-link-row"><a class="text-link">2016年5月　G7日本〔伊勢志摩〕</a></div>
-                <div class="text-link-row"><a class="text-link">2016年11月　COP22 モロッコ〔マラケシュ〕</a></div>
-                <div class="text-link-row"><a class="text-link">2017年5月　G7イタリア〔タオルミーナ〕</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">2015年6月　G7ドイツ〔エルマウ〕</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">2015年11月　COP21フランス〔パリ〕</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">2016年5月　G7日本〔伊勢志摩〕</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">2016年11月　COP22 モロッコ〔マラケシュ〕</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">2017年5月　G7イタリア〔タオルミーナ〕</a></div>
               </div>
             </div>
             </div>
@@ -1090,8 +1090,8 @@ body {
                 コニカミノルタ（株）は、持続可能な経済を実現させる活動を行う国際NGOのCDPにより「気候変動Aクラス」企業として選定されました。これまでに、最高評価のAクラスを9回獲得しています。（2026年1月）「サプライヤー・エンゲージメント・リーダー」企業にも選定されています。（2025年7月）
               </p>
               <div class="csr-row-links">
-                <div class="text-link-row"><a class="text-link">ニュースリリース／トピックス（CDP 気候変動Aクラスリスト）</a></div>
-                <div class="text-link-row"><a class="text-link">トピックス（サプライヤー・エンゲージメント・リーダー）</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">ニュースリリース／トピックス（CDP 気候変動Aクラスリスト）</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">トピックス（サプライヤー・エンゲージメント・リーダー）</a></div>
               </div>
             </div>
             </div>
@@ -1111,7 +1111,7 @@ body {
                 コニカミノルタ（株）は、米国のMSCI社による「MSCI ESG Ratings」にて「AAA」の格付けを獲得しました。（2026年3月）
               </p>
               <div class="csr-row-links">
-                <div class="text-link-row"><a class="text-link">MSCI ESG Ratings</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">MSCI ESG Ratings</a></div>
               </div>
               <details class="disclaimer-toggle">
                 <summary>免責事項</summary>
@@ -1137,7 +1137,7 @@ body {
                 コニカミノルタ（株）は、米国に拠点を置くInstitutional Shareholder Services Inc.の責任投資部門であるISS ESGによる「ISS ESG Corporate Rating」において、世界の電子機器産業をリードする企業として2011年から「Prime」の認定を受けています。（2025年5月）
               </p>
               <div class="csr-row-links">
-                <div class="text-link-row"><a class="text-link">ISS-ESG</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">ISS-ESG</a></div>
               </div>
             </div>
             </div>
@@ -1150,7 +1150,7 @@ body {
           </p>
           <!-- #43：単に「ニュースリリース」だと一覧へ飛ぶ誤認を招くため、対象リリースの具体タイトルを明記。
                ※サステナビリティTOPへ移設するかは要判断のため現位置のまま -->
-          <div class="text-link-row" style="margin-bottom:18px;"><a class="text-link">ニュースリリース：GPIFが採用する6つのESG指数すべてに選定されました</a></div>
+          <div class="wf-text-link-row" style="margin-bottom:18px;"><a class="wf-text-link">ニュースリリース：GPIFが採用する6つのESG指数すべてに選定されました</a></div>
 
           <!-- FTSE Russell（3ロゴ） -->
           <details class="csr-row" open>
@@ -1169,8 +1169,8 @@ body {
               </p>
               <!-- 0523/桐原FB：現サイトに存在しない要素のため「構成銘柄」サブリストを削除 -->
               <div class="csr-row-links">
-                <div class="text-link-row"><a class="text-link">FTSE4Good Index Series</a></div>
-                <div class="text-link-row"><a class="text-link">FTSE Blossom Index Series</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">FTSE4Good Index Series</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">FTSE Blossom Index Series</a></div>
               </div>
             </div>
             </div>
@@ -1193,7 +1193,7 @@ body {
               </p>
               <!-- 0523/桐原FB：現サイトに存在しない要素のため「構成銘柄」サブリストを削除 -->
               <div class="csr-row-links">
-                <div class="text-link-row"><a class="text-link">MSCI ESG Research</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">MSCI ESG Research</a></div>
               </div>
               <details class="disclaimer-toggle">
                 <summary>免責事項</summary>
@@ -1279,7 +1279,7 @@ body {
                 コニカミノルタ（株）は、環境省主催の第7回「ESGファイナンス・アワード・ジャパン」の「環境サステナブル企業部門」で銅賞（選定委員長賞）を受賞しました。
               </p>
               <div class="csr-row-links">
-                <div class="text-link-row"><a class="text-link">ニュースリリース</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">ニュースリリース</a></div>
               </div>
             </div>
             </div>
@@ -1300,8 +1300,8 @@ body {
                 （株）ブロードバンドセキュリティが、IRサイトの使いやすさや情報の充実度を評価する「IRサイト総合ランキング2025」で「優秀企業：金賞3位」を獲得しました。（2025年12月）「ESGサイトランキング2025」で「優秀企業」を獲得しました。（2025年9月）
               </p>
               <div class="csr-row-links">
-                <div class="text-link-row"><a class="text-link">Gomez IRサイト総合ランキング</a></div>
-                <div class="text-link-row"><a class="text-link">Gomez ESGサイトランキング</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">Gomez IRサイト総合ランキング</a></div>
+                <div class="wf-text-link-row"><a class="wf-text-link">Gomez ESGサイトランキング</a></div>
               </div>
             </div>
             </div>
@@ -1550,7 +1550,7 @@ body {
       <div class="ann-row">
         <span class="ann-row-label">0523 桐原FB（A区分・3箇所統一・共通モジュール化）</span>
         <b>JCIメッセージへの賛同</b>／<b>RE-Users 政策提言への賛同</b>／<b>過去のアドボカシー記事</b> の3ブロックを、現サイト（konicaminolta.jp/about/csr/initiative.html）同様の <b>〈タイトル〉＋テキストリンク</b>シンプルUI（背景・ボーダーなし）に統一。<b>.sub-list</b>（薄グレー背景＋全周ボーダー＋ラベル独立行）と先行採用していた <b>.wf-dl-link</b>（PDFバッジ＋↓）を廃止。<br>
-        新規共通モジュール <b>.csr-link-block</b>（複数リンク掲載時の標準UI）を策定：<b>.csr-link-list-title</b>（12px太字／〈〉括弧付き小見出し）＋ <b>.csr-row-links / .text-link-row / .text-link</b>（→ 下線リンク）で構成。<b>.csr-row-content の直下に置くと「画像＋テキスト」の下に全幅で改行配置される</b>（flex order:3 / flex:1 0 100%）。3ブロックすべて本文の右カラム内ではなく「画像＋テキスト」の下に全幅で配置するよう移動。以後、複数リンクが並ぶ箇所はこのモジュールを共通採用する。
+        新規共通モジュール <b>.wf-link-block</b>（複数リンク掲載時の標準UI）を策定：<b>.csr-link-list-title</b>（12px太字／〈〉括弧付き小見出し）＋ <b>.csr-row-links / .wf-text-link-row / .wf-text-link</b>（→ 下線リンク）で構成。<b>.csr-row-content の直下に置くと「画像＋テキスト」の下に全幅で改行配置される</b>（flex order:3 / flex:1 0 100%）。3ブロックすべて本文の右カラム内ではなく「画像＋テキスト」の下に全幅で配置するよう移動。以後、複数リンクが並ぶ箇所はこのモジュールを共通採用する。
       </div>
     </div>
 
@@ -1640,7 +1640,7 @@ body {
         新設：csr-row（共通行）／csr-row-head＋csr-row-title＋csr-row-tag／csr-row-date／csr-logo-strip＋csr-logo（固定140×80・1〜n個）／csr-row-body＋csr-row-desc＋csr-row-links<br>
         sub-list：linked（›下線）／dotted（◆）／indexed（■）の3バリアント<br>
         flexible：csr-row.no-logo でロゴ非表示／disclaimer-toggle折りたたみ／csr-row-companies（くるみん対象会社）<br>
-        共通：ヘッダー／lnav／パンくず／フッター／H2/H3／text-link／コンパクトアンカーナビ（main＋sub階層）
+        共通：ヘッダー／lnav／パンくず／フッター／H2/H3／wf-text-link／コンパクトアンカーナビ（main＋sub階層）
       </p>
     </div>
 

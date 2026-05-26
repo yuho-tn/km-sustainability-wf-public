@@ -496,7 +496,7 @@ body {
   margin-top: 20px;
 }
 /* テキストリンク */
-.wf-link {
+.wf-text-link {
   font-size: 12px;
   color: var(--c-text-s);
   display: inline-flex;
@@ -505,9 +505,9 @@ body {
   cursor: default;
   text-decoration: none;
 }
-.wf-link::before { content: '→ '; font-size: 11px; }
+.wf-text-link::before { content: '→ '; font-size: 11px; }
 /* 「一覧へ」系リンク（右寄せ配置） */
-.wf-link-more {
+.wf-text-link-more {
   font-size: 12px;
   color: var(--c-text-s);
   display: inline-flex;
@@ -515,7 +515,7 @@ body {
   gap: 4px;
   cursor: default;
 }
-.wf-link-more::after { content: ' →'; font-size: 11px; }
+.wf-text-link-more::after { content: ' →'; font-size: 11px; }
 
 /* ============================================================
    LABEL / BADGE
@@ -1322,14 +1322,14 @@ body {
   gap: 16px;
   align-items: stretch;
 }
-.esg-data-card {
+.wf-esg-data-block {
   border: 1px solid var(--c-border);
   background: var(--c-white);
   display: flex;
   flex-direction: column;
 }
 /* カードヘッダー — タイトル＋ダウンロードボタンを横並び（v3.5） */
-.esg-data-card-head {
+.wf-esg-data-block-head {
   padding: 14px 16px;
   color: #fff;
   letter-spacing: 0.02em;
@@ -1338,21 +1338,21 @@ body {
   justify-content: space-between;
   gap: 12px;
 }
-.esg-data-card-head.env { background: #3A3A3A; }
-.esg-data-card-head.social { background: #555555; }
-.esg-data-card-head.gov { background: #707070; }
-.esg-data-card-head-title {
+.wf-esg-data-block-head.env { background: #3A3A3A; }
+.wf-esg-data-block-head.social { background: #555555; }
+.wf-esg-data-block-head.gov { background: #707070; }
+.wf-esg-data-block-head-title {
   display: flex; flex-direction: column; gap: 2px; min-width: 0;
 }
-.esg-data-card-head-name {
+.wf-esg-data-block-head-name {
   font-size: 14px; font-weight: 700;
   line-height: 1.3;
 }
-.esg-data-card-head-file {
+.wf-esg-data-block-head-file {
   font-size: 10px; color: rgba(255,255,255,0.85);
   letter-spacing: 0;
 }
-.esg-data-card-head .wf-btn {
+.wf-esg-data-block-head .wf-btn {
   flex-shrink: 0;
   background: #fff; color: var(--c-text-h);
   border: 1px solid #fff;
@@ -1360,11 +1360,11 @@ body {
   font-size: 11px;
 }
 /* 目次リスト */
-.esg-data-card-index {
+.wf-esg-data-block-index {
   padding: 14px 16px 16px;
   flex: 1;
 }
-.esg-data-card-index-title {
+.wf-esg-data-block-index-title {
   font-size: 10px;
   font-weight: 700;
   color: var(--c-text-xs);
@@ -1374,12 +1374,12 @@ body {
   padding-bottom: 6px;
   border-bottom: 1px solid var(--c-border-s);
 }
-.esg-data-card-index-list {
+.wf-esg-data-block-index-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-.esg-data-card-index-list li {
+.wf-esg-data-block-index-list li {
   font-size: 11px;
   color: var(--c-text-s);
   padding: 4px 0;
@@ -1389,10 +1389,10 @@ body {
   align-items: baseline;
   gap: 6px;
 }
-.esg-data-card-index-list li:last-child {
+.wf-esg-data-block-index-list li:last-child {
   border-bottom: none;
 }
-.esg-data-card-index-list li::before {
+.wf-esg-data-block-index-list li::before {
   content: '';
   width: 4px;
   height: 4px;
@@ -1766,13 +1766,13 @@ body {
 /* 0524 桐原FB（追加修正）：レポートアーカイブ 3ボタン横並びレイアウト
    他ページ（131/140/222/225）の .wf-btn-page と同じデフォルト挙動に統一。
    伸縮（flex:1 1 240px）は廃止し、コンテンツ幅可変＋左寄せ＋min-width:280px の標準仕様。 */
-.report-archive-buttons {
+.wf-btn-grid--col3 {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 8px;
 }
-.report-archive-buttons .wf-btn-page {
+.wf-btn-grid--col3 .wf-btn-page {
   flex: 0 0 auto;
 }
 
@@ -1780,7 +1780,7 @@ body {
    - Excelロゴ風SVG（書類フォルド＋X文字）でリアリティ向上
    - ダウンロード意図は「下向き矢印＋トレイ」型のダウンロードアイコンで明示
    - ホバー演出はこのボタンのみ（カード全体のホバーは下のルールで無効化） */
-.dl-excel-btn {
+.wf-btn-xlsx {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -1792,7 +1792,7 @@ body {
   font-family: inherit;
   transition: background .15s ease, border-color .15s ease, box-shadow .15s ease;
 }
-.dl-excel-btn:hover {
+.wf-btn-xlsx:hover {
   background: var(--c-bg-sub);
   border-color: var(--c-text-h);
   box-shadow: 0 2px 6px rgba(0,0,0,0.10);
@@ -1801,36 +1801,36 @@ body {
 .dl-download-svg { display: block; flex-shrink: 0; }
 .dl-download-svg { color: var(--c-text-h); }
 
-/* 0524 桐原FB（追加修正）：.esg-data-card のカード全体ホバー演出を無効化。
-   assets/wf-overlay.js が .esg-data-card を「クリッカブル・カード」扱いして
+/* 0524 桐原FB（追加修正）：.wf-esg-data-block のカード全体ホバー演出を無効化。
+   assets/wf-overlay.js が .wf-esg-data-block を「クリッカブル・カード」扱いして
    translateY/shadow/border-color を付与しているのを打ち消し、
-   ホバー演出は .dl-excel-btn のみに集約する */
-.esg-data-card { cursor: default !important; transition: none !important; }
-.esg-data-card:hover {
+   ホバー演出は .wf-btn-xlsx のみに集約する */
+.wf-esg-data-block { cursor: default !important; transition: none !important; }
+.wf-esg-data-block:hover {
   transform: none !important;
   box-shadow: none !important;
   border-color: var(--c-border) !important;
 }
 
-/* 0513 Figma #26：ESGデータ参照ガイド（catalog 7-13 / .esg-link-guide）
+/* 0513 Figma #26：ESGデータ参照ガイド（catalog 7-13 / .wf-esg-data-block）
    導入部に「3種Excel・環境はシート分割」の全体像を要約提示（詳細は下の区分別カードが担う） */
-.esg-link-guide {
+.wf-esg-data-block {
   background: var(--c-white); border: 1px solid var(--c-border);
   padding: 16px 20px 18px; margin: 4px 0 24px;
 }
-.esg-link-guide-title { font-size: 14px; font-weight: 700; color: var(--c-text-h); margin-bottom: 4px; }
-.esg-link-guide-lead { font-size: 12px; color: var(--c-text-s); margin-bottom: 12px; line-height: 1.8; }
-.esg-link-guide-item {
+.wf-esg-data-block-title { font-size: 14px; font-weight: 700; color: var(--c-text-h); margin-bottom: 4px; }
+.wf-esg-data-block-lead { font-size: 12px; color: var(--c-text-s); margin-bottom: 12px; line-height: 1.8; }
+.wf-esg-data-block-item {
   display: flex; gap: 12px; align-items: baseline;
   padding: 7px 0; border-top: 1px dashed var(--c-border);
 }
-.esg-link-guide-badge {
+.wf-esg-data-block-badge {
   flex: 0 0 56px; text-align: center; font-size: 10px; font-weight: 700;
   color: var(--c-text-h); border: 1px solid var(--c-text-s); padding: 2px 0; letter-spacing: 0.06em;
 }
-.esg-link-guide-text { font-size: 12px; color: var(--c-text); line-height: 1.7; }
-.esg-link-guide-text strong { color: var(--c-text-h); }
-.esg-link-guide-text .note { color: var(--c-text-xs); font-size: 11px; }
+.wf-esg-data-block-text { font-size: 12px; color: var(--c-text); line-height: 1.7; }
+.wf-esg-data-block-text strong { color: var(--c-text-h); }
+.wf-esg-data-block-text .note { color: var(--c-text-xs); font-size: 11px; }
 
 </style>
 </head>
@@ -1894,13 +1894,13 @@ body {
       <div class="esg-data-grid">
 
         <!-- 環境データ -->
-        <div class="esg-data-card">
-          <div class="esg-data-card-head env">
-            <div class="esg-data-card-head-title">
-              <div class="esg-data-card-head-name">環境データ</div>
-              <div class="esg-data-card-head-file">2025年版 ｜ XLSX (約 1.2 MB)</div>
+        <div class="wf-esg-data-block">
+          <div class="wf-esg-data-block-head env">
+            <div class="wf-esg-data-block-head-title">
+              <div class="wf-esg-data-block-head-name">環境データ</div>
+              <div class="wf-esg-data-block-head-file">2025年版 ｜ XLSX (約 1.2 MB)</div>
             </div>
-            <button class="dl-excel-btn" title="Excel形式でダウンロード" aria-label="環境データをExcelでダウンロード">
+            <button class="wf-btn-xlsx" title="Excel形式でダウンロード" aria-label="環境データをExcelでダウンロード">
               <svg class="dl-excel-svg" viewBox="0 0 24 28" width="20" height="24" aria-hidden="true">
                 <path d="M 2 0 L 18 0 L 22 4 L 22 28 L 2 28 Z" fill="#107C41"/>
                 <path d="M 18 0 L 22 4 L 18 4 Z" fill="#0A6033"/>
@@ -1912,9 +1912,9 @@ body {
               </svg>
             </button>
           </div>
-          <div class="esg-data-card-index">
-            <div class="esg-data-card-index-title">収録項目</div>
-            <ul class="esg-data-card-index-list">
+          <div class="wf-esg-data-block-index">
+            <div class="wf-esg-data-block-index-title">収録項目</div>
+            <ul class="wf-esg-data-block-index-list">
               <li>当社事業活動による環境負荷全体像</li>
               <li>温室効果ガス排出量（スコープ 1, 2, 3）</li>
               <li>CO₂削減貢献量</li>
@@ -1929,13 +1929,13 @@ body {
         </div>
 
         <!-- 社会データ -->
-        <div class="esg-data-card">
-          <div class="esg-data-card-head social">
-            <div class="esg-data-card-head-title">
-              <div class="esg-data-card-head-name">社会データ</div>
-              <div class="esg-data-card-head-file">2025年版 ｜ XLSX (約 0.9 MB)</div>
+        <div class="wf-esg-data-block">
+          <div class="wf-esg-data-block-head social">
+            <div class="wf-esg-data-block-head-title">
+              <div class="wf-esg-data-block-head-name">社会データ</div>
+              <div class="wf-esg-data-block-head-file">2025年版 ｜ XLSX (約 0.9 MB)</div>
             </div>
-            <button class="dl-excel-btn" title="Excel形式でダウンロード" aria-label="社会データをExcelでダウンロード">
+            <button class="wf-btn-xlsx" title="Excel形式でダウンロード" aria-label="社会データをExcelでダウンロード">
               <svg class="dl-excel-svg" viewBox="0 0 24 28" width="20" height="24" aria-hidden="true">
                 <path d="M 2 0 L 18 0 L 22 4 L 22 28 L 2 28 Z" fill="#107C41"/>
                 <path d="M 18 0 L 22 4 L 18 4 Z" fill="#0A6033"/>
@@ -1947,9 +1947,9 @@ body {
               </svg>
             </button>
           </div>
-          <div class="esg-data-card-index">
-            <div class="esg-data-card-index-title">収録項目</div>
-            <ul class="esg-data-card-index-list">
+          <div class="wf-esg-data-block-index">
+            <div class="wf-esg-data-block-index-title">収録項目</div>
+            <ul class="wf-esg-data-block-index-list">
               <li>主な両立支援制度の利用状況</li>
               <li>育児休職復職率</li>
               <li>人財育成 教育研修実施状況</li>
@@ -1966,13 +1966,13 @@ body {
         </div>
 
         <!-- ガバナンスデータ -->
-        <div class="esg-data-card">
-          <div class="esg-data-card-head gov">
-            <div class="esg-data-card-head-title">
-              <div class="esg-data-card-head-name">ガバナンスデータ</div>
-              <div class="esg-data-card-head-file">2025年版 ｜ XLSX (約 0.7 MB)</div>
+        <div class="wf-esg-data-block">
+          <div class="wf-esg-data-block-head gov">
+            <div class="wf-esg-data-block-head-title">
+              <div class="wf-esg-data-block-head-name">ガバナンスデータ</div>
+              <div class="wf-esg-data-block-head-file">2025年版 ｜ XLSX (約 0.7 MB)</div>
             </div>
-            <button class="dl-excel-btn" title="Excel形式でダウンロード" aria-label="ガバナンスデータをExcelでダウンロード">
+            <button class="wf-btn-xlsx" title="Excel形式でダウンロード" aria-label="ガバナンスデータをExcelでダウンロード">
               <svg class="dl-excel-svg" viewBox="0 0 24 28" width="20" height="24" aria-hidden="true">
                 <path d="M 2 0 L 18 0 L 22 4 L 22 28 L 2 28 Z" fill="#107C41"/>
                 <path d="M 18 0 L 22 4 L 18 4 Z" fill="#0A6033"/>
@@ -1984,9 +1984,9 @@ body {
               </svg>
             </button>
           </div>
-          <div class="esg-data-card-index">
-            <div class="esg-data-card-index-title">収録項目</div>
-            <ul class="esg-data-card-index-list">
+          <div class="wf-esg-data-block-index">
+            <div class="wf-esg-data-block-index-title">収録項目</div>
+            <ul class="wf-esg-data-block-index-list">
               <li>取締役会の出席率</li>
               <li>取締役・執行役の報酬</li>
               <li>コンプライアンス</li>
@@ -2009,7 +2009,7 @@ body {
       <p class="wf-section-desc">
         当社の情報開示体系、サステナビリティサイトの考え方、過去の統合報告書はレポートアーカイブにまとめています。
       </p>
-      <div class="report-archive-buttons">
+      <div class="wf-btn-grid--col3">
         <a class="wf-btn-page" href="096_report_archive.html#disclosure-system">情報開示体系</a>
         <a class="wf-btn-page" href="096_report_archive.html#about-site">サステナビリティサイトについて</a>
         <a class="wf-btn-page" href="096_report_archive.html#integrated-report">統合報告書</a>
