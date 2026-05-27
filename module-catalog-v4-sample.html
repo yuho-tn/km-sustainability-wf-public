@@ -71,11 +71,18 @@ body {
 
 /* コンパクトモジュール行：[No.+クラス] | プレビュー | メタ */
 .cat-mod {
-  display: grid; grid-template-columns: 200px 1fr 320px;
+  display: grid; grid-template-columns: 180px minmax(0, 1fr) 220px;
   align-items: stretch;
   background: #fff; border: 1px solid var(--c-border);
   margin-bottom: 8px;
   min-height: 70px;
+}
+.cat-mod-preview {
+  padding: 18px 22px;
+  background: #FAFAFA;
+  border-right: 1px solid var(--c-border);
+  display: flex; align-items: flex-start; justify-content: flex-start;
+  overflow: visible;
 }
 .cat-mod-id {
   background: var(--c-border);
@@ -887,9 +894,7 @@ body {
       <div class="cat-mod-id"><span class="cat-mod-id-num">7-1</span><span class="cat-mod-id-name">プライマリーボタン</span><span class="cat-mod-id-class">.wf-btn.is-primary</span></div>
       <div class="cat-mod-preview"><a class="dem-btn-primary">サステナビリティレポート2025を見る</a></div>
       <div class="cat-mod-meta">
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">UI</span><span class="cat-mod-meta-body">黒bg＋白文字。最重要CTAに限定使用。</span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">新規策定</span></span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">ルール</span><span class="cat-mod-meta-body">1ページ1〜2箇所まで。「重要なPDF閲覧」「年次レポート閲覧」など、ページの主目的に直結するCTAのみ。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-body"><strong>CTAに適用。</strong>最重要遷移（年次レポート閲覧／主要PDF DL等、ページの主目的に直結するもの）にのみ使用。1ページ1〜2箇所まで。</span></div>
       </div>
     </div>
 
@@ -897,9 +902,7 @@ body {
       <div class="cat-mod-id"><span class="cat-mod-id-num">7-2</span><span class="cat-mod-id-name">セカンダリーボタン</span><span class="cat-mod-id-class">.wf-btn</span></div>
       <div class="cat-mod-preview"><a class="dem-btn">ESGデータページへ</a></div>
       <div class="cat-mod-meta">
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">UI</span><span class="cat-mod-meta-body">白bg＋黒文字＋黒border。「›」プレフィックス。文字サイズはコンテンツ量で可変。</span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">001</span><span class="page-chip">004</span><span class="page-chip">024</span><span class="page-chip">035</span><span class="page-chip">096</span><span class="page-chip">097</span><span class="page-chip">105</span><span class="page-chip">140</span><span class="page-chip">199</span></span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">ルール</span><span class="cat-mod-meta-body">セクション末尾の主要CTA／個別ページ遷移／PDF・Excel DL（その場合 <code>[data-icon=pdf|xlsx]</code> 付与可）。複数並列時は <code>.wf-btn-grid</code> でラップ。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-body"><strong>通常のページリンクに適用。</strong>セクション末尾の主要遷移／個別ページ遷移／PDF・Excel DLに使用。複数並列時は <code>.wf-btn-grid</code> でラップ。</span></div>
       </div>
     </div>
 
@@ -907,9 +910,7 @@ body {
       <div class="cat-mod-id"><span class="cat-mod-id-num">7-3</span><span class="cat-mod-id-name">ボタングリッド（2列）</span><span class="cat-mod-id-class">.wf-btn-grid--col2</span></div>
       <div class="cat-mod-preview"><div class="dem-btn-grid dem-btn-grid--col2"><a class="dem-btn">コニカミノルタグループ行動憲章</a><a class="dem-btn">コーポレートガバナンス報告書</a></div></div>
       <div class="cat-mod-meta">
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">UI</span><span class="cat-mod-meta-body">grid 2カラム＋gap16px。中の <code>.wf-btn</code> は等幅。</span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">097 方針一覧</span></span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">ルール</span><span class="cat-mod-meta-body">関連性の高いセカンダリ遷移を2並列で配置（例：方針本文＋関連方針）。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-body"><strong>関連性の高い2件の並列遷移に使用。</strong>例：方針本文＋関連方針／PDF＋HTML版など、対になる遷移先を提示する場合。</span></div>
       </div>
     </div>
 
@@ -917,9 +918,7 @@ body {
       <div class="cat-mod-id"><span class="cat-mod-id-num">7-4</span><span class="cat-mod-id-name">ボタングリッド（3列）</span><span class="cat-mod-id-class">.wf-btn-grid--col3</span></div>
       <div class="cat-mod-preview"><div class="dem-btn-grid dem-btn-grid--col3"><a class="dem-btn">統合報告書</a><a class="dem-btn">サステナビリティレポート</a><a class="dem-btn">会社案内</a></div></div>
       <div class="cat-mod-meta">
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">UI</span><span class="cat-mod-meta-body">grid 3カラム＋gap16px。</span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">096 アーカイブ</span><span class="page-chip">199 ESGデータ</span></span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">ルール</span><span class="cat-mod-meta-body">レポートアーカイブの3媒体（統合・サステナ・会社案内）のような並列遷移に限定。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-body"><strong>並列性の高い3件遷移に使用。</strong>例：レポートアーカイブの3媒体（統合・サステナ・会社案内）など、横並びで比較される選択肢。</span></div>
       </div>
     </div>
 
@@ -929,9 +928,7 @@ body {
       <div class="cat-mod-id"><span class="cat-mod-id-num">7-9</span><span class="cat-mod-id-name">テキストリンク（→）</span><span class="cat-mod-id-class">.wf-text-link</span></div>
       <div class="cat-mod-preview"><div style="padding:14px 0; font-size:12px;"><a class="dem-textlink">気候変動への取り組み</a></div></div>
       <div class="cat-mod-meta">
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">UI</span><span class="cat-mod-meta-body">「→」プレフィックス＋下線。インラインまたは段落直下の独立行。</span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">002</span><span class="page-chip">004</span><span class="page-chip">024</span><span class="page-chip">025</span><span class="page-chip">035</span><span class="page-chip">077</span><span class="page-chip">096</span><span class="page-chip">124</span><span class="page-chip">131</span><span class="page-chip">140</span><span class="page-chip">148</span><span class="page-chip">222</span><span class="page-chip">225</span></span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">ルール</span><span class="cat-mod-meta-body">本文段落で言及した別ページへのインラインジャンプ。共通基盤として最も多用。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-body"><strong>本文段落で言及した別ページへのインラインジャンプに使用。</strong>遷移基盤として最も多用。ボタン化するほどの重要度ではない場合の標準。</span></div>
       </div>
     </div>
 
@@ -939,9 +936,7 @@ body {
       <div class="cat-mod-id"><span class="cat-mod-id-num">7-10</span><span class="cat-mod-id-name">関連リンク</span><span class="cat-mod-id-class">.wf-related-links</span></div>
       <div class="cat-mod-preview"><div class="dem-graybg"><span class="dem-graybg-label">関連リンク</span><div style="font-size:9px; line-height:1.7;">→ 環境マネジメント体制　　→ ガバナンス体制　　→ マテリアリティ評価</div></div></div>
       <div class="cat-mod-meta">
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">UI</span><span class="cat-mod-meta-body">薄グレーbg＋全周ボーダー＋上部「関連リンク」破線下線ラベル＋複数 <code>.wf-text-link</code> を flex-wrap。</span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">024</span><span class="page-chip">025</span><span class="page-chip">035</span><span class="page-chip">124</span><span class="page-chip">131</span><span class="page-chip">148</span></span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">ルール</span><span class="cat-mod-meta-body">セクション末尾の関連ページ集約。L3ページの末尾に標準配置。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-body"><strong>L3ページの末尾に標準配置。</strong>3件以上の関連ページを集約して提示する場合に使用（2件以下なら通常のテキストリンクで十分）。</span></div>
       </div>
     </div>
 
@@ -949,9 +944,7 @@ body {
       <div class="cat-mod-id"><span class="cat-mod-id-num">7-14</span><span class="cat-mod-id-name">見出し横リンク</span><span class="cat-mod-id-class">.wf-heading-link</span></div>
       <div class="cat-mod-preview"><div style="padding:8px 0; display:flex; align-items:baseline; gap:12px;"><span style="font-size:14px; font-weight:700;">気候変動</span><a class="dem-textlink" style="font-size:11px;">気候変動を見る</a></div></div>
       <div class="cat-mod-meta">
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">UI</span><span class="cat-mod-meta-body">見出し（H2/H3）の右側に小さく配置。「→」プレフィックス＋下線。</span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">025 自社拠点再エネ</span></span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">ルール</span><span class="cat-mod-meta-body">第4階層から第3階層へ戻るような上位リンクに限定。乱用しない。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-body"><strong>見出しと密接な上位ページ遷移に限定。</strong>例：第4階層H2見出しから第3階層親ページへ戻る場合。1ページ1〜2箇所まで。</span></div>
       </div>
     </div>
 
@@ -959,9 +952,7 @@ body {
       <div class="cat-mod-id"><span class="cat-mod-id-num">7-15</span><span class="cat-mod-id-name">外部リンク（↗）</span><span class="cat-mod-id-class">.wf-text-link.is-external</span></div>
       <div class="cat-mod-preview"><div style="padding:14px 0; font-size:12px;"><a class="dem-textlink dem-textlink-ext">コーポレートサイト</a></div></div>
       <div class="cat-mod-meta">
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">UI</span><span class="cat-mod-meta-body">テキストリンクの末尾に「↗」アイコン。外部遷移を示す。</span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">新規策定</span></span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">ルール</span><span class="cat-mod-meta-body">サステナビリティサイト外（コーポレートサイト、IR、PDF外部リンク等）への遷移に必須付与。サステナサイト内は不要。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-body"><strong>サステナビリティサイト外への遷移に必須付与。</strong>コーポレートサイト・IR・PDF外部・他社サイト等。サステナサイト内は不要。</span></div>
       </div>
     </div>
 
@@ -971,9 +962,7 @@ body {
       <div class="cat-mod-id"><span class="cat-mod-id-num">7-5</span><span class="cat-mod-id-name">クイックアクセス</span><span class="cat-mod-id-class">.wf-quick-access</span></div>
       <div class="cat-mod-preview"><div class="dem-qa-list"><div class="dem-qa-item">→ ESGデータ</div><div class="dem-qa-item">→ レポートアーカイブ</div><div class="dem-qa-item">→ 方針一覧</div><div class="dem-qa-item">→ 社外評価</div></div></div>
       <div class="cat-mod-meta">
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">UI</span><span class="cat-mod-meta-body">TOPファーストビュー直下のクイックアクセスブロック（4-5件のテキストリンク集）。</span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">001 TOPユニーク</span></span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">ルール</span><span class="cat-mod-meta-body">TOPのみ。下位ページでは使用しない。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-body"><strong>TOPファーストビュー直下にのみ配置。</strong>投資家・評価機関が頻繁にアクセスする4-5件への直行導線。下位ページでは使用しない。</span></div>
       </div>
     </div>
 
@@ -981,9 +970,7 @@ body {
       <div class="cat-mod-id"><span class="cat-mod-id-num">7-6</span><span class="cat-mod-id-name">ESGカード</span><span class="cat-mod-id-class">.wf-esg-card</span></div>
       <div class="cat-mod-preview"><div class="dem-esg-photo-grid"><div class="dem-esg-photo-card"><div class="dem-esg-photo"><span class="dem-esg-photo-letter">E</span><span>[ 環境イメージPH ]</span></div><div class="dem-esg-photo-body"><div class="dem-esg-photo-en">Environment</div><div class="dem-esg-photo-title">環境</div></div></div><div class="dem-esg-photo-card"><div class="dem-esg-photo"><span class="dem-esg-photo-letter">S</span><span>[ 社会PH ]</span></div><div class="dem-esg-photo-body"><div class="dem-esg-photo-en">Social</div><div class="dem-esg-photo-title">社会</div></div></div><div class="dem-esg-photo-card"><div class="dem-esg-photo"><span class="dem-esg-photo-letter">G</span><span>[ ガバナンスPH ]</span></div><div class="dem-esg-photo-body"><div class="dem-esg-photo-en">Governance</div><div class="dem-esg-photo-title">ガバナンス</div></div></div></div></div>
       <div class="cat-mod-meta">
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">UI</span><span class="cat-mod-meta-body">写真PH＋左上のE/S/Gレターバッジ＋英語ラベル＋日本語タイトル＋説明文。3カラム横並び。</span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">001 TOP</span></span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">ルール</span><span class="cat-mod-meta-body">TOPの主要3カテゴリ（環境／社会／ガバナンス）への並列遷移カード。TOPユニーク。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-body"><strong>TOPからE/S/G三大カテゴリへの主要遷移カードに使用。</strong>TOPユニーク。他ページでは使用しない。</span></div>
       </div>
     </div>
 
@@ -991,9 +978,7 @@ body {
       <div class="cat-mod-id"><span class="cat-mod-id-num">7-7</span><span class="cat-mod-id-name">トピックスボタン</span><span class="cat-mod-id-class">.wf-topics-btn</span></div>
       <div class="cat-mod-preview"><div class="dem-event"><span class="dem-event-label">EVENT</span><div class="dem-event-body"><div class="dem-event-title">投資家・アナリスト向け説明会 — Konica Minolta Day</div><div class="dem-event-desc">中期経営計画・各事業の成長戦略について、経営トップが直接ご説明する年次インベスターデイ。</div></div></div></div>
       <div class="cat-mod-meta">
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">UI</span><span class="cat-mod-meta-body">白bg＋全周ボーダー＋左に枠線囲み「EVENT」ラベル＋タイトル＋説明文。横長カード。</span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">001 TOP（トピックス末尾）</span></span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">ルール</span><span class="cat-mod-meta-body">投資家・アナリスト向け年次イベントなど、期間限定告知の強調表示用。1件のみ配置。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-body"><strong>期間限定告知（投資家・アナリスト向け年次イベント等）の強調表示に使用。</strong>1ページ1件のみ。トピックスリスト末尾に配置。</span></div>
       </div>
     </div>
 
@@ -1001,9 +986,7 @@ body {
       <div class="cat-mod-id"><span class="cat-mod-id-num">7-8</span><span class="cat-mod-id-name">ブロック型テキストリンク</span><span class="cat-mod-id-class">.wf-link-block</span></div>
       <div class="cat-mod-preview"><div class="dem-link-block"><div class="dem-link-block-title">サステナビリティレポート2024</div><div class="dem-link-block-desc">気候変動・人権・DE&amp;I等の取り組みを網羅したESG投資家向け統合レポート（PDF・16.0MB）</div><div class="dem-link-block-link">→ PDFを見る</div></div></div>
       <div class="cat-mod-meta">
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">UI</span><span class="cat-mod-meta-body">枠付きブロック＋タイトル＋説明文＋下部にテキストリンク。<strong>マスター=001 TOP「報告・データ」ブロック</strong>。</span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">001 TOP</span><span class="page-chip">002 戦略</span><span class="page-chip">004 環境</span><span class="page-chip">131 健康経営</span><span class="page-chip">225 イニシアティブ</span></span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">ルール</span><span class="cat-mod-meta-body">PDF・関連方針・関連ページなど、文脈付きの説明と一緒に遷移先を提示する場合。「ボタン」よりも情報量が多い時。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-body"><strong>説明文付きの遷移に使用（ボタンよりも情報量が必要な時）。</strong>PDF＋容量メタ／関連方針＋概要／関連ページ＋文脈説明など。</span></div>
       </div>
     </div>
 
@@ -1011,9 +994,7 @@ body {
       <div class="cat-mod-id"><span class="cat-mod-id-num">7-11</span><span class="cat-mod-id-name">取り組みカード</span><span class="cat-mod-id-class">.wf-activity-card</span></div>
       <div class="cat-mod-preview"><div class="dem-card" style="max-width:200px;"><div class="dem-card-img"><span class="dem-card-cat">脱炭素</span><span>[PH]</span></div><div class="dem-card-body"><div class="dem-card-title"><span>製品の脱炭素化</span><span class="dem-card-arrow">›</span></div><div class="dem-card-sum">商業・産業用印刷機の主力製品でCO2削減を実現。</div></div></div></div>
       <div class="cat-mod-meta">
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">UI</span><span class="cat-mod-meta-body">画像PH＋黒背景カテゴリタグ（左上）＋タイトル＋黒丸›矢印＋サマリ。131同型を共通化。</span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">004</span><span class="page-chip">024</span><span class="page-chip">025</span><span class="page-chip">124</span><span class="page-chip">131</span><span class="page-chip">148</span></span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">ルール</span><span class="cat-mod-meta-body">取り組み一覧表示。3列(004 環境Index)／2列(L3ページのアンカーナビ付き)。カテゴリタグはジャンル別に記載。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-body"><strong>L3配下の取り組み一覧（複数テーマを並列表示）に使用。</strong>L2インデックスは3列／L3はアンカーナビ付きで2列。カテゴリタグはジャンル別に記載。</span></div>
       </div>
     </div>
 
@@ -1021,9 +1002,7 @@ body {
       <div class="cat-mod-id"><span class="cat-mod-id-num">7-12</span><span class="cat-mod-id-name">目次タイル（番号付き）</span><span class="cat-mod-id-class">.wf-index-tile</span></div>
       <div class="cat-mod-preview"><div class="dem-tile-grid"><div class="dem-tile"><div class="dem-tile-num">01</div><div class="dem-tile-title">人的資本戦略</div></div><div class="dem-tile"><div class="dem-tile-num">02</div><div class="dem-tile-title">人財育成</div></div><div class="dem-tile"><div class="dem-tile-num">03</div><div class="dem-tile-title">企業文化</div></div><div class="dem-tile"><div class="dem-tile-num">04</div><div class="dem-tile-title">DE&amp;I</div></div></div></div>
       <div class="cat-mod-meta">
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">UI</span><span class="cat-mod-meta-body">番号付きタイル群。社会インデックスでは12タイル（3カラム×4行）。</span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">005b 社会インデックス</span></span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">ルール</span><span class="cat-mod-meta-body">第2階層インデックスで下位ページを番号順に一覧表示する場合（タイル数が多く目次的に表示したい時）。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-body"><strong>第2階層インデックスで下位ページが多い場合（10件以上）に使用。</strong>番号付きで目次的に整理。少数（4-5件）なら取り組みカードを推奨。</span></div>
       </div>
     </div>
 
@@ -1031,9 +1010,7 @@ body {
       <div class="cat-mod-id"><span class="cat-mod-id-num">7-13</span><span class="cat-mod-id-name">ESGデータブロック</span><span class="cat-mod-id-class">.wf-esg-data-block</span></div>
       <div class="cat-mod-preview"><div class="dem-esg-data"><div class="dem-esg-data-head">環境データ</div><div class="dem-esg-data-body"><div class="dem-esg-data-row">→ GHG排出量（スコープ1, 2, 3）</div><div class="dem-esg-data-row">→ エネルギー使用量</div><div class="dem-esg-data-row">→ 水資源使用量</div><div class="dem-esg-data-row">→ 廃棄物排出量</div></div></div></div>
       <div class="cat-mod-meta">
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">UI</span><span class="cat-mod-meta-body">カテゴリ見出し＋データ項目リスト。199 ESGデータページから各テーマへの参照ガイド。</span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">利用</span><span class="cat-mod-meta-body"><span class="page-chip">002 戦略</span><span class="page-chip">004 環境</span><span class="page-chip">005b 社会</span><span class="page-chip">199 ESGデータ</span></span></div>
-        <div class="cat-mod-meta-row"><span class="cat-mod-meta-label">ルール</span><span class="cat-mod-meta-body">ESGデータページのテーマ別データセットへの遷移／L2インデックスからESGデータページへの誘導。</span></div>
+        <div class="cat-mod-meta-row"><span class="cat-mod-meta-body"><strong>ESGデータページのテーマ別データセットへの誘導に使用。</strong>L2インデックスから定量データ閲覧導線として配置／199ページ内の章節リンクとしても利用。</span></div>
       </div>
     </div>
 
