@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1280">
+<title>SP版モジュール設計ルール v1.0｜KMサステナビリティWF</title>
+<style>
+  :root{
+    --bg:#fafafa;
+    --card:#ffffff;
+    --line:#e5e5e5;
+    --line-strong:#cccccc;
+    --text:#222;
+    --muted:#666;
+    --accent:#0066cc;
+    --hl:#fff8e1;
+    --hl-strong:#ffd54f;
+    --green:#2e7d32;
+    --green-bg:#e8f5e9;
+    --red:#c62828;
+    --red-bg:#ffebee;
+    --device-bg:#f0f0f0;
+    --pc-bg:#fff;
+    --sp-bg:#fff;
+    --tag:#222;
+    --shadow:0 2px 8px rgba(0,0,0,.06);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);
+    font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;
+    font-size:14px;line-height:1.7;letter-spacing:.02em}
+
+  .page-header{background:#222;color:#fff;padding:32px 48px 28px}
+  .page-header .meta{font-size:12px;color:#bbb;letter-spacing:.15em;margin-bottom:6px}
+  .page-header h1{margin:0 0 8px;font-size:24px;font-weight:700}
+  .page-header p{margin:0;color:#ccc;font-size:13px}
+  .page-header .links{margin-top:14px;display:flex;gap:14px;flex-wrap:wrap}
+  .page-header .links a{color:#fff;text-decoration:underline;font-size:12px}
+
+  .wrap{max-width:1240px;margin:0 auto;padding:32px 24px 96px}
+
+  /* TOC */
+  .toc{background:var(--card);border:1px solid var(--line);border-radius:6px;
+    padding:20px 24px;margin-bottom:40px;box-shadow:var(--shadow)}
+  .toc h2{margin:0 0 12px;font-size:14px;color:#444;letter-spacing:.06em}
+  .toc ol{margin:0;padding-left:20px;columns:2;column-gap:32px;font-size:13px}
+  .toc li{margin-bottom:4px;break-inside:avoid}
+  .toc a{color:var(--accent);text-decoration:none}
+  .toc a:hover{text-decoration:underline}
+
+  /* Section */
+  .section{margin-bottom:56px}
+  .section-head{border-left:6px solid #222;padding:6px 0 6px 14px;margin-bottom:20px}
+  .section-head .num{font-size:12px;color:var(--muted);letter-spacing:.18em;font-weight:700}
+  .section-head h2{margin:2px 0 0;font-size:20px;font-weight:700}
+  .section-head p{margin:4px 0 0;font-size:12px;color:var(--muted)}
+
+  /* Rule card */
+  .rule{background:var(--card);border:1px solid var(--line);border-radius:8px;
+    padding:24px;margin-bottom:24px;box-shadow:var(--shadow)}
+  .rule-head{display:flex;gap:12px;align-items:flex-start;margin-bottom:16px;
+    padding-bottom:14px;border-bottom:1px dashed var(--line-strong)}
+  .rule-id{display:inline-block;background:#222;color:#fff;font-size:11px;font-weight:700;
+    padding:3px 8px;border-radius:3px;letter-spacing:.05em;flex-shrink:0;margin-top:2px}
+  .rule-title{flex:1}
+  .rule-title h3{margin:0;font-size:15px;font-weight:700}
+  .rule-title .sub{margin:3px 0 0;font-size:12px;color:var(--muted)}
+  .rule-body{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:14px}
+  .rule-cols-3{grid-template-columns:1fr 1fr 1fr}
+  .rule-cols-1{grid-template-columns:1fr}
+  .rule-reason{background:var(--hl);border-left:3px solid var(--hl-strong);
+    padding:12px 16px;font-size:12px;line-height:1.7;color:#5d4e00;border-radius:0 4px 4px 0}
+  .rule-reason b{color:#332b00}
+
+  /* Device frame */
+  .device{position:relative}
+  .device-label{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.1em;
+    margin-bottom:8px;text-transform:uppercase;display:flex;justify-content:space-between;align-items:center}
+  .device-label .badge{background:#222;color:#fff;padding:1px 6px;border-radius:3px;font-size:10px;letter-spacing:.05em}
+  .device-label .badge.pc{background:#0066cc}
+  .device-label .badge.sp{background:#2e7d32}
+  .device-body{background:var(--device-bg);border:1px solid var(--line-strong);
+    border-radius:6px;padding:16px;min-height:200px;position:relative;overflow:hidden}
+  .device-pc{padding:14px}
+  .device-sp{max-width:240px;margin:0 auto;background:#222;border-radius:18px;
+    padding:8px 6px;border:1px solid #000}
+  .device-sp-inner{background:#fff;border-radius:12px;padding:14px 10px;min-height:280px}
+
+  /* Mock components */
+  .mock-h2{font-weight:700;font-size:14px;border-bottom:2px solid #222;padding-bottom:5px;
+    margin:0 0 10px}
+  .mock-h3{font-weight:700;font-size:12px;border-left:3px solid #222;padding:2px 8px;
+    margin:0 0 8px}
+  .mock-h4{font-weight:700;font-size:11px;margin:0 0 6px}
+  .mock-h4::before{content:"■ ";color:#222}
+  .mock-p{font-size:11px;color:#444;line-height:1.6;margin:0 0 8px}
+  .mock-small{font-size:10px;color:#666;line-height:1.5}
+
+  .mock-img{background:#d0d0d0;border:1px dashed #888;display:flex;align-items:center;
+    justify-content:center;color:#555;font-size:10px;font-weight:700;letter-spacing:.05em;
+    border-radius:3px;position:relative}
+  .mock-img.ratio-16-9{aspect-ratio:16/9}
+  .mock-img.ratio-4-3{aspect-ratio:4/3}
+  .mock-img.ratio-1-1{aspect-ratio:1/1}
+  .mock-img.ratio-3-4{aspect-ratio:3/4}
+  .mock-zoom{position:absolute;top:4px;right:4px;background:#222;color:#fff;width:18px;height:18px;
+    border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+
+  .mock-row{display:grid;gap:8px}
+  .mock-row.col-2{grid-template-columns:1fr 1fr}
+  .mock-row.col-3{grid-template-columns:1fr 1fr 1fr}
+  .mock-row.col-4{grid-template-columns:1fr 1fr 1fr 1fr}
+  .mock-row.col-6{grid-template-columns:repeat(6,1fr)}
+
+  .mock-btn{background:#fff;border:1px solid #222;padding:8px 12px;font-size:10px;text-align:center;
+    border-radius:2px;font-weight:700;color:#222}
+  .mock-btn.full{display:block}
+
+  .mock-card{background:#fff;border:1px solid var(--line-strong);border-radius:4px;
+    overflow:hidden;display:flex;flex-direction:column}
+  .mock-card-img{background:#d0d0d0;aspect-ratio:16/9;display:flex;align-items:center;
+    justify-content:center;color:#666;font-size:10px;font-weight:700;position:relative}
+  .mock-card-cat{position:absolute;top:4px;left:4px;background:#222;color:#fff;font-size:9px;
+    padding:1px 5px;letter-spacing:.05em}
+  .mock-card-body{padding:8px 10px;font-size:10px}
+  .mock-card-body b{display:block;font-size:11px;margin-bottom:3px}
+  .mock-card-summary{color:#666;font-size:9px;line-height:1.5}
+
+  .mock-tile{background:#fff;border:1px solid var(--line-strong);padding:8px 6px;
+    text-align:center;font-size:9px;border-radius:2px;position:relative;font-weight:700}
+  .mock-tile-num{position:absolute;top:2px;left:4px;font-size:8px;color:#888}
+
+  .mock-tag{display:inline-block;background:#f0f0f0;color:#444;font-size:9px;padding:1px 6px;
+    border-radius:2px;letter-spacing:.05em;border:1px solid #d0d0d0}
+
+  .mock-table{width:100%;border-collapse:collapse;font-size:9px}
+  .mock-table th,.mock-table td{border:1px solid #ccc;padding:3px 5px;text-align:left;background:#fff}
+  .mock-table th{background:#f0f0f0;font-weight:700}
+  .mock-table .sticky{background:#fffde7;font-weight:700}
+
+  .mock-acc{background:#f4f4f4;padding:8px 10px;font-size:11px;font-weight:700;
+    display:flex;justify-content:space-between;align-items:center;border-radius:2px;margin-bottom:4px}
+  .mock-acc::after{content:"";width:10px;height:10px;border-radius:50%;background:#222;display:inline-block}
+
+  .mock-chip{display:inline-block;background:#fff;border:1px solid #999;padding:3px 10px;
+    font-size:10px;border-radius:14px;margin-right:4px;margin-bottom:4px}
+  .mock-chip.on{background:#222;color:#fff;border-color:#222}
+
+  .mock-bread{font-size:9px;color:#666;margin-bottom:8px}
+  .mock-bread a{color:#0066cc;text-decoration:none}
+
+  .mock-hero{background:linear-gradient(135deg,#e5e5e5 25%,#dadada 25%,#dadada 50%,#e5e5e5 50%,#e5e5e5 75%,#dadada 75%);
+    background-size:8px 8px;height:80px;display:flex;align-items:center;padding:0 12px;border-radius:2px;margin-bottom:8px}
+  .mock-hero .hero-title{background:#fff;padding:4px 10px;font-size:11px;font-weight:700;border:1px solid #222}
+
+  .mock-tab{display:flex;border-bottom:1px solid #222;margin-bottom:6px}
+  .mock-tab span{flex:1;padding:6px;text-align:center;font-size:10px;font-weight:700;background:#f0f0f0;border-right:1px solid #ddd}
+  .mock-tab span.on{background:#222;color:#fff}
+  .mock-tab span:last-child{border-right:none}
+
+  .mock-anchor-right{position:absolute;right:6px;top:14px;background:#222;color:#fff;font-size:9px;
+    padding:4px 6px;writing-mode:vertical-rl;letter-spacing:.1em;border-radius:2px 0 0 2px}
+
+  .mock-bottom-sheet{position:absolute;left:0;right:0;bottom:0;background:#fff;
+    border-radius:12px 12px 0 0;padding:12px 12px 14px;box-shadow:0 -2px 8px rgba(0,0,0,.15);font-size:10px}
+  .mock-bottom-sheet::before{content:"";display:block;width:32px;height:3px;background:#ccc;border-radius:2px;margin:0 auto 8px}
+
+  .mock-modal{position:absolute;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center}
+  .mock-modal-box{background:#fff;width:80%;padding:14px 12px;border-radius:4px;font-size:10px;position:relative}
+  .mock-modal-close{position:absolute;top:4px;right:6px;font-size:14px;font-weight:700}
+
+  .mock-news-row{display:flex;gap:8px;padding:6px 0;border-bottom:1px solid #eee;font-size:10px}
+  .mock-news-date{color:#666;flex-shrink:0;width:60px}
+
+  /* SP variant note */
+  .note-block{margin-top:12px;padding:10px 12px;background:#f0f7ff;border-left:3px solid var(--accent);
+    border-radius:0 4px 4px 0;font-size:11px;color:#1a3d5c}
+  .note-block b{color:#0a2845}
+
+  .arrow{display:flex;align-items:center;justify-content:center;color:#888;font-size:24px;font-weight:700}
+
+  /* Open issue & next */
+  .open-list{background:#fffde7;border:1px solid #f9e58a;border-radius:6px;padding:18px 22px;margin-bottom:24px}
+  .open-list h3{margin:0 0 10px;font-size:14px}
+  .open-list ul{margin:0;padding-left:20px;font-size:13px;line-height:1.9}
+  .next-list{background:#e8f5e9;border:1px solid #a5d6a7;border-radius:6px;padding:18px 22px}
+  .next-list h3{margin:0 0 10px;font-size:14px}
+  .next-list ol{margin:0;padding-left:20px;font-size:13px;line-height:1.9}
+
+  /* PC/SP side label tag */
+  .tag-pc{display:inline-block;background:#e3f2fd;color:#0066cc;padding:0 6px;font-size:10px;
+    border-radius:2px;font-weight:700;letter-spacing:.05em;border:1px solid #90caf9}
+  .tag-sp{display:inline-block;background:var(--green-bg);color:var(--green);padding:0 6px;font-size:10px;
+    border-radius:2px;font-weight:700;letter-spacing:.05em;border:1px solid #a5d6a7}
+
+  /* Footer */
+  footer{margin-top:80px;padding:24px;text-align:center;color:#888;font-size:11px;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <div class="meta">KONICA MINOLTA SUSTAINABILITY WF</div>
+  <h1>📕 SP版モジュール設計ルール v1.0</h1>
+  <p>module-catalog-v2.html v3.7.2 のSP（≤767px）対応指針／2026-05-29 grill-me で全分岐確定</p>
+  <div class="links">
+    <a href="./index.html">← WFハブに戻る</a>
+    <a href="./module-catalog-v2.html">モジュール一覧 v3.7.2</a>
+    <a href="https://www.notion.so/forumyu/SP-36fa3d5344d480ed8e8fdeb3d39cd688" target="_blank">Notion議事録</a>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <nav class="toc">
+    <h2>目次</h2>
+    <ol>
+      <li><a href="#A">A. 基盤ルール（A1〜A5）</a></li>
+      <li><a href="#B">B. 主要モジュールのSP化（B1〜B7）</a></li>
+      <li><a href="#C">C. テーブル（C1・C3）</a></li>
+      <li><a href="#D">D. ナビゲーション（D1〜D3）</a></li>
+      <li><a href="#E">E. その他（E1〜E3）</a></li>
+      <li><a href="#F">F. 追加分岐（F1〜F3）</a></li>
+      <li><a href="#open">⚠️ 未決事項</a></li>
+      <li><a href="#next">🚀 Next Steps</a></li>
+    </ol>
+  </nav>
+
+  <!-- ========== A. 基盤ルール ========== -->
+  <section id="A" class="section">
+    <div class="section-head">
+      <div class="num">SECTION A</div>
+      <h2>基盤ルール</h2>
+      <p>SP化全体に共通する前提値。モジュール単位のルールはこの上に乗る。</p>
+    </div>
+
+    <div class="rule">
+      <div class="rule-head">
+        <span class="rule-id">A1</span>
+        <div class="rule-title">
+          <h3>ブレイクポイント：≤767px をSP</h3>
+          <p class="sub">PC：≥768px ／ SP：≤767px（タブレット縦含む）</p>
+        </div>
+      </div>
+      <div class="rule-body rule-cols-3">
+        <div class="device">
+          <div class="device-label"><span>PC</span><span class="badge pc">≥768px</span></div>
+          <div class="device-body" style="text-align:center;padding-top:60px">
+            <div style="font-size:36px;font-weight:700">PC</div>
+            <div style="font-size:11px;color:#666;margin-top:4px">1024 / 1280 / 1440</div>
+          </div>
+        </div>
+        <div class="device">
+          <div class="device-label"><span>TAB（PC扱い）</span><span class="badge pc">768〜1023</span></div>
+          <div class="device-body" style="text-align:center;padding-top:60px">
+            <div style="font-size:30px;font-weight:700">TAB→PC</div>
+            <div style="font-size:11px;color:#666;margin-top:4px">iPad portrait 768</div>
+          </div>
+        </div>
+        <div class="device">
+          <div class="device-label"><span>SP</span><span class="badge sp">≤767px</span></div>
+          <div class="device-body" style="text-align:center;padding-top:60px">
+            <div style="font-size:28px;font-weight:700;color:var(--green)">SP</div>
+            <div style="font-size:11px;color:#666;margin-top:4px">375 / 390 / 430</div>
+          </div>
+        </div>
+      </div>
+      <div class="rule-reason">
+        <b>Why:</b> KMコーポレート本体・Bootstrap系の768断面と整合。デザインFIX後に共通コンポーネント化される際の橋渡しが楽。TABはWF段階ではPCに含めて2断面で十分。
+      </div>
+    </div>
+
+    <div class="rule">
+      <div class="rule-head">
+        <span class="rule-id">A2 / A3</span>
+        <div class="rule-title">
+          <h3>SP基準幅 375px / 左右余白 16px</h3>
+          <p class="sub">本文領域343px ／ 2カラム時はガター12px含めて165px×2</p>
+        </div>
+      </div>
+      <div class="rule-body rule-cols-1">
+        <div class="device">
+          <div class="device-label"><span>SP 375px 内訳</span><span class="badge sp">幅375 = 16 + 343 + 16</span></div>
+          <div class="device-body" style="padding:24px">
+            <div style="display:flex;align-items:stretch;gap:0;height:80px">
+              <div style="width:42px;background:#ffcdd2;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#c62828">16px</div>
+              <div style="flex:1;background:#e8f5e9;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--green)">本文領域 343px（2カラム時は 165 + 12 + 165）</div>
+              <div style="width:42px;background:#ffcdd2;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#c62828">16px</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="rule-reason">
+        <b>Why:</b> 375px設計しておけば390/393/430機種で余裕で収まる（逆は破綻リスク）。20/24pxだと2カラムグリッドの余裕が減り、表・カードが詰まる。
+      </div>
+    </div>
+
+    <div class="rule">
+      <div class="rule-head">
+        <span class="rule-id">A4 / A5</span>
+        <div class="rule-title">
+          <h3>同一HTML・メディアクエリ／module-catalogのみSP化</h3>
+          <p class="sub">@media (max-width:767px) ブロックでSPルール定義／個別16WFはSP化対象外</p>
+        </div>
+      </div>
+      <div class="rule-reason">
+        <b>Why:</b> ①ブラウザリサイズで実SP表示を確認できる ②原稿・モジュール二重管理ゼロ ③Figma共通コンポーネントのSP/PCバリアントと整合 ④catalogがSPルールの「仕様書」となり、個別WFはそれに従うだけで済む。
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== B. 主要モジュール ========== -->
+  <section id="B" class="section">
+    <div class="section-head">
+      <div class="num">SECTION B</div>
+      <h2>主要モジュールのSP化</h2>
+      <p>PC↔SPで挙動が大きく分岐する7モジュール。</p>
+    </div>
+
+    <!-- B1 -->
+    <div class="rule">
+      <div class="rule-head">
+        <span class="rule-id">B1</span>
+        <div class="rule-title">
+          <h3>5-1／5-2 画像＋テキスト：is-reverseの意図をSPでも保持</h3>
+          <p class="sub">5-1=画像上/テキスト下、5-2=テキスト上/画像下（同一見え方にしない）</p>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div class="device">
+          <div class="device-label"><span>5-1 PC：画像左+テキスト右</span><span class="badge pc">PC</span></div>
+          <div class="device-body device-pc">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:center">
+              <div class="mock-img ratio-16-9">画像</div>
+              <div>
+                <div class="mock-h3">見出し</div>
+                <div class="mock-p">説明テキストが入ります。説明テキストが入ります。</div>
+              </div>
+            </div>
+            <hr style="margin:14px 0;border:none;border-top:1px dashed #ccc">
+            <div style="font-size:11px;color:#666;margin-bottom:6px;font-weight:700">5-2 PC：反転（テキスト左+画像右）</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:center">
+              <div>
+                <div class="mock-h3">見出し</div>
+                <div class="mock-p">説明テキストが入ります。</div>
+              </div>
+              <div class="mock-img ratio-16-9">画像</div>
+            </div>
+          </div>
+        </div>
+        <div class="device">
+          <div class="device-label"><span>SP：縦方向で順序を保つ</span><span class="badge sp">SP</span></div>
+          <div class="device-body">
+            <div class="device-sp">
+              <div class="device-sp-inner">
+                <div style="font-size:10px;color:#666;margin-bottom:4px;font-weight:700">5-1 画像→テキスト</div>
+                <div class="mock-img ratio-16-9" style="margin-bottom:8px">画像</div>
+                <div class="mock-h3">見出し</div>
+                <div class="mock-p">説明テキストが入ります。</div>
+                <hr style="margin:12px 0;border:none;border-top:1px dashed #ccc">
+                <div style="font-size:10px;color:#666;margin-bottom:4px;font-weight:700">5-2 テキスト→画像</div>
+                <div class="mock-h3">見出し</div>
+                <div class="mock-p">説明テキストが入ります。</div>
+                <div class="mock-img ratio-16-9">画像</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="rule-reason">
+        <b>Why:</b> PCの「テキスト先行（説明先→画像補足）」「画像先行（視覚インパクト先）」の意図をSPでも縦方向で保持。連続セクションで5-1と5-2を交互配置するとリズムが生まれる。
+      </div>
+    </div>
+
+    <!-- B2 -->
+    <div class="rule">
+      <div class="rule-head">
+        <span class="rule-id">B2</span>
+        <div class="rule-title">
+          <h3>3-3 画像3カラム：一律2カラム＋拡大「+」ボタン必須</h3>
+          <p class="sub">★新ルール★ SP縮小される表・グラフには、PC版で+が無くてもSP版では+を必ず付与</p>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div class="device">
+          <div class="device-label"><span>PC：3カラム</span><span class="badge pc">PC</span></div>
+          <div class="device-body device-pc">
+            <div class="mock-row col-3">
+              <div class="mock-img ratio-4-3">画像1</div>
+              <div class="mock-img ratio-4-3">画像2</div>
+              <div class="mock-img ratio-4-3">画像3</div>
+            </div>
+            <div class="mock-small" style="margin-top:8px">※PC版で+ボタン無し</div>
+          </div>
+        </div>
+        <div class="device">
+          <div class="device-label"><span>SP：2カラム＋+ボタン</span><span class="badge sp">SP</span></div>
+          <div class="device-body">
+            <div class="device-sp">
+              <div class="device-sp-inner">
+                <div class="mock-row col-2">
+                  <div class="mock-img ratio-4-3">画像1<span class="mock-zoom">+</span></div>
+                  <div class="mock-img ratio-4-3">画像2<span class="mock-zoom">+</span></div>
+                  <div class="mock-img ratio-4-3">画像3<span class="mock-zoom">+</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="rule-reason">
+        <b>Why:</b> 一律2カラムでルールがシンプル。グラフ軸ラベルや表が縮小されても、+ボタンを設けて拡大モーダルで読めるようにすればコンテンツ可読性を担保できる。<br>
+        <b>★新ルール★:</b> SP縮小により可読性が落ちる表・グラフは、PC版に+が無くてもSP版では必ず+を付与する。
+      </div>
+    </div>
+
+    <!-- B3 -->
+    <div class="rule">
+      <div class="rule-head">
+        <span class="rule-id">B3</span>
+        <div class="rule-title">
+          <h3>3-4 画像4カラム（ロゴ/eval系）：2×2グリッド一律</h3>
+          <p class="sub">偶数不一致時（3/5/6/7個）は上段揃え、下段に余り</p>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div class="device">
+          <div class="device-label"><span>PC：4カラム横並び</span><span class="badge pc">PC</span></div>
+          <div class="device-body device-pc">
+            <div class="mock-row col-4">
+              <div class="mock-img ratio-1-1">LOGO1</div>
+              <div class="mock-img ratio-1-1">LOGO2</div>
+              <div class="mock-img ratio-1-1">LOGO3</div>
+              <div class="mock-img ratio-1-1">LOGO4</div>
+            </div>
+          </div>
+        </div>
+        <div class="device">
+          <div class="device-label"><span>SP：2×2グリッド</span><span class="badge sp">SP</span></div>
+          <div class="device-body">
+            <div class="device-sp">
+              <div class="device-sp-inner">
+                <div class="mock-row col-2">
+                  <div class="mock-img ratio-1-1">LOGO1</div>
+                  <div class="mock-img ratio-1-1">LOGO2</div>
+                  <div class="mock-img ratio-1-1">LOGO3</div>
+                  <div class="mock-img ratio-1-1">LOGO4</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="rule-reason">
+        <b>Why:</b> feedback_km_logo_photo_layoutの「3個以上は横全面グリッド」とSPで整合。1カラム縦積みは4個で画面労れ、認識性も下がる。
+      </div>
+    </div>
+
+    <!-- B4 -->
+    <div class="rule">
+      <div class="rule-head">
+        <span class="rule-id">B4</span>
+        <div class="rule-title">
+          <h3>7-3 取り組みカード：1カラム縦積み × 16:9維持</h3>
+          <p class="sub">PC2-3カラム→SP1カラム／画像比率はPCと同じ16:9を保つ</p>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div class="device">
+          <div class="device-label"><span>PC：2-3カラム</span><span class="badge pc">PC</span></div>
+          <div class="device-body device-pc">
+            <div class="mock-row col-3">
+              <div class="mock-card">
+                <div class="mock-card-img">画像 16:9<span class="mock-card-cat">取り組み</span></div>
+                <div class="mock-card-body"><b>カードタイトル</b><div class="mock-card-summary">概要説明テキスト。</div></div>
+              </div>
+              <div class="mock-card">
+                <div class="mock-card-img">画像 16:9<span class="mock-card-cat">取り組み</span></div>
+                <div class="mock-card-body"><b>カードタイトル</b><div class="mock-card-summary">概要説明テキスト。</div></div>
+              </div>
+              <div class="mock-card">
+                <div class="mock-card-img">画像 16:9<span class="mock-card-cat">取り組み</span></div>
+                <div class="mock-card-body"><b>カードタイトル</b><div class="mock-card-summary">概要説明テキスト。</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="device">
+          <div class="device-label"><span>SP：1カラム縦積み</span><span class="badge sp">SP</span></div>
+          <div class="device-body">
+            <div class="device-sp">
+              <div class="device-sp-inner">
+                <div class="mock-card" style="margin-bottom:8px">
+                  <div class="mock-card-img">画像 16:9<span class="mock-card-cat">取り組み</span></div>
+                  <div class="mock-card-body"><b>カードタイトル</b><div class="mock-card-summary">概要説明テキストが入ります。</div></div>
+                </div>
+                <div class="mock-card" style="margin-bottom:8px">
+                  <div class="mock-card-img">画像 16:9<span class="mock-card-cat">取り組み</span></div>
+                  <div class="mock-card-body"><b>カードタイトル</b><div class="mock-card-summary">概要説明テキストが入ります。</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="rule-reason">
+        <b>Why:</b> ①カード内情報量が多い（タグ+画像+タイトル+サマリ）ため、2カラムだとタイトル末尾3点リーダー頻発。②16:9維持でデザインFIX後の画像制作工数を増やさない。
+      </div>
+    </div>
+
+    <!-- B5 -->
+    <div class="rule">
+      <div class="rule-head">
+        <span class="rule-id">B5</span>
+        <div class="rule-title">
+          <h3>7-5 横断ESGインデックス：E/S/Gタブ切替</h3>
+          <p class="sub">PC=3カラムサイトマップ → SP=タブUIで並列関係を保ちつつ縦長解消</p>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div class="device">
+          <div class="device-label"><span>PC：E/S/G 3カラム</span><span class="badge pc">PC</span></div>
+          <div class="device-body device-pc">
+            <div class="mock-row col-3">
+              <div>
+                <div class="mock-h4">環境（E）</div>
+                <div style="font-size:9px;line-height:1.7;color:#444">・気候変動<br>・資源循環<br>・自然<br>・化学物質</div>
+              </div>
+              <div>
+                <div class="mock-h4">社会（S）</div>
+                <div style="font-size:9px;line-height:1.7;color:#444">・DE&amp;I<br>・健康経営<br>・人権<br>・品質</div>
+              </div>
+              <div>
+                <div class="mock-h4">ガバナンス（G）</div>
+                <div style="font-size:9px;line-height:1.7;color:#444">・コーポレート<br>・コンプライアンス<br>・リスク</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="device">
+          <div class="device-label"><span>SP：タブUI</span><span class="badge sp">SP</span></div>
+          <div class="device-body">
+            <div class="device-sp">
+              <div class="device-sp-inner">
+                <div class="mock-tab">
+                  <span class="on">環境</span>
+                  <span>社会</span>
+                  <span>ガバナンス</span>
+                </div>
+                <div style="font-size:10px;line-height:1.9;color:#222;padding:6px 4px">
+                  ・気候変動<br>・資源循環<br>・自然<br>・化学物質<br>・水資源<br>・生物多様性
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="rule-reason">
+        <b>Why:</b> ①アコだと「中に何があるか」が一見できない／②フラット縦長はEを見たい人がS/Gをスクロールで越える／③タブは並列関係を保ちつつ1画面に最大1カテゴリ分が収まり認知負荷低い。
+      </div>
+    </div>
+
+    <!-- B6 -->
+    <div class="rule">
+      <div class="rule-head">
+        <span class="rule-id">B6</span>
+        <div class="rule-title">
+          <h3>7-7 ESG3カテゴリ フォトカード（TOP主要導線）：1カラム縦積み</h3>
+          <p class="sub">見逃し防止最優先／カルーセル不採用</p>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div class="device">
+          <div class="device-label"><span>PC：3カラム横並び</span><span class="badge pc">PC</span></div>
+          <div class="device-body device-pc">
+            <div class="mock-row col-3">
+              <div class="mock-card">
+                <div class="mock-card-img" style="aspect-ratio:4/3">E</div>
+                <div class="mock-card-body"><b>Environment</b><div class="mock-card-summary">環境</div></div>
+              </div>
+              <div class="mock-card">
+                <div class="mock-card-img" style="aspect-ratio:4/3">S</div>
+                <div class="mock-card-body"><b>Social</b><div class="mock-card-summary">社会</div></div>
+              </div>
+              <div class="mock-card">
+                <div class="mock-card-img" style="aspect-ratio:4/3">G</div>
+                <div class="mock-card-body"><b>Governance</b><div class="mock-card-summary">ガバナンス</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="device">
+          <div class="device-label"><span>SP：1カラム縦積み（カルーセル不採用）</span><span class="badge sp">SP</span></div>
+          <div class="device-body">
+            <div class="device-sp">
+              <div class="device-sp-inner">
+                <div class="mock-card" style="margin-bottom:6px">
+                  <div class="mock-card-img" style="aspect-ratio:16/9">E</div>
+                  <div class="mock-card-body"><b>Environment / 環境</b></div>
+                </div>
+                <div class="mock-card" style="margin-bottom:6px">
+                  <div class="mock-card-img" style="aspect-ratio:16/9">S</div>
+                  <div class="mock-card-body"><b>Social / 社会</b></div>
+                </div>
+                <div class="mock-card">
+                  <div class="mock-card-img" style="aspect-ratio:16/9">G</div>
+                  <div class="mock-card-body"><b>Governance / ガバナンス</b></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="rule-reason">
+        <b>Why:</b> ①TOP主要導線のため見逃し防止が最優先。スクロール連動で必ずE→S→Gの3カード全てを見せる。②カルーセルは「右横に隠れている」と気づかれにくくデザイン誤読リスク。
+      </div>
+    </div>
+
+    <!-- B7 -->
+    <div class="rule">
+      <div class="rule-head">
+        <span class="rule-id">B7</span>
+        <div class="rule-title">
+          <h3>7-11 タイル型リンク12タイル：2×6グリッド</h3>
+          <p class="sub">タイル1つ幅約165px／番号バッジ+タイトル2-3行が収まる</p>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div class="device">
+          <div class="device-label"><span>PC：4×3</span><span class="badge pc">PC</span></div>
+          <div class="device-body device-pc">
+            <div class="mock-row col-4">
+              <div class="mock-tile"><span class="mock-tile-num">01</span>タイトル</div>
+              <div class="mock-tile"><span class="mock-tile-num">02</span>タイトル</div>
+              <div class="mock-tile"><span class="mock-tile-num">03</span>タイトル</div>
+              <div class="mock-tile"><span class="mock-tile-num">04</span>タイトル</div>
+              <div class="mock-tile"><span class="mock-tile-num">05</span>タイトル</div>
+              <div class="mock-tile"><span class="mock-tile-num">06</span>タイトル</div>
+              <div class="mock-tile"><span class="mock-tile-num">07</span>タイトル</div>
+              <div class="mock-tile"><span class="mock-tile-num">08</span>タイトル</div>
+              <div class="mock-tile"><span class="mock-tile-num">09</span>タイトル</div>
+              <div class="mock-tile"><span class="mock-tile-num">10</span>タイトル</div>
+              <div class="mock-tile"><span class="mock-tile-num">11</span>タイトル</div>
+              <div class="mock-tile"><span class="mock-tile-num">12</span>タイトル</div>
+            </div>
+          </div>
+        </div>
+        <div class="device">
+          <div class="device-label"><span>SP：2×6</span><span class="badge sp">SP</span></div>
+          <div class="device-body">
+            <div class="device-sp">
+              <div class="device-sp-inner">
+                <div class="mock-row col-2">
+                  <div class="mock-tile"><span class="mock-tile-num">01</span>タイトル</div>
+                  <div class="mock-tile"><span class="mock-tile-num">02</span>タイトル</div>
+                  <div class="mock-tile"><span class="mock-tile-num">03</span>タイトル</div>
+                  <div class="mock-tile"><span class="mock-tile-num">04</span>タイトル</div>
+                  <div class="mock-tile"><span class="mock-tile-num">05</span>タイトル</div>
+                  <div class="mock-tile"><span class="mock-tile-num">06</span>タイトル</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="rule-reason">
+        <b>Why:</b> ①375幅で2カラム=タイル1つ165px、番号バッジ+タイトル2-3行が収まる。②3×4だとタイル105pxで末尾3点リーダー頻発。③12タイル=2×6は縦長だがスクロールしやすい。
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== C. テーブル ========== -->
+  <section id="C" class="section">
+    <div class="section-head">
+      <div class="num">SECTION C</div>
+      <h2>テーブル（⑨ 10-1〜10-5）</h2>
+      <p>多列表のSP化の核となる方針。</p>
+    </div>
+
+    <div class="rule">
+      <div class="rule-head">
+        <span class="rule-id">C1</span>
+        <div class="rule-title">
+          <h3>列数で分岐：≤3列はそのまま／≥4列は横スクロール+1列目固定（sticky）</h3>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div class="device">
+          <div class="device-label"><span>PC：多列表</span><span class="badge pc">PC</span></div>
+          <div class="device-body device-pc">
+            <table class="mock-table">
+              <tr><th>指標</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th></tr>
+              <tr><td>CO2排出量</td><td>100</td><td>95</td><td>90</td><td>85</td><td>80</td></tr>
+              <tr><td>エネルギー消費</td><td>120</td><td>115</td><td>110</td><td>105</td><td>100</td></tr>
+            </table>
+          </div>
+        </div>
+        <div class="device">
+          <div class="device-label"><span>SP：横スクロール+1列目sticky</span><span class="badge sp">SP</span></div>
+          <div class="device-body">
+            <div class="device-sp">
+              <div class="device-sp-inner">
+                <div style="font-size:9px;color:#0066cc;text-align:right;margin-bottom:4px">→ スクロールしてご覧ください</div>
+                <div style="overflow-x:auto">
+                  <table class="mock-table" style="min-width:340px">
+                    <tr><th class="sticky">指標</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th></tr>
+                    <tr><td class="sticky">CO2排出量</td><td>100</td><td>95</td><td>90</td><td>85</td><td>80</td></tr>
+                    <tr><td class="sticky">エネルギー消費</td><td>120</td><td>115</td><td>110</td><td>105</td><td>100</td></tr>
+                  </table>
+                </div>
+                <div style="text-align:right;margin-top:4px"><span style="background:#666;color:#fff;font-size:9px;padding:1px 6px;border-radius:2px">→</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="rule-reason">
+        <b>Why:</b> KPI多列表・GRI対照表は「項目名（1列目）を見ながら右を読む」性質のためsticky必須。縦積みカード化は行間比較が崩れる。
+      </div>
+    </div>
+
+    <div class="rule">
+      <div class="rule-head">
+        <span class="rule-id">C3</span>
+        <div class="rule-title">
+          <h3>スクロールインジケータ両方明示</h3>
+          <p class="sub">「→スクロールしてご覧ください」テキスト＋右下インジケータ両方をWF段階で描く</p>
+        </div>
+      </div>
+      <div class="rule-reason">
+        <b>Why:</b> SPで表の右にデータが隠れていることは一見気づかれない。デザインFIX後の「インジケータ忘れた」誤コミュニケーションをWF段階で防ぐ。
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== D. ナビ ========== -->
+  <section id="D" class="section">
+    <div class="section-head">
+      <div class="num">SECTION D</div>
+      <h2>ナビゲーション（⑨ 13-1〜13-7）</h2>
+      <p>パンくず／アンカーナビ／ヘッダーのSP対応。</p>
+    </div>
+
+    <!-- D1 -->
+    <div class="rule">
+      <div class="rule-head">
+        <span class="rule-id">D1</span>
+        <div class="rule-title">
+          <h3>13-2 アンカーナビ：右側にアンカー項目、クリックで開く</h3>
+          <p class="sub">右タブ／右側フローティング型でPC版の役割を保持</p>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div class="device">
+          <div class="device-label"><span>PC：右100px固定追従</span><span class="badge pc">PC</span></div>
+          <div class="device-body device-pc">
+            <div style="display:grid;grid-template-columns:1fr 80px;gap:10px">
+              <div>
+                <div class="mock-h3">本文セクション</div>
+                <div class="mock-p">説明テキスト。説明テキスト。</div>
+                <div class="mock-h3">本文セクション</div>
+                <div class="mock-p">説明テキスト。説明テキスト。</div>
+              </div>
+              <div style="background:#fff;border:1px solid #ddd;padding:8px 6px;border-radius:2px;font-size:9px;line-height:1.8">
+                <div style="font-weight:700;color:#222;border-bottom:1px solid #ddd;padding-bottom:3px;margin-bottom:5px">目次</div>
+                <div>・項目1</div>
+                <div>・項目2</div>
+                <div>・項目3</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="device">
+          <div class="device-label"><span>SP：右タブ式（タップで展開）</span><span class="badge sp">SP</span></div>
+          <div class="device-body">
+            <div class="device-sp">
+              <div class="device-sp-inner" style="padding-right:24px">
+                <div class="mock-h3">本文セクション</div>
+                <div class="mock-p">説明テキスト。説明テキスト。</div>
+                <div class="mock-h3">本文セクション</div>
+                <div class="mock-p">説明テキスト。説明テキスト。</div>
+                <div class="mock-anchor-right">目次 ›</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="rule-reason">
+        <b>Why:</b> PC同様に「このページに何があるか」を一望できる役割をSPでも残す。右タブUIで本文との重なりを最小化、タップで展開。
+      </div>
+    </div>
+
+    <!-- D2 -->
+    <div class="rule">
+      <div class="rule-head">
+        <span class="rule-id">D2</span>
+        <div class="rule-title">
+          <h3>13-1 パンくず：サステナトップ &gt; … &gt; 現在ページ</h3>
+          <p class="sub">中間階層は「…」省略、タップで展開</p>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div class="device">
+          <div class="device-label"><span>PC：全階層表示</span><span class="badge pc">PC</span></div>
+          <div class="device-body device-pc">
+            <div class="mock-bread">
+              <a href="#">サステナ</a> &gt; <a href="#">環境</a> &gt; <a href="#">気候変動</a> &gt; 自社拠点再エネ
+            </div>
+            <div class="mock-h2">自社拠点再エネ導入</div>
+          </div>
+        </div>
+        <div class="device">
+          <div class="device-label"><span>SP：中間省略</span><span class="badge sp">SP</span></div>
+          <div class="device-body">
+            <div class="device-sp">
+              <div class="device-sp-inner">
+                <div class="mock-bread">
+                  <a href="#">サステナ</a> &gt; <a href="#" style="color:#666">…</a> &gt; 自社拠点再エネ
+                </div>
+                <div class="mock-h2">自社拠点再エネ導入</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="rule-reason">
+        <b>Why:</b> KMサステナは4階層以上のページもあり、SPで全表示すると末尾の現在ページが見えなくなる。「…」省略+タップ展開で現在位置とトップ復帰動線を両立。
+      </div>
+    </div>
+
+    <!-- D3 -->
+    <div class="rule">
+      <div class="rule-head">
+        <span class="rule-id">D3</span>
+        <div class="rule-title">
+          <h3>13-3 ヘッダー：WF側でSPダミー描画＋差替ノート</h3>
+          <p class="sub">ロゴ左+ハンバーガー右のシンプルダミー／実画像入手後に差替え</p>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div class="device">
+          <div class="device-label"><span>PC：公式画像</span><span class="badge pc">PC</span></div>
+          <div class="device-body device-pc">
+            <div style="background:#fff;border-bottom:1px solid #ddd;padding:10px 14px;display:flex;justify-content:space-between;align-items:center">
+              <div style="font-weight:700;font-size:11px">KONICA MINOLTA</div>
+              <div style="font-size:10px;color:#444">サステナビリティ ▾ ／ 企業情報 ▾ ／ 投資家情報 ▾</div>
+            </div>
+          </div>
+        </div>
+        <div class="device">
+          <div class="device-label"><span>SP：ダミー（ロゴ+ハンバーガー）</span><span class="badge sp">SP</span></div>
+          <div class="device-body">
+            <div class="device-sp">
+              <div class="device-sp-inner" style="padding:0">
+                <div style="background:#fff;border-bottom:1px solid #ddd;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;border-radius:12px 12px 0 0">
+                  <div style="font-weight:700;font-size:10px">KONICA MINOLTA</div>
+                  <div style="font-size:14px;line-height:1">≡</div>
+                </div>
+                <div style="padding:12px 10px;font-size:10px;color:#666">…本文…</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="note-block">
+        <b>📝 ノート：</b>本SPヘッダーはWFダミー。クライアントから公式SPヘッダー画像が提供され次第、差替予定。
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== E. その他 ========== -->
+  <section id="E" class="section">
+    <div class="section-head">
+      <div class="num">SECTION E</div>
+      <h2>その他</h2>
+      <p>細部の仕様確定。</p>
+    </div>
+
+    <div class="rule">
+      <div class="rule-head">
+        <span class="rule-id">E1</span>
+        <div class="rule-title">
+          <h3>アコーディオン見出し高さ：55px</h3>
+          <p class="sub">タップ領域44px + 上下padding 14px</p>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div class="device">
+          <div class="device-label"><span>SP：アコーディオン</span><span class="badge sp">SP</span></div>
+          <div class="device-body">
+            <div class="device-sp">
+              <div class="device-sp-inner">
+                <div class="mock-acc" style="padding:14px 12px;font-size:11px">セクション見出し1</div>
+                <div class="mock-acc" style="padding:14px 12px;font-size:11px">セクション見出し2</div>
+                <div class="mock-acc" style="padding:14px 12px;font-size:11px">セクション見出し3</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="device">
+          <div class="device-reason"></div>
+          <div class="rule-reason" style="margin:0">
+            <b>Why:</b> iOS HIG 44px タップ領域をクリア、見出し2行になっても上下padding 14pxで余裕を持たせるとタップミスヒットが減る。48pxは余白窮屈、56pxは見出し中スカスカ。
+          </div>
+          <div class="note-block">
+            <b>関連ルール：</b> feedback_km_accordion_module（H3=グレー帯、H4=上部横ライン+白）／ feedback_km_no_nested_accordion（二重アコ禁止）はSPでもそのまま適用。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rule">
+      <div class="rule-head">
+        <span class="rule-id">E2</span>
+        <div class="rule-title">
+          <h3>ヒーロー画像：一律CSSトリミング（001 TOPのみSP別画像推奨）</h3>
+          <p class="sub">object-fit:cover + object-position／001だけクライアント供給依頼</p>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div class="device">
+          <div class="device-label"><span>L2/L3/L4：トリミングのみ</span><span class="badge sp">SP</span></div>
+          <div class="device-body">
+            <div class="device-sp">
+              <div class="device-sp-inner">
+                <div class="mock-hero" style="height:60px">
+                  <div class="hero-title">ページタイトル</div>
+                </div>
+                <div class="mock-p">本文…</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="device">
+          <div class="device-label"><span>001 TOP：SP別画像推奨</span><span class="badge sp">SP+art</span></div>
+          <div class="device-body">
+            <div class="device-sp">
+              <div class="device-sp-inner" style="padding:0">
+                <div class="mock-img" style="aspect-ratio:3/4;border-radius:12px 12px 0 0">SP用別画像（縦長）</div>
+                <div style="padding:12px 10px">
+                  <div class="mock-h3" style="font-size:13px">サステナビリティ</div>
+                  <div class="mock-p">…</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="note-block">
+        <b>📝 デザインチームへの依頼事項：</b> 001 TOPヒーローはサステナサイトの顔となるため、SP用に別画像（縦長3:4比率推奨）を供給してください。
+      </div>
+    </div>
+
+    <div class="rule">
+      <div class="rule-head">
+        <span class="rule-id">E3</span>
+        <div class="rule-title">
+          <h3>用語モーダル（9-2）：中央モーダルをそのまま</h3>
+          <p class="sub">PC同等の挙動</p>
+        </div>
+      </div>
+      <div class="rule-body rule-cols-1">
+        <div class="device">
+          <div class="device-label"><span>SP：中央モーダル</span><span class="badge sp">SP</span></div>
+          <div class="device-body">
+            <div class="device-sp">
+              <div class="device-sp-inner" style="position:relative;min-height:300px">
+                <div class="mock-p">本文。用語<span style="color:#0066cc;text-decoration:underline">[？TCFD]</span>を含む文章。</div>
+                <div class="mock-modal">
+                  <div class="mock-modal-box">
+                    <div class="mock-modal-close">×</div>
+                    <b style="display:block;margin-bottom:4px">TCFD</b>
+                    気候関連財務情報開示タスクフォース。
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== F. 追加分岐 ========== -->
+  <section id="F" class="section">
+    <div class="section-head">
+      <div class="num">SECTION F</div>
+      <h2>追加分岐</h2>
+      <p>5-3 / 7-2 / 13-6 のSP化。</p>
+    </div>
+
+    <!-- F1 -->
+    <div class="rule">
+      <div class="rule-head">
+        <span class="rule-id">F1</span>
+        <div class="rule-title">
+          <h3>5-3 テキスト+ロゴ：本文上+ロゴ下／1-2個=1カラム中央／3個以上=2カラム</h3>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div class="device">
+          <div class="device-label"><span>SP：ロゴ1-2個</span><span class="badge sp">SP</span></div>
+          <div class="device-body">
+            <div class="device-sp">
+              <div class="device-sp-inner">
+                <div class="mock-h3">関連認証</div>
+                <div class="mock-p">本文テキスト。本文テキスト。</div>
+                <div style="display:flex;justify-content:center"><div class="mock-img" style="width:90px;aspect-ratio:1/1">LOGO</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="device">
+          <div class="device-label"><span>SP：ロゴ3個以上</span><span class="badge sp">SP</span></div>
+          <div class="device-body">
+            <div class="device-sp">
+              <div class="device-sp-inner">
+                <div class="mock-h3">関連認証</div>
+                <div class="mock-p">本文テキスト。</div>
+                <div class="mock-row col-2">
+                  <div class="mock-img ratio-1-1">LOGO1</div>
+                  <div class="mock-img ratio-1-1">LOGO2</div>
+                  <div class="mock-img ratio-1-1">LOGO3</div>
+                  <div class="mock-img ratio-1-1">LOGO4</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="rule-reason">
+        <b>Why:</b> PCの「ロゴ右カラム」はSPでは表現不可。本文上/ロゴ下に統一し、ロゴ点数で1カラム中央 or 2カラムに分岐。B3の4カラムSPルールと整合。
+      </div>
+    </div>
+
+    <!-- F2 -->
+    <div class="rule">
+      <div class="rule-head">
+        <span class="rule-id">F2</span>
+        <div class="rule-title">
+          <h3>7-2 ボタンリンク：全幅52px・1カラム縦積み</h3>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div class="device">
+          <div class="device-label"><span>PC：任意幅</span><span class="badge pc">PC</span></div>
+          <div class="device-body device-pc">
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <div class="mock-btn">詳細を見る ›</div>
+              <div class="mock-btn">PDFダウンロード</div>
+              <div class="mock-btn">関連方針</div>
+            </div>
+          </div>
+        </div>
+        <div class="device">
+          <div class="device-label"><span>SP：全幅52px縦積み</span><span class="badge sp">SP</span></div>
+          <div class="device-body">
+            <div class="device-sp">
+              <div class="device-sp-inner">
+                <div class="mock-btn full" style="margin-bottom:6px;padding:14px">詳細を見る ›</div>
+                <div class="mock-btn full" style="margin-bottom:6px;padding:14px">PDFダウンロード</div>
+                <div class="mock-btn full" style="padding:14px">関連方針</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="rule-reason">
+        <b>Why:</b> ①タップ領域44×44以上、全幅でタップミスヒットがなくなる。②グループ複数ボタン（097方針一覧等）はサイズ一律で揃える。③feedback_km_link_source_rules v5.1（ボタン上説明文廃止）はSPでも同じ。
+      </div>
+    </div>
+
+    <!-- F3 -->
+    <div class="rule">
+      <div class="rule-head">
+        <span class="rule-id">F3</span>
+        <div class="rule-title">
+          <h3>13-6 年度フィルタチップ：横スクロール（選択中チップを中央へ）</h3>
+        </div>
+      </div>
+      <div class="rule-body">
+        <div class="device">
+          <div class="device-label"><span>PC：横並び</span><span class="badge pc">PC</span></div>
+          <div class="device-body device-pc">
+            <div>
+              <span class="mock-chip on">2024</span>
+              <span class="mock-chip">2023</span>
+              <span class="mock-chip">2022</span>
+              <span class="mock-chip">2021</span>
+              <span class="mock-chip">2020</span>
+            </div>
+          </div>
+        </div>
+        <div class="device">
+          <div class="device-label"><span>SP：横スクロール（選択中＝中央）</span><span class="badge sp">SP</span></div>
+          <div class="device-body">
+            <div class="device-sp">
+              <div class="device-sp-inner">
+                <div style="overflow-x:auto;white-space:nowrap;padding-bottom:4px">
+                  <span class="mock-chip">2024</span>
+                  <span class="mock-chip on">2023</span>
+                  <span class="mock-chip">2022</span>
+                  <span class="mock-chip">2021</span>
+                  <span class="mock-chip">2020</span>
+                </div>
+                <div style="font-size:9px;color:#888;text-align:center;margin-top:4px">← → スワイプ</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="rule-reason">
+        <b>Why:</b> チップは「選択肢一覧を見せる」UIメタファーが定着しているため、ドロップダウンに化けると一覧性が下がる。選択中チップを中央スクロールさせて認知負荷を最小化。
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 未決事項 ========== -->
+  <section id="open" class="section">
+    <div class="section-head">
+      <div class="num">OPEN ISSUES</div>
+      <h2>⚠️ 未決事項（次回詰める）</h2>
+    </div>
+    <div class="open-list">
+      <ul>
+        <li>モーダル 9-1 画像拡大のSP挙動（フル画面化 vs 中央オーバーレイ維持）</li>
+        <li>7-4 関連リンク（flex-wrap）のSP：1カラム縦 vs 2カラム</li>
+        <li>7-9 ニュースリストのSP：日付上/タイトル下の2行構造で確定可否</li>
+        <li>6-1/6-2 強調エリアのpadding具体値（20→16？）</li>
+        <li>2-1 H2グラデ下線のフォントサイズ最終値（22pxで確定可否）</li>
+        <li>右タブアンカーナビUIの具体仕様（タブ常時表示／本文との重なり処理／展開幅）</li>
+        <li>001 TOP art direction別画像の具体サイズ・比率（クライアント供給依頼書粒度）</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ========== Next ========== -->
+  <section id="next" class="section" style="margin-bottom:0">
+    <div class="section-head">
+      <div class="num">NEXT STEPS</div>
+      <h2>🚀 次のステップ</h2>
+    </div>
+    <div class="next-list">
+      <ol>
+        <li><b>module-catalog-v2.html v3.8 にSPメディアクエリ実装</b>：本ルール（A1〜F3）を反映、未決事項は仮値で実装しcatalog上で確認</li>
+        <li><b>未決事項の追加grill</b>：特に右タブアンカーナビUI / 9-1画像拡大モーダル / 001 TOP art direction依頼書粒度</li>
+        <li><b>Notion議事録への反映</b>：本ドキュメントの内容を <a href="https://www.notion.so/forumyu/SP-36fa3d5344d480ed8e8fdeb3d39cd688" target="_blank">SPモジュールルール議事録</a> に記載済</li>
+        <li><b>定例MTGでの共有</b>：CLレビュー前に社内共有 → デザインチームへ事前ブリーフ</li>
+      </ol>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  KONICA MINOLTA Sustainability WF — SP Design Rules v1.0 ／ 2026-05-29 grill-me 確定<br>
+  ローカル：/Users/yuho/Desktop/KM_WF_PROJECT/sp-design-rules.html
+</footer>
+
+</body>
+</html>
