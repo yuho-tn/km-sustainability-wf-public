@@ -3,11 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>社会 インデックス（タイル版／別案） — KM サステナビリティ WF v1.0 (#005b)</title>
+<title>社会 インデックス（推奨版） — KM サステナビリティ WF v2.0 (#005b)</title>
 <style>
 /* ============================================================
-   KM SUSTAINABILITY WF — 005b 別案: 12タイル リンク集型
-   ベースCSSは 005 v5.0 を踏襲し、メインBセクションのみ差し替え
+   KM SUSTAINABILITY WF — 005b 推奨版
+   0601 桐原FB10件反映：
+   ・人と組織／社会・お客様のグルーピングを廃止 → 12テーマをフラット提示
+   ・環境Index(004)と共通の要素（戦略・目標・実績のKPIグラフ）を盛り込む
+   ・社会KPIサマリー帯を廃止 → GESは人的資本戦略の中へ（FB#1/#4）
+   ベースCSSは 005 v5.2（=004環境と同一共通CSS）を継承＋右アンカーナビ
 ============================================================ */
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -29,12 +33,11 @@
   --c-ann-bg:   #FFFBF0;
   --c-ann-bdr:  #C8A000;
 
-  /* 0524 桐原FB：環境インデックス(004)と同じ広い幅に統一 */
-  --content-w:  1080px;    /* コンテンツ最大幅 */
-  --page-w:     1560px;    /* wf-canvas 全幅（wf-page 1280px + annotation 280px） */
+  --content-w:  1080px;
+  --page-w:     1560px;     /* 右アンカーナビ採用：wf-page 1280px + annotation 280px */
   --pad-section: 64px;
   --pad-section-sm: 40px;
-  --pad-h: 100px;          /* コンテンツ左右パディング */
+  --pad-h: 100px;
 }
 
 body {
@@ -51,7 +54,7 @@ body {
   position: sticky; top: 0; z-index: 2000; letter-spacing: 0.03em;
 }
 .wf-meta-bar strong { color: #fff; font-size: 12px; }
-.wf-meta-bar .wf-meta-badge {
+.wf-meta-bar .meta-badge {
   background: #333; color: #aaa; font-size: 10px;
   padding: 2px 8px; border-radius: 2px; margin-left: 8px;
 }
@@ -77,11 +80,19 @@ body {
   background: #2A2A2A; color: #aaa; padding: 6px 32px; font-size: 10px;
   display: flex; align-items: center; justify-content: space-between;
 }
-.wf-page-indicator .wf-pi-layer { background: #444; color: #888; font-size: 9px; padding: 1px 8px; border-radius: 2px; }
+.wf-page-indicator .pi-layer { background: #444; color: #888; font-size: 9px; padding: 1px 8px; border-radius: 2px; }
 
 .wf-section { padding: var(--pad-section) var(--pad-h); border-bottom: 1px solid var(--c-border-s); position: relative; }
+.wf-section.bg-sub { background: var(--c-bg-sub); }
+.wf-section.bg-white { background: var(--c-white); }
+.wf-section.pad-sm { padding-top: var(--pad-section-sm); padding-bottom: var(--pad-section-sm); }
+.wf-section-marker {
+  position: absolute; top: 12px; left: 8px; width: 22px; height: 22px;
+  background: #222; color: #fff; border-radius: 50%; font-size: 10px;
+  font-weight: 700; display: flex; align-items: center; justify-content: center;
+}
 
-/* 0524 追加：2カラム本文＋コンパクトアンカーナビ（225/002 同型） */
+/* 2カラム本文＋コンパクトアンカーナビ（225/002/005b 同型） */
 .wf-layout-with-anchornav {
   display: grid; grid-template-columns: 1fr 160px;
   gap: 0;
@@ -117,27 +128,17 @@ body {
   text-overflow: ellipsis;
   font-size: 11px; color: var(--c-text-h); font-weight: 600;
   text-decoration: none;
-  padding: 4px 0; line-height: 1.4;
+  padding: 5px 0; line-height: 1.4;
   cursor: default;
   word-break: normal;
   overflow-wrap: anywhere;
+  border-bottom: 1px dotted var(--c-border-s);
 }
+.wf-anchor-nav-item:last-child { border-bottom: none; }
 .wf-anchor-nav-item:hover { color: var(--c-text); }
-.wf-anchor-nav-item.is-sub {
-  padding-left: 12px;
-  font-size: 10px; font-weight: 500; color: var(--c-text);
-}
 .wf-anchor-nav-item.is-current { color: var(--c-text); font-weight: 700; }
-.wf-section.bg-sub { background: var(--c-bg-sub); }
-.wf-section.bg-white { background: var(--c-white); }
-.wf-section.pad-sm { padding-top: var(--pad-section-sm); padding-bottom: var(--pad-section-sm); }
-.wf-section-marker {
-  position: absolute; top: 12px; left: 8px; width: 22px; height: 22px;
-  background: #222; color: #fff; border-radius: 50%; font-size: 10px;
-  font-weight: 700; display: flex; align-items: center; justify-content: center;
-}
 
-/* H2 — グラデ下線つき */
+/* H2 — グラデ下線つき（v1.2） */
 .wf-section-title {
   font-size: 24px; font-weight: 700; color: var(--c-text-h);
   margin-bottom: 28px; padding-bottom: 14px;
@@ -153,274 +154,171 @@ body {
 
 .wf-section-desc { font-size: 13px; color: var(--c-text); line-height: 1.95; margin-bottom: 24px; }
 
-/* ヒーロー — 第2階層共通モジュール */
-.wf-hero-fullwidth {
-  position: relative;
-  width: 100%;
-  height: 280px;
-  background: var(--c-ph);
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-}
-.wf-hero-fullwidth::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(-45deg, transparent 0px, transparent 10px, rgba(0,0,0,0.04) 10px, rgba(0,0,0,0.04) 11px);
-}
-.wf-hero-fullwidth .wf-hero-title-box {
-  position: relative;
-  z-index: 1;
-  background: rgba(255,255,255,0.88);
-  border: 1px solid var(--c-border);
-  padding: 14px 28px;
-  margin-left: var(--pad-h);
-  letter-spacing: 0.02em;
-}
-.wf-hero-fullwidth .wf-hero-title-box h1 {
-  font-size: 16px; font-weight: 700;
-  color: var(--c-text-h);
-  margin: 0; line-height: 1.4;
-  letter-spacing: 0.02em;
-}
-.wf-hero-fullwidth .wf-img-label {
-  position: absolute;
-  right: 20px; bottom: 12px;
-  z-index: 1;
-  font-size: 11px; color: var(--c-text-xs);
-  background: rgba(255,255,255,0.75); padding: 4px 10px;
-  text-align: right; line-height: 1.5;
+/* H3 — 左縦棒付き */
+.wf-sub-title {
+  font-size: 16px; font-weight: 700; color: var(--c-text-h);
+  margin-bottom: 16px; line-height: 1.5;
+  padding-left: 14px; border-left: 4px solid var(--c-text-h);
+  letter-spacing: -0.01em;
 }
 
-/* ============================================================
-   ★★ 別案コア：12タイル ブロック型リンク集 ★★
-============================================================ */
+/* H4 — ◾プレフィックス付き */
+.wf-card-title {
+  font-size: 14px; font-weight: 700; color: var(--c-text-h);
+  margin-bottom: 12px; line-height: 1.4;
+  display: flex; align-items: center; gap: 6px;
+}
+.wf-card-title.has-mark::before { content: '◾'; color: var(--c-text-h); font-size: 12px; flex-shrink: 0; margin-right: 6px; }
 
-.wf-index-tile-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-  border-top: 1px solid var(--c-border);
-  border-left: 1px solid var(--c-border);
-  background: var(--c-white);
-  /* 同じ行（横並び）はCSS gridの仕様で自動的に揃う。
-     行ごとに高さが変わる場合は align-items を変更しない（既定 stretch）。 */
+/* テーマブロック（v4.3／12テーマをフラット縦積み） */
+.theme-block {
+  background: var(--c-white); border: 1px solid var(--c-border);
+  border-top: 4px solid var(--c-text-h);
+  padding: 24px 28px; margin-bottom: 16px;
 }
-
-/* 0524 追加修正：
-   - 目次あり：縦幅 260px（余白を詰めた）
-   - 目次なし(.no-nav)：縦幅 168px
-   - ホバー効果は廃止（タイル自体は遷移しない／ボタンクリックでのみ遷移） */
-.wf-index-tile {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  background: var(--c-white);
-  border-right: 1px solid var(--c-border);
-  border-bottom: 1px solid var(--c-border);
-  padding: 16px 18px 52px;
-  height: 260px;
-  cursor: default;
-  overflow: hidden;
+.theme-block-head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; margin-bottom: 16px; padding-bottom: 12px;
+  border-bottom: 1px solid var(--c-border-s);
+  flex-wrap: wrap;
 }
-.wf-index-tile.no-nav {
-  height: 168px;
-  padding-bottom: 52px;
-}
-
-/* 0524 桐原FB#8：タイル内サブナビ — 余白圧縮版 */
-.wf-index-tile-nav {
-  margin-top: 6px;
-  padding-top: 8px;
-  border-top: 1px solid var(--c-border);
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
-  min-height: 0;
-}
-/* 内側にリンク群を入れるラッパー：1〜2個=縦1カラム、3個以上=2カラム
-   各item は最大2行までで折返し、3行以上は隠す（全体幅拡大で大半は1行収まる想定） */
-.wf-index-tile-nav-items {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2px 14px;
-  overflow: hidden;
-}
-.wf-index-tile-nav-items.is-2col {
-  grid-template-columns: 1fr 1fr;
-}
-.wf-index-tile-nav-item {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  font-size: 11px;
-  color: var(--c-text);
-  padding: 3px 0 3px 12px;
-  cursor: default;
-  line-height: 1.4;
-  border-bottom: 1px dotted var(--c-border);
-  min-width: 0;
-  word-break: normal;
-  overflow-wrap: anywhere;
-  position: relative;
-}
-.wf-index-tile-nav-item::before {
-  content: '›';
-  color: var(--c-text-h);
-  font-weight: 700;
-  font-size: 12px;
-  position: absolute;
-  left: 0;
-  top: 3px;
+/* theme-block-head h3: ブロック内H2扱い（アンダーラインのみ・縦棒なし） */
+.theme-block-head h3 {
+  font-size: 18px; font-weight: 700; color: var(--c-text-h);
   line-height: 1.4;
 }
-.wf-index-tile-nav-item:hover { color: var(--c-text-h); background: var(--c-bg-sub); }
+.theme-block-head .theme-no {
+  font-size: 11px; font-weight: 700; color: var(--c-text-xs);
+  font-family: 'Helvetica Neue', sans-serif; letter-spacing: 0.06em;
+  margin-right: 10px;
+}
+.theme-block-link {
+  font-size: 12px; font-weight: 600; color: var(--c-text-h);
+  white-space: nowrap; cursor: default; letter-spacing: 0.03em;
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.15s;
+}
+.theme-block-link:hover { border-bottom-color: var(--c-text-h); }
+.theme-block-link::before { content: '› '; font-weight: 700; }
 
-/* 0524 追加修正：タイル下部の「›テーマ名」白ボタン
-   横幅は文字数に応じて可変・左寄せ・ホバー時のみ背景変化（このボタンが唯一の遷移トリガー） */
-.wf-index-tile-cta {
-  position: absolute;
-  left: 18px; bottom: 14px;
+.theme-lead { font-size: 12px; color: var(--c-text); line-height: 1.9; }
+
+/* テーマ内 — #アンカーチップ群（L3ページ内見出しへ遷移）
+   0601 FB#9：2つでも3つ以上でも flex-wrap で自然な読み順（左→右→折返し）。Z並びは廃止。 */
+.theme-anchors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 14px;
+}
+.theme-anchor {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  background: var(--c-white);
-  border: 1px solid var(--c-text-h);
-  font-size: 12px; font-weight: 700;
-  color: var(--c-text-h);
-  letter-spacing: 0.02em;
-  cursor: pointer;
-  line-height: 1.3;
-  white-space: nowrap;
-  width: auto;
-  transition: background 0.15s;
-}
-.wf-index-tile-cta::before {
-  content: '›';
-  font-weight: 700;
-  font-size: 14px;
-  color: var(--c-text-h);
-  flex-shrink: 0;
-}
-.wf-index-tile-cta:hover { background: var(--c-bg-sub); }
-
-/* 0524 桐原FB#4：マテリアリティ番号(01〜12)は廃止。.wf-index-tile-num の出力なし */
-
-.wf-index-tile-title {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--c-text-h);
-  line-height: 1.35;
-  margin-bottom: 6px;
-  letter-spacing: -0.01em;
-  /* 1行固定（はみ出しは省略） */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* 0524 追加修正：本文は3行以内・…省略なし・高さ3行分予約 */
-.wf-index-tile-desc {
-  font-size: 12px;
-  color: var(--c-text);
-  line-height: 1.65;
-  display: block;
-  overflow: hidden;
-  word-break: normal;
-  overflow-wrap: anywhere;
-  height: calc(12px * 1.65 * 3);  /* 約59px：3行分の高さ予約 */
-  flex: 0 0 auto;
-  margin: 0;
-}
-
-/* 0524 追加修正：丸ボタン .wf-index-tile-arrow は廃止し .wf-index-tile-cta（白ボタン）に統一 */
-
-/* タイル上部アクセント（人と組織 / 社会・お客様 で色帯を変える） */
-.wf-index-tile.is-group-a::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--c-text-h);
-}
-.wf-index-tile.is-group-b::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: #888;
-}
-
-/* 0524 桐原FB追加：H2見出しは共通モジュール .wf-section-title を適用
-   .social-group-label は H2 直下の説明文＋件数バッジ用のサブヘッダに役割変更 */
-.social-group-label {
-  display: flex;
-  align-items: baseline;
-  gap: 14px;
-  margin: 0 0 14px;
-}
-.social-group-label.is-second { margin-top: 36px; }
-.social-group-label-desc {
-  font-size: 12px;
-  color: var(--c-text-s);
-  line-height: 1.6;
-}
-.social-group-label-count {
-  font-size: 10px;
-  color: var(--c-text-s);
-  background: var(--c-white);
-  border: 1px solid var(--c-border);
-  padding: 2px 10px;
-  margin-left: auto;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-}
-
-/* 0524 桐原FB#3 + 追加修正：KPIサマリー
-   3カードレイアウト→GES画像を全幅で挿入する方式に変更 */
-.wf-social-kpi-band {
-  background: var(--c-white);
-  border: 1px solid var(--c-border);
-  padding: 18px;
-  margin-bottom: 24px;
-}
-.wf-social-kpi-band-label {
   font-size: 11px;
+  color: var(--c-text);
+  background: var(--c-bg-sub);
+  border: 1px solid var(--c-border);
+  padding: 4px 10px;
+  cursor: default;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+}
+.theme-anchor::before {
+  content: '#';
+  color: var(--c-text-xs);
+  margin-right: 4px;
   font-weight: 700;
+}
+.theme-anchor:hover {
+  background: var(--c-white);
+  border-color: var(--c-text-h);
   color: var(--c-text-h);
-  letter-spacing: 0.04em;
-  padding-bottom: 8px;
-  border-bottom: 1px dashed var(--c-border);
-  margin-bottom: 12px;
-}
-.wf-social-kpi-band-label .small {
-  font-size: 10px; font-weight: 400; color: var(--c-text-s); margin-left: 8px;
-}
-.wf-social-kpi-image {
-  display: block;
-  width: 100%;
-  height: auto;
-  border: 1px solid var(--c-border-s);
 }
 
-/* 0524 桐原FB#10：リード文がドラフトであることを明示するマーカー */
-.draft-mark {
-  display: inline-block;
-  font-size: 10px; font-weight: 700;
-  color: #C8A000; background: var(--c-ann-bg);
-  border: 1px solid var(--c-ann-bdr);
-  padding: 1px 6px; margin-right: 6px;
-  letter-spacing: 0.05em; vertical-align: 2px;
+/* グラフ画像PH（行動変容定義でグラフ記載のあるテーマに使用） */
+.kpi-graph-ph {
+  background: var(--c-ph);
+  border: 1px solid var(--c-ph-line);
+  aspect-ratio: 4 / 3;
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.kpi-graph-ph::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(-45deg, transparent 0 10px, rgba(0,0,0,0.04) 10px 11px);
+}
+.kpi-graph-ph-label {
+  position: relative; z-index: 1;
+  font-size: 11px; color: var(--c-text-s);
+  text-align: center;
+  background: rgba(255,255,255,0.85); padding: 4px 12px;
+  letter-spacing: 0.04em;
+}
+
+/* テーマ内 — 補足説明＋グラフPHの2カラムレイアウト（DE&I等） */
+.theme-graph-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 18px;
+  align-items: start;
+}
+.theme-graph-left {
+  display: flex; flex-direction: column; gap: 8px;
+}
+.kpi-graph-caption {
+  font-size: 11px; color: var(--c-text-s); line-height: 1.7;
+}
+.theme-graph-desc {
+  font-size: 12px; color: var(--c-text); line-height: 1.9;
+}
+.theme-graph-desc-label {
+  font-size: 10px; font-weight: 700; color: var(--c-text-xs);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 6px;
 }
 
 /* ============================================================
-   サステナビリティ関連リンク（005と完全同型）
+   0601 FB#4：人的資本戦略の「戦略・目標・実績」レイアウト
+   GES（人財戦略の代表KPI）を1カラム全幅 → その下に3カラム2段の人財KPIグリッド
 ============================================================ */
-.wf-esg-data-block {
+.hcm-kpi { margin-top: 18px; }
+.hcm-kpi-lead {
+  display: grid; grid-template-columns: 1.15fr 1fr; gap: 24px;
+  align-items: start;
+  padding: 16px; margin-bottom: 16px;
+  background: var(--c-bg-sub); border: 1px solid var(--c-border);
+}
+.hcm-kpi-lead .kpi-graph-ph { aspect-ratio: 16 / 7; }
+.hcm-kpi-lead-body { display: flex; flex-direction: column; gap: 8px; }
+.hcm-kpi-lead-tag {
+  display: inline-block; align-self: flex-start;
+  font-size: 9px; font-weight: 700; color: #fff;
+  background: var(--c-text-h);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 3px 9px;
+}
+.hcm-kpi-lead-title { font-size: 14px; font-weight: 700; color: var(--c-text-h); line-height: 1.5; }
+.hcm-kpi-lead-desc { font-size: 12px; color: var(--c-text); line-height: 1.9; }
+
+.hcm-kpi-grid-label {
+  font-size: 11px; font-weight: 700; color: var(--c-text-h);
+  letter-spacing: 0.04em;
+  padding-bottom: 8px; margin-bottom: 12px;
+  border-bottom: 1px dashed var(--c-border);
+}
+.hcm-kpi-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.hcm-kpi-cell { display: flex; flex-direction: column; gap: 6px; }
+.hcm-kpi-cell-caption { font-size: 11px; color: var(--c-text-s); line-height: 1.6; }
+
+/* サステナビリティ関連リンク — 1カラム×3ブロック横並びレイアウト（004/005と統一） */
+.esg-link-stack {
   border: 1px solid var(--c-border);
   background: var(--c-white);
 }
@@ -463,6 +361,69 @@ body {
   font-size: 12px;
 }
 .esg-l3:hover { background: var(--c-bg-sub); border-color: var(--c-text-h); }
+
+/* 画像拡大ボタン（全幅キービジュアル等に限定・全WF共通仕様） */
+.img-zoom-btn {
+  position: absolute; bottom: 6px; right: 6px;
+  width: 26px; height: 26px;
+  background: #111; color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; font-weight: 700; line-height: 1;
+  cursor: default; z-index: 5;
+  border: 1px solid #fff;
+}
+.img-zoom-btn::before { content: "+"; }
+.img-zoom-btn:hover { background: #2a2a2a; }
+
+/* ヒーロー — 第2階層共通モジュール（004環境と同仕様で統一） */
+.wf-hero-fullwidth {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  background: var(--c-ph);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.wf-hero-fullwidth::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(-45deg, transparent 0px, transparent 10px, rgba(0,0,0,0.04) 10px, rgba(0,0,0,0.04) 11px);
+}
+.wf-hero-fullwidth .wf-hero-title-box {
+  position: relative;
+  z-index: 1;
+  background: rgba(255,255,255,0.88);
+  border: 1px solid var(--c-border);
+  padding: 14px 28px;
+  margin-left: var(--pad-h);
+  letter-spacing: 0.02em;
+}
+.wf-hero-fullwidth .wf-hero-title-box h1 {
+  font-size: 16px; font-weight: 700;
+  color: var(--c-text-h);
+  margin: 0; line-height: 1.4;
+  letter-spacing: 0.02em;
+}
+.wf-hero-fullwidth .wf-img-label {
+  position: absolute;
+  right: 20px; bottom: 12px;
+  z-index: 1;
+  font-size: 11px; color: var(--c-text-xs);
+  background: rgba(255,255,255,0.75); padding: 4px 10px;
+  text-align: right; line-height: 1.5;
+}
+
+/* リード文ドラフトマーカー */
+.draft-mark {
+  display: inline-block;
+  font-size: 10px; font-weight: 700;
+  color: #C8A000; background: var(--c-ann-bg);
+  border: 1px solid var(--c-ann-bdr);
+  padding: 1px 6px; margin-right: 6px;
+  letter-spacing: 0.05em; vertical-align: 2px;
+}
 
 /* フッター */
 /* サステナビリティサイトフッター（アコーディオン式・全ページ共通） */
@@ -584,21 +545,21 @@ body {
 <div class="wf-meta-bar">
   <div>
     <strong>KONICA MINOLTA サステナビリティ</strong>
-    <span class="wf-meta-badge">社会 インデックス（タイル版／推奨版）</span>
-    <span class="wf-meta-badge">WF v1.2</span>
-    <span class="wf-meta-badge">#005b</span>
-    <span class="wf-meta-badge">L2</span>
-    <span class="wf-meta-badge" style="background:#7a4a00; color:#fff;">12タイル / グループ表示＋GES KPI</span>
+    <span class="meta-badge">社会 インデックス（推奨版）</span>
+    <span class="meta-badge">WF v2.0</span>
+    <span class="meta-badge">#005b</span>
+    <span class="meta-badge">L2</span>
+    <span class="meta-badge" style="background:#7a4a00; color:#fff;">分類廃止・12テーマフラット／環境Index共通要素</span>
   </div>
-  <div style="font-size:10px; color:#666;">2026.05.24 / 桐原FB10件反映（番号削除・グループ化・TOCナビ・KPI追加・関連リンク整理）</div>
+  <div style="font-size:10px; color:#666;">2026.06.01 / 桐原FB10件反映（グルーピング廃止・GES内包・KPIグリッド・制作メモ削除）</div>
 </div>
 
 <div class="wf-canvas">
   <div class="wf-page">
 
     <div class="wf-page-indicator">
-      <span>社会 インデックス（タイル版） / URL: /about/csr/society/</span>
-      <span class="wf-pi-layer">L2 第2階層 — インデックスページ／別案</span>
+      <span>社会 インデックス / URL: /about/csr/society/</span>
+      <span class="pi-layer">L2 第2階層 — インデックスページ</span>
     </div>
 
     <!-- ヘッダー：KM公式デザイン（画像差し替え） -->
@@ -613,7 +574,7 @@ body {
       <span class="current">社会</span>
     </nav>
 
-    <!-- ページヒーロー -->
+    <!-- ページヒーロー（フルワイドKV／第2階層共通） -->
     <div class="wf-hero-fullwidth">
       <div class="wf-hero-title-box">
         <h1>社会</h1>
@@ -628,242 +589,351 @@ body {
       <div class="wf-anchornav-main">
 
     <!-- ============================================================
-         セクション 導入：リード文（ダミー）
+         セクション 導入：本文のみ（見出しなし）
+         0601 FB#3/#5：制作メモは本文に出さない方針
     ============================================================ -->
     <section class="wf-section bg-white" style="padding-top:40px; padding-bottom:32px;">
       <p style="font-size:13px; color:var(--c-text); line-height:1.95;">
-        （文章はダミーです）コニカミノルタは、人財育成とDE&amp;Iを中心に、社員一人ひとりの可能性を引き出す職場づくりと、多様な人財が活躍できる組織の実現に取り組んでいます。
+        <span class="draft-mark">DRAFT</span>（文章はダミーです）コニカミノルタは、人財育成やDE&amp;Iを中心に、社員一人ひとりの可能性を引き出す職場づくりと、社会との共生を通じた持続可能な事業活動を推進しています。本ページでは、社会領域における12テーマの取り組みの全体像を紹介します。
       </p>
     </section>
 
     <!-- ============================================================
-         セクション：12タイル（2グループ表示）
-         0524 桐原FB#3：KPIサマリー（GES連動のみ）追加
-         0524 桐原FB#4：マテリアリティ番号(01〜12)は廃止
-         0524 桐原FB#5：人財関連7項目／人権＋SCM他5項目で2グループ表示
-         0524 桐原FB#8：サブリンクをチップ→TOCナビ風レイアウトに変更
-         0524 桐原FB#9：「基本的な考え方」のみのテーマはサブリンク非表示
+         セクション：12テーマ（分類なし・フラット縦積み）
+         0601 FB#7：人と組織／社会・お客様のグルーピングは廃止
+         0601 FB#1：上部「社会KPIサマリー」帯は廃止。GESは人的資本戦略の中へ
     ============================================================ -->
-    <section class="wf-section bg-sub" style="padding-top:40px;">
+    <section class="wf-section bg-sub" style="padding-top:48px;">
 
-      <!-- ── KPI サマリー（GES結果を全幅で挿入） ── -->
-      <h2 class="wf-section-title" id="kpi-summary">KPIサマリー</h2>
-      <p class="wf-section-desc">GES（Global Employee Survey：グローバル従業員意識調査）結果</p>
-      <div class="wf-social-kpi-band">
-        <img class="wf-social-kpi-image" src="assets/ges-survey-result.png" alt="GES結果 — エンゲージメントスコアと回答率の推移">
+      <h2 class="wf-section-title" id="sec-themes">取り組みテーマ</h2>
+      <p class="wf-section-desc">
+        社会領域の取り組みを12テーマで紹介します。各テーマの代表的なKPIは、環境インデックスと同様に「戦略・目標・実績」の中でグラフとして開示します。
+      </p>
+
+      <!-- 01 人的資本戦略（補足説明＋#アンカー＋GES KPI：1カラム→3カラム2段） -->
+      <div class="theme-block" id="sec-01">
+        <div class="theme-block-head">
+          <h3><span class="theme-no">01</span>人的資本戦略</h3>
+          <a class="theme-block-link">詳細を見る</a>
+        </div>
+        <p class="theme-lead">
+          （文章はダミーです）個と組織の成長を両立させる人的資本戦略を推進。事業戦略と接続した人事戦略を策定し、エンゲージメントを通じた価値創造を実現します。人財関連の代表的なKPIをここで一望できるようにします。
+        </p>
+        <div class="theme-anchors">
+          <span class="theme-anchor">基本的な考え方</span>
+          <span class="theme-anchor">戦略・目標・実績</span>
+        </div>
+
+        <!-- 0601 FB#4：GES（人財戦略の代表KPI）を1カラム全幅 → 人財KPIを3カラム2段 -->
+        <div class="hcm-kpi">
+          <!-- 1カラム：GES（全幅・主役KPI） -->
+          <div class="hcm-kpi-lead">
+            <div class="kpi-graph-ph">
+              <span class="kpi-graph-ph-label">[ グラフ画像PH ／ GES エンゲージメントスコア ]</span>
+            </div>
+            <div class="hcm-kpi-lead-body">
+              <span class="hcm-kpi-lead-tag">代表KPI</span>
+              <div class="hcm-kpi-lead-title">GES（Global Employee Survey）エンゲージメントスコア</div>
+              <p class="hcm-kpi-lead-desc">
+                グローバル従業員意識調査の結果を主要KPIとして、目標値と実績を経年でモニタリング。対話と人材育成の打ち手に接続させ、人的資本の価値向上につなげます。
+              </p>
+            </div>
+          </div>
+          <!-- 3カラム2段：人財関連の代表的なKPI（6枠） -->
+          <div class="hcm-kpi-grid-label">人財関連の代表的なKPI <span style="font-weight:400; color:var(--c-text-s);">（FY実績／目標を経年でグラフ開示・項目は原稿確定）</span></div>
+          <div class="hcm-kpi-grid">
+            <div class="hcm-kpi-cell">
+              <div class="kpi-graph-ph"><span class="kpi-graph-ph-label">[ グラフPH ]</span></div>
+              <div class="hcm-kpi-cell-caption">図：女性管理職比率</div>
+            </div>
+            <div class="hcm-kpi-cell">
+              <div class="kpi-graph-ph"><span class="kpi-graph-ph-label">[ グラフPH ]</span></div>
+              <div class="hcm-kpi-cell-caption">図：男性育児休業取得率</div>
+            </div>
+            <div class="hcm-kpi-cell">
+              <div class="kpi-graph-ph"><span class="kpi-graph-ph-label">[ グラフPH ]</span></div>
+              <div class="hcm-kpi-cell-caption">図：1人あたり研修時間</div>
+            </div>
+            <div class="hcm-kpi-cell">
+              <div class="kpi-graph-ph"><span class="kpi-graph-ph-label">[ グラフPH ]</span></div>
+              <div class="hcm-kpi-cell-caption">図：エンゲージメント回答率</div>
+            </div>
+            <div class="hcm-kpi-cell">
+              <div class="kpi-graph-ph"><span class="kpi-graph-ph-label">[ グラフPH ]</span></div>
+              <div class="hcm-kpi-cell-caption">図：自己都合離職率</div>
+            </div>
+            <div class="hcm-kpi-cell">
+              <div class="kpi-graph-ph"><span class="kpi-graph-ph-label">[ グラフPH ]</span></div>
+              <div class="hcm-kpi-cell-caption">図：キャリア採用比率</div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- ── グループA：人と組織（7テーマ） ── -->
-      <h2 class="wf-section-title" id="group-people" style="margin-top:40px;">人と組織</h2>
-      <p class="wf-section-desc">人的資本経営の中核となる7テーマ（戦略〜労働慣行）</p>
-
-      <div class="wf-index-tile-grid">
-        <!-- 人的資本戦略 -->
-        <a class="wf-index-tile is-group-a">
-          <h3 class="wf-index-tile-title" id="theme-hcm-strategy">人的資本戦略</h3>
-          <p class="wf-index-tile-desc">
-            （文章はダミーです）事業戦略と接続した人事戦略を策定し、エンゲージメントを通じた価値創造を実現します。
-          </p>
-          <nav class="wf-index-tile-nav" aria-label="人的資本戦略 ページ内見出し">
-<div class="wf-index-tile-nav-items">
-              <span class="wf-index-tile-nav-item">基本的な考え方</span>
-              <span class="wf-index-tile-nav-item">戦略・目標・実績</span>
-            </div>
-          </nav>
-          <span class="wf-index-tile-cta">人的資本戦略</span>
-        </a>
-
-        <!-- 人財育成 -->
-        <a class="wf-index-tile is-group-a">
-          <h3 class="wf-index-tile-title" id="theme-hcm-dev">人財育成</h3>
-          <p class="wf-index-tile-desc">
-            （文章はダミーです）次世代経営人財・専門人財・グローバル人財の育成を進めています。
-          </p>
-          <nav class="wf-index-tile-nav" aria-label="人財育成 ページ内見出し">
-<div class="wf-index-tile-nav-items">
-              <span class="wf-index-tile-nav-item">基本的な考え方</span>
-              <span class="wf-index-tile-nav-item">戦略・目標・実績</span>
-            </div>
-          </nav>
-          <span class="wf-index-tile-cta">人財育成</span>
-        </a>
-
-        <!-- 企業文化・組織風土 -->
-        <a class="wf-index-tile is-group-a">
-          <h3 class="wf-index-tile-title" id="theme-culture">企業文化・組織風土</h3>
-          <p class="wf-index-tile-desc">
-            （文章はダミーです）フィロソフィーを基軸とした風土醸成と心理的安全性の確保で、組織変革を推進します。
-          </p>
-          <nav class="wf-index-tile-nav" aria-label="企業文化・組織風土 ページ内見出し">
-<div class="wf-index-tile-nav-items">
-              <span class="wf-index-tile-nav-item">基本的な考え方</span>
-              <span class="wf-index-tile-nav-item">取り組み</span>
-            </div>
-          </nav>
-          <span class="wf-index-tile-cta">企業文化・組織風土</span>
-        </a>
-
-        <!-- DE&I -->
-        <a class="wf-index-tile is-group-a">
-          <h3 class="wf-index-tile-title" id="theme-dei">DE&amp;I</h3>
-          <p class="wf-index-tile-desc">
-            （文章はダミーです）ダイバーシティ・エクイティ＆インクルージョンを推進し、多様な人財が活躍できる組織を目指します。
-          </p>
-          <nav class="wf-index-tile-nav" aria-label="DE&I ページ内見出し">
-<div class="wf-index-tile-nav-items is-2col">
-              <span class="wf-index-tile-nav-item">基本的な考え方</span>
-              <span class="wf-index-tile-nav-item">戦略・目標・実績</span>
-              <span class="wf-index-tile-nav-item">女性活躍推進</span>
-            </div>
-          </nav>
-          <span class="wf-index-tile-cta">DE&amp;I</span>
-        </a>
-
-        <!-- 健康経営 -->
-        <a class="wf-index-tile is-group-a">
-          <h3 class="wf-index-tile-title" id="theme-health">健康経営</h3>
-          <p class="wf-index-tile-desc">
-            （文章はダミーです）健康第一の風土醸成と、健康リスク低減・過重労働対策・健康度の見える化を進めています。
-          </p>
-          <nav class="wf-index-tile-nav" aria-label="健康経営 ページ内見出し">
-<div class="wf-index-tile-nav-items">
-              <span class="wf-index-tile-nav-item">基本的な考え方</span>
-              <span class="wf-index-tile-nav-item">戦略・目標・実績</span>
-            </div>
-          </nav>
-          <span class="wf-index-tile-cta">健康経営</span>
-        </a>
-
-        <!-- 労働安全衛生 -->
-        <a class="wf-index-tile is-group-a">
-          <h3 class="wf-index-tile-title" id="theme-safety">労働安全衛生</h3>
-          <p class="wf-index-tile-desc">
-            （文章はダミーです）労働災害ゼロを目指し、労働安全衛生方針に基づく管理体制とリスクアセスメントを実施します。
-          </p>
-          <nav class="wf-index-tile-nav" aria-label="労働安全衛生 ページ内見出し">
-<div class="wf-index-tile-nav-items">
-              <span class="wf-index-tile-nav-item">基本的な考え方</span>
-              <span class="wf-index-tile-nav-item">戦略・目標・実績</span>
-            </div>
-          </nav>
-          <span class="wf-index-tile-cta">労働安全衛生</span>
-        </a>
-
-        <!-- 労働慣行 — 0524 FB#9：基本的な考え方のみ → サブナビ非表示 -->
-        <a class="wf-index-tile is-group-a no-nav">
-          <h3 class="wf-index-tile-title" id="theme-labor">労働慣行</h3>
-          <p class="wf-index-tile-desc">
-            （文章はダミーです）ILO中核的労働基準を踏まえ、結社の自由・強制労働や児童労働の禁止など労働者の権利を保護します。
-          </p>
-          <span class="wf-index-tile-cta">労働慣行</span>
-        </a>
+      <!-- 02 人財育成 -->
+      <div class="theme-block" id="sec-02">
+        <div class="theme-block-head">
+          <h3><span class="theme-no">02</span>人財育成</h3>
+          <a class="theme-block-link">詳細を見る</a>
+        </div>
+        <p class="theme-lead">
+          （文章はダミーです）次世代経営人財育成の強化と、事業成長を牽引する専門人財・グローバル人財の育成を進めています。中長期の戦略人事と接続した育成体系を整備しています。
+        </p>
+        <div class="theme-anchors">
+          <span class="theme-anchor">基本的な考え方</span>
+          <span class="theme-anchor">戦略・目標・実績</span>
+        </div>
       </div>
 
-      <!-- ── グループB：社会・お客様（5テーマ） — 人権／SCMを隣接配置 ── -->
-      <h2 class="wf-section-title" id="group-social" style="margin-top:48px;">社会・お客様</h2>
-      <p class="wf-section-desc">人権・SCM・顧客責任・AI・社会貢献の5テーマ。人権とSCMは関連性が高いため隣接配置。</p>
+      <!-- 03 企業文化・組織風土 -->
+      <div class="theme-block" id="sec-03">
+        <div class="theme-block-head">
+          <h3><span class="theme-no">03</span>企業文化・組織風土</h3>
+          <a class="theme-block-link">詳細を見る</a>
+        </div>
+        <p class="theme-lead">
+          （文章はダミーです）フィロソフィーを基軸とした風土醸成、心理的安全性の確保、対話を通じた組織変革を推進。事業成長を支える企業文化の浸透に取り組みます。
+        </p>
+        <div class="theme-anchors">
+          <span class="theme-anchor">基本的な考え方</span>
+          <span class="theme-anchor">取り組み</span>
+        </div>
+      </div>
 
-      <div class="wf-index-tile-grid">
-        <!-- 人権 -->
-        <a class="wf-index-tile is-group-b">
-          <h3 class="wf-index-tile-title" id="theme-human-rights">人権</h3>
-          <p class="wf-index-tile-desc">
-            （文章はダミーです）人権方針と国際規範に沿った人権尊重を実践し、網羅的な人権デュー・デリジェンスを実施します。
-          </p>
-          <nav class="wf-index-tile-nav" aria-label="人権 ページ内見出し">
-<div class="wf-index-tile-nav-items is-2col">
-              <span class="wf-index-tile-nav-item">基本的な考え方</span>
-              <span class="wf-index-tile-nav-item">体制</span>
-              <span class="wf-index-tile-nav-item">人権デュー・デリジェンス</span>
-              <span class="wf-index-tile-nav-item">相談・通報窓口</span>
-              <span class="wf-index-tile-nav-item">是正</span>
-              <span class="wf-index-tile-nav-item">ステークホルダーEG</span>
+      <!-- 04 DE&I（補足＋#アンカー＋グラフ2カラム） -->
+      <div class="theme-block" id="sec-04">
+        <div class="theme-block-head">
+          <h3><span class="theme-no">04</span>DE&amp;I</h3>
+          <a class="theme-block-link">詳細を見る</a>
+        </div>
+        <p class="theme-lead">
+          （文章はダミーです）ダイバーシティ・エクイティ＆インクルージョンの推進を通じ、多様な人財が能力を発揮できる組織を目指します。代表的な指標をKPIとして設定し、グループ・KM（株）の数字を経年で開示します。
+        </p>
+        <div class="theme-anchors">
+          <span class="theme-anchor">基本的な考え方</span>
+          <span class="theme-anchor">戦略・目標・実績</span>
+        </div>
+        <div class="theme-graph-row">
+          <div class="theme-graph-left">
+            <div class="kpi-graph-ph">
+              <span class="kpi-graph-ph-label">[ グラフ画像PH ]</span>
             </div>
-          </nav>
-          <span class="wf-index-tile-cta">人権</span>
-        </a>
+            <p class="kpi-graph-caption">図：女性管理職比率（D）／公平性・意見の自由（E・I＝GES）の指標推移</p>
+          </div>
+          <div>
+            <div class="theme-graph-desc-label">図の補足</div>
+            <p class="theme-graph-desc">
+              女性管理職比率は女性活躍推進法上の開示にも対応。公平性・意見の自由はGESスコアで把握し、DEI推進計画に反映。事業成長に資する多様性の確保を目指します。
+            </p>
+          </div>
+        </div>
+      </div>
 
-        <!-- サプライチェーンマネジメント（人権と隣接） -->
-        <a class="wf-index-tile is-group-b">
-          <h3 class="wf-index-tile-title" id="theme-scm">サプライチェーンマネジメント</h3>
-          <p class="wf-index-tile-desc">
-            （文章はダミーです）人権・環境・倫理に配慮した責任ある調達を推進し、持続可能なバリューチェーンを構築します。
-          </p>
-          <nav class="wf-index-tile-nav" aria-label="サプライチェーンマネジメント ページ内見出し">
-<div class="wf-index-tile-nav-items is-2col">
-              <span class="wf-index-tile-nav-item">基本的な考え方</span>
-              <span class="wf-index-tile-nav-item">体制</span>
-              <span class="wf-index-tile-nav-item">サステナブル調達</span>
-              <span class="wf-index-tile-nav-item">責任ある鉱物調達</span>
-            </div>
-          </nav>
-          <span class="wf-index-tile-cta">サプライチェーンマネジメント</span>
-        </a>
+      <!-- 05 健康経営 -->
+      <div class="theme-block" id="sec-05">
+        <div class="theme-block-head">
+          <h3><span class="theme-no">05</span>健康経営</h3>
+          <a class="theme-block-link">詳細を見る</a>
+        </div>
+        <p class="theme-lead">
+          （文章はダミーです）健康第一の風土醸成を通じた健全な経営の推進を重視。健康リスク保有者の最少化、過重労働対策、健康度の見える化、女性の健康支援に取り組みます。健康経営優良法人（ホワイト500）の継続認定を主要KPIとしています。
+        </p>
+        <div class="theme-anchors">
+          <span class="theme-anchor">基本的な考え方</span>
+          <span class="theme-anchor">戦略・目標・実績</span>
+        </div>
+      </div>
 
-        <!-- 顧客責任・品質 -->
-        <a class="wf-index-tile is-group-b">
-          <h3 class="wf-index-tile-title" id="theme-quality">顧客責任・品質</h3>
-          <p class="wf-index-tile-desc">
-            （文章はダミーです）品質不正防止・製品セキュリティ・品質・顧客満足度の4軸でTQMを推進します。
-          </p>
-          <nav class="wf-index-tile-nav" aria-label="顧客責任・品質 ページ内見出し">
-<div class="wf-index-tile-nav-items is-2col">
-              <span class="wf-index-tile-nav-item">基本的な考え方</span>
-              <span class="wf-index-tile-nav-item">体制</span>
-              <span class="wf-index-tile-nav-item">戦略・目標・実績</span>
-            </div>
-          </nav>
-          <span class="wf-index-tile-cta">顧客責任・品質</span>
-        </a>
+      <!-- 06 労働安全衛生 -->
+      <div class="theme-block" id="sec-06">
+        <div class="theme-block-head">
+          <h3><span class="theme-no">06</span>労働安全衛生</h3>
+          <a class="theme-block-link">詳細を見る</a>
+        </div>
+        <p class="theme-lead">
+          （文章はダミーです）製造会社として義務的に必要な労働安全衛生体制を構築。労働災害ゼロを目指し、労働安全衛生方針に基づく管理体制とリスクアセスメントを実施。グローバル拠点でのISO45001導入を推進しています。
+        </p>
+        <div class="theme-anchors">
+          <span class="theme-anchor">基本的な考え方</span>
+          <span class="theme-anchor">戦略・目標・実績</span>
+        </div>
+      </div>
 
-        <!-- AIの利活用 — 0524 FB#9：基本的な考え方のみ → サブナビ非表示 -->
-        <a class="wf-index-tile is-group-b no-nav">
-          <h3 class="wf-index-tile-title" id="theme-ai">AIの利活用</h3>
-          <p class="wf-index-tile-desc">
-            （文章はダミーです）AI倫理・ガバナンスを両立した、責任あるAI利活用を推進しています。
-          </p>
-          <span class="wf-index-tile-cta">AIの利活用</span>
-        </a>
+      <!-- 07 労働慣行 -->
+      <div class="theme-block" id="sec-07">
+        <div class="theme-block-head">
+          <h3><span class="theme-no">07</span>労働慣行</h3>
+          <a class="theme-block-link">詳細を見る</a>
+        </div>
+        <p class="theme-lead">
+          （文章はダミーです）ILO中核的労働基準を踏まえた労働慣行の遵守、結社の自由・団体交渉権の尊重、強制労働・児童労働の禁止など、グローバルでの労働者の権利保護を推進します。
+        </p>
+        <div class="theme-anchors">
+          <span class="theme-anchor">基本的な考え方</span>
+        </div>
+      </div>
 
-        <!-- 社会貢献活動 — 0524 FB#9：基本的な考え方のみ → サブナビ非表示 -->
-        <a class="wf-index-tile is-group-b no-nav">
-          <h3 class="wf-index-tile-title" id="theme-csr">社会貢献活動</h3>
-          <p class="wf-index-tile-desc">
-            （文章はダミーです）教育・文化・スポーツ・環境保全等の分野で、社員参加型の活動を展開しています。
-          </p>
-          <span class="wf-index-tile-cta">社会貢献活動</span>
-        </a>
+      <!-- 08 人権（補足＋#アンカー：6項目／ステークホルダーエンゲージメント省略不可） -->
+      <div class="theme-block" id="sec-08">
+        <div class="theme-block-head">
+          <h3><span class="theme-no">08</span>人権</h3>
+          <a class="theme-block-link">詳細を見る</a>
+        </div>
+        <p class="theme-lead">
+          （文章はダミーです）人権方針・KMグループ行動憲章・サプライチェーン行動規範を基盤に、国際規範に沿った人権尊重を実践。自社・サプライチェーン全体を対象とした人権デュー・デリジェンスと、相談・通報窓口の運用、是正プロセス、ステークホルダーとの対話を体系的に推進しています。
+        </p>
+        <div class="theme-anchors">
+          <span class="theme-anchor">基本的な考え方</span>
+          <span class="theme-anchor">体制</span>
+          <span class="theme-anchor">人権デュー・デリジェンス</span>
+          <span class="theme-anchor">相談・通報窓口</span>
+          <span class="theme-anchor">是正</span>
+          <span class="theme-anchor">ステークホルダーエンゲージメント</span>
+        </div>
+      </div>
+
+      <!-- 09 サプライチェーンマネジメント（人権の直後に隣接配置：関連性を可視化） -->
+      <div class="theme-block" id="sec-09">
+        <div class="theme-block-head">
+          <h3><span class="theme-no">09</span>サプライチェーンマネジメント</h3>
+          <a class="theme-block-link">詳細を見る</a>
+        </div>
+        <p class="theme-lead">
+          （文章はダミーです）サプライチェーン全体での人権・環境・倫理に配慮した責任ある調達活動を推進。サプライヤー行動規範に基づくCSR調達アセスメント、責任ある鉱物調達デューデリジェンスをグローバルで運用し、持続可能なバリューチェーン構築を目指します。
+        </p>
+        <div class="theme-anchors">
+          <span class="theme-anchor">基本的な考え方</span>
+          <span class="theme-anchor">体制</span>
+          <span class="theme-anchor">サステナブル調達</span>
+          <span class="theme-anchor">責任ある鉱物調達</span>
+        </div>
+      </div>
+
+      <!-- 10 顧客責任・品質（補足＋#アンカー：3項目） -->
+      <div class="theme-block" id="sec-10">
+        <div class="theme-block-head">
+          <h3><span class="theme-no">10</span>顧客責任・品質</h3>
+          <a class="theme-block-link">詳細を見る</a>
+        </div>
+        <p class="theme-lead">
+          （文章はダミーです）コンプライアンス／品質不正防止、製品セキュリティ、製品品質、顧客満足度の4軸でTQM（Total Quality Management）を推進。お客様への責任を全社横断で果たす運営体制を整備しています。
+        </p>
+        <div class="theme-anchors">
+          <span class="theme-anchor">基本的な考え方</span>
+          <span class="theme-anchor">体制</span>
+          <span class="theme-anchor">戦略・目標・実績</span>
+        </div>
+      </div>
+
+      <!-- 11 AIの利活用 -->
+      <div class="theme-block" id="sec-11">
+        <div class="theme-block-head">
+          <h3><span class="theme-no">11</span>AIの利活用</h3>
+          <a class="theme-block-link">詳細を見る</a>
+        </div>
+        <p class="theme-lead">
+          （文章はダミーです）AI利活用に関する基本方針のもと、お客様・社員・社会への価値提供と、AI倫理・ガバナンスを両立。責任あるAI利活用を推進しています。
+        </p>
+        <div class="theme-anchors">
+          <span class="theme-anchor">基本的な考え方</span>
+        </div>
+      </div>
+
+      <!-- 12 社会貢献活動 -->
+      <div class="theme-block" id="sec-12" style="margin-bottom:0;">
+        <div class="theme-block-head">
+          <h3><span class="theme-no">12</span>社会貢献活動</h3>
+          <a class="theme-block-link">詳細を見る</a>
+        </div>
+        <p class="theme-lead">
+          （文章はダミーです）事業活動を通じた社会価値創出に加え、地域社会への貢献活動を推進。教育・文化・スポーツ・環境保全等の分野で、社員参加型の活動を展開しています。
+        </p>
+        <div class="theme-anchors">
+          <span class="theme-anchor">基本的な考え方</span>
+        </div>
       </div>
 
     </section>
 
       </div><!-- /wf-anchornav-main -->
 
-      <!-- 右コンパクトアンカーナビ — H2(3件)/H3(12件)の全文表記、2行までは許容、3行以上は2行末尾で「…」省略 -->
+      <!-- 右コンパクトアンカーナビ — 12テーマをフラットに列挙（分類なし） -->
       <nav class="wf-anchor-nav">
         <div class="wf-anchor-nav-title">目次</div>
-        <a class="wf-anchor-nav-item is-current" href="#kpi-summary">KPIサマリー</a>
-        <a class="wf-anchor-nav-item" href="#group-people">人と組織</a>
-        <a class="wf-anchor-nav-item is-sub" href="#theme-hcm-strategy">人的資本戦略</a>
-        <a class="wf-anchor-nav-item is-sub" href="#theme-hcm-dev">人財育成</a>
-        <a class="wf-anchor-nav-item is-sub" href="#theme-culture">企業文化・組織風土</a>
-        <a class="wf-anchor-nav-item is-sub" href="#theme-dei">DE&amp;I</a>
-        <a class="wf-anchor-nav-item is-sub" href="#theme-health">健康経営</a>
-        <a class="wf-anchor-nav-item is-sub" href="#theme-safety">労働安全衛生</a>
-        <a class="wf-anchor-nav-item is-sub" href="#theme-labor">労働慣行</a>
-        <a class="wf-anchor-nav-item" href="#group-social">社会・お客様</a>
-        <a class="wf-anchor-nav-item is-sub" href="#theme-human-rights">人権</a>
-        <a class="wf-anchor-nav-item is-sub" href="#theme-scm">サプライチェーンマネジメント</a>
-        <a class="wf-anchor-nav-item is-sub" href="#theme-quality">顧客責任・品質</a>
-        <a class="wf-anchor-nav-item is-sub" href="#theme-ai">AIの利活用</a>
-        <a class="wf-anchor-nav-item is-sub" href="#theme-csr">社会貢献活動</a>
+        <a class="wf-anchor-nav-item is-current" href="#sec-01">人的資本戦略</a>
+        <a class="wf-anchor-nav-item" href="#sec-02">人財育成</a>
+        <a class="wf-anchor-nav-item" href="#sec-03">企業文化・組織風土</a>
+        <a class="wf-anchor-nav-item" href="#sec-04">DE&amp;I</a>
+        <a class="wf-anchor-nav-item" href="#sec-05">健康経営</a>
+        <a class="wf-anchor-nav-item" href="#sec-06">労働安全衛生</a>
+        <a class="wf-anchor-nav-item" href="#sec-07">労働慣行</a>
+        <a class="wf-anchor-nav-item" href="#sec-08">人権</a>
+        <a class="wf-anchor-nav-item" href="#sec-09">サプライチェーンマネジメント</a>
+        <a class="wf-anchor-nav-item" href="#sec-10">顧客責任・品質</a>
+        <a class="wf-anchor-nav-item" href="#sec-11">AIの利活用</a>
+        <a class="wf-anchor-nav-item" href="#sec-12">社会貢献活動</a>
       </nav>
 
     </div><!-- /wf-layout-with-anchornav -->
 
-    <!-- 0524 桐原FB#6：関連リンクは「フッターのみに統一」のため、
-         ページ本文側の「サステナビリティ関連リンク」セクション（旧I）を削除。
-         同等の網羅情報はサステナビリティサイトマップ（黒帯フッター）で提供。 -->
+    <!-- ============================================================
+         セクション I：サステナビリティ関連リンク（環境ページと共通）
+    ============================================================ -->
+    <section class="wf-section bg-white" style="padding-top:40px; padding-bottom:40px;">
+      <span class="wf-section-marker">I</span>
+      <h2 class="wf-section-title" style="font-size:18px;">サステナビリティ 関連リンク</h2>
+      <p class="wf-section-desc" style="margin-bottom:24px;">環境・社会・ガバナンス各インデックスページで紹介する主要ページへのリンクです。</p>
+
+      <div class="esg-link-stack">
+        <!-- 環境（環境Index #004 のH3見出しと同期） -->
+        <div class="esg-link-row">
+          <div class="esg-link-head">環境 インデックスへ</div>
+          <div class="esg-link-chips">
+            <div class="esg-l3">コニカミノルタの環境戦略</div>
+            <div class="esg-l3">気候変動</div>
+            <div class="esg-l3">資源循環</div>
+            <div class="esg-l3">生物多様性</div>
+            <div class="esg-l3">化学物質・汚染防止</div>
+            <div class="esg-l3">水資源</div>
+            <div class="esg-l3">環境マネジメント</div>
+            <div class="esg-l3">環境技術</div>
+            <div class="esg-l3">環境ラベル認証など</div>
+          </div>
+        </div>
+
+        <!-- 社会（現在ページ／12テーマ） -->
+        <div class="esg-link-row is-current">
+          <div class="esg-link-head">社会 インデックスへ</div>
+          <div class="esg-link-chips">
+            <div class="esg-l3">人的資本戦略</div>
+            <div class="esg-l3">人財育成</div>
+            <div class="esg-l3">企業文化・組織風土</div>
+            <div class="esg-l3">DE&amp;I</div>
+            <div class="esg-l3">健康経営</div>
+            <div class="esg-l3">労働安全衛生</div>
+            <div class="esg-l3">労働慣行</div>
+            <div class="esg-l3">人権</div>
+            <div class="esg-l3">サプライチェーンマネジメント</div>
+            <div class="esg-l3">顧客責任・品質</div>
+            <div class="esg-l3">AIの利活用</div>
+            <div class="esg-l3">社会貢献活動</div>
+          </div>
+        </div>
+
+        <!-- ガバナンス -->
+        <div class="esg-link-row">
+          <div class="esg-link-head">ガバナンス インデックスへ</div>
+          <div class="esg-link-chips">
+            <div class="esg-l3">コーポレートガバナンス</div>
+            <div class="esg-l3">コンプライアンス</div>
+            <div class="esg-l3">リスクマネジメント</div>
+            <div class="esg-l3">情報セキュリティ</div>
+            <div class="esg-l3">税務方針</div>
+            <div class="esg-l3">AIガバナンス</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- サステナビリティサイトフッター（アコーディオン式・サイトマップ） -->
     <div class="sus-footer" data-open="true">
@@ -894,9 +964,8 @@ body {
             <span class="sus-footer-link">環境ラベル・認証等</span>
           </div>
           <div class="sus-footer-col">
-            <!-- 0524 桐原FB#7：並び順を本文タイル順（人と組織7→社会・お客様5）に統一 -->
+            <!-- 0601 FB：社会カラムは本文の12テーマ順に統一（分類見出しは設けない） -->
             <div class="sus-footer-col-title">社会</div>
-            <!-- 人と組織 -->
             <span class="sus-footer-link">人的資本戦略</span>
             <span class="sus-footer-link">人財育成</span>
             <span class="sus-footer-link">企業文化・組織風土</span>
@@ -904,7 +973,6 @@ body {
             <span class="sus-footer-link">健康経営</span>
             <span class="sus-footer-link">労働安全衛生</span>
             <span class="sus-footer-link">労働慣行</span>
-            <!-- 社会・お客様 -->
             <span class="sus-footer-link">人権</span>
             <span class="sus-footer-link">サプライチェーンマネジメント</span>
             <span class="sus-footer-link">顧客責任・品質</span>
@@ -989,108 +1057,99 @@ body {
 
   </div><!-- /wf-page -->
 
-  <!-- アノテーションパネル — 0524 桐原FB10件反映版（v1.2） -->
+  <!-- アノテーションパネル — 0601 桐原FB10件反映版（v2.0） -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — 社会 インデックス v1.2（推奨版 #005b／タイル版）</h3>
+    <h3>設計ポイント — 社会 インデックス v2.0（推奨版 #005b／0601 FB反映）</h3>
 
     <div class="ann-item">
       <span class="ann-num">★</span>
-      <span class="ann-head">v1.2 主要変更点（0524 桐原FB10件反映）</span>
+      <span class="ann-head">v2.0 主要変更点（0601 桐原FB10件反映）</span>
+      <div class="ann-row">
+        <span class="ann-row-label">FB#7</span>
+        「人と組織」「社会・お客様」の<strong>カテゴリー分けを廃止</strong>。12テーマをフラットに縦積み提示（分類根拠への違和感を解消）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">FB#1</span>
+        上部の「社会KPIサマリー」帯を<strong>廃止</strong>。社会のKPIサマリーではなく<strong>人財戦略の代表KPI</strong>として、GESを<strong>人的資本戦略の中</strong >に内包。環境Indexと共通の「戦略・目標・実績＝グラフ開示」の見せ方に統一。
+      </div>
       <div class="ann-row">
         <span class="ann-row-label">FB#4</span>
-        タイル番号(01〜12)を<strong>全削除</strong>。マテリアリティへのナンバリングはしない方針に統一。
+        人的資本戦略の戦略・目標・実績を<strong>GES＝1カラム全幅 → 人財KPI＝3カラム2段（6枠）</strong>のレイアウトで構成。
       </div>
       <div class="ann-row">
-        <span class="ann-row-label">FB#5</span>
-        単なる12枚羅列をやめ、<strong>「人と組織」7テーマ／「社会・お客様」5テーマ</strong>の2グループ表示に変更。グループB先頭に<strong>人権→SCM</strong>を隣接配置（関連性の可視化）。
-      </div>
-      <div class="ann-row">
-        <span class="ann-row-label">FB#8</span>
-        タイル内サブリンクの見た目を<strong>「# 〇〇」チップ → 「›」プレフィックス＋点線区切りの目次／ナビ風レイアウト</strong>に変更。特に人権タイルが「下層ページの目次」として機能することを明確化。
+        <span class="ann-row-label">FB#2</span>
+        タイトルの<strong>重複記載を廃止</strong>（旧タイル版のタイトル＋同名CTAボタンの重複を解消）。テーマ名はブロック見出しに一本化。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">FB#9</span>
-        「基本的な考え方」のみのテーマ（労働慣行／AIの利活用／社会貢献活動）は<strong>下層目次を非表示</strong>。
+        「<strong>ステークホルダーエンゲージメント</strong>」は省略せず正式名称で表記（旧「EG」省略を撤回）。コンテンツへのリンクは<strong>flex-wrapの自然な読み順</strong>（左→右→折返し）とし、混乱しやすい「2つ縦／3つ以上Z並び」を廃止。
       </div>
       <div class="ann-row">
-        <span class="ann-row-label">FB#3</span>
-        サブターゲットへのKPI可視化のため<strong>KPIサマリーバンド</strong>をタイル群の上部に追加。社会領域で開示可能な<strong>GES（Global Employee Survey）データ</strong>のみ掲載。
+        <span class="ann-row-label">FB#3 / FB#5</span>
+        ページ本文に出ていた<strong>制作メモ（※代替案 等）を削除</strong>。検討メモはこのアノテーションパネルに集約。
       </div>
       <div class="ann-row">
-        <span class="ann-row-label">FB#6</span>
-        本文側の「サステナビリティ関連リンク」セクション（旧I）を<strong>削除</strong>。同等情報は黒帯フッター（サイトマップ）に統一。
-      </div>
-      <div class="ann-row">
-        <span class="ann-row-label">FB#7</span>
-        サイトマップ「社会」列の並び順を<strong>本文タイル順</strong>に統一。
+        <span class="ann-row-label">FB#8</span>
+        「このリンクだけH3まで出ている」状態を解消。<strong>全テーマで同一基準</strong>（各L3ページの行動変容定義の見出し＝#アンカー）を一貫表示。
       </div>
     </div>
 
     <div class="ann-item">
       <span class="ann-num">●</span>
-      <span class="ann-head">行動変容を踏まえたデザイン提案の理由（FB#2）</span>
-      <div class="ann-row">
-        <span class="ann-row-label">2グループ表示</span>
-        「人と組織7テーマ」は人的資本経営の中核として一塊で示すことで、ターゲット（投資家／求職者／社員）が<strong>人材戦略の連続性</strong>を理解しやすくなる。「社会・お客様」5テーマは別の意思決定軸（リスク・規制対応）のため視覚的に区切る。
-      </div>
-      <div class="ann-row">
-        <span class="ann-row-label">人権⇔SCM隣接</span>
-        人権DDの主要適用領域がサプライチェーンであるため、ユーザーは両者を行き来する想定。隣接配置で<strong>関連性を即座に把握</strong>。
-      </div>
-      <div class="ann-row">
-        <span class="ann-row-label">KPI先出し</span>
-        L2は<strong>ファクトでの第一印象</strong>が信頼形成に直結。GESデータをサマリーで先出し、詳細はL3に委譲。
-      </div>
-      <div class="ann-row">
-        <span class="ann-row-label">TOCナビ化</span>
-        旧#チップは「タグ的」に見え下層構造の理解を阻害。「下層ページ目次」ラベル＋「›」で<strong>「ここから入れる目次」</strong>を明示。
-      </div>
-    </div>
-
-    <div class="ann-item">
-      <span class="ann-num">!</span>
-      <span class="ann-head">FB#1：UIコンポーネント統一感（カンプ時検討事項）</span>
+      <span class="ann-head">「環境Indexと共通イメージ」の盛り込み方（FB#1）</span>
       <p class="ann-body">
-        Ikeda氏FB：ブロックリンクのあしらい（右下丸›／中央右›／無印）・モーダル示唆（四角＋）・アコーディオン（丸＋）の<strong>UI使い分けルールが整理されていない</strong>件は、本WFでは仮あしらいのまま、デザインカンプ作成時に全ページ横断で統一定義する。<br>
-        本ページ暫定: タイル全体＝L3遷移（右下黒丸›）／サブナビ＝目次ジャンプ（左›）／フッター＝同一サイト内（テキスト›）。
-      </p>
-    </div>
-
-    <div class="ann-item">
-      <span class="ann-num">!</span>
-      <span class="ann-head">FB#10：リード文ドラフト方針</span>
-      <p class="ann-body">
-        本文冒頭リード文は当社側で正式版を提示予定。現状はダミー（<span class="draft-mark">DRAFT</span>マーク付与）。<strong>「下層コンテンツの説明になっていること」</strong>（労働慣行ページに全情報がない件への配慮）を踏まえて差し替え予定。
+        分類を設けない代わりに、<strong>環境Index(004)と同じ共通CSS・共通モジュール</strong>でビジュアルを統一。具体的には①ヒーロー／H2グラデ下線／関連リンク3カラム階層UIを共通化、②代表KPIを「戦略・目標・実績」内で<strong>グラフ開示</strong>する見せ方を踏襲（環境＝各領域のKPIグラフグリッド／社会＝人的資本戦略のGES＋3カラム2段）。サブターゲットが環境⇄社会を回遊しても同じ読み筋で理解できる。
       </p>
     </div>
 
     <div class="ann-item">
       <span class="ann-num">▼</span>
-      <span class="ann-head">下層ページ目次（行動変容定義 P10準拠）</span>
+      <span class="ann-head">DCへ相談（FB#6 / FB#10）</span>
       <div class="ann-row">
-        <span class="ann-row-label">人と組織（7）</span>
-        人的資本戦略（基本／戦略・目標・実績）／人財育成（基本／戦略・目標・実績）／企業文化・組織風土（基本／取り組み）／DE&amp;I（基本／戦略・目標・実績／女性活躍推進）／健康経営（基本／戦略・目標・実績）／労働安全衛生（基本／戦略・目標・実績）／労働慣行（基本のみ＝目次非表示）
+        <span class="ann-row-label">FB#6 リンク領域</span>
+        旧タイル版は「一部の基本的な考え方だけが先に出る／タイル全体と最下部ボタンのどちらが押せるか不明」だった。本案は<strong>ブロック右上「詳細を見る」＝L3ページ遷移／#アンカー＝ページ内ジャンプ</strong>に役割を分離し、リンク元表現を統一。最終的なクリッカブル領域はデザインカンプ時に全ページ横断で確定。
       </div>
       <div class="ann-row">
-        <span class="ann-row-label">社会・お客様（5）</span>
-        人権（基本／体制／DD／相談・通報／是正／ステークホルダーEG）／SCM（基本／体制／サステナブル調達／責任ある鉱物調達）／顧客責任・品質（基本／体制／戦略・目標・実績）／AIの利活用（基本のみ＝目次非表示）／社会貢献活動（基本のみ＝目次非表示）
+        <span class="ann-row-label">FB#10 人権/SCM</span>
+        当初2カラム（人権＋SCM）＋2段目3カラムのグリッド案だったが、<strong>分類廃止＝全テーマ全幅縦積み</strong>の方針に統一。関連性が高い人権⇔SCMは<strong>連番08→09で隣接配置</strong>し、リンクは全て自然な読み順で縦に流れる形で関連性を担保。
+      </div>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">◆</span>
+      <span class="ann-head">12テーマと各ブロックの見出し（行動変容定義準拠）</span>
+      <div class="ann-row">
+        <span class="ann-row-label">01 人的資本戦略</span>
+        基本的な考え方／戦略・目標・実績 ＋<strong>GES＋人財KPI 3カラム2段</strong>
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">02-07</span>
+        人財育成／企業文化・組織風土／DE&amp;I（＋グラフ）／健康経営／労働安全衛生／労働慣行
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">08 人権</span>
+        基本的な考え方／体制／人権デュー・デリジェンス／相談・通報窓口／是正／ステークホルダーエンゲージメント
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">09-12</span>
+        サプライチェーンマネジメント／顧客責任・品質／AIの利活用／社会貢献活動
       </div>
     </div>
 
     <div class="ann-item">
       <span class="ann-num">★</span>
-      <span class="ann-head">残る論点</span>
+      <span class="ann-head">残る論点・要確認</span>
       <div class="ann-row">
         <span class="ann-row-label">論点1</span>
-        KPIバンドの3カード（人的資本／DE&amp;I／健康経営）の選定で問題ないか。GES以外でも開示可能なデータがあれば差し替え／追加。
+        人的資本戦略の3カラム2段KPI（女性管理職比率・男性育休取得率・研修時間・回答率・離職率・キャリア採用比率）の選定は仮置き。<strong>「人財関連の代表的なKPI」の最終項目は行動変容／原稿で確定</strong>。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">論点2</span>
-        ステークホルダーEGは独立タイルから外し人権タイル目次に統合済み。別箇所（TOP／戦略Index／グループ会社情報等）への配置検討は別途。
+        各ブロックの補足説明文・リード文はダミー。原稿確定後に既存サイト原文ベースで差し替え。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">論点3</span>
-        サブナビは行動変容定義P10の見出し構成を踏襲。L3実装時に該当`id`をHTML側で付与する前提。
+        #アンカー先のid付与はL3ページ実装時に対応（基本的な考え方→#concept 等の命名規約を別途定義）。
       </div>
     </div>
 
