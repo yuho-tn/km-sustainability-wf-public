@@ -233,8 +233,13 @@ body {
 .social-group-h2 { margin-top: 8px; }
 .social-group-h2.is-second { margin-top: 48px; }
 
-/* 人的資本戦略：横一面・枠なし。左=図／右=標準ブロックUI（他カードと同一） */
-.hcm-feature { margin-bottom: 28px; }
+/* 人的資本戦略：横一面の枠ありブロック。左=図／右=標準ブロックUI（他カードと同一） */
+.hcm-feature {
+  border: 1px solid #8E8E8E;     /* --border/gray */
+  background: var(--c-white);
+  padding: 20px 22px;
+  margin-bottom: 24px;
+}
 .hcm-feature-row {
   display: grid;
   grid-template-columns: 440px 1fr;
@@ -244,18 +249,25 @@ body {
 .hcm-feature-graph .wf-graph { margin: 0; max-width: 100%; }
 
 /* ============================================================
-   0604 丹野FB：ブロックの枠を撤去（枠だと全体がクリッカブルに見えてしまう）。
-   クリック対象は「タイトル見出し」と「目次リンク」のみであることを明示する。
-   全ブロック共通＝枠なし／本文3行統一／タイトル下線の高さ・ブロック高さを揃える。
+   0604 丹野FB：ブロックUI（枠あり・白カード）に戻す。
+   ※枠は復活させつつ、クリック対象は「タイトル見出し（青＋下線＋›）」と
+     「目次リンク（青＋›）」であることを色・下線・アイコンで明示。
+   全ブロック共通＝本文3行統一／タイトル下線の高さ・ブロック高さを揃える。
 ============================================================ */
 .theme-grid .theme-block,
 .theme-grid-2 .theme-block,
-.theme-grid-3 .theme-block,
-.hcm-feature-body {
-  border: none; background: transparent;
-  margin: 0; padding: 0;
+.theme-grid-3 .theme-block {
+  border: 1px solid #8E8E8E;     /* --border/gray */
+  background: var(--c-white);
+  margin: 0;
+  padding: 20px 22px;
   display: flex;
   flex-direction: column;
+}
+/* 人的資本戦略の右側ボディは枠なし（親 .hcm-feature が枠を持つ） */
+.hcm-feature-body {
+  border: none; background: transparent; padding: 0;
+  display: flex; flex-direction: column;
 }
 /* 目次リンクはブロック下端に揃える（等高ブロックで下端を統一） */
 .theme-grid .theme-block .toc-links,
@@ -670,7 +682,7 @@ body {
     <span class="meta-badge">L2</span>
     <span class="meta-badge" style="background:#7a4a00; color:#fff;">分類廃止・12テーマフラット／デザインモジュール準拠</span>
   </div>
-  <div style="font-size:10px; color:#666;">2026.06.04 / 枠なしブロック統一・人的資本戦略も標準ブロックUI・目次ラベル削除・リンク間8px・本文3行/タイトル下線/高さ揃え（クリック対象=見出し＋リンク）</div>
+  <div style="font-size:10px; color:#666;">2026.06.04 / ブロックUI（枠あり白カード）に復帰・冒頭DRAFTタグ削除・サステナビリティ関連リンクエリア削除（クリック対象=見出し＋目次リンク）</div>
 </div>
 
 <div class="wf-canvas">
@@ -713,7 +725,7 @@ body {
     ============================================================ -->
     <section class="wf-section bg-white" style="padding-top:40px; padding-bottom:32px;">
       <p style="font-size:13px; color:var(--c-text); line-height:1.95;">
-        <span class="draft-mark">DRAFT</span>（文章はダミーです）コニカミノルタは、人財育成やDE&amp;Iを中心に、社員一人ひとりの可能性を引き出す職場づくりと、社会との共生を通じた持続可能な事業活動を推進しています。本ページでは、社会領域における12テーマの取り組みの全体像を紹介します。
+        （文章はダミーです）コニカミノルタは、人財育成やDE&amp;Iを中心に、社員一人ひとりの可能性を引き出す職場づくりと、社会との共生を通じた持続可能な事業活動を推進しています。本ページでは、社会領域における12テーマの取り組みの全体像を紹介します。
       </p>
     </section>
 
@@ -885,64 +897,7 @@ body {
 
     </div><!-- /wf-layout-with-anchornav -->
 
-    <!-- ============================================================
-         セクション I：サステナビリティ関連リンク（環境ページと共通）
-    ============================================================ -->
-    <section class="wf-section bg-white" style="padding-top:40px; padding-bottom:40px;">
-      <span class="wf-section-marker">I</span>
-      <h2 class="wf-section-title" style="font-size:18px;">サステナビリティ 関連リンク</h2>
-      <p class="wf-section-desc" style="margin-bottom:24px;">環境・社会・ガバナンス各インデックスページで紹介する主要ページへのリンクです。</p>
-
-      <div class="esg-link-stack">
-        <!-- 環境（環境Index #004 のH3見出しと同期） -->
-        <div class="esg-link-row">
-          <div class="esg-link-head">環境 インデックスへ</div>
-          <div class="esg-link-chips">
-            <div class="esg-l3">コニカミノルタの環境戦略</div>
-            <div class="esg-l3">気候変動</div>
-            <div class="esg-l3">資源循環</div>
-            <div class="esg-l3">生物多様性</div>
-            <div class="esg-l3">化学物質・汚染防止</div>
-            <div class="esg-l3">水資源</div>
-            <div class="esg-l3">環境マネジメント</div>
-            <div class="esg-l3">環境技術</div>
-            <div class="esg-l3">環境ラベル認証など</div>
-          </div>
-        </div>
-
-        <!-- 社会（現在ページ／12テーマ） -->
-        <div class="esg-link-row is-current">
-          <div class="esg-link-head">社会 インデックスへ</div>
-          <div class="esg-link-chips">
-            <div class="esg-l3">人的資本戦略</div>
-            <div class="esg-l3">人財育成</div>
-            <div class="esg-l3">企業文化・組織風土</div>
-            <div class="esg-l3">DE&amp;I</div>
-            <div class="esg-l3">健康経営</div>
-            <div class="esg-l3">労働安全衛生</div>
-            <div class="esg-l3">労働慣行</div>
-            <div class="esg-l3">人権</div>
-            <div class="esg-l3">サプライチェーンマネジメント</div>
-            <div class="esg-l3">顧客責任・品質</div>
-            <div class="esg-l3">AIの利活用</div>
-            <div class="esg-l3">社会貢献活動</div>
-          </div>
-        </div>
-
-        <!-- ガバナンス -->
-        <div class="esg-link-row">
-          <div class="esg-link-head">ガバナンス インデックスへ</div>
-          <div class="esg-link-chips">
-            <div class="esg-l3">コーポレートガバナンス</div>
-            <div class="esg-l3">コンプライアンス</div>
-            <div class="esg-l3">リスクマネジメント</div>
-            <div class="esg-l3">情報セキュリティ</div>
-            <div class="esg-l3">税務方針</div>
-            <div class="esg-l3">AIガバナンス</div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!-- 0604 丹野FB：「サステナビリティ 関連リンク」エリアは不要のため削除（サイトマップフッターで代替） -->
 
     <!-- サステナビリティサイトフッター（アコーディオン式・サイトマップ） -->
     <div class="sus-footer" data-open="true">
