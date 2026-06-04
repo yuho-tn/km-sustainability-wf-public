@@ -210,12 +210,11 @@ body {
 .theme-block-link:hover { border-bottom-color: var(--c-text-h); }
 .theme-block-link::before { content: '› '; font-weight: 700; }
 
-/* 本文は3行までで統一（下端を揃えるため3行分の高さを確保） */
+/* 本文は3行に収まる内容で統一（…省略を出さない）。上詰めで直下の棒線に詰める。 */
 .theme-lead {
   font-size: 12px; color: var(--c-text); line-height: 1.8;
   display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3;
   -webkit-box-orient: vertical; overflow: hidden;
-  min-height: calc(12px * 1.8 * 3);   /* 3行分 ≒ 65px */
   margin: 0;
 }
 
@@ -269,11 +268,14 @@ body {
   border: none; background: transparent; padding: 0;
   display: flex; flex-direction: column;
 }
-/* 目次リンクはブロック下端に揃える（等高ブロックで下端を統一） */
-.theme-grid .theme-block .toc-links,
-.theme-grid-2 .theme-block .toc-links,
-.theme-grid-3 .theme-block .toc-links,
-.hcm-feature-body .toc-links { margin-top: auto; }
+/* 0604 丹野FB：本文〜棒線の余白を詰め、内容は上詰め（余りは下を余白に）。
+   ※以前の margin-top:auto（下端揃え）は廃止 */
+/* 2カラムブロック（人権／SCM）は目次リンクも2カラム表示 */
+.theme-grid-2 .theme-block .toc-links {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 18px;
+}
 
 /* 主要見出し＝クリッカブル（下層遷移）。下線（黒）でクリック対象の見出しを明示。
    1行固定で全ブロックの下線位置（高さ）を揃える */
@@ -696,7 +698,7 @@ body {
     <span class="meta-badge">L2</span>
     <span class="meta-badge" style="background:#7a4a00; color:#fff;">分類廃止・12テーマフラット／デザインモジュール準拠</span>
   </div>
-  <div style="font-size:10px; color:#666;">2026.06.04 / 見出し行をマウスオーバーで横一列クリッカブル表示（薄青背景＋色変化＋下線アクセント＋›右移動）・ブロックUI（枠あり白カード）</div>
+  <div style="font-size:10px; color:#666;">2026.06.04 / 本文は…省略なしで3行に収める・2カラムブロックは目次リンクも2カラム・本文は上詰めで余白を下に・見出し行ホバーでクリッカブル表示</div>
 </div>
 
 <div class="wf-canvas">
@@ -770,7 +772,7 @@ body {
           </div>
           <div class="hcm-feature-body">
             <a class="theme-block-title" href="#">人的資本戦略</a>
-            <p class="theme-lead">（文章はダミーです）個と組織の成長を両立させる人的資本戦略を推進。事業戦略と接続した人事戦略を策定し、エンゲージメントを通じた価値創造を実現します。</p>
+            <p class="theme-lead">（文章はダミーです）個と組織の成長を両立する人的資本戦略を推進。事業戦略と接続した人事戦略を策定し、エンゲージメントを通じた価値創造を実現します。</p>
             <div class="toc-links">
               <a class="toc-link">基本的な考え方</a>
               <a class="toc-link">戦略・目標・実績</a>
@@ -783,7 +785,7 @@ body {
       <div class="theme-grid-3">
         <div class="theme-block" id="sec-02">
           <a class="theme-block-title" href="#">人財育成</a>
-          <p class="theme-lead">（文章はダミーです）次世代経営人財育成の強化と、専門人財・グローバル人財の育成を進めています。中長期の戦略人事と接続した育成体系を整備しています。</p>
+          <p class="theme-lead">（文章はダミーです）次世代経営人財・専門人財・グローバル人財を育成し、戦略人事と接続した育成体系を整備します。</p>
           <div class="toc-links">
             <a class="toc-link">基本的な考え方</a>
             <a class="toc-link">戦略・目標・実績</a>
@@ -791,7 +793,7 @@ body {
         </div>
         <div class="theme-block" id="sec-03">
           <a class="theme-block-title" href="#">企業文化・組織風土</a>
-          <p class="theme-lead">（文章はダミーです）フィロソフィーを基軸とした風土醸成、心理的安全性の確保、対話を通じた組織変革を推進しています。</p>
+          <p class="theme-lead">（文章はダミーです）フィロソフィーを基軸に風土醸成と心理的安全性を確保し、組織変革を推進します。</p>
           <div class="toc-links">
             <a class="toc-link">基本的な考え方</a>
             <a class="toc-link">取り組み</a>
@@ -799,7 +801,7 @@ body {
         </div>
         <div class="theme-block" id="sec-04">
           <a class="theme-block-title" href="#">DE&amp;I</a>
-          <p class="theme-lead">（文章はダミーです）ダイバーシティ・エクイティ＆インクルージョンの推進を通じ、多様な人財が能力を発揮できる組織を目指します。</p>
+          <p class="theme-lead">（文章はダミーです）多様な人財が活躍できる組織を目指し、エクイティとインクルージョンを推進します。</p>
           <div class="toc-links">
             <a class="toc-link">基本的な考え方</a>
             <a class="toc-link">戦略・目標・実績</a>
@@ -807,7 +809,7 @@ body {
         </div>
         <div class="theme-block" id="sec-05">
           <a class="theme-block-title" href="#">健康経営</a>
-          <p class="theme-lead">（文章はダミーです）健康第一の風土醸成を重視。健康リスク保有者の最少化、過重労働対策、健康度の見える化、女性の健康支援に取り組みます。</p>
+          <p class="theme-lead">（文章はダミーです）健康第一の風土のもと、健康リスク低減・過重労働対策・健康度の見える化に取り組みます。</p>
           <div class="toc-links">
             <a class="toc-link">基本的な考え方</a>
             <a class="toc-link">戦略・目標・実績</a>
@@ -815,7 +817,7 @@ body {
         </div>
         <div class="theme-block" id="sec-06">
           <a class="theme-block-title" href="#">労働安全衛生</a>
-          <p class="theme-lead">（文章はダミーです）労働災害ゼロを目指し、労働安全衛生方針に基づく管理体制とリスクアセスメントを実施。ISO45001導入を推進しています。</p>
+          <p class="theme-lead">（文章はダミーです）労働災害ゼロを目指し、管理体制とリスクアセスメントを実施しています。</p>
           <div class="toc-links">
             <a class="toc-link">基本的な考え方</a>
             <a class="toc-link">戦略・目標・実績</a>
@@ -823,7 +825,7 @@ body {
         </div>
         <div class="theme-block" id="sec-07">
           <a class="theme-block-title" href="#">労働慣行</a>
-          <p class="theme-lead">（文章はダミーです）ILO中核的労働基準を踏まえた労働慣行の遵守、強制労働・児童労働の禁止など、労働者の権利保護を推進します。</p>
+          <p class="theme-lead">（文章はダミーです）ILO中核的労働基準を踏まえ、強制労働・児童労働の禁止など権利保護を推進します。</p>
           <div class="toc-links">
             <a class="toc-link">基本的な考え方</a>
           </div>
@@ -838,7 +840,7 @@ body {
       <div class="theme-grid-2">
         <div class="theme-block" id="sec-08">
           <a class="theme-block-title" href="#">人権</a>
-          <p class="theme-lead">（文章はダミーです）人権方針・国際規範に沿った人権尊重を実践。自社・サプライチェーン全体を対象とした人権デュー・デリジェンス、相談・通報窓口の運用、是正、ステークホルダーとの対話を体系的に推進しています。</p>
+          <p class="theme-lead">（文章はダミーです）人権方針と国際規範に沿った人権尊重を実践。人権デュー・デリジェンス、相談・通報窓口、是正、ステークホルダー対話を推進します。</p>
           <div class="toc-links">
             <a class="toc-link">基本的な考え方</a>
             <a class="toc-link">体制</a>
@@ -850,7 +852,7 @@ body {
         </div>
         <div class="theme-block" id="sec-09">
           <a class="theme-block-title" href="#">サプライチェーンマネジメント</a>
-          <p class="theme-lead">（文章はダミーです）サプライチェーン全体での責任ある調達活動を推進。サプライヤー行動規範に基づくCSR調達アセスメント、責任ある鉱物調達デューデリジェンスをグローバルで運用しています。</p>
+          <p class="theme-lead">（文章はダミーです）人権・環境・倫理に配慮した責任ある調達を推進。サプライヤー行動規範に基づくCSR調達アセスメントと責任ある鉱物調達を運用します。</p>
           <div class="toc-links">
             <a class="toc-link">基本的な考え方</a>
             <a class="toc-link">体制</a>
@@ -863,7 +865,7 @@ body {
       <div class="theme-grid-3">
         <div class="theme-block" id="sec-10">
           <a class="theme-block-title" href="#">顧客責任・品質</a>
-          <p class="theme-lead">（文章はダミーです）コンプライアンス／品質不正防止、製品セキュリティ、製品品質、顧客満足度の4軸でTQMを推進。お客様への責任を全社横断で果たす体制を整備しています。</p>
+          <p class="theme-lead">（文章はダミーです）品質不正防止・製品セキュリティ・品質・顧客満足度の4軸でTQMを推進します。</p>
           <div class="toc-links">
             <a class="toc-link">基本的な考え方</a>
             <a class="toc-link">体制</a>
@@ -872,14 +874,14 @@ body {
         </div>
         <div class="theme-block" id="sec-11">
           <a class="theme-block-title" href="#">AIの利活用</a>
-          <p class="theme-lead">（文章はダミーです）AI利活用に関する基本方針のもと、価値提供とAI倫理・ガバナンスを両立。責任あるAI利活用を推進しています。</p>
+          <p class="theme-lead">（文章はダミーです）基本方針のもと、価値提供とAI倫理・ガバナンスを両立し、責任あるAI利活用を推進します。</p>
           <div class="toc-links">
             <a class="toc-link">基本的な考え方</a>
           </div>
         </div>
         <div class="theme-block" id="sec-12">
           <a class="theme-block-title" href="#">社会貢献活動</a>
-          <p class="theme-lead">（文章はダミーです）事業活動を通じた社会価値創出に加え、地域社会への貢献活動を推進。教育・文化・スポーツ・環境保全等の分野で社員参加型の活動を展開しています。</p>
+          <p class="theme-lead">（文章はダミーです）教育・文化・スポーツ・環境保全等で、社員参加型の地域貢献活動を展開します。</p>
           <div class="toc-links">
             <a class="toc-link">基本的な考え方</a>
           </div>
