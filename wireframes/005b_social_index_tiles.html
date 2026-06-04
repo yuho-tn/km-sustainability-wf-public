@@ -210,7 +210,14 @@ body {
 .theme-block-link:hover { border-bottom-color: var(--c-text-h); }
 .theme-block-link::before { content: '› '; font-weight: 700; }
 
-.theme-lead { font-size: 12px; color: var(--c-text); line-height: 1.9; }
+/* 本文は3行までで統一（下端を揃えるため3行分の高さを確保） */
+.theme-lead {
+  font-size: 12px; color: var(--c-text); line-height: 1.8;
+  display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3;
+  -webkit-box-orient: vertical; overflow: hidden;
+  min-height: calc(12px * 1.8 * 3);   /* 3行分 ≒ 65px */
+  margin: 0;
+}
 
 /* ============================================================
    ブロックグリッド（0604 丹野FB：H2=人と組織／社会・お客様。
@@ -226,61 +233,57 @@ body {
 .social-group-h2 { margin-top: 8px; }
 .social-group-h2.is-second { margin-top: 48px; }
 
-/* 人的資本戦略：枠なし・横一面 feature（左=図／右=文章＋文章下リンク・縦コンパクト） */
-.hcm-feature { margin-bottom: 20px; }
-.hcm-feature .theme-block-title { margin-bottom: 16px; }
+/* 人的資本戦略：横一面・枠なし。左=図／右=標準ブロックUI（他カードと同一） */
+.hcm-feature { margin-bottom: 28px; }
 .hcm-feature-row {
   display: grid;
   grid-template-columns: 440px 1fr;
-  gap: 28px;
-  align-items: start;
+  gap: 32px;
+  align-items: stretch;
 }
 .hcm-feature-graph .wf-graph { margin: 0; max-width: 100%; }
-.hcm-feature-body { display: flex; flex-direction: column; }
-.hcm-feature-body .theme-lead { margin-bottom: 4px; }
-.hcm-feature-body .toc-links { margin-top: 14px; }
-/* カードは1px枠（デザイン側カード準拠／番号・詳細リンクは撤去） */
+
+/* ============================================================
+   0604 丹野FB：ブロックの枠を撤去（枠だと全体がクリッカブルに見えてしまう）。
+   クリック対象は「タイトル見出し」と「目次リンク」のみであることを明示する。
+   全ブロック共通＝枠なし／本文3行統一／タイトル下線の高さ・ブロック高さを揃える。
+============================================================ */
 .theme-grid .theme-block,
 .theme-grid-2 .theme-block,
-.theme-grid-3 .theme-block {
-  border: 1px solid #8E8E8E;     /* --border/gray */
-  border-top: 1px solid #8E8E8E;
-  margin-bottom: 0;
-  padding: 20px 22px;
+.theme-grid-3 .theme-block,
+.hcm-feature-body {
+  border: none; background: transparent;
+  margin: 0; padding: 0;
   display: flex;
   flex-direction: column;
 }
-/* 目次リンクはカード下端に揃える（等高カードで見栄えを統一） */
+/* 目次リンクはブロック下端に揃える（等高ブロックで下端を統一） */
 .theme-grid .theme-block .toc-links,
 .theme-grid-2 .theme-block .toc-links,
-.theme-grid-3 .theme-block .toc-links { margin-top: auto; }
-/* 3カラムは横幅が狭いので主要見出しを少し縮小 */
-.theme-grid-3 .theme-block-title { font-size: 16px; }
-/* ブロック上部の主要見出し＝クリッカブル（下層ページへ遷移）
-   デザイン側「見出し（H2）／インデックス専用」モジュール準拠：アクセント色＝リンク */
+.theme-grid-3 .theme-block .toc-links,
+.hcm-feature-body .toc-links { margin-top: auto; }
+
+/* 主要見出し＝クリッカブル（下層遷移）。下線（黒）でクリック対象の見出しを明示。
+   1行固定で全ブロックの下線位置（高さ）を揃える */
 .theme-block-title {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  font-size: 18px; font-weight: 700;
+  font-size: 16px; font-weight: 700;
   color: #0062C2;                /* --fg/accent：クリッカブル見出し */
   line-height: 1.45; letter-spacing: -0.01em;
-  margin-bottom: 14px; padding-bottom: 12px;
-  border-bottom: 1px solid var(--c-border-s);
+  margin-bottom: 12px; padding-bottom: 10px;
+  border-bottom: 2px solid var(--c-text-h);   /* タイトル下線 */
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   cursor: pointer; text-decoration: none;
 }
 .theme-block-title::after {
   content: '›';
-  font-size: 20px; font-weight: 700; color: #0062C2;
+  font-size: 18px; font-weight: 700; color: #0062C2;
   flex-shrink: 0;
 }
 .theme-block-title:hover { text-decoration: underline; }
-.theme-block-title .sub {
-  display: block;
-  font-size: 11px; font-weight: 500; color: var(--c-text-s);
-  margin-top: 2px; letter-spacing: 0;
-}
 
 /* グラフモジュール（環境Index 準拠：棒グラフ＋FY軸＋dummy＋拡大＋＋図キャプション）
    グラフは一部テーマのみ・1〜2点（0613 FB：KPIの見せ方は環境Indexを踏襲） */
@@ -310,35 +313,28 @@ body {
    テキストリンクモジュール＝アクセント色 #0062c2 ＋ ›（PageLink）アイコン
    0613 FB：#チップ → 目次リンク（既存リンクモジュール）に差し替え
 ============================================================ */
+/* 目次リンク群：ラベルは表示しない。リンク間は 8px でコンパクトに集約 */
 .toc-links {
-  margin-top: 16px;
-  padding-top: 14px;
-  border-top: 2px solid #E6E6E6;   /* --sf/disabled：カード内区切り線 */
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--c-border-s);
   display: flex;
   flex-direction: column;
-  gap: 2px;
-}
-.toc-links::before {
-  content: 'このテーマで紹介するコンテンツ（下層ページ内の見出し）';
-  display: block;
-  font-size: 10px; font-weight: 700;
-  color: var(--c-text-xs);
-  letter-spacing: 0.06em;
-  margin-bottom: 8px;
+  gap: 8px;   /* テキストリンク間 8px */
 }
 /* テキストリンク：アクセント色＋末尾 › アイコン（行動変容の見出し＝目次リンク） */
 .toc-link {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   align-self: flex-start;
   font-size: 13px;
   font-weight: 700;
   color: #0062C2;                  /* --fg/accent */
   letter-spacing: 0.01em;
-  line-height: 1.6;
-  padding: 5px 2px;
-  cursor: default;
+  line-height: 1.5;
+  padding: 0;
+  cursor: pointer;
 }
 .toc-link::after {
   content: '›';
@@ -674,7 +670,7 @@ body {
     <span class="meta-badge">L2</span>
     <span class="meta-badge" style="background:#7a4a00; color:#fff;">分類廃止・12テーマフラット／デザインモジュール準拠</span>
   </div>
-  <div style="font-size:10px; color:#666;">2026.06.04 / H2=人と組織/社会・お客様の2分類・人的資本戦略=横一面feature(左図右文)・人財育成〜労働慣行=3カラム2段・人権/SCM=2カラム＋他3つ=3カラム</div>
+  <div style="font-size:10px; color:#666;">2026.06.04 / 枠なしブロック統一・人的資本戦略も標準ブロックUI・目次ラベル削除・リンク間8px・本文3行/タイトル下線/高さ揃え（クリック対象=見出し＋リンク）</div>
 </div>
 
 <div class="wf-canvas">
@@ -734,7 +730,6 @@ body {
 
       <!-- 人的資本戦略：枠なし・横一面 feature（左=図／右=文章＋文章下リンク） -->
       <div class="hcm-feature" id="sec-01">
-        <a class="theme-block-title" href="#">人的資本戦略</a>
         <div class="hcm-feature-row">
           <div class="hcm-feature-graph">
             <figure class="wf-graph">
@@ -748,7 +743,8 @@ body {
             </figure>
           </div>
           <div class="hcm-feature-body">
-            <p class="theme-lead">（文章はダミーです）個と組織の成長を両立させる人的資本戦略を推進。事業戦略と接続した人事戦略を策定し、エンゲージメントを通じた価値創造を実現します。人財関連の代表的なKPIをここで一望できるようにします。</p>
+            <a class="theme-block-title" href="#">人的資本戦略</a>
+            <p class="theme-lead">（文章はダミーです）個と組織の成長を両立させる人的資本戦略を推進。事業戦略と接続した人事戦略を策定し、エンゲージメントを通じた価値創造を実現します。</p>
             <div class="toc-links">
               <a class="toc-link">基本的な考え方</a>
               <a class="toc-link">戦略・目標・実績</a>
@@ -1072,11 +1068,25 @@ body {
 
   <!-- アノテーションパネル — 0601 桐原FB10件反映版（v2.0） -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — 社会 インデックス v2.3（推奨版 #005b／H2=人と組織・社会・お客様）</h3>
+    <h3>設計ポイント — 社会 インデックス v2.4（推奨版 #005b／枠なしブロック統一）</h3>
 
     <div class="ann-item">
       <span class="ann-num">◎</span>
-      <span class="ann-head">v2.3 H2分類＋レイアウト再構成（0604 丹野FB）</span>
+      <span class="ann-head">v2.4 ブロックUI統一（0604 丹野FB 追加）</span>
+      <div class="ann-row">
+        <span class="ann-row-label">枠を撤去</span>
+        ブロックの<strong>枠（ボーダー）を全廃</strong>。枠があると「枠全体がクリッカブル」に見えるため、クリック対象は<strong>タイトル見出し（青＋下線＋›）と目次リンク（青＋›）のみ</strong>であることを視覚的に明確化。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">人的資本戦略</span>
+        feature特有レイアウトをやめ、<strong>右側を他カードと同一の標準ブロックUI</strong>（タイトル＋本文＋目次リンク）に統一。左にグラフを併置。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">体裁の統一</span>
+        目次リンクの説明ラベルを<strong>削除</strong>。テキストリンク間は<strong>8px</strong>。本文は<strong>3行で統一</strong>（超過は…省略）。タイトル下線の高さ・ブロックの高さを各行で揃え、目次リンクは下端揃え。
+      </div>
+
+      <span class="ann-head" style="margin-top:6px; display:block;">v2.3 H2分類＋レイアウト再構成（0604 丹野FB）</span>
       <div class="ann-row">
         <span class="ann-row-label">H2を2分類</span>
         <strong>「人と組織」「社会・お客様」の2つのH2</strong>に再分割（0601で一旦廃止 → 0604 丹野FBで復活）。右目次ナビもH2グループ＋テーマのインデント構成に。
