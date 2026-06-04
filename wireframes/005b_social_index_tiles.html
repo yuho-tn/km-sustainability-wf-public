@@ -209,9 +209,9 @@ body {
 ============================================================ */
 .theme-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;   /* 0604 丹野FB：社会インデックスは1カラムに変更 */
   gap: 16px;
-  align-items: stretch;     /* 同じ行のカードは等高に */
+  align-items: stretch;
 }
 /* カードは1px枠（デザイン側カード準拠／番号・詳細リンクは撤去） */
 .theme-grid .theme-block {
@@ -258,6 +258,7 @@ body {
   padding: 14px 14px 12px;
   margin: 4px 0 16px;
   position: relative;
+  max-width: 440px;   /* 1カラムで全幅に間延びさせない（環境Index準拠のグラフ幅） */
 }
 .wf-graph-dummy { font-size: 10px; color: var(--c-text-xs); }
 .wf-graph-plot { position: relative; padding: 10px 18px 0; }
@@ -641,7 +642,7 @@ body {
     <span class="meta-badge">L2</span>
     <span class="meta-badge" style="background:#7a4a00; color:#fff;">分類廃止・12テーマフラット／デザインモジュール準拠</span>
   </div>
-  <div style="font-size:10px; color:#666;">2026.06.04 / 2カラムカード化・番号削除・主要見出しクリッカブル化・グラフは環境Index準拠で一部のみ（1〜2点）</div>
+  <div style="font-size:10px; color:#666;">2026.06.04 / 1カラム縦積み・番号削除・主要見出しクリッカブル化・グラフは環境Index準拠で一部のみ（1〜2点）</div>
 </div>
 
 <div class="wf-canvas">
@@ -1051,8 +1052,8 @@ body {
         テーマ先頭の通し番号（01〜12）を<strong>全削除</strong>。
       </div>
       <div class="ann-row">
-        <span class="ann-row-label">2カラム</span>
-        12テーマを<strong>2カラムのカードグリッド</strong>に変更（等高カード・目次リンクは下端揃え）。
+        <span class="ann-row-label">1カラム</span>
+        12テーマを<strong>1カラムで全幅縦積み</strong>（0604 丹野FBにより2カラム案から変更）。グラフは全幅に間延びしないよう適正幅（最大440px）に制限。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">主要見出しクリッカブル</span>
