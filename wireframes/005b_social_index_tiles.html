@@ -205,6 +205,73 @@ body {
 .theme-lead { font-size: 12px; color: var(--c-text); line-height: 1.9; }
 
 /* ============================================================
+   2カラム ブロックグリッド（0613 FB：2カラムでブロックレイアウト調整）
+============================================================ */
+.theme-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: stretch;     /* 同じ行のカードは等高に */
+}
+/* カードは1px枠（デザイン側カード準拠／番号・詳細リンクは撤去） */
+.theme-grid .theme-block {
+  border: 1px solid #8E8E8E;     /* --border/gray */
+  border-top: 1px solid #8E8E8E;
+  margin-bottom: 0;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+}
+/* 目次リンクはカード下端に揃える（等高カードで見栄えを統一） */
+.theme-grid .theme-block .toc-links { margin-top: auto; }
+/* ブロック上部の主要見出し＝クリッカブル（下層ページへ遷移）
+   デザイン側「見出し（H2）／インデックス専用」モジュール準拠：アクセント色＝リンク */
+.theme-block-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 18px; font-weight: 700;
+  color: #0062C2;                /* --fg/accent：クリッカブル見出し */
+  line-height: 1.45; letter-spacing: -0.01em;
+  margin-bottom: 14px; padding-bottom: 12px;
+  border-bottom: 1px solid var(--c-border-s);
+  cursor: pointer; text-decoration: none;
+}
+.theme-block-title::after {
+  content: '›';
+  font-size: 20px; font-weight: 700; color: #0062C2;
+  flex-shrink: 0;
+}
+.theme-block-title:hover { text-decoration: underline; }
+.theme-block-title .sub {
+  display: block;
+  font-size: 11px; font-weight: 500; color: var(--c-text-s);
+  margin-top: 2px; letter-spacing: 0;
+}
+
+/* グラフモジュール（環境Index 準拠：棒グラフ＋FY軸＋dummy＋拡大＋＋図キャプション）
+   グラフは一部テーマのみ・1〜2点（0613 FB：KPIの見せ方は環境Indexを踏襲） */
+.wf-graph {
+  background: var(--c-white);
+  border: 1px solid var(--c-border);
+  padding: 14px 14px 12px;
+  margin: 4px 0 16px;
+  position: relative;
+}
+.wf-graph-dummy { font-size: 10px; color: var(--c-text-xs); }
+.wf-graph-plot { position: relative; padding: 10px 18px 0; }
+.wf-graph-bars {
+  display: flex; align-items: flex-end; justify-content: center;
+  gap: 28px; height: 116px;
+  border-bottom: 1px solid var(--c-text-h);
+}
+.wf-graph-bar { width: 34px; background: #0062C2; }
+.wf-graph-years { display: flex; justify-content: center; gap: 28px; margin-top: 6px; }
+.wf-graph-years span { width: 34px; text-align: center; font-size: 11px; color: var(--c-text-s); }
+.wf-graph-caption { font-size: 11px; color: var(--c-text-s); line-height: 1.6; margin-top: 10px; }
+
+/* ============================================================
    目次リンクモジュール（デザイン側 ◉目次リンク（社会INDEX） 準拠）
    下層ページの見出しを全て「目次リンク」として設置。
    テキストリンクモジュール＝アクセント色 #0062c2 ＋ ›（PageLink）アイコン
@@ -574,7 +641,7 @@ body {
     <span class="meta-badge">L2</span>
     <span class="meta-badge" style="background:#7a4a00; color:#fff;">分類廃止・12テーマフラット／デザインモジュール準拠</span>
   </div>
-  <div style="font-size:10px; color:#666;">2026.06.13 / デザイン側モジュール準拠（目次リンク・グラフタイトル・テキスト各モジュール踏襲／下層見出しを全件 目次リンク化）</div>
+  <div style="font-size:10px; color:#666;">2026.06.04 / 2カラムカード化・番号削除・主要見出しクリッカブル化・グラフは環境Index準拠で一部のみ（1〜2点）</div>
 </div>
 
 <div class="wf-canvas">
@@ -633,178 +700,92 @@ body {
         社会領域の取り組みを12テーマで紹介します。各テーマの代表的なKPIは、環境インデックスと同様に「戦略・目標・実績」の中でグラフとして開示します。
       </p>
 
-      <!-- 01 人的資本戦略（補足説明＋#アンカー＋GES KPI：1カラム→3カラム2段） -->
+      <!-- 12テーマ：2カラムグリッド／番号なし／主要見出し＝クリッカブル（下層遷移）／グラフは一部のみ -->
+      <div class="theme-grid">
+
       <div class="theme-block" id="sec-01">
-        <div class="theme-block-head">
-          <h3><span class="theme-no">01</span>人的資本戦略</h3>
-          <a class="theme-block-link">詳細を見る</a>
-        </div>
-        <p class="theme-lead">
-          （文章はダミーです）個と組織の成長を両立させる人的資本戦略を推進。事業戦略と接続した人事戦略を策定し、エンゲージメントを通じた価値創造を実現します。人財関連の代表的なKPIをここで一望できるようにします。
-        </p>
+        <a class="theme-block-title" href="#">人的資本戦略</a>
+        <p class="theme-lead">（文章はダミーです）個と組織の成長を両立させる人的資本戦略を推進。事業戦略と接続した人事戦略を策定し、エンゲージメントを通じた価値創造を実現します。</p>
+        <figure class="wf-graph">
+          <span class="wf-graph-dummy">dummy</span>
+          <div class="wf-graph-plot">
+            <div class="wf-graph-bars"><span class="wf-graph-bar" style="height:56%"></span><span class="wf-graph-bar" style="height:74%"></span><span class="wf-graph-bar" style="height:95%"></span></div>
+            <div class="wf-graph-years"><span>FY22</span><span>FY23</span><span>FY24</span></div>
+            <span class="img-zoom-btn"></span>
+          </div>
+          <figcaption class="wf-graph-caption">図：GES（エンゲージメントスコア）の推移（FY22-24実績／FY28目標）</figcaption>
+        </figure>
         <div class="toc-links">
           <a class="toc-link">基本的な考え方</a>
           <a class="toc-link">戦略・目標・実績</a>
         </div>
-
-        <!-- 0601 FB#4：GES（人財戦略の代表KPI）を1カラム全幅 → 人財KPIを3カラム2段 -->
-        <div class="hcm-kpi">
-          <!-- 1カラム：GES（全幅・主役KPI） -->
-          <div class="hcm-kpi-lead">
-            <div class="kpi-graph-ph">
-              <span class="kpi-graph-ph-label">[ グラフ画像PH ／ GES エンゲージメントスコア ]</span>
-            </div>
-            <div class="hcm-kpi-lead-body">
-              <span class="hcm-kpi-lead-tag">代表KPI</span>
-              <div class="hcm-kpi-lead-title">GES（Global Employee Survey）エンゲージメントスコア</div>
-              <p class="hcm-kpi-lead-desc">
-                グローバル従業員意識調査の結果を主要KPIとして、目標値と実績を経年でモニタリング。対話と人材育成の打ち手に接続させ、人的資本の価値向上につなげます。
-              </p>
-            </div>
-          </div>
-          <!-- 3カラム2段：人財関連の代表的なKPI（6枠） -->
-          <div class="hcm-kpi-grid-label">人財関連の代表的なKPI <span style="font-weight:400; color:var(--c-text-s);">（FY実績／目標を経年でグラフ開示・項目は原稿確定）</span></div>
-          <div class="hcm-kpi-grid">
-            <div class="hcm-kpi-cell">
-              <span class="graph-title">女性管理職比率</span>
-              <div class="kpi-graph-ph"><span class="kpi-graph-ph-label">[ グラフPH ]</span></div>
-            </div>
-            <div class="hcm-kpi-cell">
-              <span class="graph-title">男性育児休業取得率</span>
-              <div class="kpi-graph-ph"><span class="kpi-graph-ph-label">[ グラフPH ]</span></div>
-            </div>
-            <div class="hcm-kpi-cell">
-              <span class="graph-title">1人あたり研修時間</span>
-              <div class="kpi-graph-ph"><span class="kpi-graph-ph-label">[ グラフPH ]</span></div>
-            </div>
-            <div class="hcm-kpi-cell">
-              <span class="graph-title">エンゲージメント回答率</span>
-              <div class="kpi-graph-ph"><span class="kpi-graph-ph-label">[ グラフPH ]</span></div>
-            </div>
-            <div class="hcm-kpi-cell">
-              <span class="graph-title">自己都合離職率</span>
-              <div class="kpi-graph-ph"><span class="kpi-graph-ph-label">[ グラフPH ]</span></div>
-            </div>
-            <div class="hcm-kpi-cell">
-              <span class="graph-title">キャリア採用比率</span>
-              <div class="kpi-graph-ph"><span class="kpi-graph-ph-label">[ グラフPH ]</span></div>
-            </div>
-          </div>
-        </div>
       </div>
 
-      <!-- 02 人財育成 -->
       <div class="theme-block" id="sec-02">
-        <div class="theme-block-head">
-          <h3><span class="theme-no">02</span>人財育成</h3>
-          <a class="theme-block-link">詳細を見る</a>
-        </div>
-        <p class="theme-lead">
-          （文章はダミーです）次世代経営人財育成の強化と、事業成長を牽引する専門人財・グローバル人財の育成を進めています。中長期の戦略人事と接続した育成体系を整備しています。
-        </p>
+        <a class="theme-block-title" href="#">人財育成</a>
+        <p class="theme-lead">（文章はダミーです）次世代経営人財育成の強化と、事業成長を牽引する専門人財・グローバル人財の育成を進めています。中長期の戦略人事と接続した育成体系を整備しています。</p>
         <div class="toc-links">
           <a class="toc-link">基本的な考え方</a>
           <a class="toc-link">戦略・目標・実績</a>
         </div>
       </div>
 
-      <!-- 03 企業文化・組織風土 -->
       <div class="theme-block" id="sec-03">
-        <div class="theme-block-head">
-          <h3><span class="theme-no">03</span>企業文化・組織風土</h3>
-          <a class="theme-block-link">詳細を見る</a>
-        </div>
-        <p class="theme-lead">
-          （文章はダミーです）フィロソフィーを基軸とした風土醸成、心理的安全性の確保、対話を通じた組織変革を推進。事業成長を支える企業文化の浸透に取り組みます。
-        </p>
+        <a class="theme-block-title" href="#">企業文化・組織風土</a>
+        <p class="theme-lead">（文章はダミーです）フィロソフィーを基軸とした風土醸成、心理的安全性の確保、対話を通じた組織変革を推進。事業成長を支える企業文化の浸透に取り組みます。</p>
         <div class="toc-links">
           <a class="toc-link">基本的な考え方</a>
           <a class="toc-link">取り組み</a>
         </div>
       </div>
 
-      <!-- 04 DE&I（補足＋#アンカー＋グラフ2カラム） -->
       <div class="theme-block" id="sec-04">
-        <div class="theme-block-head">
-          <h3><span class="theme-no">04</span>DE&amp;I</h3>
-          <a class="theme-block-link">詳細を見る</a>
-        </div>
-        <p class="theme-lead">
-          （文章はダミーです）ダイバーシティ・エクイティ＆インクルージョンの推進を通じ、多様な人財が能力を発揮できる組織を目指します。代表的な指標をKPIとして設定し、グループ・KM（株）の数字を経年で開示します。
-        </p>
+        <a class="theme-block-title" href="#">DE&amp;I</a>
+        <p class="theme-lead">（文章はダミーです）ダイバーシティ・エクイティ＆インクルージョンの推進を通じ、多様な人財が能力を発揮できる組織を目指します。代表的な指標をKPIとして設定し、経年で開示します。</p>
+        <figure class="wf-graph">
+          <span class="wf-graph-dummy">dummy</span>
+          <div class="wf-graph-plot">
+            <div class="wf-graph-bars"><span class="wf-graph-bar" style="height:48%"></span><span class="wf-graph-bar" style="height:66%"></span><span class="wf-graph-bar" style="height:88%"></span></div>
+            <div class="wf-graph-years"><span>FY22</span><span>FY23</span><span>FY24</span></div>
+            <span class="img-zoom-btn"></span>
+          </div>
+          <figcaption class="wf-graph-caption">図：女性管理職比率の推移（FY22-24実績／FY30目標）</figcaption>
+        </figure>
         <div class="toc-links">
           <a class="toc-link">基本的な考え方</a>
           <a class="toc-link">戦略・目標・実績</a>
         </div>
-        <div class="theme-graph-row">
-          <div class="theme-graph-left">
-            <span class="graph-title">女性管理職比率（D）／公平性・意見の自由（E・I＝GES）</span>
-            <div class="kpi-graph-ph">
-              <span class="kpi-graph-ph-label">[ グラフ画像PH ]</span>
-            </div>
-          </div>
-          <div>
-            <div class="theme-graph-desc-label">図の補足</div>
-            <p class="theme-graph-desc">
-              女性管理職比率は女性活躍推進法上の開示にも対応。公平性・意見の自由はGESスコアで把握し、DEI推進計画に反映。事業成長に資する多様性の確保を目指します。
-            </p>
-          </div>
-        </div>
       </div>
 
-      <!-- 05 健康経営 -->
       <div class="theme-block" id="sec-05">
-        <div class="theme-block-head">
-          <h3><span class="theme-no">05</span>健康経営</h3>
-          <a class="theme-block-link">詳細を見る</a>
-        </div>
-        <p class="theme-lead">
-          （文章はダミーです）健康第一の風土醸成を通じた健全な経営の推進を重視。健康リスク保有者の最少化、過重労働対策、健康度の見える化、女性の健康支援に取り組みます。健康経営優良法人（ホワイト500）の継続認定を主要KPIとしています。
-        </p>
+        <a class="theme-block-title" href="#">健康経営</a>
+        <p class="theme-lead">（文章はダミーです）健康第一の風土醸成を通じた健全な経営の推進を重視。健康リスク保有者の最少化、過重労働対策、健康度の見える化、女性の健康支援に取り組みます。</p>
         <div class="toc-links">
           <a class="toc-link">基本的な考え方</a>
           <a class="toc-link">戦略・目標・実績</a>
         </div>
       </div>
 
-      <!-- 06 労働安全衛生 -->
       <div class="theme-block" id="sec-06">
-        <div class="theme-block-head">
-          <h3><span class="theme-no">06</span>労働安全衛生</h3>
-          <a class="theme-block-link">詳細を見る</a>
-        </div>
-        <p class="theme-lead">
-          （文章はダミーです）製造会社として義務的に必要な労働安全衛生体制を構築。労働災害ゼロを目指し、労働安全衛生方針に基づく管理体制とリスクアセスメントを実施。グローバル拠点でのISO45001導入を推進しています。
-        </p>
+        <a class="theme-block-title" href="#">労働安全衛生</a>
+        <p class="theme-lead">（文章はダミーです）製造会社として義務的に必要な労働安全衛生体制を構築。労働災害ゼロを目指し、労働安全衛生方針に基づく管理体制とリスクアセスメントを実施。グローバル拠点でのISO45001導入を推進しています。</p>
         <div class="toc-links">
           <a class="toc-link">基本的な考え方</a>
           <a class="toc-link">戦略・目標・実績</a>
         </div>
       </div>
 
-      <!-- 07 労働慣行 -->
       <div class="theme-block" id="sec-07">
-        <div class="theme-block-head">
-          <h3><span class="theme-no">07</span>労働慣行</h3>
-          <a class="theme-block-link">詳細を見る</a>
-        </div>
-        <p class="theme-lead">
-          （文章はダミーです）ILO中核的労働基準を踏まえた労働慣行の遵守、結社の自由・団体交渉権の尊重、強制労働・児童労働の禁止など、グローバルでの労働者の権利保護を推進します。
-        </p>
+        <a class="theme-block-title" href="#">労働慣行</a>
+        <p class="theme-lead">（文章はダミーです）ILO中核的労働基準を踏まえた労働慣行の遵守、結社の自由・団体交渉権の尊重、強制労働・児童労働の禁止など、グローバルでの労働者の権利保護を推進します。</p>
         <div class="toc-links">
           <a class="toc-link">基本的な考え方</a>
         </div>
       </div>
 
-      <!-- 08 人権（補足＋#アンカー：6項目／ステークホルダーエンゲージメント省略不可） -->
       <div class="theme-block" id="sec-08">
-        <div class="theme-block-head">
-          <h3><span class="theme-no">08</span>人権</h3>
-          <a class="theme-block-link">詳細を見る</a>
-        </div>
-        <p class="theme-lead">
-          （文章はダミーです）人権方針・KMグループ行動憲章・サプライチェーン行動規範を基盤に、国際規範に沿った人権尊重を実践。自社・サプライチェーン全体を対象とした人権デュー・デリジェンスと、相談・通報窓口の運用、是正プロセス、ステークホルダーとの対話を体系的に推進しています。
-        </p>
+        <a class="theme-block-title" href="#">人権</a>
+        <p class="theme-lead">（文章はダミーです）人権方針・KMグループ行動憲章・サプライチェーン行動規範を基盤に、国際規範に沿った人権尊重を実践。人権デュー・デリジェンス、相談・通報窓口の運用、是正プロセス、ステークホルダーとの対話を体系的に推進しています。</p>
         <div class="toc-links">
           <a class="toc-link">基本的な考え方</a>
           <a class="toc-link">体制</a>
@@ -815,15 +796,9 @@ body {
         </div>
       </div>
 
-      <!-- 09 サプライチェーンマネジメント（人権の直後に隣接配置：関連性を可視化） -->
       <div class="theme-block" id="sec-09">
-        <div class="theme-block-head">
-          <h3><span class="theme-no">09</span>サプライチェーンマネジメント</h3>
-          <a class="theme-block-link">詳細を見る</a>
-        </div>
-        <p class="theme-lead">
-          （文章はダミーです）サプライチェーン全体での人権・環境・倫理に配慮した責任ある調達活動を推進。サプライヤー行動規範に基づくCSR調達アセスメント、責任ある鉱物調達デューデリジェンスをグローバルで運用し、持続可能なバリューチェーン構築を目指します。
-        </p>
+        <a class="theme-block-title" href="#">サプライチェーンマネジメント</a>
+        <p class="theme-lead">（文章はダミーです）サプライチェーン全体での人権・環境・倫理に配慮した責任ある調達活動を推進。サプライヤー行動規範に基づくCSR調達アセスメント、責任ある鉱物調達デューデリジェンスをグローバルで運用しています。</p>
         <div class="toc-links">
           <a class="toc-link">基本的な考え方</a>
           <a class="toc-link">体制</a>
@@ -832,15 +807,9 @@ body {
         </div>
       </div>
 
-      <!-- 10 顧客責任・品質（補足＋#アンカー：3項目） -->
       <div class="theme-block" id="sec-10">
-        <div class="theme-block-head">
-          <h3><span class="theme-no">10</span>顧客責任・品質</h3>
-          <a class="theme-block-link">詳細を見る</a>
-        </div>
-        <p class="theme-lead">
-          （文章はダミーです）コンプライアンス／品質不正防止、製品セキュリティ、製品品質、顧客満足度の4軸でTQM（Total Quality Management）を推進。お客様への責任を全社横断で果たす運営体制を整備しています。
-        </p>
+        <a class="theme-block-title" href="#">顧客責任・品質</a>
+        <p class="theme-lead">（文章はダミーです）コンプライアンス／品質不正防止、製品セキュリティ、製品品質、顧客満足度の4軸でTQM（Total Quality Management）を推進。お客様への責任を全社横断で果たす運営体制を整備しています。</p>
         <div class="toc-links">
           <a class="toc-link">基本的な考え方</a>
           <a class="toc-link">体制</a>
@@ -848,33 +817,23 @@ body {
         </div>
       </div>
 
-      <!-- 11 AIの利活用 -->
       <div class="theme-block" id="sec-11">
-        <div class="theme-block-head">
-          <h3><span class="theme-no">11</span>AIの利活用</h3>
-          <a class="theme-block-link">詳細を見る</a>
-        </div>
-        <p class="theme-lead">
-          （文章はダミーです）AI利活用に関する基本方針のもと、お客様・社員・社会への価値提供と、AI倫理・ガバナンスを両立。責任あるAI利活用を推進しています。
-        </p>
+        <a class="theme-block-title" href="#">AIの利活用</a>
+        <p class="theme-lead">（文章はダミーです）AI利活用に関する基本方針のもと、お客様・社員・社会への価値提供と、AI倫理・ガバナンスを両立。責任あるAI利活用を推進しています。</p>
         <div class="toc-links">
           <a class="toc-link">基本的な考え方</a>
         </div>
       </div>
 
-      <!-- 12 社会貢献活動 -->
       <div class="theme-block" id="sec-12" style="margin-bottom:0;">
-        <div class="theme-block-head">
-          <h3><span class="theme-no">12</span>社会貢献活動</h3>
-          <a class="theme-block-link">詳細を見る</a>
-        </div>
-        <p class="theme-lead">
-          （文章はダミーです）事業活動を通じた社会価値創出に加え、地域社会への貢献活動を推進。教育・文化・スポーツ・環境保全等の分野で、社員参加型の活動を展開しています。
-        </p>
+        <a class="theme-block-title" href="#">社会貢献活動</a>
+        <p class="theme-lead">（文章はダミーです）事業活動を通じた社会価値創出に加え、地域社会への貢献活動を推進。教育・文化・スポーツ・環境保全等の分野で、社員参加型の活動を展開しています。</p>
         <div class="toc-links">
           <a class="toc-link">基本的な考え方</a>
         </div>
       </div>
+
+      </div><!-- /theme-grid -->
 
     </section>
 
@@ -1082,11 +1041,32 @@ body {
 
   <!-- アノテーションパネル — 0601 桐原FB10件反映版（v2.0） -->
   <aside class="wf-annotation">
-    <h3>設計ポイント — 社会 インデックス v2.1（推奨版 #005b／デザインモジュール準拠）</h3>
+    <h3>設計ポイント — 社会 インデックス v2.2（推奨版 #005b／2カラムカード・環境Index準拠）</h3>
 
     <div class="ann-item">
       <span class="ann-num">◎</span>
-      <span class="ann-head">v2.1 デザイン側モジュール準拠（0613）</span>
+      <span class="ann-head">v2.2 レイアウト調整（0604 丹野FB）</span>
+      <div class="ann-row">
+        <span class="ann-row-label">番号削除</span>
+        テーマ先頭の通し番号（01〜12）を<strong>全削除</strong>。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">2カラム</span>
+        12テーマを<strong>2カラムのカードグリッド</strong>に変更（等高カード・目次リンクは下端揃え）。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">主要見出しクリッカブル</span>
+        各ブロック上部の<strong>テーマ名（主要見出し）自体をクリッカブル</strong>化＝下層ページへ遷移。デザイン側「見出し（H2）／インデックス専用」モジュール準拠でアクセント色＋› 表示。旧「詳細を見る」リンクは撤去。
+      </div>
+      <div class="ann-row">
+        <span class="ann-row-label">KPI＝環境Index準拠</span>
+        環境Index（KM_PC_L2）の見せ方を踏襲し、<strong>グラフは一部テーマのみ・1〜2点</strong>に抑制。GESの全幅強調＋3カラム2段（6枠）は廃止し、<strong>人的資本戦略＝GES 1点／DE&amp;I＝女性管理職比率 1点</strong>に。棒グラフ（FY軸・dummy・拡大＋・図キャプション）モジュールで表現。
+      </div>
+    </div>
+
+    <div class="ann-item">
+      <span class="ann-num">◎</span>
+      <span class="ann-head">v2.1 デザイン側モジュール準拠（0603）</span>
       <div class="ann-row">
         <span class="ann-row-label">目次リンク</span>
         各ブロックの下層見出しを、デザイン側<strong>「◉目次リンク（社会INDEX）」モジュール</strong>のテキストリンク（アクセント色 #0062C2 ＋ › PageLinkアイコン）に統一。旧「#チップ」を廃止し、<strong>下層ページ見出しを全件 目次リンク化</strong>。
@@ -1118,7 +1098,8 @@ body {
       </div>
       <div class="ann-row">
         <span class="ann-row-label">FB#4</span>
-        人的資本戦略の戦略・目標・実績を<strong>GES＝1カラム全幅 → 人財KPI＝3カラム2段（6枠）</strong>のレイアウトで構成。
+        当初は人的資本戦略にGES＋人財KPI 3カラム2段（6枠）を配置 →
+        <strong>0604 丹野FBにより環境Index準拠でグラフを一部1〜2点に抑制（GES 1点のみ）</strong>に簡素化。
       </div>
       <div class="ann-row">
         <span class="ann-row-label">FB#2</span>
@@ -1163,12 +1144,12 @@ body {
       <span class="ann-num">◆</span>
       <span class="ann-head">12テーマと各ブロックの見出し（行動変容定義準拠）</span>
       <div class="ann-row">
-        <span class="ann-row-label">01 人的資本戦略</span>
-        基本的な考え方／戦略・目標・実績 ＋<strong>GES＋人財KPI 3カラム2段</strong>
+        <span class="ann-row-label">人的資本戦略</span>
+        基本的な考え方／戦略・目標・実績 ＋<strong>グラフ：GES 1点</strong>
       </div>
       <div class="ann-row">
-        <span class="ann-row-label">02-07</span>
-        人財育成／企業文化・組織風土／DE&amp;I（＋グラフ）／健康経営／労働安全衛生／労働慣行
+        <span class="ann-row-label">他テーマ</span>
+        人財育成／企業文化・組織風土／DE&amp;I（＋グラフ：女性管理職比率 1点）／健康経営／労働安全衛生／労働慣行
       </div>
       <div class="ann-row">
         <span class="ann-row-label">08 人権</span>
