@@ -285,17 +285,31 @@ body {
   font-size: 16px; font-weight: 700;
   color: #0062C2;                /* --fg/accent：クリッカブル見出し */
   line-height: 1.45; letter-spacing: -0.01em;
-  margin-bottom: 12px; padding-bottom: 10px;
+  /* 見出しの横一列を丸ごとクリック領域として見せる（左右に padding、負 margin で内容端に揃える） */
+  padding: 6px 8px 10px;
+  margin: 0 -8px 10px;
   border-bottom: 2px solid var(--c-text-h);   /* タイトル下線 */
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   cursor: pointer; text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 .theme-block-title::after {
   content: '›';
   font-size: 18px; font-weight: 700; color: #0062C2;
   flex-shrink: 0;
+  transition: transform 0.15s ease, color 0.15s ease;
 }
-.theme-block-title:hover { text-decoration: underline; }
+/* 横一列ごとマウスオーバーでクリッカブルと分かる挙動 */
+.theme-block-title:hover {
+  background: #EAF3FC;            /* 薄いアクセント背景 */
+  color: #0A4F9E;
+  border-bottom-color: #0062C2;  /* 下線もアクセント色に */
+  text-decoration: none;
+}
+.theme-block-title:hover::after {
+  color: #0A4F9E;
+  transform: translateX(3px);    /* › が右に動いて遷移を示唆 */
+}
 
 /* グラフモジュール（環境Index 準拠：棒グラフ＋FY軸＋dummy＋拡大＋＋図キャプション）
    グラフは一部テーマのみ・1〜2点（0613 FB：KPIの見せ方は環境Indexを踏襲） */
@@ -682,7 +696,7 @@ body {
     <span class="meta-badge">L2</span>
     <span class="meta-badge" style="background:#7a4a00; color:#fff;">分類廃止・12テーマフラット／デザインモジュール準拠</span>
   </div>
-  <div style="font-size:10px; color:#666;">2026.06.04 / ブロックUI（枠あり白カード）に復帰・冒頭DRAFTタグ削除・サステナビリティ関連リンクエリア削除（クリック対象=見出し＋目次リンク）</div>
+  <div style="font-size:10px; color:#666;">2026.06.04 / 見出し行をマウスオーバーで横一列クリッカブル表示（薄青背景＋色変化＋下線アクセント＋›右移動）・ブロックUI（枠あり白カード）</div>
 </div>
 
 <div class="wf-canvas">
