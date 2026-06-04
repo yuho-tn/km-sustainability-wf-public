@@ -239,12 +239,15 @@ body {
   padding: 20px 22px;
   margin-bottom: 24px;
 }
+/* 0604 丹野FB：図と見出し（本文ブロック）を左右逆に → 左=見出し/本文、右=図 */
 .hcm-feature-row {
   display: grid;
-  grid-template-columns: 440px 1fr;
+  grid-template-columns: 1fr 440px;
   gap: 32px;
   align-items: stretch;
 }
+.hcm-feature-body  { order: 1; }   /* 左：見出し＋本文＋目次リンク */
+.hcm-feature-graph { order: 2; }   /* 右：図（グラフ） */
 .hcm-feature-graph .wf-graph { margin: 0; max-width: 100%; }
 
 /* ============================================================
